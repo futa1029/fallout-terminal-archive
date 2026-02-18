@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Overseer Mohi's Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --term-green: #33ff33;
+            --term-bg: #000;
+            --term-dim: #00aa00;
+        }
+
+        body {
+            background-color: var(--term-bg);
+            color: var(--term-green);
+            font-family: 'Share Tech Mono', monospace;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            text-shadow: 0 0 5px var(--term-dim);
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CRT Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--term-green);
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .header .sub {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        .terminal-screen {
+            flex: 1;
+            overflow-y: auto;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .line {
+            margin-bottom: 10px;
+        }
+
+        .cursor::after {
+            content: "█";
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .menu-item {
+            display: block;
+            color: var(--term-green);
+            text-decoration: none;
+            padding: 10px 0;
+            border: 1px solid transparent;
+            padding-left: 10px;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            background: rgba(51, 255, 51, 0.1);
+            border-left: 5px solid var(--term-green);
+            padding-left: 15px;
+            text-shadow: 0 0 8px var(--term-green);
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>ROBCO INDUSTRIES (TM) TERMLINK PROTOCOL</h1>
+        <div class="sub">ENTER PASSWORD NOW</div>
+    </div>
+
+    <div class="terminal-screen">
+        <div class="line">> WELCOME TO OVERSEER MOHI'S PRIVATE TERMINAL.</div>
+        <div class="line">> UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</div>
+        <div class="line">> LOADING ARCHIVES... DONE.</div>
+        <br>
+        <div class="line">----------------------------------------</div>
+        <div class="line">AVAILABLE LORE ARCHIVES:</div>
+        <div class="line">----------------------------------------</div>
+        <br>
+
+        <a href="vault_dweller_lore.html" class="menu-item">
+            > [LOG 001] Vault Dweller (Vaultの居住者)
+        </a>
+
+        <div class="menu-item" style="opacity:0.5; cursor:not-allowed;">
+            > [LOG 002] CORRUPTED...
+        </div>
+
+        <br>
+        <div class="line cursor">> AWAITING INPUT</div>
+    </div>
+
+    <div class="footer">
+        ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM LEVEL 5
+    </div>
+
+</body>
+
+</html>
