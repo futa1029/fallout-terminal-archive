@@ -3,463 +3,535 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Pip-Boy Data Archive</title>
-    <!-- Share Tech Mono Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <title>RobCo Industries Terminal</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
         :root {
-            --pip-green: #1aff1a;
-            --pip-green-dim: #0d800d;
-            --pip-bg: #0a0a0a;
-            --scanline-color: rgba(18, 16, 16, 0.5);
+            --fallout-green: #00ff00;
+            --fallout-bg: #111111;
+            --fallout-dark-green: #003300;
+            --fallout-amber: #ffce07;
+            --monitor-case: #3a3a3a;
+            --monitor-border: #1a1a1a;
         }
 
         body {
-            background-color: var(--pip-bg);
-            color: var(--pip-green);
-            font-family: 'Share Tech Mono', monospace;
+            background-color: #000000;
             margin: 0;
+            padding: 20px;
+            font-family: 'VT323', "Meiryo", "Yu Gothic", sans-serif;
             height: 100vh;
-            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            text-shadow: 0 0 5px var(--pip-green-dim);
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            /* 大枠のスクロールを禁止 */
+            color: var(--fallout-green);
+            box-sizing: border-box;
         }
 
-        /* CRT Effect */
-        .crt-overlay {
-            position: fixed;
+        /* モニター筐体 */
+        .monitor-casing {
+            background-color: var(--monitor-case);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: inset 0 0 10px #000, 5px 5px 15px rgba(0, 0, 0, 0.5), inset 2px 2px 5px rgba(255, 255, 255, 0.1);
+            border: 5px solid var(--monitor-border);
+            width: 100%;
+            max-width: 950px;
+            height: 90vh;
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* モニター画面（外枠） */
+        .crt-screen {
+            background-color: var(--fallout-bg);
+            border-radius: 60px / 30px;
+            position: relative;
+            flex: 1;
+            box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.9);
+            border: 2px solid #222;
+            overflow: hidden;
+            /* はみ出し禁止 */
+        }
+
+        /* ▼▼▼ スクロール専用レイヤー ▼▼▼ */
+        .scroll-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 40px;
+            overflow-y: auto;
+            /* 縦スクロール許可 */
+            overflow-x: hidden;
+            z-index: 50;
+
+            overscroll-behavior: contain;
+            /* スクロール連鎖防止 */
+            -webkit-overflow-scrolling: touch;
+
+            scrollbar-width: thin;
+            scrollbar-color: var(--fallout-green) var(--fallout-dark-green);
+            padding-bottom: 100px;
+        }
+
+        .scroll-layer::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        .scroll-layer::-webkit-scrollbar-track {
+            background: var(--fallout-dark-green);
+            border-radius: 6px;
+        }
+
+        .scroll-layer::-webkit-scrollbar-thumb {
+            background: var(--fallout-green);
+            border-radius: 6px;
+            border: 2px solid var(--fallout-dark-green);
+        }
+
+        .scroll-layer::-webkit-scrollbar-thumb:hover {
+            background: #55ff55;
+        }
+
+        /* 画面の反射 */
+        .crt-screen::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 20%);
+            z-index: 9000;
+            pointer-events: none;
+            border-radius: 60px / 30px;
+        }
+
+        /* 走査線 */
+        .scanlines {
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 2px, 3px 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%),
+                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 100;
+            background-size: 100% 4px, 4px 100%;
             pointer-events: none;
-            z-index: 999;
+            animation: flicker 0.15s infinite alternate;
         }
 
-        /* Layout */
-        .header {
-            padding: 10px 20px;
-            border-bottom: 2px solid var(--pip-green);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .monitor-badge {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #111;
+            background: #ccc;
+            padding: 2px 8px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 2px;
+            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+            font-family: sans-serif;
+            z-index: 10000;
         }
 
-        .tabs {
-            display: flex;
-            gap: 15px;
+        /* ▼▼▼ 画像レイヤー（Imgur直リンク・左上固定） ▼▼▼ */
+        .vaultboy-corner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 140px;
+            z-index: 200;
+            pointer-events: none;
+            /* 緑色フィルター */
+            filter: drop-shadow(0 0 10px var(--fallout-green)) sepia(1) hue-rotate(70deg) saturate(5) brightness(0.9);
+            animation: float 4s ease-in-out infinite;
         }
 
-        .tab {
-            cursor: pointer;
-            padding: 5px 10px;
-            opacity: 0.5;
-            border: 1px solid transparent;
+        .terminal-header {
+            text-align: center;
+            border-bottom: 2px solid var(--fallout-green);
+            padding-bottom: 20px;
+            margin-bottom: 50px;
+            position: relative;
         }
 
-        .tab.active {
-            opacity: 1;
-            border: 1px solid var(--pip-green);
-            background: rgba(26, 255, 26, 0.1);
-            box-shadow: 0 0 10px var(--pip-green-dim);
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 0 0 15px var(--fallout-green);
+            letter-spacing: 2px;
         }
 
-        .pip-boy-container {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
+        .overseer-info {
+            font-size: 1.6rem;
+            color: var(--fallout-amber);
+            margin-top: 10px;
+            font-weight: bold;
         }
 
-        /* GRID VIEW */
-        .grid-view {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+        .overseer-link {
+            display: inline-block;
+            color: var(--fallout-green);
+            text-decoration: none;
+            font-size: 1.1rem;
+            border: 1px solid var(--fallout-green);
+            padding: 2px 10px;
+            margin-top: 10px;
+            transition: 0.3s;
         }
 
-        .card {
-            border: 1px solid var(--pip-green-dim);
-            background: rgba(0, 20, 0, 0.3);
-            padding: 10px;
+        .overseer-link:hover {
+            background-color: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
             display: flex;
             flex-direction: column;
-            cursor: pointer;
-            transition: all 0.2s;
-            height: 120px;
+            gap: 40px;
+            position: relative;
         }
 
-        .card:hover {
-            background: var(--pip-green);
-            color: black;
-            border-color: var(--pip-green);
-            box-shadow: 0 0 15px var(--pip-green);
+        .intro-block {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            background: rgba(0, 51, 0, 0.3);
+            padding: 25px;
+            border: 1px dashed var(--fallout-green);
+            color: #e0ffe0;
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.8em;
-            margin-bottom: 5px;
-            opacity: 0.8;
-            border-bottom: 1px dashed var(--pip-green-dim);
-            padding-bottom: 3px;
-        }
-
-        .card:hover .card-header {
-            border-bottom-color: black;
-        }
-
-        .card-title {
-            font-size: 1.2em;
+        .cmd-line {
+            color: var(--fallout-amber);
+            margin-bottom: 10px;
+            display: block;
             font-weight: bold;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            line-height: 1.2;
         }
 
-        .card-link-icon {
-            font-size: 0.8em;
-            margin-top: auto;
-            align-self: flex-end;
+        .section {
+            border: 1px solid var(--fallout-green);
+            padding: 25px;
+            background: rgba(0, 51, 0, 0.15);
+            position: relative;
         }
 
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .section-title {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+            padding: 4px 15px;
+            display: inline-block;
+            position: absolute;
+            top: -16px;
+            left: 20px;
+            font-weight: bold;
+            font-size: 1.3rem;
         }
 
-        ::-webkit-scrollbar-track {
-            background: #000;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--pip-green-dim);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--pip-green);
-        }
-
-        .footer {
-            padding: 5px 20px;
-            font-size: 12px;
-            display: flex;
-            justify-content: space-between;
+        .section-status {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 0.9rem;
             opacity: 0.7;
-            border-top: 2px solid var(--pip-green);
+            letter-spacing: 1px;
+        }
+
+        .stats-jp {
+            font-size: 1.5rem;
+            color: var(--fallout-amber);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .btn-large {
+            display: block;
+            text-align: center;
+            padding: 18px;
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            animation: pulse 4s infinite ease-in-out;
+            border: 2px solid var(--fallout-green);
+        }
+
+        .btn-x {
+            background-color: transparent;
+            color: var(--fallout-green);
+        }
+
+        .btn-x:hover {
+            background-color: var(--fallout-green);
+            color: var(--fallout-bg);
+            box-shadow: 0 0 20px var(--fallout-green);
+        }
+
+        .btn-discord {
+            background-color: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        .btn-discord:hover {
+            background-color: var(--fallout-amber);
+            border-color: var(--fallout-amber);
+            box-shadow: 0 0 30px var(--fallout-amber);
+        }
+
+        .btn-note {
+            background-color: transparent;
+            color: var(--fallout-amber);
+            border-color: var(--fallout-amber);
+        }
+
+        .btn-note:hover {
+            background-color: var(--fallout-amber);
+            color: var(--fallout-bg);
+            box-shadow: 0 0 30px var(--fallout-amber);
+        }
+
+        .support-msg {
+            font-size: 1rem;
+            color: var(--fallout-amber);
+            margin-top: 15px;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        .footer-terminal {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid var(--fallout-green);
+            color: var(--fallout-amber);
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: left;
+            opacity: 0.7;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .warning-text {
+            color: #ff0000;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            letter-spacing: 2px;
+            border: 1px solid #ff0000;
+            padding: 5px;
+        }
+
+        .disclaimer-text {
+            color: var(--fallout-green);
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 15px;
+            opacity: 0.6;
+            font-style: italic;
+            border-top: 1px dashed var(--fallout-dark-green);
+            padding-top: 10px;
+        }
+
+        .footer-sig {
+            text-align: right;
+            font-size: 1.4rem;
+            margin-top: 20px;
+            color: var(--fallout-green);
+            opacity: 1;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.02);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes flicker {
+            0% {
+                opacity: 0.98;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .monitor-casing {
+                padding: 10px;
+                border-radius: 10px;
+                border-width: 2px;
+            }
+
+            .crt-screen {
+                padding: 15px;
+                border-radius: 20px / 10px;
+                height: 90vh;
+            }
+
+            .scroll-layer {
+                padding: 15px;
+                padding-bottom: 80px;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .btn-large {
+                font-size: 1.3rem;
+                padding: 12px;
+            }
+
+            .intro-block,
+            p {
+                font-size: 1.1rem;
+            }
+
+            .vb-top-left {
+                width: 90px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <div class="crt-overlay"></div>
+    <div class="monitor-casing">
+        <div class="crt-screen">
+            <div class="scanlines"></div>
 
-    <div class="header">
-        <div>PIP-BOY 3000 <span style="font-size: 0.7em">MARK IV</span></div>
-        <div class="tabs" id="categoryTabs">
-            <div class="tab active" data-cat="ALL">ALL</div>
-            <div class="tab" data-cat="Person">PERSON</div>
-            <div class="tab" data-cat="Location">LOC</div>
-            <div class="tab" data-cat="Item">ITEM</div>
-            <div class="tab" data-cat="Faction">FACT</div>
-            <div class="tab" data-cat="Creature">CREAT</div>
-            <div class="tab" data-cat="System">SYS</div>
+            <img src="https://i.imgur.com/Ce6AKmY.gif" alt="Vault Boy checking Pip-Boy"
+                class="vaultboy-corner vb-top-left">
+
+            <div class="scroll-layer">
+
+                <div class="terminal-header">
+                    <h1>ROBCO INDUSTRIES TERMINAL</h1>
+                    <div class="overseer-info">OVERSEER: MOHI</div>
+                    <a href="https://x.com/IwamotoFuta" target="_blank" class="overseer-link">> ACCESS_OVERSEER_LOG</a>
+                </div>
+
+                <div class="container">
+                    <div class="intro-block">
+                        <span class="cmd-line">> RUN COMMUNITY_INTRODUCTION.EXE ... DONE</span>
+                        <p>Falloutファンの皆様、ウェイストランドでの活動をさらに充実させませんか？<br>現在、XとDiscordにて日本コミュニティを運営しています。<br>用途に合わせてぜひご活用ください！
+                        </p>
+                    </div>
+
+                    <div class="section">
+                        <span class="section-title">X Community Japan</span>
+                        <span class="section-status">[ STATUS: ONLINE ]</span>
+                        <div class="stats-jp">MEMBERS: 1,700+</div>
+                        <p>最新情報のチェックや発信に。タイムラインで気軽にウェイストランドの今を追いかけたい方はこちらへ。</p>
+                        <a href="https://x.com/i/communities/1964594941424013396" target="_blank"
+                            class="btn-large btn-x">CONNECT TO X-COMMUNITY</a>
+                    </div>
+
+                    <div class="section">
+                        <span class="section-title">Vault Discord Japan</span>
+                        <span class="section-status">[ STATUS: ACTIVE ]</span>
+                        <div class="stats-jp">RESIDENTS: 700+</div>
+                        <p>深い交流やマルチプレイの拠点。フレンド募集、トレード、VCでの協力プレイが日々活発に行われています！</p>
+                        <a href="https://discord.gg/falloutjp" target="_blank" class="btn-large btn-discord">ENTER THE
+                            VAULT (DISCORD)</a>
+                    </div>
+
+                    <div class="section">
+                        <span class="section-title">Holotape Archives</span>
+                        <span class="section-status">[ TYPE: DATABASE ]</span>
+                        <p>攻略ガイド、考察記事、ウェイストランドの記録を格納したアーカイブです。</p>
+                        <a href="https://note.com/futaiwamoto" target="_blank" class="btn-large btn-note">READ HOLOTAPE
+                            (NOTE)</a>
+                        <div class="support-msg">※運営継続のための寄付（サポート）も受付中です</div>
+                    </div>
+
+                    <div class="footer-terminal">
+                        <div class="footer-grid">
+                            <div>
+                                > ROBCO OS v1.10.26<br>
+                                > LOCATION: JAPAN<br>
+                                > CONNECTION: SECURE
+                            </div>
+                            <div style="text-align: right;">
+                                COPYRIGHT 2026 ROBCO INDUSTRIES<br>
+                                ALL RIGHTS RESERVED.<br>
+                                PROPERTY OF VAULT-TEC
+                            </div>
+                        </div>
+
+                        <div class="warning-text">WARNING: UNAUTHORIZED ACCESS IS PUNISHABLE BY DEATH</div>
+
+                        <div class="disclaimer-text">
+                            > DISCLAIMER: THIS IS A FAN COMMUNITY PAGE AND IS NOT AFFILIATED WITH BETHESDA SOFTWORKS OR
+                            ZENIMAX MEDIA.
+                        </div>
+
+                        <div class="footer-sig">SIGNED BY OVERSEER MOHI</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>HP 100/100</div>
+        <div class="monitor-badge">ROBCO INDUSTRIES</div>
     </div>
-
-    <div class="pip-boy-container">
-        <div id="grid-view" class="grid-view">
-            <!-- Cards injected here -->
-        </div>
-    </div>
-
-    <div class="footer">
-        <div>Total Records: <span id="recordCount">0</span></div>
-        <div>VAULT-TEC DATA ARCHIVE: ONLINE</div>
-    </div>
-
-    <script type="text/javascript">
-        // --- DATA ---
-        const rawArticles = [
-            { "label": "キャプテン・コスモス", "url": "https://note.com/futaiwamoto/n/nee57d5374c1e", "group": "Item" },
-            { "label": "K.D.インクウェル", "url": "https://note.com/futaiwamoto/n/nf7c248274041", "group": "Item" },
-            { "label": "ビッグ・アルのタトゥー・パーラー", "url": "https://note.com/futaiwamoto/n/nfcf0361cba69", "group": "Location" },
-            { "label": "ウエスト・テック", "url": "https://note.com/futaiwamoto/n/n069ef63fb7f3", "group": "Location" },
-            { "label": "D.B.テクニカルハイスクール", "url": "https://note.com/futaiwamoto/n/n2b0171672088", "group": "Location" },
-            { "label": "バナナ・ユッカ", "url": "https://note.com/futaiwamoto/n/nc4468acdf79f", "group": "Item" },
-            { "label": "クライスラス・モータース", "url": "https://note.com/futaiwamoto/n/na3357f079986", "group": "Location" },
-            { "label": "フレアガン", "url": "https://note.com/futaiwamoto/n/ncb36c1ed0cc0", "group": "Item" },
-            { "label": "サンセット・サルサパリラ", "url": "https://note.com/futaiwamoto/n/n52500e2e68c5", "group": "Item" },
-            { "label": "キャッピー", "url": "https://note.com/futaiwamoto/n/nd3b9fd6af3fe", "group": "Person" },
-            { "label": "H&H Tools Company", "url": "https://note.com/futaiwamoto/n/n1788e6f7bd1b", "group": "Location" },
-            { "label": "ビーバー", "url": "https://note.com/futaiwamoto/n/n3a3aad16a84b", "group": "Creature" },
-            { "label": "ボトル", "url": "https://note.com/futaiwamoto/n/n983cf0279677", "group": "Person" },
-            { "label": "サークルG", "url": "https://note.com/futaiwamoto/n/n02974f9fc27e", "group": "Location" },
-            { "label": "公式クックブック", "url": "https://note.com/futaiwamoto/n/ncd27a1a3dda4", "group": "Item" },
-            { "label": "ヌカ・コーラ", "url": "https://note.com/futaiwamoto/n/nb4be594023d3", "group": "Item" },
-            { "label": "エイリアンの食用生物", "url": "https://note.com/futaiwamoto/n/n1aa4c31993c3", "group": "Item" },
-            { "label": "変異パブリックイベント", "url": "https://note.com/futaiwamoto/n/nd986d8c97962", "group": "System" },
-            { "label": "アングラー", "url": "https://note.com/futaiwamoto/n/n87a8d8dd9cf4", "group": "Creature" },
-            { "label": "バラモン", "url": "https://note.com/futaiwamoto/n/ne51570967658", "group": "Creature" },
-            { "label": "アークトス・ファーマ", "url": "https://note.com/futaiwamoto/n/n40d35e7f7520", "group": "Faction" },
-            { "label": "スコーチ", "url": "https://note.com/futaiwamoto/n/na0ea2c557d0a", "group": "Creature" },
-            { "label": "Project Paradise", "url": "https://note.com/futaiwamoto/n/n81ae867234af", "group": "System" },
-            { "label": "ウェンディゴ", "url": "https://note.com/futaiwamoto/n/n1bcef34fd546", "group": "Creature" },
-            { "label": "アークトス・ファーマ・バイオーム研究所", "url": "https://note.com/futaiwamoto/n/ne4ea1da8c456", "group": "Location" },
-            { "label": "セントリーボット", "url": "https://note.com/futaiwamoto/n/nf996722c95cd", "group": "Creature" },
-            { "label": "血濡れ不屈ビルド", "url": "https://note.com/futaiwamoto/n/nf1d18e6b04a0", "group": "System" },
-            { "label": "クルセイダーピストル", "url": "https://note.com/futaiwamoto/n/n9d38254e2525", "group": "Item" },
-            { "label": "ジャイアントティーポット", "url": "https://note.com/futaiwamoto/n/n832cc43d1e47", "group": "Location" },
-            { "label": "デイリー・オプス", "url": "https://note.com/futaiwamoto/n/n6f3a53ea8d2a", "group": "System" },
-            { "label": "ヒルフォーク・ホットドッグ", "url": "https://note.com/futaiwamoto/n/n3fb7ea64c96a", "group": "Location" },
-            { "label": "黒色火薬ピストル", "url": "https://note.com/futaiwamoto/n/n2e8b47ba8dd2", "group": "Item" },
-            { "label": "ヘルヴェティア", "url": "https://note.com/futaiwamoto/n/n1c6dee0ce7ae", "group": "Location" },
-            { "label": "マック＆チーズ", "url": "https://note.com/futaiwamoto/n/n0e5559a1a5ad", "group": "Item" },
-            { "label": "ランドビュー灯台", "url": "https://note.com/futaiwamoto/n/n7e7ebc469d79", "group": "Location" },
-            { "label": "黒色火薬ブランダーバス", "url": "https://note.com/futaiwamoto/n/n2b023b4d46d3", "group": "Item" },
-            { "label": "ニューリバー渓谷橋", "url": "https://note.com/futaiwamoto/n/n4cbec6f8b44b", "group": "Location" },
-            { "label": "ドッグフード缶", "url": "https://note.com/futaiwamoto/n/ndcd9dd82e7c1", "group": "Item" },
-            { "label": "バックパック", "url": "https://note.com/futaiwamoto/n/nd7f3853d9402", "group": "Item" },
-            { "label": "モーガンタウン駅", "url": "https://note.com/futaiwamoto/n/n79ee33d6afbc", "group": "Location" },
-            { "label": "パブリックパーティー", "url": "https://note.com/futaiwamoto/n/nb5d107c47227", "group": "System" },
-            { "label": "エイリアンブラスター", "url": "https://note.com/futaiwamoto/n/nb797b82e10f6", "group": "Item" },
-            { "label": "C.A.M.P.", "url": "https://note.com/futaiwamoto/n/n88bd274c6791", "group": "System" },
-            { "label": "反射", "url": "https://note.com/futaiwamoto/n/n40b44ac80f81", "group": "System" },
-            { "label": "Atomic Shop返品方法", "url": "https://note.com/futaiwamoto/n/n7337d707b2b3", "group": "System" },
-            { "label": "10mmピストル", "url": "https://note.com/futaiwamoto/n/n81a059784e3b", "group": "Item" },
-            { "label": "サバイバルテント", "url": "https://note.com/futaiwamoto/n/n87824c6d2184", "group": "Item" },
-            { "label": "渓谷の廃品集積場", "url": "https://note.com/futaiwamoto/n/n144e4118b9ea", "group": "Location" },
-            { "label": "グール", "url": "https://note.com/futaiwamoto/n/n0bcb510e6034", "group": "Creature" },
-            { "label": ".44ピストル", "url": "https://note.com/futaiwamoto/n/nad58cc58c3b5", "group": "Item" },
-            { "label": "SPECIAL", "url": "https://note.com/futaiwamoto/n/ne9dc83f4d2aa", "group": "System" },
-            { "label": "ウィルソン・ブラザーズ", "url": "https://note.com/futaiwamoto/n/ne69b7f450ad5", "group": "Location" },
-            { "label": "リプトカ－ド", "url": "https://note.com/futaiwamoto/n/nbbb918a274d0", "group": "Item" },
-            { "label": "デルバート・ウィンターズ", "url": "https://note.com/futaiwamoto/n/nb0457307b56a", "group": "Person" },
-            { "label": "フラットウッズ酒場", "url": "https://note.com/futaiwamoto/n/n5e82c93c3b12", "group": "Location" },
-            { "label": "アーチェリー・セット", "url": "https://note.com/futaiwamoto/n/nffb65193980c", "group": "Item" },
-            { "label": "フラットウッズ教会", "url": "https://note.com/futaiwamoto/n/nae482c741440", "group": "Location" },
-            { "label": "クランシー邸宅", "url": "https://note.com/futaiwamoto/n/n788142face15", "group": "Location" },
-            { "label": "フラットウッズ集会所", "url": "https://note.com/futaiwamoto/n/n4e5c7c5d375e", "group": "Location" },
-            { "label": "ウルトラサイト・レーザーガン", "url": "https://note.com/futaiwamoto/n/n1bf73b217d5f", "group": "Item" },
-            { "label": "フラットウッズ", "url": "https://note.com/futaiwamoto/n/nf49718e931d6", "group": "Location" },
-            { "label": "サーリーの小屋", "url": "https://note.com/futaiwamoto/n/n0b589c2d7a90", "group": "Location" },
-            { "label": "密造酒業者の小屋", "url": "https://note.com/futaiwamoto/n/n2c1f7912404a", "group": "Location" },
-            { "label": "ザ・クロスヘア", "url": "https://note.com/futaiwamoto/n/n4cbc83805223", "group": "Location" },
-            { "label": "アディクトール", "url": "https://note.com/futaiwamoto/n/n35cef6444fa2", "group": "Item" },
-            { "label": "賢明なるチャールズ", "url": "https://note.com/futaiwamoto/n/n7c5e67be454b", "group": "Creature" },
-            { "label": "ランチボックス", "url": "https://note.com/futaiwamoto/n/n6adcb5046430", "group": "Item" },
-            { "label": "ポイント・プレザント", "url": "https://note.com/futaiwamoto/n/n9e5cd1de83fe", "group": "Location" },
-            { "label": "パーティーハット", "url": "https://note.com/futaiwamoto/n/n33e5725b2558", "group": "Item" },
-            { "label": "北カナー監視地点", "url": "https://note.com/futaiwamoto/n/nbf31dfb863b8", "group": "Location" },
-            { "label": "バファウト", "url": "https://note.com/futaiwamoto/n/nb8e44ca8374b", "group": "Item" },
-            { "label": "強制進化ウイルス（FEV）", "url": "https://note.com/futaiwamoto/n/na1e233570e36", "group": "Item" },
-            { "label": "サターナイト・フィスト", "url": "https://note.com/futaiwamoto/n/n38e2b17e342a", "group": "Item" },
-            { "label": "スーパーミュータント", "url": "https://note.com/futaiwamoto/n/ne50320a3e869", "group": "Creature" },
-            { "label": "B.O.B.クッキングステーション", "url": "https://note.com/futaiwamoto/n/n4835834bfe51", "group": "Location" },
-            { "label": "ツイン・パイン・キャビン", "url": "https://note.com/futaiwamoto/n/nc375942ad615", "group": "Location" },
-            { "label": "石鹸", "url": "https://note.com/futaiwamoto/n/ne4df587df1be", "group": "Item" },
-            { "label": "変異", "url": "https://note.com/futaiwamoto/n/n73e8736701ca", "group": "System" },
-            { "label": "ギルマン製材所", "url": "https://note.com/futaiwamoto/n/na22487d8c47e", "group": "Location" },
-            { "label": "プラズマガン", "url": "https://note.com/futaiwamoto/n/nedad1c1887a0", "group": "Item" },
-            { "label": "コズミック・ナイフ", "url": "https://note.com/futaiwamoto/n/nf50f07d50345", "group": "Item" },
-            { "label": "ドム・ペドロ", "url": "https://note.com/futaiwamoto/n/nc435fea4c456", "group": "Person" },
-            { "label": "フーズボールゲーム", "url": "https://note.com/futaiwamoto/n/na3c71fb36ea1", "group": "Item" },
-            { "label": "パイプ・リボルバー", "url": "https://note.com/futaiwamoto/n/n81e69759b91c", "group": "Item" },
-            { "label": "水", "url": "https://note.com/futaiwamoto/n/n2426d4f08cfe", "group": "Item" },
-            { "label": "マリーゴールド・パビリオン", "url": "https://note.com/futaiwamoto/n/nb4b0cab1b47d", "group": "Location" },
-            { "label": "モスマン", "url": "https://note.com/futaiwamoto/n/n26d90d059289", "group": "Creature" },
-            { "label": "ブルーリッジの宿泊小屋", "url": "https://note.com/futaiwamoto/n/n6d1f1a6fcc96", "group": "Location" },
-            { "label": "天候制御ステーション", "url": "https://note.com/futaiwamoto/n/n3d0b9d483f34", "group": "System" },
-            { "label": "アサルトロン", "url": "https://note.com/futaiwamoto/n/n6aebd09d7f52", "group": "Creature" },
-            { "label": "ミスター・ハンディ", "url": "https://note.com/futaiwamoto/n/nca29efd9556c", "group": "Creature" },
-            { "label": "ポリー", "url": "https://note.com/futaiwamoto/n/nf24950dc6f5e", "group": "Person" },
-            { "label": "雑誌", "url": "https://note.com/futaiwamoto/n/n89b115f697bb", "group": "Item" },
-            { "label": "ソル", "url": "https://note.com/futaiwamoto/n/n205dd16ee504", "group": "Person" },
-            { "label": "プロテクトロン", "url": "https://note.com/futaiwamoto/n/ne19d63960f55", "group": "Creature" },
-            { "label": "モルデカイ \"モート\" マッコイ", "url": "https://note.com/futaiwamoto/n/n709768595067", "group": "Person" },
-            { "label": "抗議プラカード", "url": "https://note.com/futaiwamoto/n/na71f7eb46d5f", "group": "Item" },
-            { "label": "ダッチェス", "url": "https://note.com/futaiwamoto/n/n525d3cc2b61a", "group": "Person" },
-            { "label": "メンタス", "url": "https://note.com/futaiwamoto/n/n6d03ebb7f0c9", "group": "Item" },
-            { "label": "入植者のリッジ", "url": "https://note.com/futaiwamoto/n/nfc72a46473ed", "group": "Location" },
-            { "label": "Vault-Tec ボブルヘッド", "url": "https://note.com/futaiwamoto/n/n2f6acaab37cf", "group": "Item" },
-            { "label": "クレーン", "url": "https://note.com/futaiwamoto/n/n992d035837ff", "group": "Person" },
-            { "label": "パワーアーマー", "url": "https://note.com/futaiwamoto/n/n81b56fecf430", "group": "Item" },
-            { "label": "前線基地タンゴ", "url": "https://note.com/futaiwamoto/n/n3c5338cf5e1d", "group": "Location" },
-            { "label": "ヌカ・タッパー", "url": "https://note.com/futaiwamoto/n/na4b6c16a24a6", "group": "Item" },
-            { "label": "コンスタンティン・チェイス", "url": "https://note.com/futaiwamoto/n/neee0afd89d6a", "group": "Person" },
-            { "label": "タバコ", "url": "https://note.com/futaiwamoto/n/n7d253a4585a5", "group": "Item" },
-            { "label": "グリーンカントリー・ロッジ", "url": "https://note.com/futaiwamoto/n/n3feaf479cb47", "group": "Location" },
-            { "label": "スティムパック", "url": "https://note.com/futaiwamoto/n/n15c6f61e17a5", "group": "Item" },
-            { "label": "パイプガン", "url": "https://note.com/futaiwamoto/n/n6ffd8a29eeb3", "group": "Item" },
-            { "label": "スウィートウォータースペシャルブレンド", "url": "https://note.com/futaiwamoto/n/n3a43544ae0eb", "group": "Item" },
-            { "label": "RobCo Auto-Cache #001", "url": "https://note.com/futaiwamoto/n/n1ff88874c238", "group": "Location" },
-            { "label": "シュガーボム", "url": "https://note.com/futaiwamoto/n/n3eee32bd88c6", "group": "Item" },
-            { "label": "パイプボルトアクション", "url": "https://note.com/futaiwamoto/n/ncde03e9a7dfb", "group": "Item" },
-            { "label": "聖なる書物", "url": "https://note.com/futaiwamoto/n/nf78cc86c22ab", "group": "Item" },
-            { "label": "The Mothman Equinox", "url": "https://note.com/futaiwamoto/n/nfe43582ed9a4", "group": "System" },
-            { "label": "JES-2R", "url": "https://note.com/futaiwamoto/n/n2c1dca30cc68", "group": "Person" },
-            { "label": "Mischief Night", "url": "https://note.com/futaiwamoto/n/ncf4727f33cb4", "group": "System" },
-            { "label": "ホーマー・サパースタイン", "url": "https://note.com/futaiwamoto/n/n3109b0e1e949", "group": "Person" },
-            { "label": "ゼータ星人", "url": "https://note.com/futaiwamoto/n/n7ac7bbe02b33", "group": "Creature" },
-            { "label": "Invaders from Beyond", "url": "https://note.com/futaiwamoto/n/n1f08e2befdbf", "group": "System" },
-            { "label": "Fallout76", "url": "https://note.com/futaiwamoto/n/n0c73b82fe01a", "group": "System" },
-            { "label": "Fasnacht Day", "url": "https://note.com/futaiwamoto/n/nd0ee24e6fa11", "group": "System" },
-            { "label": "グラム", "url": "https://note.com/futaiwamoto/n/nf10c3a7cb29f", "group": "Person" },
-            { "label": "Grahm's Meat-Cook", "url": "https://note.com/futaiwamoto/n/n51ba390bcd2c", "group": "System" },
-            { "label": "スーザンの小屋", "url": "https://note.com/futaiwamoto/n/n001d27ce982e", "group": "Location" },
-            { "label": "ブラックアイド・スーザン", "url": "https://note.com/futaiwamoto/n/na2516c2cd521", "group": "Item" },
-            { "label": "The Big Bloom", "url": "https://note.com/futaiwamoto/n/nd8a44882426e", "group": "System" },
-            { "label": "ポトマック川", "url": "https://note.com/futaiwamoto/n/n6507b92c7e1e", "group": "Location" },
-            { "label": "サイコ", "url": "https://note.com/futaiwamoto/n/n3195d79df1d6", "group": "Item" },
-            { "label": "レーザーガン", "url": "https://note.com/futaiwamoto/n/n1a5f8a68cca2", "group": "Item" },
-            { "label": "Fallout 4", "url": "https://note.com/futaiwamoto/n/nfa9f46bafa92", "group": "System" },
-            { "label": "シェルター受付センター", "url": "https://note.com/futaiwamoto/n/n0c234b51cdd3", "group": "Location" },
-            { "label": "Rad-X", "url": "https://note.com/futaiwamoto/n/n2801de7ba369", "group": "Item" },
-            { "label": "エンクレイヴ・プラズマガン", "url": "https://note.com/futaiwamoto/n/n71decc187490", "group": "Item" },
-            { "label": "RadAway", "url": "https://note.com/futaiwamoto/n/nfd3cdbbf597d", "group": "Item" },
-            { "label": "Vault 51", "url": "https://note.com/futaiwamoto/n/n0a44d56bd82a", "group": "Location" },
-            { "label": "ホロテープ", "url": "https://note.com/futaiwamoto/n/n4ee4abaa2285", "group": "Item" },
-            { "label": "レディ・ジャネットのソフトクリーム", "url": "https://note.com/futaiwamoto/n/n31181ed18114", "group": "Location" },
-            { "label": "Pip-Boy", "url": "https://note.com/futaiwamoto/n/nfdb71786562c", "group": "Item" },
-            { "label": "犬", "url": "https://note.com/futaiwamoto/n/nc4cc03e940d7", "group": "Creature" },
-            { "label": "ハンター・リッジ", "url": "https://note.com/futaiwamoto/n/n11b04c459efe", "group": "Location" },
-            { "label": "ジャイアントラット", "url": "https://note.com/futaiwamoto/n/n190f9c1e2c08", "group": "Creature" },
-            { "label": "ボトルキャップ", "url": "https://note.com/futaiwamoto/n/nebe0da056865", "group": "Item" },
-            { "label": "G.O.A.T.", "url": "https://note.com/futaiwamoto/n/n8765ee0bf662", "group": "System" },
-            { "label": "グローブス家のキャビン", "url": "https://note.com/futaiwamoto/n/n18a11a8a323f", "group": "Location" },
-            { "label": "アルパインリバー・キャビン", "url": "https://note.com/futaiwamoto/n/nd23e32ab612a", "group": "Location" },
-            { "label": "モールラット", "url": "https://note.com/futaiwamoto/n/nbe72c1caf71e", "group": "Creature" },
-            { "label": "フリーラジカルズ", "url": "https://note.com/futaiwamoto/n/nd79a2e401894", "group": "Faction" },
-            { "label": "中継タワーEM-B1-27", "url": "https://note.com/futaiwamoto/n/n24c6822c5792", "group": "Location" },
-            { "label": "WV木材会社", "url": "https://note.com/futaiwamoto/n/nae4421c8dfe6", "group": "Location" },
-            { "label": "ジョン・ハンコック", "url": "https://note.com/futaiwamoto/n/n58f4cedd33ac", "group": "Person" },
-            { "label": "アーロンホルト農場", "url": "https://note.com/futaiwamoto/n/n456f34ffc25b", "group": "Location" },
-            { "label": "アリ", "url": "https://note.com/futaiwamoto/n/n7c2a60315d54", "group": "Creature" },
-            { "label": "ダーリン・シスターの研究所", "url": "https://note.com/futaiwamoto/n/ne4776a39aff7", "group": "Location" },
-            { "label": "ブッチ・デロリア", "url": "https://note.com/futaiwamoto/n/n857bee45fe90", "group": "Person" },
-            { "label": "Mr.スクイーズ", "url": "https://note.com/futaiwamoto/n/nb7f1d352a89c", "group": "Person" },
-            { "label": "デスクローアイランド", "url": "https://note.com/futaiwamoto/n/nd121f985e3da", "group": "Location" },
-            { "label": "タイラー郡移動遊園地", "url": "https://note.com/futaiwamoto/n/n30fd1d41b43a", "group": "Location" },
-            { "label": "マジソン・リー", "url": "https://note.com/futaiwamoto/n/nb2ecec7eada6", "group": "Person" },
-            { "label": "サットン", "url": "https://note.com/futaiwamoto/n/n97721b676a0a", "group": "Location" },
-            { "label": "アンカー農場", "url": "https://note.com/futaiwamoto/n/n00a24a380fd7", "group": "Location" },
-            { "label": "カウスポット乳製品製造所", "url": "https://note.com/futaiwamoto/n/nee9d24041b11", "group": "Location" },
-            { "label": "Vault76", "url": "https://note.com/futaiwamoto/n/nb5b511b5d97e", "group": "Location" },
-            { "label": "The WayWard", "url": "wayward_jp.html", "group": "Location" }
-        ];
-
-        // --- DATA ---
-        // (Assuming rawArticles is defined above in the file)
-
-        // CONFIG: Update this number to match the latest folder number in f:\MyPicture\Fallout76\note
-        const LATEST_ID = 239; // Based on directory listing roughly, adjustable.
-
-        const articles = rawArticles.map((a, index) => {
-            let group = a.group || 'Item';
-            // User says "1~order is written order". 
-            // Assuming rawArticles is Newest First (RSS/Search default).
-            // So ID should decend from Max.
-            // Folder 1 = Oldest. Folder N = Newest.
-            const calculatedId = LATEST_ID - index;
-
-            return {
-                id: calculatedId > 0 ? calculatedId : index + 1, // Fallback if count is off
-                label: a.label,
-                group: group,
-                image: `./images/note/${calculatedId}/1.jpg`
-            };
-        });
-
-        // --- GRID LOGIC ---
-        let currentCategory = 'ALL';
-
-        function renderGrid() {
-            const container = document.getElementById('grid-view');
-            container.innerHTML = '';
-
-            const filtered = articles.filter(a => currentCategory === 'ALL' || a.group === currentCategory);
-
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.onclick = () => window.open(item.url, '_blank');
-
-                // 1. IMAGE AREA (Local File Access)
-                const imgDiv = document.createElement('div');
-                imgDiv.className = 'card-image';
-
-                const img = document.createElement('img');
-                img.src = item.image;
-                img.loading = "lazy";
-                // Fallback: Try .webp if .jpg fails, then placeholder
-                img.onerror = function () {
-                    if (this.src.endsWith('.jpg')) {
-                        this.src = this.src.replace('.jpg', '.webp');
-                    } else if (this.src.endsWith('.webp')) {
-                        this.src = this.src.replace('.webp', '.png'); // Try png just in case
-                    } else {
-                        // Give up -> Placeholder
-                        this.style.display = 'none';
-                        imgDiv.innerHTML = '<div class="card-image-placeholder">No Signal</div>';
-                    }
-                };
-                imgDiv.appendChild(img);
-
-                // 2. CONTENT AREA
-                const contentDiv = document.createElement('div');
-                contentDiv.className = 'card-content';
-
-                const header = document.createElement('div');
-                header.className = 'card-header';
-                header.innerHTML = `<span>${item.group.toUpperCase()}</span><span>NO.${String(item.id).padStart(3, '0')}</span>`;
-
-                const title = document.createElement('div');
-                title.className = 'card-title';
-                title.textContent = item.label;
-
-                const body = document.createElement('div');
-                body.className = 'card-body';
-                // Placeholder body
-                body.innerHTML = `> ARCHIVE #${item.id}<br>> STATUS: LOCAL_SYNC`;
-
-                const footer = document.createElement('div');
-                footer.className = 'card-footer';
-                footer.innerHTML = `[ACCESS ENTRY] >>`;
-
-                contentDiv.appendChild(header);
-                contentDiv.appendChild(title);
-                contentDiv.appendChild(body);
-                contentDiv.appendChild(footer);
-
-                card.appendChild(imgDiv);
-                card.appendChild(contentDiv);
-
-                container.appendChild(card);
-            });
-
-            document.getElementById('recordCount').textContent = filtered.length;
-        }
-
-        // Initialize Tabs
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.onclick = () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                currentCategory = tab.getAttribute('data-cat');
-                renderGrid();
-            };
-        });
-
-        // Start
-        renderGrid();
-    </script>
 </body>
 
 </html>
