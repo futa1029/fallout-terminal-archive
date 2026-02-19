@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
     <title>Overseer Mohi's Terminal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --term-green: #33ff33;
             --term-bg: #000;
             --term-dim: #00aa00;
+            --term-highlight: rgba(51, 255, 51, 0.2);
         }
 
         body {
             background-color: var(--term-bg);
             color: var(--term-green);
-            font-family: 'Share Tech Mono', monospace;
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
             margin: 0;
             height: 100vh;
             overflow: hidden;
@@ -43,7 +45,7 @@
 
         .header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             border-bottom: 2px solid var(--term-green);
             padding-bottom: 20px;
         }
@@ -62,9 +64,24 @@
         .terminal-screen {
             flex: 1;
             overflow-y: auto;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             width: 100%;
+            padding-right: 10px;
+        }
+
+        /* Scrollbar styling */
+        .terminal-screen::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .terminal-screen::-webkit-scrollbar-track {
+            background: #111;
+        }
+
+        .terminal-screen::-webkit-scrollbar-thumb {
+            background: var(--term-dim);
+            border: 1px solid var(--term-green);
         }
 
         .line {
@@ -82,21 +99,80 @@
             }
         }
 
+        /* Controls Area */
+        .controls {
+            margin-bottom: 20px;
+            border: 1px solid var(--term-dim);
+            padding: 15px;
+            font-size: 0.9em;
+        }
+
+        .control-group {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-label {
+            min-width: 100px;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid var(--term-dim);
+            color: var(--term-dim);
+            padding: 2px 8px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            color: var(--term-green);
+            border-color: var(--term-green);
+            text-shadow: 0 0 8px var(--term-green);
+        }
+
+        .btn.active {
+            background: var(--term-green);
+            color: var(--term-bg);
+            border-color: var(--term-green);
+            font-weight: bold;
+            text-shadow: none;
+        }
+
+        /* Menu Items */
         .menu-item {
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             color: var(--term-green);
             text-decoration: none;
-            padding: 10px 0;
-            border: 1px solid transparent;
-            padding-left: 10px;
+            padding: 10px 5px;
+            border-bottom: 1px dashed #004400;
             transition: all 0.2s;
         }
 
         .menu-item:hover {
-            background: rgba(51, 255, 51, 0.1);
+            background: var(--term-highlight);
             border-left: 5px solid var(--term-green);
-            padding-left: 15px;
-            text-shadow: 0 0 8px var(--term-green);
+            padding-left: 10px;
+        }
+
+        .item-meta {
+            font-size: 0.8em;
+            opacity: 0.7;
+            display: flex;
+            gap: 10px;
+        }
+
+        .badge {
+            border: 1px solid var(--term-dim);
+            padding: 0 4px;
+            border-radius: 2px;
         }
 
         .footer {
@@ -118,28 +194,40 @@
     <div class="terminal-screen">
         <div class="line">> WELCOME TO OVERSEER MOHI'S PRIVATE TERMINAL.</div>
         <div class="line">> UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</div>
-        <div class="line">> LOADING ARCHIVES... DONE.</div>
-        <br>
-        <div class="line">----------------------------------------</div>
-        <div class="line">AVAILABLE LORE ARCHIVES:</div>
-        <div class="line">----------------------------------------</div>
+        <div class="line">> ACCESSING DATABASE... OK.</div>
         <br>
 
-        <a href="kimball.html" class="menu-item">
-            > アーロン・キンボール
-        </a>
+        <!-- Controls -->
+        <div class="controls">
+            <div class="control-group">
+                <span class="control-label">SORT (並び替え):</span>
+                <button class="btn active" onclick="setSort('date')">DATE (日付)</button>
+                <button class="btn" onclick="setSort('name')">NAME (名前)</button>
+            </div>
+            <div class="control-group">
+                <span class="control-label">CATEGORY (種別):</span>
+                <button class="btn active" onclick="setFilter('category', 'all')">ALL</button>
+                <button class="btn" onclick="setFilter('category', '人物')">PERSON (人物)</button>
+                <button class="btn" onclick="setFilter('category', '勢力')">FACTION (勢力)</button>
+                <button class="btn" onclick="setFilter('category', '場所')">LOCATION (場所)</button>
+            </div>
+            <div class="control-group">
+                <span class="control-label">APPEARANCE (作品):</span>
+                <button class="btn active" onclick="setFilter('appearance', 'all')">ALL</button>
+                <button class="btn" onclick="setFilter('appearance', 'Fallout 76')">FO76</button>
+                <button class="btn" onclick="setFilter('appearance', 'Fallout: New Vegas')">FO:NV</button>
+                <button class="btn" onclick="setFilter('appearance', 'Fallout TV')">TV SHOW</button>
+            </div>
+        </div>
 
-        <a href="raiders_76.html" class="menu-item">
-            > レイダー (Fallout 76)
-        </a>
+        <div class="line">----------------------------------------</div>
+        <div class="line">SEARCH RESULTS: <span id="result-count">0</span> ENTRIES FOUND</div>
+        <div class="line">----------------------------------------</div>
+        <br>
 
-        <a href="lee_moldaver.html" class="menu-item">
-            > リー・モルデイヴァー
-        </a>
-
-        <a href="vault_dweller_lore.html" class="menu-item">
-            > Vaultの居住者
-        </a>
+        <div id="entries-container">
+            <!-- Entries will be injected here by JS -->
+        </div>
 
         <br>
         <div class="line cursor">> AWAITING INPUT</div>
@@ -148,6 +236,136 @@
     <div class="footer">
         ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM LEVEL 5
     </div>
+
+    <script>
+        // Data Source
+        const loreEntries = [
+            {
+                title: "Aaron Kimball (アーロン・キンボール)",
+                yomi: "あーろん・きんぼーる",
+                url: "kimball.html",
+                category: "人物",
+                appearance: "Fallout: New Vegas",
+                date: "2026-02-19"
+            },
+            {
+                title: "Raiders (レイダー / Fallout 76)",
+                yomi: "れいだー",
+                url: "raiders_76.html",
+                category: "勢力",
+                appearance: "Fallout 76",
+                date: "2026-02-19"
+            },
+            {
+                title: "Lee Moldaver (リー・モルデイヴァー)",
+                yomi: "りー・もるでいゔぁー",
+                url: "lee_moldaver.html",
+                category: "人物",
+                appearance: "Fallout TV",
+                date: "2026-02-19"
+            },
+            {
+                title: "Vault Dweller (Vaultの居住者)",
+                yomi: "ぼるとのきょじゅうしゃ",
+                url: "vault_dweller_lore.html",
+                category: "人物",
+                appearance: "Fallout 76", // Adjusted for context (76 protagonist info)
+                date: "2026-02-18"
+            }
+        ];
+
+        // State
+        let currentSort = 'date'; // 'date' | 'name'
+        let currentFilters = {
+            category: 'all',
+            appearance: 'all'
+        };
+
+        // DOM Elements
+        const container = document.getElementById('entries-container');
+        const countDisplay = document.getElementById('result-count');
+
+        // Functions
+        function renderEntries() {
+            // Filter
+            let filtered = loreEntries.filter(entry => {
+                const catMatch = currentFilters.category === 'all' || entry.category === currentFilters.category;
+                const appMatch = currentFilters.appearance === 'all' || entry.appearance === currentFilters.appearance;
+                return catMatch && appMatch;
+            });
+
+            // Sort
+            filtered.sort((a, b) => {
+                if (currentSort === 'date') {
+                    // Newest first
+                    return new Date(b.date) - new Date(a.date);
+                } else if (currentSort === 'name') {
+                    // A-Z (using yomi for proper JP sorting)
+                    return a.yomi.localeCompare(b.yomi);
+                }
+            });
+
+            // Update UI
+            countDisplay.innerText = filtered.length;
+            container.innerHTML = '';
+
+            filtered.forEach(entry => {
+                const el = document.createElement('a');
+                el.href = entry.url;
+                el.className = 'menu-item';
+                el.innerHTML = `
+                    <span>> ${entry.title}</span>
+                    <div class="item-meta">
+                        <span class="badge">${entry.category}</span>
+                        <span class="badge">${entry.appearance}</span>
+                    </div>
+                `;
+                container.appendChild(el);
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="line" style="color:red">> NO MATCHING ARCHIVES FOUND.</div>';
+            }
+        }
+
+        function setSort(type) {
+            currentSort = type;
+            updateButtons('sort', type); // Logic to update styled buttons
+            renderEntries();
+        }
+
+        function setFilter(type, value) {
+            currentFilters[type] = value;
+            updateButtons(type, value);
+            renderEntries();
+        }
+
+        function updateButtons(type, value) {
+            // Find all buttons that control this type
+            // This is a bit hacky but works for this simple page
+            // We'll rely on the onclick attribute text to find relevant buttons
+            const buttons = document.querySelectorAll('button');
+            buttons.forEach(btn => {
+                const onClick = btn.getAttribute('onclick');
+                if (onClick && onClick.includes(type)) {
+                    if (onClick.includes(`'${value}'`)) {
+                        btn.classList.add('active');
+                    } else {
+                        btn.classList.remove('active');
+                    }
+                }
+            });
+            // Additional check for sort button since strict matching is easier
+            if (type === 'sort') {
+                // Logic handled above generic check usually, but specificity helps
+                // (Simplified UI update logic for this snippet)
+            }
+        }
+
+        // Initialize
+        window.onload = renderEntries;
+
+    </script>
 
 </body>
 
