@@ -122,26 +122,53 @@
 
         .btn {
             background: transparent;
-            border: 1px solid var(--term-dim);
+            border: 1px solid transparent;
             color: var(--term-dim);
             padding: 2px 8px;
             cursor: pointer;
             font-family: inherit;
-            transition: all 0.2s;
+            transition: all 0.1s;
+            position: relative;
         }
 
         .btn:hover {
             color: var(--term-green);
-            border-color: var(--term-green);
             text-shadow: 0 0 8px var(--term-green);
+            text-decoration: underline;
         }
 
+        /* Improved Active State */
         .btn.active {
-            background: var(--term-green);
-            color: var(--term-bg);
-            border-color: var(--term-green);
+            color: var(--term-green);
             font-weight: bold;
-            text-shadow: none;
+            text-shadow: 0 0 5px var(--term-green);
+            border: 1px solid var(--term-green);
+            background: rgba(51, 255, 51, 0.1);
+        }
+
+        .btn.active::before {
+            content: "[ ";
+        }
+
+        .btn.active::after {
+            content: " ]";
+        }
+
+        /* Search Input */
+        .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--term-dim);
+            color: var(--term-green);
+            font-family: inherit;
+            font-size: 1.1em;
+            width: 200px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-bottom-color: var(--term-green);
+            box-shadow: 0 1px 0 var(--term-green);
         }
 
         /* Menu Items */
@@ -200,23 +227,28 @@
         <!-- Controls -->
         <div class="controls">
             <div class="control-group">
-                <span class="control-label">SORT (並び替え):</span>
+                <span class="control-label">SORT:</span>
                 <button class="btn active" onclick="setSort('date')">DATE (日付)</button>
                 <button class="btn" onclick="setSort('name')">NAME (名前)</button>
             </div>
             <div class="control-group">
-                <span class="control-label">CATEGORY (種別):</span>
+                <span class="control-label">CATEGORY:</span>
                 <button class="btn active" onclick="setFilter('category', 'all')">ALL</button>
                 <button class="btn" onclick="setFilter('category', '人物')">PERSON (人物)</button>
                 <button class="btn" onclick="setFilter('category', '勢力')">FACTION (勢力)</button>
                 <button class="btn" onclick="setFilter('category', '場所')">LOCATION (場所)</button>
             </div>
             <div class="control-group">
-                <span class="control-label">APPEARANCE (作品):</span>
+                <span class="control-label">APPEARANCE:</span>
                 <button class="btn active" onclick="setFilter('appearance', 'all')">ALL</button>
                 <button class="btn" onclick="setFilter('appearance', 'Fallout 76')">FO76</button>
                 <button class="btn" onclick="setFilter('appearance', 'Fallout: New Vegas')">FO:NV</button>
                 <button class="btn" onclick="setFilter('appearance', 'Fallout TV')">TV SHOW</button>
+            </div>
+            <div class="control-group">
+                <span class="control-label">SEARCH:</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="TYPE TO SEARCH..."
+                    oninput="renderEntries()">
             </div>
         </div>
 
@@ -241,7 +273,7 @@
         // Data Source
         const loreEntries = [
             {
-                title: "Aaron Kimball (アーロン・キンボール)",
+                name: "アーロン・キンボール",
                 yomi: "あーろん・きんぼーる",
                 url: "kimball.html",
                 category: "人物",
@@ -249,7 +281,7 @@
                 date: "2026-02-19"
             },
             {
-                title: "Raiders (レイダー / Fallout 76)",
+                name: "レイダー (Fallout 76)",
                 yomi: "れいだー",
                 url: "raiders_76.html",
                 category: "勢力",
@@ -257,7 +289,7 @@
                 date: "2026-02-19"
             },
             {
-                title: "Lee Moldaver (リー・モルデイヴァー)",
+                name: "リー・モルデイヴァー",
                 yomi: "りー・もるでいゔぁー",
                 url: "lee_moldaver.html",
                 category: "人物",
@@ -265,11 +297,11 @@
                 date: "2026-02-19"
             },
             {
-                title: "Vault Dweller (Vaultの居住者)",
+                name: "Vaultの居住者",
                 yomi: "ぼるとのきょじゅうしゃ",
                 url: "vault_dweller_lore.html",
                 category: "人物",
-                appearance: "Fallout 76", // Adjusted for context (76 protagonist info)
+                appearance: "Fallout 76",
                 date: "2026-02-18"
             }
         ];
@@ -284,14 +316,24 @@
         // DOM Elements
         const container = document.getElementById('entries-container');
         const countDisplay = document.getElementById('result-count');
+        const searchInput = document.getElementById('searchInput');
 
         // Functions
         function renderEntries() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
             // Filter
             let filtered = loreEntries.filter(entry => {
                 const catMatch = currentFilters.category === 'all' || entry.category === currentFilters.category;
                 const appMatch = currentFilters.appearance === 'all' || entry.appearance === currentFilters.appearance;
-                return catMatch && appMatch;
+
+                let searchMatch = true;
+                if (searchTerm) {
+                    searchMatch = entry.name.toLowerCase().includes(searchTerm) ||
+                        entry.yomi.includes(searchTerm);
+                }
+
+                return catMatch && appMatch && searchMatch;
             });
 
             // Sort
@@ -314,7 +356,7 @@
                 el.href = entry.url;
                 el.className = 'menu-item';
                 el.innerHTML = `
-                    <span>> ${entry.title}</span>
+                    <span>> ${entry.name}</span>
                     <div class="item-meta">
                         <span class="badge">${entry.category}</span>
                         <span class="badge">${entry.appearance}</span>
@@ -330,7 +372,7 @@
 
         function setSort(type) {
             currentSort = type;
-            updateButtons('sort', type); // Logic to update styled buttons
+            updateButtons('sort', type);
             renderEntries();
         }
 
@@ -341,9 +383,6 @@
         }
 
         function updateButtons(type, value) {
-            // Find all buttons that control this type
-            // This is a bit hacky but works for this simple page
-            // We'll rely on the onclick attribute text to find relevant buttons
             const buttons = document.querySelectorAll('button');
             buttons.forEach(btn => {
                 const onClick = btn.getAttribute('onclick');
@@ -355,11 +394,6 @@
                     }
                 }
             });
-            // Additional check for sort button since strict matching is easier
-            if (type === 'sort') {
-                // Logic handled above generic check usually, but specificity helps
-                // (Simplified UI update logic for this snippet)
-            }
         }
 
         // Initialize
