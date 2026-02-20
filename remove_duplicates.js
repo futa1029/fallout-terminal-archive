@@ -97,10 +97,21 @@ async function rebuildLoreHtml() {
     const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
+    let titleToSlug = {};
+    const slugPath = path.join(DIR, 'title_to_slug.json');
+    if (fs.existsSync(slugPath)) {
+        titleToSlug = JSON.parse(fs.readFileSync(slugPath, 'utf8'));
+    }
+
     // 2. Note記事を追加（ただし重複するものは除外＆ファイルを削除）
     articles.forEach(article => {
-        let sanitized = article.title.replace(/[\\/:*?"<>|]/g, '_').trim();
-        if (!sanitized) sanitized = 'untitled';
+        let sanitized = '';
+        if (titleToSlug[article.title]) {
+            sanitized = titleToSlug[article.title];
+        } else {
+            sanitized = article.title.replace(/[\\/:*?"<>|]/g, '_').trim();
+            if (!sanitized) sanitized = 'untitled';
+        }
         let htmlFilename = `${sanitized}.html`;
         let counter = 2;
         while (usedFilenames.has(htmlFilename)) {
