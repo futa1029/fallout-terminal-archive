@@ -450,7 +450,7 @@ async function processArticles() {
     }
 
     // 既に手作業で作った特定のファイル群を上書きから守るリスト（拡張子除く）
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed'];
     const usedFilenames = new Set();
     // 既存ファイル名を予約済みにする
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));

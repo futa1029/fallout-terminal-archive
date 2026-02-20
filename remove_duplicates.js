@@ -15,7 +15,8 @@ const manualEntries = [
     { name: "ブライト", yomi: "ぶらいと", url: "blight.html", category: "植物", appearance: ["Fallout 76"], date: "2026-02-20" },
     { name: "タンディ", yomi: "たんでぃ", url: "tandi.html", category: "人物", appearance: ["Fallout", "Fallout 2"], date: "2026-02-20" },
     { name: "ミスター・プライズボット", yomi: "みすたー・ぷらいずぼっと", url: "prize_bot.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-20" },
-    { name: "新カリフォルニア共和国 (NCR)", yomi: "しんかりふぉるにあきょうわこく", url: "ncr.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-20" }
+    { name: "新カリフォルニア共和国 (NCR)", yomi: "しんかりふぉるにあきょうわこく", url: "ncr.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-20" },
+    { name: "バッファロー・ゴードの種", yomi: "ばっふぁろー・ごーどのたね", url: "buffalo-gourd-seed.html", category: "植物", appearance: ["Fallout: New Vegas"], date: "2026-02-21" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -93,7 +94,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     // 2. Note記事を追加（ただし重複するものは除外＆ファイルを削除）
