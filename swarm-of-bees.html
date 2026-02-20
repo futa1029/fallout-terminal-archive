@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>蜂の群れ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">蜂の群れ</h3>
+            
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+            <div class="infobox-row"><span class="infobox-label">レベル</span><span>1+</span></div>
+            <div class="infobox-row"><span class="infobox-label">体力</span><span>非常に低い</span></div>
+            <div class="infobox-row"><span class="infobox-label">攻撃タイプ</span><span>近接（刺突）</span></div>
+            <div class="infobox-row"><span class="infobox-label">耐性</span><span>物理 0 / エネルギー 0 / 放射能 免疫 / 毒 免疫</span></div>
+            <div class="infobox-row"><span class="infobox-label">蜂の群れ</span><span>通常のバリエーション。森林地帯などでよく見られます。</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n1af523fadb15" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>蜂の群れ</h1>
+            <div class="date">DATE: 2026/1/26</div>
+            
+            <p name="cc98832a-a401-483c-bdf2-549f39adc4db" id="cc98832a-a401-483c-bdf2-549f39adc4db"><strong>蜂の群れは、『Fallout 76』に登場する敵対的な生物です。</strong></p><hr name="ce26589d-ac54-465c-9c23-ad1e9adfe716" id="ce26589d-ac54-465c-9c23-ad1e9adfe716"><h2 name="aaf0a40d-3491-4cd5-b8a5-b670e20a7310" id="aaf0a40d-3491-4cd5-b8a5-b670e20a7310">特徴</h2><p name="15a3dd45-c964-4185-b264-2bc77830ed98" id="15a3dd45-c964-4185-b264-2bc77830ed98">蜂の群れは、アパラチア全域で見られる小さな飛行昆虫の集団です。<br>個々の蜂は非常に小さいですが、群れとして行動することでプレイヤーに継続的なダメージを与えます。<br>彼らは非常に素早く、V.A.T.S.なしで狙うのは困難な場合がありますが、体力は非常に低く、広範囲攻撃や連射武器で簡単に排除できます。</p><hr name="b5d39d26-395d-4c43-b2da-4cac17931a46" id="b5d39d26-395d-4c43-b2da-4cac17931a46"><h2 name="7693d260-b7e7-4c45-9755-f75146e492dc" id="7693d260-b7e7-4c45-9755-f75146e492dc">基本情報</h2><hr name="69981a04-8ad6-4206-beaf-a34dbba223da" id="69981a04-8ad6-4206-beaf-a34dbba223da"><h2 name="4b5a3486-c34e-448f-9864-663d4f2148a4" id="4b5a3486-c34e-448f-9864-663d4f2148a4">バリエーション</h2><hr name="21b13799-ba19-4ab7-a028-2c57dccdce96" id="21b13799-ba19-4ab7-a028-2c57dccdce96"><h2 name="5c6c60d8-48f6-47db-bc52-2ab0b7767ade" id="5c6c60d8-48f6-47db-bc52-2ab0b7767ade">場所</h2><ul name="bd2c2c92-9abe-402e-81a6-f80c4bdea9d8" id="bd2c2c92-9abe-402e-81a6-f80c4bdea9d8"><li><p name="e601eba3-2f19-45e7-afd2-3e28f314a87d" id="e601eba3-2f19-45e7-afd2-3e28f314a87d"><strong>ハニービーストの周囲</strong>: ほとんどのハニービーストは、身を守るために蜂の群れを放ちます。</p></li><li><p name="6a814d06-d8b8-4d05-aae9-3dd72179fb9d" id="6a814d06-d8b8-4d05-aae9-3dd72179fb9d"><strong>Free Range</strong>: このパブリックイベント中に、<a href="brahmin.html" class="auto-link">バラモン</a>を襲う敵として現れることがあります。</p></li><li><p name="508b5133-5112-4202-952e-7ca7c432932c" id="508b5133-5112-4202-952e-7ca7c432932c"><strong>ミートウィーク</strong>: イベントエリア周辺でスポーンすることがあります。</p></li><li><p name="e170d672-bf88-4255-9c80-91a2f179b479" id="e170d672-bf88-4255-9c80-91a2f179b479"><strong>森林地帯</strong>: 放置された小屋や特定の農場（アーロンホルト農家など）の近くで見つかります。</p></li></ul><hr name="32515f7d-b3b4-4d7d-9a21-17d805615be4" id="32515f7d-b3b4-4d7d-9a21-17d805615be4"><h2 name="2c33c76c-1d61-4d33-baec-99306f322b98" id="2c33c76c-1d61-4d33-baec-99306f322b98">戦利品</h2><ul name="8408267f-46bd-4256-bcbf-3af1bc2de205" id="8408267f-46bd-4256-bcbf-3af1bc2de205"><li><p name="b9b6d624-5868-4e46-bf2a-590e823be450" id="b9b6d624-5868-4e46-bf2a-590e823be450"><strong>ハチミツ</strong></p></li><li><p name="c680345f-9fe3-4138-a937-fc4b4a210e8b" id="c680345f-9fe3-4138-a937-fc4b4a210e8b"><strong>ハチの巣の欠片</strong></p></li><li><p name="3f807518-4f91-45b1-a38f-c38e8f33d5bd" id="3f807518-4f91-45b1-a38f-c38e8f33d5bd"><strong>ローヤルゼリー</strong>（稀にドロップ）</p></li></ul><hr name="1833cc7a-320d-4a7a-8dbe-3aa34ef2f423" id="1833cc7a-320d-4a7a-8dbe-3aa34ef2f423"><h2 name="01dfdc0a-90c2-444a-b707-0f819abce16f" id="01dfdc0a-90c2-444a-b707-0f819abce16f">備考</h2><ul name="30235dc2-e048-48ca-b168-18c997eeb481" id="30235dc2-e048-48ca-b168-18c997eeb481"><li><p name="4e963ef6-12f0-4737-944d-4143f9090468" id="4e963ef6-12f0-4737-944d-4143f9090468">蜂の群れはハニービーストから「発射」されることが多く、ハニービーストが生きている限り、次々と補充されることがあります。</p></li><li><p name="388da845-463d-43b1-bccf-d6ad2cad65ae" id="388da845-463d-43b1-bccf-d6ad2cad65ae">火炎放射器やシシケバブなどの<strong>火炎攻撃</strong>は、群れを素早く一掃するのに非常に効果的です。</p></li><li><p name="de9c7621-0998-45d9-b0ed-0641a00c01fa" id="de9c7621-0998-45d9-b0ed-0641a00c01fa">他の昆虫系クリーチャーと同様に、パークカード「<strong>Exterminator</strong>」の効果が適用されます。</p></li></ul><hr name="09509038-068f-4d49-93d9-51c71b59016f" id="09509038-068f-4d49-93d9-51c71b59016f"><div class="quote-box">
+<b>感想</b><br><br>
+蜂の群れ、小さいながらも数に頼った攻撃が厄介な相手ですね。<br><br><b>ハニービーストとの連携</b>: 本体であるハニービーストを倒さない限り無限に湧き出してくるため、初心者居住者にとってはパニックの原因になりやすい存在です。<br><br><b>貴重な資源</b>: 料理や一部のデイリークエストに必要な「ハチミツ」や、非常に希少な「ローヤルゼリー」をドロップするため、見つけたら積極的に狩っておきたい相手でもあります。<br><br><b>環境への適応</b>: <a href="scorch.html" class="auto-link">スコーチ</a>された個体まで存在するなど、アパラチアの過酷な環境に完璧に適応している姿は、昆虫の生命力の強さを感じさせます。<br><br>一時はVATS攻撃に対して完全に無敵だったり面倒な時期がありましたが、現在は修正されています。
+</div>
+
+<p name="97d35db5-53cd-454b-aa21-9f3927425268" id="97d35db5-53cd-454b-aa21-9f3927425268">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

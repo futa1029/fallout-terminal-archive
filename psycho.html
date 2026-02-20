@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サイコ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff66cc; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">サイコ</h3>
+            <img src="images/note_extracted/n3195d79df1d6_img_1.png" alt="サイコ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>アイテム</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n3195d79df1d6" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>サイコ</h1>
+            <div class="date">DATE: 2025/11/12</div>
+            
+            <p name="6e1dd28a-0418-4065-b3e0-2ed4482cc622" id="6e1dd28a-0418-4065-b3e0-2ed4482cc622">登場作品 : <br>Fallout, Fallout 2, Fallout 3, Fallout: New Vegas, <a href="fallout-4.html" class="auto-link">Fallout 4</a>, Fallout 76, <br>Fallout Tactics, Fallout: The Board Game</p><p name="87f069dc-3114-4a12-9004-4303b7649171" id="87f069dc-3114-4a12-9004-4303b7649171">効果 : <br>ゲームによって効果が異なります。<br>Fallout と Fallout 2 では、ダメージ耐性を増加させ、戦闘でより多くの攻撃に耐えられるようにします。<br>Fallout 3 と Fallout: New Vegas では、与えるダメージを増加させます。<br>後者のゲームでは、サイコはスラッシャーの材料でもあります。<br><a href="fallout-4.html" class="auto-link">Fallout 4</a> では、Fallout: New Vegasでのスラッシャーのように機能し、ダメージ耐性とSole Survivorのダメージ出力の両方を向上させます。</p><hr name="3ffd6927-702f-4334-9bc7-56c8b69777a9" id="3ffd6927-702f-4334-9bc7-56c8b69777a9"><h3 name="f3ce1591-5daa-44ad-a064-b26d49507bee" id="f3ce1591-5daa-44ad-a064-b26d49507bee">スラッシャー</h3><div class="note-figure"><img src="images/note_extracted/n3195d79df1d6_img_2.png" alt="" width="620" height="828"><div class="note-figcaption"></div></div><p name="78205fb6-74dc-4720-a213-e92e402c7bf8" id="78205fb6-74dc-4720-a213-e92e402c7bf8">登場作品: <br>Fallout: New Vegas<br><br>特徴 : <br>Med-Xとサイコの効果を1つの消費アイテムに組み合わせた薬物です。<br>スラッシャーの効果をMed-Xと組み合わせることで、合計50%のダメージ耐性ブーストを得ることが可能ですが、サイコとの効果は重複しません。</p><hr name="37bb3d8f-5861-410e-b22a-deecd596a6c3" id="37bb3d8f-5861-410e-b22a-deecd596a6c3"><h3 name="e37a77a2-cc21-4705-bddf-39683a9f47a0" id="e37a77a2-cc21-4705-bddf-39683a9f47a0">サイコジェット</h3><div class="note-figure"><img src="images/note_extracted/n3195d79df1d6_img_3.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><p name="114fe532-c660-4490-b0ee-b9b61020555c" id="114fe532-c660-4490-b0ee-b9b61020555c">登場作品 : <br><a href="fallout-4.html" class="auto-link">Fallout 4</a><br><br>特徴 : <br>スラッシャーと同様に、サイコとジェットという2つの薬物を組み合わせたものです。<br>ダメージ耐性を増加させ、時間を10秒間遅くします。</p><hr name="1fb5604c-f355-43f1-97de-d527adc62d54" id="1fb5604c-f355-43f1-97de-d527adc62d54"><h3 name="42fcf162-bc1f-4cca-9265-0646cf2c7bd3" id="42fcf162-bc1f-4cca-9265-0646cf2c7bd3">サイコバフ</h3><p name="e51f6ca3-03bd-4923-956f-f4b8d50e4281" id="e51f6ca3-03bd-4923-956f-f4b8d50e4281">登場作品 : <br><a href="fallout-4.html" class="auto-link">Fallout 4</a>, Fallout 76</p><p name="c3ddbb23-22da-43f4-be23-e67af527507b" id="c3ddbb23-22da-43f4-be23-e67af527507b">特徴 : <br>サイコと<a href="buffout.html" class="auto-link">バファウト</a>の組み合わせで、Endurance、Strength、最大体力、および与えるダメージを増加させます。</p><hr name="87a7a8a0-17ae-44a2-b6f1-6b6d20a1667c" id="87a7a8a0-17ae-44a2-b6f1-6b6d20a1667c"><h3 name="78f9e10b-2023-4e35-844c-d0c0eab73bdb" id="78f9e10b-2023-4e35-844c-d0c0eab73bdb">サイコタス</h3><p name="ea7d3002-a9ad-4951-80de-bdef28b9e432" id="ea7d3002-a9ad-4951-80de-bdef28b9e432">登場作品 : <br><a href="fallout-4.html" class="auto-link">Fallout 4</a>, Fallout 76</p><p name="b16270b8-72e1-4934-9756-2ec759a126bb" id="b16270b8-72e1-4934-9756-2ec759a126bb">特徴 : <br>サイコとメントスの組み合わせで、Perceptionとダメージ耐性を増加させます。</p><hr name="64ef15a5-63a1-45b8-8906-a6823c52ff22" id="64ef15a5-63a1-45b8-8906-a6823c52ff22"><div class="quote-box">
+<b>感想</b><br><br>
+いやぁー今シリーズ以外は一切薬物を使った事は無かったんですけどね。<br>レイドでポコポコ落とすものだからちょっとサイコバフをﾌﾟｽｯとしてみたらそこから薬物中毒に陥りました。<br>レイドボス前にﾌﾞｽｯ、日頃重量オーバーになってもﾌﾟｽｯ。 <br>もう主人公の腕は針の跡で一杯でしょう。<br><br>なんでブラッドイーグルにはアディクトールが無いんでしょうね? <br>洗脳したままでいさせたいからなんだろうけど。<br><br>中毒がアディクトール一本で治るなら打ち得ですよね。 <br>というわけで薬物に手を出したことの無いFalloutプレイヤーの皆さんも是非レイドや重量オーバーの時にはブスッとやってみて下さい。<br><br>EnduranceのChem Fiend Perkと併用して効果時間2倍にしてたんですが、今思えば2倍刺せば良いような・・? <br>けど<a href="mentas.html" class="auto-link">メンタス</a>・ベリー味が勿体ないからこのままでもいいか・・・ｳｰﾝ。<br>とりあえず色んなお薬試してみるのも76では楽しいと思います。<br><br>ダメ絶対!は現実で。
+</div>
+
+
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

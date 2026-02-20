@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ジェフ・ナカムラ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ジェフ・ナカムラ</h3>
+            <img src="images/note_extracted/na09149613a98_img_1.png" alt="ジェフ・ナカムラ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_na09149613a98" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ジェフ・ナカムラ</h1>
+            <div class="date">DATE: 2026/2/1</div>
+            
+            <p name="98bb66ba-d530-47cc-ae0a-032eb2f1fb9a" id="98bb66ba-d530-47cc-ae0a-032eb2f1fb9a"><strong>ジェフ・ナカムラ</strong>は、2102年以前の<strong><a href="flat-woods.html" class="auto-link">フラットウッズ</a></strong>における<strong>レスポンダー </strong>のシニアメンバーであり、クォーターマスター（補給将校）を務めていた人物です。</p><hr name="14bcc3dc-03eb-4dc9-8db4-a1580c544d31" id="14bcc3dc-03eb-4dc9-8db4-a1580c544d31"><h2 name="0c3d4dca-9344-44f5-9324-29c14cf442ea" id="0c3d4dca-9344-44f5-9324-29c14cf442ea">背景</h2><p name="fe339003-02fd-463c-9dd3-b3ab50cc4574" id="fe339003-02fd-463c-9dd3-b3ab50cc4574"><strong>ジェフ</strong>は、<strong>レスポンダー</strong>の本部のあった<strong>モーガンタウン</strong>近辺での偵察と物資調達を担当していました。<br>リーダーのマリア・チャベスは、<strong><a href="gorey-mines.html" class="auto-link">ゴーリー鉱山</a> </strong>にスカベンジング・チームを派遣する計画について彼に手紙を書いています。</p><p name="00c3ea53-f198-464b-9e5e-938eb18bfa57" id="00c3ea53-f198-464b-9e5e-938eb18bfa57">2082年、<strong>ジェフ</strong>は<strong>プレザントバレー・スキーリゾート</strong>への任務に志願しました。<strong>チャールストン</strong>の街から1時間も経たない場所で、彼はダムからの大きな爆発音を聞き、街の大部分を押し流した「クリスマス洪水」を目撃しました。<br>この経験により、彼は生存者の罪悪感に苦しむことになります。</p><p name="ef9436ba-b329-43fb-817b-43e40d1d4112" id="ef9436ba-b329-43fb-817b-43e40d1d4112">洪水の後、<strong>ジェフ</strong>は<strong>レスポンダー</strong>の知人であり<strong>ヴォルト・テック大学 </strong>の卒業生である<a href="amy-kelly.html" class="auto-link">エイミー・ケリー</a>と出会い、<strong>カウスポット乳製品製造所</strong>で最初のデートをしました。<br>その後、彼は<strong><a href="summersville.html" class="auto-link">サマーズビル</a></strong>の近くで彼女にプロポーズしましたが、エイミーはアパラチアの再建に集中すべきだと主張して断りました。<br><strong>ジェフ</strong>は、家族を持つことも再建の一部であり、生きる目的になると語りました。<br>エイミーは、もし気が変わったら知らせると約束しました。<br><strong>ジェフ</strong>のプロポーズの指輪は、今でもその場所に残されています。</p><p name="90808ccc-a19b-4179-9e58-3acf13633267" id="90808ccc-a19b-4179-9e58-3acf13633267">2095年、エイミーは<strong>タイガート水処理場</strong>の近くに滞在し始めました。<br>彼女はトレーラーに住み、自身のターミナルに日記を記していました。<br><strong>ジェフ</strong>は時折彼女を訪ね、彼女のターミナルにメッセージを送っていました。<br>グループから<strong>レスポンダー</strong>への加入を絶えず促されていたものの、エイミーは独立を維持することを選びましたが、<a href="scorch.html" class="auto-link">スコーチ</a>による環境汚染を監視するプログラムの作成プロジェクトには彼らの支援を受けて取り組み続けました。<br>加入を巡る頻繁な要求は、彼女と<strong>ジェフ</strong>、そしてマリアとの間に摩擦を生じさせました。</p><p name="e59c087b-26fa-46a8-b072-ed291da30934" id="e59c087b-26fa-46a8-b072-ed291da30934">ある日、エイミーは<a href="mall-rat.html" class="auto-link">モールラット</a>に噛まれて重病に陥りました。<br>彼女はもう終わりだと思いましたが、偶然訪ねてきた<strong>ジェフ</strong>に助けられました。<br>この出来事を通じて、エイミーは<strong>ジェフ</strong>がいかに慈悲深く高潔であるか、そして自分の人生においていかに重要な存在であるかを悟りました。</p><p name="65abe218-f15b-4354-9023-c1fd1b272b1f" id="65abe218-f15b-4354-9023-c1fd1b272b1f"><strong>ジェフ</strong>はエイミーに対し、<strong>レスポンダー</strong>本部の誰かが失言し、<strong>B.O.S</strong> が訪問した際に彼女の環境調査プログラムに言及してしまったことを伝えました。<br><strong>ジェフ</strong>は、<strong>B.O.S</strong> の兵士たちが戦いに勝つためなら手段を選ばないだろうと危惧し、エイミーに安全のために逃げるよう懇願しました。<br><strong>ジェフ</strong>のその後の消息は不明です。</p><hr name="30e28f19-c54c-461a-bde7-e695e20d0868" id="30e28f19-c54c-461a-bde7-e695e20d0868"><h2 name="e5a4d751-95f3-4420-86fc-c2647bfd267e" id="e5a4d751-95f3-4420-86fc-c2647bfd267e">注記</h2><p name="796572e9-f070-4368-88b1-05861160fb50" id="796572e9-f070-4368-88b1-05861160fb50"><strong>ジェフ</strong>の声は、<a href="holotape.html" class="auto-link">ホロテープ</a>「<strong>大切な日</strong>」のほか、イベント <strong>Collision Course</strong> や <strong>Death Blossoms</strong>、および<strong>レスポンダー</strong>のキャンプ信号で聞くことができます。<br><strong>ジェフ</strong>がエイミーと出会ったのが最終戦争の前か後かは不明確です。<br>彼は「クリスマス洪水」の後に前向きな気持ちを取り戻したと述べていますが、彼らが一緒に写っている写真は、戦争前と思われる清潔な服を着て、損傷のない家と車の前にいる姿を描いています。</p><hr name="9f20b272-743a-4c61-851c-635c4fb6590a" id="9f20b272-743a-4c61-851c-635c4fb6590a"><h2 name="90dde56f-bd9c-4bc3-b665-416e0a69b3e0" id="90dde56f-bd9c-4bc3-b665-416e0a69b3e0">登場作品</h2><p name="ebd6f0c2-4e8f-4ddd-9d2b-8f365f08c612" id="ebd6f0c2-4e8f-4ddd-9d2b-8f365f08c612"><strong>ジェフ・ナカムラ</strong> は <strong>Fallout 76</strong> において名前のみ、あるいは音声のみで登場します。</p><hr name="c3d01d54-0e46-4cfd-a5f1-a5033966e469" id="c3d01d54-0e46-4cfd-a5f1-a5033966e469"><div class="quote-box">
+<b>感想</b><br><br>
+<b>ジェフ・ナカムラ</b>の物語は、アパラチアの再生を信じ、愛する人を守ろうとした一人の男の切実な軌跡ですね。<br><br><b>生存者の罪悪感と愛</b>: 「クリスマス洪水」で仲間を失った絶望から彼を救い出したのがエイミーだったという背景は、彼がなぜあれほどまでに献身的に彼女をサポートし、<b>B.O.S</b> の脅威から逃がそうとしたのかを深く理解させてくれます。<br><br><b>プロポーズの指輪</b>: <b><a href="summersville.html" class="auto-link">サマーズビル</a></b>のベンチに残された指輪は、彼らの物語を象徴する最も悲しいアイテムの一つです。「家族を持つことも再建の一部」という彼の言葉は、殺伐としたウェイストランドにおいて、人間らしい幸せを取り戻そうとした勇気ある願いだったと感じます。<br><br><b>運命の分岐</b>: エイミーが命を落とし、<b>ジェフ</b>の消息も不明であるという結末は、初期アパラチアの生存者たちがどれほど過酷な運命に翻弄されたかを象徴しています。
+</div>
+
+<p name="0eff1025-887e-45dc-8e34-c21c9bc3c015" id="0eff1025-887e-45dc-8e34-c21c9bc3c015">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

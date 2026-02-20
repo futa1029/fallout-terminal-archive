@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アークトス・ファーマ (企業)  | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">アークトス・ファーマ (企業) </h3>
+            <img src="images/note_extracted/n40d35e7f7520_img_1.png" alt="アークトス・ファーマ (企業) ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+            <div class="infobox-row"><span class="infobox-label">業界</span><span>研究開発</span></div>
+            <div class="infobox-row"><span class="infobox-label">リーダー</span><span>サムソン・アークトス (CEO)</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在地</span><span>アメリカ合衆国、アパラチア、<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">企業関係</span><span>ロブコ・インダストリーズ、USSA</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n40d35e7f7520" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>アークトス・ファーマ (企業) </h1>
+            <div class="date">DATE: 2026/1/5</div>
+            
+            <p name="d66d030d-98d3-4a69-8b1f-57ae5ff4b244" id="d66d030d-98d3-4a69-8b1f-57ae5ff4b244"><strong><a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>は、戦前のアメリカ合衆国に存在した研究開発企業でした。</strong></p><hr name="b3fde9fa-7708-4f8d-875d-dfd5b1c371fa" id="b3fde9fa-7708-4f8d-875d-dfd5b1c371fa"><h2 name="ac60eb34-de5d-46de-a897-ef9be038ee8f" id="ac60eb34-de5d-46de-a897-ef9be038ee8f">基本情報</h2><hr name="49090c10-4298-418e-8a38-d3d5381f0c05" id="49090c10-4298-418e-8a38-d3d5381f0c05"><h2 name="cd6565dd-2ffc-4030-9958-2d6c35c00852" id="cd6565dd-2ffc-4030-9958-2d6c35c00852">背景</h2><h3 name="029e2301-3b01-4f60-880b-e9d701e78cdc" id="029e2301-3b01-4f60-880b-e9d701e78cdc"><br></h3><p name="461dd4e2-9a78-4454-a3d0-f8d82af85ba2" id="461dd4e2-9a78-4454-a3d0-f8d82af85ba2">バイオ医薬品の研究開発企業である<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>は、大戦前に「<strong>Project Beanstalk</strong>」という名称のもとで化学式のテストを行っていました。<br>このプロジェクトは、アークトスが開発した3つの化合物を農作物の収穫量に対してテストするために設計されたもので、ファームボットとして知られる改造された Mr.ハンディを介して、合計20の農場にわたって展開されました。<br>初期段階ではある程度の成功を収めたものの、人員配置の問題と重大な事故により、それ以上の研究は停止しました。</p><p name="0e13941c-1442-4b48-94af-000387c4dd08" id="0e13941c-1442-4b48-94af-000387c4dd08">広大な地下の自動研究施設は、3つの広大な研究所で構成されていました。<br>これらの研究所はそれぞれ独自のバイオーム（生物群系）を包含しており、多種多様な生物に対して実験を行う機会を提供していました。<br>地上で破壊が起きた後も研究は続けられ、深淵に留まったロボットたちは会社の指令を実行し続け、後にVault 76の居住者たちの助けを得ることとなりました。</p><p name="049908b3-43f7-4a45-83f4-fd6e74f7f41e" id="049908b3-43f7-4a45-83f4-fd6e74f7f41e">この会社は、人間に重大な<a href="mutation.html" class="auto-link">変異</a>を引き起こす溶液の開発に責任を負っていました。<br>研究者の一人であるナタリー・インゲソンは、研究に参加した結果、<a href="ghoul.html" class="auto-link">グール</a>となりました。<br>同社はアメリカ合衆国宇宙局（USSA）と政府契約を締結し、人間を対象とした無重力効率用に修正されたフォーミュラKの派生セラムである「<strong>Project-Z</strong>」を開発しました。</p><hr name="5d780f78-6ab3-4215-be75-8d263b15140e" id="5d780f78-6ab3-4215-be75-8d263b15140e"><h2 name="a548db24-f730-467c-8160-325849dc1b36" id="a548db24-f730-467c-8160-325849dc1b36">従業員</h2><h3 name="cf51358b-c08c-454d-b8d6-a26a54af8d99" id="cf51358b-c08c-454d-b8d6-a26a54af8d99"><br></h3><div class="note-figure"><img src="images/note_extracted/n40d35e7f7520_img_2.png" alt="" width="620" height="870"><div class="note-figcaption"></div></div><h3 name="acfed78d-6a9c-499e-a903-d9717d78ab55" id="acfed78d-6a9c-499e-a903-d9717d78ab55">経営陣</h3><ul name="662e0913-0eb4-40b6-8d25-b15e8a2b573f" id="662e0913-0eb4-40b6-8d25-b15e8a2b573f"><li><p name="090820f2-5aa0-4968-bf9d-a78cb952331d" id="090820f2-5aa0-4968-bf9d-a78cb952331d">サムソン・アークトス、CEO</p></li><li><p name="7ed5b7fd-9b48-409b-9b7b-3c7723085299" id="7ed5b7fd-9b48-409b-9b7b-3c7723085299">シモーネ・ドミンゲス、エグゼクティブ</p></li><li><p name="c839571a-d56c-4763-8d8b-d97880a23d9e" id="c839571a-d56c-4763-8d8b-d97880a23d9e">ローレンス・ケスラー、エグゼクティブ</p></li><li><p name="d5b21b18-473c-46c8-91b5-737fb03071c2" id="d5b21b18-473c-46c8-91b5-737fb03071c2"><strong>デビッド・ソープ、エグゼクティブ</strong></p></li><li><p name="e740e099-3b08-4c7a-8cee-969ebc29975b" id="e740e099-3b08-4c7a-8cee-969ebc29975b">テッサ・クルーズ、法務</p></li><li><p name="d5e36436-081a-498a-9ece-8dea824aa715" id="d5e36436-081a-498a-9ece-8dea824aa715">ステファニー、広報</p></li></ul><h3 name="f4db3a84-506d-423d-8d51-c193b4859b47" id="f4db3a84-506d-423d-8d51-c193b4859b47">エンジニア/科学者</h3><ul name="637ecd92-b89e-4fd4-926d-3830df9e966c" id="637ecd92-b89e-4fd4-926d-3830df9e966c"><li><p name="1732c3db-7004-4de9-827f-df64ddab1700" id="1732c3db-7004-4de9-827f-df64ddab1700">クリスティーナ・ブライアン、食用作物学者</p></li><li><p name="deac4efb-7b97-4c01-8785-0ae0d0d7900d" id="deac4efb-7b97-4c01-8785-0ae0d0d7900d">ナタリー・インゲソン、研究員</p></li><li><p name="319fd5e5-ada3-4fc9-994a-25f856b10dac" id="319fd5e5-ada3-4fc9-994a-25f856b10dac">マリアン・リン、エンジニア</p></li><li><p name="316d5a5f-59dc-42b4-8048-281432581791" id="316d5a5f-59dc-42b4-8048-281432581791">ジョセフ・M・マジュズーブ、動物実験学者</p></li><li><p name="7020d835-ddf8-49a1-bc74-5a3418fcffee" id="7020d835-ddf8-49a1-bc74-5a3418fcffee">ジュード・メイズ、技術者</p></li></ul><hr name="61b85a6c-a455-4740-8987-42d942fa5405" id="61b85a6c-a455-4740-8987-42d942fa5405"><h2 name="e9f53aee-4c64-445c-8520-c2cb19bd30f0" id="e9f53aee-4c64-445c-8520-c2cb19bd30f0">舞台裏</h2><p name="aa0137c4-d729-4737-8452-3de052414107" id="aa0137c4-d729-4737-8452-3de052414107"><strong>Arktos（アークトス）はギリシャ語で「クマ」を意味しており、それは会社のロゴにも反映されています。</strong></p><hr name="398b8d3f-6cc9-4058-b576-9d0c70c9ef07" id="398b8d3f-6cc9-4058-b576-9d0c70c9ef07"><h2 name="fb378308-d76b-4426-85ff-a096c64eae3d" id="fb378308-d76b-4426-85ff-a096c64eae3d">関係ロア</h2><h3 name="2ff02ef0-8cdd-4896-8ba9-188b5adc0e0e" id="2ff02ef0-8cdd-4896-8ba9-188b5adc0e0e">フォーミュラK</h3><p name="7f7339a6-7890-4a23-809f-d5c2c6c0f490" id="7f7339a6-7890-4a23-809f-d5c2c6c0f490"><strong>フォーミュラK</strong>は、<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>が独自に開発していた「人間用の血清誘導体」です。</p><p name="946880bf-8065-463b-95c6-4f9ca1610fe5" id="946880bf-8065-463b-95c6-4f9ca1610fe5">この薬品は、本来は人間の身体能力や適応力を強化するための基礎研究として開発されていました。<br>しかし、<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>の他のプロジェクト（フォーミュラPなど）と同様に、強力な<a href="mutation.html" class="auto-link">変異</a>を引き起こす性質を持っていました。<br>ゲーム内での記述によると、これは後述する<strong>Project-Z</strong>のベースとなる「元となる化学式」として位置づけられています。</p><hr name="aa64c245-a877-4cbc-a6ea-05ae262b6973" id="aa64c245-a877-4cbc-a6ea-05ae262b6973"><h3 name="68534bc5-b29f-4f27-bd91-3e78332807c2" id="68534bc5-b29f-4f27-bd91-3e78332807c2">Project-Z（フォーミュラZ）</h3><p name="0fe45719-70c5-4515-a114-9184223b3a04" id="0fe45719-70c5-4515-a114-9184223b3a04"><strong>Project-Z</strong>（非公式にフォーミュラZとも呼ばれる）は、フォーミュラKをさらに改良・派生させた極秘プロジェクトです。</p><p name="dd388780-ec1b-43a3-a31f-c3c046919e0d" id="dd388780-ec1b-43a3-a31f-c3c046919e0d"><strong>このプロジェクトの目的は、無重力（Zero-G）環境における人間の効率性と生存能力を向上させることでした。</strong></p><p name="65185e95-38be-4e30-b5a9-be886b3af6de" id="65185e95-38be-4e30-b5a9-be886b3af6de">戦前、アメリカ合衆国宇宙局（USSA）は宇宙進出における人体への影響（筋萎縮や骨密度の低下など）を克服するため、<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>と高額な政府契約を締結しました。<br>アークトス側はフォーミュラKを「無重力効率用に修正」することでこれに応え、宇宙飛行士が過酷な環境下でも高いパフォーマンスを維持できる血清の開発を目指しました。</p><hr name="132fbb71-d4b5-4242-9a2c-c08465ca40aa" id="132fbb71-d4b5-4242-9a2c-c08465ca40aa"><h3 name="a8db510d-5f82-4fe0-91a2-49ee02676d61" id="a8db510d-5f82-4fe0-91a2-49ee02676d61">ナタリー・インゲソンのログに見る影響</h3><p name="7f4268cb-05ed-4b75-9c55-2f083641ad76" id="7f4268cb-05ed-4b75-9c55-2f083641ad76">被験者はフォーミュラKの派生体に対して、私たちが予想していたよりもはるかに激しい反応を示しています。<br>細胞の再構築が始まっており、これはもはや単なる「効率の向上」とは呼べないレベルです。</p><p name="8c5c1bc0-55a2-4fd1-9ad2-8307ae4c3173" id="8c5c1bc0-55a2-4fd1-9ad2-8307ae4c3173">彼らの皮膚は変色し始め、筋肉組織は異常な発達を見せています。<br>USSAはこれを「適応」と呼んで喜んでいますが、私にはこれが「<a href="mutation.html" class="auto-link">変異</a>」にしか見えません。<br>私たちは人間を宇宙へ送るための薬を作っているつもりでしたが、実際には人間ではない何かを作り出しているのではないかという恐怖を感じています。</p><hr name="a35b4d4c-d252-4e1a-9133-d11026315957" id="a35b4d4c-d252-4e1a-9133-d11026315957"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n40d35e7f7520_img_3.png" alt="" width="512" height="512"><div class="note-figcaption"><a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>は、単なる製薬企業を超えた「<b>人類の強制進化を目論んだ戦前社会の歪みの象徴</b>」であると感じます。<br><br>特に、<b>フォーミュラK</b>や<b>Project-Z</b>の存在は、この企業がいかに早くから「人間の<a href="mutation.html" class="auto-link">変異</a>」を制御・利用しようとしていたかを物語っています。<br>USSA（アメリカ合衆国宇宙局）という国家機関と手を組み、宇宙進出という大義名分の裏で、人間を「無重力に適応した別の何か」へ変えようとしていた事実は、地上の利益を求めていたデビッド・ソープの強欲さとはまた別の、科学的な狂気を感じさせます。<br><br>「クマ（Arktos）」という名の通り、周囲を貪り食うような捕食者的経営を続けてきたこの組織は、最終的に自らが生み出した変異技術の渦に飲み込まれました。<br>経営陣から現場の科学者まで、誰もが「より優れた存在」を目指しながら、最後には理性のない<a href="scorch.html" class="auto-link">スコーチ</a>や<a href="ghoul.html" class="auto-link">グール</a>、あるいは野生化した実験動物の餌食となってしまった結末は、人間の知性が自然の摂理を無視したことへの、痛烈な皮肉であるという印象を強く受けます。<br><br>そして事件の裏にはロブコあり。
+</div>
+
+<p name="cb702458-ec1f-45a6-8920-c5c0c42c90af" id="cb702458-ec1f-45a6-8920-c5c0c42c90af">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

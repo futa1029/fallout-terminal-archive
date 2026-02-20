@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ハンター・リッジ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ハンター・リッジ</h3>
+            <img src="images/note_extracted/n11b04c459efe_img_1.png" alt="ハンター・リッジ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n11b04c459efe" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ハンター・リッジ</h1>
+            <div class="date">DATE: 2025/11/6</div>
+            
+            <p name="f079ec0b-50e1-4833-8b80-1763215b595b" id="f079ec0b-50e1-4833-8b80-1763215b595b">ハンター・リッジは、アパラチアの森林地帯にある場所で、現在はブラッドイーグルが占領しています。</p><hr name="6858af11-72fd-4fc3-b3b9-3d3cab5fa4a6" id="6858af11-72fd-4fc3-b3b9-3d3cab5fa4a6"><h2 name="a6516730-1312-409d-88c5-e39a9cd098ba" id="a6516730-1312-409d-88c5-e39a9cd098ba">背景</h2><p name="31dd6c23-d77f-4065-87bd-06036b3d412e" id="31dd6c23-d77f-4065-87bd-06036b3d412e">ハンターズ・リッジは、狩猟者が荒野で獲物を探すために利用した、木に設置された見晴らしの良い場所でした。<br>住民の中には、ラジオでローズのたわごとを聞いた後、レイダーに転向した者もいましたが、それ以前から彼らは非会員、特に罠を盗んだ者に対してますます敵対的な姿勢をとっていました。<br>崖の底にあるスパイクピットは、処刑場として、また侵入者に対する抑止力として設けられました。</p><p name="cc4fa59d-be38-43b2-bbde-7d16aa84dd96" id="cc4fa59d-be38-43b2-bbde-7d16aa84dd96">過激派が世界の頂上へ去った後、ハンターたちは一息ついたと思った。<br>しかし、去ったイーサンとカーソンの2人はすぐにレイダーの一団を率いて戻ってきて、その場所を一掃した。<br>残りのハンターたちはカーソンに気づき、その場所にブービートラップを仕掛けて、より緑豊かな牧草地へと去ることを決めた。</p><hr name="72159373-8ba2-4ce6-9019-612797e5f179" id="72159373-8ba2-4ce6-9019-612797e5f179"><h2 name="6935e2eb-49d4-4b7e-81bd-03c0502cefd8" id="6935e2eb-49d4-4b7e-81bd-03c0502cefd8">レイアウト</h2><div class="note-figure"><img src="images/note_extracted/n11b04c459efe_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="a51dab08-cc28-4085-95cd-0a8c1eaeb408" id="a51dab08-cc28-4085-95cd-0a8c1eaeb408">野営地は、ロープ橋でつながれた4つのツリーハウスで構成されており、ツリーハウスへ続くランプ、地上のベースキャンプ、そして景色の良い展望台へとアクセスすることができる。<br>展望台の一部は、犠牲者が崖の底にあるスパイクの穴に「板を歩く」ように改造されており、急降下して落下死か木に刺殺される様になっている。<br>肉は、その場所の木に吊るされた数匹のラッドスタッグから入手できる。<br>テント北側の屋根付きの張り出しの下には、 アーマー作業台がある。</p><h2 name="eb96336b-318f-4217-92b0-2021efdfeb51" id="eb96336b-318f-4217-92b0-2021efdfeb51">注目すべき戦利品</h2><h3 name="ffe00713-c8da-4ca9-80a6-50ff0441f857" id="ffe00713-c8da-4ca9-80a6-50ff0441f857">ハンターの警告- メモ</h3><div class="note-figure"><img src="images/note_extracted/n11b04c459efe_img_3.png" alt="" width="620" height="906"><div class="note-figcaption"></div></div><p name="6e16d291-9076-4b84-a8d7-3309b011e0cb" id="6e16d291-9076-4b84-a8d7-3309b011e0cb">グレネードブーケトラップのあるガゼボにドライバーで釘付けにされている。<br><br>内容としてはプレザントバレー・スキーリゾートにて結成されたレイダーにイーサンとカーソンが加わって我々のキャンプを襲撃してきた。<br>次に備えてトラップを仕掛けておいた。<br>という内容。</p><h3 name="b2eb6335-93b9-405d-aa42-6eb39cb18ca7" id="b2eb6335-93b9-405d-aa42-6eb39cb18ca7">ハンターの日記- メモ</h3><div class="note-figure"><img src="images/note_extracted/n11b04c459efe_img_4.png" alt="" width="620" height="922"><div class="note-figcaption"></div></div><p name="6806fdad-2c7c-4f0d-97d4-3c220d311908" id="6806fdad-2c7c-4f0d-97d4-3c220d311908">南西のツリーハウスのソファに置かれている。<br><br>内容としては、カーソンが縄張りに侵入してきた無抵抗のカップルに対してイーサンの作った板を渡らせて突き落とした。<br>ラジオでローズの声を聞いてその東の場所に補給物資とシェルターがあるから行こうという話と、カーソンとイーサンが早く出て行ってくれればいいのに。<br>という内容。</p><h3 name="7c0656d7-37da-4913-8aaa-23f853f342ef" id="7c0656d7-37da-4913-8aaa-23f853f342ef">未送信の手紙- メモ</h3><div class="note-figure"><img src="images/note_extracted/n11b04c459efe_img_5.png" alt="" width="620" height="911"><div class="note-figcaption"></div></div><p name="b43fe2e8-1eb6-477f-ac2f-a294f2b722e9" id="b43fe2e8-1eb6-477f-ac2f-a294f2b722e9">エリアの南端近くのプラットフォームにある監視塔近くの樽の上に置かれている。<br><br>内容は、ディランがエミリーに対しての宛てたメッセージで、<a href="sutton.html" class="auto-link">サットン</a>で物資を漁っていた生存者を発見して、自分達はハンターだと言うことを告げると彼らのキャンプに招待されて良い人達だった。<br>イーサンとカーソンが崖下に落とし穴を自衛の為に作っているという話と、マジソンが素晴らしいシチューを作って秘訣を聞いたら「頭を足す」と言われた。<br>もうすぐ会いに行く。<br>という内容。</p><h3 name="98dc2b18-9f42-4b63-9e01-c0f834ac13f9" id="98dc2b18-9f42-4b63-9e01-c0f834ac13f9">レシピ：ラッドスタッグシチュー</h3><p name="1bb1ba0f-08af-4f8e-bc51-475058a963ec" id="1bb1ba0f-08af-4f8e-bc51-475058a963ec">調理台の近くのテーブルにラッドスタッグの頭が置かれている。</p><h3 name="dea5dfdb-0c0b-457a-ac6e-b2de4d00c9e4" id="dea5dfdb-0c0b-457a-ac6e-b2de4d00c9e4">ボブルヘッド</h3><p name="b7e40899-591c-483c-938f-578a92789f84" id="b7e40899-591c-483c-938f-578a92789f84">北東にあるツリーハウスの屋根の上、石化した死体のすぐ前に置かれている。</p><h3 name="93637567-b1ca-4fb9-bbb2-27efec1582b7" id="93637567-b1ca-4fb9-bbb2-27efec1582b7"><a href="magazine.html" class="auto-link">雑誌</a></h3><p name="b5b48473-cc3a-4439-84ff-93cacec652ac" id="b5b48473-cc3a-4439-84ff-93cacec652ac">最西端のツリーハウスの木の幹のそばのソファーの下。</p><hr name="a743e731-ed38-47a1-8cc3-dcbf0c167a1d" id="a743e731-ed38-47a1-8cc3-dcbf0c167a1d"><div class="quote-box">
+<b>感想</b><br><br>
+ボブルヘッドと<a href="magazine.html" class="auto-link">雑誌</a>、それにブラッドイーグルを狩るのにいい場所です。<br>森林地帯はボブルヘッドと<a href="magazine.html" class="auto-link">雑誌</a>が豊富で良いですよね。<br>メモにも記されている通り、今ではハンターの住処では無くブラッドイーグルに占領されています。<br>橋の上のブラッドイーグルはレレレ撃ちされるとVATSでは当たらなくなる為、初動は上から倒すと時間がかからなくて良いです。<br><br>ロアを見ると2人がレイダーに加わるまでの様子と残ったハンターとの戦いの跡が見られます。<br>登場人物はここでしか登場せず、彼らの生死や行方は不明となっています。<br><br><div class="note-figure"><img src="images/note_extracted/n11b04c459efe_img_6.jpg" alt="" width="280" height="392"><div class="note-figcaption">
+</div>
+
+<p name="fcc52d77-baad-40c9-a5eb-7c3e061bac20" id="fcc52d77-baad-40c9-a5eb-7c3e061bac20">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

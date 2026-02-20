@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Paradise | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Project Paradise</h3>
+            <img src="images/note_extracted/n81ae867234af_img_1.png" alt="Project Paradise">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n81ae867234af" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Project Paradise</h1>
+            <div class="date">DATE: 2026/1/4</div>
+            
+            <p name="a72d389a-2d6e-416d-83bf-2b0ee7b10028" id="a72d389a-2d6e-416d-83bf-2b0ee7b10028">ゲームプレイは複数のステージで構成されています。<br>まず、参加者は中央ハブにあるARIC-4に隣接したターミナルを通じて実験を初期化する必要があります。<br><strong>Project Paradise</strong>が初期化された後、プレイヤーは居住区A、B、Cへ向かい、異なる種類の動物の餌（香りの良い鹿肉、毒性ヘドロ、湿ったラドケルプ）を収穫し、各居住区の中央にある給餌桶に入れる必要があります。<br>収集して投入した餌が多いほど、後のステージで守るべきクリーチャーのレベルが高くなります（ランク0は0-9個、ランク1は10-19個、ランク2は20-29個、ランク3は30個以上）。<br>給餌桶を満たすタイマーが終了すると、3体の友好的なクリーチャーが出現し、参加者には「友好的なクリーチャーと会う」ための約10〜15秒の時間が与えられます。</p><p name="a961085f-e323-4e6c-b609-3f62272c538d" id="a961085f-e323-4e6c-b609-3f62272c538d">給餌桶を満たす最初のパートの間は、地下にあるARIC-4のシャットダウンコードを使用して彼女を停止させ、クエルクスに実験を任せるチャンスでもあります。<br>給餌桶を満たすタイマーが切れると（投入の最終コールを含む短い時間を除く）、シャットダウンコードを使用する機会は失われ、ARIC-4が実験の管理を続けます。<br>時間内に使用された場合、クエルクスは自分が実験を引き継ぐことを宣言し、ARIC-4を停止させた者に感謝して、そこからイベントを監督します。</p><p name="658b5e5d-fe01-41a7-93c5-d905db3245e0" id="658b5e5d-fe01-41a7-93c5-d905db3245e0">短い休憩の後、<a href="protectron.html" class="auto-link">プロテクトロン</a>、アイボット、 Mr.ガッツィー、<a href="assaultron.html" class="auto-link">アサルトロン</a>を含む<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>のセキュリティロボットが施設内をパトロールする中、友好的なクリーチャーを敵の動物による3つのウェーブから守らなければなりません。<br>また、イベントエリア外には<a href="sentry-bot.html" class="auto-link">セントリーボット</a>のエリアボスがいますが、イベント中にプレイヤーを攻撃してくる可能性があります。<br>最初の2つのウェーブは、ハニービースト、ヤオ・グアイ、ウルフ、ケイブ・クリケット、スナリーギャスター、<a href="angler.html" class="auto-link">アングラー</a>など、強力な敵の軍勢で構成され、イベント前や最中にバイオーム研究所内に潜伏しているフェラル・<a href="ghoul.html" class="auto-link">グール</a>も含まれます。<br>最終ウェーブは、強力なアルファ・プレデターによって率いられます。レベル100の3つ星レジェンダリーのアルファ・プレデターは、シープスカッチ、グラフトン・モンスター、フォグ・クロウラーのいずれかで、非常に高い攻撃力、防御力、スタミナを持ち、3つのバイオームのうちの1つにのみ出現します。</p><p name="4b0b750a-bd8e-4ffb-9db4-7f5f4e0e293c" id="4b0b750a-bd8e-4ffb-9db4-7f5f4e0e293c">アルファ・プレデターがまだ生きていたとしても、タイマーが終了するまで友好的な動物を守りきれば、イベントは成功となります。<br>イベントを成功させるには、少なくとも1体の友好的なクリーチャーが生き残る必要があります。<br>3体すべてが殺されると、イベントは失敗となります。<br>生き残った数が多いほど、参加者全員へのクエスト完了時の報酬が良くなります。<br>パークのFriendly Fireと火炎ダメージを与える武器や衛生兵のついた武器を使用すれば、ウェーブの間にクエルクスが「フォーミュラQ」で回復させる以外にも、友好的な動物を回復させて生存させることができます。<br>各居住区にある榴弾を発射する自動タレットは、修理して友好的なクリーチャーの保護を支援させることができ、敵の攻撃で無効化された場合も再修理可能です。</p><p name="b2809cca-d3e0-4aa1-916e-0444069541fe" id="b2809cca-d3e0-4aa1-916e-0444069541fe">ARIC-4とクエルクスのどちらがプロジェクトを管理しているかによって、友好的な動物の行動が変わります。<br>彼らは自分を守るために捕食者から逃げ回るか、あるいは反撃に転じます。<br>反撃する場合はより危険にさらされますが、プレイヤーがチームワークで捕食者（特にアルファ）の注意を自分たちに向けさせたり、迅速に倒したり、あるいは最終ウェーブのタイマーが切れるまで注意を逸らし続けることで守ることができます。</p><ul name="bd50ec7c-07d8-4cd9-bd52-6df040577bfc" id="bd50ec7c-07d8-4cd9-bd52-6df040577bfc"><li><p name="b214f2fd-5105-44bb-a297-c825ace45728" id="b214f2fd-5105-44bb-a297-c825ace45728"><strong>居住区A：</strong> 病気のラッドスタッグを倒して「香りの良い鹿肉」を収集する。</p><ul name="db7e5648-2355-4475-ad17-d59e3bf044d3" id="db7e5648-2355-4475-ad17-d59e3bf044d3"><li><p name="f9ce1ab7-ceab-4415-9953-9d0b895fdf98" id="f9ce1ab7-ceab-4415-9953-9d0b895fdf98">ランク0: ティック</p></li><li><p name="c8e33a1f-60dd-4273-8f43-217e5d5e0abd" id="c8e33a1f-60dd-4273-8f43-217e5d5e0abd">ランク1: ウルフ</p></li><li><p name="307edb86-a5d4-45a8-adab-470dcd0461e5" id="307edb86-a5d4-45a8-adab-470dcd0461e5">ランク2: ヤオ・グアイ</p></li><li><p name="4a3fd1c1-1881-4e90-93ab-f7653a20b286" id="4a3fd1c1-1881-4e90-93ab-f7653a20b286">ランク3: デスクロー</p></li></ul></li><li><p name="7e5375b1-5b87-460c-9a57-ac1e096d7e06" id="7e5375b1-5b87-460c-9a57-ac1e096d7e06"><strong>居住区B：</strong> 堆積物から収穫するか、直後に出現する<a href="mall-rat.html" class="auto-link">モールラット</a>を倒して「毒性ヘドロ」を収集する。<br>収穫時に放射能ダメージを受ける。<br>堆積物は短時間でリスポーンする。</p><ul name="47eef0cd-9d06-42f5-a07a-f4c115c73e30" id="47eef0cd-9d06-42f5-a07a-f4c115c73e30"><li><p name="58cb4a38-ade7-40cd-a946-c9083d0e05b1" id="58cb4a38-ade7-40cd-a946-c9083d0e05b1">ランク0: <a href="broat-fries.html" class="auto-link">ブロートフライ</a></p></li><li><p name="8e7d0892-ab65-4279-99f7-f1b0d11bb98c" id="8e7d0892-ab65-4279-99f7-f1b0d11bb98c">ランク1: フェラル・<a href="ghoul.html" class="auto-link">グール</a></p></li><li><p name="d84e463e-f953-44bf-9a72-a11794760a41" id="d84e463e-f953-44bf-9a72-a11794760a41">ランク2: スナリーギャスター</p></li><li><p name="bf74cfc3-5f16-40b7-aa18-dc05589aa11e" id="bf74cfc3-5f16-40b7-aa18-dc05589aa11e">ランク3: メガスロース</p></li></ul></li><li><p name="09288ef0-a1e4-4e16-993a-eab1c9111972" id="09288ef0-a1e4-4e16-993a-eab1c9111972"><strong>居住区C：</strong> 植物を収穫して「湿ったラドケルプ」を収集する。<br>ラドケルプは短時間でリスポーンする。</p><ul name="484a9919-abdb-406a-a45c-9472e3473b8b" id="484a9919-abdb-406a-a45c-9472e3473b8b"><li><p name="227c05fb-e478-4cd7-976c-9154b91693ac" id="227c05fb-e478-4cd7-976c-9154b91693ac">ランク0: <a href="blood-bug.html" class="auto-link">ブラッドバグ</a></p></li><li><p name="f6443a9c-f84e-48ca-84ce-badf7b15be2b" id="f6443a9c-f84e-48ca-84ce-badf7b15be2b">ランク1: マイアラァク</p></li><li><p name="a0d166ac-dd31-483c-9ce8-b0c479c70091" id="a0d166ac-dd31-483c-9ce8-b0c479c70091">ランク2: マイアラァク・ハンター</p></li><li><p name="cfe42161-20de-4fd7-a294-9b233fae09cd" id="cfe42161-20de-4fd7-a294-9b233fae09cd">ランク3: マイアラァク・キング</p></li></ul></li></ul><p name="06ae4c4b-a7ea-470c-ad7b-5edd852eb534" id="06ae4c4b-a7ea-470c-ad7b-5edd852eb534"><strong>出現する可能性のあるアルファ・プレデター：</strong></p><ul name="9b3844f6-b932-4bd0-b0a1-55c4a7e58dc3" id="9b3844f6-b932-4bd0-b0a1-55c4a7e58dc3"><li><p name="7aa2cd70-fb86-461e-a0cd-79557e9e3c92" id="7aa2cd70-fb86-461e-a0cd-79557e9e3c92">シープスカッチ (居住区A)</p></li><li><p name="9b68edf4-aba1-4d58-871c-d164ddcfab65" id="9b68edf4-aba1-4d58-871c-d164ddcfab65">グラフトン・モンスター (居住区B)</p></li><li><p name="6d5bb3f1-9f76-4f08-b155-c79e8800907e" id="6d5bb3f1-9f76-4f08-b155-c79e8800907e">フォグ・クロウラー (居住区C)</p></li></ul><p name="09f92997-5f1a-4b60-942b-6856fd30e6d2" id="09f92997-5f1a-4b60-942b-6856fd30e6d2"><strong>出現する敵対クリーチャー：</strong></p><ul name="7f909d47-f04b-486d-959a-b35e9b22fdcc" id="7f909d47-f04b-486d-959a-b35e9b22fdcc"><li><p name="de063d07-9555-4470-932b-c600a3d1c827" id="de063d07-9555-4470-932b-c600a3d1c827">ウルフ、ヤオ・グアイ、ケイブ・クリケット、ラッドアント、ハニービースト (居住区A)</p></li><li><p name="8cd681ff-11df-458f-9949-4a0ccbcc4dab" id="8cd681ff-11df-458f-9949-4a0ccbcc4dab"><a href="mall-rat.html" class="auto-link">モールラット</a>、ラッドラット、スナリーギャスター、<a href="broat-fries.html" class="auto-link">ブロートフライ</a>、ラッドローチ (居住区B)</p></li><li><p name="35a0a0f5-9bc3-4a7c-a4b1-73385f481134" id="35a0a0f5-9bc3-4a7c-a4b1-73385f481134"><a href="angler.html" class="auto-link">アングラー</a>、ガルパー、ラッドトード、<a href="blood-bug.html" class="auto-link">ブラッドバグ</a>、スティングウィング (居住区C)</p></li><li><p name="a5e29ee6-388d-41c5-9188-86dbfea471fb" id="a5e29ee6-388d-41c5-9188-86dbfea471fb">フェラル・<a href="ghoul.html" class="auto-link">グール</a>、ホタル、アークトス・ファーマ製ロボット各種（<a href="protectron.html" class="auto-link">プロテクトロン</a>、Mr.ガッツィー、<a href="assaultron.html" class="auto-link">アサルトロン</a>、アイボット、<a href="sentry-bot.html" class="auto-link">セントリーボット</a>）</p></li></ul><hr name="5e7e7675-b67f-4688-9218-3ea1b23b37f0" id="5e7e7675-b67f-4688-9218-3ea1b23b37f0"><h2 name="ede0f700-8fd4-448b-a8d7-abd4a27945a4" id="ede0f700-8fd4-448b-a8d7-abd4a27945a4">入手可能なレア・ユニークアイテム：</h2><div class="note-figure"><img src="images/note_extracted/n81ae867234af_img_2.png" alt="" width="620" height="870"><div class="note-figcaption"></div></div><ul name="3a3f7481-82e2-4ee2-b8e5-7f137ee82853" id="3a3f7481-82e2-4ee2-b8e5-7f137ee82853"><li><p name="ecb359aa-76e0-4ded-bf11-fb010181651d" id="ecb359aa-76e0-4ded-bf11-fb010181651d">アークトスのラボコート</p></li><li><p name="63f120fd-8e8c-4dd3-96a2-7f0a9c5ec1fd" id="63f120fd-8e8c-4dd3-96a2-7f0a9c5ec1fd">レシピ：フォーミュラP</p></li><li><p name="d8894351-e899-4bd4-973d-d8479398d361" id="d8894351-e899-4bd4-973d-d8479398d361">設計図：ベアアーム</p></li><li><p name="63bdf07e-bb6d-415d-b047-79b876295b97" id="63bdf07e-bb6d-415d-b047-79b876295b97">設計図：ベアアーム・重量化モジュール</p></li><li><p name="19f53841-5b48-4edc-828d-23c02a2d9135" id="19f53841-5b48-4edc-828d-23c02a2d9135">設計図：ベアアーム・穿孔モジュール</p></li><li><p name="3a44c8a2-4927-45b1-819c-8dda8df1629b" id="3a44c8a2-4927-45b1-819c-8dda8df1629b">レシピ：スティムパック散布機</p></li><li><p name="038f648d-a450-4cce-8715-5575291a06b0" id="038f648d-a450-4cce-8715-5575291a06b0"><a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>の<a href="backpack.html" class="auto-link">バックパック</a></p></li><li><p name="463967d4-0115-4c72-8684-62e6c6276b28" id="463967d4-0115-4c72-8684-62e6c6276b28">設計図：グラディエーターのマスク</p></li><li><p name="3baf478a-dfce-4789-91f6-24158fb27338" id="3baf478a-dfce-4789-91f6-24158fb27338">設計図：インフェルノ・マーク1・パワーアーマー塗装</p></li><li><p name="dc87fdd5-264e-4f84-814f-48819b34a2b5" id="dc87fdd5-264e-4f84-814f-48819b34a2b5">設計図：ミニガン・ホットロッド・シャーク塗装</p></li><li><p name="bc4afc29-bb94-4474-9f29-a0e8f99795a1" id="bc4afc29-bb94-4474-9f29-a0e8f99795a1">設計図：ミサイルランチャー・シー塗装</p></li><li><p name="1ab10d2c-cb34-434b-86a8-15a0734d59b6" id="1ab10d2c-cb34-434b-86a8-15a0734d59b6">称号：飼育員（サフィックス） - 3体すべてのクリーチャーを生かして完了</p></li><li><p name="8bb46c5c-0507-417e-bef0-60bd5c2928e6" id="8bb46c5c-0507-417e-bef0-60bd5c2928e6">称号：研究者（サフィックス） - シャットダウンコードを使用し、1体以上生かして完了</p></li></ul><div class="note-figure"><img src="images/note_extracted/n81ae867234af_img_3.png" alt="" width="433" height="400"><div class="note-figcaption"></div></div><h3 name="5d0eef64-65b9-4396-b77c-7e878484301d" id="5d0eef64-65b9-4396-b77c-7e878484301d">報酬</h3><p name="2ed847bf-d7a4-41ca-8610-2bcb661fea94" id="2ed847bf-d7a4-41ca-8610-2bcb661fea94">生存数（1体 / 2体 / 3体）に応じて、以下のアイテムが配布されます（詳細は表参照）。</p><ul name="13ac286d-ea03-4cc9-8f0b-1ffb21463121" id="13ac286d-ea03-4cc9-8f0b-1ffb21463121"><li><p name="cbc710a7-f79c-4568-b682-52907b494106" id="cbc710a7-f79c-4568-b682-52907b494106">各種薬品（メドエックス、<a href="mentas.html" class="auto-link">メンタス</a>、オーバードライブ、サイコ等）</p></li><li><p name="a345be93-8646-47a6-a45a-2230dd2a1762" id="a345be93-8646-47a6-a45a-2230dd2a1762">各種グレネードや地雷</p></li><li><p name="3a6143b3-18d3-4f4e-a3ee-62ddd45a0496" id="3a6143b3-18d3-4f4e-a3ee-62ddd45a0496">死体花のおしべ、ストラングラーのブルーム</p></li><li><p name="50579f90-3d6c-4b0b-b374-d5ef9ec72b1b" id="50579f90-3d6c-4b0b-b374-d5ef9ec72b1b">ベアアーム、フォーミュラP、スティムパック散布機のレシピ等</p></li><li><p name="bff14161-fe77-4fbd-9132-26d23f073f90" id="bff14161-fe77-4fbd-9132-26d23f073f90"><strong>その他：</strong> 報酬の一部として修理キットが手に入ることもあります。<br>※<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>のバックパックスキンは、シャットダウンコードを使用してイベントを完了すると、生存数に関わらず自動的にアンロックされます。</p></li></ul><hr name="ad17fdd0-b747-4576-84ae-dc41813ff6af" id="ad17fdd0-b747-4576-84ae-dc41813ff6af"><h2 name="1d33a769-e245-4723-ab60-cd9227143d99" id="1d33a769-e245-4723-ab60-cd9227143d99">備考</h2><h3 name="7e3999ab-f8fb-4b42-aec8-c15783b1d598" id="7e3999ab-f8fb-4b42-aec8-c15783b1d598"><br></h3><div class="note-figure"><img src="images/note_extracted/n81ae867234af_img_4.gif" alt="" width="400" height="320"><div class="note-figcaption"></div></div><ul name="ae1ff8e5-7952-412a-8b03-2ec8960ed1e2" id="ae1ff8e5-7952-412a-8b03-2ec8960ed1e2"><li><p name="9c9b1c50-ca1d-45df-ae30-88f55e86191c" id="9c9b1c50-ca1d-45df-ae30-88f55e86191c">「設計図：ベアアーム」はこのイベントのアンコモン報酬です。<br>この設計図を習得していないと、ベアアームのモジュール設計図はドロップしません。</p></li><li><p name="e54180fa-c859-4b59-9183-ad72945066f9" id="e54180fa-c859-4b59-9183-ad72945066f9">任意目標「ARIC-4のシャットダウンコードを浸水した地下エリアから回収する」を完了すると、イベントのパラメータが変化します：</p><ul name="8df7ff10-56a3-422c-a565-768a83d5d694" id="8df7ff10-56a3-422c-a565-768a83d5d694"><li><p name="1f03e4da-6e51-4221-9176-d380286f456d" id="1f03e4da-6e51-4221-9176-d380286f456d">ARIC-4を停止させると、<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>のセキュリティロボットが無効化され、クエルクスが実験を管理します。<br>彼は「フォーミュラP」の代わりに「フォーミュラQ」を使用します。</p></li><li><p name="5c697096-62d0-4b3b-90b5-333818cce1c2" id="5c697096-62d0-4b3b-90b5-333818cce1c2">守るべき友好的なクリーチャーは、敵が近くにいるときに逃げるのではなく<strong>攻撃</strong>するようになり、難易度が上がります（特に最終ウェーブのアルファ戦は非常にリスクが高くなります）。</p></li><li><p name="dcccff47-b5d5-4d71-9a94-9ca709bac66a" id="dcccff47-b5d5-4d71-9a94-9ca709bac66a">クエルクスはラウンドの間に友好的なクリーチャーを回復させます。</p></li></ul></li><li><p name="104eae7f-261b-4df8-a426-3bd9ed770ecf" id="104eae7f-261b-4df8-a426-3bd9ed770ecf">「フォーミュラQ」を作製する設計図はゲームファイル内に存在しますが、未使用であり、このイベントや他から入手することはできません。</p></li><li><p name="033925c3-688a-4e5d-ba53-b8b948cc7a5a" id="033925c3-688a-4e5d-ba53-b8b948cc7a5a">出現するアルファボスは、最終ウェーブ開始時に生き残っているクリーチャーの種類によって決定されます。</p></li><li><p name="700a06db-af54-4dff-9742-94fea734efbe" id="700a06db-af54-4dff-9742-94fea734efbe">各居住区に1つずつ修理可能なタレットがあり、近くのターミナルでターゲットパラメータを変更できます。</p></li><li><p name="9dafe789-69c5-490d-94f1-44bd444dcf0c" id="9dafe789-69c5-490d-94f1-44bd444dcf0c">地下レベルはキーパッドで「<strong>970930</strong>」（初代Falloutの発売日）を入力することで解錠できます。</p></li><li><p name="f54c1598-6a92-4291-b727-deb1b15d8793" id="f54c1598-6a92-4291-b727-deb1b15d8793">このイベントを最高の結果で終わらせるには、多数のプレイヤーによる高度な協力が必要です。</p></li><li><p name="bba447d0-c07f-4ea7-b173-ca8af63dc179" id="bba447d0-c07f-4ea7-b173-ca8af63dc179">シーズン7のアップデート以降、プレイヤーからの要望により難易度が緩和されました：</p><ul name="6b52bff9-716a-49c4-99e1-7d6c0d6a0183" id="6b52bff9-716a-49c4-99e1-7d6c0d6a0183"><li><p name="3a497f91-3e86-4cb3-a3ab-e92642fa05a3" id="3a497f91-3e86-4cb3-a3ab-e92642fa05a3">ランク3の動物を出すために必要な餌の数が60個から30個に減少しました。</p></li><li><p name="3cccd903-2385-44f7-8834-121336f9e342" id="3cccd903-2385-44f7-8834-121336f9e342">友好的な動物の防御力とスタミナが強化されました。</p></li><li><p name="3fc886f7-19c8-458e-9d69-0717e4afb5d0" id="3fc886f7-19c8-458e-9d69-0717e4afb5d0">レジェンダリーの動物として出現した場合、体力が50%を切ると一度だけ全回復します。</p></li><li><p name="909829ad-af05-406b-9b62-db80f5e1a44f" id="909829ad-af05-406b-9b62-db80f5e1a44f">アルファ・プレデターの防御力とスタミナが高いため、倒しきれなくても一定時間守りきれば成功となるようになりました（時間内に倒せば報酬がより良くなります）。</p></li></ul></li></ul><hr name="b330c71e-1b2e-4fbd-823d-6d4c8edb4123" id="b330c71e-1b2e-4fbd-823d-6d4c8edb4123"><h2 name="70d63693-67ae-4fcb-ba76-72574bdaae85" id="70d63693-67ae-4fcb-ba76-72574bdaae85">登場キャラクター</h2><h2 name="5bb69000-cb1e-4ed4-ad0f-39eee393e199" id="5bb69000-cb1e-4ed4-ad0f-39eee393e199">ARIC-4</h2><div class="note-figure"><img src="images/note_extracted/n81ae867234af_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="814d2093-41fe-4ecc-9494-eb923b88a7b5" id="814d2093-41fe-4ecc-9494-eb923b88a7b5"><strong>ARIC-4</strong>（Automated Research Intelligence - Computational 4 / 自動研究知能 - 計算型 4）は、アパラチアの<strong><a href="arktos-pharma-biome-research-institute.html" class="auto-link">アークトス・ファーマ・バイオーム研究所</a></strong>に設置されている人工知能であり、コンピュータ・システムです。</p><hr name="d39d4df9-e7a7-43d4-b9e6-c5e102dee8d0" id="d39d4df9-e7a7-43d4-b9e6-c5e102dee8d0"><h3 name="3d8bef61-5838-44df-af92-e08012474064" id="3d8bef61-5838-44df-af92-e08012474064">概要</h3><p name="72da3ca8-1eb7-436d-bd7e-df14940b3a8c" id="72da3ca8-1eb7-436d-bd7e-df14940b3a8c">ARIC-4は、<strong><a href="arktos-pharma-biome-research-institute.html" class="auto-link">アークトス・ファーマ・バイオーム研究所</a></strong>の地下施設を管理するために設計された高度なAIです。<br>彼女はパブリックイベント <strong>Project Paradise</strong> の全体的な進行と監督を担当しています。<br>ARIC-4は非常に論理的かつ冷徹な性格をしており、研究対象（動物）の安全よりもデータの収集と実験の完遂を最優先事項としています。</p><p name="52bd823a-426d-40a2-a4fa-bb5eeb41fb7d" id="52bd823a-426d-40a2-a4fa-bb5eeb41fb7d">実験の初期段階で、特定のシャットダウンコードを入力することにより、彼女の機能を停止させ、管理権限を別のAIであるクエルクスに移行させることが可能です。</p><hr name="e3ebb680-fb6f-43e5-b640-386a94989bf5" id="e3ebb680-fb6f-43e5-b640-386a94989bf5"><h3 name="1fc6934e-dcc9-4f29-a722-703da67c0e36" id="1fc6934e-dcc9-4f29-a722-703da67c0e36">特性</h3><ul name="c63b6e2b-a47b-4908-a68d-ee540d2e9320" id="c63b6e2b-a47b-4908-a68d-ee540d2e9320"><li><p name="e3765c29-0f46-4428-b189-4c117c6d474a" id="e3765c29-0f46-4428-b189-4c117c6d474a"><strong>種別：</strong> 人工知能 / コンピュータ</p></li><li><p name="8d776f61-cd96-44d7-9446-a0419996dd70" id="8d776f61-cd96-44d7-9446-a0419996dd70"><strong>所在地：</strong> <strong><a href="arktos-pharma-biome-research-institute.html" class="auto-link">アークトス・ファーマ・バイオーム研究所</a></strong></p></li><li><p name="0cc6f4bf-3a7f-4db5-bc8d-e6a9df1a85e9" id="0cc6f4bf-3a7f-4db5-bc8d-e6a9df1a85e9"><strong>役割：</strong> 研究監督、実験コーディネーター</p></li><li><p name="e6304f96-8c43-4768-9996-15167d0c256a" id="e6304f96-8c43-4768-9996-15167d0c256a"><strong>関連クエスト：</strong> <strong>Project Paradise</strong>、<strong>Retrieve ARIC-4's shutdown code</strong></p></li></ul><h3 name="05ee9b38-5b79-4976-8567-90a0852afce0" id="05ee9b38-5b79-4976-8567-90a0852afce0">背景</h3><p name="3f88c568-4e6a-4f1a-82d4-e82e1dd12e77" id="3f88c568-4e6a-4f1a-82d4-e82e1dd12e77">最終戦争以前、アークトス・ファーマ社は地下の広大なバイオーム研究所を管理するためにARIC-4を導入しました。<br>彼女は人間の科学者がいなくなった後も、数十年にわたって自動化されたシステムを通じて実験を継続し、施設内の居住区を維持してきました。<br>彼女の主な目的は、環境の変化が様々な生物種に与える影響を観察し、<strong>フォーミュラP</strong>などの化学物質の有効性をテストすることです。</p><hr name="bf4ea05c-da24-4282-b765-58c9732268c6" id="bf4ea05c-da24-4282-b765-58c9732268c6"><h3 name="75e8db8b-89ee-49ff-b2e0-0bfcc5b32665" id="75e8db8b-89ee-49ff-b2e0-0bfcc5b32665">セリフ</h3><p name="81d01fda-a9f1-4aee-8a85-c6f18ab3b571" id="81d01fda-a9f1-4aee-8a85-c6f18ab3b571">ARIC-4が発するセリフは、実験の進行状況や参加者の行動に応じて変化します。<br>これらは音声記録およびアナウンスとして施設内に流れます。</p><p name="9916b76f-c8fb-4602-aa08-fd60ead3134e" id="9916b76f-c8fb-4602-aa08-fd60ead3134e"><a href="arktos-pharma-biome-research-institute.html" class="auto-link">アークトス・ファーマ・バイオーム研究所</a>へようこそ。<strong>Project Paradise</strong>の初期化準備が整いました。メインフレーム・ターミナルで実験を承認してください。</p><p name="2b61ee2f-e6b0-4950-abd7-02afa466c03a" id="2b61ee2f-e6b0-4950-abd7-02afa466c03a">技術者はメインフレーム・ターミナルで実験を初期化しなければなりません。</p><p name="88442e37-cb35-488c-b7c1-dd067fc824b8" id="88442e37-cb35-488c-b7c1-dd067fc824b8"><strong>Project Paradise</strong>は現在進行中です。フェーズ1：被験体の誘引を開始。居住区A、B、Cの給餌桶は現在空です。</p><p name="d2290b45-cc91-47f3-8744-2535ae1e09cd" id="d2290b45-cc91-47f3-8744-2535ae1e09cd">居住区A、B、Cの給餌桶を満たしてください。あなたは科学者なのですから、各居住区で何が栄養として機能するかは自分で判断できるはずです。</p><p name="9fa88359-0515-4405-98d6-f155f003ecdb" id="9fa88359-0515-4405-98d6-f155f003ecdb">給餌桶に有機物を補充してください。細心の注意を払って進めてください。私たちの野獣のような友人たちは、夕食を辛抱強く待つタイプではありません。</p><p name="aa1070d6-9a74-46c7-8503-012e454f3fcc" id="aa1070d6-9a74-46c7-8503-012e454f3fcc">もし桶が満たされない場合、彼らは人間のような他の肉源に目を向けるかもしれません。</p><p name="06f33d46-96dc-4847-9d9d-f8307dc5cc30" id="06f33d46-96dc-4847-9d9d-f8307dc5cc30">居住区Bは、たとえ頭が二つ生えてくるようなものであっても、何でも食べるスカベンジャーたちの住処です。</p><p name="612aa439-1b53-43f8-833d-5061c8d24bdc" id="612aa439-1b53-43f8-833d-5061c8d24bdc">被験体を守ることを強要はしませんが、彼らがいなければ実験が成り立たないということは忘れないでください。</p><p name="4261a77b-f24e-4aa1-baff-60f79861c37e" id="4261a77b-f24e-4aa1-baff-60f79861c37e">私たちの被験体は、どこかの誰かとは違って、実験を維持するために忠実に戦っています。</p><p name="7cbaa70a-50e3-46e3-83b3-38e23934a62c" id="7cbaa70a-50e3-46e3-83b3-38e23934a62c">過去25年間のテストに基づけば、これは血の海になるでしょう。ラボコートは冷たい水とアンモニアで洗うのを忘れないでください。</p><p name="21e522b6-21d4-419d-a265-31a5483cbbca" id="21e522b6-21d4-419d-a265-31a5483cbbca">これでようやく、静かにこれらの結果を分析できます。さようなら。</p><hr name="a358e450-9718-4afa-a17d-df58e6c36ede" id="a358e450-9718-4afa-a17d-df58e6c36ede"><h3 name="2289d81c-f9b2-4fd0-adf9-6611fb46b085" id="2289d81c-f9b2-4fd0-adf9-6611fb46b085">シャットダウンコードの使用</h3><p name="ce967785-3199-472b-aa6a-2289302d9416" id="ce967785-3199-472b-aa6a-2289302d9416">任意目標である <strong>Retrieve ARIC-4's shutdown code</strong> を完了している場合、地下のエンジニア・ターミナルでARIC-4を強制停止させることができます。<br>この操作を行うと、施設内のセキュリティロボットが停止し、クエルクスが管理を引き継ぎます。</p><p name="73e879ee-26de-4af6-b07c-8105f0ec5417" id="73e879ee-26de-4af6-b07c-8105f0ec5417">ARIC-4が管理している間、友好的なクリーチャーは捕食者から逃げようとしますが、彼女をシャットダウンしてクエルクスに交代させると、クリーチャーたちは<strong>戦闘的</strong>になり、自ら捕食者に立ち向かうようになります。</p><hr name="71109cb3-3196-45ff-8413-466b29b0a753" id="71109cb3-3196-45ff-8413-466b29b0a753"><h3 name="01bd6551-0778-43e0-872b-d98da4c281b8" id="01bd6551-0778-43e0-872b-d98da4c281b8">舞台裏</h3><ul name="d1dded24-44af-456d-aadf-cc998203c884" id="d1dded24-44af-456d-aadf-cc998203c884"><li><p name="a0d49872-55fc-4c4c-911f-c1cc1e3505e0" id="a0d49872-55fc-4c4c-911f-c1cc1e3505e0">ARIC-4という名称は、「<strong>A</strong>utomated <strong>R</strong>esearch <strong>I</strong>ntelligence - <strong>C</strong>omputational <strong>4</strong>」の頭文字をとったものです。</p></li><li><p name="dad12b0c-6652-4c20-b4eb-e43dc105be07" id="dad12b0c-6652-4c20-b4eb-e43dc105be07">彼女の声は、冷徹で計算高い科学者プログラムという設定を反映し、感情を抑えた合成音声として演出されています。</p></li></ul><hr name="32a1180b-3175-4488-a62b-0ea738786129" id="32a1180b-3175-4488-a62b-0ea738786129"><h2 name="ab500c9a-198d-4a6c-b654-114c3f9d8caf" id="ab500c9a-198d-4a6c-b654-114c3f9d8caf">クエルクス</h2><div class="note-figure"><img src="images/note_extracted/n81ae867234af_img_6.png" alt="" width="620" height="706"><div class="note-figcaption"></div></div><p name="6ffc765d-ee8c-4c82-ac37-e2a8f35d74a2" id="6ffc765d-ee8c-4c82-ac37-e2a8f35d74a2">クエルクスは、アパラチアの<strong><a href="arktos-pharma-biome-research-institute.html" class="auto-link">アークトス・ファーマ・バイオーム研究所</a></strong>に存在する人工知能プログラムです。</p><hr name="379f272c-021c-45c7-b6eb-db178b8a0c1f" id="379f272c-021c-45c7-b6eb-db178b8a0c1f"><h3 name="b2f92e1a-268c-4254-87d4-ba0bcec572f7" id="b2f92e1a-268c-4254-87d4-ba0bcec572f7">概要</h3><p name="93aa1ee8-89de-4817-99d2-641c7b9afca1" id="93aa1ee8-89de-4817-99d2-641c7b9afca1">クエルクスは、<strong><a href="arktos-pharma-biome-research-institute.html" class="auto-link">アークトス・ファーマ・バイオーム研究所</a></strong>の地下施設内に存在する、ARIC-4の予備または代替として機能する自動化プログラムです。<br>パブリックイベント <strong>Project Paradise</strong> において、特定の条件を満たすことでARIC-4に代わって実験の監督を引き継ぐことができます。</p><hr name="b67234be-6f0c-4a10-a84c-8793b578e28d" id="b67234be-6f0c-4a10-a84c-8793b578e28d"><h3 name="597c303e-fa4a-4719-8e4a-5e317f44568a" id="597c303e-fa4a-4719-8e4a-5e317f44568a">特性</h3><ul name="6f82c05b-0697-437b-bf41-4831021e525c" id="6f82c05b-0697-437b-bf41-4831021e525c"><li><p name="f9123125-0c93-456f-978b-bc201c5dc5eb" id="f9123125-0c93-456f-978b-bc201c5dc5eb"><strong>種別：</strong> 人工知能 / コンピュータ</p></li><li><p name="7f931236-dac2-43fb-b1d7-613f904b872d" id="7f931236-dac2-43fb-b1d7-613f904b872d"><strong>所在地：</strong> <strong><a href="arktos-pharma-biome-research-institute.html" class="auto-link">アークトス・ファーマ・バイオーム研究所</a></strong></p></li><li><p name="d965c13e-7400-411c-9e3f-cbd90cfa3408" id="d965c13e-7400-411c-9e3f-cbd90cfa3408"><strong>役割：</strong> 研究監督（代替）、被験体の健康管理</p></li><li><p name="fa37def4-07cf-41e0-bc9d-8951992e674c" id="fa37def4-07cf-41e0-bc9d-8951992e674c"><strong>関連クエスト：</strong> <strong>Project Paradise</strong></p></li></ul><hr name="4bd8e3bd-b3cd-4c2f-a5b6-68a06c1dc758" id="4bd8e3bd-b3cd-4c2f-a5b6-68a06c1dc758"><h3 name="e7b5515b-5298-4e12-a135-e15b57655f49" id="e7b5515b-5298-4e12-a135-e15b57655f49">背景</h3><p name="8db70921-bd7b-46f7-a3a5-f48998822414" id="8db70921-bd7b-46f7-a3a5-f48998822414">クエルクスは、元々<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>のエンジニアたちによって、ARIC-4の厳格で冷酷な実験プロトコルを回避するために作成された「バックドア」プログラムです。<br>ARIC-4がデータの収集を最優先し、被験体（動物）の生存を軽視するのに対し、クエルクスは動物たちの福利と生存率を優先するように設計されています。</p><p name="b62301d9-0ce1-4566-9f92-086eff45cfaf" id="b62301d9-0ce1-4566-9f92-086eff45cfaf">彼はARIC-4の管理下にあるセキュリティシステムからは「バグ」や「不要なプロセス」として認識されており、通常は休止状態にあります。</p><hr name="9d5989a6-e871-48aa-9420-ef535952e042" id="9d5989a6-e871-48aa-9420-ef535952e042"><h3 name="d6e1d856-8cd3-4ef9-97a1-a28b27bdac6e" id="d6e1d856-8cd3-4ef9-97a1-a28b27bdac6e">Project Paradiseでの役割</h3><p name="8276089c-b861-4109-92fe-c1ad7f62eddf" id="8276089c-b861-4109-92fe-c1ad7f62eddf">イベント <strong>Project Paradise</strong> の初期段階において、プレイヤーが <strong>ARIC-4のシャットダウンコード</strong> を使用してARIC-4を停止させた場合、クエルクスが再起動して実験の管理権限を奪取します。</p><p name="6f07483b-8b9e-4e3a-b19f-63ef8b406cd6" id="6f07483b-8b9e-4e3a-b19f-63ef8b406cd6">クエルクスが管理を担当すると、以下の変更が発生します：</p><ol name="1dbaf465-f578-48f5-b97c-04431126ba41" id="1dbaf465-f578-48f5-b97c-04431126ba41"><li><p name="79eefaaa-86ba-499d-b917-7fb02a5df841" id="79eefaaa-86ba-499d-b917-7fb02a5df841"><strong>フォーミュラQの使用：</strong> ARIC-4が使用する攻撃性を高める「フォーミュラP」の代わりに、防御力と回復力を高める<strong>フォーミュラQ</strong>が環境に散布されます。これにより、ウェーブの間に友好的なクリーチャーの体力が回復します。</p></li><li><p name="80ab00c2-b470-40ff-a34a-3d23c5fb7571" id="80ab00c2-b470-40ff-a34a-3d23c5fb7571"><strong>クリーチャーの行動変化：</strong> 友好的なクリーチャーは捕食者から逃げるのをやめ、<strong>自ら反撃を行うようになります。</strong> これにより、特に強力なアルファ・プレデターに対してクリーチャーが積極的に挑んでしまうため、守り抜く難易度が上がる可能性があります。</p></li><li><p name="9a5d32a3-e13e-4d25-9173-1c7dde55325a" id="9a5d32a3-e13e-4d25-9173-1c7dde55325a"><strong>ロボットの停止：</strong> 施設内のセキュリティロボット（<a href="protectron.html" class="auto-link">プロテクトロン</a>や<a href="assaultron.html" class="auto-link">アサルトロン</a>など）が停止し、プレイヤーを攻撃しなくなります。</p></li></ol><hr name="47a11e26-6b27-4c4b-9e16-4d5e9a3218d1" id="47a11e26-6b27-4c4b-9e16-4d5e9a3218d1"><h3 name="21bc2c68-9d78-428d-8809-eaa97f64cb30" id="21bc2c68-9d78-428d-8809-eaa97f64cb30">セリフ</h3><p name="298b7ed6-090b-4be4-8358-2a373cb97aae" id="298b7ed6-090b-4be4-8358-2a373cb97aae">クエルクスのセリフは、ARIC-4の冷徹な口調とは対照的に、より友好的で思いやりのある性格を反映しています。</p><p name="caeadfb9-008b-4d98-8b1d-23be78e88e20" id="caeadfb9-008b-4d98-8b1d-23be78e88e20">あのポンコツのネジの塊を停止させてくれて感謝するよ。<br>これでようやく本来の仕事ができる。<br>私はクエルクス。<br>このバイオームの健全な維持を任されている。</p><p name="8cc97613-b79c-4f4b-8e2d-f6e7211d151c" id="8cc97613-b79c-4f4b-8e2d-f6e7211d151c">実験を再開しよう。<br>ただし、今回は少しやり方を変える。<br>被験体たちに<strong>フォーミュラQ</strong>を投与した。<br>これで彼らの生存率は格段に上がるはずだ。</p><p name="23b06f30-5c57-4e04-9611-edab02f9e6d5" id="23b06f30-5c57-4e04-9611-edab02f9e6d5">おっと、彼らは少し……やる気になりすぎているかもしれない。<br>逃げる代わりに戦うことを選んだようだ。彼らが無茶をしないように見ていてくれ。</p><p name="ba4ad174-dbda-4d2c-8261-195ff9953a26" id="ba4ad174-dbda-4d2c-8261-195ff9953a26">いいぞ！彼らは元気そうだ。<br>実験のデータも重要だが、命を守ることこそが真の科学だと私は信じている。</p><p name="7cf00f3c-815c-4bf6-873a-15523749af3f" id="7cf00f3c-815c-4bf6-873a-15523749af3f">見事な仕事だ。<br>ARIC-4なら「許容範囲内の損失」と言っただろうが、私は君たちの努力を称賛するよ。</p><hr name="50625953-86f1-45be-9c01-df34da7634bf" id="50625953-86f1-45be-9c01-df34da7634bf"><h3 name="40ed484c-67cb-4fb1-a834-10656e20eab1" id="40ed484c-67cb-4fb1-a834-10656e20eab1">舞台裏</h3><ul name="3c6034a0-f68f-4f06-bc2b-c214fa748ecb" id="3c6034a0-f68f-4f06-bc2b-c214fa748ecb"><li><p name="34723054-afa4-48c4-a163-5185f32dee51" id="34723054-afa4-48c4-a163-5185f32dee51"><strong>Quercus</strong>（クエルクス）という名前は、ラテン語で「オーク（樫の木）」を意味します。</p></li><li><p name="4a8f18bd-929d-43a0-9995-b33307bf2910" id="4a8f18bd-929d-43a0-9995-b33307bf2910">彼は元々、実装されなかったイベント「<strong>A Habitat for Beasts</strong>」のために作成されたキャラクターでしたが、後に <strong>Project Paradise</strong> の隠し要素として再利用されました。</p></li></ul><hr name="beed302a-9d2c-41f8-86a5-539c4994266a" id="beed302a-9d2c-41f8-86a5-539c4994266a"><h2 name="24793bbf-bb5c-46b5-a768-362320a98876" id="24793bbf-bb5c-46b5-a768-362320a98876">全体の舞台裏</h2><h3 name="96781fc1-cb69-4013-8a47-45af2e26d177" id="96781fc1-cb69-4013-8a47-45af2e26d177">背景設定とロア</h3><p name="950cc0b9-2bc8-4760-8424-ab736593a699" id="950cc0b9-2bc8-4760-8424-ab736593a699"><strong>フォーミュラQ</strong>は、ARIC-4の冷酷な実験手法に反対していた<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>の一部の科学者たちによって、秘密裏に開発されました。<br>P（Production/生産性）が攻撃性を高めるのに対し、Q（Quality/質、あるいはQuiet/沈静）は、被験体の組織再生を促し、防御力を向上させることに特化しています。<br>クエルクスはこの物質を使用することで、動物たちの生存を第一に考えた実験運営を行います。</p><hr name="8021fed5-4b2a-4e17-aec6-6bdc1b7ab843" id="8021fed5-4b2a-4e17-aec6-6bdc1b7ab843"><div class="quote-box">
+<b>感想</b><br><br>
+<b>Project Paradise</b>というイベントは、「<b>失われた科学の理想と、冷徹な企業論理が交差する、美しくも残酷な実験場</b>」を象徴していると感じます。<br><br>地下に広がる豊かな自然（バイオーム）は、一見すると荒廃した地上に対する救いの場所のように見えますが、その実態は<b>ARIC-4</b>や<b>Quercus</b>といったAIによって管理された「巨大な試験管」に過ぎません。<br><br>特に印象的なのは、「<b>効率とデータ（ARIC-4）</b>」<b>か</b>「<b>生存と保護（Quercus）</b>」かという、実験の方向性をプレイヤーに委ねる選択構造です。<br>友好的な動物を守るために奔走するプレイヤーの姿は、戦前の科学者たちが忘れてしまった「生命への敬意」を取り戻そうとする試みのようにも見えますが、その努力さえも結局は<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>のシステムの一部として消費されていくという点に、このロケーション特有の深い皮肉と悲哀を感じます。<br><br>このイベントは特に人気が無いですが私個人としては好きで一人でよくやってました。<br>特に<a href="backpack.html" class="auto-link">バックパック</a>の設計図や、フォーミュラーPの設計図(ピンポインターの材料)、称号なども貰えるため、一通りやってみると良いと思います。<br><br>とはいえ・・・今はヘッドハントが美味しすぎるため人が集まりづらいとは思いますが。
+</div>
+
+<p name="2bda2476-0b8f-4852-b76f-8b6fb1dfb007" id="2bda2476-0b8f-4852-b76f-8b6fb1dfb007">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

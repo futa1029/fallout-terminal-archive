@@ -12,142 +12,19 @@
             --fallout-bg: #111111;
             --fallout-dark-green: #003300;
             --fallout-amber: #ffce07;
-            --monitor-case: #3a3a3a;
-            --monitor-border: #1a1a1a;
         }
 
         body {
-            background-color: #000000;
+            background-color: var(--fallout-bg);
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             font-family: 'VT323', "Meiryo", "Yu Gothic", sans-serif;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            /* 大枠のスクロールを禁止 */
             color: var(--fallout-green);
             box-sizing: border-box;
+            min-height: 100vh;
         }
 
-        /* モニター筐体 */
-        .monitor-casing {
-            background-color: var(--monitor-case);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: inset 0 0 10px #000, 5px 5px 15px rgba(0, 0, 0, 0.5), inset 2px 2px 5px rgba(255, 255, 255, 0.1);
-            border: 5px solid var(--monitor-border);
-            width: 100%;
-            max-width: 950px;
-            height: 90vh;
-            position: relative;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* モニター画面（外枠） */
-        .crt-screen {
-            background-color: var(--fallout-bg);
-            border-radius: 60px / 30px;
-            position: relative;
-            flex: 1;
-            box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.9);
-            border: 2px solid #222;
-            overflow: hidden;
-            /* はみ出し禁止 */
-        }
-
-        /* ▼▼▼ スクロール専用レイヤー ▼▼▼ */
-        .scroll-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            padding: 40px;
-            overflow-y: auto;
-            /* 縦スクロール許可 */
-            overflow-x: hidden;
-            z-index: 50;
-
-            overscroll-behavior: contain;
-            /* スクロール連鎖防止 */
-            -webkit-overflow-scrolling: touch;
-
-            scrollbar-width: thin;
-            scrollbar-color: var(--fallout-green) var(--fallout-dark-green);
-            padding-bottom: 100px;
-        }
-
-        .scroll-layer::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        .scroll-layer::-webkit-scrollbar-track {
-            background: var(--fallout-dark-green);
-            border-radius: 6px;
-        }
-
-        .scroll-layer::-webkit-scrollbar-thumb {
-            background: var(--fallout-green);
-            border-radius: 6px;
-            border: 2px solid var(--fallout-dark-green);
-        }
-
-        .scroll-layer::-webkit-scrollbar-thumb:hover {
-            background: #55ff55;
-        }
-
-        /* 画面の反射 */
-        .crt-screen::after {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0) 20%);
-            z-index: 9000;
-            pointer-events: none;
-            border-radius: 60px / 30px;
-        }
-
-        /* 走査線 */
-        .scanlines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%),
-                linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-            z-index: 100;
-            background-size: 100% 4px, 4px 100%;
-            pointer-events: none;
-            animation: flicker 0.15s infinite alternate;
-        }
-
-        .monitor-badge {
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: #111;
-            background: #ccc;
-            padding: 2px 8px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            border-radius: 2px;
-            box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            letter-spacing: 1px;
-            font-family: sans-serif;
-            z-index: 10000;
-        }
-
-        /* ▼▼▼ 画像レイヤー（Imgur直リンク・左上固定） ▼▼▼ */
+        /* 画像レイヤー（Imgur直リンク・左上固定） */
         .vaultboy-corner {
             position: absolute;
             top: 20px;
@@ -194,7 +71,7 @@
         }
 
         .overseer-link:hover {
-            background-color: var(--fallout-green);
+            background: var(--fallout-green);
             color: var(--fallout-bg);
         }
 
@@ -398,34 +275,7 @@
             }
         }
 
-        @keyframes flicker {
-            0% {
-                opacity: 0.98;
-            }
-
-            100% {
-                opacity: 1;
-            }
-        }
-
         @media (max-width: 600px) {
-            .monitor-casing {
-                padding: 10px;
-                border-radius: 10px;
-                border-width: 2px;
-            }
-
-            .crt-screen {
-                padding: 15px;
-                border-radius: 20px / 10px;
-                height: 90vh;
-            }
-
-            .scroll-layer {
-                padding: 15px;
-                padding-bottom: 80px;
-            }
-
             h1 {
                 font-size: 1.6rem;
             }
@@ -450,86 +300,98 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 768px) {
+            .btn-large {
+                padding: 20px;
+                font-size: 1.5rem;
+            }
+
+            .overseer-link {
+                padding: 12px 20px;
+                display: block;
+                width: fit-content;
+                margin: 10px auto;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="monitor-casing">
-        <div class="crt-screen">
-            <div class="scanlines"></div>
+    <img src="https://i.imgur.com/Ce6AKmY.gif" alt="Vault Boy checking Pip-Boy" class="vaultboy-corner vb-top-left">
 
-            <img src="https://i.imgur.com/Ce6AKmY.gif" alt="Vault Boy checking Pip-Boy"
-                class="vaultboy-corner vb-top-left">
+    <div class="terminal-header">
+        <h1>ROBCO INDUSTRIES TERMINAL</h1>
+        <div class="overseer-info">OVERSEER: MOHI</div>
+        <a href="https://x.com/IwamotoFuta" target="_blank" class="overseer-link">> ACCESS_OVERSEER_LOG</a>
+    </div>
 
-            <div class="scroll-layer">
+    <div class="container">
+        <div class="intro-block">
+            <span class="cmd-line">> RUN COMMUNITY_INTRODUCTION.EXE ... DONE</span>
+            <p>Falloutファンの皆様、ウェイストランドでの活動をさらに充実させませんか？<br>現在、XとDiscordにて日本コミュニティを運営しています。<br>用途に合わせてぜひご活用ください！
+            </p>
+        </div>
 
-                <div class="terminal-header">
-                    <h1>ROBCO INDUSTRIES TERMINAL</h1>
-                    <div class="overseer-info">OVERSEER: MOHI</div>
-                    <a href="https://x.com/IwamotoFuta" target="_blank" class="overseer-link">> ACCESS_OVERSEER_LOG</a>
-                </div>
+        <div class="section">
+            <span class="section-title">X Community Japan</span>
+            <span class="section-status">[ STATUS: ONLINE ]</span>
+            <div class="stats-jp">MEMBERS: 1,700+</div>
+            <p>最新情報のチェックや発信に。タイムラインで気軽にウェイストランドの今を追いかけたい方はこちらへ。</p>
+            <a href="https://x.com/i/communities/1964594941424013396" target="_blank" class="btn-large btn-x">CONNECT TO
+                X-COMMUNITY</a>
+        </div>
 
-                <div class="container">
-                    <div class="intro-block">
-                        <span class="cmd-line">> RUN COMMUNITY_INTRODUCTION.EXE ... DONE</span>
-                        <p>Falloutファンの皆様、ウェイストランドでの活動をさらに充実させませんか？<br>現在、XとDiscordにて日本コミュニティを運営しています。<br>用途に合わせてぜひご活用ください！
-                        </p>
-                    </div>
+        <div class="section">
+            <span class="section-title">Vault Discord Japan</span>
+            <span class="section-status">[ STATUS: ACTIVE ]</span>
+            <div class="stats-jp">RESIDENTS: 700+</div>
+            <p>深い交流やマルチプレイの拠点。フレンド募集、トレード、VCでの協力プレイが日々活発に行われています！</p>
+            <a href="https://discord.gg/falloutjp" target="_blank" class="btn-large btn-discord">ENTER THE
+                VAULT (DISCORD)</a>
+        </div>
 
-                    <div class="section">
-                        <span class="section-title">X Community Japan</span>
-                        <span class="section-status">[ STATUS: ONLINE ]</span>
-                        <div class="stats-jp">MEMBERS: 1,700+</div>
-                        <p>最新情報のチェックや発信に。タイムラインで気軽にウェイストランドの今を追いかけたい方はこちらへ。</p>
-                        <a href="https://x.com/i/communities/1964594941424013396" target="_blank"
-                            class="btn-large btn-x">CONNECT TO X-COMMUNITY</a>
-                    </div>
-
-                    <div class="section">
-                        <span class="section-title">Vault Discord Japan</span>
-                        <span class="section-status">[ STATUS: ACTIVE ]</span>
-                        <div class="stats-jp">RESIDENTS: 700+</div>
-                        <p>深い交流やマルチプレイの拠点。フレンド募集、トレード、VCでの協力プレイが日々活発に行われています！</p>
-                        <a href="https://discord.gg/falloutjp" target="_blank" class="btn-large btn-discord">ENTER THE
-                            VAULT (DISCORD)</a>
-                    </div>
-
-                    <div class="section">
-                        <span class="section-title">Holotape Archives</span>
-                        <span class="section-status">[ TYPE: DATABASE ]</span>
-                        <p>攻略ガイド、考察記事、ウェイストランドの記録を格納したアーカイブです。</p>
-                        <a href="lore.html" class="btn-large btn-note">READ HOLOTAPE (NOTE)</a>
-                        <div class="support-msg">※運営継続のための寄付（サポート）も受付中です</div>
-                    </div>
-
-                    <div class="footer-terminal">
-                        <div class="footer-grid">
-                            <div>
-                                > ROBCO OS v1.10.26<br>
-                                > LOCATION: JAPAN<br>
-                                > CONNECTION: SECURE
-                            </div>
-                            <div style="text-align: right;">
-                                COPYRIGHT 2026 ROBCO INDUSTRIES<br>
-                                ALL RIGHTS RESERVED.<br>
-                                PROPERTY OF VAULT-TEC
-                            </div>
-                        </div>
-
-                        <div class="warning-text">WARNING: UNAUTHORIZED ACCESS IS PUNISHABLE BY DEATH</div>
-
-                        <div class="disclaimer-text">
-                            > DISCLAIMER: THIS IS A FAN COMMUNITY PAGE AND IS NOT AFFILIATED WITH BETHESDA SOFTWORKS OR
-                            ZENIMAX MEDIA.
-                        </div>
-
-                        <div class="footer-sig">SIGNED BY OVERSEER MOHI</div>
-                    </div>
-                </div>
+        <div class="section">
+            <span class="section-title">Holotape Archives</span>
+            <span class="section-status">[ TYPE: DATABASE ]</span>
+            <p>攻略ガイド、考察記事、ウェイストランドの記録を格納したアーカイブです。</p>
+            <a href="lore.html" class="btn-large btn-note">READ HOLOTAPE (LORE)</a>
+            <div style="margin-top: 25px;">
+                <p
+                    style="font-size: 1rem; color: var(--fallout-amber); opacity: 0.9; text-align: center; margin-bottom: 15px;">
+                    ※このサイトを「完全無広告」で今後も維持・拡張していくためのご支援も受付中です。
+                </p>
+                <a href="donate.html" class="btn-large"
+                    style="border-color: var(--fallout-amber); color: var(--fallout-bg); background-color: var(--fallout-amber); padding: 12px; font-size: 1.4rem;">
+                    SUPPORT THE ARCHIVES (運営支援)
+                </a>
             </div>
         </div>
-        <div class="monitor-badge">ROBCO INDUSTRIES</div>
+
+        <div class="footer-terminal">
+            <div class="footer-grid">
+                <div>
+                    > ROBCO OS v1.10.26<br>
+                    > LOCATION: JAPAN<br>
+                    > CONNECTION: SECURE
+                </div>
+                <div style="text-align: right;">
+                    COPYRIGHT 2026 ROBCO INDUSTRIES<br>
+                    ALL RIGHTS RESERVED.<br>
+                    PROPERTY OF VAULT-TEC
+                </div>
+            </div>
+
+            <div class="warning-text">WARNING: UNAUTHORIZED ACCESS IS PUNISHABLE BY DEATH</div>
+
+            <div class="disclaimer-text">
+                > DISCLAIMER: THIS IS A FAN COMMUNITY PAGE AND IS NOT AFFILIATED WITH BETHESDA SOFTWORKS OR
+                ZENIMAX MEDIA.
+            </div>
+
+            <div class="footer-sig">SIGNED BY OVERSEER MOHI</div>
+        </div>
     </div>
 </body>
 

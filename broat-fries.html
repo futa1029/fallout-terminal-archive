@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブロートフライ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ブロートフライ</h3>
+            <img src="images/note_extracted/ne484dc719e26_img_1.png" alt="ブロートフライ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_ne484dc719e26" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ブロートフライ</h1>
+            <div class="date">DATE: 2026/2/6</div>
+            
+            <p name="6003719f-07ce-47f3-a3ee-72d1ff764c3f" id="6003719f-07ce-47f3-a3ee-72d1ff764c3f"><strong>ブロートフライは、最終戦争後の荒野に広く生息する、<a href="mutation.html" class="auto-link">変異</a>した巨大なハエです。</strong></p><hr name="866165ee-2366-498d-aa28-a73fb0c2868f" id="866165ee-2366-498d-aa28-a73fb0c2868f"><h2 name="85fb883a-3efa-4674-bf64-3fab657bd69f" id="85fb883a-3efa-4674-bf64-3fab657bd69f">背景と生態</h2><p name="9cde189e-8bfb-428f-b599-daee58c634e7" id="9cde189e-8bfb-428f-b599-daee58c634e7"><strong>ブロートフライ</strong>は、放射能の影響で巨大化したイエバエの成虫であり、その外見は非常に醜悪です。<br>体は大きく膨らみ、全身が剛毛に覆われています。<br>最も特徴的な、そして恐ろしい生態は、その腹部の中に<strong><a href="mutation.html" class="auto-link">変異</a>した自身の幼虫 </strong>を蓄えていることです。</p><p name="6d37b436-dadb-4792-84e0-47888669bf79" id="6d37b436-dadb-4792-84e0-47888669bf79">攻撃の際、<strong>ブロートフライ</strong>は腹部の筋肉を収縮させ、これらの幼虫を高速で発射します。<br>幼虫はターゲットの皮膚に食い込み、体内で急速に成長しながら肉を食い荒らします。<br>この攻撃方法は、繁殖と自己防衛を同時に行う極めて効率的かつ残酷な手段です。<br>彼らはアパラチアの森林地帯からモハベ砂漠、連邦に至るまで、北米大陸のほぼ全域に適応しています。</p><hr name="d92b0acd-72fb-4593-9c2f-c30d731655b9" id="d92b0acd-72fb-4593-9c2f-c30d731655b9"><h2 name="0b53a9d0-26c7-44fb-aa72-dc7f9cc06db1" id="0b53a9d0-26c7-44fb-aa72-dc7f9cc06db1">戦闘特性</h2><div class="note-figure"><img src="images/note_extracted/ne484dc719e26_img_2.png" alt="" width="370" height="650"><div class="note-figcaption"></div></div><p name="1de84fd4-3e30-4521-9358-c9f59a22d903" id="1de84fd4-3e30-4521-9358-c9f59a22d903"><strong>ブロートフライ</strong>は通常、集団で行動することは少なく、単独または数匹の小規模なグループで空中に浮遊しています。<br>プレイヤーを感知すると、一定の距離を保ちながら円を描くように飛び回り、腹部から幼虫（蛆）を飛ばして遠距離攻撃を仕掛けてきます。</p><p name="fd7cc903-fdd7-42dd-be45-f69cccd4bc54" id="fd7cc903-fdd7-42dd-be45-f69cccd4bc54">個体自体の耐久力は非常に低いですが、その小ささと不規則な飛行パターンのため、V.A.T.S.なしで命中させるのは困難な場合があります。<br>また、<strong>発光ブロートフライ</strong>などの変種は、攻撃に放射能ダメージが付与されており、より危険な存在となります。</p><hr name="974cf8e1-11d0-4b8f-95e9-f027b70d9a3a" id="974cf8e1-11d0-4b8f-95e9-f027b70d9a3a"><h2 name="c448c751-cc11-4244-80a8-94dc6103f69e" id="c448c751-cc11-4244-80a8-94dc6103f69e">Fallout 76における変種</h2><div class="note-figure"><img src="images/note_extracted/ne484dc719e26_img_3.png" alt="" width="620" height="455"><div class="note-figcaption"></div></div><p name="d6bc3fba-e298-4553-94b0-9bc0141841a7" id="d6bc3fba-e298-4553-94b0-9bc0141841a7">アパラチアで見られる<strong>ブロートフライ</strong>には、環境や<a href="mutation.html" class="auto-link">変異</a>の度合いに応じて以下のような多様なバリエーションが存在します。</p><p name="81a092d0-a096-4b50-bfa3-a73bd3439230" id="81a092d0-a096-4b50-bfa3-a73bd3439230"><strong>ブロートフライ&nbsp;</strong>最も一般的な形態です。</p><p name="572a2245-fef5-4b1b-a009-07d356d9578b" id="572a2245-fef5-4b1b-a009-07d356d9578b"><strong>黒いブロートフライ </strong>より高い耐久力を持つ変種です。</p><p name="98ee184a-9f43-428f-9911-6b0734b94e81" id="98ee184a-9f43-428f-9911-6b0734b94e81"><strong>凶暴なブロートフライ </strong>攻撃性が増した個体です。</p><div class="note-figure"><img src="images/note_extracted/ne484dc719e26_img_4.png" alt="" width="417" height="434"><div class="note-figcaption"></div></div><p name="de127423-20fc-4483-8adf-8105eccf7a81" id="de127423-20fc-4483-8adf-8105eccf7a81"><strong>発光ブロートフライ&nbsp;</strong>高い放射能を帯びており、緑色に光っています。倒した際に放射性物質を回収できることがあります。</p><p name="b6b0da57-344f-467a-af36-c2cafa1dea23" id="b6b0da57-344f-467a-af36-c2cafa1dea23"><strong>恐ろしいブロートフライ </strong>非常に高いレベルの個体です。</p><div class="note-figure"><img src="images/note_extracted/ne484dc719e26_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="e741a1b6-0b6d-483b-8cb8-ae48532f7d7b" id="e741a1b6-0b6d-483b-8cb8-ae48532f7d7b"><strong><a href="scorch.html" class="auto-link">スコーチ</a>・ブロートフライ </strong>スコーチ病に感染した個体で、<a href="scorch.html" class="auto-link">スコーチ</a>の巣窟の近くで見られます。</p><p name="5204c3b6-ff87-4cb3-a99f-004d113cde4e" id="5204c3b6-ff87-4cb3-a99f-004d113cde4e"><strong>レジェンダリー・ブロートフライ </strong>特殊な能力を持ち、強力な装備をドロップする可能性がある希少な個体です。</p><hr name="333b3eb4-5f72-4039-8c6b-171968172a34" id="333b3eb4-5f72-4039-8c6b-171968172a34"><h2 name="a4978c7c-1133-4ebc-903b-0950beddc075" id="a4978c7c-1133-4ebc-903b-0950beddc075">注目の戦利品</h2><div class="note-figure"><img src="images/note_extracted/ne484dc719e26_img_6.png" alt="" width="620" height="468"><div class="note-figcaption"></div></div><p name="489dff97-0ee8-40c8-851a-c64d2b146f18" id="489dff97-0ee8-40c8-851a-c64d2b146f18"><strong>ブロートフライの肉<br></strong>調理して「ブロートフライの肉のロースト」などに利用可能です</p><p name="45c13e33-69b8-4e12-9fcd-054bef510936" id="45c13e33-69b8-4e12-9fcd-054bef510936"><strong>ブロートフライの腺</strong><br>酸や他の化学物質の原料となります</p><p name="13d31287-eede-4256-a248-6a07f22d539c" id="13d31287-eede-4256-a248-6a07f22d539c"><strong>酸<br></strong>腺の解体によって得られます</p><p name="c6f0738e-edf3-4bd5-9fd4-962f7069c5e7" id="c6f0738e-edf3-4bd5-9fd4-962f7069c5e7"><strong>核物質<br></strong>発光個体から得られる場合があります</p><p name="ec2d3bc1-9ee1-4c9c-be64-a79adb5d3f40" id="ec2d3bc1-9ee1-4c9c-be64-a79adb5d3f40"><strong>レジェンダリー装備<br></strong>レジェンダリー個体からのみドロップします</p><p name="792133cb-f267-4285-ad5f-1ee9c73a4324" id="792133cb-f267-4285-ad5f-1ee9c73a4324"><strong>シリンジャー弾薬の材料<br></strong>特定のシリンジャー用バレルに使用されます</p><hr name="b1fc873d-f1a8-400e-9dc0-8ea935e6ac0e" id="b1fc873d-f1a8-400e-9dc0-8ea935e6ac0e"><h2 name="34eddfd7-0195-4e8b-abfd-436483941157" id="34eddfd7-0195-4e8b-abfd-436483941157">生息地</h2><p name="03e4ab74-9aeb-4d76-9e21-00d541ca6437" id="03e4ab74-9aeb-4d76-9e21-00d541ca6437">アパラチアにおいては、特定の地域に限定されず、ほぼすべての地域で見られます。<br>特に<strong>森林地帯</strong>や<strong>荒れた境界面</strong>の湿った場所や、死体が放置されている場所の近くに多く集まる傾向があります。<br><strong>ハンターズビル</strong>の周辺や、<strong>パンプキンハウス</strong>付近でも頻繁に目撃されます。</p><hr name="cac25e36-d7bd-4eda-886e-3a4830015621" id="cac25e36-d7bd-4eda-886e-3a4830015621"><h2 name="a2fb3816-2c25-4a7a-b509-c60fed6e1cf5" id="a2fb3816-2c25-4a7a-b509-c60fed6e1cf5">注記</h2><p name="aa3cfea7-f7f8-46d4-a18c-fb42efad883d" id="aa3cfea7-f7f8-46d4-a18c-fb42efad883d"><strong>ブロートフライ</strong>の攻撃によって発射される幼虫は、非常に強力な感染症を引き起こす可能性があります。 <br>また、一部の<strong>ブロートフライ</strong>はシリンジャーガンの一種である「ブロートフライ・シリンジャー」によって人工的に産み出すことが可能です。<br>この武器で撃たれた敵が死亡すると、その死体から新たな<strong>ブロートフライ</strong>が出現します。<br>戦前の記録によれば、これらの生物はもともと無害なハエでしたが、放射能汚染と急速な進化によって、現在のような恐ろしい捕食者へと変貌を遂げました。</p><hr name="221f792d-d2e9-419f-a9c8-5d7c5324cde2" id="221f792d-d2e9-419f-a9c8-5d7c5324cde2"><h2 name="f0360f6f-8e1e-489d-8880-78af027670ab" id="f0360f6f-8e1e-489d-8880-78af027670ab">登場作品</h2><p name="f887369c-892b-4a2d-969e-d045cf7a4491" id="f887369c-892b-4a2d-969e-d045cf7a4491"><strong>ブロートフライ</strong> は <strong>Fallout 3</strong>、<strong>Fallout: New Vegas</strong>、<strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>、および <strong>Fallout 76</strong> に登場します。</p><hr name="89fcf3e2-87ff-4b33-b62c-aa3763fce5c9" id="89fcf3e2-87ff-4b33-b62c-aa3763fce5c9"><div class="quote-box">
+<b>感想</b><br><br>
+2つのソースを統合し、一切の省略なしで情報を整理いたしました。<br><br><b>嫌悪感を伴うリアリズム</b>: 腹部から幼虫を飛ばして体内で孵化させるという設定は、Falloutシリーズが持つ「<a href="mutation.html" class="auto-link">変異</a>による生物的恐怖」を最も端的に表しているものの一つです。<br><br><b>実用的な資源</b>: <b>ブロートフライの肉</b>は序盤の食料として、<b>腺</b>は酸の貴重な供給源として、アパラチアの居住者にとっては無視できないリソースとなっています。<br><br><b>象徴的な存在</b>: 弱い敵の代名詞でありながら、その不気味な飛行音と攻撃方法は、ウェイストランドの「狂った生態系」をプレイヤーに強く印象付ける役割を果たしています。
+</div>
+
+<p name="6d975b82-5fe9-4b31-8c9c-fb697db940c6" id="6d975b82-5fe9-4b31-8c9c-fb697db940c6">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

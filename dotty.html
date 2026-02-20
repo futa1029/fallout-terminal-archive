@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ドッティ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ドッティ</h3>
+            <img src="images/note_extracted/n123f46dc6a51_img_1.png" alt="ドッティ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n123f46dc6a51" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ドッティ</h1>
+            <div class="date">DATE: 2026/1/23</div>
+            
+            <hr name="42a91ec2-859c-456d-a85b-b6612c5968af" id="42a91ec2-859c-456d-a85b-b6612c5968af"><h2 name="5ef9f3ef-a44c-4cf2-beba-7e63081466ed" id="5ef9f3ef-a44c-4cf2-beba-7e63081466ed">背景</h2><p name="1470a88c-683f-4748-b49d-38a1c1517f5c" id="1470a88c-683f-4748-b49d-38a1c1517f5c">ドッティは最終戦争以前に生まれ、爆弾が投下された際、両親によって自宅の地下にあるシェルターへと連れて行かれました。<br>彼女はそこで育ち、若き日の大半を過ごしました。<br>彼女は両親から多くの陰謀論を教わり、それが彼女の信念の基礎となったようです。</p><p name="91b164d4-e293-409a-88de-308158d31155" id="91b164d4-e293-409a-88de-308158d31155">ある時、彼女の両親は秘密主義になり、奇妙な行動をとるようになりました。<br>そしてある日、説明もなく姿を消しました。<br>それから間もなくシェルターに水が流れ込み始め、ドッティは避難してシェルターを後にすることを余儀なくされました。<br>その後、彼女がどこへ行ったのかは不明ですが、出会った様々な人々に自身の理論を伝えようとしたと主張しています。<br>彼女は「隠された真実」を暴き、両親を見つけて答えを得ることを人生の目標にしています。</p><p name="5694bc25-511c-40c4-b76c-3076793a22cb" id="5694bc25-511c-40c4-b76c-3076793a22cb">彼女がいつ<a href="ghoul.html" class="auto-link">グール</a>になったのかは不明ですが、彼女自身は<a href="ghoul.html" class="auto-link">グール</a>が何であるかを知らないようで、自分の<a href="mutation.html" class="auto-link">変異</a>を「思春期（二次性徴）」の結果だと思い込んでいます。</p><hr name="31bb6fac-c8b8-44d1-8990-7c6d57472057" id="31bb6fac-c8b8-44d1-8990-7c6d57472057"><h2 name="0377ad2c-418c-4588-9633-c4fdb44cb72a" id="0377ad2c-418c-4588-9633-c4fdb44cb72a">信念</h2><p name="ef8aaaa4-8b6c-4744-bab7-565265561d98" id="ef8aaaa4-8b6c-4744-bab7-565265561d98"><strong>ドッティは多くの無意味な陰謀論を語り、突飛な考えを信じていますが、その一方で戦前の世界の実際の秘密の多くについては無頓着であり、ヴォルト・テックのことを「唯一信頼できる企業」だとさえ主張しています。</strong> <br>彼女はエンクレイヴのような組織についても耳にしていますが、それを信じておらず、多くの出来事をヌカ・コーラや政府のせいにしています。<br>稀に（<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>が元々スーパーソルジャーとして計画されていたことなど）真実に近づくこともありますが、彼女の理論の大部分は間違っています。</p><hr name="7a857ab6-015b-4d76-ba1d-07565a7ebf96" id="7a857ab6-015b-4d76-ba1d-07565a7ebf96"><h2 name="bfff31c2-4270-49e3-bbb1-6f268ec6ef64" id="bfff31c2-4270-49e3-bbb1-6f268ec6ef64">プレイヤーキャラクターとのインタラクション</h2><ul name="03486e66-1034-4b45-b714-b98cca6825f9" id="03486e66-1034-4b45-b714-b98cca6825f9"><li><p name="aa1bccd7-b94c-4d8e-93f2-384199356ac7" id="aa1bccd7-b94c-4d8e-93f2-384199356ac7"><strong>このキャラクターはベンダーであり、ジャンクアイテム、衣装、武器、ハープーンガン、各種雑誌（US Covert Operations Manual 5, CAPS ARE CAP-ITALISM?, TOYING WITH US!）を販売します。</strong></p></li><li><p name="defde74b-1d4e-4ac8-abf0-97dd8417924f" id="defde74b-1d4e-4ac8-abf0-97dd8417924f">彼女は「揺るぎない信念」という特殊なサービスを提供します。</p></li></ul><p name="dd82d35c-a19f-480c-83be-dcd6fe509af4" id="dd82d35c-a19f-480c-83be-dcd6fe509af4"><strong>デイリーバフ</strong> <br>プレイヤーが彼女の「揺るぎない信念」を「学ぶ」準備ができている場合、ドッティは1時間の間、以下のバフを提供します：</p><ul name="2b5b9b30-99ef-44df-938b-bbf2008690e0" id="2b5b9b30-99ef-44df-938b-bbf2008690e0"><li><p name="7ba509e2-cf01-4b91-ae34-b9ac8a387536" id="7ba509e2-cf01-4b91-ae34-b9ac8a387536">エネルギー耐性を30増加させる</p></li><li><p name="c386d606-51c9-4134-b935-ff1cc969c8fa" id="c386d606-51c9-4134-b935-ff1cc969c8fa">EnduranceとIntelligenceを1増加させる</p></li></ul><p name="89ba3d59-b49b-4920-a845-fb8589639eab" id="89ba3d59-b49b-4920-a845-fb8589639eab"><strong>その他のインタラクション</strong><br>プレイヤーキャラクターはドッティを口説くことができます。<br>彼イはこれに対してうろたえ、すぐに話を逸らそうとします。 <br>口説き文句はこれ以上に進展することはありませんが、これによって新しい待機台詞がアンロックされます。</p><hr name="cbebef9a-0608-484b-b485-cb6a47f84d3d" id="cbebef9a-0608-484b-b485-cb6a47f84d3d"><h2 name="f84c1b21-2568-4d4b-b66d-567175652d69" id="f84c1b21-2568-4d4b-b66d-567175652d69">持ち物</h2><ul name="5fe6ef74-1916-494d-b60e-5f7dd4898224" id="5fe6ef74-1916-494d-b60e-5f7dd4898224"><li><p name="7be6de8a-e253-419a-9194-887f8730781f" id="7be6de8a-e253-419a-9194-887f8730781f">ドッティの白衣</p></li><li><p name="f833ca5c-ddb6-41df-9944-43fc7cb80097" id="f833ca5c-ddb6-41df-9944-43fc7cb80097">ハープーンガン</p></li><li><p name="69068087-71e3-4658-b24a-6e26bfea2af2" id="69068087-71e3-4658-b24a-6e26bfea2af2">以下のいずれかが15%の確率で含まれます：フラググレネード、火炎瓶、<a href="stim-pack.html" class="auto-link">スティムパック</a></p></li></ul><hr name="fada715b-926f-4652-b0f9-6f865f1b72c0" id="fada715b-926f-4652-b0f9-6f865f1b72c0"><h2 name="acb6c45c-255f-4d83-bc4b-49fb5351b05b" id="acb6c45c-255f-4d83-bc4b-49fb5351b05b">備考</h2><ul name="bfe1b3ba-ac3b-443b-afae-c0c7b275d26d" id="bfe1b3ba-ac3b-443b-afae-c0c7b275d26d"><li><p name="8db79926-bff6-4827-b61d-250ea6d18283" id="8db79926-bff6-4827-b61d-250ea6d18283">ドッティは自身のショップを「DSSBNUD」、すなわち「ドッティの極めて無害な非機密・非制限文書のストック（Dottie's Stock of Significantly Benign Non-Confidential and Unrestricted Documents）」と名付けています。</p></li><li><p name="cb188300-3090-472e-8203-cc7be5939f86" id="cb188300-3090-472e-8203-cc7be5939f86">当初、ショップ名は「DCOUTTSYFFTSOL」となる予定でしたが、略称として発音するにはあまりに不自然だったため変更されました。</p></li></ul><hr name="b38668c6-a7fc-41c1-b46e-07de8cc64282" id="b38668c6-a7fc-41c1-b46e-07de8cc64282"><h2 name="b3eb28d1-1e91-4ef0-8306-3084ef7f73f0" id="b3eb28d1-1e91-4ef0-8306-3084ef7f73f0">舞台裏</h2><p name="db816090-d17b-465d-9c28-544cf1a246ae" id="db816090-d17b-465d-9c28-544cf1a246ae">ドッティの台詞の多くには、現実世界の陰謀論や陰謀文化への言及が含まれています：</p><ul name="447f4ac9-e80a-4c89-866f-f22b38325044" id="447f4ac9-e80a-4c89-866f-f22b38325044"><li><p name="dc939427-e540-4a0a-bf81-89c7a1912451" id="dc939427-e540-4a0a-bf81-89c7a1912451">月面着陸否定説に対し、彼女は「月そのものが偽物である」という独自の理論で返答します。</p></li><li><p name="768f2c5d-aba0-4173-9d09-9bb049562328" id="768f2c5d-aba0-4173-9d09-9bb049562328">彼女が「あなたは一度も顎を外して眼球を湿らせたことがないわね」と言うのは、世界を支配する権力者は人間に化けたトカゲ人間（レプティリアン）であるという陰謀論への言及です。</p></li><li><p name="805b257b-4bd3-46a2-99b8-349b9ccb77e9" id="805b257b-4bd3-46a2-99b8-349b9ccb77e9">彼女が陰謀論を語り終える際、「それ以上のことはないわ。ただ動くだけ（It just works）」と締めくくることがあります。 <br>これはベセスダ・ゲーム・スタジオのE3 2015でのトッド・ハワードの発言のパロディであり、後にネット上でミーム化したものです。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n123f46dc6a51_img_2.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><hr name="89036231-efab-4d8d-b64f-c17701dca73a" id="89036231-efab-4d8d-b64f-c17701dca73a"><h3 name="36736efb-1af8-4196-91f5-a2a86bd54985" id="36736efb-1af8-4196-91f5-a2a86bd54985">感想</h3><p name="a85e261f-333e-4192-9fd5-1776da50de79" id="a85e261f-333e-4192-9fd5-1776da50de79">ドッティ、非常にキャラが濃い同居人が登場しましたね！</p><ul name="fc0ad62f-ff90-4242-90e3-c0f50c45c26e" id="fc0ad62f-ff90-4242-90e3-c0f50c45c26e"><li><p name="e5534c38-330b-4166-957b-0d2913ef2461" id="e5534c38-330b-4166-957b-0d2913ef2461"><strong>愛すべき変人</strong>: 自分のグール化を「思春期」で片付けたり、ランプが反乱を起こすのを警戒して銃を構えたりと、予測不能な言動がキャンプ生活に彩りを与えてくれそうです。</p></li><li><p name="283ffc8c-9122-4fd3-809d-1cb84f891815" id="283ffc8c-9122-4fd3-809d-1cb84f891815"><strong>皮肉な信念</strong>: ヴォルト・テックを信頼しつつ、月を偽物だと言い張るそのチグハグさが、Falloutらしいユーモアに満ちていて面白いです。</p></li><li><p name="5fa9c241-5978-4d03-aae0-f0794ba56654" id="5fa9c241-5978-4d03-aae0-f0794ba56654"><strong>実用的なバフ</strong>: エネルギー耐性+30に加え、INTとENDが上がるバフは、エネルギー武器を多用する敵と戦う際や、経験値を稼ぎたい時にも非常に有用ですね。</p></li></ul><p name="5ef6caa8-8ac9-41f7-af45-2d0843db7dca" id="5ef6caa8-8ac9-41f7-af45-2d0843db7dca">彼女のショップ名の略称「DSSBNUD」のこだわりなど、細かい設定まで読み込むと、彼女への愛着がさらに湧いてきます。</p><div class="note-figure"><img src="images/note_extracted/n123f46dc6a51_img_3.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><p name="4ec0a927-ac54-4964-8b3c-4dfc81c35729" id="4ec0a927-ac54-4964-8b3c-4dfc81c35729">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

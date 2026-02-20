@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ウェンディゴ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ウェンディゴ</h3>
+            <img src="images/note_extracted/n1bcef34fd546_img_1.png" alt="ウェンディゴ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n1bcef34fd546" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ウェンディゴ</h1>
+            <div class="date">DATE: 2026/1/3</div>
+            
+            <p name="c2a4c6bd-86d9-4dba-803a-41c30a128978" id="c2a4c6bd-86d9-4dba-803a-41c30a128978">ウェンディゴは、『Fallout 76』に登場する<a href="mutation.html" class="auto-link">変異</a>した人間であり、アパラチアの森林地帯、荒れ地、沼地地帯などで遭遇する極めて危険なクリーチャーです。<br>彼らは禁忌を犯した人間の成れの果てとして知られています。</p><hr name="d8eaba95-ace9-474f-bd87-98e51d1c4ffc" id="d8eaba95-ace9-474f-bd87-98e51d1c4ffc"><h2 name="eb805c27-dfb2-42fa-bbe3-9235963f66cd" id="eb805c27-dfb2-42fa-bbe3-9235963f66cd">概要</h2><p name="8f751175-a32f-4f62-95fb-17808fc5d574" id="8f751175-a32f-4f62-95fb-17808fc5d574">ウェンディゴは、核戦争後の中毒、放射能、そして何よりも極限の飢餓状態で行われたカニバリズム（共食い）の結果として<a href="mutation.html" class="auto-link">変異</a>した、かつての人間です。<br>彼らは人間であった頃の理性を完全に失い、飽くなき食欲に支配された怪物と化しています。<br>その外見は異様に細長く、青白い皮膚が骨に張り付いており、指先には鋼鉄をも引き裂く鋭い爪が備わっています。</p><hr name="bad6636b-9f08-4a4f-b56e-25a96d69505f" id="bad6636b-9f08-4a4f-b56e-25a96d69505f"><h2 name="c205bf8e-c643-4354-8366-3e0e79fe6a0f" id="c205bf8e-c643-4354-8366-3e0e79fe6a0f">背景</h2><p name="baddf8c8-dbdc-4ca3-854f-799e5d1c43d2" id="baddf8c8-dbdc-4ca3-854f-799e5d1c43d2">アパラチアの伝説において、ウェンディゴは「貪欲」と「飢え」の象徴です。<br>戦前のウェストバージニアの伝承では、冬の厳しい寒さの中で生存のために仲間の肉を食べた者が、ウェンディゴの呪いを受けて<a href="mutation.html" class="auto-link">変異</a>すると言われていました。<br>戦後、この伝説は残酷な現実となりました。<br>最も代表的な例は、かつてレイダーの派閥「グルマンズ」を率いていたモーリス・スティーブンスです。<br>彼は仲間を、そしてついには妻のイーディまでも食べ、ウェンディゴ・ケイブの奥深くで「祖たるウェンディゴ」へと<a href="mutation.html" class="auto-link">変異</a>しました。</p><hr name="b4cb23ea-585e-4aa4-a202-c25ff72e4793" id="b4cb23ea-585e-4aa4-a202-c25ff72e4793"><h2 name="66085fdf-8a89-4502-a02a-28c37c2a6b80" id="66085fdf-8a89-4502-a02a-28c37c2a6b80"><a href="holotape.html" class="auto-link">ホロテープ</a>の内容：モーリス・スティーブンスの記録</h2><ul name="f9944340-d042-498e-82ef-3c10ef75c6e6" id="f9944340-d042-498e-82ef-3c10ef75c6e6"><li><p name="1effcfd9-9840-44fa-9099-8c4a2a59a58d" id="1effcfd9-9840-44fa-9099-8c4a2a59a58d"><strong>ウェンディゴ :</strong> 標準的な個体。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n1bcef34fd546_img_2.png" alt="" width="620" height="826"><div class="note-figcaption"></div></div><ul name="4ef18a8e-1e4c-4c3a-a381-b77d38e31a9a" id="4ef18a8e-1e4c-4c3a-a381-b77d38e31a9a"><li><p name="f2a2a5d8-6aca-456f-9444-1d65579f6520" id="f2a2a5d8-6aca-456f-9444-1d65579f6520"><strong>発光ウェンディゴ:</strong> 高濃度の放射能を浴び、全身が緑色に光る強力な変異体。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n1bcef34fd546_img_3.png" alt="" width="620" height="810"><div class="note-figcaption"></div></div><ul name="77d35e64-c4fc-423f-94e4-b4da7df655c5" id="77d35e64-c4fc-423f-94e4-b4da7df655c5"><li><p name="c4135231-ea1e-45b0-be1c-027582d07d00" id="c4135231-ea1e-45b0-be1c-027582d07d00"><strong><a href="scorch.html" class="auto-link">スコーチ</a>・ウェンディゴ :</strong> スコーチ病に感染した個体。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n1bcef34fd546_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="30747b21-efbc-45af-8b3c-bad07cc74e7c" id="30747b21-efbc-45af-8b3c-bad07cc74e7c"><li><p name="4a93516e-48eb-4f00-a92d-cf358c8ea6a6" id="4a93516e-48eb-4f00-a92d-cf358c8ea6a6"><strong>ラヴェナス・ウェンディゴ</strong></p></li></ul><p name="f96069fa-90b6-4db2-943e-ec1c6d53cb3b" id="f96069fa-90b6-4db2-943e-ec1c6d53cb3b">赤みを帯びた、肉質のような外見を持つ、より強力なウェンディゴの変異体です。<br>その暗く、混ざり合った体色は、薄暗い場所や、より都市化された環境の中にこのクリーチャーを容易に溶け込ませることができます。</p><hr name="ab925985-6396-4d9f-87a4-e07cb395af35" id="ab925985-6396-4d9f-87a4-e07cb395af35"><h2 name="9de55b0e-f219-409c-a6af-6aacec31def7" id="9de55b0e-f219-409c-a6af-6aacec31def7">主な戦利品</h2><ul name="719e8f32-73a6-4cf6-916f-127ed3e0ae5c" id="719e8f32-73a6-4cf6-916f-127ed3e0ae5c"><li><p name="5e3ed4a7-0691-4e5f-8dbe-5f57fcbe294f" id="5e3ed4a7-0691-4e5f-8dbe-5f57fcbe294f">ウェンディゴの歯</p></li><li><p name="47b208f8-9674-4b09-95f2-b1b5621e35a2" id="47b208f8-9674-4b09-95f2-b1b5621e35a2">ゆるんだねじ</p></li><li><p name="39bf0d07-1540-4375-bb54-f7eac43054e3" id="39bf0d07-1540-4375-bb54-f7eac43054e3">酸</p></li><li><p name="db35bcbc-d0b8-4b25-a894-4b725aa79e9f" id="db35bcbc-d0b8-4b25-a894-4b725aa79e9f">光ファイバー</p></li><li><p name="ce83f57d-0314-4b09-ac77-7b040172c76e" id="ce83f57d-0314-4b09-ac77-7b040172c76e">銀の破片</p></li><li><p name="74c5706e-d2de-461f-91fb-6e033e347983" id="74c5706e-d2de-461f-91fb-6e033e347983">核物質</p></li></ul><hr name="bfe8f2a0-f770-44f5-93ff-11ef47f75a39" id="bfe8f2a0-f770-44f5-93ff-11ef47f75a39"><h2 name="563008d8-3094-4ec6-b701-fc1058b011c3" id="563008d8-3094-4ec6-b701-fc1058b011c3">出現するロケーション</h2><ul name="ce1c042c-d714-4e4f-a182-c740a1ad25d8" id="ce1c042c-d714-4e4f-a182-c740a1ad25d8"><li><p name="2766d9d2-cc01-4d8a-82bc-4323e890129e" id="2766d9d2-cc01-4d8a-82bc-4323e890129e">ウェンディゴ洞窟</p></li><li><p name="43f49895-ce67-47af-9458-25f1b93e17fe" id="43f49895-ce67-47af-9458-25f1b93e17fe">ガラハン邸</p></li><li><p name="499358a9-4063-4620-ba19-9c0e024eb5c8" id="499358a9-4063-4620-ba19-9c0e024eb5c8">ワトガ緊急サービス</p></li><li><p name="2524f29b-995a-411b-afce-c13aba3bf721" id="2524f29b-995a-411b-afce-c13aba3bf721">ホークス・リフュージ</p></li><li><p name="cd694c4a-c8cc-43f2-ba0d-d79e3e96086f" id="cd694c4a-c8cc-43f2-ba0d-d79e3e96086f">フレディ・フィアーの「恐怖の家」</p></li><li><p name="bf54fd52-3ce9-4887-8256-148ace0008b7" id="bf54fd52-3ce9-4887-8256-148ace0008b7">沼地地帯の全域</p></li></ul><hr name="52aec4bf-2aca-48a5-8563-4a2baf161865" id="52aec4bf-2aca-48a5-8563-4a2baf161865"><h2 name="38f4c319-ce7f-4f18-9a80-3231aac9e28f" id="38f4c319-ce7f-4f18-9a80-3231aac9e28f">登場するクエスト</h2><h3 name="9ec86cd0-4ce7-4818-8488-b226db97ed03" id="9ec86cd0-4ce7-4818-8488-b226db97ed03"><br></h3><ul name="32e463c8-4e33-49d5-af77-67e276db301a" id="32e463c8-4e33-49d5-af77-67e276db301a"><li><p name="74c7730b-646c-42c5-acc2-6648dff994a8" id="74c7730b-646c-42c5-acc2-6648dff994a8"><strong>Something Sentimental</strong></p></li><li><p name="8e3e8368-184b-48e0-ab79-c26702ba2516" id="8e3e8368-184b-48e0-ab79-c26702ba2516"><strong>That Sinking Feeling</strong></p></li><li><p name="391e178f-1290-4c91-8d14-7b57070b70e6" id="391e178f-1290-4c91-8d14-7b57070b70e6"><strong>A Wolf in Sheep's Clothing</strong></p></li><li><p name="b9e00eb8-d17c-42da-849c-605b714b323a" id="b9e00eb8-d17c-42da-849c-605b714b323a"><strong>Key to the Past</strong></p></li><li><p name="0de6d1ab-6273-4b04-b51b-6a9f7a4b57e6" id="0de6d1ab-6273-4b04-b51b-6a9f7a4b57e6"><strong>A Colossal Problem</strong></p></li></ul><hr name="69260d56-983c-43a1-b4f7-b8d129fa6ce1" id="69260d56-983c-43a1-b4f7-b8d129fa6ce1"><h2 name="8a55d90b-bc7f-494d-a890-55c3468890e1" id="8a55d90b-bc7f-494d-a890-55c3468890e1">舞台裏</h2><h3 name="433f27a5-28b0-41d4-81ab-b34b44570552" id="433f27a5-28b0-41d4-81ab-b34b44570552"><br></h3><div class="note-figure"><img src="images/note_extracted/n1bcef34fd546_img_5.jpg" alt="" width="570" height="791"><div class="note-figcaption">伝承のウェンディゴ</div></div><p name="b1d79942-527a-45a6-9963-75c5ef6476a7" id="b1d79942-527a-45a6-9963-75c5ef6476a7">アルゴンキン族の伝承において、ウェンディゴは冬、寒さ、飢饉、そして飢えとしばしば結びつけられる悪意に満ちた精霊です。<br>それは、利己心、強欲、暴食、殺人、そして特に共食いといった罪を犯した人間に憑依し、変貌させます。<br>その後、精霊は彼らにさらなる人肉の摂取を強制し、それに対する飽くなき飢えを持つ怪物へと変えます。<br>ウェンディゴはまた、オジブワ、東クリー、ソートー、ウエストメイン・スワンピー・クリー、ナスカピ、インヌの人々といった、多くのアルゴンキン語派の文化における伝統的な信仰体系の一部でもあります。<br>文化によって伝承は多少異なりますが、ウェンディゴは一般的に邪悪で共食いを行う超自然的な存在と見なされています。<br>伝統的に、一部の先住民は、この存在について議論することはそれに力を与えることになると信じています。<br>それはトラウマと喪失の象徴と考えられており、時には先住民に対する入植者の暴力に関連付けられることもあります。</p><p name="276c2b68-e648-474e-a982-bf21263cb5c4" id="276c2b68-e648-474e-a982-bf21263cb5c4">ウェンディゴの一般的な描写は、『Fallout』で見られるものとは異なります。<br>多くの物語やメディアでは、ウェンディゴは鹿のような姿で、露出した頭蓋骨と枝角、そして蹄と毛皮を持つものとして描かれています。</p><p name="c86e25e0-f3eb-4866-98d1-0e3f2b7c683b" id="c86e25e0-f3eb-4866-98d1-0e3f2b7c683b">開発の初期段階では、ウェンディゴは『The Art of Fallout 76』にあるコンセプトアートに似た、より人間のような外見をしていました。<br>これは、より異質で恐ろしく見えるように、現在のより歪んだデザインに変更されました。<br>頭を後ろに倒して叫ぶウェンディゴの叫びのアニメーションは、『Fallout 3』の追加コンテンツである『The Pitt』に登場するトログのアニメーションに類似しています。</p><hr name="24300a89-31b9-46e9-bb37-01ad0719d879" id="24300a89-31b9-46e9-bb37-01ad0719d879"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n1bcef34fd546_img_6.png" alt="" width="620" height="349"><div class="note-figcaption">ランダムイベントウェンディゴは、アパラチアにおいて「飢え」と「強欲」が最も忌まわしい形で具現化した、救いようのない悲劇を象徴する存在だと感じます。<br><br>彼らは単なる放射能による変異体ではなく、極限状態での共食いという人道に反する禁忌を犯した「元人間」であるという設定が、その異形な姿に深い恐怖と悲劇性を与えています。<br>どれだけ食べても決して満たされることのない永遠の飢餓感を体現した、あの異様に引き延ばされた四肢と、骨に張り付いた皮膚のデザインは、理性を失い本能のみの捕食者に成り果てた絶望を見事に表現しています。<br><br>ゲームプレイにおいても、暗闇から驚異的なスピードで襲いかかり、プレイヤーを怯ませるあの独特な「叫び声」は、彼らがかつて持っていた人間性の断片が完全に消滅し、純粋な殺意の塊へと変質したことを突きつけてくる、非常に優れた演出であるという印象を受けます。<br><br><div class="note-figure"><img src="images/note_extracted/n1bcef34fd546_img_7.png" alt="" width="620" height="653"><div class="note-figcaption">
+</div>
+
+<p name="93bb23c1-da31-4ebe-9d2b-1d54e0994187" id="93bb23c1-da31-4ebe-9d2b-1d54e0994187">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

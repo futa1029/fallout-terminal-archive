@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ガンマ線銃 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ガンマ線銃</h3>
+            <img src="images/note_extracted/nda66ac8f4aa3_img_1.png" alt="ガンマ線銃">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+            <div class="infobox-row"><span class="infobox-label">ダメージ</span><span>直撃 100 放射能ダメージ + 10 放射能ダメージ / 効果範囲 23 放射能ダメージ（爆発）</span></div>
+            <div class="infobox-row"><span class="infobox-label">弾薬</span><span>Gamma round</span></div>
+            <div class="infobox-row"><span class="infobox-label">装弾数</span><span>8</span></div>
+            <div class="infobox-row"><span class="infobox-label">射撃速度 / 射程 / 精度</span><span>66 / 119 / 69</span></div>
+            <div class="infobox-row"><span class="infobox-label">APコスト</span><span>30</span></div>
+            <div class="infobox-row"><span class="infobox-label">価値 / 重量</span><span>156 / 3</span></div>
+            <div class="infobox-row"><span class="infobox-label">レベル</span><span>15 / 25 / 35 / 45</span></div>
+            <div class="infobox-row"><span class="infobox-label">ダメージ (Lv 45)</span><span>115（実弾/エネルギー等）</span></div>
+            <div class="infobox-row"><span class="infobox-label">範囲ダメージ</span><span>53 放射能ダメージ</span></div>
+            <div class="infobox-row"><span class="infobox-label">弾薬</span><span>Gamma round</span></div>
+            <div class="infobox-row"><span class="infobox-label">装弾数</span><span>8</span></div>
+            <div class="infobox-row"><span class="infobox-label">射撃速度 / 射程 / 精度</span><span>67 / 137 / 42</span></div>
+            <div class="infobox-row"><span class="infobox-label">APコスト</span><span>18</span></div>
+            <div class="infobox-row"><span class="infobox-label">価値 / 重量</span><span>90キャップ / 3.0</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nda66ac8f4aa3" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ガンマ線銃</h1>
+            <div class="date">DATE: 2026/1/28</div>
+            
+            <p name="a1871e37-7125-4512-827e-472496c79378" id="a1871e37-7125-4512-827e-472496c79378"><strong>ガンマ線銃は、人間に対して致命的な放射能を放出する強力な武器です。<br>しかし、ほとんどの<a href="ghoul.html" class="auto-link">グール</a>、ロボット、そしてウェイストランドのクリーチャーに対しては効果がありません。</strong></p><hr name="45b27ffa-cf10-47b8-ab0b-efdf03e7fa6d" id="45b27ffa-cf10-47b8-ab0b-efdf03e7fa6d"><h2 name="6a78902c-68de-4d64-b037-7301bcf369fd" id="6a78902c-68de-4d64-b037-7301bcf369fd">1. <a href="fallout-4.html" class="auto-link">Fallout 4</a> におけるガンマ線銃</h2><h2 name="1525ea82-4719-4a10-8492-0eea98ce1f1f" id="1525ea82-4719-4a10-8492-0eea98ce1f1f">特徴</h2><h3 name="de31f7af-f509-4526-8d35-dd3aedbd1f8b" id="de31f7af-f509-4526-8d35-dd3aedbd1f8b"><br></h3><p name="fc2951a7-5691-438a-bb78-7c5798099556" id="fc2951a7-5691-438a-bb78-7c5798099556"><strong>ガンマ線銃</strong>は、ウェイストランド中で見つけられた回収パーツから組み立てられたような、粗削りな外見の武器です。<br>武器の「皿」の部分は小さな金属製のボウルで、中心に向かって金属配線が走っており、中央のハウジングは様々なサイズと形状の穴が開いた鋼鉄の六角形構造をしています。<br>この構造の後部からは、様々な配線、パイピング、その他のジャンクが突き出しており、その上部には3つの<strong>Gamma round</strong>セルが三角形に配置されています。<br>グリップは、長方形の金属パイプに溶接され、武器の他の部分と結合するために固形鋼の一部に貼り付けられた、ハンドルのないヘラのように見えます。</p><p name="143f714d-c91e-4ebc-a741-059eb0bb8749" id="143f714d-c91e-4ebc-a741-059eb0bb8749"><strong>ガンマ線銃</strong>の主なダメージタイプは放射能ダメージであり、ロボット、<a href="ghoul.html" class="auto-link">グール</a>、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>、およびある程度の放射能耐性を持つ他の敵に対してはほとんど効果がありません。<br>この武器は着弾時に爆発する小さな放射能ダメージのバーストを発射し、直撃時にはかなりの放射能汚染（100、または最大体力の10%の喪失）を与えます。<br><strong>Electric signal carrier antennae</strong>を装備すると、ダメージ特性が変化し、直撃時に放射能汚染に加えて、ある程度のエネルギーダメージをチャージして与えることができるようになります。</p><p name="5a7a604b-0efc-4876-9e03-f80b4f704738" id="5a7a604b-0efc-4876-9e03-f80b4f704738">また、放射能耐性を貫通するダメージ特性も持っており、<strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>の放射能の仕組み上、放射能に免疫のある敵に対しても依然としてダメージを与えることが可能です。</p><hr name="8b28f7a3-7b38-4aee-92d5-217f11182aa5" id="8b28f7a3-7b38-4aee-92d5-217f11182aa5"><h2 name="6e878ac0-4d60-4d3a-b898-c4a594de728b" id="6e878ac0-4d60-4d3a-b898-c4a594de728b">ステータス</h2><hr name="319f3ca7-0780-4a9b-94b2-07d0c3742057" id="319f3ca7-0780-4a9b-94b2-07d0c3742057"><h2 name="b526b034-74a3-48fd-81e1-a6abe5c04708" id="b526b034-74a3-48fd-81e1-a6abe5c04708">改造</h2><ul name="99f66a61-78c2-4ff4-a48e-549dd91db403" id="99f66a61-78c2-4ff4-a48e-549dd91db403"><li><p name="c8f5dd5e-0acb-43f7-bfeb-9d1dd685809d" id="c8f5dd5e-0acb-43f7-bfeb-9d1dd685809d"><strong>皿</strong>:</p><ul name="dc338e6b-f7e7-49bd-8f81-0208b74efdc3" id="dc338e6b-f7e7-49bd-8f81-0208b74efdc3"><li><p name="deb77d14-9464-495d-a0b0-54903f270b02" id="deb77d14-9464-495d-a0b0-54903f270b02"><strong>Standard dish</strong>: 標準。</p></li><li><p name="b4b9a570-02ed-4058-ae1a-d83dc7947a31" id="b4b9a570-02ed-4058-ae1a-d83dc7947a31"><strong>Deep dish</strong>: 射程とダメージが向上。放射能ダメージ+50。 [要：Science! 4]</p></li><li><p name="530358da-6ce7-4b93-a594-78e7cdfa651d" id="530358da-6ce7-4b93-a594-78e7cdfa651d"><strong>Zeta Wave Barrel</strong>: ダメージをZeta波放射に変更。ノックバック効果あり。</p></li><li><p name="e4608cbb-90dd-43f5-9e07-fede8a606ad2" id="e4608cbb-90dd-43f5-9e07-fede8a606ad2"><strong>Lorenzo's Artifact</strong>: テレキネシスを使用してターゲットを押し戻す。</p></li></ul></li><li><p name="65e1d0aa-28b5-4da6-aedc-97f21ebca1aa" id="65e1d0aa-28b5-4da6-aedc-97f21ebca1aa"><strong>グリップ</strong>:</p><ul name="5cdb9c91-5e4b-4b44-a8c7-dde5a999aaba" id="5cdb9c91-5e4b-4b44-a8c7-dde5a999aaba"><li><p name="abdbc8b3-d17e-4312-8633-ca152e422440" id="abdbc8b3-d17e-4312-8633-ca152e422440"><strong>Standard grip</strong>: 標準。</p></li><li><p name="041d8295-bdd8-4070-ac32-5f5b08764e8f" id="041d8295-bdd8-4070-ac32-5f5b08764e8f"><strong>Sharpshooter's grip</strong>: 反動と腰だめ精度が向上。 [要：Gun Nut 2]</p></li></ul></li><li><p name="9018dd76-4fd3-4fbd-bca6-04e7aba5b9f6" id="9018dd76-4fd3-4fbd-bca6-04e7aba5b9f6"><strong>銃口</strong>:</p><ul name="e30000df-c26a-4226-b717-52af7dee573f" id="e30000df-c26a-4226-b717-52af7dee573f"><li><p name="227690cb-5cc6-440c-b17b-fb2a65707992" id="227690cb-5cc6-440c-b17b-fb2a65707992"><strong>Electric signal carrier antennae</strong>: 発射ボタンを長押しして追加の電気ダメージをチャージ。 [要：Science! 3]</p></li><li><p name="512cee94-1fa1-4739-b6be-99890a303b13" id="512cee94-1fa1-4739-b6be-99890a303b13"><strong>Signal repeater</strong>: 連射速度を向上させ、フルオート化。 [要：Science! 4]</p></li></ul></li></ul><hr name="8c3c915b-e282-4efa-8623-3bb2eea7ead5" id="8c3c915b-e282-4efa-8623-3bb2eea7ead5"><h3 name="8bafed04-be0e-4f15-b0b6-63e62d1db66b" id="8bafed04-be0e-4f15-b0b6-63e62d1db66b">バリエーション</h3><ul name="6ec9513f-24d7-4f46-bdfc-7eb7eb5aad63" id="6ec9513f-24d7-4f46-bdfc-7eb7eb5aad63"><li><p name="da4e1dbf-71e0-4244-b31e-fcbe000d5339" id="da4e1dbf-71e0-4244-b31e-fcbe000d5339"><strong>Lorenzo's Artifact gun</strong>: 直撃時に25ポイントの爆発と10ポイントの放射能ダメージを与え、人間に強力なノックバックを与えるユニーク版。</p></li><li><p name="50f9e4e6-2c61-4cd2-849b-285f015168b5" id="50f9e4e6-2c61-4cd2-849b-285f015168b5"><strong>Zeta gun</strong>: 10ポイントの放射能ダメージとノックバック効果を持つ、 Lorenzo's Artifactに似たユニーク版。</p></li></ul><hr name="4d1f8676-641b-4cb7-a272-630a4fcf78e0" id="4d1f8676-641b-4cb7-a272-630a4fcf78e0"><h2 name="529d83fa-7461-4fef-8a40-6e6e82d3f98d" id="529d83fa-7461-4fef-8a40-6e6e82d3f98d">2. Fallout 76 におけるガンマ線銃</h2><div class="note-figure"><img src="images/note_extracted/nda66ac8f4aa3_img_2.png" alt="" width="620" height="460"><div class="note-figcaption"></div></div><h2 name="f9989fb0-8c8b-4a1e-b4d0-360a24f4d855" id="f9989fb0-8c8b-4a1e-b4d0-360a24f4d855">特徴</h2><p name="81f51bd4-68a5-47c7-9269-428403fb30cb" id="81f51bd4-68a5-47c7-9269-428403fb30cb"><strong>ガンマ線銃</strong>は、実弾、放射能、そして（改造により）範囲エネルギーダメージを与えるピストルです。<br>通常のヒット判定よりもはるかに大きな、巨大なオーブ状の投射体を発射します。<br>投射体は非常に目立ち、スコーチビーストの音波攻撃に似たエフェクトを持ちます。</p><p name="5e685d3a-e514-4149-82b7-df78f942dfa4" id="5e685d3a-e514-4149-82b7-df78f942dfa4">放射能ダメージ成分は、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>や<a href="ghoul.html" class="auto-link">グール</a>など、放射能に免疫のあるクリーチャーには効果がありません。</p><hr name="24529ddb-590a-4579-b123-bf6b1ec367f9" id="24529ddb-590a-4579-b123-bf6b1ec367f9"><h2 name="e8ab9591-c008-48e0-a567-abc25a6c6ed6" id="e8ab9591-c008-48e0-a567-abc25a6c6ed6">ステータス</h2><hr name="ced411d8-0f5c-430b-94e5-9f32d38277c6" id="ced411d8-0f5c-430b-94e5-9f32d38277c6"><h2 name="3b564fff-6207-49e7-945c-f6c5cb16a9e6" id="3b564fff-6207-49e7-945c-f6c5cb16a9e6">作製</h2><p name="1611d9ce-8812-4e51-b6b2-a03ee5df369d" id="1611d9ce-8812-4e51-b6b2-a03ee5df369d">武器作業台で作製可能です。<br><strong>設計図: ガンマ線銃</strong>を学習する必要があります。</p><ul name="b06521a5-4efe-45cf-af3b-86d4c689e4f4" id="b06521a5-4efe-45cf-af3b-86d4c689e4f4"><li><p name="e3f2dee2-8895-4dbf-8534-d3f62369d7e3" id="e3f2dee2-8895-4dbf-8534-d3f62369d7e3"><strong>材料 (Lv 45)</strong>: 粘着剤(7)、核物質(6)、プラスチック(15)、ねじ(11)、鉄(20)</p></li></ul><h3 name="29b3fc6f-a2b4-453d-9199-355cff0117c9" id="29b3fc6f-a2b4-453d-9199-355cff0117c9">改造</h3><ul name="28097665-04ce-40b3-951b-4036d85f6015" id="28097665-04ce-40b3-951b-4036d85f6015"><li><p name="23f4d68f-65df-4b47-9043-47b76754113f" id="23f4d68f-65df-4b47-9043-47b76754113f"><strong>Dish</strong>: <strong>Deep dish</strong>（放射能ダメージ+75）、<strong>Standard dish</strong>（精度向上）。</p></li><li><p name="522b342f-ee4c-4de5-baa5-4a2f95afcbef" id="522b342f-ee4c-4de5-baa5-4a2f95afcbef"><strong>Grip</strong>: <strong>Sharpshooter's Grip</strong>（腰だめ精度向上、反動抑制）、<strong>Standard grip</strong>。</p></li><li><p name="54ca6f81-88f3-470c-a381-a0c536e1b7d5" id="54ca6f81-88f3-470c-a381-a0c536e1b7d5"><strong>Muzzle</strong>: <strong>Electric signal carrier antennae</strong>（電気ダメージ+40）、<strong>Signal repeater</strong>（フルオート化）。</p></li></ul><hr name="09cf2583-bfa7-4521-a9b9-7c9d7a952190" id="09cf2583-bfa7-4521-a9b9-7c9d7a952190"><h2 name="16b6a64a-c1fd-4465-979b-eef03ec59436" id="16b6a64a-c1fd-4465-979b-eef03ec59436">3. 共通事項・注記・不具合</h2><h2 name="0d4a80be-b680-41f7-9249-9c71b91d487c" id="0d4a80be-b680-41f7-9249-9c71b91d487c">入手場所</h2><ul name="135f2c01-163b-4c0c-bd78-96506d7281e1" id="135f2c01-163b-4c0c-bd78-96506d7281e1"><li><p name="cce52418-fc87-4cdc-ba8b-a2d2a123d915" id="cce52418-fc87-4cdc-ba8b-a2d2a123d915"><strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>: アトムの子らの信者が所持しています。</p></li><li><p name="60a3c476-8aea-4f5b-9823-c2841b2b244c" id="60a3c476-8aea-4f5b-9823-c2841b2b244c"><strong>Fallout 76</strong>: コンテナや死体から低確率で出現します。<br>設計図は<a href="grams.html" class="auto-link">グラム</a>から購入するか、<strong>Radiation Rumble</strong>などのイベント報酬、ホリデーギフト等から入手可能です。</p></li></ul><hr name="ca19880d-5157-4027-8f44-4cef024532f6" id="ca19880d-5157-4027-8f44-4cef024532f6"><h2 name="1bed9537-ed58-4b6a-8e96-7d03b0af5524" id="1bed9537-ed58-4b6a-8e96-7d03b0af5524">注記</h2><ul name="e5966917-dcde-47e1-b057-263114840738" id="e5966917-dcde-47e1-b057-263114840738"><li><p name="aa95fff5-092e-49ca-8170-dea3bf01f592" id="aa95fff5-092e-49ca-8170-dea3bf01f592">自分の放射能レベルを調整（維持）するためのツールとしても有用です。</p></li><li><p name="1f543e21-2773-4287-ba7f-be33c97b28f9" id="1f543e21-2773-4287-ba7f-be33c97b28f9">対人戦（PvP）において、特にクアッドレジェンダリー効果が付いたものは、回避が困難で急速にプレイヤーを被曝させるため非常に強力です。</p></li><li><p name="96bb970e-e241-4660-a733-177215074d60" id="96bb970e-e241-4660-a733-177215074d60">カルト教団の預言者は、<a href="mothman.html" class="auto-link">モスマン</a>と同じ音波エネルギーを放出するように改造されたガンマ線銃を使用します。</p></li></ul><hr name="82826132-2590-4690-98e4-af54beb69ee2" id="82826132-2590-4690-98e4-af54beb69ee2"><h2 name="f97a0714-b040-4914-b842-0c5d1ac1ef10" id="f97a0714-b040-4914-b842-0c5d1ac1ef10">不具合</h2><ul name="b214287b-4909-4280-a58e-98ea9460d483" id="b214287b-4909-4280-a58e-98ea9460d483"><li><p name="7696858e-9109-497a-82cb-f6c164796c73" id="7696858e-9109-497a-82cb-f6c164796c73"><strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>: <strong>Electric signal carrier antennae</strong>を装備していない場合、範囲ダメージが直撃時に2回適用されるバグがあります。</p></li><li><p name="9aae3cf1-1291-48d5-ade0-d2a537c67baa" id="9aae3cf1-1291-48d5-ade0-d2a537c67baa"><strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>: チャージ中に武器を切り替えると、チャージ音とコントローラーの振動が鳴り続けることがあります（武器を戻すと解消します）。</p></li><li><p name="05e655ac-18ca-4ba0-81dc-f3d36badd57e" id="05e655ac-18ca-4ba0-81dc-f3d36badd57e"><strong>Fallout 76</strong>: 以前、<strong>Signal repeater</strong>を装備しても「Gunslinger（非オート）」として判定されるバグがありましたが、現在は修正され「Guerrilla（フルオート）」として正しく分類されます。</p></li></ul><hr name="334653f8-dca2-4ef9-9f25-4255d01203ca" id="334653f8-dca2-4ef9-9f25-4255d01203ca"><div class="quote-box">
+<b>感想</b><br><br>
+<b>ガンマ線銃</b>は、Falloutの世界観を象徴する「アトムの力」を体現した非常にユニークな武器ですね。<br><br><b>対人兵器としての恐怖</b>: 放射能耐性の低い人間に対しては圧倒的な威力を誇り、特に<b>Child of Atom</b>がこれを手に襲ってくる時の威圧感は、他の武器にはない恐怖があります。<br><br><b>実用的な「自己被曝」</b>: <b>Fallout 76</b>の「血濡れ」ビルドなどにおいて、自分の体力を削るために足元に撃って放射能を溜めるという使い方は、まさにウェイストランドを生き抜く知恵そのものです。<br><br><b>ロレンゾの遺物</b>: <b><a href="fallout-4.html" class="auto-link">Fallout 4</a></b>のクエストに関わる特殊な改造パーツは、科学を超えた不思議な力を感じさせ、探索の楽しみを広げてくれます。<br><br>特に<a href="fallout76.html" class="auto-link">Fallout76</a>の血濡れでレイドを攻略される方にとっては無くてはない装備ですね。<br><br><div class="note-figure"><img src="images/note_extracted/nda66ac8f4aa3_img_3.png" alt="" width="520" height="930"><div class="note-figcaption">
+</div>
+
+<p name="9158eff0-a6b6-48ac-a504-995e8a8a0e61" id="9158eff0-a6b6-48ac-a504-995e8a8a0e61">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

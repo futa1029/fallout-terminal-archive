@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ザ・クロスヘア | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ザ・クロスヘア</h3>
+            <img src="images/note_extracted/n4cbc83805223_img_1.png" alt="ザ・クロスヘア">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n4cbc83805223" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ザ・クロスヘア</h1>
+            <div class="date">DATE: 2025/12/14</div>
+            
+            <p style="text-align: left" name="c2210514-1368-4323-ae35-12a3c7d8a91d" id="c2210514-1368-4323-ae35-12a3c7d8a91d">ザ・クロスヘアは、アパラチアの森林地域にあるロケーションです。<br>毒の峡谷との境界沿いの北西の山中に見つけることができます。</p><p name="e712cbef-d5d6-4726-8c4b-3aa1f8647384" id="e712cbef-d5d6-4726-8c4b-3aa1f8647384">Expeditions: Atlantic City のアップデート Boardwalk Paradise で、リトル・ロブの隠れ家として知られる新しいロケーションに通じる黄色のドアが追加されました。</p><hr name="940bbc3b-0af4-4360-b898-287bf502f1ec" id="940bbc3b-0af4-4360-b898-287bf502f1ec"><h3 name="34dded51-08f9-4f22-959f-1eedef7dcf6e" id="34dded51-08f9-4f22-959f-1eedef7dcf6e">1. 背景</h3><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="6939c6eb-21fa-4ab7-8a76-e51381732ea1" id="6939c6eb-21fa-4ab7-8a76-e51381732ea1">ザ・クロスヘアは、元々アパラチアの旧レイダーたちが、スナイパーに優れた見晴らしを提供する場所として、特に人里離れた森の片隅に設置したものです。ブラッドイーグルがこの地域に到着した際、彼らはこの拠点を自分たちのものとして占拠しました。</p><h3 name="21117fdc-0e48-47f4-87a4-727e6a68be9d" id="21117fdc-0e48-47f4-87a4-727e6a68be9d">2. レイアウト</h3><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="a076a875-5f39-4ed7-9c56-6d0c4f2a14d7" id="a076a875-5f39-4ed7-9c56-6d0c4f2a14d7">ザ・クロスヘアは、数体のブラッドイーグルによって占拠されています。<br>岩の張り出したシェルターのすぐ外、崖沿いに位置しており、各入口には数枚の竹槍ボードがあります。<br>キャンプ内には、アーマー作業台と武器作業台が見つかります。</p><h3 name="e915c1d0-3dcc-4ca8-be36-e7f9bc692d23" id="e915c1d0-3dcc-4ca8-be36-e7f9bc692d23">3. 注目すべきアイテム</h3><ul name="6cdb307d-8a30-4487-a572-567b4c2adb7d" id="6cdb307d-8a30-4487-a572-567b4c2adb7d"><li><p name="72545967-3b0d-41e3-b7fb-e2e39c6ca777" id="72545967-3b0d-41e3-b7fb-e2e39c6ca777">ブラッドイーグル誓約 - <a href="holotape.html" class="auto-link">ホロテープ</a>。最も高いタワー内のテーブルの上。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="5d42eb50-6a71-4800-a32f-9832fa1e2b3e" id="5d42eb50-6a71-4800-a32f-9832fa1e2b3e"><li><p name="25bfcd81-0501-43db-be7c-9bbbf509db36" id="25bfcd81-0501-43db-be7c-9bbbf509db36">ボブルヘッド2つ:</p><ul name="f3372f20-f9cd-478f-a050-8a1bb3cc78a3" id="f3372f20-f9cd-478f-a050-8a1bb3cc78a3"><li><p name="5ea7a124-079c-4f2a-b229-4102d22bfdd1" id="5ea7a124-079c-4f2a-b229-4102d22bfdd1">キャンプの北東セクション、アーマー作業台の隣に積み重ねられた木箱の上。</p></li><li><p name="a7adff74-08f6-4991-99bb-d9612fcba19f" id="a7adff74-08f6-4991-99bb-d9612fcba19f">キャンプの奥、<a href="power-armor.html" class="auto-link">パワーアーマー</a>・シャーシの近く、クーラーの隣にある金属製の檻の上。</p></li></ul></li><li><p name="60e75b2d-b522-4240-9dea-76a72a59af00" id="60e75b2d-b522-4240-9dea-76a72a59af00">雑誌2つ:</p><ul name="2124eb16-7008-4496-a663-16e05559c42d" id="2124eb16-7008-4496-a663-16e05559c42d"><li><p name="ac31a449-add0-4d1e-b219-bb45148dd330" id="ac31a449-add0-4d1e-b219-bb45148dd330">レイダーキャンプの南東セクション、背の高い見張り塔の下、武器作業台と寝袋の近くの床の上。</p></li><li><p name="176db3eb-e7f1-45a3-bc83-037f6194018a" id="176db3eb-e7f1-45a3-bc83-037f6194018a">キャンプ入口の隣にある小さな見張り塔の上、ケム箱の横。</p></li></ul></li></ul><hr name="e15b9153-8960-4820-9d9a-14d14bead90a" id="e15b9153-8960-4820-9d9a-14d14bead90a"><h2 name="37704319-9a54-4ecc-9dc8-742fbc305780" id="37704319-9a54-4ecc-9dc8-742fbc305780">リトル・ロブの隠れ家</h2><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_6.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="e9b24580-834e-46a9-bb5d-5c1bee919ec6" id="e9b24580-834e-46a9-bb5d-5c1bee919ec6">これは Expeditions: Atlantic City アップデートのパート1である Boardwalk Paradise で導入されました。<br>ザ・クロスヘアにある黄色いドアの先にあります。</p><hr name="e89ee2df-e93b-4d56-ac91-21d5c3eaddea" id="e89ee2df-e93b-4d56-ac91-21d5c3eaddea"><h3 name="0da321dd-e5c7-42e7-91c4-bd3b603015e2" id="0da321dd-e5c7-42e7-91c4-bd3b603015e2">1.住人</h3><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_7.png" alt="" width="620" height="465"><div class="note-figcaption"></div></div><h3 name="e546461c-c9b7-4804-967e-4560e521bbff" id="e546461c-c9b7-4804-967e-4560e521bbff">ジャック・ハンター</h3><p name="5b46f192-0b42-4363-9d62-b29f59d3b971" id="5b46f192-0b42-4363-9d62-b29f59d3b971">クエスト「Hells Eagles」中にここに登場します。</p><div class="note-figure"><blockquote><p name="aa82c9a5-6df7-4e26-84aa-aa142ebddf7d" id="aa82c9a5-6df7-4e26-84aa-aa142ebddf7d">「誇大妄想狂で大量殺人を行うカルト指導者と対峙する前に、ぶっ飛んだ状態になりたくないか？ いや、もちろん違うな。お前はいつもそうしてるんだろう？ まあ、俺たち一般人には、そういうことのためにちょっとした化学的な勇気が必要なんだ。それと、そのおかげで俺は気分を高揚させられる。風の強い日に俺とロブが二人して凧のようにハイになっていれば、共通の話題もずっと増えるだろう。」</p></blockquote><div class="note-figcaption"></div></div><p name="55ecc125-b13c-4b8c-9501-8ab62707463f" id="55ecc125-b13c-4b8c-9501-8ab62707463f">ジャック・ハンターは、戦後のゴンゾー・ジャーナリストであり、『Fallout 76』のアパラチアで見つかるホロテープシリーズに旅の記録を残しています。</p><hr name="185ff406-2b21-4c1a-86c1-5be0402717cf" id="185ff406-2b21-4c1a-86c1-5be0402717cf"><h3 name="b511bd6d-475d-4f90-9acb-865aeaaf2b5c" id="b511bd6d-475d-4f90-9acb-865aeaaf2b5c">背景</h3><p name="a6734d83-fdaa-41aa-8cb6-67f18206a6cf" id="a6734d83-fdaa-41aa-8cb6-67f18206a6cf">ジャックはケンタッキー州のアパラチア山脈の麓で育ち、そこでアルコールや薬物と親しくなりました。<br>彼は、戦後のウェイストランドにあるあらゆる薬物をすべて試したと主張しています。</p><p name="3ee0b52e-43f6-4c1c-9ddb-095fcb7a06de" id="3ee0b52e-43f6-4c1c-9ddb-095fcb7a06de">彼の旅はかつてのアメリカ合衆国全土に及んでおり、ミシシッピ川の感触やフロリダのそよ風（あるいは少なくとも薬物による幻覚の中でそれらを見たこと）を思い出します。<br>彼がウェストバージニアと出会ったのは、<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>として知られる強力な調合薬を飲んだときでした。<br>この時、フェラル・<a href="ghoul.html" class="auto-link">グール</a>に襲われながら幻覚に襲われ、最終的にアパラチアの丘で目を覚ましています。</p><p name="6c7a249b-0017-402e-8f29-8c54e28578c7" id="6c7a249b-0017-402e-8f29-8c54e28578c7">アパラチアでの経験として、彼はメタルドームを訪れ、ラストイーグルのロボット戦闘試合とGladiators of Steel（鋼鉄の剣闘士） との対戦（イベント：Test Your Metalの中心）の光景と音を描写しています。<br>彼は、この試合が展示される暴力の非人道性から「純粋な魅了」を生み出していると説明しました。</p><p name="da3e5fa7-fd52-4d07-bf2d-d55f4c3fc0e4" id="da3e5fa7-fd52-4d07-bf2d-d55f4c3fc0e4">ジャックはアトランティック・シティにも行ったことがあり、そこで「親友」と一緒にネアポリタン・カジノを訪れました。<br>二人は「ショーメン・ゲーム」を取材するためにアトランティック・シティに来ましたが、Daddy-Oを摂取し、バーボンを飲んでしまいました。<br>酩酊中に、彼らは「真のハイローラー」のためだけの地元の薬物特製品であるThe Devil's Bloodに遭遇し、その独占性を汚すために摂取しました。<br>ジャックは、その結果得られたトリップを「恐ろしくも栄光に満ちた」ものと表現し、自分から奪われていた人生に手を伸ばす感覚を生み出しましたが、完全に掴むことはできなかったと言います。<br>これは、アディクトールでも治せず、「恐らく何も治せないだろう」という、ほぼ即座の依存症の感覚を生み出しました。</p><hr name="30a78ca1-2033-4ceb-abfd-807b5ef3ce92" id="30a78ca1-2033-4ceb-abfd-807b5ef3ce92"><h3 name="1b43f8b9-c326-4cc2-a2e7-5cb5b32185f0" id="1b43f8b9-c326-4cc2-a2e7-5cb5b32185f0">所持品</h3><p name="da891856-4b6b-4d09-9989-636905b4d916" id="da891856-4b6b-4d09-9989-636905b4d916">彼はハンター・セーフティ・ベスト赤のアウトフィットとサングラスを着用しています。</p><hr name="6fa90587-21ae-4cf7-b49e-975370b3d280" id="6fa90587-21ae-4cf7-b49e-975370b3d280"><h3 name="ac330280-e39b-4849-80c4-281a72d2f56f" id="ac330280-e39b-4849-80c4-281a72d2f56f">登場</h3><p name="f314aef2-f202-415c-bc2e-cb74991cfcb1" id="f314aef2-f202-415c-bc2e-cb74991cfcb1">彼はOnce in a Blue Moon アップデートで導入されたホロテープシリーズで初めて言及され、Expeditions: Atlantic City アップデートのパート2であるAmerica's Playgroundでキャラクターとして完全に登場しました。</p><hr name="0acc50cb-bd76-4170-a7dc-1b2558bf3fde" id="0acc50cb-bd76-4170-a7dc-1b2558bf3fde"><h3 name="5a8dc166-9708-478d-bbe2-d9ff1efcb48b" id="5a8dc166-9708-478d-bbe2-d9ff1efcb48b">舞台裏</h3><p name="f31eb1c4-a874-4eeb-bf87-b244cc122499" id="f31eb1c4-a874-4eeb-bf87-b244cc122499">ジャック・ハンターのジャーナリズムスタイルは、1970年代にハンター・S・トンプソンによって広められた、ゴンゾー・ジャーナリズムへのオマージュです。<br>両者は名前に「ハンター」を持ち、ケンタッキー州で育ち、大量の薬物を使用していました。<br>The Decadent Metal Domeは、トンプソンの有名な記事へのオマージュであり、クエストHells Eaglesは、トンプソンがHells Angelsと共に過ごした時期へのオマージュです。</p><hr name="ca9cedc3-0157-476e-a10d-72b4cbf5021b" id="ca9cedc3-0157-476e-a10d-72b4cbf5021b"><h3 name="2d39b0bf-b1d0-4dc7-af97-d6ae06634105" id="2d39b0bf-b1d0-4dc7-af97-d6ae06634105">リトル・ロブ</h3><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_8.png" alt="" width="620" height="720"><div class="note-figcaption"></div></div><p name="f96d8e7a-ba7d-4a21-bacf-e4c4961c7545" id="f96d8e7a-ba7d-4a21-bacf-e4c4961c7545">クエスト「Hells Eagles」中にここに登場します。</p><div class="note-figure"><blockquote><p name="3c66d753-0467-4ad3-a9f0-778855006be9" id="3c66d753-0467-4ad3-a9f0-778855006be9">「俺は『リトル（小さい）』とは正反対だ。それがジョークなんだよ、わかるか？ とても微妙なジョークだから、すぐには理解できないのも無理はない。親父がよく、このロビンって男と、その相棒のジョンについての話をしてくれたんだ。ジョンは体がデカかったのに、みんな彼を『リトル』と呼んでいた。俺もデカいから、それがずっと頭に残っているんだ。」</p></blockquote><div class="note-figcaption"></div></div><p name="36fde9ed-a995-4eca-9991-d3a4f8ba671c" id="36fde9ed-a995-4eca-9991-d3a4f8ba671c">リトル・ロブは、『Fallout 76』のアパラチアにいるブラッドイーグルのメンバーです。<br>Expeditions: Atlantic City アップデートのパート2である America's Playground で導入されました。</p><hr name="27d338da-7694-4daa-84c7-2d990622d910" id="27d338da-7694-4daa-84c7-2d990622d910"><h3 name="15bb916e-dafc-43cf-b58d-32e759013ac3" id="15bb916e-dafc-43cf-b58d-32e759013ac3">2. 注目すべきアイテム</h3><ul name="c975371c-40b1-4357-a4ba-ae85fa28e4b8" id="c975371c-40b1-4357-a4ba-ae85fa28e4b8"><li><p name="8593821b-a94e-4e31-a297-39f9d94785e4" id="8593821b-a94e-4e31-a297-39f9d94785e4">Disgusting creatures (うんざりするクリーチャー) - メモ。<br>玉座の近くにあるアイスクリームカートの上。</p></li></ul><div class="note-figure"><blockquote><p name="52d06f4c-fe8c-4056-983b-f76df0105d08" id="52d06f4c-fe8c-4056-983b-f76df0105d08">私たちは、この場所が、あのぶつぶつ言うろくでなしどもが利用している、はるかに大きなトンネル網のほんの一部に過ぎないのではないかと考え始めています。<br>掃討するたびに、さらに多くの奴らが現れました。最終的に、ここで見つけたがらくたでトンネルをすべてバリケードで塞いだとき、ようやく奴らは現れなくなりました。</p></blockquote><div class="note-figcaption"></div></div><ul name="e2af5654-bed1-4810-9faa-81bb57b93a27" id="e2af5654-bed1-4810-9faa-81bb57b93a27"><li><p name="17ef0c95-daae-480b-8fa6-6633c4a711ad" id="17ef0c95-daae-480b-8fa6-6633c4a711ad">That smell (あの匂い) - メモ。<br>内部の入口から直進したところにある木箱に貼られています。</p></li></ul><div class="note-figure"><blockquote><p name="6045ec28-5593-44e6-956e-6b4122ddacd6" id="6045ec28-5593-44e6-956e-6b4122ddacd6">もうこの匂いには耐えられない。死体を燃やしても無駄だとカルロスには言ったのに、彼は聞かなかった。奴らは生きているうちから、濡れた犬と焦げたプラスチックのような匂いがする。<br>ガスマスクも全く役に立たない。自分で自分に吐き戻してしまう前に、外に出るつもりだ。</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_9.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="0f1cdb91-2f8c-43e5-bc19-b411c07e7b56" id="0f1cdb91-2f8c-43e5-bc19-b411c07e7b56">上記のメモと焼いてる現場からモールマイナーの事だと思われます。臭いのか。</p><hr name="e1d84fa9-0504-4b51-a9a6-d639a7811e6c" id="e1d84fa9-0504-4b51-a9a6-d639a7811e6c"><h3 name="a5947d49-d2fc-402d-a0f8-c81266d3a19e" id="a5947d49-d2fc-402d-a0f8-c81266d3a19e">3.関連クエスト</h3><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_10.png" alt="" width="620" height="419"><div class="note-figcaption"></div></div><h2 name="1e4dc94c-be93-4f3c-a341-98a2380d1b79" id="1e4dc94c-be93-4f3c-a341-98a2380d1b79">Hells Eagles</h2><p name="8e161227-7431-4a26-acf9-14dcebc49396" id="8e161227-7431-4a26-acf9-14dcebc49396">「一風変わったジャーナリストの足跡をたどり、堕落の深淵へと分け入る。」</p><p name="91fbf9b7-e3ab-40b3-84ff-b6016529ca4f" id="91fbf9b7-e3ab-40b3-84ff-b6016529ca4f">Hells Eaglesは、『Fallout 76』のサイドクエストで、Expeditions: Atlantic City アップデートのパート2、America's Playground で導入されました。</p><p name="752a9c9e-fd47-4589-b4a1-31709a533d93" id="752a9c9e-fd47-4589-b4a1-31709a533d93">このクエストは、ホワイトスプリングの仕事掲示板、またはクレーターの外で見つかるポスターを調べると開始できます。</p><p name="59793e53-7e21-4bde-b801-4ed72df15966" id="59793e53-7e21-4bde-b801-4ed72df15966">プレイヤーをクレーターコア内のオスカー・ゴンザレスに話しかけるよう誘導します。<br>オスカーは行方不明になった友人、ジャーナリストのジャック・ハンターを探しています。<br>オスカーはジャックを「人間ハリケーン」と表現します。<br>オスカーはジャックの生死の証拠を求め、その情報に対してキャップを報酬として支払うと約束します。</p><p name="16f8a317-6bfe-4a57-8b40-329492c0a55b" id="16f8a317-6bfe-4a57-8b40-329492c0a55b">オスカーが持っている唯一の手がかりは、ジャックが彼に渡した<a href="holotape.html" class="auto-link">ホロテープ</a>、暗号化されたメッセージです。<br>「Hells Eagles」クエストが開始したら、「A lead at last」を聞きます。<br>その中でジャックは、自分のターゲットであるリトル・ロブと、彼がゴルフ場近くの探鉱者の小屋でロブの仲間の一人と会ったことを説明しています。このゴルフ場は毒の峡谷のヘムロック・ホールであり、小屋は遥か北西にあるサリーの小屋です。<br>山道を登って小屋に到着し、中に入ります。</p><p name="90ac4bb4-8385-44d9-b636-77cbbe0a6db2" id="90ac4bb4-8385-44d9-b636-77cbbe0a6db2">サリーが中で待っています。<br>小屋の中には2つのメモがあります。<br>左手のテーブルには「Journal: Hot Pursuit」、右手のクーラーには「Surly's note」がありますが、これらを読もうとするとサーリーが敵対的になります。<br>戦闘を避けたい場合はサーリーに話しかけます。<br>彼女はジャックに会ったことを認め、彼がブラッドイーグルに連れられてザ・クロスヘアに連行されたと言います。<br>その後、サーリーは、プレイヤーがジャックのようなパーティー好きなら、「強化された」バフアウト を提供します。</p><p name="b3cf43cf-535e-4985-af2f-c5b8b84f54fc" id="b3cf43cf-535e-4985-af2f-c5b8b84f54fc">彼女の申し出に同意した場合、「サリーのBuffout」を消費します。<br>サーリーは、プレイヤーがすぐに気絶するだろうと笑いますが、その薬は偽物であることが判明し、彼女は攻撃してきます。<br>彼女はリトル・ロブの指揮下にあるブラッドイーグルであることを明かしたのです。<br>サーリーを倒した後、小屋を捜索し、クーラー内のサーリーのメモを読みます。</p><p name="16238ae6-e2a1-4172-b17c-afc725e856f5" id="16238ae6-e2a1-4172-b17c-afc725e856f5">ザ・クロスヘアへ向かいます。<br>ここは毒の峡谷と森林地帯の境界にある、西部のブラッドイーグル・キャンプです。<br><a href="surly-s-hut.html" class="auto-link">サーリーの小屋</a>から続く上り坂の道を進むと、すぐにそこに到着します。<br>クロスヘアの外側には数体の敵対的なブラッドイーグルがいますが、本当の目的地は、リトル・ロブの隠れ家です。</p><p name="a0140535-e4ad-4a8c-9de8-e3551f69940d" id="a0140535-e4ad-4a8c-9de8-e3551f69940d">プレイヤーは鉱山内部を掃討し、中にいる6体ほどのブラッドイーグルを倒して進む必要があります。<br>その後、ジャック・ハンターが便所から出てきて、一体何が起こったのかを尋ねます。<br>状況を理解すると、ジャックは残りのブラッドイーグルが死んだとしても、まだリトル・ロブにインタビューする必要があると言います。<br>残りのブラッドイーグルを殺した原因がプレイヤーであるため、ジャックはインタビューに加わるよう依頼します。<br>さらに、ジャックはいくつかの薬物を摂取しており、プレイヤーに会話の一部を担当してもらう必要があるかもしれません。</p><p name="0d027f0a-bc7b-4f1d-9d85-bf70ff7ad2cd" id="0d027f0a-bc7b-4f1d-9d85-bf70ff7ad2cd">ジャックに続いて、鉱山内の「玉座の間」へ向かいます。<br>リトル・ロブはちょうど「美容のための睡眠」から目覚めたところで、ジャックが自分の「アシスタント」として紹介したプレイヤーを疑っています。<br>ジャックは酩酊状態のため、尋ねる予定だった質問を忘れてしまい、プレイヤーに質問を考えさせます。<br>最初の質問には3つの選択肢があり、2番目の質問には4つの選択肢があります。<br>いずれかの時点でロブを罪のない人々を虐殺したと非難して侮辱した場合、 プレイヤーはSPECIALチェック（例：Charisma 8+でロブの優しさを指摘する、Perception 4+で質問を言い換える、Luck 8+で自称する愚かさをかわす）に成功する必要があります。<br>失敗した場合、ロブと戦闘に入るしかありません。</p><p name="9b044afc-60e8-4a32-a933-d149119880e3" id="9b044afc-60e8-4a32-a933-d149119880e3">ジャックは3番目の最後の質問を自分が担当すると言います。<br>彼は詩的に語り始めた後、ロブに「結局のところ、何が目的なのか？」と尋ねます。<br>ロブは困惑し、プレイヤーがジャックの意図を明確にする（またはしない）ことになります。<br>ロブは、単にトップに立ちたいだけだと言います。<br>インタビューが終了すると、ロブの生死にかかわらず、ジャックは彼がまだ生きていることを証明するためにメモ「To Oscar」をプレイヤーに渡します。<br>彼は、「ここ」から遠く離れた集合場所で、いずれ再会すると言います。</p><p name="b2b2a566-5e3b-40f7-bd29-b1be0e4bc58e" id="b2b2a566-5e3b-40f7-bd29-b1be0e4bc58e">ジャックは立ち去り、プレイヤーはクレーターコアのオスカーの元へ戻るよう促されます。<br>メモをオスカーに渡した後、彼はプレイヤーに報酬を与えます。</p><hr name="e999b019-4612-4a19-a8b6-938f5aaffd3e" id="e999b019-4612-4a19-a8b6-938f5aaffd3e"><h3 name="c72ca7bf-412f-4f64-8c13-a8c266ec3298" id="c72ca7bf-412f-4f64-8c13-a8c266ec3298">舞台裏</h3><p name="f470eef1-d8e4-49b9-8a74-6ebcd82544b0" id="f470eef1-d8e4-49b9-8a74-6ebcd82544b0">このクエストの名前（Hellsにアポストロフィがないことも含めて）は、Hells Angelsモーターサイクルクラブとブラッドイーグルを組み合わせたオマージュです。<br>キャラクターのジャック・ハンター自身も、ゴンゾー・ジャーナリストのハンター・S・トンプソンへのオマージュであり、トンプソンは1967年の著書でHells Angelsとの時間を記録しています。</p><hr name="3f68f575-9a8c-4158-a91a-02939fc76776" id="3f68f575-9a8c-4158-a91a-02939fc76776"><div class="quote-box">
+<b>感想</b><br><br>
+このオマージュは流石に知らないどす!<br>ちょっとクエストの解説がてら隣のロケーションまで及んだ挙げ句、まだ未紹介の所まで一部名前が入りましたがご了承を。<br><br>ここはクエストが終わると外部の2個のボブルヘッド、2個の<a href="magazine.html" class="auto-link">雑誌</a>、そしておつまみのブラッドイーグルが食べれるいいロケーションです。<br>見晴らしも素敵ですしね。<br>首吊りロープが無ければ。<br><br><div class="note-figure"><img src="images/note_extracted/n4cbc83805223_img_11.png" alt="" width="620" height="349"><div class="note-figcaption">中はモールマイナーとドンパチしてて殺風景に見えますがティディーベアスポットがあります!!<br>ここにはクエストが終わってからでも入れるので是非撮影しに行きましょう!<br>ロード画面を豊かにすると人生も豊かになれます(暴論
+</div>
+
+<p name="c857a9c4-dd15-408e-946e-fa098766435d" id="c857a9c4-dd15-408e-946e-fa098766435d">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

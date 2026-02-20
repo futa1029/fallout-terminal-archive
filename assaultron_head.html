@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recovered Assaultron Head (回収されたアサルトロン頭部) | Overseer Mohi's Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff3333;
+            /* Assaultron Red */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            min-height: 200px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #ff8888;
+            background: rgba(255, 26, 26, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Recovered Assaultron Head<br>(回収されたアサルトロン頭部)</h3>
+            <img src="./images/note/232/1.webp" alt="Recovered Assaultron Head">
+
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>遠距離武器</span></div>
+            <div class="infobox-row"><span class="infobox-label">クラス</span><span>エネルギーピストル</span></div>
+            <div class="infobox-row"><span class="infobox-label">弾薬</span><span>フュージョン・セル</span></div>
+            <div class="infobox-row"><span class="infobox-label">発射速度</span><span>12</span></div>
+            <div class="infobox-row"><span class="infobox-label">射程</span><span>218</span></div>
+            <div class="infobox-row"><span class="infobox-label">重量</span><span>8.0</span></div>
+            <div class="infobox-row"><span class="infobox-label">価値</span><span>115キャップ</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">
+                    < BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="assaultron_head" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+                    <h1>Recovered Assaultron Head<br>(回収されたアサルトロン頭部)</h1>
+
+                    <div class="quote-box">
+                        「回収されたアサルトロン頭部は、Fallout4、Fallout 76 に登場する遠距離武器（エネルギーピストル）です」
+                    </div>
+
+                    <h2>特性</h2>
+                    <p>
+                        この回収されたアサルトロンの頭部は、非オートマチックのエネルギーピストルのように発射されます。リロードを繰り返すことで入力をチャージできます。チャージ数が多いほど、ダメージが高くなります。
+                    </p>
+                    <p>
+                        使用すると、使用者は放射能ダメージを受けます（被曝します）。チャージ数や武器レベルに関わらず、自傷ダメージは同じです。エンチャント効果により、50の放射能被曝ダメージを受けます。
+                    </p>
+
+                    <img src="./images/note/232/2.webp" class="article-image" alt="Firing Assaultron Head">
+
+                    <p>
+                        レジェンダリークラフトを除き、回収されたアサルトロン頭部はいかなる方法でも改造することはできません。偽物のアサルトロン頭部は塗装ではなく、独立したアイテムとして個別に作成されます。
+                    </p>
+
+                    <h2>ステータス</h2>
+                    <ul>
+                        <li><b>レベル:</b> 25 / 35 / 45</li>
+                        <li><b>ダメージ:</b> 93 / 119 / 152（エネルギー）</li>
+                        <li><b>マガジンサイズ:</b> 5</li>
+                        <li><b>命中率:</b> 63</li>
+                        <li><b>APコスト:</b> 30</li>
+                    </ul>
+
+                    <h2>クラフト</h2>
+                    <p>
+                        この武器は武器作業台で作成可能です。作成には設計図「設計図：アサルトロン頭部」を習得している必要があります。
+                    </p>
+
+                    <h2>ロケーション</h2>
+                    <p>
+                        死んだアサルトロンの死体から時折見つかることがあります。
+                    </p>
+
+                    <h2>注記</h2>
+                    <p>
+                        変異「絶縁体」の影響を受けます。発射体は着弾時に小さな装飾的な爆発を引き起こします。一部のアサルトロン頭部は、発射時に使用者を被曝させないものがあります。これらはレガシーコンテンツと見なされ、極めて稀です。
+                    </p>
+
+                    <h2>変更履歴</h2>
+                    <ul>
+                        <li>爆発のレジェンダリー効果が付かなくなりました。爆発するアサルトロン頭部は現在、削除されたコンテンツとなっています。</li>
+                        <li>クラフト時にPerk「Super Duper」の影響を受けなくなりました。これまでは、これを利用してねじを複製することが可能でした。</li>
+                    </ul>
+
+                    <h2>舞台裏</h2>
+                    <p>
+                        アサルトロン頭部は、Fallout 4 の同等品よりもリロードがはるかに遅いです。
+                        偽物のアサルトロン頭部は、標準のアサルトロン頭部の動的なアタッチメントの組み合わせバリエーションとしてリストされていますが、使用されていません。この古いバージョンのシープスカッチバリエーションは、モデルの一部をそれぞれ追加する6つの隠しモジュールに分割されていました。さらに、地面を炎上させる偽物のシープスカッチが使用するレーザーを模倣し、シビア・ベータ・ウェーブ・チューナーの属性を適用する予定でした。
+                    </p>
+
+                    <h2>バグ</h2>
+                    <p>
+                        スプリントすることでリロードアニメーションをキャンセルでき、意図されたよりも速く武器をリロードすることが可能です。
+                    </p>
+
+                    <div class="quote-box">
+                        <b>感想</b><br><br>
+                        回収されたアサルトロン頭部は、Fallout シリーズの中でも特にユニークで、「ハイリスク・ハイリターン」を体現した武器の一つです。<br>
+                        <br>
+                        <b>最大火力のロマン:</b>
+                        リロードを繰り返してチャージを最大まで溜めた時の一撃は、エネルギー兵器の中でもトップクラスの瞬間火力を誇ります。特に「クアッド」のレジェンダリー効果が付いた場合、その威力はさらに跳ね上がり、ボス戦での切り札になり得ます。ただ・・・ロマンしかありませんが…。<br>
+                        <br>
+                        <b>被曝という代償:</b>
+                        発射するたびに放射能ダメージを受けるという強烈なデメリットは、この武器が単なる道具ではなく、破損したロボットのパーツを無理やり武器に転用しているという設定を見事に表現しています。<br>
+                        <br>
+                        <b>不気味な外見:</b>
+                        切断されたアサルトロンの頭部をそのまま手持ち武器として使うビジュアルは、狂気と実用性が入り混じったウェイストランドらしいデザインであり、一人称視点で装備した時のインパクトは絶大です。
+                    </div>
+
+                    <img src="./images/note/232/3.webp" class="article-image" alt="First Person View">
+
+                    <div
+                        style="margin-top: 30px; border-top: 1px solid #444; padding-top: 10px; font-size: 0.8em; color: #888;">
+                        <div style="margin-bottom: 10px;">
+                            TAGS: <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Fallout76</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Fallout4</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Weapon</span>
+                        </div>
+                        This article uses material from the “Recovered Assaultron Head” (Endor?) article on the Fallout
+                        wiki at Fandom and is
+                        licensed under the Creative Commons Attribution-Share Alike License.
+                    </div>
+
+        </main>
+    </div>
+
+
+        <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            // ローカルには自分が「押したかどうか(true/false)」だけを記録
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+            // ボタン連打防止のため一時的に無効化
+            btn.disabled = true;
+
+            if (isLiked) {
+                // いいね解除 (-1)
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                // いいね！ (+1)
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+            
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        // ページ読み込み時にデータベースから現在の総いいね数を取得して表示
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+                // DBから現在のカウントを取得
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    // まだ誰もいいねしていない（行がない）場合
+                    count = 0;
+                }
+
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>スローカム・ジョー [企業] | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">スローカム・ジョー [企業]</h3>
+            <img src="images/note_extracted/n15870dae83aa_img_1.png" alt="スローカム・ジョー [企業]">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n15870dae83aa" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>スローカム・ジョー [企業]</h1>
+            <div class="date">DATE: 2026/2/2</div>
+            
+            <p name="e1cf59ad-6558-4f95-85ac-7cd6901dc617" id="e1cf59ad-6558-4f95-85ac-7cd6901dc617"><strong><a href="slocum-joe.html" class="auto-link">スローカム・ジョー</a>は、マサチューセッツ州モールデンに拠点を置いていた、戦前のコーヒーとドーナツの企業です。</strong></p><hr name="13229afd-2da8-4c8e-ad01-be2cd11da928" id="13229afd-2da8-4c8e-ad01-be2cd11da928"><h2 name="23696c4b-1de2-490e-8ac7-1e68ab871592" id="23696c4b-1de2-490e-8ac7-1e68ab871592">基本データ</h2><p name="2dba42ae-10d3-4053-8bf6-ed90d3be95eb" id="2dba42ae-10d3-4053-8bf6-ed90d3be95eb">業界は飲食業です。<br>主な製品には、コーヒー、ドーナツ、および<strong>スローカムのバズバイト</strong>があります。<br>主な活動拠点はアメリカ合衆国で、モールデンに企業本部を置いていました。</p><hr name="d2683449-4dbd-4d92-ae9e-f4dc1e3f6b9e" id="d2683449-4dbd-4d92-ae9e-f4dc1e3f6b9e"><h2 name="903f36a3-73bd-4b93-9603-2251aa8cd9c6" id="903f36a3-73bd-4b93-9603-2251aa8cd9c6">背景</h2><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_2.png" alt="" width="620" height="196"><div class="note-figcaption"></div></div><p name="475d2bfb-0dbe-4973-a245-53f9b09b2506" id="475d2bfb-0dbe-4973-a245-53f9b09b2506"><strong>スローカム</strong>は、「ジョー（コーヒー）」と「ドーナツ」の2点に焦点を当てていました。<br>提供される食品の多くが1日の推奨炭水化物量や脂肪量を超えており、不健康であったにもかかわらず、このチェーンは驚異的な人気を維持していました。<br>その人気は、レキシントンにある第38号店のように、国防情報局（DIA）の施設を隠すための隠れみのとして、あえて客を遠ざけようとしていた店舗でさえ、客を追い払うのに苦労したほどでした。</p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_3.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><p name="8899a25e-dd73-4bca-8c3d-77e3b946a6ba" id="8899a25e-dd73-4bca-8c3d-77e3b946a6ba">同社のコーヒーは、一部の人々（料理評論家のグレン・ラモスなど）からは、古くて酸味が強すぎると評されていました。<br>また、価格も非常に高価で、コーヒー1杯が28ドル、大きなゼリードーナツとセットで購入すると30ドルもしました。</p><p name="2c65e833-bf52-4b96-a676-b5a986e7ac34" id="2c65e833-bf52-4b96-a676-b5a986e7ac34"><strong>スローカム</strong>は常に競合の一歩先を行こうとしており、コーヒーを熱いまま保ち、ドーナツを新鮮に保つという課題の解決に取り組んでいました。<br>その回答が<strong>スローカムのバズバイト</strong>でした。<br>これは熱いコーヒーが詰まった美味しいドーナツで、熱さを維持するために化学的な保存処理が施されていましたが、消費者に三度熱傷を負わせる確率が90%もありました。<br>このため、当局によって流通させるには危険すぎると判断されました。</p><p name="573b2f55-3f36-45ee-9740-92bbc66631ca" id="573b2f55-3f36-45ee-9740-92bbc66631ca">最終戦争後、生存者たちにとっての<strong><a href="slocum-joe.html" class="auto-link">スローカム・ジョー</a></strong>の遺産は様々です。<br>地元のコーヒーショップが失われたことでコミュニティが失われたことを嘆く者もいれば、価格が高すぎると罵り、それらがなくなったことを喜ぶ者もいました。</p><p name="d2750f86-1975-474c-8ac1-2b9d8b937ed0" id="d2750f86-1975-474c-8ac1-2b9d8b937ed0">同社のマスコットは<strong>ドウ・ボーイ</strong>で、ラジオや印刷広告に登場していました。</p><hr name="a8d3e505-8d36-482c-92f7-06335e65671e" id="a8d3e505-8d36-482c-92f7-06335e65671e"><h2 name="ed8b9a98-9466-4b93-bc44-0d55d8b193b9" id="ed8b9a98-9466-4b93-bc44-0d55d8b193b9">製品および関連アイテム</h2><p name="fb106cd4-1604-437e-b1ac-6538cdee63a3" id="fb106cd4-1604-437e-b1ac-6538cdee63a3"><strong>スローカムのバズバイト</strong></p><p name="feeec016-e816-475b-ad52-2ac7bedaf93a" id="feeec016-e816-475b-ad52-2ac7bedaf93a"><strong>コーヒー</strong></p><p name="4cc417d6-e571-47ad-916c-b0920f254aa7" id="4cc417d6-e571-47ad-916c-b0920f254aa7"><strong>ドーナツ</strong></p><p name="6933fc72-4322-4047-aa5d-4210a82e1371" id="6933fc72-4322-4047-aa5d-4210a82e1371"><strong>カプチーノ</strong></p><p name="b214ff77-4786-4a1e-bfb9-7ac037f78261" id="b214ff77-4786-4a1e-bfb9-7ac037f78261"><strong>コーヒー・マティーニ</strong></p><p name="81897ff5-afb8-440f-847f-a198611f2d7b" id="81897ff5-afb8-440f-847f-a198611f2d7b"><strong>ダブル・エスプレッソ</strong></p><p name="b0acfd1b-b7d7-4dc6-9d71-221431820bf5" id="b0acfd1b-b7d7-4dc6-9d71-221431820bf5"><strong>新鮮なコーヒー</strong></p><p name="351859cf-d6b9-4bf4-b134-e95bbb7e8a2b" id="351859cf-d6b9-4bf4-b134-e95bbb7e8a2b"><strong>アイリッシュ・コーヒー</strong></p><p name="86f9f702-a2a8-49f8-991e-0edc199f1dde" id="86f9f702-a2a8-49f8-991e-0edc199f1dde"><strong>ジャマイカ・コーヒー</strong></p><p name="a56db9d7-907a-4455-a8d3-b7b261c47b0f" id="a56db9d7-907a-4455-a8d3-b7b261c47b0f"><strong>ケンタッキー・コーヒー</strong></p><p name="bc5d2833-9ad4-4da7-a9cc-4d160b3254e3" id="bc5d2833-9ad4-4da7-a9cc-4d160b3254e3"><strong>オーバー・ザ・ムーン</strong></p><p name="ef0e793e-ebf7-4836-b801-6952ab396a88" id="ef0e793e-ebf7-4836-b801-6952ab396a88"><strong>クアンタム・カフェネーター</strong></p><p name="e1cce3c0-a8ff-43fa-8330-d82c0994fddb" id="e1cce3c0-a8ff-43fa-8330-d82c0994fddb"><strong>アッシュ・ブロッサム・ティー</strong></p><p name="e08ca7ce-8689-41f9-a828-04927a5d84e8" id="e08ca7ce-8689-41f9-a828-04927a5d84e8"><strong>ブラッドリーフ・ティー</strong></p><p name="a185630b-65f2-401b-ad13-ca93348dd875" id="a185630b-65f2-401b-ad13-ca93348dd875"><strong>ハブフラワー・ティー</strong></p><p name="957f034f-2e35-439a-bfd1-f91c16f13450" id="957f034f-2e35-439a-bfd1-f91c16f13450"><strong>マットフルーツの葉のティー</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_4.png" alt="" width="620" height="446"><div class="note-figcaption"></div></div><p name="3e01cf36-c7e0-4742-acfb-cd0302548024" id="3e01cf36-c7e0-4742-acfb-cd0302548024"><strong>リンゴ入りドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_5.png" alt="" width="620" height="496"><div class="note-figcaption"></div></div><p name="45762c74-43c2-4250-a53c-b08781c526b8" id="45762c74-43c2-4250-a53c-b08781c526b8"><strong>アトミック・オレンジ・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_6.png" alt="" width="620" height="479"><div class="note-figcaption"></div></div><p name="48a7ae36-e149-4484-8daa-34912cb544d6" id="48a7ae36-e149-4484-8daa-34912cb544d6"><strong>ブルーベリー・ブラスト・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_7.png" alt="" width="620" height="445"><div class="note-figcaption"></div></div><p name="65af18ba-1307-4806-ac91-df694a0de019" id="65af18ba-1307-4806-ac91-df694a0de019"><strong>ボストン・クリーム・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_8.png" alt="" width="620" height="299"><div class="note-figcaption"></div></div><p name="9dbf5bed-d05d-4add-9591-8653131b09d8" id="9dbf5bed-d05d-4add-9591-8653131b09d8"><strong>チョコレート・バー・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_9.png" alt="" width="620" height="463"><div class="note-figcaption"></div></div><p name="b3a480ca-591b-405b-ae0e-de9abf9faf4d" id="b3a480ca-591b-405b-ae0e-de9abf9faf4d"><strong>チョコ・グレーズ・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_10.png" alt="" width="620" height="463"><div class="note-figcaption"></div></div><p name="343b3612-800f-4327-87d5-d68f99daa79e" id="343b3612-800f-4327-87d5-d68f99daa79e"><strong>クラシック・グレーズ・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_11.png" alt="" width="611" height="622"><div class="note-figcaption"></div></div><p name="aefd72a0-a174-439a-864d-d57fbfcb01cd" id="aefd72a0-a174-439a-864d-d57fbfcb01cd"><strong>クラシック・スイートロール</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_12.png" alt="" width="620" height="463"><div class="note-figcaption"></div></div><p name="2fdd9444-b8d0-42d0-bc0c-1777f94e4c25" id="2fdd9444-b8d0-42d0-bc0c-1777f94e4c25"><strong>ディーザーのレモンケーキ・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_13.png" alt="" width="620" height="484"><div class="note-figcaption"></div></div><p name="2b2f6706-c382-467a-99eb-0eb09a812609" id="2b2f6706-c382-467a-99eb-0eb09a812609"><strong>ファッジ・フュージョン・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_14.png" alt="" width="620" height="491"><div class="note-figcaption"></div></div><p name="f6b496c6-4629-4080-83b3-2e2fdc2aefad" id="f6b496c6-4629-4080-83b3-2e2fdc2aefad"><strong>マジェスティック・メープル・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_15.png" alt="" width="620" height="273"><div class="note-figcaption"></div></div><p name="c4d97290-0a7d-44a5-9fc2-11592b7f16b2" id="c4d97290-0a7d-44a5-9fc2-11592b7f16b2"><strong>メープル・バー・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_16.png" alt="" width="620" height="450"><div class="note-figcaption"></div></div><p name="aa36ee44-42f9-40ad-afb0-34be3bb99e88" id="aa36ee44-42f9-40ad-afb0-34be3bb99e88"><strong>マットフルーツ入りドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_17.png" alt="" width="620" height="463"><div class="note-figcaption"></div></div><p name="99a40d0d-b64b-4282-aeba-e6e1ce3e0cda" id="99a40d0d-b64b-4282-aeba-e6e1ce3e0cda"><strong>オールド・グローリー・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_18.png" alt="" width="620" height="281"><div class="note-figcaption"></div></div><p name="a0d457fe-ddb7-4a73-b7df-9d841b128410" id="a0d457fe-ddb7-4a73-b7df-9d841b128410"><strong>ピンク・スプリンクル・バー・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_19.png" alt="" width="620" height="474"><div class="note-figcaption"></div></div><p name="ba10abd7-31a0-4942-b7ed-f821df829fdd" id="ba10abd7-31a0-4942-b7ed-f821df829fdd"><strong>ピンク・スプリンクル・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_20.png" alt="" width="620" height="473"><div class="note-figcaption"></div></div><p name="1a7317d1-9214-43b6-a86b-be575561b704" id="1a7317d1-9214-43b6-a86b-be575561b704"><strong>パウダー・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_21.png" alt="" width="620" height="473"><div class="note-figcaption"></div></div><p name="a67767bf-76c3-4361-8d67-af1fd3ed738b" id="a67767bf-76c3-4361-8d67-af1fd3ed738b"><strong>パワー・ピスタチオ・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_22.png" alt="" width="620" height="455"><div class="note-figcaption"></div></div><p name="b107f703-f157-40c0-8968-5d4ad38c01bd" id="b107f703-f157-40c0-8968-5d4ad38c01bd"><strong>パンプキン・スパイス・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_23.png" alt="" width="620" height="473"><div class="note-figcaption"></div></div><p name="cb30c5d1-613a-4834-81ba-df097647c694" id="cb30c5d1-613a-4834-81ba-df097647c694"><strong>クアンタム・クランチ・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_24.png" alt="" width="620" height="464"><div class="note-figcaption"></div></div><p name="8a388c44-0b69-46a8-96db-e4e8cdbd5378" id="8a388c44-0b69-46a8-96db-e4e8cdbd5378"><strong>レインボー・ドーナツ</strong></p><p name="9e084958-cbf0-481e-be9a-dd3795499b14" id="9e084958-cbf0-481e-be9a-dd3795499b14"><strong>ランダムな12個入りのドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_25.png" alt="" width="620" height="452"><div class="note-figcaption"></div></div><p name="c4a14ecd-4709-41b3-86f2-ca3ec09765eb" id="c4a14ecd-4709-41b3-86f2-ca3ec09765eb"><strong>シズリン・ストロベリー・ドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_26.png" alt="" width="620" height="531"><div class="note-figcaption"></div></div><p name="4e7007bb-9735-4b62-89a1-b206d982d941" id="4e7007bb-9735-4b62-89a1-b206d982d941"><strong>タールベリー入りドーナツ</strong></p><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_27.png" alt="" width="620" height="605"><div class="note-figcaption"></div></div><p name="8b9ad5e3-de64-4ec7-99d6-b2de5639e572" id="8b9ad5e3-de64-4ec7-99d6-b2de5639e572"><strong>ドーナツミックス</strong></p><hr name="da05c567-24fe-441e-b1a8-88c7fd47d787" id="da05c567-24fe-441e-b1a8-88c7fd47d787"><h2 name="936e12cb-9dbd-46c3-944d-0b08905e890d" id="936e12cb-9dbd-46c3-944d-0b08905e890d">場所</h2><p name="8b0b42e6-a0c0-4179-9429-cf95b49337a3" id="8b0b42e6-a0c0-4179-9429-cf95b49337a3">アパラチアにおいては、以下の場所に店舗が存在します。<br><strong>ワトガ・ショッピングプラザ<br>モーガンタウン</strong>（2箇所のロケーション） <br><strong>チャールストン</strong></p><hr name="f381177c-4538-4783-bda0-c28685c7678d" id="f381177c-4538-4783-bda0-c28685c7678d"><h2 name="05428927-6512-4722-983d-e27809f1c07a" id="05428927-6512-4722-983d-e27809f1c07a">舞台裏</h2><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_28.jpg" alt="" width="620" height="717"><div class="note-figcaption"></div></div><p name="2f885a0d-aee2-431d-99f4-ef7ac7b0512c" id="2f885a0d-aee2-431d-99f4-ef7ac7b0512c"><strong><a href="slocum-joe.html" class="auto-link">スローカム・ジョー</a></strong>は、1950年にマサチューセッツ州クインシーで設立された実在の企業、ダンキンドーナツをモデルにしています。<br>ダンキンドーナツも同様に、ボストン近郊のマサチューセッツ州カントンに本社を置いています。<br>また、「スローカムのバズバイト」のレシピは『Fallout: <a href="the-vault-dweller-s-official-cookbook.html" class="auto-link">The Vault Dweller's Official Cookbook</a>』にも掲載されています。</p><hr name="b515e296-1c0d-4342-ae6d-31893b17584b" id="b515e296-1c0d-4342-ae6d-31893b17584b"><h2 name="8bf6a045-9609-4b14-9198-b37e4105841c" id="8bf6a045-9609-4b14-9198-b37e4105841c">登場作品</h2><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_29.png" alt="" width="620" height="868"><div class="note-figcaption"></div></div><p name="9e18fbc6-a474-4bfa-bcc0-7012a7266b89" id="9e18fbc6-a474-4bfa-bcc0-7012a7266b89"><strong><a href="slocum-joe.html" class="auto-link">スローカム・ジョー</a></strong> は <strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong> および <strong>Fallout 76</strong> に登場します。</p><hr name="40c91142-2d29-42e2-bd80-e817a338b942" id="40c91142-2d29-42e2-bd80-e817a338b942"><h2 name="1fb3b251-2537-42c6-98e0-13e2e6d1a09b" id="1fb3b251-2537-42c6-98e0-13e2e6d1a09b"><a href="pirate-broadcast.html" class="auto-link">海賊放送</a>の広告</h2><div class="note-figure"><blockquote><p name="d6924ab8-c1a2-4f79-9554-b523d85aa6f3" id="d6924ab8-c1a2-4f79-9554-b523d85aa6f3">「皆さん、おはようございます！ 今朝はお疲れですか？ 朝型人間ではありませんか？ それとも、一日を始めるための良い飲み物を探しているだけでしょうか？ さあ、<strong><a href="slocum-joe.html" class="auto-link">スローカム・ジョー</a></strong>に来るのが正解です！」</p></blockquote><div class="note-figcaption"></div></div><hr name="26a2f759-5076-45c5-92d0-7ba416610212" id="26a2f759-5076-45c5-92d0-7ba416610212"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_30.png" alt="" width="620" height="620"><div class="note-figcaption"><b>狂気的な製品開発</b>: 90%の確率で火傷を負わせる「バズバイト」を美味しい新製品として売り出そうとする姿勢は、Fallout世界の企業倫理の欠如を象徴していますね。<br><br><b>ハイパーインフレの再確認</b>: グレン・ラモスのレビューでも触れられていた「コーヒー1杯28ドル」という価格が、公式の企業背景としても裏付けられました。<br><br><b>膨大なメニュー</b>: ドーナツの種類の多さは、戦前のアメリカがいかに「不健康な豊かさ」に溢れていたかを感じさせます。<br><br><div class="note-figure"><img src="images/note_extracted/n15870dae83aa_img_31.png" alt="" width="620" height="589"><div class="note-figcaption">
+</div>
+
+<p name="6613f137-7c17-4d70-bc78-dec63fed6a50" id="6613f137-7c17-4d70-bc78-dec63fed6a50">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

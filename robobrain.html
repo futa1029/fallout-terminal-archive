@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ロボブレイン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ロボブレイン</h3>
+            <img src="images/note_extracted/nc9b3e448c053_img_1.png" alt="ロボブレイン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nc9b3e448c053" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ロボブレイン</h1>
+            <div class="date">DATE: 2026/1/26</div>
+            
+            <p name="cfe73fba-ef50-4ba5-b874-5714b754330e" id="cfe73fba-ef50-4ba5-b874-5714b754330e"><strong>「逃げられると思っているのか？ 私はお前を殺そうとしているんだぞ、知っての通りな。」</strong></p><p name="a0447492-8750-4c5e-902e-1bac9d60cca6" id="a0447492-8750-4c5e-902e-1bac9d60cca6">ロボブレインは、Falloutシリーズ全編にわたって登場する、次世代の「ブレイン・ボット」タイプのサイボーグです。</p><p name="b533b39a-99f7-45c1-b79f-ba9491014cee" id="b533b39a-99f7-45c1-b79f-ba9491014cee">ロブコ・インダストリーズ（RobCo Industries）の間接的な支援を受け、ゼネラル・アトミックス・インターナショナル（General Atomics International）とアメリカ陸軍によって開発されました。<br>ロボブレインは、軍事および民間クライアントが使用する多目的プラットフォームとして、ゼロから設計されました。<br>中央制御・処理ユニットが人工的な模造品ではなく<strong>実際の本物の脳</strong>であるため、通常のロボットよりも柔軟で強力です。<br>堅牢な全地形対応の履帯式シャシーと強力な武装を組み合わせたロボブレインは、戦闘ロボット工学における新たな革命の最前線に立っていました。</p><hr name="29367369-24a4-41f1-862f-1670b8ab385a" id="29367369-24a4-41f1-862f-1670b8ab385a"><h2 name="24f7171f-7739-4513-b064-3d78a61f6cd2" id="24f7171f-7739-4513-b064-3d78a61f6cd2">背景</h2><p name="e9271e17-d79b-4c5c-abc8-394cb5753ae0" id="e9271e17-d79b-4c5c-abc8-394cb5753ae0">ロボブレインのオリジナルモデルは、大戦の少し前に、バート・リッグス博士をプロジェクトリーダーの一人とするゼネラル・アトミックスの研究チームによって開発されました。<br>ロボブレインは極秘の軍事プロジェクトであり、一般市民の目から遠ざけられた施設で進行していました。<br>一部の研究は、シエラ陸軍補給廠のように完全に軍の管理下にある基地で行われていました。<br>また、東ボストンのロブコ・セールス＆サービスセンターの下に建設された「アメリカ合衆国ロボティクス技術施設 RB-2851」のように、軍民複合体の一部として人目に付かない場所で運営されていたものもありました。<br>ゼネラル・アトミックス、ロブコ、アメリカ陸軍ロボティクス部門によって共同運営されていたこの施設は厳格に区分けされており、駐屯していた兵士のほとんどは、その内部で行われている活動の内容を知らされていませんでした。</p><p name="8bc1c431-3b99-41a4-999d-ed818adc9dbc" id="8bc1c431-3b99-41a4-999d-ed818adc9dbc">この機密性は、生身の脳を制御およびデータ保存ユニットとして使用し、人間と機械の境界を曖昧にしながらパフォーマンスを飛躍的に向上させるという、<strong>生物学的成分と機械的成分の革命的な融合</strong>によって必要とされたものでした。<br>閉鎖されるまで、シエラ陸軍補給廠はロボブレイン専用に設計された新しい種類のサイバネティック脳の開発を実験しており、RB-2851は既存のソリューションの製造と反復に焦点を当てていました。<br>最初の脳は霊長類（主にチンパンジー）から調達されましたが、すぐに人間の脳の方が優れていることが証明されました。<br>その多くは死刑囚、軍事捕虜、その他の不運な被験者から採取されました。</p><p name="a27924b2-bef0-443c-ab6b-174d3c1aa3b4" id="a27924b2-bef0-443c-ab6b-174d3c1aa3b4">そのプロセスは、単に人間から脳を取り出し、バイオメディカル・ゲルの中に入れるほど単純なものではありませんでした。<br>ロボブレインは、自由な思考や個性を排除した、<strong>完璧に従順な兵士</strong>であることが求められていました。<br>各候補者は、所望の意思決定能力の向上を得つつ、前述の欠陥を排除できる個体を得るために慎重に選別されました。<br>候補者は軍事および民間の刑務所から選ばれ、脳の摘出に耐えうる高い知能と十分な体格を持つ成人に焦点が当てられました。<br>低知能、精神疾患、または全体的な脳の健康状態が悪い場合は通常「処分」となり、適格な候補者には体力をつける時間が与えられた後に脳が摘出されました。<br>ドナーは機械に固定され、脊髄と体の他の部分との接続がすべて切断された後、頭蓋骨が開けられ、脊髄とともに脳が抽出され、バイオメディカル・ゲルが入った特別に用意されたジャーに移されました。<br>摘出に伴うトラウマのため、さらなる処理が必要でした。<br>脳の記憶センターは技術者によって洗浄され、それぞれが訓練を受けた心理学者による検査を受けて生存可能性が確認されました。<br>一部の脳は、記憶を消去するために使用される<strong>CODEコンディショニング・プロトコル</strong>に抵抗し、元の個性が残ってしまうことがあり、その場合は処分されました。<br>また、抽出中に脳が損傷し、即興のロボトミー状態（および処分）になることもありました。<br>理想的な結果は、前世の記憶がないか、最終的な挿入、組み立て、およびフィールド任務への割り当てに適格であると判断されるほど反応が良い状態でした。<br>ポイント・ルックアウトのセント・オービン医療施設では、人間の脳を抽出・分離するプロセスの改善に関する研究が行われていました。</p><p name="d43a6d03-30b4-4df6-8eaa-ed72cce541b9" id="d43a6d03-30b4-4df6-8eaa-ed72cce541b9">ロボブレインは史上最も進んだサイボーグの一つと考えられていましたが、完全な量産体制に達することはありませんでした。<br>適切にCODE調整されたロボブレインであっても、<strong>攻撃性や暴力性</strong>に関する根強い問題が発生し、ゼネラル・アトミックスにとって大きな問題となりました。<br>産業規模での稼働が不可能な脳抽出器の故障や、シャシーの製造に使用されていた未熟な技術の欠陥により、試用運用は限定的なものに終わりました。<br>RB-2851だけで3つのバッチを完了させ、さらに2つが計画されていました。<br>各バッチでは、エネルギー効率の向上、脳の寿命維持、視覚皮質の接続改善による運動スキルと知覚の強化、戦術的戦闘能力など、優れたアップグレードが施されました。</p><p name="7ebe2c41-bd01-47b1-9e28-b3ef2cd142ad" id="7ebe2c41-bd01-47b1-9e28-b3ef2cd142ad">戦闘可能と判断されたユニットは、セキュリティや清掃業務のためにアメリカ国内の選定された場所に暫定的に配置されました。<br>これには、西海岸のシエラ陸軍補給廠、マリポーサ軍事基地、ザ・グロウ、および東海岸のその他の場所が含まれます。<br>ヴォルト・テック社（Vault-Tec Corporation）のように、政府と密接に関係のある一部の民間企業には、セキュリティ目的で完成したロボブレインが限定数提供されました。</p><div class="note-figure"><img src="images/note_extracted/nc9b3e448c053_img_2.png" alt="" width="620" height="693"><div class="note-figcaption"></div></div><hr name="713b24bd-2dd2-4a73-8702-26559390c9b3" id="713b24bd-2dd2-4a73-8702-26559390c9b3"><h2 name="3901ee0a-ad67-485c-a1d8-a15de59fea01" id="3901ee0a-ad67-485c-a1d8-a15de59fea01">設計</h2><p name="d69a1dd7-f4a0-4c01-be66-61560b8d4976" id="d69a1dd7-f4a0-4c01-be66-61560b8d4976">ロボブレインのシャシーは、柔軟または固定のマウントを介して取り付けられた、デュアル40馬力モーターで駆動する2つの連続履帯によって移動する、大きくてかさばる円筒形をしています。<br>胴体は重装甲で覆われ、内部発電機、センサー、および貯蔵庫が含まれています。<br>中央処理装置である<strong>脳</strong>は、シャシーの上部に取り付けられたドーム内に配置されています。<br>胴体の側面からは一対の柔軟なエクステンダーが伸びており、対向する爪を持つマニピュレーターを備えています。<br>非常に精密なサーボモーターと回転機構により、人間用の武器（通常はアサルトライフルやサブマシンガン）や人間用に設計されたデバイスの操作を含め、周囲の環境を極めて精密に操作することが可能です。<br>シャシーには堅牢な監視システムも含まれています。</p><p name="6da5e48d-ba68-41e4-8e85-d7f6bccdaa86" id="6da5e48d-ba68-41e4-8e85-d7f6bccdaa86">脳を収めたドームは、脳を保存するためのバイオメディカル・ゲルで満たされており、装甲ガラスによって保護されています。<br>しかし、それでも損傷を受ける可能性があり、脳と機械の接続の遮断、脳内の活動の妨害、または減圧や内容物の漏洩を引き起こすことがあり、これらは専門のメンテナンス要員がいなければ深刻な問題となります。<br>適切な密閉が維持されていれば、内部の脳は数世紀にわたって持続することが期待できます。<br>メインシャシーは非常に頑丈で、油圧機器、リレー、およびその他の重要な計器（オートジャイロシーケンサー、拘束コイルなど）を保護するために装甲板が取り付けられています。<br>一次電源もシェル内に収められており、メイン電源が変動した際に作動する予備電源システムも備えています。<br>より高度なロボブレインは、十分な時間があれば完全に自己修復することが可能でした。<br>船体には、周囲の高解像度画像を提供するセンサーも含まれています。<br>これらは非常に複雑で、イメージングスキャナー、バックアップ赤外線センサー、および自動トラッキング機能を備えています。<br>ロボブレインは、精度を高めるためにターゲットをロックオンすることもできます。</p><p name="04cf4fdf-aa5d-44bb-ad1e-ce154c6beb5d" id="04cf4fdf-aa5d-44bb-ad1e-ce154c6beb5d">最後に、コントローラーとの通信を簡素化するために、ロボブレインにはオーディオレシーバーと音声モジュールが装備されており、通常のあらゆる人間の声を正確に受信、解釈、模倣することができます。<br>この技術はミスター・ハンディユニットに採用されたことで成熟しましたが、依然として癖が残っていました。</p><div class="note-figure"><img src="images/note_extracted/nc9b3e448c053_img_3.png" alt="" width="355" height="400"><div class="note-figcaption"></div></div><hr name="42884c22-1c4d-41e1-ad4e-1f30b9c59964" id="42884c22-1c4d-41e1-ad4e-1f30b9c59964"><h2 name="2ab4de2b-f190-4448-85b0-0e6fd4d5d5b4" id="2ab4de2b-f190-4448-85b0-0e6fd4d5d5b4">性格</h2><p name="1759b65f-03d6-4611-ac19-6974753d019b" id="1759b65f-03d6-4611-ac19-6974753d019b">適切に処理されたロボブレインには、個性が存在しないはずでした。<br>摘出プロセスによって個性の保持が妨げられ、その後のCODEによる調整と神経抑制装置の設置によって、理論上は従順さと恒久的な記憶の除去が保証されていました。<br>実際には、人間の脳は消去に対して耐性があることが証明され、<strong>自己意識を維持しようと固執</strong>しました。<br>定期的な消去とメンテナンスが行われないと、ロボブレインは代わりの個性を形成し、それは通常、暴力的で犯罪的な狂気の類でした。<br>ごく少数ですが、より複雑な個性を発達させ、高度な思考プロセスが可能な個体も現れました。</p><p name="29bed7d3-7b5c-4ffb-9ae3-ab135cebfa56" id="29bed7d3-7b5c-4ffb-9ae3-ab135cebfa56">しかし、戦闘用ロボット工学においては欠陥とされたこの特性が、特定の極端な生命保存実験においては有用であることが判明しました。<br>ロバート・ハウスはこの変換を拒みましたが、マウント・デザート島のVault 118の建設に資金を提供した戦前の億万長者グループは、このアイデアを実行に移すことを選びました。<br>彼らの体は慎重に保存され、脳はVaultに配置された後期型のロボブレイン・シャシーにインストールされました。<br>ロボブレインの開発者の一人であるバート・リッグス博士は、ボイス・シンセサイザーを元の声を使うようにプログラムすることで、脳が持ち主の元の個性と精神を維持できるように試みました。<br>表面上は成功しましたが、ロバート・イ�ウスが恐れていた副作用はより微妙な形で現れました。<br>通常の症状は、反復的で妄想的な行動、現実からの切り離し、および知覚の歪みでした。</p><div class="note-figure"><img src="images/note_extracted/nc9b3e448c053_img_4.png" alt="" width="281" height="281"><div class="note-figcaption"></div></div><hr name="eab48928-f1ae-43c2-85d3-f0501df5cf07" id="eab48928-f1ae-43c2-85d3-f0501df5cf07"><h2 name="cc8a9da9-1c32-4e3f-a6ca-73a370e55a77" id="cc8a9da9-1c32-4e3f-a6ca-73a370e55a77">ソフトウェア</h2><p name="3146f572-427f-46e8-9bd0-0ed8afbce22f" id="3146f572-427f-46e8-9bd0-0ed8afbce22f">機能の配列は、搭載されているソフトウェアに大きく依存します。ほとんどのオンボードプログラムは、<strong>Sensors '76</strong> のように大戦直前の時代に遡ります。<br>その他のソフトウェア例には、<strong>Facility Maintenance v2.1</strong>、<strong>Movement v4.8b</strong>、<strong>Repair v0.8a</strong>、<strong>Pest Control v1.4</strong>、および<strong>Hearts v1.0</strong>（マリポーサ軍事基地に配備されたロボブレインにインストール）があります。<br>信頼性と長寿命はプログラマーにとっての主要な懸念事項であり、パフォーマンスと信頼性を向上させるために、メインのロボットOSは損傷したサブシステムからの機能を再ルーティングする仕組みを持っていました。<br>施設内のロボットを整理・調整するために、ゼネラル・アトミックスは通常、ロボットがマスターコンピューターにスレーブ化されるワイヤレス・ローカル・エリア・ネットワーク・マトリックスをセットアップしていました。</p><hr name="50b7177f-f01a-4152-97d2-bb60638acc62" id="50b7177f-f01a-4152-97d2-bb60638acc62"><div class="quote-box">
+<b>感想</b><br><br>
+ロボブレイン、Falloutの世界観における「科学の暴走」と「狂気」を体現したような存在ですね。<br><br><b>生体部品の戦慄</b>: 単なるAIではなく、犯罪者や捕虜の「本物の脳」をパーツとして使っているという設定のえぐみは、シリーズ屈指のダークな要素です。<br><br><b>拭いきれない人間性</b>: 記憶を消去してもなお、攻撃性や元の個性が滲み出てしまうという事実は、人間の精神がいかに強固であるかを示す皮肉なエピソードでもあります。<br><br><b>高度な多機能性</b>: 履帯による移動、精密なマニピュレーター、そして強力なレーザー。単なる警備用にとどまらないそのハイスペックぶりは、戦前の技術の極致を感じさせます。<br><br>Vault 118の億万長者たちのように、自らロボブレインになることを選んだ者たちの末路を知ると、永遠の命と引き換えに失ったものの大きさを考えさせられます。<br><br><div class="note-figure"><img src="images/note_extracted/nc9b3e448c053_img_5.png" alt="" width="620" height="866"><div class="note-figcaption">
+</div>
+
+<p name="c426a3d9-5ce0-4436-9a99-3ca0ae7576af" id="c426a3d9-5ce0-4436-9a99-3ca0ae7576af">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

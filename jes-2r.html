@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>JES-2R | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">JES-2R</h3>
+            <img src="images/note_extracted/n2c1dca30cc68_img_1.png" alt="JES-2R">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n2c1dca30cc68" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>JES-2R</h1>
+            <div class="date">DATE: 2025/11/17</div>
+            
+            <ul name="9ce380e6-0a67-4b7a-a733-ae1dc536b6cc" id="9ce380e6-0a67-4b7a-a733-ae1dc536b6cc"><li><p name="082e42f3-6ed2-4e47-a985-a17b9f5974a8" id="082e42f3-6ed2-4e47-a985-a17b9f5974a8">戦闘への関与: <br>このキャラクターは殺害することはできません。</p></li><li><p name="92ad7828-d5d2-488c-a55a-7b6ac60524f5" id="92ad7828-d5d2-488c-a55a-7b6ac60524f5">イベント開始:<br><a href="mischief-night.html" class="auto-link">Mischief Night</a> (2025年版) および <a href="mischief-night.html" class="auto-link">Mischief Night</a> (2019年版) のイベントを開始します。</p></li><li><p name="af51ea40-504d-4e31-b455-6bbcf9922524" id="af51ea40-504d-4e31-b455-6bbcf9922524">クエスト: <br><a href="mischief-night.html" class="auto-link">Mischief Night</a> (2025年版) で、JES-2RはVault Dwellersを率いて、ラピダン・キャンプでハロウィーンの騒乱を引き起こします。</p></li></ul><hr name="8099985b-6a57-4b90-a33c-7abcce27b17c" id="8099985b-6a57-4b90-a33c-7abcce27b17c"><h2 name="686722ca-4917-4d2b-9f4b-a6a07a19afdf" id="686722ca-4917-4d2b-9f4b-a6a07a19afdf">備考</h2><div class="note-figure"><img src="images/note_extracted/n2c1dca30cc68_img_2.png" alt="" width="620" height="349"><div class="note-figcaption">旧バージョン</div></div><ul name="956f90e0-4896-4845-8ebf-a882bc81f676" id="956f90e0-4896-4845-8ebf-a882bc81f676"><li><p name="70ca16e4-706b-4078-93c8-145d1e3d4f70" id="70ca16e4-706b-4078-93c8-145d1e3d4f70">名前の由来: <br>JES-2Rという名前は、「Jester（道化師）」という単語の省略形です。</p></li><li><p name="007c6a01-19b0-4234-88dd-ea765aff1d4a" id="007c6a01-19b0-4234-88dd-ea765aff1d4a">出現場所: <br>パッチ1.2.4.6以降、JES-2Rはフレディ・フィアーの恐怖の館で見つけることができます。</p></li><li><p name="e514a41d-c5f2-44ea-8d6f-3d2937afa08e" id="e514a41d-c5f2-44ea-8d6f-3d2937afa08e">外見の更新: <br>Milepost Zeroのリリースに伴い、JES-2Rには新しいユニークな外見が与えられました。</p></li></ul><hr name="89605779-1115-4779-a898-0f943960ce34" id="89605779-1115-4779-a898-0f943960ce34"><h2 name="094eac5c-a947-451c-b92a-b7a9ae7519d4" id="094eac5c-a947-451c-b92a-b7a9ae7519d4">制作裏話</h2><ul name="8dcac0a6-3421-4f07-aa95-9ae20b184a46" id="8dcac0a6-3421-4f07-aa95-9ae20b184a46"><li><p name="059fe869-4382-45c0-8f57-967a94dd943f" id="059fe869-4382-45c0-8f57-967a94dd943f">謎のビープ音: <br>JES-2Rの「謎のビープ音」は、ロシアの短波ラジオ信号「UVB-76」（「The Buzzer」としても知られる）の録音です。</p></li></ul><hr name="93e29a42-1b84-4483-a75d-8204314561dc" id="93e29a42-1b84-4483-a75d-8204314561dc"><div class="quote-box">
+<b>感想</b><br><br>
+この子普段はフレディ・フィアーの恐怖の館に居るんですよね。<br>知らない人もそこそこ居たはず。<br>私は外見が普段も変わったのは気づかなかったなぁ。<br><br>後JES-2Rという名前は、「Jester（道化師）」という単語の省略形というのも初耳でした。<br><br>なんか普段フレディ・フィアーの恐怖の館で出会って放送聞イ�と、短時間のバフが貰える事がある気がするんだけど気の所為なのかな?
+</div>
+
+<p name="42e5ef48-e1c2-4aae-af8d-0fe2e3d83a9a" id="42e5ef48-e1c2-4aae-af8d-0fe2e3d83a9a">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

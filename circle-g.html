@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サークルG | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">サークルG</h3>
+            <img src="images/note_extracted/n02974f9fc27e_img_1.png" alt="サークルG">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+            <div class="infobox-row"><span class="infobox-label">業界</span><span>弾薬</span></div>
+            <div class="infobox-row"><span class="infobox-label">主な製品</span><span>.308口径弾、.38口径弾、.44口径弾、.45口径弾、.50口径弾、10mm弾、5.56mm弾、7.62mm弾</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在地</span><span>アメリカ合衆国</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n02974f9fc27e" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>サークルG</h1>
+            <div class="date">DATE: 2026/1/8</div>
+            
+            <p name="ccdd7e1b-a75d-4c65-bf37-c9d802a9a0d6" id="ccdd7e1b-a75d-4c65-bf37-c9d802a9a0d6"><strong>サークルGは戦前の企業であり、弾薬の製造を行っていました。</strong></p><hr name="3e9d38ea-ee05-4674-bd8c-8d13282f81e2" id="3e9d38ea-ee05-4674-bd8c-8d13282f81e2"><h2 name="db970267-94de-4013-be2e-81532324d3ec" id="db970267-94de-4013-be2e-81532324d3ec">基本情報</h2><div class="note-figure"><blockquote><p name="1e3faad6-516a-47d0-adc9-ec22b6ff79e8" id="1e3faad6-516a-47d0-adc9-ec22b6ff79e8"><strong>「信頼性とストッピングパワーを求めるなら、サークルGの弾薬こそが正しい選択だ」</strong> — サークルG 弾薬箱</p></blockquote><div class="note-figcaption"></div></div><p name="2ad31d8a-7082-481e-b070-1b2244dfd26b" id="2ad31d8a-7082-481e-b070-1b2244dfd26b">サークルGは、戦前に存在した弾薬を専門に製造する企業でした。</p><hr name="f22c45b9-1dbc-4a2a-aa31-2c17c27d42f1" id="f22c45b9-1dbc-4a2a-aa31-2c17c27d42f1"><h2 name="d8abbe15-5d83-448a-93f6-94a758a64ce9" id="d8abbe15-5d83-448a-93f6-94a758a64ce9">背景</h2><div class="note-figure"><img src="images/note_extracted/n02974f9fc27e_img_2.png" alt="" width="329" height="493"><div class="note-figcaption"></div></div><p name="f9ae0f21-c4cc-4c76-aad4-48843b5135a3" id="f9ae0f21-c4cc-4c76-aad4-48843b5135a3">同社は多岐にわたる種類の弾薬を製造しており、そのラインナップには.308口径弾、.38口径弾、.44口径弾、.45口径弾、.50口径弾、10mm弾、5.56mm弾、そして7.62mm弾が含まれていました。<br>これらの製品は、その信頼性と高い制止力（ストッピングパワー）によって、当時の市場で選択されるべきブランドとして宣伝されていました。</p><hr name="6e3ae69f-e737-4d41-a60a-7f248d8e9135" id="6e3ae69f-e737-4d41-a60a-7f248d8e9135"><h2 name="55805f3b-9ec1-44e6-b246-464306b85b84" id="55805f3b-9ec1-44e6-b246-464306b85b84">登場作品</h2><h3 name="db8f9cfe-4335-4bba-bd8f-8eab6b343ce7" id="db8f9cfe-4335-4bba-bd8f-8eab6b343ce7"><br></h3><p name="a20b4153-d6bc-4de1-a6a5-76f4484f595d" id="a20b4153-d6bc-4de1-a6a5-76f4484f595d">サークルGの製品は、『Fallout 3』、『Fallout: New Vegas』、『<a href="fallout-4.html" class="auto-link">Fallout 4</a>』およびその追加コンテンツである「Nuka-World」、『Fallout 76』に登場します。</p><hr name="3ed38ea4-2f30-4b24-85d8-f52342a23ef0" id="3ed38ea4-2f30-4b24-85d8-f52342a23ef0"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n02974f9fc27e_img_3.png" alt="" width="512" height="512"><div class="note-figcaption">サークルGという企業は、ウェイストランドを旅する者にとって「最も身近でありながら、その実態があまり語られない背景の功労者」のような存在だと感じます。<br><br>彼らが製造した弾薬が、最終戦争から200年以上経過した今でも劣化することなく、当時の宣伝文句通りに「信頼性とストッピングパワー」を維持し続けている点は、戦前アメリカの工業技術の高さと、当時の社会がいかに日常的に武装化されていたかを無言で物語っています。<br>10mm弾から.50口径弾まで、あらゆる主要な口径を網羅しているその規模感からは、かつての巨大な軍需産業の片鱗を感じさせ、弾薬箱一つひとつに刻まれた企業ロゴが、Falloutの世界観にさらなるリアリティと厚みを与えているという印象を受けました。
+</div>
+
+<p name="1a0a472f-3311-4a09-ac3e-496e0bfb419e" id="1a0a472f-3311-4a09-ac3e-496e0bfb419e">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.　</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

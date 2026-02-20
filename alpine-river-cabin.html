@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アルパインリバー・キャビン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">アルパインリバー・キャビン</h3>
+            <img src="images/note_extracted/nd23e32ab612a_img_1.png" alt="アルパインリバー・キャビン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nd23e32ab612a" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>アルパインリバー・キャビン</h1>
+            <div class="date">DATE: 2025/11/3</div>
+            
+            <h3 name="472aeff2-7153-49ce-9b98-1d265e5699ef" id="472aeff2-7153-49ce-9b98-1d265e5699ef"><a href="fallout76.html" class="auto-link">Fallout76</a></h3><p name="a4c28e90-3dcd-40e4-8654-7eb8928fbfbf" id="a4c28e90-3dcd-40e4-8654-7eb8928fbfbf">アルパインリバー・キャビンは、アパラチアの森林地帯にあるロケーションです。</p><hr name="5b0dd9d4-e0ee-4457-aa92-5b108e175995" id="5b0dd9d4-e0ee-4457-aa92-5b108e175995"><h2 name="3b136b6e-2f21-41e4-b423-2b11091024a2" id="3b136b6e-2f21-41e4-b423-2b11091024a2">背景</h2><p name="438b48d8-c64d-41d0-aa0e-635d07138127" id="438b48d8-c64d-41d0-aa0e-635d07138127">ルート88からすぐのこのエリアは、最初は幽霊が出るように感じる場所です。<br>叫び声が聞こえ、時折地面が揺れ、キャビンの額縁がポルターガイストのように回転し、ドアがひとりでに閉まるのを見ることがあります。<br>しかし、これらの出来事はすべて、キャビンの南にあるツリーハウスの端末によって制御されています。<br>端末では、効果を個別に制御できるだけでなく、自動化されたシーケンスを実行することもできます。</p><hr name="29224201-accc-4a2b-a072-97fd984508bc" id="29224201-accc-4a2b-a072-97fd984508bc"><h2 name="215cb31c-68ff-411a-87cf-f35c5f0a3959" id="215cb31c-68ff-411a-87cf-f35c5f0a3959">レイアウト</h2><div class="note-figure"><img src="images/note_extracted/nd23e32ab612a_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="3227ab69-45bb-4624-a067-8be4ea7b708e" id="3227ab69-45bb-4624-a067-8be4ea7b708e">メインエリアには、間に合わせの焚き火台を囲むように4つのキャビンがあります。<br>最西端のキャビンの北には、高くなったピクニックエリアがあります。<br>ピクニックエリアには、グリル、ひっくり返ったテーブル、そしていくつかの小さなものが置かれた直立したテーブルがあります。<br>西側のキャビンの間の小道には、屋根付きの掲示板があります。<br>その小道は、掲示板から見える離れに通じています。<br>南西のキャビンは最も大きく、各キャビンにはスーツケースやその他の様々な検索可能なコンテナがあります。</p><p name="4c804666-4a37-4ba9-aa1e-22c24377facc" id="4c804666-4a37-4ba9-aa1e-22c24377facc">この小さな小屋群では、時折叫び声が聞こえ、地面が揺れます。<br>小屋の額縁は回転し、動きます。<br>プレイヤーキャラクターや敵との接触がなくても、ドアがひとりでに閉まるのが見え、聞こえます。<br>ドアは開いた直後でもひとりでに閉まる傾向があります。<br>近くの丘の上には、端末のあるツリーハウスがあります。<br>現在は自動モードに設定されていますが、個別に異なるモードを選択できます。<br>これにより、より多くの敵や野生動物を小屋に引き寄せたり、ポルターガイストを発生させたりすることができます。</p><div class="note-figure"><img src="images/note_extracted/nd23e32ab612a_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/nd23e32ab612a_img_4.png" alt="" width="620" height="480"><div class="note-figcaption"></div></div><hr name="051772c3-ef30-4ac7-a4b0-fe23e787b680" id="051772c3-ef30-4ac7-a4b0-fe23e787b680"><h2 name="fc471033-1fe9-45d8-be5a-1075b89d0d4e" id="fc471033-1fe9-45d8-be5a-1075b89d0d4e">注目すべき戦利品</h2><h3 name="46c20955-3db4-4c7d-9a1b-fc350fc15a01" id="46c20955-3db4-4c7d-9a1b-fc350fc15a01">アルパインリバーキャビンズの苦情- <a href="holotape.html" class="auto-link">ホロテープ</a></h3><p name="7cdbc49f-ea1e-4a53-b436-f2a2eb173a63" id="7cdbc49f-ea1e-4a53-b436-f2a2eb173a63">北西の小屋内、入り口近く、灰皿とタバコ2本の隣にあるテーブルの上。<br>戦前のゲイブ・ラムゼスによるポルターガイストに対する苦情。</p><pre name="b4521ee7-eeb2-4007-920b-c00b81f27d00" id="b4521ee7-eeb2-4007-920b-c00b81f27d00"><code>ゲイブ・ラムゼス：
+こんにちは、ゲイブ・ラムゼスです。
+このメッセージは、公園・レクリエーション局に、
+家族と私が今週アルパイン・リバー・キャビンズで経験したひどい出来事を伝えるために残します！ 
+私たちは皆、荒野での素敵な週末の逃避行を楽しみにしていたのに、キャビンの絶え間ない揺れ、
+げっ歯類の大群、そして血の凍るような叫び声のせいで、以前よりストレスが溜まってしまいました！
+息子たちは壁の絵のフレームが回転しているのを見たと大騒ぎでした！ 
+私の税金が皆さんの給料を払っているんですから、補償を要求しますよ！ 
+さもなくば、次回の選挙でそのお金が他の誰かのポケットに入るように全力で動きます！ あと一つ！ 
+怠け者の尻を上げて、ここらのゴミを片付けてみてはどうですか。場所が汚すぎます！ 
+最近の核戦争の騒ぎは知っていますが、それがこの場所を核爆弾が落ちたばかりのように
+見せかけていい理由にはなりません！</code></pre><h3 name="549eb7c8-570a-4e9e-82d5-b57dd39ca65a" id="549eb7c8-570a-4e9e-82d5-b57dd39ca65a">アルパインリバーキャビンズのゲストブック- メモ</h3><div class="note-figure"><img src="images/note_extracted/nd23e32ab612a_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/nd23e32ab612a_img_6.png" alt="" width="620" height="904"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/nd23e32ab612a_img_7.png" alt="" width="620" height="908"><div class="note-figcaption"></div></div><p name="cffa9563-604a-47ba-9f83-fdf0ee10dba9" id="cffa9563-604a-47ba-9f83-fdf0ee10dba9">小屋の西側、小道沿い。</p><h3 name="51e5f1a0-e6b9-4e93-844b-2a57ccd51dac" id="51e5f1a0-e6b9-4e93-844b-2a57ccd51dac">リタ - ファイアブリーザー- <a href="holotape.html" class="auto-link">ホロテープ</a></h3><p name="a0c6f9a3-2964-4443-85ae-462435ce7073" id="a0c6f9a3-2964-4443-85ae-462435ce7073">南東の小屋内の金庫の上。<br>バックからリタに向けての<a href="holotape.html" class="auto-link">ホロテープ</a>。</p><pre name="050ff220-02d0-475e-83b1-459118f4e6e6" id="050ff220-02d0-475e-83b1-459118f4e6e6"><code>バック：
+よお、リタ。
+今お前は寝てるよ、神のみぞ知るどれだけの間続くかわからない最後の安らかな夜の眠りを楽しんでる… … 
+で、俺はチャールストン消防署の中に閉じ込められて、ファイヤーブリーザーの連中と同じく、
+あの名誉ある機会のために訓練してる間、俺のことを思い出せるように何か録音しておこうと思ってさ… … 
+あの鉱山の火災に顔から突っ込んでいくんだからな。
+へっ。
+正直言うと… 生きてるレスポンダーの中で、お前ほどあのクルーにぴったりの奴はいないよ。
+ただ、この派手な新訓練で基本を忘れんなよ。
+シールをちゃんとチェックしろよ。
+止まって、伏せて、転がれ。順番が大事だ。
+そして、何より大事なのは、焦げて帰ってくるなよ。
+だって、俺は今見てるこの景色が大好きだからな。</code></pre><p name="8af7d438-74b1-43fa-a941-145fadf94f59" id="8af7d438-74b1-43fa-a941-145fadf94f59">残念ながらリタの死体はベルチングベティーにあります…。</p><div class="note-figure"><img src="images/note_extracted/nd23e32ab612a_img_8.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><h3 name="57ae721f-c13e-458b-9ebe-5e9764d500a8" id="57ae721f-c13e-458b-9ebe-5e9764d500a8">2つのボブルヘッド</h3><p name="f72f125f-7618-4023-a00d-36bd62a04d52" id="f72f125f-7618-4023-a00d-36bd62a04d52">南東のキャビンにある「リタ - ファイアブリーザー」の<a href="holotape.html" class="auto-link">ホロテープ</a>、二段ベッドの上の金庫の横。<br>南のキャビンにあるクマの毛皮の敷物、二段ベッドの下。</p><h3 name="587dbb7d-2c2b-4046-b952-379b20d6dfdb" id="587dbb7d-2c2b-4046-b952-379b20d6dfdb">2つの<a href="magazine.html" class="auto-link">雑誌</a></h3><p name="6cdea1f3-1690-4e1c-9c85-28db2f967690" id="6cdea1f3-1690-4e1c-9c85-28db2f967690">南にあるツリーハウスにある「不気味な」エフェクト端末、寝袋の横にある丸いテーブルの上。<br>南西のキャビンにあるクマの毛皮の敷物、二段ベッドの下段の上。</p><hr name="5a31ae09-7729-4e04-b5d4-165a5c5e969f" id="5a31ae09-7729-4e04-b5d4-165a5c5e969f"><div class="quote-box">
+<b>感想</b><br><br>
+最初に着た時は悲鳴や地震やポルターガイストが発生して何事じゃ!って思った人も多いと思います。<br>ただこれはちょっと離れたツリーハウスみたいな監視台より操作されている事が分かります。<br>多分退屈って言われたから管理人が遊びだしたのかなーと思います。<br>ここもボブルヘッドと<a href="magazine.html" class="auto-link">雑誌</a>が多く収集に向いています。<br>敵としては<a href="ghoul.html" class="auto-link">グール</a>が5体点在してる程度なので初心者でも大丈夫な所です。<br>リタに関しては・・・残念ですね。<br>ベルチングベティーの時に紹介がまたします。
+</div>
+
+<p name="2c39e0a5-a852-4844-a0e2-010ea5fdbc27" id="2c39e0a5-a852-4844-a0e2-010ea5fdbc27">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

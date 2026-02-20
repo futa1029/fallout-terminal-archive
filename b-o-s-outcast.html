@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>B.O.S.アウトキャスト | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00aaff; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">B.O.S.アウトキャスト</h3>
+            <img src="images/note_extracted/nb3bd1ed12650_img_1.png" alt="B.O.S.アウトキャスト">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>勢力</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nb3bd1ed12650" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>B.O.S.アウトキャスト</h1>
+            <div class="date">DATE: 2026/2/9</div>
+            
+            <p name="c58c9cb2-e3d4-455e-9287-ef3846ae2617" id="c58c9cb2-e3d4-455e-9287-ef3846ae2617">カズディンの指揮下で、分裂グループは任務を遂行し、<strong>フォート・インディペンデンス</strong>を制圧しました。<br>彼らは現地のレイダーグループを押し戻し、かつての軍事基地を自分たちの本部として活用できるように適応させました。<br>怒ったかつての兄弟姉妹から「アウトキャスト（追放者）」のレッテルを貼られましたが、反逆した兵士たちはむしろその名前を名誉の証として採用しました。<br>また、彼らはもはや仕えていない組織と自分たちを区別するために、徴用した<a href="power-armor.html" class="auto-link">パワーアーマー</a>のスーツに赤と黒の塗装を施しました。<br>アウトキャストはまた、階級システムを再編し、権力の階層を暗示する「ナイト」や「パラディン」などの称号を廃止し、技術回収や警備パトロールの組織化を容易にするために運営を分散化しました。</p><p name="85293724-b6ad-48b9-b8f7-ca39b9c17616" id="85293724-b6ad-48b9-b8f7-ca39b9c17616">両者の間には敵対関係がありましたが、リオンズの <strong>B.O.S.</strong> とアウトキャストは、互いの存在を大きく無視し、相手側の任務に積極的に干渉しようとすることはありませんでした。<br>しかし、アウトキャストの究極の目標は、西海岸のロスト・ヒルズ 支部と連絡を再開し、<strong>B.O.S.</strong> の掟に違反したとされるリオンズ・エルダーを軍法会議にかけることでした。</p><p name="82bd71f1-783d-4357-8272-bbdb316f5c70" id="82bd71f1-783d-4357-8272-bbdb316f5c70">分裂から1年後の2277年、アウトキャストは定期的なパトロールのシステムを構築し、技術を求めてウェイストランドを捜索していました。<br>また、西海岸 <strong>B.O.S.</strong> の本来の任務目標を果たすため、仮想戦略シミュレーション施設を含むキャピタル・ウェイストランドのロケーションの発掘を開始しました。<br>技術回収への彼らの集中は、墜落したUFOや戦前の政府施設に由来する、エイリアン起源の高度な武器の調達を含む、多くの集団的執着を意味していました。<br>キャピタル・ウェイストランドの廃墟から回収された生存可能な、あるいは危険な技術を備蓄することに加え、アウトキャストはその発見を分析し、リバースエンジニアリングすることを求め、本部中に作業ログを残しました。</p><p name="56aaf2bc-51e1-4398-9371-abb018c15aa7" id="56aaf2bc-51e1-4398-9371-abb018c15aa7">彼らの目には、自分たちこそが真の <strong>B.O.S.</strong> であり、リオンズは <strong>B.O.S.</strong> が支持する原則を放棄した罪があると考えていました。<br>最終的に、彼らはキャピタル・ウェイストランドを離れ、西側の忠実な支部と合流して、彼らが考える通りの <strong>B.O.S.</strong> に再合流することを計画していましたが、結局は<strong>フォート・インディペンデンス</strong>と、レイダーや<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>の攻撃から強力な技術の膨大な備蓄を守ることに固執し続けました。<br>リオンズはコーデックス（教典）から彼らの名前を抹消しましたが、アウトキャストは、西海岸 <strong>B.O.S.</strong> と再合流した際に自分たちの行動は正当化され、本来の任務への献身によってこの抹消は撤回されると信じていました。</p><h3 name="7b2d1d95-18a7-4a21-9dbb-df07761c8494" id="7b2d1d95-18a7-4a21-9dbb-df07761c8494">再統合</h3><p name="aa49acd9-efb8-41ba-ab3e-112fa5848611" id="aa49acd9-efb8-41ba-ab3e-112fa5848611">2287年より前のいつか、<strong>B.O.S.</strong> 創設者ロジャー・マクソンの子孫であり、2277年にはリオンズ・<strong>B.O.S.</strong> のスクワイアであったアーサー・マクソンは、12歳でレイダーの攻撃からパトロール全体を守り、13歳でデスクローを単独で仕留め、15歳でオーウィンとサラ・リオンズの死後にキャピタル・ウェイストランドの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>を再組織しようとしていたシェパードを倒すなどの功績により、西海岸のロスト・ヒルズのエルダーたちから認められました。<br>東海岸 <strong>B.O.S.</strong> の次期エルダーとしての地位を固めるため、16歳のマクソンは外交を駆使して、数年前に組織と決別したアウトキャストを再統合するよう説得しました。</p><p name="30813e68-647b-4079-be62-81c8941c39bb" id="30813e68-647b-4079-be62-81c8941c39bb">これを達成する形として、リオンズの <strong>B.O.S.</strong> とアウトキャストの両方のドクトリン（教義）の要素を組み合わせました。<br>新しいマクソン・エルダーの下で、<strong>B.O.S.</strong> は依然としてウェイストランダーの公開採用を行っていましたが（現在は現役メンバーからの推薦が必要）、復元された「プロジェクト・ピュリティ」から生成された綺麗な水を地元定住地に無料で配布し続ける一方で、彼らは主に高度な技術の回収に再び専念することになりました。<br>これらの改革は、抗議して辞任した一部のリオンズ忠誠派の間で物議を醸しましたが、ほとんどの者はこの変化を歓迎しました。<br>その結果、2277年に彼の指導下でエンクレイヴに対して以前の勝利を収めたにもかかわらず、リオンズを <strong>B.O.S.</strong> を誤らせそうになった理想主義的な逸脱者と見なすアウトキャストの視点が、新しい東海岸 <strong>B.O.S.</strong> 内で一般的になりました。</p><p name="95a7b550-545b-41f9-8a46-4bf259e46c3b" id="95a7b550-545b-41f9-8a46-4bf259e46c3b">アウトキャストの平和的な帰還により、<strong>B.O.S.</strong> の勢力は絶大に増大し、2287年に<strong><a href="pryduen.html" class="auto-link">プリドゥエン</a></strong>に乗って連邦へ戦力の大部分を移動させつつも、依然として要塞を保持するのに十分な人員を残すことができるほどになりました。</p><hr name="b841eeb3-8fd5-45f0-bfba-d8615d9dc714" id="b841eeb3-8fd5-45f0-bfba-d8615d9dc714"><h2 name="c9991366-cd67-4938-b3d3-a574712c8508" id="c9991366-cd67-4938-b3d3-a574712c8508">組織</h2><div class="note-figure"><img src="images/note_extracted/nb3bd1ed12650_img_2.png" alt="" width="602" height="803"><div class="note-figcaption"></div></div><p name="87d4a554-d63c-4f84-945b-75fe007ed272" id="87d4a554-d63c-4f84-945b-75fe007ed272"><strong>B.O.S.</strong> アウトキャストは、再塗装された T-45d <a href="power-armor.html" class="auto-link">パワーアーマー</a>を着用していることで、リオンズの <strong>B.O.S.</strong> メンバーと区別されます。<br>これは自分たちが「真の」<strong>B.O.S.</strong> であることを示す意図的な選択です。<br>限られた人員を補うため、アウトキャストは再プログラミングされた複数の<a href="robobrain.html" class="auto-link">ロボブレイン</a>、<a href="sentry-bot.html" class="auto-link">セントリーボット</a>、および<a href="protectron.html" class="auto-link">プロテクトロン</a>で戦力を補充しており、これらもすべて同様にアウトキャストのカラーで装飾されています。</p><p name="3ff0f924-79bf-4d63-aadb-c85ca2883c30" id="3ff0f924-79bf-4d63-aadb-c85ca2883c30"><strong>フォート・インディペンデンス</strong>を拠点とするアウトキャストは、ワシントンD.C.エリアに少なくとも1つの他の拠点を維持しています。<br>リオンズの <strong>B.O.S.</strong> がD.C.中心部の廃墟をパトロールしているのに対し、アウトキャストのパトロールは広大なキャピタル・ウェイストランドの全域で一般的に遭遇します。<br>各パトロールには通常、3名のアウトキャスト（多くの場合、遠距離武器、近接武器、重火器をそれぞれ装備した1名ずつ）が含まれるか、より一般的には1名または2名のアウトキャストと、アウトキャスト仕様の<a href="protectron.html" class="auto-link">プロテクトロン</a>または<a href="robobrain.html" class="auto-link">ロボブレイン</a>が含まれます。<br>遭遇時のアウトキャストの「階級」はレベルに依存しており、レベルが高いほど高いHPと優れた武器を持っています。<br>通常、アウトキャストのパトロールはプレイヤーに対して非常に友好的ではないにせよ中立的であり、レイダー、エンクレイヴのパトロール、敵対的なクリーチャー、暴走したロボットなどの敵対勢力と戦うことを選択します。</p><p name="736e0734-2f8c-437d-894a-c398a9a54329" id="736e0734-2f8c-437d-894a-c398a9a54329">リオンズの <strong>B.O.S.</strong> を捨てる決定を後悔しているアウトキャストはほとんどいませんが、要塞での生活を懐かしむ声も公然と聞かれます。しかし、これらの考えを表現することや、アウトキャストをさらに脱走する計画は反逆罪と見なされ、時には処刑によって罰せられることが示されています。</p><hr name="068efe97-d276-48d0-8abb-9345f895394b" id="068efe97-d276-48d0-8abb-9345f895394b"><h2 name="4d80027c-b5d5-4d24-8923-e7bb4d7c540f" id="4d80027c-b5d5-4d24-8923-e7bb4d7c540f">アウトキャストの階級</h2><p name="926edbe2-974d-4e77-b0d4-38cdca6a3374" id="926edbe2-974d-4e77-b0d4-38cdca6a3374">アウトキャストは以前のナイトやパラディンの階級を廃止し、より簡素な2つの役割に再編成しました。</p><h3 name="75a72dfb-cce3-4154-b264-14530b4352ea" id="75a72dfb-cce3-4154-b264-14530b4352ea">ディフェンダー</h3><p name="665016fd-befb-4c69-bf95-617386797c1f" id="665016fd-befb-4c69-bf95-617386797c1f">アウトキャストの戦闘要員であり、パトロールや拠点の防衛を主導します。</p><h3 name="49e3be0c-8668-47d4-b70e-e4d21dc03884" id="49e3be0c-8668-47d4-b70e-e4d21dc03884">スペシャリスト</h3><p name="4fbe7541-a7bb-44e4-9f4d-7d9fd74c9116" id="4fbe7541-a7bb-44e4-9f4d-7d9fd74c9116">技術回収、分析、リバースエンジニアリングを担当する非戦闘寄りの要員です。<br>ただし、必要に応じて戦闘にも従事します。</p><h3 name="35cad06c-9f38-4189-aa16-d2c812d7fb5f" id="35cad06c-9f38-4189-aa16-d2c812d7fb5f">プロクターおよび プロテクター</h3><p name="fe77098b-a5b3-4694-9eec-0196160a4c42" id="fe77098b-a5b3-4694-9eec-0196160a4c42">特定の任務や拠点を管理する、経験豊富なリーダー階級です。</p><hr name="019fd580-1ed8-4db6-9209-09b463f0d864" id="019fd580-1ed8-4db6-9209-09b463f0d864"><h2 name="4681c765-fba3-4acb-9edb-1d61c1e37432" id="4681c765-fba3-4acb-9edb-1d61c1e37432">技術</h2><p name="9d3f7a9c-8bdf-4b9e-be18-b79f7399e2cb" id="9d3f7a9c-8bdf-4b9e-be18-b79f7399e2cb">アウトキャストは通常、リオンズの <strong>B.O.S.</strong> と同等の技術を使用しており、要塞を放棄した際に没収した装備の備蓄に頼っています。</p><h2 name="24344005-fc5f-40fe-a59c-f3360a57f631" id="24344005-fc5f-40fe-a59c-f3360a57f631">装備</h2><div class="note-figure"><img src="images/note_extracted/nb3bd1ed12650_img_3.png" alt="" width="620" height="706"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/nb3bd1ed12650_img_4.png" alt="" width="620" height="664"><div class="note-figcaption"></div></div><p name="98d38ee0-9c3d-40f9-aacd-aadc028146bb" id="98d38ee0-9c3d-40f9-aacd-aadc028146bb">アウトキャストのパトロールは以下の武器を使用します。 <br>10mm SMG、アサルトライフル、レーザーピストル、スーパースレッジ、リッパー、レーザーライフル、ミサイルランチャー、火炎放射器、ミニガン、ガトリングレーザー、フラググレネード、フラグマイン、パワーフィスト。<br>また、<a href="protectron.html" class="auto-link">プロテクトロン</a>、<a href="sentry-bot.html" class="auto-link">セントリーボット</a>、<a href="robobrain.html" class="auto-link">ロボブレイン</a>を駆使して少数精鋭を補っています。<br>一部の<a href="sentry-bot.html" class="auto-link">セントリーボット</a>はガトリングレーザーを装備しており、特に強力です。<br>これらすべては、アウトキャストのアーマーを模した黒と赤の塗装によって容易に識別できます。</p><hr name="759e13ac-687e-460f-b11b-499c2ed0d61f" id="759e13ac-687e-460f-b11b-499c2ed0d61f"><h2 name="7da39802-ab96-4a95-b9a8-efef89198ef6" id="7da39802-ab96-4a95-b9a8-efef89198ef6">注目の戦利品</h2><p name="f6d615c8-ba4b-40a8-b3ec-7922c65c020f" id="f6d615c8-ba4b-40a8-b3ec-7922c65c020f"><strong>アウトキャスト・<a href="power-armor.html" class="auto-link">パワーアーマー</a><br></strong>黒と赤の塗装が施された T-45d です。<br>倒した個体から回収可能です</p><p name="fa74dc40-f6b7-4770-b303-ee63d0217684" id="fa74dc40-f6b7-4770-b303-ee63d0217684"><strong>特殊な技術資料<br></strong>カズディンに引き渡すことで、弾薬や医薬品、装備と交換可能です</p><p name="e07c847f-87a7-4fb3-93a4-0d037b6f8d54" id="e07c847f-87a7-4fb3-93a4-0d037b6f8d54"><strong>エイリアン・ブラスター<br></strong>彼らが強い関心を示している技術の一つです</p><p name="2512f1ef-ba2a-4590-be9c-338c85f9fc53" id="2512f1ef-ba2a-4590-be9c-338c85f9fc53"><strong>ソーラー・スコーチャー<br></strong>アウトキャストが研究している、太陽光を利用するユニークな武器です</p><hr name="17bda609-6635-4d93-8fb6-c5a759dedff7" id="17bda609-6635-4d93-8fb6-c5a759dedff7"><h2 name="b7f2ef4d-d6ca-4813-8b13-690e7debfaae" id="b7f2ef4d-d6ca-4813-8b13-690e7debfaae">注記</h2><p name="a13b9819-db79-421d-ac31-dd5e66ee8155" id="a13b9819-db79-421d-ac31-dd5e66ee8155">アウトキャストのパトロールを殺してもカルマは失われませんが、派閥全体がプレイヤーに対して敵対的になる可能性があります。 <br>すべてのアウトキャスト・パトロールは「悪」と見なされます。<br>これは、彼らを殺してもカルマのペナルティがなく、「<strong>Lawbringer</strong>」パークを持つプレイヤーに対して指を落とす可能性があることを意味します。<br>ただし、名前のあるアウトキャスト（ヘンリー・カズディンなど）やロボットを、彼らが先に攻撃してこない限り殺すとカルマを失います。<br>リオンズ・<strong>B.O.S.</strong> の兵士はすべてアウトキャストに敵対的であり、特に Broken Steel 導入後の <strong><a href="vault-101.html" class="auto-link">Vault 101</a></strong> やフォート・バニスターで遭遇して戦う可能性があります。 <br>アウトキャスト仕様のミスター・ガッツィーやアイボットのテクスチャは存在しますが、未使用であり、パトロールに出現することはありません。<br>カズディンの所持品をスリ取ることでフォート内に入ることができますが、内部のメンバーはプレイヤーに対して敵対的になります。<br><strong>Operation: Anchorage</strong> において、アウトキャスト・パワーアーマー一式を装備している場合、一部のメンバーはプレイヤーを増援の仲間だと勘違いしますが、マグロウプロテクターなどの内部メンバーには見破られます。</p><h3 name="dcba8d3b-1290-49eb-9d8f-edb702a0a535" id="dcba8d3b-1290-49eb-9d8f-edb702a0a535">メモの内容：カズディンの日記</h3><p name="0bd6cbdc-d90d-4992-84ac-b8ea377f1962" id="0bd6cbdc-d90d-4992-84ac-b8ea377f1962">リオンズはもうダメだ。<br>奴は民衆に寄り添いすぎた。<br>我々の任務は、この地の野蛮人を救うことではなく、人類の遺産を保存することにある。<br>たとえ追放者と呼ばれようとも、我々こそが失われた歴史の守護者なのだ。</p><hr name="5bf6b2f1-88b5-4b3c-a3eb-4b309a6a2e52" id="5bf6b2f1-88b5-4b3c-a3eb-4b309a6a2e52"><h2 name="04d8f854-4acc-47e8-b5b5-2a95372c78db" id="04d8f854-4acc-47e8-b5b5-2a95372c78db">登場作品</h2><p name="3dd89fb3-f389-4405-befb-a1f9b5ba9af5" id="3dd89fb3-f389-4405-befb-a1f9b5ba9af5"><strong>B.O.S.</strong> アウトキャストは <strong>Fallout 3</strong>、およびその追加コンテンツ <strong>Operation: Anchorage</strong> に登場し、<strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong> のクリエイション・クラブ クエスト Malevolent Malfunction にも登場します。<br><strong>Fallout: New Vegas</strong>、<strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>、および <strong>Fallout 76</strong> のアップデート Nuclear Winter において言及されています。</p><hr name="a334d814-d302-4645-a84a-101a478eaae7" id="a334d814-d302-4645-a84a-101a478eaae7"><div class="quote-box">
+<b>感想</b><br><br>
+<b>B.O.S.アウトキャスト</b>という勢力は、組織のアイデンティティを巡る激しい葛藤を体現した非常に興味深い存在です。<br><br><b>教義への忠実さと冷徹さ</b>: リオンズ・エルダーの博愛主義を「脱線」と断じ、本来の任務である技術回収にのみ固執する姿は、<b>B.O.S.</b> という組織が持つ冷徹なエリート主義を際立たせています。<br><br><b>ビジュアルのインパクト</b>: お馴染みの T-45d が黒と赤で塗り替えられたデザインは非常にスタイリッシュであり、彼らが本隊とは一線を画す異端の存在であることを一目で分からせてくれます。<br><br><b>マクソンによる統一の歴史</b>: <b>Fallout 3</b> ではあそこまで対立していた両派が、後にアーサー・マクソンの外交によって再統合されるという流れは、シリーズを通じた歴史の動的な変化を感じさせる素晴らしいプロットです。彼らの視点が後に東海岸全体の標準となった事実は、組織の変遷を考える上で欠かせない要素です。<br><br><div class="note-figure"><img src="images/note_extracted/nb3bd1ed12650_img_5.png" alt="" width="512" height="512"><div class="note-figcaption">
+</div>
+
+<p name="84520d41-efb3-4b42-aa97-26675724b2dc" id="84520d41-efb3-4b42-aa97-26675724b2dc">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

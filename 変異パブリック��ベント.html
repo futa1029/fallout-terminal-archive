@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>変異パブリック��ベント | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #9933ff; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">変異パブリック��ベント</h3>
+            <img src="images/note_extracted/nd986d8c97962_img_1.jpg" alt="変異パブリック��ベント">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>イベント・現象</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nd986d8c97962" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>変異パブリック��ベント</h1>
+            <div class="date">DATE: 2026/1/6</div>
+            
+            <p name="c9d1e14d-7b83-4955-a0f1-3479962fc601" id="c9d1e14d-7b83-4955-a0f1-3479962fc601"><strong>変異パブリックイベントは、既存のパブリックイベントに<a href="デイリー・オプス.html" class="auto-link">デイリー・オプス</a>の<a href="変異.html" class="auto-link">変異</a>が適用された特殊なバリエーションです。<br></strong> このイベントは「Mutation Invasion（<a href="変異.html" class="auto-link">変異</a>の侵略）」アップデートで導入されました。</p><hr name="6f9e07e0-16b7-4812-8771-5cc57bb5f59d" id="6f9e07e0-16b7-4812-8771-5cc57bb5f59d"><h2 name="7671d328-cbdc-45bc-a242-8def29336f2b" id="7671d328-cbdc-45bc-a242-8def29336f2b">概要</h2><h3 name="15c32989-1b00-4b08-b258-da0fddb4c6b6" id="15c32989-1b00-4b08-b258-da0fddb4c6b6"><br></h3><p name="262759a6-2b25-46f1-9531-3d7ee93dbe75" id="262759a6-2b25-46f1-9531-3d7ee93dbe75">変異パブリックイベントは通常、特定の「変異ウィーク」の期間中、<strong>毎時ちょうど（00分）</strong>に発生します。<br>これらのイベントでは、出現する敵が特定の「<a href="変異.html" class="auto-link">変異</a>」を付与されており、プレイヤーはそれに対応した戦術を立てる必要があります。<br>イベントを完了すると、通常の報酬に加えて、レアな設計図や消耗品が含まれる「変異パッケージ」または「変異パーティパック」を獲得できます。</p><hr name="223212e8-9a70-47f7-a0bc-ebc2caa22d36" id="223212e8-9a70-47f7-a0bc-ebc2caa22d36"><h2 name="d73d4f18-eb57-4497-9ac3-6f6c20cbccde" id="d73d4f18-eb57-4497-9ac3-6f6c20cbccde"><a href="変異.html" class="auto-link">変異</a>の一覧</h2><h3 name="94d63db2-8d37-4049-814a-41c33cd8e7e3" id="94d63db2-8d37-4049-814a-41c33cd8e7e3"><br></h3><p name="c93c49de-03cb-4df4-bbd7-4b424016bb58" id="c93c49de-03cb-4df4-bbd7-4b424016bb58">各イベントでは、以下の<a href="変異.html" class="auto-link">変異</a>のうち1つがランダムに敵に適用されます。</p><p name="b3d3b476-3006-4d9d-b824-24561b636bd0" id="b3d3b476-3006-4d9d-b824-24561b636bd0"><strong>アクティブ・カモフラージュ<br></strong>敵は攻撃を行っていない間、透明化（ステルス状態）になります。<br>V.A.T.S.でターゲットすることができなくなるため、肉眼で敵の動きを捉える必要があります。</p><p name="05653d2e-f3b4-47b9-bf5f-af0fb63bc56a" id="05653d2e-f3b4-47b9-bf5f-af0fb63bc56a"><strong>弾力性 <br></strong>敵は近接攻撃でしか倒すことができません。<br>銃撃で体力を1まで減らすことはできますが、最後の一撃はバッシュまたは近接武器で与える必要があります。</p><p name="7123a486-9436-464b-b7fc-274a151600d4" id="7123a486-9436-464b-b7fc-274a151600d4"><strong>Reflective<br></strong>敵は周期的に白く光り、その間は受けたダメージの一部を攻撃者に<a href="反射.html" class="auto-link">反射</a>します。<br>光っていないタイミングを狙って攻撃するか、爆発物などの<a href="反射.html" class="auto-link">反射</a>されない攻撃手段を用いることが推奨されます。</p><p name="4c36562b-10b0-40ca-8b01-b3dbe082a0cd" id="4c36562b-10b0-40ca-8b01-b3dbe082a0cd"><strong>揮発性<br></strong>敵は死亡時に爆発し、周囲に大きなダメージを与えます。<br>近接攻撃を行う際は特に注意が必要であり、倒した後は即座に距離を取る必要があります。</p><p name="00936f21-a9da-4f88-bd20-f38dfccfe54a" id="00936f21-a9da-4f88-bd20-f38dfccfe54a"><strong>グループ再生<br></strong> 敵が近くにいる仲間の体力を急速に回復させます。<br>敵を分断させるか、火力を集中させて一気に倒しきることが重要です。</p><p name="00043bef-a55a-4423-aa33-689b12506a1a" id="00043bef-a55a-4423-aa33-689b12506a1a"><strong>スウィフト<br></strong>敵の移動速度と攻撃速度が大幅に上昇します。<br>敵に囲まれやすくなるため、迅速な対応が求められます。</p><p name="70b45bd4-e9c4-4920-8d4d-b7dc62256d8f" id="70b45bd4-e9c4-4920-8d4d-b7dc62256d8f"><strong>猛毒の霧<br></strong> 敵が死亡した際、その場に強力な毒の雲を放出します。<br>毒耐性がない場合、雲の中に留まると急速に体力を失います。</p><p name="f4ed81bc-2b55-49a3-bfda-dc6c8c088f61" id="f4ed81bc-2b55-49a3-bfda-dc6c8c088f61"><strong>冷凍<br></strong> 敵の攻撃を受けると、プレイヤーの移動速度と攻撃速度が低下します。</p><hr name="e773c530-517c-440a-bc90-2c7acb1e196c" id="e773c530-517c-440a-bc90-2c7acb1e196c"><h2 name="36002c7c-19ed-45a5-a556-37d10e0fb9d8" id="36002c7c-19ed-45a5-a556-37d10e0fb9d8">報酬</h2><div class="note-figure"><img src="images/note_extracted/nd986d8c97962_img_2.jpg" alt="" width="620" height="456"><div class="note-figcaption"></div></div><p name="629a3507-17d1-442f-adb9-fe3a206ee0c2" id="629a3507-17d1-442f-adb9-fe3a206ee0c2">変異パブリックイベントを完了すると、参加者は以下のアイテムを受け取ることができます。</p><p name="2f7dea42-574d-42ef-86ac-2507707bd7be" id="2f7dea42-574d-42ef-86ac-2507707bd7be"><strong>変異パッケージ<br></strong>イベント完了時に通常の報酬に加えて配布されます。<br>中には弾薬、薬品、ジャンクのほか、稀にレアな設計図が含まれています。</p><p name="9f5ca41a-b49f-4c8b-854e-cdc1918b63c9" id="9f5ca41a-b49f-4c8b-854e-cdc1918b63c9"><strong>変異パーティパック <br>Fallout 1stメンバーが3人以上イベントに参加していた場合、</strong> 全員の報酬が「変異パッケージ」から「変異パーティパック」にアップグレードされます。<br>これにはパッケージよりも多くのアイテムが含まれており、レアな設計図のドロップ率も高くなっています。</p><p name="68af1325-b29a-4c2d-9207-b0ed10e7b012" id="68af1325-b29a-4c2d-9207-b0ed10e7b012">獲得可能なレアアイテムの例：</p><p name="d6f1f3de-aaa4-4b6a-b37b-588ad88bd059" id="d6f1f3de-aaa4-4b6a-b37b-588ad88bd059"><strong>設計図 (Plans)：</strong></p><ul name="05d71aad-64d7-400b-8c49-9d7cd0883e75" id="05d71aad-64d7-400b-8c49-9d7cd0883e75"><li><p name="d413c675-9689-494c-94d1-29aa2a25f255" id="d413c675-9689-494c-94d1-29aa2a25f255">フィクサー</p></li><li><p name="4262571d-cc7c-4648-b879-ba2432791774" id="4262571d-cc7c-4648-b879-ba2432791774">ベアアームおよびそのモジュール（重量化、穿孔）</p></li><li><p name="88ca164f-5ccc-4d05-a3cc-3975a8c1ff0e" id="88ca164f-5ccc-4d05-a3cc-3975a8c1ff0e">放射能汚染バレル</p></li><li><p name="533f0ee5-a4b3-457f-8068-8a35d8b21e89" id="533f0ee5-a4b3-457f-8068-8a35d8b21e89">スティムパック散布機</p></li><li><p name="b6b507d4-6f6d-4d56-be6b-5d48358962bc" id="b6b507d4-6f6d-4d56-be6b-5d48358962bc">フォーミュラP</p></li><li><p name="8b0e1ba3-5384-4df0-baa0-30bdee865ad3" id="8b0e1ba3-5384-4df0-baa0-30bdee865ad3">各種アンダーアーマーの裏地（防護、遮蔽）</p></li><li><p name="daaf9c1c-3341-40f0-b6df-8bd6006e92b7" id="daaf9c1c-3341-40f0-b6df-8bd6006e92b7">各種珍しい衣装の設計図（魔女の衣装、ガイコツの衣装、連合軍の制服など）</p></li></ul><p name="ddaab42e-3e65-4902-ad53-6ef8279afd17" id="ddaab42e-3e65-4902-ad53-6ef8279afd17"><strong>超希少アパレル：</strong> <br>2024年7月のアップデート以降、以下のアイテムが極めて低い確率（約0.027%）でドロップするようになりました。</p><ul name="93456b7e-a704-4fee-b637-32c025a22ec5" id="93456b7e-a704-4fee-b637-32c025a22ec5"><li><p name="5b6a9038-654a-47a5-a04b-99b9ab682fe7" id="5b6a9038-654a-47a5-a04b-99b9ab682fe7"><strong>看護師の制服：赤</strong></p></li><li><p name="7ef1dac6-f41f-4cac-a139-ced0a5c66f26" id="7ef1dac6-f41f-4cac-a139-ced0a5c66f26"><strong>アーバンスカウトのマスク</strong></p></li><li><p name="19898b35-c27d-4dcd-84ce-4b112d219953" id="19898b35-c27d-4dcd-84ce-4b112d219953"><strong>フォレストスカウトのマスク</strong></p></li><li><p name="f6efbf04-8cfc-41d5-a488-c25693d40982" id="f6efbf04-8cfc-41d5-a488-c25693d40982">その他すべての色の看護師の制服</p></li></ul><hr name="1ef60566-6a1e-48f9-9b71-d20533976d24" id="1ef60566-6a1e-48f9-9b71-d20533976d24"><h2 name="8f884053-9ba4-4c53-84d8-3ead6efc862e" id="8f884053-9ba4-4c53-84d8-3ead6efc862e">対象となるイベント</h2><p name="bf632fa6-13f1-4de2-a136-dc793c78204e" id="bf632fa6-13f1-4de2-a136-dc793c78204e">以下のパブリックイベントが変異バージョンの対象となります。</p><ul name="50a46fe5-0911-4da0-9af6-8efd30c5df51" id="50a46fe5-0911-4da0-9af6-8efd30c5df51"><li><p name="8aeb50d1-e408-4ba6-bdb6-22c1b7847a2c" id="8aeb50d1-e408-4ba6-bdb6-22c1b7847a2c"><strong>Guided Meditation</strong></p></li><li><p name="967636d3-5f81-4731-b264-4c296b70a328" id="967636d3-5f81-4731-b264-4c296b70a328"><strong>Heart of the Swamp</strong></p></li><li><p name="1e256f7a-9036-498b-b932-9fa0dacff335" id="1e256f7a-9036-498b-b932-9fa0dacff335"><strong>Line in the Sand</strong></p></li><li><p name="91ef78f1-d6e9-43ee-b7af-423ed62f194d" id="91ef78f1-d6e9-43ee-b7af-423ed62f194d"><strong>Lode Baring</strong></p></li><li><p name="e32fb1b0-cf0e-41bd-99b7-7ff2b23e547b" id="e32fb1b0-cf0e-41bd-99b7-7ff2b23e547b"><strong>Moonshine Jamboree</strong></p></li><li><p name="ddddcc5a-7152-4885-b09e-1041a0429072" id="ddddcc5a-7152-4885-b09e-1041a0429072"><strong>One Violent Night</strong></p></li><li><p name="eb7409a0-11b8-498b-9056-20c28f8efe8b" id="eb7409a0-11b8-498b-9056-20c28f8efe8b"><strong>Uranium Fever</strong></p></li><li><p name="4e670171-cca3-4c86-8b42-36f9b160d29f" id="4e670171-cca3-4c86-8b42-36f9b160d29f"><strong>Eviction Notice</strong></p></li><li><p name="c8109e8c-dd4a-4f0f-a828-d3c03effa504" id="c8109e8c-dd4a-4f0f-a828-d3c03effa504"><strong>Test Your Metal</strong></p></li><li><p name="c71738fe-09c8-4485-ba2c-a48abc5c2cdf" id="c71738fe-09c8-4485-ba2c-a48abc5c2cdf"><strong>Swarm of Suitors</strong></p></li></ul><hr name="baa5b862-6317-4597-b041-19e7567e4d5b" id="baa5b862-6317-4597-b041-19e7567e4d5b"><div class="quote-box">
+<b>感想</b><br><br>
+特に縛りプレイしてる方で無ければ初心者さんでもドシドシ参加しましょう。 <br>特に<a href="変異.html" class="auto-link">変異</a>の血清が他プレイヤーのベンダーを使用しなくても序盤から手に入るチャンスです! <br>又、☆3も出やすい(確定?)なので装備を揃えるのにも良いです。
+</div>
+
+<p name="affdcdbb-5c29-4018-b296-42d991b7fdbb" id="affdcdbb-5c29-4018-b296-42d991b7fdbb">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.　</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

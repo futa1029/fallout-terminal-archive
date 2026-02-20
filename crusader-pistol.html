@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>クルセイダーピストル | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">クルセイダーピストル</h3>
+            <img src="images/note_extracted/n9d38254e2525_img_1.png" alt="クルセイダーピストル">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n9d38254e2525" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>クルセイダーピストル</h1>
+            <div class="date">DATE: 2026/1/1</div>
+            
+            <p name="a00ebc8e-7072-4695-b8b4-bab09576bec1" id="a00ebc8e-7072-4695-b8b4-bab09576bec1">クルセイダーピストルは、Fallout 76に「Steel Dawn」アップデートで導入されたセミオートマチック形式の拳銃です。<br>主にB.O.S.（ブラザーフッド・オブ・スティール）の隊員によって使用されています。</p><hr name="eed81b66-a05c-4535-9614-007dad9d1800" id="eed81b66-a05c-4535-9614-007dad9d1800"><h2 name="5cacf7e4-9347-4204-92aa-80259c25caa9" id="5cacf7e4-9347-4204-92aa-80259c25caa9">入手方法</h2><p name="35ffcb35-5382-47e2-b683-083348bb4094" id="35ffcb35-5382-47e2-b683-083348bb4094">この武器の設計図は、以下の方法で入手できます。</p><ul name="b2d84848-0417-4e11-971b-5eebb64e2b37" id="b2d84848-0417-4e11-971b-5eebb64e2b37"><li><p name="4e6cf526-9f90-41bc-bae3-80f74218d758" id="4e6cf526-9f90-41bc-bae3-80f74218d758"><strong><a href="daily-ops.html" class="auto-link">デイリー・オプス</a>:</strong> レベル50以上のキャラクターで、エルダー・ランク（8分以内完了）を達成した際のレア報酬としてドロップする可能性があります。</p></li><li><p name="92e85e29-6ad5-4195-924f-359fa4899f7c" id="92e85e29-6ad5-4195-924f-359fa4899f7c"><strong>ミネルヴァ:</strong> 金塊を専門に扱う商人のミネルヴァから、金塊で購入できる場合があります。彼女の在庫リストに含まれているタイミングでのみ購入可能です。</p></li></ul><p name="26e79811-80ac-49b6-b6ab-268c2a354495" id="26e79811-80ac-49b6-b6ab-268c2a354495">※設計図は学習すると二度とドロップせず、設計図自体も作成した武器も、他のプレイヤーと取引したり譲渡したりすることはできません。</p><hr name="81fd6023-07d9-429c-8228-e62f579d10db" id="81fd6023-07d9-429c-8228-e62f579d10db"><h2 name="9c2a246b-3592-4c32-87f2-1850941459fb" id="9c2a246b-3592-4c32-87f2-1850941459fb">基本性能</h2><p name="b011a761-4a5f-410c-b91a-978214ad4d4f" id="b011a761-4a5f-410c-b91a-978214ad4d4f">以下の数値は、レベル50時点の標準状態（モジュール未装着）のものです。</p><ul name="1db4503a-3aab-4e66-9827-bb6f780e1ca1" id="1db4503a-3aab-4e66-9827-bb6f780e1ca1"><li><p name="f5d0f864-91d0-4ead-87e5-2080e081a53b" id="f5d0f864-91d0-4ead-87e5-2080e081a53b"><strong>武器タイプ:</strong> ピストル（セミオートマチック）</p></li><li><p name="28618f51-5e18-4fd2-b18a-c5a793a5bf91" id="28618f51-5e18-4fd2-b18a-c5a793a5bf91"><strong>弾薬:</strong> 10mm弾</p></li><li><p name="7a4da178-e250-4c51-9bf5-e8281fb542f4" id="7a4da178-e250-4c51-9bf5-e8281fb542f4"><strong>ダメージ:</strong> 物理 40</p></li><li><p name="f83dddc0-3bca-4d4e-9e99-08d17e59338a" id="f83dddc0-3bca-4d4e-9e99-08d17e59338a"><strong>発射速度:</strong> 40</p></li><li><p name="29953af8-d0b5-4188-8bf8-98c622e6c3f8" id="29953af8-d0b5-4188-8bf8-98c622e6c3f8"><strong>射程:</strong> 120</p></li><li><p name="a26636ca-e830-4d85-b47e-042e584626e9" id="a26636ca-e830-4d85-b47e-042e584626e9"><strong>命中率:</strong> 66</p></li><li><p name="5c726816-c9f2-4567-a65e-c43b15dbac04" id="5c726816-c9f2-4567-a65e-c43b15dbac04"><strong>重量:</strong> 3.0</p></li><li><p name="795c37d2-8966-45b8-ad8f-bb7303127861" id="795c37d2-8966-45b8-ad8f-bb7303127861"><strong>価値:</strong> 150</p></li><li><p name="801a50a4-9a1c-4311-a462-06269669e4d6" id="801a50a4-9a1c-4311-a462-06269669e4d6"><strong>装弾数:</strong> 12発</p></li><li><p name="9b8e87e0-3fbb-45bb-a712-9277926c6089" id="9b8e87e0-3fbb-45bb-a712-9277926c6089"><strong>習得レベル:</strong> 15, 20, 30, 40, 50</p></li></ul><hr name="da057ae6-d5ce-4e02-87be-8742fc28e43e" id="da057ae6-d5ce-4e02-87be-8742fc28e43e"><h2 name="7b0ca837-4728-41a7-9fc3-53ad3137b499" id="7b0ca837-4728-41a7-9fc3-53ad3137b499">モジュール</h2><div class="note-figure"><img src="images/note_extracted/n9d38254e2525_img_2.png" alt="" width="620" height="391"><div class="note-figcaption"></div></div><p name="fb2a73e0-40b7-4684-8c96-d762b6a6e02a" id="fb2a73e0-40b7-4684-8c96-d762b6a6e02a">クルセイダーピストルは非常に高いカスタマイズ性を誇り、レシーバーを変更することで攻撃属性を劇的に変えることができます。</p><h3 name="b06f57ca-0a12-4985-8154-1b1cd9772dee" id="b06f57ca-0a12-4985-8154-1b1cd9772dee">レシーバー</h3><ul name="47f60afe-0250-476f-ba68-99c787ceff42" id="47f60afe-0250-476f-ba68-99c787ceff42"><li><p name="c7cc9cad-9254-4db0-98ed-d4cc06da2b77" id="c7cc9cad-9254-4db0-98ed-d4cc06da2b77"><strong>標準レシーバー:</strong> 標準的なダメージ。</p></li><li><p name="8dcc6aee-4f8c-4e7e-9c99-ef3fdc8ac600" id="8dcc6aee-4f8c-4e7e-9c99-ef3fdc8ac600"><strong>強力レシーバー :</strong> 物理ダメージが増加。</p></li></ul><ul name="62f771fc-031e-4288-9a25-232e151992db" id="62f771fc-031e-4288-9a25-232e151992db"><li><p name="cd4a5657-5596-41bd-b6ee-9bf310f8ef80" id="cd4a5657-5596-41bd-b6ee-9bf310f8ef80"><strong>パイロレシーバー:</strong> 火炎ダメージを追加。敵に火をつけ、持続的な火炎ダメージを与えます。</p></li><li><p name="eef545c2-7433-49f3-a55b-e86ee7ef4773" id="eef545c2-7433-49f3-a55b-e86ee7ef4773"><strong>クライオレシーバー:</strong> 冷却ダメージを追加。敵の移動速度と攻撃速度を低下させます。</p></li><li><p name="3c9d034c-fd0f-4be8-a635-5cd22a87f3e3" id="3c9d034c-fd0f-4be8-a635-5cd22a87f3e3"><strong>フュージョンレシーバー:</strong> 弾薬がフュージョン・セルに変更され、ダメージ属性がエネルギーに変わります。</p></li></ul><h3 name="95fbef4a-76f3-4f44-8e20-db905e45095d" id="95fbef4a-76f3-4f44-8e20-db905e45095d">バレル</h3><ul name="5947abc8-efda-41e7-ad23-ca669bf53756" id="5947abc8-efda-41e7-ad23-ca669bf53756"><li><p name="da236c63-0da9-41ed-b93f-2ad46ec02834" id="da236c63-0da9-41ed-b93f-2ad46ec02834"><strong>標準バレル</strong></p></li><li><p name="c6cd1669-7e6b-473e-ab00-557a144b1ec3" id="c6cd1669-7e6b-473e-ab00-557a144b1ec3"><strong>ロングバレル :</strong> 射程と命中率が向上。</p></li></ul><h3 name="48acbfc6-49b0-4698-96ca-b5b1d97ca7d7" id="48acbfc6-49b0-4698-96ca-b5b1d97ca7d7">サイト</h3><ul name="3c52cd81-741d-4356-88f4-4adab94f70fb" id="3c52cd81-741d-4356-88f4-4adab94f70fb"><li><p name="57879627-6f2d-44ad-b4f4-0975f8cda10f" id="57879627-6f2d-44ad-b4f4-0975f8cda10f"><strong>標準サイト</strong></p></li><li><p name="8528b546-79a6-4df0-8273-4b39cacbd421" id="8528b546-79a6-4df0-8273-4b39cacbd421"><strong>リフレックスサイト:</strong> VATSのコストを抑え、照準しやすくなります。</p></li></ul><h3 name="946c2d76-a0a4-4b67-88c3-ed79046fa25e" id="946c2d76-a0a4-4b67-88c3-ed79046fa25e">マズル</h3><ul name="a7a55cee-e559-4960-a376-1212a2e75ad7" id="a7a55cee-e559-4960-a376-1212a2e75ad7"><li><p name="01701997-55ca-4da4-bac9-e0ab5f03d14c" id="01701997-55ca-4da4-bac9-e0ab5f03d14c"><strong>なし</strong></p></li><li><p name="d3bc37d4-5133-4869-9413-e9b3659d617a" id="d3bc37d4-5133-4869-9413-e9b3659d617a"><strong>サプレッサー:</strong> 発射音を消し、ステルス攻撃を維持しやすくします。</p></li></ul><hr name="03fded83-e195-4034-a030-fde6c71ce054" id="03fded83-e195-4034-a030-fde6c71ce054"><h2 name="9bcf4fac-8eb0-45f2-8d76-4a2b579182d5" id="9bcf4fac-8eb0-45f2-8d76-4a2b579182d5">ノート</h2><ul name="d2d79304-9e2e-4800-bb82-2f41a7aa1d0d" id="d2d79304-9e2e-4800-bb82-2f41a7aa1d0d"><li><p name="a019bc78-2c6a-48b0-afed-85149307676a" id="a019bc78-2c6a-48b0-afed-85149307676a">クルセイダーピストルは、<a href="10mm-pistol.html" class="auto-link">10mmピストル</a>よりも基本ダメージが高く、44ピストルよりも連射性能に優れているため、ピストルビルドにおいて非常に強力な選択肢となります。</p></li><li><p name="d245e776-3095-48a7-a8ef-0aa1bf60e834" id="d245e776-3095-48a7-a8ef-0aa1bf60e834">フュージョンレシーバーを装着すると、視覚効果がレーザー武器のような青い光弾に変わります。</p></li><li><p name="e9023fcd-482c-4960-81a5-338b52412e23" id="e9023fcd-482c-4960-81a5-338b52412e23">この武器にはレジェンダリー効果が付与される可能性があります。特に「爆発」のレジェンダリー効果が付いたクルセイダーピストルにパイロレシーバーやクライオレシーバーを装着すると、着弾地点の周囲に範囲属性ダメージを撒き散らす非常に強力な武器になります。</p></li></ul><hr name="ac5caac6-ee10-4588-a011-6aca8e193238" id="ac5caac6-ee10-4588-a011-6aca8e193238"><h2 name="91d309f7-8421-49db-82e9-6a02678eb930" id="91d309f7-8421-49db-82e9-6a02678eb930">舞台裏</h2><ul name="bdb48a0a-14cc-4c18-8444-e2580589a019" id="bdb48a0a-14cc-4c18-8444-e2580589a019"><li><p name="17d95d76-9de6-4fbc-9b1e-7ef0ca233a2d" id="17d95d76-9de6-4fbc-9b1e-7ef0ca233a2d">デザインは、Fallout: New Vegasに登場した「12.7mmピストル」や、現実世界のデザートイーグルを彷彿とさせます。</p></li><li><p name="90a2c3eb-71ae-4c50-af7f-774753aa6896" id="90a2c3eb-71ae-4c50-af7f-774753aa6896">B.O.S.の再建を象徴する武器の一つとして位置づけられています。</p></li></ul><hr name="914e71cf-bbf2-4163-bcd5-70295458f3d3" id="914e71cf-bbf2-4163-bcd5-70295458f3d3"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n9d38254e2525_img_3.png" alt="" width="620" height="477"><div class="note-figcaption">最強ピストルの一角です。<br>特にクライオレシーバーを付けた時の強さは他のピストルを凌駕します。<br>敵に与える鈍化能力だけでなく火力も一定の火力があり、連射速度も早い武器になってします。<br>爆発を付けると範囲武器にも変わり様々な使い方ができます。<br>デイリーオプスの目玉武器と言っても申し分ないと思います。
+</div>
+
+<p name="628ee7f4-2125-49ba-b4d6-595550d252e9" id="628ee7f4-2125-49ba-b4d6-595550d252e9">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

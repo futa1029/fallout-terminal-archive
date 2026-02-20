@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>渓谷の廃品集積場 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">渓谷の廃品集積場</h3>
+            <img src="images/note_extracted/n144e4118b9ea_img_1.png" alt="渓谷の廃品集積場">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n144e4118b9ea" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>渓谷の廃品集積場</h1>
+            <div class="date">DATE: 2025/12/22</div>
+            
+            <p name="c4bff9dc-eb67-4b3a-801b-865f7bb51701" id="c4bff9dc-eb67-4b3a-801b-865f7bb51701">アパラチアの「森林地帯」にあるロケーションで、プレイヤーが所有権を主張できるワークショップの一つです。</p><hr name="9aef563c-c039-4fdf-930b-0a46a31bd703" id="9aef563c-c039-4fdf-930b-0a46a31bd703"><h2 name="70859cc0-73ec-413d-a858-74e35d0f06a6" id="70859cc0-73ec-413d-a858-74e35d0f06a6">1. 概要</h2><ul name="2feea3cc-3c75-43d6-88c0-464fa7501650" id="2feea3cc-3c75-43d6-88c0-464fa7501650"><li><p name="67d3df7d-5505-4e16-bf4f-38b7515ba89d" id="67d3df7d-5505-4e16-bf4f-38b7515ba89d">場所: <br>インターステート59号線のすぐそばに位置し、森林地帯でも最大級の廃品置き場です。</p></li><li><p name="38d56882-c337-4e3e-a67d-85e3cdfcd5d5" id="38d56882-c337-4e3e-a67d-85e3cdfcd5d5">背景: <br>2025年に設立されました。<br>一時期はレスポンダーによって使用されていましたが、現在は無人となり、ウェイストランダーたちが物資を探しに来る場所となっています。</p></li></ul><h2 name="7e731cad-851a-4711-9504-fbc520edd7d5" id="7e731cad-851a-4711-9504-fbc520edd7d5">2. ワークショップの特徴</h2><p name="6b4a44aa-b229-4308-a614-18009c39c142" id="6b4a44aa-b229-4308-a614-18009c39c142">この場所を確保することで、以下の資源を抽出・利用できます。</p><ul name="0dd0fcb0-30d8-4574-af5e-984dcbed169b" id="0dd0fcb0-30d8-4574-af5e-984dcbed169b"><li><p name="0e0dd012-9880-4bde-99a4-0aeae79e3855" id="0e0dd012-9880-4bde-99a4-0aeae79e3855">資源:</p><ul name="2b7245bd-1c3f-4d6d-8b5b-b27c3118fd22" id="2b7245bd-1c3f-4d6d-8b5b-b27c3118fd22"><li><p name="56a01b38-7629-45de-b483-d6836ff970f5" id="56a01b38-7629-45de-b483-d6836ff970f5">ブラックチタン</p></li><li><p name="afd8726e-08e7-4ef4-8ba6-59cef8242046" id="afd8726e-08e7-4ef4-8ba6-59cef8242046">ジャンク</p></li><li><p name="f753cf87-08dc-4a4c-a659-c1d423de6516" id="f753cf87-08dc-4a4c-a659-c1d423de6516">コンクリート</p></li><li><p name="a3e3971f-bc2f-4c4d-b029-1641db7f8351" id="a3e3971f-bc2f-4c4d-b029-1641db7f8351">木材- 木材の山付近に抽出機を設置可能</p></li></ul></li><li><p name="0a372a43-9705-483e-9b66-d91c1c1a3d02" id="0a372a43-9705-483e-9b66-d91c1c1a3d02">設置済みの設備:</p><ul name="d0fea1ba-5581-4170-be3b-361fba26e252" id="d0fea1ba-5581-4170-be3b-361fba26e252"><li><p name="91e94bf8-e119-444b-8293-4679902bc14e" id="91e94bf8-e119-444b-8293-4679902bc14e">パワーアーマーステーション（メインハウスの前）</p></li><li><p name="9b54bca1-5df6-43e4-baee-95fcdbabea44" id="9b54bca1-5df6-43e4-baee-95fcdbabea44">ケミストリーステーション（近くの小屋の中）</p></li></ul></li></ul><h2 name="d217f0c9-7793-4cbc-8077-6c3bc229f1ed" id="d217f0c9-7793-4cbc-8077-6c3bc229f1ed">3. 出現する敵</h2><p name="a032ae75-4432-4730-8bbd-fa20047bef82" id="a032ae75-4432-4730-8bbd-fa20047bef82">ワークショップ確保時には、以下の敵を一掃する必要があります。</p><ul name="9462a135-fd3b-486f-ba3c-fae6c3d739c3" id="9462a135-fd3b-486f-ba3c-fae6c3d739c3"><li><p name="e3f4a648-3297-4dec-a144-1f8bb93d5a14" id="e3f4a648-3297-4dec-a144-1f8bb93d5a14"><a href="protectron.html" class="auto-link">プロテクトロン</a>（通常時によく見られる）</p></li><li><p name="a82da1ee-e0a7-4cd0-97a1-51c517e6e743" id="a82da1ee-e0a7-4cd0-97a1-51c517e6e743"><a href="scorch.html" class="auto-link">スコーチ</a></p></li><li><p name="36ee4ac5-9d32-4560-baf4-8f8e8cb8512f" id="36ee4ac5-9d32-4560-baf4-8f8e8cb8512f">フェラル・<a href="ghoul.html" class="auto-link">グール</a></p></li><li><p name="aa35f83f-c3e5-44a8-b3c1-e7a95863c46b" id="aa35f83f-c3e5-44a8-b3c1-e7a95863c46b">ティック</p></li><li><p name="67bddbbc-ca73-4511-a763-22b42559881c" id="67bddbbc-ca73-4511-a763-22b42559881c"><a href="mall-rat.html" class="auto-link">モールラット</a>、ラッドローチ</p></li></ul><h2 name="acd4aaf1-3e21-43ae-a1a0-4530e57dca61" id="acd4aaf1-3e21-43ae-a1a0-4530e57dca61">4. トリビア</h2><div class="note-figure"><img src="images/note_extracted/n144e4118b9ea_img_2.png" alt="" width="620" height="378"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n144e4118b9ea_img_3.jpg" alt="" width="620" height="429"><div class="note-figcaption"></div></div><ul name="fe35a6b9-c972-4bc2-b200-d1359d53774d" id="fe35a6b9-c972-4bc2-b200-d1359d53774d"><li><p name="8e83a122-e6cd-493c-a47f-164d3609fc30" id="8e83a122-e6cd-493c-a47f-164d3609fc30">看板のデザインは、ディズニー・カリフォルニア・アドベンチャーにある「メーターのジャンクヤード・ジャンボリー」のアトラクション看板をモデルにしています。</p></li><li><p name="62ed7b00-b99c-482f-a19f-8f851a6cd9c8" id="62ed7b00-b99c-482f-a19f-8f851a6cd9c8">カットされたコンテンツでは「Remus' Junkyard（リーマスのジャンクヤード）」という名前で、Old Man Remusという所有者がいた痕跡があります。</p></li></ul><div class="quote-box">
+<b>感想</b><br><br>
+<h3 name="69634447-1cdb-4191-a82c-8b6c7759aa18" id="69634447-1cdb-4191-a82c-8b6c7759aa18">1. 初心者への「過分な恩恵」</h3>「森林地帯」という初心者向けの安全なエリアにありながら、ブラックチタン（<a href="power-armor.html" class="auto-link">パワーアーマー</a>「エクスカベーター」の作成などで必要になる貴重な素材）が手に入れれる場所です。<br>さらに、ジャンクやコンクリートの抽出も可能で、運が良ければパワーアーマー本体まで手に入るというのは、ゲームを始めたばかりのプレイヤーにとっては、まさに「占領するべき拠点」だと感じました。<br><br><h3 name="ba50622b-3e6d-4865-a9df-fbfaf1531508" id="ba50622b-3e6d-4865-a9df-fbfaf1531508">2. 環境ストーリーテリングの不気味さ</h3>一見ただの廃品置き場ですが、「ロックされたトレーラーの中に電気椅子と死体がある」という記述にはゾッとしました。 <br>これはFalloutシリーズ特有の「環境ストーリーテリング（言葉ではなく配置された物で物語を語る手法）」の典型例です。<br>かつてここでレイダーたちが処刑や拷問ごっこを行っていたのか、あるいはもっと恐ろしい実験が行われていたのか……想像力を掻き立てられると同時に、この世界の残酷さを静かに物語っています。<br><br><hr name="ae155104-10bb-4f70-ae62-9c7a35a4f5a5" id="ae155104-10bb-4f70-ae62-9c7a35a4f5a5"><b>総評：</b> 資源の美味しさに目がくらんで確保しに行くと、トレーラーの中の電気椅子を見て肝を冷やす……そんな「実利とホラーが同居する非常にFalloutらしい魅力的なロケーションだと思いました。<br><br>後初心者さんはワークショップはPvPエリアということに気をつけてね。
+</div>
+
+<p name="9a17af6a-d7d2-49ee-92a6-310c714de4f1" id="9a17af6a-d7d2-49ee-92a6-310c714de4f1">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

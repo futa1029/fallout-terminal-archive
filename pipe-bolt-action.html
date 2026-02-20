@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>パイプボルトアクション | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">パイプボルトアクション</h3>
+            <img src="images/note_extracted/ncde03e9a7dfb_img_1.png" alt="パイプボルトアクション">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_ncde03e9a7dfb" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>パイプボルトアクション</h1>
+            <div class="date">DATE: 2025/11/19</div>
+            
+            <h3 name="d742a9f9-b9d9-4823-8d4a-09c4c8bd460f" id="d742a9f9-b9d9-4823-8d4a-09c4c8bd460f">Fallout4、<a href="fallout76.html" class="auto-link">Fallout76</a></h3><p name="811f9ae9-30b2-4bc7-a335-02124bfde358" id="811f9ae9-30b2-4bc7-a335-02124bfde358">パイプボルトアクションは、モジュール式武器です。</p><hr name="3034e5c8-be4d-4a4e-a3ff-7a2c694b16aa" id="3034e5c8-be4d-4a4e-a3ff-7a2c694b16aa"><h2 name="1a0b093f-663f-437d-8da7-76ec24f50607" id="1a0b093f-663f-437d-8da7-76ec24f50607">特徴</h2><div class="note-figure"><img src="images/note_extracted/ncde03e9a7dfb_img_2.png" alt="" width="620" height="298"><div class="note-figcaption"></div></div><p name="d71a3ab2-fd90-415c-8c7d-621fd163e850" id="d71a3ab2-fd90-415c-8c7d-621fd163e850">パイプボルトアクション・ピストルは、木製の本体と、スクラップメタル、スプリング、ボルト、パイプを組み合わせて作られた作動部品、そしてグリップで構成される即席の武器です。</p><ul name="a1354d58-e31d-408a-85cf-f0b374731b8b" id="a1354d58-e31d-408a-85cf-f0b374731b8b"><li><p name="3e41d6a0-eeb4-46fc-9ab4-c16f07426455" id="3e41d6a0-eeb4-46fc-9ab4-c16f07426455"><strong>弾薬</strong>: .308弾を発射し、銃の左側から装填される内蔵マガジンを使用します。</p></li><li><p name="96c54adb-253a-4121-bf3b-78e086bdbef6" id="96c54adb-253a-4121-bf3b-78e086bdbef6"><strong>変形性</strong>: ストックを改造すると、パイプボルトアクション・ライフルになります。</p></li><li><p name="e8edf197-78f9-49d2-ad9a-0d7a5756afad" id="e8edf197-78f9-49d2-ad9a-0d7a5756afad"><strong>耐久性</strong>: パイプボルトアクションは役立つ武器になりえますが、機械加工された銃に比べて状態の劣化が速いという欠点があります。<br>この速い劣化は、Licensed Plumber&nbsp;Perkを振ることで相殺されます。</p></li></ul><hr name="731e17a5-f6d1-420d-a59e-c11be38a3e30" id="731e17a5-f6d1-420d-a59e-c11be38a3e30"><h2 name="fcb73f79-94bb-41ff-a408-30afdcd536d8" id="fcb73f79-94bb-41ff-a408-30afdcd536d8">&nbsp;入手場所</h2><p name="140a6dd4-2e4b-40f0-b00e-2d135ff370c5" id="140a6dd4-2e4b-40f0-b00e-2d135ff370c5">武器作業台で最初からクラフト可能です。<br><a href="scorch.html" class="auto-link">スコーチ</a>が使用しています。</p><hr name="73474859-f0fb-418e-a7d5-cab1378eb171" id="73474859-f0fb-418e-a7d5-cab1378eb171"><h2 name="ebafab1d-5795-4b0a-89c7-a02fb431c2b6" id="ebafab1d-5795-4b0a-89c7-a02fb431c2b6">性能データ</h2><ul name="9b51a3de-903a-4040-85b7-14f4531975d4" id="9b51a3de-903a-4040-85b7-14f4531975d4"><li><p name="343ec1ad-4c8c-4df9-ac61-b156fa01d521" id="343ec1ad-4c8c-4df9-ac61-b156fa01d521">種類 : 遠距離武器（ピストル / ライフル）</p></li><li><p name="0518f0fd-af2a-464e-876a-c92a7924e058" id="0518f0fd-af2a-464e-876a-c92a7924e058">作成可能レベル : 1 / 5 / 10 / 20 / 30 / 40 / 50</p></li><li><p name="967c8237-67ea-46db-8e24-b5e855fdcfde" id="967c8237-67ea-46db-8e24-b5e855fdcfde">ダメージ : 99 / 111 / 125 / 159 / 203 / 259 / 330</p></li><li><p name="780e7110-1814-4652-a2a8-1ae2e643f8e3" id="780e7110-1814-4652-a2a8-1ae2e643f8e3">Ammo : .308弾（ウルトラサイト弾も使用可能）.38弾（改造により使用可能）</p></li><li><p name="cc43b828-515c-4e41-b339-6d26ed081329" id="cc43b828-515c-4e41-b339-6d26ed081329">装弾数 : 61</p></li><li><p name="27c7f375-ebd4-434c-872d-ae6e4445ac42" id="27c7f375-ebd4-434c-872d-ae6e4445ac42">Fire rate : 31</p></li><li><p name="738b1780-decd-43db-8b56-6c247907cda8" id="738b1780-decd-43db-8b56-6c247907cda8">Range : 137</p></li><li><p name="b7c765c0-e941-4dc3-85c4-5c30b97cafba" id="b7c765c0-e941-4dc3-85c4-5c30b97cafba">Accuracy : 59</p></li><li><p name="992b5863-fffc-4807-baba-45340315c8e9" id="992b5863-fffc-4807-baba-45340315c8e9">AP : 18</p></li><li><p name="b475c7cd-bb12-4bbc-a167-a3c41ec9cf34" id="b475c7cd-bb12-4bbc-a167-a3c41ec9cf34">Weight : 3.0</p></li></ul><hr name="479703e7-9889-4418-ba66-45b5910d6b0d" id="479703e7-9889-4418-ba66-45b5910d6b0d"><div class="quote-box">
+<b>感想</b><br><br>
+この武器は、序盤からクラフト可能で、改造によって比較的高い単発ダメージを出せるのが魅力ですが、連射速度は遅く、耐久性が低いという特徴があります。<br>パイプ系列は即席の武器で◯◯体倒す系のChallengeに使われるのと、柔軟な改造な特徴ですね。<br>私のロア用のキャラは使ってますが、リロードがながぁいのがボルトアクション系の弱点ですね。<br>ちゃんとオンスロートとかリロード速度とかを積むと良いのだと思いますが、初心者の時は特に使いづらいと思う武器だと個人的には思います。
+</div>
+
+<p name="97849db8-c58d-4f30-87a1-ef2c2fe7dc09" id="97849db8-c58d-4f30-87a1-ef2c2fe7dc09">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

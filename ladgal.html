@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ラッドガル | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ラッドガル</h3>
+            <img src="images/note_extracted/n3155458e2cd8_img_1.png" alt="ラッドガル">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n3155458e2cd8" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ラッドガル</h1>
+            <div class="date">DATE: 2026/1/24</div>
+            
+            <hr name="f57b8ebe-ec3c-416f-9840-a6e87e9a28cc" id="f57b8ebe-ec3c-416f-9840-a6e87e9a28cc"><h2 name="a087bf70-80be-42f3-abd6-44e50275014f" id="a087bf70-80be-42f3-abd6-44e50275014f">特徴</h2><p name="c000d0df-e702-4bb8-a044-7e600073f37b" id="c000d0df-e702-4bb8-a044-7e600073f37b">ラッドガルは常にプレイヤーキャラクターを恐れるわけではなく、時としてかなり接近できることがあります。</p><hr name="38bb1293-c374-490f-ba08-3fec598df574" id="38bb1293-c374-490f-ba08-3fec598df574"><h2 name="d879f567-a61e-476e-a308-59b618589a54" id="d879f567-a61e-476e-a308-59b618589a54">場所</h2><ul name="fd60d316-ec14-441a-84e4-619b77ba75c0" id="fd60d316-ec14-441a-84e4-619b77ba75c0"><li><p name="247c3176-4107-46df-8a09-6520b1b3655c" id="247c3176-4107-46df-8a09-6520b1b3655c">海辺やクジラの死骸がある場所でよく見られます。</p></li><li><p name="ba7d0db2-06d0-4c93-82af-9878d49a9933" id="ba7d0db2-06d0-4c93-82af-9878d49a9933"><strong>キングスポート灯台の壊れた桟橋には、ほぼ確実にスポーンします。</strong></p></li><li><p name="2cb97214-5932-4052-9bf2-d8d969a646c1" id="2cb97214-5932-4052-9bf2-d8d969a646c1">Far Harborの内陸部および沿岸部。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n3155458e2cd8_img_2.png" alt="" width="620" height="413"><div class="note-figcaption"></div></div><hr name="d5eb6e1e-dfe8-496b-af66-98ca0c6ba30a" id="d5eb6e1e-dfe8-496b-af66-98ca0c6ba30a"><h2 name="e794d50b-12dc-4df9-9022-2abc950adfb9" id="e794d50b-12dc-4df9-9022-2abc950adfb9">備考</h2><ul name="f5ccf3fc-3bc8-496b-a561-c6f0783e812b" id="f5ccf3fc-3bc8-496b-a561-c6f0783e812b"><li><p name="d15f8a05-0db8-4e76-9240-edbf4e983c09" id="d15f8a05-0db8-4e76-9240-edbf4e983c09">カラスと同様に、ラッドガルを殺しても経験値（XP）は獲得できません。</p></li><li><p name="e8515c1b-84f8-45e7-89b2-983de8c31687" id="e8515c1b-84f8-45e7-89b2-983de8c31687"><a href="piper-light.html" class="auto-link">パイパー・ライト</a>がプレイヤーキャラクターにスイートロールを渡す際、かつてラッドガルにスナックケーキをひったくられたことについて言及します。</p></li><li><p name="a769e07f-270a-4788-af55-e9e080796bad" id="a769e07f-270a-4788-af55-e9e080796bad">カラスと同様に、飛行経路上の障害物にぶつかったまま飛んでいる状態（スタック）になることが時折あります。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n3155458e2cd8_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><hr name="3bd74669-9af1-42cf-96f5-a8952ff1a170" id="3bd74669-9af1-42cf-96f5-a8952ff1a170"><h2 name="b0d80852-efb7-41f0-8a4f-438892c43f9c" id="b0d80852-efb7-41f0-8a4f-438892c43f9c">登場作品</h2><p name="a40e2bad-d0e0-4dfa-9506-c63fbd792fb4" id="a40e2bad-d0e0-4dfa-9506-c63fbd792fb4">ラッドガルは『<a href="fallout-4.html" class="auto-link">Fallout 4</a>』およびその追加コンテンツ『Far Harbor』にのみ登場します。</p><hr name="adeefcf2-da7c-43ff-8342-05b5faa6acd5" id="adeefcf2-da7c-43ff-8342-05b5faa6acd5"><h2 name="cd6546ef-4e0a-4533-b2f1-fa0ec520bc4b" id="cd6546ef-4e0a-4533-b2f1-fa0ec520bc4b">不具合</h2><ul name="4cfe3717-dd39-4c2b-8c73-b33846fd03b0" id="4cfe3717-dd39-4c2b-8c73-b33846fd03b0"><li><p name="3791c2ee-105d-4871-8121-3df9ebdd2f70" id="3791c2ee-105d-4871-8121-3df9ebdd2f70">地上にいる場合でも、銃バッシュを含む近接攻撃でラッドガルを殺すことができません（検証済み）。</p></li></ul><hr name="57d376d1-68da-402d-a5a3-ced702844b68" id="57d376d1-68da-402d-a5a3-ced702844b68"><h2 name="1b70caaa-9386-4bab-9319-7807c5e4efc6" id="1b70caaa-9386-4bab-9319-7807c5e4efc6">舞台裏</h2><ul name="e5be3e0a-b18b-4730-aa8c-572a4db763de" id="e5be3e0a-b18b-4730-aa8c-572a4db763de"><li><p name="3d8f9811-fd3d-4586-8ceb-cb076330d48b" id="3d8f9811-fd3d-4586-8ceb-cb076330d48b">『The Art of <a href="fallout-4.html" class="auto-link">Fallout 4</a>』には、脱毛し水ぶくれができた個体のコンセプトアートが掲載されています。</p></li><li><p name="afa05eae-8337-4ae0-95ea-eecf49da81bf" id="afa05eae-8337-4ae0-95ea-eecf49da81bf">カードゲーム『Magic: The Gathering』の「Fallout」コラボセットにもカードとして登場しています。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n3155458e2cd8_img_4.png" alt="" width="620" height="456"><div class="note-figcaption">Magic: The Gathering</div></div><hr name="c3b06bc0-6546-495d-b005-de1ab4f06641" id="c3b06bc0-6546-495d-b005-de1ab4f06641"><div class="quote-box">
+<b>感想</b><br><br>
+ラッドガル、連邦の沿岸部を象徴する生き物ですね！<br><br><b>パイパーの台詞</b>: 彼女の「空飛ぶゴキブリ」という例えは、まさにこの世界の野生動物の図太さと、ラッドガルの見た目の痛々しさを同時に表現していて秀逸です。<br><br><b>無害な存在</b>: 経験値も得られず、攻撃もしてこない存在ですが、波の音とともに彼らの鳴き声を聞くと、核に汚染されながらも自然が息づいていることを感じさせます。<br><br>キングスポート灯台の桟橋で彼らが並んでいる姿を見ると、ついついシャッターを切りたくなってしまいますね。
+</div>
+
+<p name="3a6df29c-2e7c-4b78-997e-526a2828c30b" id="3a6df29c-2e7c-4b78-997e-526a2828c30b">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

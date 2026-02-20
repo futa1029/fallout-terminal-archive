@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブラッドバグ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ブラッドバグ</h3>
+            <img src="images/note_extracted/n23d57b0abd63_img_1.png" alt="ブラッドバグ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n23d57b0abd63" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ブラッドバグ</h1>
+            <div class="date">DATE: 2026/2/5</div>
+            
+            <p name="c9e743c3-c1d5-4694-9132-4f841dd62592" id="c9e743c3-c1d5-4694-9132-4f841dd62592"><strong>ブラッドバグ</strong> は、最終戦争後の荒野、特に連邦やアパラチアに広く生息する、<a href="mutation.html" class="auto-link">変異</a>した巨大な蚊の種です。</p><hr name="717ad445-7411-4273-a7be-2aed1f098c1c" id="717ad445-7411-4273-a7be-2aed1f098c1c"><h2 name="547daa9f-92a5-4ea6-8487-2d79bfc52a4b" id="547daa9f-92a5-4ea6-8487-2d79bfc52a4b">背景</h2><p name="ac9fbe98-897c-4613-86f8-acbb3a4fe55d" id="ac9fbe98-897c-4613-86f8-acbb3a4fe55d">かつてはアノフェレス湿地蚊であったこれらの昆虫は、<strong>最終戦争</strong>による核の降下物の副産物として<a href="mutation.html" class="auto-link">変異</a>し、ラッドローチや<a href="broat-fries.html" class="auto-link">ブロートフライ</a>と同様に巨大化しました。<br>マサチューセッツの湿地帯やアパラチアの湿地などに生息していた蚊が、現在では連邦やアパラチアにおいて非常に有能な捕食者へと進化を遂げています。</p><hr name="bba039fe-c146-4d3d-a469-8b0b1cae4ae1" id="bba039fe-c146-4d3d-a469-8b0b1cae4ae1"><h2 name="fbeeb9bc-9c92-4134-af4e-3f244e24a73c" id="fbeeb9bc-9c92-4134-af4e-3f244e24a73c">特徴と生態</h2><p name="891dd111-e60e-49f1-9342-b6dd1785ce57" id="891dd111-e60e-49f1-9342-b6dd1785ce57">ブラッドバグの体長は、頭部から腹部の先端まででおよそ2フィート（約60cm）に達します。<br>泥のような茶色の体色は、周囲の環境に効果的に溶け込むためのカモフラージュとして機能します。<br>戦前の先祖と同様に、6本の長い二重関節の脚、一対の細かい脈が走る翅、そして2つの複眼の間から伸びる長く鋭い<strong>口吻</strong>を持っています。</p><p name="9a1e06cd-30e4-4003-9a00-193cac2628f4" id="9a1e06cd-30e4-4003-9a00-193cac2628f4">この口吻はブラッドバグの主要な攻撃手段であり、注射器のように獲物に突き刺して血を吸い取ります。<br>この攻撃は犠牲者に放射能汚染を引き起こします。<br>また、吸い取った汚染された血を獲物の顔（目）に向かって吐き出すこともあり、これにより獲物の視界を歪ませます。<br>これは、放射能が変異体から犠牲者へと伝達されていることを示唆しています。</p><hr name="493caa54-cffb-4131-8243-88d1a11966c6" id="493caa54-cffb-4131-8243-88d1a11966c6"><h2 name="36e9df22-5fc9-45fb-bd55-1c030aa1539a" id="36e9df22-5fc9-45fb-bd55-1c030aa1539a">戦闘特性</h2><p name="b008dc68-0e4e-43ba-a609-6f4157aedc07" id="b008dc68-0e4e-43ba-a609-6f4157aedc07">ブラッドバグは、<a href="broat-fries.html" class="auto-link">ブロートフライ</a>やラッドスコーピオンと同様に集団で行動する（スウォーミング戦術）傾向があります。<br>獲物を感知すると、彼らは分散して周囲を囲み、多方向から攻撃を仕掛けてきます。<br>空中で不規則に回避行動をとる動き、優れたカモフラージュ、そして細いシルエットのため、射撃で彼らを捉えて全滅させるのは困難です。<br>しかし、群れの大部分が破壊されると、生き残った個体はしばしば撤退します。</p><p name="89d83cf9-c4a8-4774-98b2-e3a0ff3cff57" id="89d83cf9-c4a8-4774-98b2-e3a0ff3cff57">彼らは死んだ<a href="brahmin.html" class="auto-link">バラモン</a>の血を吸っていることが多く、灰色の肌になった<a href="brahmin.html" class="auto-link">バラモン</a>の死体はブラッドバグが近くにいる重要な兆候です。<br>また、木や構造物、屋内の壁や天井に張り付いて待ち伏せすることもあります。<br>彼らの口吻は通常のアーマーを貫通することができますが、<strong><a href="power-armor.html" class="auto-link">パワーアーマー</a> </strong>を貫通するほどの威力はありません。<br>重装備の獲物に対しては、効果の薄い刺し攻撃や、距離がある場合は酸の唾液による攻撃に限定されます。<br>ブラッドバグの血袋を破壊すると、血を吐き出す能力を失わせることができますが、吸血攻撃は依然として可能です。</p><hr name="359a45d9-6f48-41f5-801b-b40a4dfab751" id="359a45d9-6f48-41f5-801b-b40a4dfab751"><h2 name="840e870d-c3a0-46f0-802c-b0a065d55aa3" id="840e870d-c3a0-46f0-802c-b0a065d55aa3">変種</h2><p name="ddd97ebd-b39f-4127-9b94-2bd60914c347" id="ddd97ebd-b39f-4127-9b94-2bd60914c347"><strong>ブラッドバグの幼虫</strong></p><p name="06d2b663-cac4-4efe-8290-0a325d561e8c" id="06d2b663-cac4-4efe-8290-0a325d561e8c">成虫よりも若く、外骨格が硬化していないため、色が薄く弱体な個体です。全変種の中で最も弱い形態です。</p><p name="3d32d453-9c35-492b-a4a5-e61b3855f1b3" id="3d32d453-9c35-492b-a4a5-e61b3855f1b3"><strong>ブラッドバグ</strong></p><div class="note-figure"><img src="images/note_extracted/n23d57b0abd63_img_2.png" alt="" width="620" height="443"><div class="note-figcaption"></div></div><p name="f84b6716-6ec4-4a7d-8bbd-60925db56e8b" id="f84b6716-6ec4-4a7d-8bbd-60925db56e8b">最も一般的な成熟した形態です。各地で頻繁に遭遇します。</p><p name="d36597b8-4954-46d0-907b-6406b2cb02e5" id="d36597b8-4954-46d0-907b-6406b2cb02e5"><strong>レッド・ウィドウ・ブラッドバグ</strong></p><div class="note-figure"><img src="images/note_extracted/n23d57b0abd63_img_3.png" alt="" width="620" height="443"><div class="note-figcaption"></div></div><p name="eca5bcc1-f53a-4b92-9e38-57e567490a4b" id="eca5bcc1-f53a-4b92-9e38-57e567490a4b">体が赤く染まった希少な変種です。他の変種よりも著しく攻撃的で、はるかに致命的です。</p><p name="88216dc5-b260-4e1f-9dd7-f0b2277e75bc" id="88216dc5-b260-4e1f-9dd7-f0b2277e75bc"><strong>感染したブラッドバグ</strong></p><div class="note-figure"><img src="images/note_extracted/n23d57b0abd63_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="1588b640-29ef-4034-afb0-6ab9ae75b644" id="1588b640-29ef-4034-afb0-6ab9ae75b644">通常の成虫よりもヘルスが多く、一撃あたりのダメージも大きいです。一部の個体は緑色の外骨格を持っています。</p><p name="3b3bddf2-9d57-431a-812c-71fb845bdeaf" id="3b3bddf2-9d57-431a-812c-71fb845bdeaf"><strong>吸血ブラッドバグ</strong></p><div class="note-figure"><img src="images/note_extracted/n23d57b0abd63_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="4741b95a-d8e9-4e35-954b-084302aa0170" id="4741b95a-d8e9-4e35-954b-084302aa0170">最も強力な変種の一つです。毒によるダメージを与えるほか、プレイヤーにしがみついて血を吸い、病気を引き起こす可能性もあります。</p><p name="c86856cf-a736-4056-8641-713b9686dc86" id="c86856cf-a736-4056-8641-713b9686dc86"><strong>発光ブラッドバグ<br></strong>多量の放射能を浴びて緑色に光る変種です。非常に強く、弾力性があります。</p><p name="62db3838-4c42-4701-88e7-ed5843cda30a" id="62db3838-4c42-4701-88e7-ed5843cda30a"><strong>毒性のブラッドバグ <br></strong> [Fallout 76] 強力な毒攻撃を持つ高レベルの変種です。</p><p name="1e53a19b-2338-4d5d-baca-b74cd1289b14" id="1e53a19b-2338-4d5d-baca-b74cd1289b14"><strong>悪性のブラッドバグ<br></strong>[Fallout 76] さらに高い耐久力と攻撃力を持つ変種です。</p><p name="e6cecff8-e96f-4a3c-ab3f-5deb5f6074bf" id="e6cecff8-e96f-4a3c-ab3f-5deb5f6074bf"><strong>致命的なブラッドバグ</strong></p><div class="note-figure"><img src="images/note_extracted/n23d57b0abd63_img_6.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="edf3bed4-4cf2-41ca-ba01-770c5fea0a82" id="edf3bed4-4cf2-41ca-ba01-770c5fea0a82">[Fallout 76] アパラチアで見られる極めて危険な高レベル個体です。</p><p name="ad37a49f-ebb5-4e0b-99d3-7de5cedf97c9" id="ad37a49f-ebb5-4e0b-99d3-7de5cedf97c9"><strong><a href="scorch.html" class="auto-link">スコーチ</a>・ブラッドバグ<br></strong> [Fallout 76] スコーチ病に感染した個体です。通常種と同様のバリエーションが存在します。</p><hr name="31c88053-70c2-4e6d-8b45-7359d557a97d" id="31c88053-70c2-4e6d-8b45-7359d557a97d"><h2 name="32332553-b412-492f-8eb9-ec198c8ca897" id="32332553-b412-492f-8eb9-ec198c8ca897">注目の戦利品</h2><p name="d15e10c7-5ba7-421a-ad3a-d2fba1b77b8a" id="d15e10c7-5ba7-421a-ad3a-d2fba1b77b8a"><strong>ブラッドバグの口吻</strong><br>解体して酸などの素材にしたり、特定のクラフトに使用したりできます</p><p name="0b13be9f-3c20-4bec-9658-df74b09375cc" id="0b13be9f-3c20-4bec-9658-df74b09375cc"><strong>ブラッドバグの肉<br></strong>調理して「ブラッドバグのステーキ」などに利用可能です</p><p name="11714177-2daa-4198-8d56-7c2c7909fea7" id="11714177-2daa-4198-8d56-7c2c7909fea7"><strong>発光する肉<br></strong>発光個体から得られます</p><p name="ba258e4e-6d0c-4b47-afb8-dd2f4e388cc2" id="ba258e4e-6d0c-4b47-afb8-dd2f4e388cc2"><strong>核物質<br></strong>発光個体から得られます</p><p name="1dec38b1-9f63-4b2c-8f5d-c58830baa819" id="1dec38b1-9f63-4b2c-8f5d-c58830baa819"><strong>照射された血液<br></strong>上位の個体から得られる場合があります</p><p name="85a1f98c-aaa5-4635-bb90-a09822a2307f" id="85a1f98c-aaa5-4635-bb90-a09822a2307f"><strong>生存可能な血液サンプル<br></strong>特定のクエストに関連して入手できる場合があります</p><hr name="749db9db-3218-4948-8f1b-ef4779278b4f" id="749db9db-3218-4948-8f1b-ef4779278b4f"><h2 name="d5f38fa9-b7c5-4994-b017-b42a2f9b784c" id="d5f38fa9-b7c5-4994-b017-b42a2f9b784c">場所</h2><p name="ec4a0828-a202-419e-9dfe-1b4f5a5ae5c3" id="ec4a0828-a202-419e-9dfe-1b4f5a5ae5c3">連邦においてはサンクチュアリ・ヒルズ周辺の道路や、輝きの海などで見られます。<br>アパラチアにおいては、サウサンプトン・エステート、バスティオン・パーク、デント＆サンズ建設現場、スプルース・ノブ・キャンプ場などで確実に見つけることができます。</p><hr name="ea9fa9f1-4366-4b8e-aa89-aacd5213e65e" id="ea9fa9f1-4366-4b8e-aa89-aacd5213e65e"><h2 name="08e8d4a0-0553-4f03-bf93-38389e2c72f9" id="08e8d4a0-0553-4f03-bf93-38389e2c72f9">舞台裏とバグ</h2><div class="note-figure"><img src="images/note_extracted/n23d57b0abd63_img_7.png" alt="" width="620" height="825"><div class="note-figcaption"></div></div><p name="9f5448c2-dca3-4d10-9473-28c369f498e0" id="9f5448c2-dca3-4d10-9473-28c369f498e0">これは <strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong> の開発において最初に設計・構築された昆虫であり、飛行生物のAI挙動のプロトタイプを作成するために使用されました。 <br>バグとして、ブラッドバグを殺した後でも翅が動き続ける現象が確認されています。</p><hr name="97eb98ab-02a3-4010-9a11-843751546d06" id="97eb98ab-02a3-4010-9a11-843751546d06"><h2 name="3807501e-3221-4b0c-ab3c-24d5b0214224" id="3807501e-3221-4b0c-ab3c-24d5b0214224">登場作品</h2><p name="59f1df41-be4b-42da-b410-431e97507c05" id="59f1df41-be4b-42da-b410-431e97507c05"><strong>ブラッドバグ</strong> は <strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>、<strong>Fallout 76</strong>、およびボードゲームの <strong>Fallout: Wasteland Warfare</strong> に登場します。</p><hr name="0a7f5138-28f1-412d-8a79-8f12366c0227" id="0a7f5138-28f1-412d-8a79-8f12366c0227"><div class="quote-box">
+<b>感想</b><br><br>
+<b>進化した脅威</b>: 単なる蚊の巨大化にとどまらず、吸い取った血を吐き出して視界を奪うといった、生物学的に特異な攻撃方法が確立されている点が興味深いですね。<br><br><b>作品間の継続性</b>: <b><a href="fallout-4.html" class="auto-link">Fallout 4</a></b> で確立された「不規則な飛行と集団戦術」という特性が <b>Fallout 76</b> でも完璧に継承されており、プレイヤーにとって常に厄介な存在であり続けていることがわかります。<br><br><b>資源としての価値</b>: 序盤の食料源としてだけでなく、中盤以降も酸や核物質の供給源として、ウェイストランドの経済とサバイバルにおいて一定の役割を果たしています。<br><br><b>そして羽音</b>: 鳥肌が立ちます。<br><br><div class="note-figure"><img src="images/note_extracted/n23d57b0abd63_img_8.png" alt="" width="620" height="620"><div class="note-figcaption">
+</div>
+
+<p name="8df0f489-aeee-47f7-8c4b-e7c18cde7480" id="8df0f489-aeee-47f7-8c4b-e7c18cde7480">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブッチ・デロリア | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ブッチ・デロリア</h3>
+            <img src="images/note_extracted/n857bee45fe90_img_1.png" alt="ブッチ・デロリア">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n857bee45fe90" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ブッチ・デロリア</h1>
+            <div class="date">DATE: 2025/10/23</div>
+            
+            <p name="0404ed34-7327-414e-b5da-b8545c86d297" id="0404ed34-7327-414e-b5da-b8545c86d297"><strong>Fallout3</strong><br>ブッチ・デロリアは<a href="vault-101.html" class="auto-link">Vault 101</a>の住人であり、トンネル・スネーク・ギャングのリーダー兼共同創設者でもある。<br>Fallout 3では ローン・ワンダラーの仲間になる可能性がある。</p><hr name="465643af-46fe-43ad-8518-11943c3bac04" id="465643af-46fe-43ad-8518-11943c3bac04"><h2 name="693ee334-b441-4371-a294-bbfce000c7bb" id="693ee334-b441-4371-a294-bbfce000c7bb">背景</h2><p name="0c3b5290-96f7-4c27-a8b3-22653f6e055f" id="0c3b5290-96f7-4c27-a8b3-22653f6e055f">ブッチは生まれも育ちも<a href="vault-101.html" class="auto-link">Vault 101</a>で、息子の成長を見守ることを怠った悪名高いアルコール依存症の母親エレン(*)の世話を受けてきました。<br>ブッチは、緊密なコミュニティのあるVaultに住んでいるにもかかわらず、父親を知らないことから生じる根深い劣等感を隠すために、粗野で横柄ないじめっ子の仮面を被らざるを得ませんでした。</p><p name="8bb2429e-f37d-47f1-9fa4-09d6030c88fd" id="8bb2429e-f37d-47f1-9fa4-09d6030c88fd">2268年7月13日、彼が10歳のとき、彼はローン・ワンダラーの10歳の誕生日パーティーに、彼らが好きではなかったにもかかわらず、母親に強く勧められたという理由だけで出席した。<br>パーティーの間、ブッチはたった2人の友人、ウォーリー・マック(*)とポール・ハノン・ジュニア(*)と小さな会議を開き、彼らのギャングの名前についてアイデアを出し合った。<br>後に「トンネル・スネーク」に決定し、 「ヴォルト・ドウェラー」など他の名前は却下した。<br>彼はまた、ルーシー・パーマーからもらったスイートロールを放棄するようワンダラーに強要しようとした。</p><p name="cd542a82-560e-4672-a28a-4cf168840a75" id="cd542a82-560e-4672-a28a-4cf168840a75">6年後の2274年8月3日、 GOAT試験を受ける途中、ワンダラーはブッチとトンネル・スネークたちがアマタに暴言を吐いているのを発見した。<br>彼らはブッチを説得して去らせたり、仲間と殴り合いをしたりして、この状況に介入する必要があった。<br>同日、ブッチ自身もGOAT試験に挑み、Vaultでの将来のキャリアは美容師になることを決意した。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_2.png" alt="" width="278" height="812"><div class="note-figcaption">ブッチの全身</div></div><h3 name="cd0d6e20-29fb-435c-9b66-9abc0cec732e" id="cd0d6e20-29fb-435c-9b66-9abc0cec732e">プレイヤーの行動の影響</h3><p name="48479389-c5f4-4b1b-a516-e2dfa6fb1db4" id="48479389-c5f4-4b1b-a516-e2dfa6fb1db4">ブッチは、<a href="vault-101.html" class="auto-link">Vault 101</a> を離れる前に任意で殺すこともできます。<br>これにより、Trouble on the Homefront 中に登場したり、後で仲間になったりすることを防ぐことができます。<br><a href="vault-101.html" class="auto-link">Vault 101</a>を開放または破壊することで「Trouble on the Homefront」を完了し、ブッチが生き残っていた場合、彼はリベット・シティのマディ・ラダーにいます。<br>プレイヤーキャラクターのカルマがニュートラルの場合にのみ、彼を仲間として募集できます。<br></p><h3 name="ad9baf01-5a2e-4e10-a475-6df70325ec9c" id="ad9baf01-5a2e-4e10-a475-6df70325ec9c">仲間</h3><p name="494974a5-46d2-4ec9-ad3d-4afe9ea1610f" id="494974a5-46d2-4ec9-ad3d-4afe9ea1610f">ブッチは、Trouble on the Homefront の最中にワンダラーの散髪をすることができます。<br>また、仲間として採用した場合は、旅の途中のいつでも散髪をすることができます。<br>プレイヤーキャラクターから離れた場合、ブッチはマディ・ラダーに戻ります。<br>プレイヤーキャラクターと離れ離れになった場合、再び彼を仲間にしようとすると、プレイヤーキャラクターのカルマが再び中立である必要があります。<br>そうでない場合、ブッチは仲間に加わることを拒否します。</p><h3 name="639d827a-be95-4367-9972-f7609a7c6fe7" id="639d827a-be95-4367-9972-f7609a7c6fe7">補足</h3><p name="4d4fe432-e88e-4f9e-8489-01e7a1905e5d" id="4d4fe432-e88e-4f9e-8489-01e7a1905e5d">ブッチは「トンネルスネーク」ヘアカットをしている。<br>ブッチは、軍曹 RL-3と共に、Fallout 3で採用するために中立カルマを必要とする 2 人の仲間のうちの 1 人です。<br>ブッチはラッドローチに対して密かに恐怖心を抱いており、Escape! の中でその恐怖心を明らかにする。<br>マディ・ラダーで、ローン・ワンダラーのパーティーに参加することを拒否したブッチを殺しても、バーの客が敵対的になることはありません。<br>他のフォロワーとは異なり、ブッチはデフォルトの武器を使用するために、インベントリに少なくとも1発の10mm弾を所持している必要があります。<br>ただし、武器を発射しても実際に弾薬を消費することはありません。<br>ブッチはアイドル状態またはローン・ワンダラーと歩き回っているときに、サングラスが必要だと時々言います。 <br>彼はサングラスを受け取って装備した後もこのセリフを言い続けます。<br>ギャングを結成したいと述べているにもかかわらず、すでに活動的な仲間がいる場合にブッチを勧誘しようとすると拒否する。<br>「Growing Up Fast」の中で、ジェームズはブッチのスイッチブレードのバネを使って、贈られたBBガンを修理したと述べています。<br>ブッチは、女性ローンワンダラーと話すときは、軽薄な態度を取るだろう。<br>Vault 106で生存者と戦っているときに、ブッチの幻覚に遭遇します。<br>Take It Back!中に ブッチがアクティブな仲間である場合、Broken Steel DLCがインストールされているかどうかに関係なく、浄化装置を起動するために放射線処理室に入るように求められても拒否します。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_3.jpg" alt="" width="620" height="620"><div class="note-figcaption">MTGのカード</div></div><hr name="57a17bde-9984-4d9c-bb7d-29517f1ad07a" id="57a17bde-9984-4d9c-bb7d-29517f1ad07a"><h2 name="94599770-4915-4519-b546-e80cd213dbe1" id="94599770-4915-4519-b546-e80cd213dbe1">補足</h2><h3 name="32264d6f-2a99-4837-a48f-286e7ace2d48" id="32264d6f-2a99-4837-a48f-286e7ace2d48">エレン</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_4.png" alt="" width="620" height="443"><div class="note-figcaption">エレン</div></div><p name="0c0f1deb-44cb-43ed-ac36-dcc223956464" id="0c0f1deb-44cb-43ed-ac36-dcc223956464">エレン・デロリアは2277年の<a href="vault-101.html" class="auto-link">Vault 101</a>の居住者です。<br><br><strong>背景</strong><br>エレンはよく酔っ払うのが好きで息子のブッチが何をしているかに気を配れない。<br>エレンとブッチは、<a href="vault-101.html" class="auto-link">Vault 101</a>の一番小さなファミリーアパートの一つに一緒に住んでいる。<br>ブッチの父親は、<a href="vault-101.html" class="auto-link">Vault 101</a>の他の住人にとって謎に包まれている。<br><br>2268 年、エレンは息子のブッチをカフェテリアで開かれるローン ワンダラーの 10 歳の誕生パーティに出席するよう勧めました。<br></p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_5.png" alt="" width="620" height="388"><div class="note-figcaption">ラッドローチに襲われるエレン</div></div><hr name="3a35ece6-6508-45c2-ac2d-179a93abd133" id="3a35ece6-6508-45c2-ac2d-179a93abd133"><h3 name="9a46c10d-073c-4897-a9ad-0b814e206d61" id="9a46c10d-073c-4897-a9ad-0b814e206d61">ウォーリー・マック</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_6.png" alt="" width="620" height="443"><div class="note-figcaption">ウォーリー・マック</div></div><p name="e3c70958-5d7e-4466-9896-3988819f8499" id="e3c70958-5d7e-4466-9896-3988819f8499">ウォーリー・マックは、 2277 年の<a href="vault-101.html" class="auto-link">Vault 101</a>の住人で、トンネル スネークと呼ばれるグリース ギャングのメンバーです。</p><p name="c5a36e31-e11a-4de9-b1cf-0de940d1a396" id="c5a36e31-e11a-4de9-b1cf-0de940d1a396"><strong>背景</strong><br>ウォーリーはアレンとグロリア・マックの息子です。<br>ウォーリーの兄弟はスティービーとスージーです。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_7.png" alt="" width="620" height="443"><div class="note-figcaption">幼少期</div></div><p name="58d3e064-8e0b-4d36-bac8-97fcb27125e5" id="58d3e064-8e0b-4d36-bac8-97fcb27125e5">ウォーリーはトンネル・スネークスの頭脳です。<br>ブッチ・デロリアとポール・ハノン・ジュニアはウォーリーの友人であり、ギャング仲間です。<br>トンネル・スネークスは、幼少期に<a href="vault-101.html" class="auto-link">Vault 101</a>の他の生徒に嫌がらせをし、監督官の娘であるアマタ・アルモドバルを挑発するほど大胆でした。<br>ブッチはトンネル・スネークスのリーダーを自称していますが、ウォーリーは反論されれば異論を唱えるかもしれません。</p><p name="b056bb17-5016-4820-a84e-0e4d3256c74b" id="b056bb17-5016-4820-a84e-0e4d3256c74b">彼は他の者ほど多くは話さないが、彼が何か言うと彼らは彼の言うことに耳を傾ける。<br>彼は<a href="vault-101.html" class="auto-link">Vault 101</a>におけるローン・ワンダラーの仲間の1人であり、ローン・ワンダラーが青年期を過ごしたVault 101内では彼と遭遇することがある。</p><p name="9c45931c-44b8-47f0-87ef-3e7658fab102" id="9c45931c-44b8-47f0-87ef-3e7658fab102">2287年までにマックは連邦へ渡り、トンネル・スネークを自らの支配下に再編した。<br>フェンズ・ウェイ駅に作戦拠点を構えた彼らは、古い放射性廃棄物の樽を発見した。<br>マックはそこから超能力を得られると考えた。<br>彼らのグループはガンナーを待ち伏せし、改造された<a href="10mm-pistol.html" class="auto-link">10mmピストル</a>を奪取することに成功した。</p><p name="bd8f340c-bc68-489f-b90d-561f08ccd4aa" id="bd8f340c-bc68-489f-b90d-561f08ccd4aa">時が経つにつれ、マックと他のトンネル・スネークたちは放射線病に屈し、フェラルした<a href="ghoul.html" class="auto-link">グール</a>へと変貌を遂げた。<br>ウォーリー・マック自身も光りし者となった。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_8.png" alt="" width="620" height="620"><div class="note-figcaption">ウォーリー・マックの成れの果て</div></div><p name="1d814af9-788f-4419-bce0-4a9f1f26554c" id="1d814af9-788f-4419-bce0-4a9f1f26554c"><strong>補足<br></strong>ウォーリーはローン・ワンダラーの10歳の誕生日パーティーに出席し、トンネル・スネークス結成につながる議論に参加する。<br>ウォーリーはローン・ワンダラーがピップボーイを一度も着用していないことをからかう。<br>また、ローン・ワンダラーの誕生日パーティーについても、このパーティーは子供向けで、誕生日には皆がアトリウムで「ハント・ザ・ミュータント」をプレイしていたと冗談を飛ばす。<br>そして、ローン・ワンダラーが自分のパーティーに招待されていないことにも言及する。<br>2274 年8 月 3 日、GOATの前で、ウォーリーと彼の友人たちは教室の近くでアマタに嫌がらせをしています。</p><hr name="c43201be-8567-4588-a2dc-f458f35446fa" id="c43201be-8567-4588-a2dc-f458f35446fa"><h3 name="98a7b336-6234-4a31-9140-1edaf9539e4e" id="98a7b336-6234-4a31-9140-1edaf9539e4e">ポール・ハノン・ジュニア</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_9.png" alt="" width="620" height="443"><div class="note-figcaption">ポール・ハノン・ジュニア</div></div><p name="47d2519e-946c-4a53-a494-6c6a5983bef1" id="47d2519e-946c-4a53-a494-6c6a5983bef1">ポール・ハノン・ジュニア、またはポール・ハノンII は<a href="vault-101.html" class="auto-link">Vault 101</a>の住人です。<br>彼イローン・ワンダラーよりも若いです。<br>ポールは2277年にはトンネル・スネークの一員になっています。</p><p name="1814ced9-c9f5-41dd-aa33-a2e60a88570f" id="1814ced9-c9f5-41dd-aa33-a2e60a88570f"><strong>背景<br></strong>彼はポール・ハノン・シニアとヴィッキー・ハノンの一人息子である。<br>ブッチ・デロリア、フレディ・ゴメス(*)、ウォーリー・マックは彼の友人であり、ギャング仲間でもある。</p><p name="ea4b6cea-5023-459d-8c26-3bb61f66798c" id="ea4b6cea-5023-459d-8c26-3bb61f66798c">他のトンネルスネークたちは、彼の父親が<a href="vault-101.html" class="auto-link">Vault 101</a>の警備主任であるという理由で彼をからかうこともあるが、そのことがまた、友人たちの間で彼に一定の地位を与えている。</p><p name="b24648b8-1f57-4c45-890f-f81c8b93be90" id="b24648b8-1f57-4c45-890f-f81c8b93be90">2268年7月13日、ポールはローン・ワンダラーの10歳の誕生日パーティーに出席する。<br>ローン・ワンダラーとの会話の中で、ポールは<a href="pip-boy.html" class="auto-link">Pip-Boy</a> 3000をまだ持っていないことをからかう。<br>会話中、ポールは友人たちの嫌がらせについて気まずそうに謝罪し、友人たちはポールに「恋をしている」（プレイヤーキャラクターが女性の場合）とか「友達」（プレイヤーキャラクターが男性の場合）などとからかい始める。<br>そのため、ポールは他の少年たちからの人気を維持するために、あなたを「間抜け」と呼ぶようになる。<br>その後、パーティーでポールは2人の友人と共に、自分たちのグループの名前について考える。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_10.png" alt="" width="620" height="443"><div class="note-figcaption">幼少期</div></div><p name="b76b6b87-bd4e-4ebd-a7e0-5cdbc002c0a2" id="b76b6b87-bd4e-4ebd-a7e0-5cdbc002c0a2">2274年8月3日、ポールとその仲間たちはアマタ・アルモドバルに嫌がらせをしている。<br>ローン・ワンダラーは、アマタに味方するか、トンネル・スネークに味方するか、あるいはアマタをトンネル・スネークに預けるかを選ぶことができる。<br>GOAT試験の解答がエンジニアとしての彼のキャリアを決定づけると知らされ、彼は安堵する。</p><p name="965e1486-7250-457c-a437-f14437c89462" id="965e1486-7250-457c-a437-f14437c89462"><a href="vault-101.html" class="auto-link">Vault 101</a>での派閥間の危機の間、フレディ・ゴメスはローン・ワンダラーに、ポールはラッドローチの攻撃中に受けた重傷で死亡したが、Vaultに医者がいれば生き延びられただろうと伝える。</p><hr name="abadc755-7e72-4701-91dc-c4d21d238226" id="abadc755-7e72-4701-91dc-c4d21d238226"><h3 name="2349c74c-3d13-492e-85a3-5151d7db8f50" id="2349c74c-3d13-492e-85a3-5151d7db8f50">フレディ・ゴメス</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_11.png" alt="" width="620" height="443"><div class="note-figcaption">フレディ・ゴメス</div></div><p name="c97acccc-047b-4a51-ac56-6d3af5217d97" id="c97acccc-047b-4a51-ac56-6d3af5217d97">フレディ・ゴメスは2277年の<a href="vault-101.html" class="auto-link">Vault 101</a>の住人です。</p><p name="69538109-e218-487a-a594-e7271a0337b0" id="69538109-e218-487a-a594-e7271a0337b0"><strong>背景</strong><br>フレディはトンネルスネークを目指しているが、ブッチやトンネルスネークたちとの付き合いのせいで成績が下がり、両親は心配でたまらない。<br>実は、フレディは悪いことをしたときにブッチや他のトンネルスネークたちから認められるのが楽しいだけなのだ。</p><p name="99a380cd-3e1d-404f-81fb-58ac22ccf043" id="99a380cd-3e1d-404f-81fb-58ac22ccf043">2260年代、フレディは仲間たちから嘲笑の対象となった。<br>彼は「変人フレディ」というあだ名で呼ばれ、コミックのキャラクターであるグロッグナック・ザ・バーバリアンと不当に比較された。</p><p name="76f7705c-9236-4448-ba10-1dbf4bc79248" id="76f7705c-9236-4448-ba10-1dbf4bc79248">2270年代初頭、フレディはヴォールト医師のジェームズによってVaultうつ病症候群（VDS）と診断されました。<br>医療記録によると、フレディは無気力、不安、そして低い自尊心を抱えていました。<br>フレディは、この不安と低い自尊心に対処するため、仲間をいじめるような振る舞いをしていました。<br>ジェームズはフレディにクロルプロマジンを処方しましたが、患者がこの薬に恒久的に依存するのではないかと心配していました。</p><p name="08927650-1d7e-43aa-816c-9eae3562b28b" id="08927650-1d7e-43aa-816c-9eae3562b28b">2274年8月3日、ゴメスはスージー・マックと世間話をする。<br>二人は彼女の家のヒーターが故障していることについて話し、GOATの後、カフェテリアで昼食をとる約束をする。<br>GOATを前に、フレディは緊張している。<br><a href="edwin.html" class="auto-link">エドウィン</a>・ブロッチが鉛筆を置くように命じ、他の全員が帰った後、フレディは試験の2問に苦戦している。<br>問5は彼を道徳的なジレンマに陥れる。<br>祖母の言うことを聞いて他の住人を殺すべきか、それとも殺人は間違っているので祖母に背くべきか？<br>問10は答えがすべて同じで、ひっかけ問題なのか確信が持てず、フレディを困惑させる。</p><p name="74035026-52ca-441f-b8b3-bacf4f63c613" id="74035026-52ca-441f-b8b3-bacf4f63c613"><strong>人間関係</strong><br>フレディはハーマンとペッパー・ゴメスの唯一の子供です。<br>フレディはローン・ワンダラーに対して友好的です。</p><p name="ac11ae53-bae5-4200-91bf-ecc9c1b2b1f3" id="ac11ae53-bae5-4200-91bf-ecc9c1b2b1f3">ローン・ワンダラーが女性の場合、10歳の誕生日パーティー中に、アマタにフレディとのデートをプレゼントするかどうかを尋ねる選択肢がある。<br><a href="vault-101.html" class="auto-link">Vault 101</a>の入り口のすぐ外にある、廃墟となった家の近くの郵便受けに、ゴメス一家宛てに <a href="vault-101.html" class="auto-link">Vault 101</a> への参加を勧める手紙が入っていました。このゴメス一家はフレディ ゴメスの先祖である可能性があります。<br>GOAT試験の最後に、ブロッチ先生に試験を提出していないのはフレディだけです。<br>ローン・ワンダラーが十分に近ければ、最後の質問の答えは「監督官」しかないにもかかわらず、彼は答えを尋ねます。<br>クエスト「Trouble on the Homefront」を完了するために <a href="vault-101.html" class="auto-link">Vault 101</a> の原子炉が破壊された場合、フレディの遺体がランダムエンカウントとして荒野で見つかる可能性があります。</p><hr name="e455a134-67e9-4d2f-84aa-50b5ef6ea0a3" id="e455a134-67e9-4d2f-84aa-50b5ef6ea0a3"><h3 name="9906c711-55c5-4bf7-a390-c0cf70869d2e" id="9906c711-55c5-4bf7-a390-c0cf70869d2e">アマタ・アルモドバル</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_12.png" alt="" width="620" height="443"><div class="note-figcaption">アマタ・アルモドバル</div></div><p name="70ed4f12-abb0-498f-acc4-f9d9dfabcbab" id="70ed4f12-abb0-498f-acc4-f9d9dfabcbab">アマタ・アルモドバルは<a href="vault-101.html" class="auto-link">Vault 101</a>の住人であり、監督官 アルフォンス・アルモドヴァル(*)の一人娘で、『Fallout 3』の主要キャラクターです。<br>オウィン・リオオンズとサラ・リオンズと共に、ゲーム内でカルマが「とても良い」のキャラクターはわずか3人しかいません。</p><p name="fe48b7ee-adfd-4b7d-aa6f-e3b872e27cf2" id="fe48b7ee-adfd-4b7d-aa6f-e3b872e27cf2"><strong>背景</strong><br>監督官の一人娘であるアマタは、ローン・ワンダラーとほぼ同年代で、ジェームズが子供を連れてVaultにやって来て以来、二人は共に成長してきた。<br>二人は、グロッグナック・ザ・バーバリアンのことや、幼い頃に母親を亡くし、シングルファーザーに育てられたことなど、様々な出来事を通して絆を深めた。<br>アマタは2歳で母親を亡くし、監督官である父親が一人で彼女を育てた。<br>父親への深い愛情と生来の忠誠心にもかかわらず、Vaultを率い、孤立主義政策を強制するという重荷は、アマタとアルフォンスを徐々に引き離していった。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_13.png" alt="" width="620" height="443"><div class="note-figcaption">幼少期</div></div><p name="400373d3-2068-408a-ad02-77087fb16f35" id="400373d3-2068-408a-ad02-77087fb16f35">アマタとローン・ワンダラーの絆は長年にわたり深い友情へと発展し、二人は切っても切れない親友となった。<br>アマタは、彼らが<a href="vault-101.html" class="auto-link">Vault 101</a>の正式な住民となり<a href="pip-boy.html" class="auto-link">Pip-Boy</a> 3000を受け取った際に、ワンダラーの10歳の誕生日パーティーを企画した。<br>アマタは一人で飾り付けに精を出しており、アルフォンスは「適切な親としてのサポート」と、普段の日常業務の合間の短い休憩許可を与えただけだった。<br>理由の一つは、アルフォンスが監督官としての立場を危うくし、娘に特別な権限を与えることでえこひいきをして​​いると思われたくなかったからである。<br>もう一つは、彼がローン・ワンダラーを単に好きではなかったからであり、父親の頑固で反抗的な性格も一因であった。</p><p name="97b709f9-583c-4bba-b88f-3901dcb71553" id="97b709f9-583c-4bba-b88f-3901dcb71553">アマタは監督官の娘であることを楽しんでおらず、他の居住者からより自立した人間に見えるよう、自ら課題に取り組み、問題を解決することを好んだ。<br>これには、ブッチ・デロリアをどう扱うかを考えることも含まれていた。<br>彼女は幼い頃から、父親の地位に頼れば追放やそれ以上の事態に陥るだけだと悟っていたのだ。</p><p name="97fb481e-09fc-4b56-a3d9-dccfae6e5426" id="97fb481e-09fc-4b56-a3d9-dccfae6e5426">この独立心はアルフォンスの支配的な態度によってさらに強まった。<br>アマタが成長するにつれて彼を遠ざけることに、彼は困惑し、苛立ちを感じていた。<br>アマタはアルフォンスから教わった美徳（忠誠心、正直さ、献身、勤勉さ）を身につけ、立派な若い女性に成長したが、彼女は彼を父親のような存在ではなく、よそよそしい監視人として見ていた。<br>信頼の欠如が一因だったと思われる。<br>彼は自分の立場を彼女に有利に利用することはなかったが、それを利用して彼女を注意深く監視し、十代のアマタの定期検診にも立ち会っていた。<br>Vaultの医師であるジェームズは、アマタが妊娠したりする可能性がほとんどない、成熟した責任ある若い女性に成長していたことを残念に思った。</p><p name="8531fd26-aeb5-4d95-9ff1-303a9f74e04d" id="8531fd26-aeb5-4d95-9ff1-303a9f74e04d">アマタはトンネルスネークによるいじめの対象となった。<br>彼らは彼女の家族の絆を侮辱するだけでなく、彼女の体のイメージを嘲笑したり、太りすぎと呼んだり、卑猥な提案をしたりすることにも手を染めた。<br>彼女の父親は彼女の状況を十分理解しており、トンネルスネークとのトラブルを注意深く監視していた。<br>トンネルスネークによるアマタへの嫌がらせは、彼らの存続を容認するかどうかを決める大きな要因であった。</p><p name="a215a286-b0da-4862-8ad4-bcc597e39fa3" id="a215a286-b0da-4862-8ad4-bcc597e39fa3">アマタは父親の地位を利用することを拒否し、ローン・ワンダラーだけが彼女の助けと支援の源となった。<br>GOATは彼女を監督職に就かせ、父親に代わって監督に就く道筋を示した。</p><p name="d4777aba-edde-4c86-89e4-6693abe50522" id="d4777aba-edde-4c86-89e4-6693abe50522">彼女のチャンスは、彼女が望んでいたよりも早く訪れることになる。<br>ジェームズが浄化プロジェクトを再開するために<a href="vault-101.html" class="auto-link">Vault 101</a>から逃亡することを決意したとき、監督官は正気を失い、警備隊の統制を解いてしまった。<br>すべてを危険にさらして、アマタは父親の<a href="10mm-pistol.html" class="auto-link">10mmピストル</a>を盗み、施錠されたVaultを通り抜け、ローン・ワンダラーを起こしてVaultからの脱出を手助けした。<br>しかし、彼女は警備員に捕まり、父親の前に連れ出されて尋問を受ける。<br>アルフォンスはマック警官に彼女を殴りつけて答えを聞き出させようと決意したが、ローン・ワンダラーがピストルを受け取るかどうかによって、成功するか前述のマック警官の死につながるかが決まる。</p><p name="b1320d88-86f9-4d8e-b9f8-546291538f76" id="b1320d88-86f9-4d8e-b9f8-546291538f76">彼女はローン・ワンダラーによって解放され、彼らが<a href="vault-101.html" class="auto-link">Vault 101</a>から荒野へと抜け出すのを目撃した。<br>アマタは、この状況を収拾できると確信していた。<br>彼女は、父親の命令でジョナス・パーマーを殺害したとしても、微笑んで全てがうまくいっているかのように装うという、実績のある戦略に頼った。<br>しかし、彼女はそれが不可能だと分かっていた。<br>彼女の世代が教えられてきたことはすべて嘘であり、外の世界は居住可能だったのだ。<br>小さく死にゆくVaultの世界から出たいという昔からの願望と相まって、反乱が起こりつつあった。<br>父親への想いによって、その状況は複雑化していた。<br>アルフォンスは権力に飢えた狂人だったかもしれないが、それでも彼女のイ親であり、彼女に残された唯一の家族だった。</p><p name="6102c248-bab0-4667-a233-5c56c24cf23c" id="6102c248-bab0-4667-a233-5c56c24cf23c">扉が再び封印されたことで、彼女は孤立がVaultの死を意味し、最終的には人口を一握りの近親交配した残党にまで減らしてしまうことを悟った。<br>彼女のリーダーシップとカリスマ性、そして孤立主義に対する高まる憤りの波が、ジェームズとローン・ワンダラーの脱出直後に二度目の危機を引き起こした。 <br>アマタはVaultを開けて壁の外で生活を始めることを最初に口にした人物であり、それが監督官に反対意見の取り締まりを促すことになった。</p><p name="e594908a-d2c3-4655-bad2-5c0d00cbecf2" id="e594908a-d2c3-4655-bad2-5c0d00cbecf2">予想通り、反乱を鎮圧しようとする試みは、かえって反乱を煽る結果となった。<br>アマタと<a href="edwin.html" class="auto-link">エドウィン</a>・ブロッチが指導者となり、若者や理想主義者たちをVaultの開放という理念のもとに結集させた。<br>かつてアマタの天敵だったトンネル・スネークは運動の牽引役となり、Vaultの診療所と教室を占拠したが、食料庫がなかったため、監督官は彼らを飢え死にさせようとした。<br>ブロッチがVaultの扉を独りで開けようとして逮捕された後、アマタは反乱の唯一の指導者となった。<br>しかし、運動は依然として強く、以前はアマタに反感を抱いていた多くの人々が彼女の側に立った。<br>その中には、脱出危機の後、人生に対する新たな視点を得たスージー・マックもいた。</p><p name="9c69e900-cd49-4fb9-9d31-e698f39a937b" id="9c69e900-cd49-4fb9-9d31-e698f39a937b">アマタの父は、Vaultを開けるという考えに恐怖を覚えながらも、彼女の天性のリーダーシップを誇りに思い、立派な後継者と見なしていました。<br>実際、彼女の存在こそが暴力的な弾圧を防いだのです。<br>彼は、治安部隊がもはや完全には自分の管理下にないことに気づかず、治安部隊に秩序回復の権限を委ねるという過ちを犯すことを拒みました。<br>監督官に対処するには外部からの支援が必要であることを知ったアマタは、ローン・ワンダラーをVaultに戻そうと、救難信号を発信しました。</p><p name="0cef26ab-2f67-4230-a782-fce303627503" id="0cef26ab-2f67-4230-a782-fce303627503"><strong>クエストでのアマタ</strong><br>Escape!<br>アマタはジェームズがVaultから脱出したという知らせでローン・ワンダラーを目覚めさせる。<br>彼女は銃を差し出し、ローン・ワンダラー自身の脱出計画を概説する。<br>クエスト終盤で、彼女は捕らえられ、父親とマック巡査に尋問されていることが判明する。<br>アマタは無敵としてコード化されているため、ダメージを受けても意識を失っても永久的な影響はない。<br>銃を返せと言われた場合、彼女は銃を抜き、マック巡査を殺害して別の部屋に逃げ込む。<br>マック巡査を殺害する前に介入することは可能であり、その場合、次に話しかけられた際に彼女は感謝の意を表し、自分が何をしたのか分からないと言う。<br>プレイヤーが既にVaultの巡査から拳銃を奪っている場合、アマタはVaultの扉で拳銃を返却しない。<br>プレイヤーが彼女の父親を殺すかどうかの決定は彼女の態度を劇的に変え、次のクエストの選択肢に影響を与えます。<br><br>Trouble on the Homefront<br>『The Waters of Life』の後、Vault 101付近で新たな無線信号が聞こえてくる。<br>アマタからの<a href="vault-101.html" class="auto-link">Vault 101</a>の救難信号だ。<br>彼女はその日までの出来事を簡単に説明し、Vaultの扉を開けるパスワードを教えてくれる。<br>アマタはVaultが危機に瀕しており、監督官を止めるために助けが必要だと話す。<br>プレイヤーはアマタを新しい監督官に任命するなど、様々な方法でクエストを解決できる。<br>Vaultを破壊し、そのことをアマタに伝えることで「Trouble on the Homefront」を完了すると、再び話しかけようとするとアマタは敵対的になります。<br>また、特別なランダムエンカウンターが解除されます。<br><br><strong>アマタの運命</strong></p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_14.png" alt="" width="620" height="388"><div class="note-figcaption">アマタの運命</div></div><p name="49f837f7-5a2b-4158-a5c0-0be6c2181950" id="49f837f7-5a2b-4158-a5c0-0be6c2181950">Vaultのリアクターを破壊すると、アマタとエンクレイヴの将校が2人のエンクレイヴ兵士を率いるランダムエンカウントが発生します。<br><br>エンクレイヴ兵士：「申し訳ありませんが、いくつかお伺いしたいことがあります。そのスーツをどこで手に入れたのかを知りたいのです。」<br>アマタ・アルモドバル：「私は<a href="vault-101.html" class="auto-link">Vault 101</a>から来ました！お願いです、助けてください。」<br>エンクレイヴ兵士：「もちろんです。私たちはいつでも困っているアメリカ国民を支援する準備ができています。Vaultの場所を教えていただけますか？」<br>アマタ・アルモドバル：「<a href="pip-boy.html" class="auto-link">Pip-Boy</a>に位置情報が表示されているのに、なぜ？」<br>エンクレイヴ兵士: 「素晴らしい。それだけで十分だ。発砲しろ。」<br>プレイヤーが介入しない限り、兵士たちは彼女を殺してしまうだろう。もし生き残ったら、彼女は立ち去り、ローン・ワンダラーを叱りつけ、彼女の状況はローン・ワンダラーのせいだから近づかないようにと言う。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_15.png" alt="" width="620" height="1101"><div class="note-figcaption">Fallout Shelter Online</div></div><hr name="8c13a5f6-a6c6-477e-9e43-1eff048261f5" id="8c13a5f6-a6c6-477e-9e43-1eff048261f5"><h3 name="fc6f32d8-5026-47e3-8413-5af8b9301d94" id="fc6f32d8-5026-47e3-8413-5af8b9301d94">アルフォンス・アルモドバル</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_16.png" alt="" width="620" height="443"><div class="note-figcaption">アルフォンス・アルモドバル</div></div><p name="4b700dab-b5d5-4e01-867b-2678b9335d64" id="4b700dab-b5d5-4e01-867b-2678b9335d64"><strong>背景<br></strong><br>若いころ<br><a href="vault-101.html" class="auto-link">Vault 101</a>で存在感を放つアルフォンス・アルモドバルは、元々は多くのVault居住者の一人に過ぎませんでした。<br>シェルターが住民に自由に外界へ出入りし、外界との交易を許可していた時代に生まれたのです。<br>監督官の指揮の下、Vaultは170歳を目前に控えながらも、Vault-Tecの計画をはるかに超える素晴らしい状態を保っていました。<br>しかし、アルフォンスの見方は異なっていました。<br>Vaultを危険にさらすべきではないと信じる両親のもとで育ったアルフォンスは、冷酷な孤立主義の気質を身につけ、セキュリティの重大な欠陥を修正できるまで時を待ち望んでいました。<br>ある日、監督官がウェイストランドでの任務中に姿を消したことで、彼の願いは叶いました。<br>アルフォンスの若さとカリスマ性は、彼がその機会を捉え、リーダーシップを発揮することを可能にさせ、Vaultの他の住民たちは受け入れるしか選択肢がなかったのです。</p><p name="edd678f8-161a-4b10-95e6-f38330e5fc9e" id="edd678f8-161a-4b10-95e6-f38330e5fc9e">アルフォンスは、Vaultを開けた前任の監督官たちが愚か者であり、自分が監督官に就任した時​​点でVaultは崩壊寸前だったと確信していた。<br>そのため、彼はVaultを直ちに封印するよう命じ、彼らの過ちを正し、Vaultが最も安全で純粋な人間たちの避難所となるよう尽力した。<br>遠征隊による犠牲者は出たものの、状況はアルフォンスが考えていたほど深刻ではなかった。<br>しかし、彼は大人全員に秘密保持の誓約をさせ、大戦以来Vaultが一度も開かれていないように見せかけた。犠牲者が出たためだと勘違いした者もおり、その策略に同意した。</p><p name="283f61a8-deaf-4ef8-be08-234bfc20f83c" id="283f61a8-deaf-4ef8-be08-234bfc20f83c">アルフォンスの監督官としての在任期間は、Vaultにとって悲惨な結果となった。<br>彼は初期にいくつかの賢明な判断を下した。<br>最も重要なのは、2258年頃にVaultの診療所の欠員を補うため、ジェームズと彼の幼い子供をVault内に受け入れたことだ。<br>これにより、心臓病学、小児科、精神医学、その他の重要な医学分野に精通した人物がVault内に確保された。<br>間接的に、アルフォンスの妻が亡くなった後、彼の娘アマタに同年代の仲間ができた。</p><p name="f0c7b714-e00a-4437-a0ae-adc910e61c4c" id="f0c7b714-e00a-4437-a0ae-adc910e61c4c">新たに遺族となった監督官は、抑圧とさえ言えるほどセキュリティに執着していた。<br>以前の監督官とは異なり、彼は規則と秘密主義を厳格に遵守する雰囲気を醸成し、最終的には自身を中心とした個人崇拝を作り上げてしまった。<br>しかし、それは大人たちの反感を買うどころか、Vaultの運営を永続させることもできなかった。<br>わずか20年の間に、Vaultは制御不能なまでに荒廃し始めた。</p><p name="352cbade-e9d1-4d34-9092-c46a104646cf" id="352cbade-e9d1-4d34-9092-c46a104646cf">同様に、文化も衰退し、少年犯罪が（例年以上に）増加しました。<br>人口の急激な減少がそれを相殺しました。<br>2268年までに、Vaultで生まれた若者の数は過去最低を記録し、Vaultの古参居住者たちは、かつてVaultが全盛期に満員だった群衆と比べて、現状を劣悪なものと見なしていました。</p><p name="c0b2b67c-ed03-4c5b-a97e-3eff87e40683" id="c0b2b67c-ed03-4c5b-a97e-3eff87e40683">そのため、アルフォンスは住民全員に忠誠心、正直さ、献身、勤勉といった美徳を植え付けようとしたが、彼の抑圧的な統治スタイルとエゴは逆効果をもたらした。<br>娘でさえ、徐々に彼の教え込みに抵抗し始めた。<br>彼がどんなに気取っていたとしても、部外者（例えば「ローン・ワンダラー」）に対する軽蔑は薄々隠されていた。<br>彼の最大の関心事は、全員にできるだけ早く、一生懸命働かせることであり、10歳になった子供たちにはすぐに仕事を与える方針も含まれていた。<br>彼はアマタのためにのみ、自分のルールを曲げた。<br>例えば、彼女が親友の誕生日パーティーを短く主催することを許可するなどだ。<br>それでも、それは日常の退屈な仕事からの束の間の休息に過ぎず、警備員は監督官がパーティーを去った数分後にカフェテリアを清掃し、全員を仕事に戻すよう指示されていた。<br>彼は監督官であるということは毅然とした態度、揺るぎない態度、そして一切の妥協を許さない態度を意味すると心から信じていた。<br>休暇を許すことは、父親としての適切な励ましを除けば、娘のためにできるすべてであり、Vaultの資源を彼女のために割くことは決してできなかった。</p><p name="b3b10dee-eae2-44fe-a608-33fe14d503f6" id="b3b10dee-eae2-44fe-a608-33fe14d503f6">2274年までに、個人崇拝と抑圧は<a href="vault-101.html" class="auto-link">Vault 101</a>での生活の日常となり、 Vaultへの配属を決定する際に用いられる一般職業適性試験（GOC）でさえ、アルフォンスの地位と自尊心を強化するために改変された。<br>最終設問では、すべての若者に対し、彼が「紛れもなく<a href="vault-101.html" class="auto-link">Vault 101</a>で最も重要な人物であり、核の荒廃地の過酷さから彼らを守り、彼らの命を含め、彼らが持つすべてのものを彼に負っている」と述べ、事実上彼への忠誠を誓うことが求められた。<br>彼の厳格な子育てスタイルと立場は、アマタを徐々に遠ざけ、彼女は監督官の子供として数少ない仲間から特別扱いを受けていた（父親はそうしようとしなかったにもかかわらず）。<br>アルフォンスは、ジェームズによる婦人科検診を含む、彼女が受ける健康診断に必ず立ち会うことを主張することで、事実上この結末を確実なものにした。<br>この支配的な行動は滑稽で悲しいものであり、彼が自分の肉親さえも信用していないことの証拠だとみなされた。<br>他の人々も同様にひどい状況にあった。<br>Vault唯一の保守技術者であるスタンリー・アームストロングは、監督官に酷使され、過労と睡眠不足に苦しみ、アスピリンを大量に服用することで体調を維持していた。<br>一方、 Vaultうつ病症候群の急性期に苦しむフレディ・ゴメスは、抗精神病薬であるクロルプロマジンを一生服用しなければならない状況に直面していた。</p><p name="421cc5ed-9901-48eb-9b7b-0d1de2f0e4ab" id="421cc5ed-9901-48eb-9b7b-0d1de2f0e4ab">彼の圧制的な統治は、住民の管理や薬物投与、自らが選んだ警備員の警棒の使用、数十年前に廃止されたVault忠誠検査官の職の復活だけにとどまらなかった。<br>彼はまた、トンネル・スネークを（非公式に）傘下に置き、警備隊では対応できないVault内の様々な問題に対処するためとして機能させた。</p><p name="de80c86d-06c7-4455-a9cc-7a23bb898353" id="de80c86d-06c7-4455-a9cc-7a23bb898353">2277年10月、監督官はVaultを完全に掌握しているように見えた。<br>対処すべきは、アマタに追い払イ�れることへの不満と、トンネル・スネークが彼女を攻撃するのが彼の好みではないこと、そしてベアトリス・アームストロングの衰えつつある精神機能に対する長期的な薬学的解決策を見つけることだけだった。 <br>しかし、それは嵐の前の静けさだった。<br>彼が20年近く前にVaultに入れた医師のジェームズは、アルフォンスの意に反して、浄化プロジェクトを少しずつ削り続け、少量の電力と物資を吸い上げてプロジェクトの火花を散らし続けていた。<br>彼の子供が細胞分裂に影響を与える突然変異やその他の退化疾患（監督官に深刻な影響を与える可能性が高い）を患っていないことを確認するための実験として始まったものが、助手医師兼代行研究員としてクリニックに配属されたジョナス・パーマーとの科学的パートナーシップへと発展した。</p><p name="96af0cad-54ce-4e55-a0c1-7a47d30de096" id="96af0cad-54ce-4e55-a0c1-7a47d30de096">監督官は理想主義者二人を一緒にするという任務に難色を示しましたが、パーマーの医療従事者としての能力はメンテナンスに時間を費やすには大きすぎると考えました。<br>ジョナスの助けは浄化プロジェクトの維持に非常に役立ち、ジェームズに更なる努力を促しました。<br>そしてついに、スコッチで半分酔った状態でアルフォンスのオフィスに忍び込み、プロパガンダ、スパイ報告、そして独裁者特有の雑多な雑談の中から、スタニスラウス・ブラウンとGECK、そして社会保存プログラムとを結びつける情報を発見しました。<br>エデンの園創造キットはプ浄化プロジェクトを復活させる可能性があり、ブラウンとVault 112を見つけるのに十分な手がかりを得た後、ジェームズはアルフォンスが最も恐れていたことを実行しました。Vaultを開けたのです。</p><p name="9966956f-9049-4a86-847e-c86d0847b86b" id="9966956f-9049-4a86-847e-c86d0847b86b">アルフォンス監督官は、ジェームズの子供の居場所について娘に尋問した。アマタは動こうとしなかったため、マック警官に殴打された。</p><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_17.png" alt="" width="620" height="479"><div class="note-figcaption">アマタに対する尋問の様子</div></div><p name="7a8ef2a0-664d-4d87-b8be-8a793291adb3" id="7a8ef2a0-664d-4d87-b8be-8a793291adb3">何が起こったのかを悟ったアルフォンスは激怒し、あらゆる危険に対処するため、警備隊をVault全体に解き放ち、警告なしに発砲する許可を与えた。<br>アルフォンス監督官の命令でハノン署長に撲殺されたジョナス・パーマーには特に注意が払われ、他の者がVaultを離れ、隊員をさらに減らすことを阻止した。<br>他にも、ラッドローチの蔓延に対処し、ジェームズが残した子供を「尋問」のために捕らえるため、要所に警備員が配置された。<br>アマタは反抗的な行動として封鎖を回避し、友人が警備を逃れるのを助け、取り締まりを事前に警告した。<br>ローン・ワンダラーがVaultの扉に向かっているところを警備員に捕らえられ、監督官は彼女を尋問のために連行した。<br>彼は慈悲や寛大さを示すどころか、情報を得るためにマック巡査に自分の娘を拷問するよう命じ、彼女を殴りながら、それは楽しいことではないが必要なことだと主張した（アマタはこれに反対した）。<br>ローン・ワンダラーは、脱出の途中で彼女を救い、監督官と対峙し、さらには彼を殺す機会があった。</p><p name="b14a8c9e-0fd6-4fb0-a3b5-55c9c6eeb498" id="b14a8c9e-0fd6-4fb0-a3b5-55c9c6eeb498">脱獄の混乱が収まると、アルフォンスはVault内の安全確保に目を向けた。<br>彼は、ジョナスへの冷酷な殺害を含め、彼の死はVaultの安全確保に必要だと考えていた。<br>アマタと<a href="edwin.html" class="auto-link">エドウィン</a>・ブロッチが抵抗運動を組織し、若い世代がVaultが封鎖されたのは地上が居住不可能になったからではなく、アルフォンスの嘘によるものだと初めて知ると、監督官は騒乱の責任を自らに押し付けた。<br>嘘や抑圧のせいではなく、部外者に「人類最後の純粋な標本」を汚させてしまった判断力のなさだったのだ。<br>彼は孤立を人類の生存のための手段ではなく、それ自体が目的だと考えていたことに気づいていなかった。<br>Vaultを開こうとする反乱者や暴動者を彼の敵と見なし、彼らを倒せば全てが元通りになると考えていた。<br>そのため、彼は自身と治安部隊を力による秩序回復に再び捧げ、館内放送で和解を訴え続けている。<br>しかし、彼は問題解決の手段として暴力を使うことも断念している。<br>ジェームズ脱獄の夜に彼が下した難しい決断は、Vaultの将来の成功に対する明白かつ差し迫った脅威のために必要だった。<br>その成功とは、人類が生き残り再建するのを助けることではなく、できるだけ長く人類を汚さないことだった。<br>もしアルフォンスがVaultを永久に封印することができれば、彼はこの未来を守ることになるだろう。<br>そこに住むすべての人間が、戦争の荒廃に汚されない、純粋で保護された種族のままでいることを。</p><p name="4c52cc19-bcb1-46e0-a525-229e7419754c" id="4c52cc19-bcb1-46e0-a525-229e7419754c">しかし、アルフォンスの意図は、彼らを純粋で、保護され、そして完全に死滅させることだった。<br>まず、アルフォンスは「彼の」Vaultにおける純粋さと完璧さをひたすら追求するあまり、警備部隊の制御を失い、警備部隊は反乱軍を武力で襲撃し、残りの反乱軍を統制しようと独自に計画するに至った。<br>アルフォンスの失敗した政策と警備部隊による殺害が相まって、<a href="vault-101.html" class="auto-link">Vault 101</a>は維持不可能な状態になった。<br>封鎖すれば、人口を数世代以上は維持できるだけの遺伝的多様性が確保できないだろう。<br>Vaultは今後100年も存続できないだろう。<br>人類の安全な避難所は、その使命を誤解し、生存と遺伝的純粋性の維持を混同したアルフォンスの手によって、破壊される運命にあった。<br>救いとなるのは、一度この推論の道に導かれた後、アルフォンスは自分の過ちを認め、数週間か数ヶ月前に拷問した娘に後を継がせようとしているという事実である。<br>結局のところ、彼が望んでいたのはそこの住民の安全を守ることだけだった。<br>だからこそ、彼はエンクレイヴからの申し出を拒否し、Vaultを開けるのと引き換えに恩赦と支援を約束したのだ。</p><p name="9f291478-7c41-4ac7-859d-b1baccdd4ca1" id="9f291478-7c41-4ac7-859d-b1baccdd4ca1">ローン・ワンダラーの逃亡中にアルフォンスが死亡した場合、その死は悲惨な結果をもたらす。<br>混乱の中でスタンリー・アームストロングを含む多くの命を救い、功績を残したアレン・マック(*)が監督官となる。<br>マックはアルフォンスよりも冷酷で横暴であり、理性的に説得することは事実上不可能であった。</p><hr name="4db96eb2-dbdb-4543-a4e5-4b7602a1aec3" id="4db96eb2-dbdb-4543-a4e5-4b7602a1aec3"><h3 name="64d97398-e7c6-4eb1-96d5-4841d8190768" id="64d97398-e7c6-4eb1-96d5-4841d8190768">アレン・マック</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_18.png" alt="" width="620" height="443"><div class="note-figcaption">アレン・マック</div></div><p name="da515bbc-829c-4ef8-87fd-2eabbae43eab" id="da515bbc-829c-4ef8-87fd-2eabbae43eab">アレン・マックは、 <a href="vault-101.html" class="auto-link">Vault 101</a>の住人で、熱心な孤立主義者であり、Fallout 3では その監督者になる可能性がある。<br><br><strong>背景</strong><br>マック家の当主であるアレンは、Vaultにおいて強力な存在であり、地下に永遠に封印された人生は良いものだと信じています。<br>わざわざそれを台無しにする者は、彼の宿敵です。<br>彼は家族を非常に大切にしており、ジェームズが<a href="vault-101.html" class="auto-link">Vault 101</a>に入り、常駐医師になったとき、アレンは彼や彼の子供を受け入れることに強く反対し、Vaultは閉鎖されたままであるべきだと信じていました。<br>妻のグロリアの穏やかな影響力がなければ、彼はもっと攻撃的になっていたでしょう。<br>彼は、アルフォンス・アルモドバルに何かあったら、必ず彼の代わりをすると決意していました。<br>それまでは、メンテナンストンネルでの仕事に専念し、ジェームズが一度だけ与えることを拒否した、正体不明の「薬」に依存していました。</p><p name="265c6333-8361-4422-9d68-debae235ae14" id="265c6333-8361-4422-9d68-debae235ae14">彼の救いは家族への愛情である。<br>厳格でありながらも、アレンは子供たちを心から愛し、大切に思っている。<br>息子のウォーリーが10歳の誕生日を迎えた時、彼はMr・ハンディのアンディを説得してマジックを披露させ、ヴォールトのアトリウムでミュータント狩りのゲームを企画した。<br>しかし、ローン・ワンダラーは招待されなかった。<br>おそらくアレンが父親を軽蔑していたためだろう。<br>この態度は若いマック一家に受け継がれているようだ。<br>ローン・ワンダラーと同い年のスージーは、彼らとは決して友達にならないと心に決めている。</p><p name="f1caf517-7ec7-49cc-be46-6c47bb3b5f94" id="f1caf517-7ec7-49cc-be46-6c47bb3b5f94">19年後、ジェームズがVaultから脱出した時、アレンの最悪の恐怖は現実のものとなった。<br>彼はラッドローチの蔓延と戦い、多くの命を救い、その中にはスタンリー・アームストロングも含まれていた。<br>ジェームズの脱出に続いてグロリアが亡くなったことで、彼はもはや弄ぶべき存在ではなくなった。<br>彼は感情を深く抑え込み、代わりに子供たちに「万が一に備えて」サバイバル術を教え、Vaultを封鎖し反乱軍を排除するための強硬手段を支持した。</p><p name="b0d0ec0e-9a05-4d73-b395-4b753e873fda" id="b0d0ec0e-9a05-4d73-b395-4b753e873fda">アレン・マックはグロリア・マックの夫であり、ウォーリー、スティーブ、スージー・マックの父親です。<br>義父はスタンリー・アームストロングです。<br>また、ベアトリス・アームストロングとメアリー・ケンドールという二人の義理の姉妹がいます。</p><p name="b00d567a-4987-4a32-bd43-231ffe3fbec5" id="b00d567a-4987-4a32-bd43-231ffe3fbec5">プレイヤーが脱出中に監督官を殺害することを選択した場合、多くの人々を救出したアレン・マックが監督官の地位に就きます。<br>しかし、予想通りVaultを開ける代わりに、彼はそれを永久に封印することを決意し、反乱を引き起こしました。<br>マックを平和的にVaultを開けさせることは不可能であり、唯一の選択肢は彼を殺すか、彼のために反乱を鎮圧することだけです。<br>鎮圧するを選択した場合マックはプレイヤーに改造されたユーティリティジャンプスーツを報酬として与え、Vaultから追い出します。</p><h3 name="46f7046a-fbfc-4909-b6b9-3a9b0d6c2a3f" id="46f7046a-fbfc-4909-b6b9-3a9b0d6c2a3f">ポール・ハノン・シニア</h3><div class="note-figure"><img src="images/note_extracted/n857bee45fe90_img_19.png" alt="" width="620" height="388"><div class="note-figcaption">ポール・ハノン・シニア</div></div><p name="909aaa0e-cd62-4dec-88bc-fe638e25f4df" id="909aaa0e-cd62-4dec-88bc-fe638e25f4df">2277 年、セキュリティ主任のポール ハノン シニアが<a href="vault-101.html" class="auto-link">Vault 101</a> のセキュリティを担当しています。</p><p name="393873bd-6441-49c6-8763-95590c4f748e" id="393873bd-6441-49c6-8763-95590c4f748e"><strong>背景</strong><br>彼はポール・ハノン・ジュニアの父親であり、ヴィッキー・ハノンの夫である。</p><p name="d4960507-2b7c-4e50-b6a4-907b8bb1e02b" id="d4960507-2b7c-4e50-b6a4-907b8bb1e02b">彼は極めて攻撃的で規則を重んじる性格で、自分のVault警備隊が真の軍隊となり、戦争に勝利することを望んでいる。<br>彼は自分が思っているほど賢くなく、部下たちも彼が思っているほど優秀な警備隊ではない。<br>彼にとって身だしなみはすべてであり、命令に従うことが至上の使命である。</p><p name="031d534f-1de6-4ca4-9ac2-825fbb488d02" id="031d534f-1de6-4ca4-9ac2-825fbb488d02">ハノンは「scape!」中にローン・ワンダラーを攻撃するでしょうが、彼の攻撃は大きなダメージを与えないので、クエストを進める時、ハノンを無視することができます。<br>彼が「scape!」の期間中に生きていれば、 後のクエストにも登場する。<br>彼は通常、監督官のオフィス付近を巡回している。<br>話しかけると、脱走事件の混乱の中で妻と息子が亡くなったのはローン・ワンダラーのせいだと責めるが、挑発されない限り攻撃はしない。<br>彼はローン・ワンダラーを非常に嫌っており、彼らの行動は絞首刑にすべきだとさえ言う。</p><hr name="756482e3-eb2e-4889-b781-c42ec7fc1867" id="756482e3-eb2e-4889-b781-c42ec7fc1867"><div class="quote-box">
+<b>感想</b><br><br>
+良くあるアドバイスで、ブッチをVaultで殺しておけっていうのが有名ですねw<br>私はどうだったかなぁ・・・確か殺さず仲間にもしなかったような。<br>というかいじめっ子と仲良くはできないよね。<br>なんかロア掘り続けたら終わりが見えなくなったのでここらへんで。<br>リマスター版が楽しみですね。
+</div>
+
+<p name="7c9682da-cfc9-4c1b-aa48-9a280e666152" id="7c9682da-cfc9-4c1b-aa48-9a280e666152">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

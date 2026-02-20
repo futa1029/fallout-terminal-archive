@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vault 76の監督官 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Vault 76の監督官</h3>
+            <img src="images/note_extracted/n35aed1032bdb_img_1.png" alt="Vault 76の監督官">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n35aed1032bdb" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Vault 76の監督官</h1>
+            <div class="date">DATE: 2026/2/12</div>
+            
+            <p name="50c7c8b8-ff98-4f16-bd28-c801782b4c55" id="50c7c8b8-ff98-4f16-bd28-c801782b4c55">2076年7月4日、彼女は <strong>Vault 76</strong> 完成の開通式に出席しました。<br>彼女はすぐに <strong>Vault</strong> の真実、<strong>社会保存プログラム</strong>、そして居住者に対して行われる予定の実験について知ることになりました。<br>エヴァンは情報を公にするよう望みましたが、彼女は躊躇しました。<br>他の居住者で実験を行うことが倫理的に間違っていると知りながらも、再定住に最も適した人々を見つけ出し、極限状態に追い込まれた人間性を理解するという目標は、彼女が理解し共感できるものでした。<br>彼女はそれを人類の生存のために必要なことだと正当化しました。<br><strong>Vault-Tec</strong> はすぐに彼女のことを知りましたが、報復する代わりに、彼女が彼らの視点の多くに同意していることを見て、彼女を信頼して機密を共有しました。<br>ただし、彼女が <strong>Vault-Tec</strong> のより邪悪な実験のいくつかについて知っていたという確証はありません。<br>彼女は当初、エヴァンとの婚約のため、ワシントンD.C.の <strong><a href="vault-101.html" class="auto-link">Vault 101</a></strong> の監督官になる予定でした。<br>未婚の女性として <strong>Vault 76</strong> に入ることによってのみ、彼女はアパラチアに留まることができました。<br>彼女はエヴァンよりも <strong>Vault 76</strong> を選びました。<br>彼女はその決断に罪悪感を感じていましたが、エヴァンは <strong>Vault 76</strong> の器ではないという信念を表明し、世界にとって最善だと思うことをしたのだと語りました。<br>また、故郷の州に留まりたいという彼女の願いを貫きました。</p><p name="72133ce9-8a4d-4c77-b411-091c62cb163f" id="72133ce9-8a4d-4c77-b411-091c62cb163f">もし監督官がエヴァンと共に <strong>Vault 76</strong> に入ろうとしていたなら、会社はエヴァンに配偶者免除を与えなければならなかったでしょうが、<strong>Vault</strong> には土木技師や <strong>Vault-Tec</strong> 重役の従兄弟など、単なる鉱員よりも資格のある候補者の長いリストがありました。<br>監督官は婚約を破棄し、エヴァンを裏切って地上に残しました。</p><h3 name="819c30af-48dd-4941-bcc1-33795468d4d0" id="819c30af-48dd-4941-bcc1-33795468d4d0">戦後</h3><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_2.png" alt="" width="620" height="264"><div class="note-figcaption"></div></div><p name="27e354e9-eebf-4676-9b9d-d9e2c47601e7" id="27e354e9-eebf-4676-9b9d-d9e2c47601e7">初期の数年間は、監督官が <strong>Vault</strong> 居住者の中で最も若く、社会の「エリート中のエリート」に囲まれていたため困難でしたが、最終的には彼らの信頼を勝ち取り、協力することを学びました。<br>ある時点で、彼女は「年間最優秀 Vault 居住者」の栄誉を授与されました。</p><p name="8fff59ed-f5cc-44e6-8837-8774b3e8ae0e" id="8fff59ed-f5cc-44e6-8837-8774b3e8ae0e">彼女は2102年10月23日の<strong>再生の日</strong>まで、25年間その職を務めました。<br>その日、監督官は他の居住者よりも数時間早く <strong>Vault 76</strong> を離れました。<br>インターコムを通じてプレイヤーキャラクターを迎え、<strong>Vault</strong> を去るよう指示する録音が用意されていました。<br>25年間にわたりすべての <strong>Vault</strong> 居住者の幸福を確保した後、彼女は <strong>Vault-Tec</strong> から、たとえ<strong>合衆国軍</strong>と対立することになっても、3つの核ミサイルサイロ、すなわち<strong>サイト・アルファ</strong>、<strong>ブラボー </strong>、<strong>チャーリー</strong>を確保するよう指示されました。<br>彼女は<strong>ペニントン </strong>に、彼女の危険な任務への助力をプレイヤーキャラクターに求める<a href="holotape.html" class="auto-link">ホロテープ</a>を残しました。<br>サイロを求めてアパラチアをスカウトする際、彼女はこれらの人々が発見し、彼女を追うのを助けるために、<a href="holotape.html" class="auto-link">ホロテープ</a>のログや日記の痕跡を残しました。</p><p name="287c42a7-91e5-4be5-90b2-94124684a7d3" id="287c42a7-91e5-4be5-90b2-94124684a7d3">核ミサイルサイロを見つけるという <strong>Vault-Tec</strong> から命じられた仕事に加えて、監督官は故郷がどうなったかを見るためにアパラチアの様々な場所を旅しました。<br><strong>Vault</strong> の近くには当初人間の姿がなく、変異体や暴走したロボットが蔓延していることに気づいた後、彼女は<strong><a href="flat-woods.html" class="auto-link">フラットウッズ</a></strong>の北の交差点に <strong>C.A.M.P.</strong> を展開し、居住者のための集結地点を設置しました。<br>自身の助言に反して、彼女は居住者が使用できるようにそれを残したまま南の<strong><a href="flat-woods.html" class="auto-link">フラットウッズ</a></strong>へと移動しました。<br><strong><a href="flat-woods.html" class="auto-link">フラットウッズ</a></strong>は彼女の第一印象よりもさらに憂鬱で、見捨てられ、荒廃していました。<br>彼女はそこで最初の<strong><a href="scorch.html" class="auto-link">スコーチ</a></strong>の犠牲者に遭遇し、状況が予想よりもさらに悪いことを悟りました。<br>次の目的地は、<strong>レスポンダー</strong>の残党を探すことでした。</p><p name="bd02f89b-b8ab-4f09-9132-d27a34322cb2" id="bd02f89b-b8ab-4f09-9132-d27a34322cb2"><strong>モーガンタウン空港</strong>は悪夢でした。<br>彼女はその空港で飛行訓練を受けたことを覚えていましたが、スコーチビーストとその手下たちによって陥落した後は、荒地と化していました。<br>監督官は<strong><a href="scorch.html" class="auto-link">スコーチ</a></strong>を分析し、遠くから観察して、恐ろしい真実に気づきました。<br>病気が宿主を乗っ取り、最終的に内側から焼き尽くし、バラバラになる石化した脆い死体を作り出していたのです。<br>その後、彼女は<strong>スコーチビースト</strong>に襲われ、その発生源という最後の変数を導き出しました。<br>軍の核ミサイルの潜在能力を制御するというすでに困難な任務は、絶滅レベルの事象に対する絶望的な戦いとなりました。<br><strong>レスポンダー</strong>は行き止まりであることが判明しましたが、彼らが残した自動トレーニングが役に立ちました。<br>彼女は南の<strong>チャールストン</strong>へ向かい、<strong>ファイアブリーザー</strong>を追跡しました。<br>彼女は、これらの勇敢な男女が誰よりも<strong><a href="scorch.html" class="auto-link">スコーチ</a></strong>と戦ったことを悟り、彼らを見つけ出すことを決意しました。</p><p name="0beddc1b-04d5-47e9-8dc3-dc73bc1d8042" id="0beddc1b-04d5-47e9-8dc3-dc73bc1d8042"><strong>Vault-Tec</strong> の指令とは別に、監督官は自身の過去に関連する場所を訪れるために小さな寄り道をしました。<br>彼女は最終的に、<strong>スコーチ病</strong>に屈して<strong><a href="scorch.html" class="auto-link">スコーチ</a></strong>に変貌した婚約者のエヴァンを見つけ出しました。<br>悲しみに暮れながらも、彼女は彼を<strong>ブレア山</strong>の頂上にある倉庫の地下室に閉じ込め、核を確保し疫病を封じ込めるという目の前の仕事に集中するために、再び追跡を開始しました。<br>それでも彼女は、自身のメッセージを聞いた <strong>Vault 居住者 (Vault Dwellers)</strong> に対し、彼を苦しみから解放してやるよう求めました。</p><p name="df5261b5-c6f4-466c-9971-4e9b73d72694" id="df5261b5-c6f4-466c-9971-4e9b73d72694">その痕跡は彼女を<strong>世界の頂上</strong>へと導き、そこで彼女は短期間<strong>ローズ</strong>と遭遇しました。<br>ローズの粗野なやり方や対価（見返り）の要求は監督官には合わず、彼女は<strong>フリーステイト</strong>を目指して進みました。<br>彼女は彼らをアメリカを裏切り、背を向けた反逆者や分離主義者として軽蔑していましたが、彼らが何を知っており、何をしようとしていたかを知る必要がありました。<br>痕跡の道は<strong>チャールストン</strong>と、不名誉な<strong>サム・ブラックウェル上院議員</strong>のオフィスがあった議事堂へと続きました。<br>この時点で、狂った自動システムを相手にすることは、善良な監督官を苛立たせ始めました。</p><p name="94aa8ea1-766f-4445-b285-2994d3711ce6" id="94aa8ea1-766f-4445-b285-2994d3711ce6">継続できなくなった彼女は、調査中に見つかった他の手がかり、すなわちアパラチアの <strong>B.O.S.</strong>に目を向けました。<br>彼女は<strong>キャンプ・ベンチャー</strong>でその痕跡を拾い、かつて<strong>アレゲニー精神病院 </strong>であった彼らの要塞化された本部へと進みました。<br>彼女は、彼らがアレゲニーの陸軍から派生した軍事組織であり、<strong><a href="scorch.html" class="auto-link">スコーチ</a> </strong>との戦い方を知っていることを悟りました。<br>しかし、<strong>B.O.S.</strong>によって設置されたセキュリティエレベーターが彼女の行く手を阻みました。<br>それを突破する唯一の方法は、入隊することでした。<br>彼女は<strong>キャンプ・マクリントック</strong>へ向かい、自動訓練システムによって厳しい試練を受け、最終的に陸軍に「監督官二等兵」あるいは「二等兵監督官」（彼女はどちらの響きが良いか決められませんでした）として受け入れられました。</p><p name="48f2ce65-d722-4c13-b37d-57e53eaf0608" id="48f2ce65-d722-4c13-b37d-57e53eaf0608">アパラチアの各地を旅し、かつてあったものと、あり得たものの残骸を見つけた彼女は、最愛のウェストバージニアを破壊したものが何であるかを悟りました。<br>それは「不和」でした。<br>協力する代わりに、様々なグループは互いに離れ、閉鎖的になり、協力することを拒みました。<br><strong>B.O.S.</strong>、<strong>レスポンダー</strong>、<strong>フリーステイト</strong>、そして特にレイダーたちは、すべて長期的な協力を拒み、絶滅するという報いを受けました。<br>彼女は模範を示し、他者が同じ罠に落ちないようにすることを決意しました。<br>しかし、陸軍兵士としてであっても、彼女の階級はどのサイロの自動システムをも欺くには低すぎました。<br>彼女は<strong>ホワイトスプリング・バンカー</strong>に到達することができず、昇進を得ることもできず、努力の成果も得られず、遅かれ早かれ誰かがアクセス方法を突き止めるのではないかという恐怖だけが残されました。</p><p name="b351257e-1ebd-4fa4-8250-16793b373a04" id="b351257e-1ebd-4fa4-8250-16793b373a04"><strong>マウンテンサイド・ベッド＆ブレックファスト</strong>で<strong>モールマイナー</strong>の攻撃を生き延びた後も、彼女がすべてを犠牲にしてきた <strong>Vault</strong> ファミリー、すなわち居住者たちが、<strong>アパラチア自動発射システム</strong>によって製造された核を、裂け目から離れた他の地域へと発射し始めたとき、彼女の希望はほとんど完全に打ち砕かれました。<br>彼女は依然として彼らの救済を望んでいましたが、核軍拡競争は良くなる前に悪化するだけだろうと予感していました。<br>核ミサイルに加えて、<strong>スコーチ病</strong>や近所が廃墟となっている光景が、彼女からアパラチアに留まる意欲を失わせました。<br>地域を直接探索し、アパラチアのすべての破壊と生存者の欠如を目の当たりにしたことは、彼女をさらに落胆させました。<br>その結果、彼女は一時的にアパラチアを離れ、地域から離れて起こったすべてのことを感情的に処理するための時間を必要としました。</p><h3 name="3c528b18-13c0-45c0-a498-157785a9414a" id="3c528b18-13c0-45c0-a498-157785a9414a">Wastelanders</h3><p name="1721c940-1476-4cec-a988-1a5459097e03" id="1721c940-1476-4cec-a988-1a5459097e03">2103年、<strong>Vault 76</strong> が開放されてから1年後、監督官は多くの <strong>Vault</strong> 居住者と同様に、人々がアパラチアに戻ってくるのを見て衝撃を受けました。<br>その結果、自身の <strong>Vault 76</strong> ファミリーがこの地域の新参者に関する情報を得るために再び指導を必要としていると考え、監督官は1年前に <strong>Vault 76</strong> を離れたときに <strong>C.A.M.P.</strong> を設置した場所から少し進んだ道路沿いの<strong><a href="sutton.html" class="auto-link">サットン</a> </strong>の町に新しい家を構えました。<br>彼女はまた、<strong>Vault</strong> 居住者たちに再会を懇願するラジオ放送を設置しました。</p><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="245e7b17-5831-41f8-8ba8-f65afe569472" id="245e7b17-5831-41f8-8ba8-f65afe569472"><strong>Vault</strong> 居住者たちが彼女の新しい家で彼女を見つけたとき、彼女は彼らを階下へ連れて行き、<a href="mr-handy.html" class="auto-link">ミスター・ハンディ</a>の助手である<strong>ダベンポート </strong>を紹介し、アパラチアに再び人が住み始めた詳細を説明しました。<br>しかし同時に、<strong>レスポンダー</strong>が<strong>AVR医療センター</strong>で取り組んでいた、<strong><a href="scorch.html" class="auto-link">スコーチ</a></strong>や<strong>スコーチビースト</strong>によって彼らや他の派閥が全滅させられる前に進めていた「予防接種」を見つけて、<strong>スコーチ病</strong>に対処したかどうかを尋ねました。<br>彼女の懸念は正当なものでした。<br>もし新参者たちが予防接種を受けなければ、彼らは<strong>スコーチ病</strong>の犠牲者となり、<strong><a href="scorch.html" class="auto-link">スコーチ</a></strong>の脅威がアパラチアを越えて広がる恐れが再び始まってしまいます。<br>これを防ぐために、彼女は居住者に対し、<strong>クレーター</strong>と<strong>ファウンデーション </strong>へ赴き、レイダーと入植者に出会い、予防接種を受けるよう説得することを求めました。<br>これにより、もし彼らがスコーチビーストに襲われても疫病から守られ、<strong>Vault</strong> 居住者と共に戦い、アパラチアを越えた土地を脅かさないようにすることができます。</p><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_4.png" alt="" width="620" height="417"><div class="note-figcaption"></div></div><p name="923f1a23-9e67-4d15-9ae6-80403283d03d" id="923f1a23-9e67-4d15-9ae6-80403283d03d">両派閥のリーダーがグループに予防接種を受けさせることに同意すると、監督官は <strong>Vault</strong> 居住者と共に<strong>カナー・ヌカ・コーラ工場</strong>へ向かい、自分たちの血液と備わっている抗体を使用して予防接種を大量生産し、入植者とレイダーに届け、彼らを<strong>スコーチ病</strong>から守りました。<br>監督官は配布活動に参加し、ある時点で<strong>クレーター</strong>を訪れました。<br>予防接種の後、全員がアパラチアに戻ってきた本当の理由である <strong>Vault 79</strong> を調査する決定が下されました。<br>そこにはお宝が隠されているという噂があり、入植者やレイダーを含む全員がそれを手に入れようとしていました。</p><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="099c1488-4a55-452d-9cba-41a736185110" id="099c1488-4a55-452d-9cba-41a736185110">居住者の一人と共に母校であるモーガンタウンの <strong>Vault-Tec大学</strong>へ戻った監督官は、現在大学を管理している<strong>プロフェッサー・ボット</strong> から、大学の制限区域への彼女のアクセス権が取り消されていることを知らされました。<br>シミュレーション <strong>Vault</strong> で監督官試験に合格して初めて、<strong>プロフェッサー・ボット</strong>はアクセスを許可しました。<br>グループは、シミュレーション <strong>Vault</strong> からアクセスできる、生き残った警備ロボットに守られたメンテナンスエリアを通って進まなければなりませんでした。<br>制限区域を見つけた監督官は、<strong>Vault 79</strong> が核戦争の際にフォートノックスからアメリカ合衆国の<strong>金塊</strong>備蓄を保存するために <strong>Vault-Tec</strong> によって建設され、盗難を防ぐために厳重に要塞化されていることを発見しました。<br>監督官は、<strong>Vault 79</strong> に侵入して金を手に入れる知識とスキルを持っているのは、入植者とレイダーの2つの派閥だけであると悟りました。<br>その結果、彼女は <strong>Vault</strong> 居住者にそれぞれのリーダーである<strong>ペイジ</strong>と<strong>メグ・グローバーグ</strong>と話し、<strong>Vault 79</strong> にアクセスして金を取り戻すために協力してくれるかどうかを確認するよう求めました。<br>彼女は後に、入植者またはレイダーのいずれかと共に <strong>Vault 79</strong> への侵入に成功したことを知り、金とそれを有効活用するという彼女の意図のおかげで、アパラチアがまもなく立ち直るだろうことを喜んでいます。</p><h3 name="e56b7ed2-40ff-4e7d-8f48-5bea1d25b71d" id="e56b7ed2-40ff-4e7d-8f48-5bea1d25b71d">Wastelanders 以降</h3><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_6.png" alt="" width="620" height="316"><div class="note-figcaption"></div></div><p name="f57773e0-02a3-4f96-9799-693b1be29220" id="f57773e0-02a3-4f96-9799-693b1be29220">クエストラインの終了後、監督官は<a href="sutton.html" class="auto-link">サットン</a>の自宅に留まります。<br>2104年時点でも、彼女はアパラチアの人々に<strong>スコーチ病</strong> のワクチンを接種する活動を続けており、<strong>ヌカ・ワールド・オン・ツアー </strong>のパトリシア・マイヤーズ にワクチンを提供しました。</p><hr name="c912c47f-a9a5-4327-94e4-a2bc23ef263e" id="c912c47f-a9a5-4327-94e4-a2bc23ef263e"><h2 name="b966c9f8-1408-44a1-87d8-480631bc926e" id="b966c9f8-1408-44a1-87d8-480631bc926e">性格</h2><p name="4d653af1-db8e-4417-85ff-fc2e06ce1b6b" id="4d653af1-db8e-4417-85ff-fc2e06ce1b6b">監督官は親切で、理想主義的、そして利他的な女性であり、若い頃は両親と一緒に『シルバー・シュラウド』などのラジオドラマを聴くことを楽しんでいました。<br>彼女は何をするにしても最高であることを追求し、オールAを取ろうと努めてきました。<br>単なるパイオニアスカウトではなく、リーダーになりたいと考えていました。<br>この点において彼女は少し頑固であり、自分が良いと思うアイデアを持つとそれに固執します。<br>例えば、<strong>Vault 79</strong> に侵入して金を手に入れ、新しい経済を開始するというアイデアにコミットし、拒絶されることを許しません。</p><p name="0be885b5-1e00-4b6b-bdae-ff6b357634e4" id="0be885b5-1e00-4b6b-bdae-ff6b357634e4">しかし、彼女は <strong>Vault-Tec</strong> 社の動機を満たすように形作られてもいました。<br><strong>Vault-Tec</strong> は自らを人類の救世主として提示しており、彼女はそれがアメリカを守るという主張に感銘を受けていました。<br>彼女は<strong>社会保存プログラム</strong>に対して現実的な見方をしていましたが、核戦争に直面して自分自身の命を守るために少し利己的になれる部分もありました。<br>もし彼女が内部告発者になろうとすれば、<strong>Vault-Tec</strong> はおそらく彼女を監督官の地位から解任し、<strong>Vault</strong> の外で死ぬように放置したでしょう。<br>彼女はまた、<strong>Vault-Tec</strong> のプロパガンダの影響を受け、<strong>フリーステイト</strong>を反逆者だと信じていました。<br>これは彼女に植え付けられた愛国心を示しています。</p><p name="0a2c77b6-40e2-4437-9d5d-00223ce3a406" id="0a2c77b6-40e2-4437-9d5d-00223ce3a406"><strong>Vault 76</strong> にいた間、彼女は同じグループの人々と暮らすことを課題だと感じていました。<br>それでも、彼女は25年間絶えずエヴァンのことを考え、彼が生き延びていつか再会できると自分を慰めようとしていました。<br>彼女は生存者の罪悪感を抱えているようで、「この家で一緒に爆弾が落ちたときに死ぬという別の選択をしていればよかったのに、と言えたらいいのに」と語っています。<br>彼女は人類のほとんどが死んだ中で、自分が生きていることがいかに幸運であるかを認識しています。</p><p name="13a48342-6260-4039-80b8-91226b83f9c9" id="13a48342-6260-4039-80b8-91226b83f9c9">ウェイストランドを経験した後、彼女はより冷笑的（シニカル）になりました。<br>特に、変貌したエヴァンの姿を見た後は顕著です。<br>恐怖を目の当たりにしても、彼女は <strong>Vault</strong> 居住者たちが世界を取り戻せるという夢を捨てません。</p><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_7.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="3903b492-b0e3-4752-ac80-0f038660c15e" id="3903b492-b0e3-4752-ac80-0f038660c15e">彼女は <strong>Vault-Tec</strong> についての考えも変え、<strong>C.A.M.P.</strong> を残していくというプロトコル違反を犯し、「彼らが私を計画に入れてくれたと思っていた。私たちが……特別なのだと。でも今は、私たち全員が彼らにとって一つの大きな実験に過ぎなかったのではないかと思っている。他の誰とも同じように」と認めています。<br>アパラチアの破壊があまりにもトラウマ的であったため、そこを離れるのに一年を要しましたが、最終的に彼女は、一時的に置き去りにした <strong>Vault</strong> 居住者たちを支援するために戻ることを決意しました。</p><p name="058c34e6-9649-4171-a366-17d14a61551c" id="058c34e6-9649-4171-a366-17d14a61551c">疲れ果てた彼女は、<strong>社会保存プログラム</strong> の道徳性や、自分と <strong>Vault</strong> 居住者たちが <strong>Vault-Tec</strong> の計画から自由であるかどうかについて悩むのをやめました。<br>彼女は、人間が過去をどれほど悔やみ、過去や人生の選択を変えたいと願っても、精神的に健康な人は過去の痛みから前進し、知恵と決意を持って自分たちのための健全な未来を築こうとしなければならないことを理解しています。<br>彼女はまた、人々が自分の目で世界を見ようとする必要があること、そして今や <strong>Vault-Tec</strong> も彼女自身も例外ではなく、組織は人々の考え方をコントロールできる危険な力を持っていることを認識しています。</p><hr name="ea1da3bb-883b-4f95-99c0-02b8aba95617" id="ea1da3bb-883b-4f95-99c0-02b8aba95617"><h2 name="8c504988-5343-4a19-a55f-7748814e9ddb" id="8c504988-5343-4a19-a55f-7748814e9ddb">所持品</h2><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_8.png" alt="" width="620" height="492"><div class="note-figcaption"></div></div><p name="010b7d7e-c9a4-4913-92e8-33fe65011dbb" id="010b7d7e-c9a4-4913-92e8-33fe65011dbb"><strong>Vault 76 監督官のジャンプスーツ<br>眼鏡<br></strong>ランダムな遠距離武器 <br>（死亡することはないため、これらを戦利品として入手することはできません）</p><hr name="d5c63916-4d82-4e17-85dd-bd0c4e292aad" id="d5c63916-4d82-4e17-85dd-bd0c4e292aad"><h2 name="31769845-7596-4baa-b872-6fb7a88d8530" id="31769845-7596-4baa-b872-6fb7a88d8530">注記</h2><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_9.png" alt="" width="620" height="441"><div class="note-figcaption"></div></div><p name="85932ae4-bf17-435b-a329-bd081b5a1ad1" id="85932ae4-bf17-435b-a329-bd081b5a1ad1">アップデート「<strong>Wastelanders</strong>」のリリース前は、監督官の名前や容姿はゲーム内で確認されていませんでしたが、クエスト「<strong>Personal Matters</strong>」の達成グラフィックには彼女のカートゥーン風の描写が示されていました。<br>オープニングムービーの <strong>Vault 76</strong> 完成に関する演説シーンで、演台にイも近い席に座っている女性がこの描写に似ています。<br>ゲーム内のファイルには、単に「Overseer」という名前のNPCが存在し、この女性が実際に監督官であることが確認されています。</p><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_10.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><p name="9edda07a-f7ff-4030-ad26-b8f4d81880fc" id="9edda07a-f7ff-4030-ad26-b8f4d81880fc"><a href="sutton.html" class="auto-link">サットン</a>の彼女の子供時代の家では、壁にある <strong>Vault-Tec大学</strong> の卒業証書を見ることができます。<br>そこには彼女が「核融合」を専攻したことが記されており、SPECIALステータスやその他のコーススコアも記載されています。<br>しかし、SPECIALステータスの横の行が歪んでおり、7つではなく8つの数字が並んでいます。<br>卒業証書に名前は表示されていません。 <br><strong>世界の頂上</strong>に関する彼女の報告書によれば、彼女は冒涜的な言葉（卑俗な言葉）に対して極めて不寛容であることが示されています。</p><hr name="49de2399-cc0a-4e5b-97df-044ba8eb1777" id="49de2399-cc0a-4e5b-97df-044ba8eb1777"><h2 name="7943ba86-1507-40b1-b68f-87ea6ccd7747" id="7943ba86-1507-40b1-b68f-87ea6ccd7747">印象的な引用句</h2><div class="note-figure"><blockquote><p name="74d37adf-54fc-481d-802c-837d4943e9e0" id="74d37adf-54fc-481d-802c-837d4943e9e0">「おはよう、<strong>Vault 76</strong>。私は監督官です。昨夜のパーティーは楽しめましたか。飲みすぎて……寝過ごしてしまった人も含めて。でも、起きて外へ出る時間です。私たちは十分長く閉じ込められてきました。今日……は<strong>再生の日 </strong>です。出発の時が来ましたが、私は皆さんが <strong>Vault 76</strong> に入った日のことを決して忘れません。皆さんはあらゆる歩み、あらゆる人種、色、信条の持ち主です。しかし、皆さんは一つ非常に重要な特徴を共有しています。あなた方はこの国で最も優れ、最も明晰な人々です。でももっと重要なのは……あなた方はいつまでも私の家族だということです」</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="83c11ed2-5bc3-44d6-9cb7-346e6667173f" id="83c11ed2-5bc3-44d6-9cb7-346e6667173f">「お願いです、私は76にすべてを捧げました。皆さんは本当に素晴らしかった。最初の数年間は大変でしたが、私たちは互いに信頼することを学びました。皆さんは私を信頼することを学んでくれました。私は若かった……とても若かった……皆さんよりも若かったのです。でも、皆さんは私を監督官として受け入れてくれました」</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="7406e96b-ec90-4afd-9b65-3bfee013cd6c" id="7406e96b-ec90-4afd-9b65-3bfee013cd6c">「この神に見捨てられた『ウェイストランド』を旅すればするほど、何が本当にウェストバージニアを破壊したのかに気づかされます。そして、生存者たちが実際に生き残るためのあらゆるチャンスを何が壊したのかにも。不信感です。これらすべての分岐したグループ……<strong>レスポンダー </strong>、<strong>B.O.S. </strong>、何でもいい。個々に見れば、彼らは困難に打ち勝つために必要なすべてを持っていました。知恵、力、そして有り余る勇気。それなのに彼らは何をした？ 閉鎖的になり、疑心暗鬼に陥り、互いに協力することを拒んだのです。そして全員が命を落としました。<strong>Vault 76</strong> の諸君、もし聞いているなら、同じ罠に落ちないでください」</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="cc5d21c4-a03e-4d23-933c-9dff580b5dcd" id="cc5d21c4-a03e-4d23-933c-9dff580b5dcd">「いいですか、私は <strong>Vault 76</strong> を信じています。今でも。だからこそ、私たちはこれを乗り越えられると分かっています。発射された核をなかったことにはできませんが、共に、より良い未来を築くことはできます」</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="12a6d982-a80d-497b-b3e8-a20d6f7bf7f0" id="12a6d982-a80d-497b-b3e8-a20d6f7bf7f0">「見捨てたですって？ たった一人でその <strong>Vault</strong> のドアを出ていくのがどれほど辛かったか、あなたに想像がつきますか？ もう二度と皆さんに会えないかもしれないと思いながら。<strong>Vault-Tec</strong> プロトコルを破って <strong>C.A.M.P.</strong> を残し、<a href="holotape.html" class="auto-link">ホロテープ</a>を残し、ケアパッケージを残したことが？ すべては、それらが皆さんを安全に保ってくれるかもしれないという漠然とした希望のためです。私は一度も、皆さんの監督官であることをやめたことはありません。一度も」</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="7b5beecf-c663-4397-a48e-8f4293391373" id="7b5beecf-c663-4397-a48e-8f4293391373">「B.O.S.の、技術を収集し封じ込めるという姿勢には同意します……ある程度までは。私たちの世界は荒々しく、致命的になりました。人々は自分自身を守れる必要があります。古典的なアメリカの原則からではなく、生存のためにです。もし彼らが武器を独占しようとするなら、見返りに保護を提供しなければなりません。そして、彼らにそれだけの人数や、おそらくはその意志があるとは到底思えません」</p></blockquote><div class="note-figcaption"></div></div><hr name="c01347f8-5679-4035-a303-388e5976fb8c" id="c01347f8-5679-4035-a303-388e5976fb8c"><div class="quote-box">
+<b>感想</b><br><br>
+<b>葛藤するリーダー像</b>: <b>Vault-Tec</b> の非道な実験を知りながら、人類の再建という大義のためにそれを正当化し、最終的に会社に失望していくプロセスは、彼女を非常に複雑で人間味のあるキャラクターにしています。<br><br><b>積灰の山や 荒れた境域の踏破</b>: プレイヤーが到着する前に、彼女が単身でこれらの過酷な地域を旅し、各派閥の滅亡を克明に記録していた事実は、彼女のサバイバル能力と責任感の強さを物語っています。<br><br><b>不信感への警鐘</b>: 彼女が結論づけた「ウェストバージニアを滅ぼしたのは核ではなく不和である」というメッセージは、マルチプレイヤーゲームである <b>Fallout 76</b> の根幹をなすテーマであり、プレイヤーに向けられた強い教訓となっています。<br><br><div class="note-figure"><img src="images/note_extracted/n35aed1032bdb_img_11.png" alt="" width="620" height="378"><div class="note-figcaption">
+</div>
+
+<p name="45fc172b-0e08-49b2-aa2c-5574c255b58c" id="45fc172b-0e08-49b2-aa2c-5574c255b58c">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

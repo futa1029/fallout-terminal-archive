@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>パイプガン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">パイプガン</h3>
+            <img src="images/note_extracted/n6ffd8a29eeb3_img_1.png" alt="パイプガン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n6ffd8a29eeb3" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>パイプガン</h1>
+            <div class="date">DATE: 2025/11/21</div>
+            
+            <h3 name="46866408-92e1-4cca-984d-00d3459347e1" id="46866408-92e1-4cca-984d-00d3459347e1">Fallout4、<a href="fallout76.html" class="auto-link">Fallout76</a></h3><h2 name="c4c3d338-5ebb-4f3a-b1ae-bfa9b64c14f5" id="c4c3d338-5ebb-4f3a-b1ae-bfa9b64c14f5">『<a href="fallout-4.html" class="auto-link">Fallout 4</a>』におけるパイプガン</h2><p name="b018242f-dcbb-4537-9ac0-ec0395d2e572" id="b018242f-dcbb-4537-9ac0-ec0395d2e572">パイプガンはどんな状況にも対応できるように高度にカスタマイズ可能になっており、セミオートマチック、ボルトアクション、またはリボルバーとして機能するように改造できます。</p><h3 name="4bdd07e7-bb50-46ec-9070-155c5334561e" id="4bdd07e7-bb50-46ec-9070-155c5334561e">性能と利点</h3><div class="note-figure"><img src="images/note_extracted/n6ffd8a29eeb3_img_2.png" alt="" width="620" height="626"><div class="note-figcaption"></div></div><p name="13c9e823-c876-43b6-af66-b2bf009d5e0e" id="13c9e823-c876-43b6-af66-b2bf009d5e0e">「本物の」武器に比べてやや非力ですが、軽量で、ゲーム内の他のどの武器クラスよりも多くの改造オプションを誇っています。<br>口径を含め、パイプガンのあらゆる側面を改造・改良できるため、信じられないほどの数のバリエーションを作成できます。<br>この高い普及率と、コモンウェルス全域で非常に一般的に見つかる.38弾のおかげで、見た目以上に長く使用可能な状態を維持できます。</p><h3 name="0213ee14-91b8-41f3-aeff-c2f7017702f4" id="0213ee14-91b8-41f3-aeff-c2f7017702f4">Perk</h3><p name="52dc8db3-c28a-48cb-b503-cc648b0d1642" id="52dc8db3-c28a-48cb-b503-cc648b0d1642">さらに、パイプ武器は、すべてのカスタマイズオプションを解除するために必要なクラフトPerkへの投資が最も少なく、Gun Nut（ランク2）とScience!（ランク1）があれば、プレイヤーはパイプガンを自由に改造できます。</p><h3 name="f3ec9b04-084a-4536-8529-d8faf3918019" id="f3ec9b04-084a-4536-8529-d8faf3918019">重量</h3><p name="d2c624fd-5aae-4f51-a730-d81a469ec2e6" id="d2c624fd-5aae-4f51-a730-d81a469ec2e6">完全に改造されたパイプ武器でも比較的軽量で、8ポンドを超えることはありません。</p><h3 name="8ddbb31c-85a7-4de8-93dc-d9a0666d3204" id="8ddbb31c-85a7-4de8-93dc-d9a0666d3204">解体</h3><p name="2a916c0b-ec1c-422c-871e-96deebfa5b1f" id="2a916c0b-ec1c-422c-871e-96deebfa5b1f">解体時に見られるすべての部品のうち、プレイヤーキャラクターは前述の構成要素のほとんど、あるいは全く回収できません。<br>Scrapper Perkのランク1では、基本的なパイプピストルを解体するとスチール4個、基本的なパイプライフルではスチール3個が手に入ります。<br>ランク2では、サルベージされる構成部品にネジ1個と銅1個が追加されます。<br>ランク3ではこれが変わり、偵察サイトなどの高度なモッドを持つ銃の場合、歯車、スプリング、さらには核物質などのアイテムを入手できることがあります。</p><hr name="40897335-b156-44d4-b502-781289657eb2" id="40897335-b156-44d4-b502-781289657eb2"><h2 name="e787bae3-157a-41b4-ab12-bb3c2f9adad1" id="e787bae3-157a-41b4-ab12-bb3c2f9adad1">『Fallout 76』におけるパイプガン</h2><div class="note-figure"><img src="images/note_extracted/n6ffd8a29eeb3_img_3.png" alt="" width="620" height="301"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="f88f90b4-3e29-4127-afb0-804e1c75d601" id="f88f90b4-3e29-4127-afb0-804e1c75d601">「ある者には素朴な銃火器に見えるかもしれないが、別の者には、破壊され、その構成部品がさらにクールな何かに作り変えられる準備ができている、部品で満たされたアイテムに見えるのだ！」</p></blockquote><div class="note-figcaption">— 『Fallout 76 Vault Dweller's Survival Guide』P.98より</div></div><hr name="2ca9c56e-84c2-491b-83c3-3ec99df2f0a2" id="2ca9c56e-84c2-491b-83c3-3ec99df2f0a2"><h2 name="d3853e11-da69-4307-966d-7e399a4dc192" id="d3853e11-da69-4307-966d-7e399a4dc192">特徴</h2><p name="48ac82e3-4e48-42a2-877f-fca98fbde620" id="48ac82e3-4e48-42a2-877f-fca98fbde620">パイプピストルは、木の端材、金属パイプ、ネジ、スプリング、金属バンドを使用して組み立てられた間に合わせの銃器です。</p><h3 name="8635406d-dd34-4354-888f-de9830ffa46f" id="8635406d-dd34-4354-888f-de9830ffa46f">弾薬</h3><p name="55ffb150-7cd0-4cc2-9887-2ee6e90a910b" id="55ffb150-7cd0-4cc2-9887-2ee6e90a910b">銃の左側に装填されるマガジンから.38弾を発射します。</p><h3 name="93ad6c8b-3051-466f-8d4e-65128814239a" id="93ad6c8b-3051-466f-8d4e-65128814239a">変形性</h3><div class="note-figure"><img src="images/note_extracted/n6ffd8a29eeb3_img_4.png" alt="" width="620" height="196"><div class="note-figcaption"></div></div><p name="990760e0-7a79-48ee-b3e2-7314e4183505" id="990760e0-7a79-48ee-b3e2-7314e4183505">ストックを改造すると、パイプライフルになり、ピストルPerkの代わりにライフルPerkの影響を受けるようになります。</p><h3 name="13d94327-7259-4b6d-9c14-c31eae1913d9" id="13d94327-7259-4b6d-9c14-c31eae1913d9">耐久性</h3><p name="698fa0eb-d853-4bc0-8a03-f3651f591fc3" id="698fa0eb-d853-4bc0-8a03-f3651f591fc3">パイプガンは役立つ武器になりえますが、機械加工された銃に比べて状態の劣化が速いという欠点があります。<br>この速い劣化は、Licensed Plumber Perkに投資することで相殺されます。</p><hr name="0e683cd0-8e2d-4e01-b824-fd0d3ef1b16f" id="0e683cd0-8e2d-4e01-b824-fd0d3ef1b16f"><h2 name="9ec12a96-faee-4955-863c-2226be9c6e87" id="9ec12a96-faee-4955-863c-2226be9c6e87">性能データ『Fallout 76』</h2><p name="aad44e82-9d4b-46f3-a906-8786fc3f7956" id="aad44e82-9d4b-46f3-a906-8786fc3f7956">種類 : 遠距離武器（ピストル / ライフル）<br>作成可能Level : 1 / 5 / 10 / 20 / 30 / 40 / 50<br>Damage : 20 / 22 / 25 / 32 / 40 / 52 / 66<br>Ammo : .38弾（ウルトラサイト弾も使用可能）.45弾（改造により使用可能、ウルトラサイト弾も使用可能）<br>装弾数 : 121<br>Fire rate : 59<br>Range : 79<br>精度 : 66<br>AP : 12<br>Weight : 4.0</p><hr name="5c11485b-75a9-4e58-9b08-38c7c3ad2828" id="5c11485b-75a9-4e58-9b08-38c7c3ad2828"><div class="quote-box">
+<b>感想</b><br><br>
+強いって言われてるのは知ってるんですけどね、使ったことないんですよ!<br>なので性能面は分からないですけど、子供の時に作った割り箸輪ゴム銃みたいな手作り感あっていいですね!<br>性能に関しては使用者の皆さんのコメントに任せます( ˘ω˘)..<br><br><div class="note-figure"><img src="images/note_extracted/n6ffd8a29eeb3_img_5.png" alt="" width="620" height="802"><div class="note-figcaption">
+</div>
+
+<p name="605698e6-9511-4c49-ab9c-53b08ad906ab" id="605698e6-9511-4c49-ab9c-53b08ad906ab">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

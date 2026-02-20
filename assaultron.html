@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アサルトロン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">アサルトロン</h3>
+            <img src="images/note_extracted/n6aebd09d7f52_img_1.png" alt="アサルトロン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n6aebd09d7f52" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>アサルトロン</h1>
+            <div class="date">DATE: 2025/12/1</div>
+            
+            <p name="0344d07e-ee11-42a8-9480-652942e8af17" id="0344d07e-ee11-42a8-9480-652942e8af17">「アサルトロン」は、『<a href="fallout-4.html" class="auto-link">Fallout 4</a>』、『Fallout 76』、『Fallout: Wasteland Warfare』、『Fallout: The Roleplaying Game』、そして『Fallout』TVシリーズに登場するロボットのモデルです。</p><hr name="bee69f11-aa20-4d95-962b-c2676fd9cbdc" id="bee69f11-aa20-4d95-962b-c2676fd9cbdc"><h2 name="7334db2a-66e8-4984-b7b4-a4e8d70b3d84" id="7334db2a-66e8-4984-b7b4-a4e8d70b3d84">背景</h2><ul name="a96ac7f5-2392-41e1-a22a-336c7379614c" id="a96ac7f5-2392-41e1-a22a-336c7379614c"><li><p name="e506efb5-a8c9-4a51-8bbe-795f99f3f355" id="e506efb5-a8c9-4a51-8bbe-795f99f3f355">RobCo Industriesによって開発され、後にアメリカ軍に前線戦闘員として販売されました。</p></li><li><p name="32dd812f-d5f0-4a73-a01d-d6252fae4af9" id="32dd812f-d5f0-4a73-a01d-d6252fae4af9">近接戦闘において致命的であり、長距離の敵に壊滅的なダメージを与えることができるヘッドレーザーを装備しています。</p></li><li><p name="e647f378-2e36-43cd-82e1-d56779a0b563" id="e647f378-2e36-43cd-82e1-d56779a0b563">ステルス技術を備えている機体もあります。</p></li></ul><hr name="b0829dba-fa1b-4ebe-8228-d91fc78bf7e3" id="b0829dba-fa1b-4ebe-8228-d91fc78bf7e3"><h2 name="ad2577f6-1436-40da-b008-df8533b2001c" id="ad2577f6-1436-40da-b008-df8533b2001c">バリエーション</h2><h3 name="045ab62c-92ad-4b00-b981-274926a8cd87" id="045ab62c-92ad-4b00-b981-274926a8cd87">標準型アサルトロン</h3><p name="889ffa7a-ec2b-404e-97d0-69569f6ef17e" id="889ffa7a-ec2b-404e-97d0-69569f6ef17e">他の米軍ロボットと同様に軍用マーキングとオリーブドラブの塗装を施した二足歩行ロボット。<br>武装近接戦闘に使用できる二本のハンドクローと、長距離攻撃に使用できるヘッドレーザーを装備。</p><hr name="78c60b81-4e7d-4598-aa63-459a5634f421" id="78c60b81-4e7d-4598-aa63-459a5634f421"><h3 name="81a90057-3a43-4177-a730-5de343e183d7" id="81a90057-3a43-4177-a730-5de343e183d7">アサルトロン・ドミネーター</h3><div class="note-figure"><img src="images/note_extracted/n6aebd09d7f52_img_2.png" alt="" width="620" height="996"><div class="note-figcaption"></div></div><p name="5a8691db-800e-4f5e-92c2-304b22b0ee0a" id="5a8691db-800e-4f5e-92c2-304b22b0ee0a">比較的珍しい機種。<br>武装標準のクローの代わりに二本の剣とヘッドレーザーを装備。<br>ステルス技術が組み込まれており、ターゲットに接近する際に身を隠すことができます。</p><hr name="96196dc3-c64a-49bf-b8ff-787231ebce67" id="96196dc3-c64a-49bf-b8ff-787231ebce67"><h3 name="d822c418-f686-4b9f-8d98-3e3d36a85049" id="d822c418-f686-4b9f-8d98-3e3d36a85049">インポスター・シープスカッチ</h3><div class="note-figure"><img src="images/note_extracted/n6aebd09d7f52_img_3.png" alt="" width="598" height="727"><div class="note-figcaption"></div></div><p name="7c1e8d76-54e6-43cf-8801-51ff8ea49e9f" id="7c1e8d76-54e6-43cf-8801-51ff8ea49e9f">伝説の暗号生物シープスカッチを狩る目的で、カルビン・ヴァン・ロウによって開発された改造アサルトロンユニット。<br>Bysshe Companyがルイスバーグの不動産価値を下げるための入札の一環としてスポンサーとなり、「Mary's Little Lamb（メアリーの小さな子羊）」と名付けられました。<br>事件「交尾プロトコル」を開始し、カルビン・ヴァン・ロウを負傷させた後、逃亡しました。</p><hr name="d9a1d30e-5ba1-4c56-a086-d7784d90b1af" id="d9a1d30e-5ba1-4c56-a086-d7784d90b1af"><h3 name="aecf5b8e-9d7b-4d10-ac7c-79ed5052b331" id="aecf5b8e-9d7b-4d10-ac7c-79ed5052b331">シープスカッチ・インポスターリング</h3><p name="8a907ddd-127f-40f7-b37a-30df4a0c1485" id="8a907ddd-127f-40f7-b37a-30df4a0c1485">インポスター・シープスカッチ自身によって作成されました。<br>これは、ジェネリックなアサルトロンユニットに「交尾の儀式」のバックドアインストールと、Bysshe Companyの従業員を殺す指令を与えたものです。</p><hr name="61fdc0a9-b014-4ade-aeba-ad289a2302e6" id="61fdc0a9-b014-4ade-aeba-ad289a2302e6"><h2 name="4f55763c-393e-4325-b0f1-1fc78c2cb850" id="4f55763c-393e-4325-b0f1-1fc78c2cb850">舞台裏</h2><div class="note-figure"><img src="images/note_extracted/n6aebd09d7f52_img_4.png" alt="" width="620" height="461"><div class="note-figcaption"></div></div><ul name="f6d4b032-b01c-40f6-b5b8-c10766abdd84" id="f6d4b032-b01c-40f6-b5b8-c10766abdd84"><li><p name="a38d3acf-07eb-4ba0-be75-4d09369dc3a6" id="a38d3acf-07eb-4ba0-be75-4d09369dc3a6">『<a href="fallout-4.html" class="auto-link">Fallout 4</a>』と『Fallout 76』の両方で、アサルトロンの声優はColleen Delanyですが、その声はデジタル処理によって非常に低くされています。</p></li><li><p name="a9676e21-0fe6-47c1-976f-119f479d8ea2" id="a9676e21-0fe6-47c1-976f-119f479d8ea2">『Fallout』TVシリーズのエピソード「The Target」に登場する破壊されたアサルトロンの小道具は、実際にはNo Sleep Till Cosplayによって制作されたファンメイドの衣装です。</p></li></ul><hr name="6722b40b-b82d-4f64-a9e9-1e00118f3dc3" id="6722b40b-b82d-4f64-a9e9-1e00118f3dc3"><div class="quote-box">
+<b>感想</b><br><br>
+ビームが特に痛く、装備が整ってない場合は瞬殺されてしまいます。<br>又、頭部を破壊しても強力なクロー攻撃を繰り出してきたり、ステルス技術が組み込まれている機種はそもそも部位へのV.A.T.Sが遠くからできなかったりとゲーム内では非常に強敵となっています。<br><br>ただ全てのアサルトロンが敵対ということでは無く、搭載されたAIによっては味方にも中立にもなり得ます。<br><br>76では偽羊という愛称と共に人気のパブリックイベントがある事もあり、頻繁に戦うことになる機体です。
+</div>
+
+<p name="bb57b5ea-5249-4f51-8123-23792b61d309" id="bb57b5ea-5249-4f51-8123-23792b61d309">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

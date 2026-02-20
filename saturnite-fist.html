@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サターナイト・フィスト | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">サターナイト・フィスト</h3>
+            <img src="images/note_extracted/n38e2b17e342a_img_1.png" alt="サターナイト・フィスト">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n38e2b17e342a" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>サターナイト・フィスト</h1>
+            <div class="date">DATE: 2025/12/9</div>
+            
+            <p style="text-align: left" name="293e615d-e5d9-4a6f-b718-c0e95b8eac37" id="293e615d-e5d9-4a6f-b718-c0e95b8eac37">サターナイト・フィスト（正式名称：Saturnite D-25A power fist）は、『Fallout: New Vegas』のアドオン『Old World Blues』に登場する武器です。</p><hr name="32cff4c5-136f-4440-a608-04fbde50cd3a" id="32cff4c5-136f-4440-a608-04fbde50cd3a"><h2 name="02877436-a71b-454c-b7c0-2c0f1bab0e7b" id="02877436-a71b-454c-b7c0-2c0f1bab0e7b">1. 背景</h2><p name="a7f9cec0-60c0-4b25-b252-fd281a0e0ed8" id="a7f9cec0-60c0-4b25-b252-fd281a0e0ed8">サターナイト・セラミックポリマー合金は、ビッグ・マウンテン研究開発センター で、家庭用品や武器に使用される一般的でありながら高価な材料に代わる費用対効果の高い代替品として作成されました。</p><p name="c227a215-164d-433e-b5e4-c491ae64568b" id="c227a215-164d-433e-b5e4-c491ae64568b">シエラ・マドレ・カジノ＆リゾートで使用された非常に鋭利な<a href="cosmic-knife.html" class="auto-link">コズミック・ナイフ</a>の製造に加え、この合金は対人兵器であるD-25A空気圧式パワーフィストの設計にも組み込まれ、優れたモデルが生み出されました。</p><hr name="a09384eb-d036-4305-8405-6488fe874073" id="a09384eb-d036-4305-8405-6488fe874073"><h2 name="370d487e-d78e-4ea2-b04c-b70581512862" id="370d487e-d78e-4ea2-b04c-b70581512862">2. 特性</h2><p name="10d1f9ad-8c4f-47d4-8b7d-c34b5e159f24" id="10d1f9ad-8c4f-47d4-8b7d-c34b5e159f24">標準のパワーフィストと比較して、サターナイト・フィストは一撃あたりのダメージは低いですが、軽量化された結果、攻撃速度が速くなっています。<br>また、クリティカル率乗数は同じ x1 ですが、クリティカルヒットダメージも低いです。</p><p name="75146b20-a177-4961-88a8-e8bc3ff43fe8" id="75146b20-a177-4961-88a8-e8bc3ff43fe8">耐久性が高く、キャップ価値は標準の2倍です。<br>効果的に使用するための素手スキル要件は45（標準は50）と低く、筋力要件も4（標準は5）と低く設定されています。</p><p name="9478af70-8d7d-4dd2-8f95-040cac8b104d" id="9478af70-8d7d-4dd2-8f95-040cac8b104d">視覚的には、標準バリアントと似たデザインですが、ガンメタルグレーではなく、黒みがかった赤と青緑色の配色になっています。<br>「D-25A」という製品コードが左側に刻印され、その上下にサターナイトの名称とロゴがすべて白色の塗料でスタンプされています。</p><hr name="4efcfdb3-32e7-49fb-9ba1-20ca907278a5" id="4efcfdb3-32e7-49fb-9ba1-20ca907278a5"><h2 name="9a89ce7f-1a6a-4f22-b561-17bd4489a3f0" id="9a89ce7f-1a6a-4f22-b561-17bd4489a3f0">3. 入手場所</h2><ul name="b1cf9d93-8ab1-4629-92dd-024027b04cc6" id="b1cf9d93-8ab1-4629-92dd-024027b04cc6"><li><p name="6ee0c815-4142-4967-b016-987a4d9c2cdd" id="6ee0c815-4142-4967-b016-987a4d9c2cdd">ビッグ・マウンテン (Big MT) 全域: <br>ロボトマイトが一般的に携行しています。</p></li><li><p name="dd64437b-c34d-474f-8f74-c676a08b44c8" id="dd64437b-c34d-474f-8f74-c676a08b44c8">Saturnite alloy research facility: <br>洞窟の最奥（ピットの裏側）のカウンターの上に1つあります。<br>また、Sparksからも1つ入手できます。</p></li><li><p name="15af31a3-3c39-493d-982e-048221b9ae5a" id="15af31a3-3c39-493d-982e-048221b9ae5a">X-8 research center: <br>「Lobotomite and Dog」接合ルーチンを完了すると、ロボトマイトの死体から1つ見つかることがあります。</p></li><li><p name="994d6665-11e7-4b0d-9175-aefe90cd4a93" id="994d6665-11e7-4b0d-9175-aefe90cd4a93">Big MT west tunnel: <br>トンネル後方の線路セクションにある骸骨の隣に1つ見つかります。</p></li></ul><hr name="743bb093-fe7e-473b-9b6a-bcb9da06205e" id="743bb093-fe7e-473b-9b6a-bcb9da06205e"><div class="note-figure"><img src="images/note_extracted/n38e2b17e342a_img_2.jpg" alt="" width="620" height="353"><div class="note-figcaption"></div></div><div class="quote-box">
+<b>感想</b><br><br>
+<a href="fallout76.html" class="auto-link">Fallout76</a>ではシーズン22「アパラチアのモダンな生活」のシーズン報酬としてパワーフィストのスキンとして獲得可能でした。<br><br>ということでこの度NewVegasからサターンナイトフィストのスキンが登場しました。 <br>良いですね。 <br>76がFalloutの博覧会みたいになっていって。 <br>これからも色んな作品からロアの整合性が崩れない限り色々実装して欲しいなぁと思います。<br>欲を言えばコズミックナイフみたいに独自武器として実装して欲しかったですね。 <br>そうすれば素手の救世主になったのに!
+</div>
+
+<p name="2171fb44-3057-4875-b1b3-c9bb6c1faf99" id="2171fb44-3057-4875-b1b3-c9bb6c1faf99">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

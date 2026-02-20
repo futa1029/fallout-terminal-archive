@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>The Mothman Equinox | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #9933ff; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">The Mothman Equinox</h3>
+            <img src="images/note_extracted/nfe43582ed9a4_img_1.png" alt="The Mothman Equinox">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>イベント・現象</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nfe43582ed9a4" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>The Mothman Equinox</h1>
+            <div class="date">DATE: 2025/11/18</div>
+            
+            <p name="90af2d71-be44-4e1b-8011-924a4af94182" id="90af2d71-be44-4e1b-8011-924a4af94182">イベントThe Mothman Equinoxは、『Fallout 76』のNight of the Mothアップデートで導入されたシーズンのパブリックイベントです。</p><hr name="a6e9c995-b087-4443-9cb8-ac8ed461aa62" id="a6e9c995-b087-4443-9cb8-ac8ed461aa62"><h2 name="08bdc836-6979-4dd5-8c9b-324386293b75" id="08bdc836-6979-4dd5-8c9b-324386293b75">する事</h2><ol name="6a63b496-608e-4783-bce5-b6f9f428b6c5" id="6a63b496-608e-4783-bce5-b6f9f428b6c5"><li><p name="8480b3d1-1a32-4372-835f-c963d62c1384" id="8480b3d1-1a32-4372-835f-c963d62c1384">通訳者クラレンスと話す。</p></li><li><p name="be0668a8-92ea-4c6b-ad6b-f90babf83a43" id="be0668a8-92ea-4c6b-ad6b-f90babf83a43">儀式の準備をする（10分間）：</p><ul name="da95640d-18c5-4511-abf0-1af409ecee5f" id="da95640d-18c5-4511-abf0-1af409ecee5f"><li><p name="df2731ac-7557-4bd7-b87a-9f8d91af4ed1" id="df2731ac-7557-4bd7-b87a-9f8d91af4ed1">各火葬の山の周りの束縛のツルを破壊する (0/3)。</p></li><li><p name="e0e5b376-749b-48ff-a418-b030d6a81093" id="e0e5b376-749b-48ff-a418-b030d6a81093">カルト信者の予言者を倒す (0/6)。</p></li><li><p name="f3d28385-58c5-4495-ad13-0f3e21536213" id="f3d28385-58c5-4495-ad13-0f3e21536213">アルビノ・ラッドスタッグの血液を集めて、血の桶に預ける (0/15)。</p></li><li><p name="e3ea20e8-ddbe-44a7-ab8b-c84dfd6869c9" id="e3ea20e8-ddbe-44a7-ab8b-c84dfd6869c9">トーテムを破壊する (0/10)。</p></li><li><p name="17c52598-4aa6-44b8-a6cc-e5844e41408d" id="17c52598-4aa6-44b8-a6cc-e5844e41408d">火葬の山に点火する (0/3)。</p></li></ul></li><li><p name="2255cf6d-329e-4893-a3b3-a793e3be9f64" id="2255cf6d-329e-4893-a3b3-a793e3be9f64">儀式の火葬の山を防衛する（合計3ウェーブ）。</p></li><li><p name="f99904ca-9e6a-4c60-a7b7-fd9731ffd147" id="f99904ca-9e6a-4c60-a7b7-fd9731ffd147"><a href="mothman.html" class="auto-link">モスマン</a>・ミュージアムの屋上で喜びを表現する（30回、90秒以内）。</p><ul name="97346b56-bbbb-4b71-a541-64a2534623a0" id="97346b56-bbbb-4b71-a541-64a2534623a0"><li><p name="ea887e05-a09a-433e-8397-d8b2da05f47f" id="ea887e05-a09a-433e-8397-d8b2da05f47f">オプション: <br>準備段階で偽りの揺りかごに完璧な<a href="mothman.html" class="auto-link">モスマン</a>の卵を預けると、防衛戦の敵が変わる。</p></li></ul></li></ol><hr name="5079b1ab-6769-4672-a7fa-c5100ff5e013" id="5079b1ab-6769-4672-a7fa-c5100ff5e013"><h2 name="b4f49993-2e84-432f-8316-06752a28ed35" id="b4f49993-2e84-432f-8316-06752a28ed35">詳細</h2><h3 name="79d015e4-a3cd-4df8-a1d0-c24be5b697c7" id="79d015e4-a3cd-4df8-a1d0-c24be5b697c7">儀式の準備 (Preparation)</h3><p name="75071f3b-8445-4f0f-addb-83fcb1d2693f" id="75071f3b-8445-4f0f-addb-83fcb1d2693f">毎時ちょうど（XX:00 AM/PM）に、プレイヤーは<a href="point-pleasant.html" class="auto-link">ポイント・プレザント</a>に集まります。<br>ここでは、<a href="wise-charles.html" class="auto-link">賢明なるチャールズ</a>が率いる「啓発された者たち」と呼ばれる賢明なる<a href="mothman.html" class="auto-link">モスマン</a>の信者たちによって、賢明なる<a href="mothman.html" class="auto-link">モスマン</a>を召喚し、その知恵を分かち合う儀式が始まります。</p><p name="6aa24daa-8592-4d7e-a2e5-c87ddc85a687" id="6aa24daa-8592-4d7e-a2e5-c87ddc85a687">儀式の責任者である助手の通訳者クラレンスと話すと、クラレンスはまず愚かな者たちの意図により彼らを拘束しているツルを取り除くことで、賢明なる<a href="mothman.html" class="auto-link">モスマン</a>の召喚を手伝うようプレイヤーに依頼します。</p><p name="6e280104-25e8-46dd-adbc-1c5f41301e0b" id="6e280104-25e8-46dd-adbc-1c5f41301e0b">3つの火葬の山があります。</p><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ol name="45e67e76-84e7-4aa4-9b2e-aba13834b99f" id="45e67e76-84e7-4aa4-9b2e-aba13834b99f"><li><p name="632a98eb-9d3f-4419-83b8-5e947bacfaa1" id="632a98eb-9d3f-4419-83b8-5e947bacfaa1">水辺の火葬の山</p></li><li><p name="a9ce1a1c-5b01-419b-b5ea-1e791982a30b" id="a9ce1a1c-5b01-419b-b5ea-1e791982a30b">崩壊した橋のそばの火葬の山</p></li><li><p name="55fdddef-eb5c-44b6-b248-531d503daa4e" id="55fdddef-eb5c-44b6-b248-531d503daa4e">レスポンダーの前哨基地として機能していた教会内の火葬の山</p></li></ol><p name="6289bd18-faad-4e2f-a8b3-66bac0fcabee" id="6289bd18-faad-4e2f-a8b3-66bac0fcabee">ツルが取り除かれると、各火葬の山の監視者が、ポイント・プレザント周辺で以下の3つの目的のいずれかを達成するようにプレイヤーに依頼します。</p><ul name="659d4d9d-a46e-4fda-a664-83b712eaa817" id="659d4d9d-a46e-4fda-a664-83b712eaa817"><li><p name="d38be68c-56ae-406b-9e02-77b3f6bb2273" id="d38be68c-56ae-406b-9e02-77b3f6bb2273">エロール監視者は、異端で賢明なる<a href="mothman.html" class="auto-link">モスマン</a>の敷地をカルト信者の予言者（全部で6体）を倒すように要求します。<br>彼らは放射能ライフルのカチカチという音とギリースーツで容易に位置が分かります。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_3.png" alt="" width="512" height="512"><div class="note-figcaption">トーテム、イベント中は赤いオーラを放っている</div></div><ul name="66b9c009-4ed6-4ee0-8614-343becec1406" id="66b9c009-4ed6-4ee0-8614-343becec1406"><li><p name="751c5904-6aa7-4412-ba65-249969a8156f" id="751c5904-6aa7-4412-ba65-249969a8156f">マーロン監視者は、儀式を妨害するのを防ぐために、町中のトーテム（赤いオーラを放つ）を破壊するように要求します。<br>10個を破壊する必要があります。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_4.png" alt="" width="620" height="894"><div class="note-figcaption">アルビノ・ラッドスタッグ</div></div><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_5.png" alt="" width="620" height="349"><div class="note-figcaption">血の桶</div></div><ul name="530ad9b5-51c9-4bd1-8ea6-ef760ba49818" id="530ad9b5-51c9-4bd1-8ea6-ef760ba49818"><li><p name="d0269d5b-ee5b-4ca2-a782-0ec8abd52937" id="d0269d5b-ee5b-4ca2-a782-0ec8abd52937">ヨハンナ監視者は、異端のカルト信者の悪臭を消すための供物として、町中のアルビノ・ラッドスタッグを倒し、その血液を集めて血の桶に預けるように要求します。<br>15の血液が必要です。</p></li></ul><hr name="f58c120d-0e30-4db3-bfce-f8d03f04fc8f" id="f58c120d-0e30-4db3-bfce-f8d03f04fc8f"><h3 name="9353ef2b-f8f7-447e-8554-d00b195743df" id="9353ef2b-f8f7-447e-8554-d00b195743df">シークレットと防衛</h3><ul name="edc60a76-a2b9-46d2-9446-e16c7d0e5008" id="edc60a76-a2b9-46d2-9446-e16c7d0e5008"><li><p name="c68b63b9-2d36-4a8e-8e6c-dbf481f240df" id="c68b63b9-2d36-4a8e-8e6c-dbf481f240df">秘密: <br>準備段階で、完璧な<a href="mothman.html" class="auto-link">モスマン</a>の卵（カルト信者のハイプリーストパックを開けることでのみ入手可能）を偽りの揺りかごに預けると、防衛ステージの敵が復讐心に燃える<a href="mothman.html" class="auto-link">モスマン</a>から<a href="mothman.html" class="auto-link">モスマン</a>の雛に置き換わります。</p></li></ul><p name="5f8835b9-3a9c-4e05-a048-c99e4cc822bd" id="5f8835b9-3a9c-4e05-a048-c99e4cc822bd">火葬の山の要求が完了したら、クラレンスは、<a href="mothman.html" class="auto-link">モスマン</a>・ミュージアムの向かいの建物の屋根にある2つの大きなエアロゾル噴霧器とミュージアム自体の屋根にある2つの噴霧器から、賢明なる<a href="mothman.html" class="auto-link">モスマン</a>の塵を空中に拡散させながら、火葬の山に点火するように求めます。</p><p name="c5c2c0a5-a6ff-4894-bea1-88ced48b8c50" id="c5c2c0a5-a6ff-4894-bea1-88ced48b8c50">3つの火葬の山すべてが点灯すると、空が紫色に変わり、プレイヤーは火葬の塵を吸い込むことで、賢明なる<a href="mothman.html" class="auto-link">モスマン</a>の視点を体験します。</p><p name="fb707e1a-3cce-4367-bb34-cea0984ed786" id="fb707e1a-3cce-4367-bb34-cea0984ed786">クラレンスは声が歪んだ状態で、カルト信者が儀式によって激怒しており、火葬の山を破壊し、儀式を台無しにするために全力を尽くすだろうと警告し、プレイヤーに火葬の山を守るように求めます。<br>その後、敵対的なカルト信者の3つのウェーブが攻撃してきます。</p><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_6.png" alt="" width="620" height="349"><div class="note-figcaption">防衛対象の火葬の山</div></div><ul name="b46892c5-cec1-4ed0-9bd3-3d1b346ae232" id="b46892c5-cec1-4ed0-9bd3-3d1b346ae232"><li><p name="a309bb6f-e9b1-4005-ae5b-58e2bf4ed5c0" id="a309bb6f-e9b1-4005-ae5b-58e2bf4ed5c0">第1波: <br>教会の火葬の山をターゲットにします。</p></li><li><p name="6d1e16c2-d5e1-46cf-9d8b-989a3839e396" id="6d1e16c2-d5e1-46cf-9d8b-989a3839e396">第2波: <br>橋のそばの火葬の山をターゲットにし、デスクローを伴います。</p></li><li><p name="578cdfd3-9742-4975-8343-f14c00f81d62" id="578cdfd3-9742-4975-8343-f14c00f81d62">最終波: <br>水辺の火葬の山だけでなく、3つすべてをターゲットにし、デスクローとともに敵対的な<a href="mothman.html" class="auto-link">モスマン</a>が加わります。<br>ほとんどのカルト信者、デスクロー、<a href="mothman.html" class="auto-link">モスマン</a>は水辺と橋の火葬の山を狙うため、ここはイベントのこのステージで最も難しい部分です。</p></li></ul><hr name="30cb4590-ec33-4b97-8016-11217ec8d161" id="30cb4590-ec33-4b97-8016-11217ec8d161"><h3 name="fd8cabdd-f5dc-44fc-9373-4524bfcccaa2" id="fd8cabdd-f5dc-44fc-9373-4524bfcccaa2">賢明なる<a href="mothman.html" class="auto-link">モスマン</a>の召喚</h3><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_7.png" alt="" width="620" height="620"><div class="note-figcaption">賢明なる<a href="mothman.html" class="auto-link">モスマン</a>(目がピンクで非敵対)</div></div><p name="849b9a4f-f321-4fb8-a25c-cbc24dbf7a4a" id="849b9a4f-f321-4fb8-a25c-cbc24dbf7a4a">最終ウェーブを撃退した後、クラレンスは<a href="mothman.html" class="auto-link">モスマン</a>・ミュージアムの屋上に戻るよう全員を呼び戻し、エモートで賢明なる<a href="mothman.html" class="auto-link">モスマン</a>を召喚します。<br>彼の声は元に戻り、知恵を求める「子供たち」に知識を伝えに来るよう、賢明なる<a href="mothman.html" class="auto-link">モスマン</a>に呼びかけます。</p><ul name="2e868bb4-54bf-496e-9546-201d020219b2" id="2e868bb4-54bf-496e-9546-201d020219b2"><li><p name="65206d21-fa29-41d5-b8da-a9388d7ff6b2" id="65206d21-fa29-41d5-b8da-a9388d7ff6b2">完了条件: <br>90秒以内に30回エモートを行う必要があります。</p></li><li><p name="f2d8a908-84a2-4545-afc2-03405399e4d2" id="f2d8a908-84a2-4545-afc2-03405399e4d2">失敗条件: <br>90秒以内に完了しない場合、またはすべての火葬の山が破壊された場合、イベントは失敗します。</p></li><li><p name="1a06ea9c-a883-4225-8c8f-720cac5351e6" id="1a06ea9c-a883-4225-8c8f-720cac5351e6">報酬バフ: <br>賢明なる<a href="mothman.html" class="auto-link">モスマン</a>と交信すると、1時間+15%のボーナスXPという一時的なバフ「True Wisdom of the Mothman」が与えられます（これは「The Path to Enlightenment」で召喚される<a href="mothman.html" class="auto-link">モスマン</a>の+5%ボーナスXPよりも強力です）。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_8.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="b4344eda-fdc2-4b8e-80ed-89c9da16b4ea" id="b4344eda-fdc2-4b8e-80ed-89c9da16b4ea">イベント終了後、監視者たちとクラレンスは賢明なる<a href="mothman.html" class="auto-link">モスマン</a>の前にひざまずき、プレイヤーがエリアを離れて次の試行のために<a href="point-pleasant.html" class="auto-link">ポイント・プレザント</a>がリセットされるまでそれを崇拝します。</p><hr name="b6befb98-4835-4353-b18c-85951fe7c461" id="b6befb98-4835-4353-b18c-85951fe7c461"><h2 name="69d1b3aa-0227-4ab3-99e0-8db9e9cbef87" id="69d1b3aa-0227-4ab3-99e0-8db9e9cbef87">報酬</h2><p name="ad8f84ee-411f-46d6-8935-72dfb8655023" id="ad8f84ee-411f-46d6-8935-72dfb8655023">設計図リスト内の各報酬は、3.85%の確率でドロップします。<br>決定条件報酬は、イベント終了時に残っている火葬の山の数と、フィナーレのダンスパーティの質に基づいて決定されます。<br>最高のパフォーマンス3つすべての火葬の山を防衛しきった場合のみ達成されます。<br>クエスト報酬に加えて、賢明なる<a href="mothman.html" class="auto-link">モスマン</a>と交信することで、1時間+15% XPが付与される一時的なバフ「True Wisdom of the Mothman（<a href="mothman.html" class="auto-link">モスマン</a>の真の知恵）」を受け取ることができます。</p><p name="abc225ad-e468-4dbe-9b71-ba20731942f6" id="abc225ad-e468-4dbe-9b71-ba20731942f6">300 XP<br>40 キャップ<br>5 債券<br>レジェンダリーモジュール 1<br>設計図：<a href="mothman.html" class="auto-link">モスマン</a>の秋分の記念品のビールスタイン（未習得時のみ）<br>プレイヤーの称号：カルト教信者</p><p name="17ba6946-8a31-4cb3-9790-b6681e3c7250" id="17ba6946-8a31-4cb3-9790-b6681e3c7250">以下の設計図リストから、15%の確率でランダムに1つ付与されます。<br><br>設計図：賢き<a href="mothman.html" class="auto-link">モスマン</a>の玉座<br>設計図：カルト教信者の<a href="backpack.html" class="auto-link">バックパック</a><br>設計図：ペーパーハニカムの緑の<a href="mothman.html" class="auto-link">モスマン</a><br>設計図：ペーパーハニカムの赤い<a href="mothman.html" class="auto-link">モスマン</a><br>設計図：ペーパーハニカムの青い<a href="mothman.html" class="auto-link">モスマン</a><br>設計図：ペーパーハニカムの茶色い<a href="mothman.html" class="auto-link">モスマン</a><br>設計図：ペーパーハニカムのモスマングローブ<br>設計図：ファジーモスマンのぬいぐるみ<br>設計図：ファジーの悟りのぬいぐるみ<br>設計図：悟りのランタン<br>設計図：聖なる<a href="mothman.html" class="auto-link">モスマン</a>の書物<br>設計図：チェーンソー・スケプティキル塗装<br>設計図：<a href="mothman.html" class="auto-link">モスマン</a>の電気虫取り器<br>設計図：羽ばたく蛾<br>設計図：野花のドライフラワーのブーケ<br>設計図：モスマン教信者の香炉<br>設計図：カルト教信者の受肉ヘルメット<br>設計図：カルト教信者の夕暮れのローブ<br>設計図：カルト教信者の夕暮れのフード<br>設計図：カルト教信者の熟達者のローブ<br>設計図：カルト教信者の熟達者のフード<br>設計図：カルト教信者の悟りのローブ<br>設計図：カルト教信者の悟りのフード<br>設計図：カルト教信者の新入りのローブ<br>設計図：カルト教信者の新入りのフード<br>設計図：粗削りなスカルマスク<br>設計図：ボーンチルスカルマスク<br>設計図：割れたスカルマスク<br>設計図：アメリカン・ダガー・モスの剥製<br>設計図：ビューティフル・ウッド・ニンフ・モスの剥製<br>設計図：ジャイアント・レオパード・モスの剥製<br>設計図：イオメダマヤママユの剥製<br>設計図：アメリカオオミズアオの剥製<br>設計図：ヴァージニア・クリーパー・モスの剥製<br>設計図：ウエストバージニアの蛾の標本ボード<br>設計図：ウエストバージニアのディスプレイ棚</p><hr name="8a61f1b7-a0ef-49f2-b372-d75f02bb63c8" id="8a61f1b7-a0ef-49f2-b372-d75f02bb63c8"><h2 name="55451290-8c8a-4597-922b-8c5f87aa52ac" id="55451290-8c8a-4597-922b-8c5f87aa52ac">聖典</h2><div class="note-figure"><img src="images/note_extracted/nfe43582ed9a4_img_9.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="d0d092ba-f4c3-401d-ad1a-1bbabe7888b9" id="d0d092ba-f4c3-401d-ad1a-1bbabe7888b9"><a href="point-pleasant.html" class="auto-link">ポイント・プレザント</a>の教会の説教壇の隣には、啓発された者たちの聖典を収めた2つのガラス製ディスプレイケースがあります。<br>各巻には、カルトの様々なメンバーによる長文の記述が含まれています。The Mothman Equinoxを繰り返し完了することで、これらの聖典へのアクセスが徐々に解除されます。</p><p name="4c4866ae-300f-4db9-b2c2-0670fc17eeba" id="4c4866ae-300f-4db9-b2c2-0670fc17eeba">聖典名解除に必要な完了回数</p><ul name="d37ddb8b-1946-4e66-9612-e2fff2de4eaa" id="d37ddb8b-1946-4e66-9612-e2fff2de4eaa"><li><p name="99d68974-c29e-4e22-9396-ef9dd9d92fe4" id="99d68974-c29e-4e22-9396-ef9dd9d92fe4">1回：ヒラリーの問答書</p></li><li><p name="4283fa1d-d509-4fc9-b1db-ccd1719b2c5a" id="4283fa1d-d509-4fc9-b1db-ccd1719b2c5a">3回：アリシアの言葉</p></li><li><p name="356c9151-c265-48f8-9d42-f4503ad8f1d8" id="356c9151-c265-48f8-9d42-f4503ad8f1d8">6回：エクソダス</p></li><li><p name="7d64bac6-8702-4850-bf6a-85a1863e2338" id="7d64bac6-8702-4850-bf6a-85a1863e2338">10回：観察メモ、その27</p></li><li><p name="8c0ded5e-217c-4bfa-9829-8158bd05a97a" id="8c0ded5e-217c-4bfa-9829-8158bd05a97a">15回：ウォレスの論文</p></li><li><p name="976c0489-8699-403f-a5fe-ce981acf3e2f" id="976c0489-8699-403f-a5fe-ce981acf3e2f">21回：アパラチアの偽りの神</p></li></ul><h2 name="2e0db7f1-cdb3-44c4-878f-37f8868bedbc" id="2e0db7f1-cdb3-44c4-878f-37f8868bedbc">イベント開催期間</h2><p name="5068a6a9-8ae6-484a-bbaf-5276e5298056" id="5068a6a9-8ae6-484a-bbaf-5276e5298056">2021年12月8日 ~ 2021年12月21日<br>2022年6月28日 ~ 2022年7月12日<br>2023年4月25日 ~ 2023年5月9日<br>2024年4月2日 ~ 2024年4月16日<br>2024年5月14日 ~ 2024年5月21日<br>2024年8月13日 ~ 2024年8月27日<br>2025年4月8日 ~ 2025年4月22日</p><h2 name="f45c407f-6455-41f0-be70-a816eb3041b9" id="f45c407f-6455-41f0-be70-a816eb3041b9">制作裏話</h2><p name="27211096-2a12-4bb7-8ab5-d2f114c6debe" id="27211096-2a12-4bb7-8ab5-d2f114c6debe">ロードマップの変更: <br>Mothman Equinoxは、元々2021年のロードマップで「The Ritual」として ほのめかされ、Tales from the Starsアップデートの一部でした。<br>しかし、2021年9月28日にロードマップが改訂され、イベント名も変更されました。<br>これは2021年12月8日にNight of the Mothアップデートの一部としてリリースされました。</p><hr name="c06c31e2-c41f-46e6-83f4-121ef38d1a2f" id="c06c31e2-c41f-46e6-83f4-121ef38d1a2f"><div class="quote-box">
+<b>感想</b><br><br>
+割とロアが深く一回の記事では書ききれない位の内容があります。<br><br>それはさておき、イベントとしては注意するのが防衛時に出てくる、ガトリングガンをもったカルト信者、デスクローアルファーは非常に火力が高い為、血濡れビルドや初心者の方は気をつけたほうが良いです。<br>特にデスクローは直近のアップデートで強くなったのでかなりの強敵です。<br>自信のない方はステージ2の防衛には行かないことをおすすめします。<br><br>やはり賢明なる<a href="mothman.html" class="auto-link">モスマン</a>は信仰するべき対象ですね。<br>どっかの赤き<a href="mothman.html" class="auto-link">モスマン</a>と違って強力なEXPバフをくれます。<br>Lvを上げたい方は1時間毎にイベントをこなして効率的にバフをもらいに行きましょう。<br><br>それは置いといて完璧な<a href="mothman.html" class="auto-link">モスマン</a>の卵って預けれるのは知ってたけど敵が変化するんですね。<br>全然知りませんでした!
+</div>
+
+<p name="7a648fff-2e3a-4629-b121-f5d4eac7a663" id="7a648fff-2e3a-4629-b121-f5d4eac7a663">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

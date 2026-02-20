@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>新カリフォルニア共和国(New California Republic / NCR) | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00aaff; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">新カリフォルニア共和国(New California Republic / NCR)</h3>
+            <img src="images/note_extracted/n343778519ac4_img_1.png" alt="新カリフォルニア共和国(New California Republic / NCR)">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>勢力</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n343778519ac4" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>新カリフォルニア共和国(New California Republic / NCR)</h1>
+            <div class="date">DATE: 2026/2/14</div>
+            
+            <p name="1d64e7af-2099-4e38-a73e-4cecde436197" id="1d64e7af-2099-4e38-a73e-4cecde436197">2296年現在、<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a> </strong>を失ったものの、<strong>NCR</strong> は完全に消滅したわけではありません。<br>分裂した <strong>NCR</strong> の残存メンバーは、依然としてウェイストランド中に散らばっています。<br>これには、民主主義と法の支配という大義を信じる人々を守り、生き残るために活動を続けている、モハビに留まる1つの歩兵大隊とレンジャーの部隊も含まれています。</p><hr name="aa9d8439-26c0-4d69-b746-3d6ebd9ba759" id="aa9d8439-26c0-4d69-b746-3d6ebd9ba759"><h2 name="277327bb-5334-48c4-b52a-72a5452aeda3" id="277327bb-5334-48c4-b52a-72a5452aeda3">背景</h2><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_2.png" alt="" width="620" height="319"><div class="note-figcaption"></div></div><p name="3d9e0388-2b3a-4b15-ac9b-ccf577f416bc" id="3d9e0388-2b3a-4b15-ac9b-ccf577f416bc"><strong>新カリフォルニア共和国 (NCR)</strong> の歴史は、2097年頃に避難所から現れた <strong>Vault 15</strong> の生存者たちが<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong>の町を建設したことに遡ります。<br><strong>Vaultの居住者 (Vault Dweller)</strong> の助けを借りてレイダー部族のカーンズが壊滅した後、<a href="aradesh.html" class="auto-link">アラデシュ</a>とその娘タンディは、共同体を繁栄へと導きました。<br>貿易ルートの拡大に伴い文化交流が進み、最終的には国家を形成しようとする運動へと発展しました。<br>この考えは他のウェイストランダーたちの共感を呼び、大衆の支持を得て、2186年に<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong>で <strong>新カリフォルニア共和国 (NCR)</strong> が結成され、憲法を起草するための試行評議会政府が設立されました。<br>3年後の2189年、共和国本隊は廃墟の中の主要な定住地を中心に組織された5つの州の連邦として投票により成立しました。<br>その5つの州とは、シェイディ、ロサンゼルス、マクソン、ハブ、およびデイグロウです。</p><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_3.png" alt="" width="388" height="200"><div class="note-figcaption"></div></div><p name="9542c230-ba8b-4886-bb0a-ae3c4031baf8" id="9542c230-ba8b-4886-bb0a-ae3c4031baf8">建国から1世紀以内に、<strong>NCR</strong> はポスト・アポカリプスにおける成功と良好な倫理のモデルケースとなりました。<br>着実な拡大と発展により、広範な政治的参政権、法の支配の確立とその執行、内外の脅威からの安全確保（妥当な範囲で）、そして単なる生存を超えた生活水準が、70万人を超える巨大な市民人口にとって現実のものとなりました。<br><strong>モハビ・キャンペーン</strong>とフーバーダムからの電力と水の供給により、状況はさらに改善されましたが、長期にわたるキャンペーンは大きな代償を伴いました。</p><p name="6e0bbac1-dc82-483f-be80-d277e1cfcfa8" id="6e0bbac1-dc82-483f-be80-d277e1cfcfa8">タンディ大統領の死後、<strong>NCR</strong> は急速な経済成長と劇的な政治的変化を経験し、本来の壮大な理想を危うくする過渡期に入りました。<br>歴代の大統領の下で拡大政策が始まり、その変化の最大の例が道徳的に腐敗した帝国主義的な <strong>モハビ・キャンペーン</strong>でした。</p><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_4.png" alt="" width="620" height="465"><div class="note-figcaption"></div></div><p name="cb96995b-1519-44b7-9754-14d2161d42c5" id="cb96995b-1519-44b7-9754-14d2161d42c5">アーロン・キンボール大統領が推進したこのキャンペーンは、ニューベガス とその周辺地域を <strong>NCR</strong> の第6の州として一方的に併合することを目指していました。<br>長年の遠征は膠着状態に陥り、<strong>ニューベガス条約</strong>によって <strong>NCR</strong> はニューベガスを <strong>シーザー・リージョン</strong>から守る保護者となりましたが、ニューベガス・ストリップからの税収や、その所有者であるロバート・ハウス からの譲歩は一切得られませんでした。<br><strong>B.O.S.</strong>および <strong>シーザー・リージョン</strong>との戦争は <strong>NCR</strong> を疲弊させ、供給ラインの延長、不当利得、政治的駆け引きが新たな脅威への対応能力を制限する一方で、ニューベガスは観光客、商人、幸運を求める者、そして <strong>NCR</strong> の兵士たちがもたらす商業の恩恵を受けました。<br>さらに、<strong>グレート・カーンズ</strong>との衝突中に <strong>NCR</strong> が<strong>ビター・スプリングス </strong>の定住地で引き起こした<strong>虐殺</strong>は、男性、女性、子供が区別なく殺害され、共和国とその軍隊に暗い影を落としました。</p><p name="ac542ebd-4087-48fb-8a4f-64911b60bc68" id="ac542ebd-4087-48fb-8a4f-64911b60bc68">しかし、<strong>NCR</strong> を危機に陥れたのは第2次フーバーダムの戦いではなく、2283年の<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong>の予期せぬ前例のない破壊でした。<br>首都の喪失、および <strong>NCR</strong> 元老院、<strong>NCR</strong> 評議会、<strong>OSI</strong> といった主要な政府機関の消滅は、<strong>NCR</strong> をフリーフォール（自由落下）の状態へと突き落としました。<br>2296年までに、ボーンヤードにおける彼らの存在感は、グリフィス天文台に拠点を置くリー・モルデイヴァー指揮下の軍事部隊と民間人難民キャンプにまで縮小し、最終的に <strong>B.O.S. </strong>による強襲で壊滅しました。<br>この時点まで、<strong>NCR</strong> の遺産は、<strong>Vault 4</strong> の <strong>NCR</strong> 難民や、自らを「ザ・ガバミント」と称するロサンゼルスのギャングなど、新カリフォルニアの様々な小さなグループを通じて生き続けました。</p><hr name="0dfc686d-e0c0-415d-915d-bc4bf6fd36be" id="0dfc686d-e0c0-415d-915d-bc4bf6fd36be"><h2 name="564934f1-ada6-49c4-a6fe-df2189a5b128" id="564934f1-ada6-49c4-a6fe-df2189a5b128">社会</h2><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_5.png" alt="" width="620" height="473"><div class="note-figcaption"></div></div><p name="59683081-7b0e-4cd6-925c-24107026fc12" id="59683081-7b0e-4cd6-925c-24107026fc12">抽象的に言えば、<strong>NCR</strong> は進歩を象徴しています。<br>組織化されていないウェイストランダーや部族民が自給自足の農業に頼り、日々の生活で困難に直面している一方で、<strong>NCR</strong> の市民はウェイストランドの他の人々には手に入らない贅沢品、すなわち大規模で安定した経済、ヘルスケア、法律、組織化された安定した政府、そしてポスト・アポカリプスの世界で最大として知られる軍隊へのアクセスを得ています。<br>全盛期には、共和国のすべての市民が単なる生存以上の生活を送る相応のチャンスを持っていました。</p><p name="5ad83f02-2711-4a1f-9277-49d355dbe8df" id="5ad83f02-2711-4a1f-9277-49d355dbe8df">経済力は、2241年から2281年の間の社会変革における重要な要因の一つでした。<br>大多数の市民にとって生存が主要な懸念事項ではなくなったため、集団の福祉という問題は、個人の繁栄という懸念に大きく取って代わられました。<br>無償でサービスを提供する人々は今や稀であり、仕立屋から外科医に至るまで、熟練労働者は日常的にサービス料を請求しています。<br>さらに、80年以上にわたるスカベンジングの結果、新カリフォルニアの荒野からは回収可能な物品がほとんど一掃されました。<br>スカベンジングや狩猟だけで生計を立てている市民は珍しい光景となりました。<br>これらの文化的および経済的要因の組み合わせにより、賃金労働が再誕生しました。<br>ほとんどの市民は製粉所、工場、または農場で雇用主を探し、生存に必要な賃金を得るために働かなければなりません。</p><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_6.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><p name="90c5cf83-ea39-43f4-a13f-338cf74ad571" id="90c5cf83-ea39-43f4-a13f-338cf74ad571">共和国の国旗はカリフォルニア州旗に直接インスピレーションを得ており、草地に立つカリフォルニアグリズリーベアが描かれています。<br>初期の旗はイザインが大きく異なっていましたが、2241年に見られた最初の旗には、カリフォルニア州のシルエットの上に2つの頭を持つグリズイーベアが描かれ、背景に「NCR」の文字、左上に赤い星、下部に赤いバーがありました。<br>2281年までには、より直接的にカリフォルニア州旗に似たシンプルなデザインとなり、主な違いは2つの頭を持つクマと、「New California Republic」と修正されたキャプションです。<br>クマは <strong>NCR</strong> の強さと回復力の象徴であり（批判者は2つの頭が互いに争っていると言うかもしれませんが）、大統領専用のベルチバードは「ベア・フォース・ワン」と特定されています。</p><p name="89a9d78f-7c36-4260-b2f1-cb7186c1bee7" id="89a9d78f-7c36-4260-b2f1-cb7186c1bee7">自由と解放の原則に基づき、共和国は長年にわたりこれらを実践してきました。<br>最も重要な成果は、<strong>NCR</strong> 領土内での奴隷制の禁止です。<br>ただし、刑罰労働は依然として規定に残っており、この偉大な成果を損なっています。<br>タンディ大統領の下では、一人が所有できる家畜の頭数や土地の面積を制限する法律が可決され、家畜業者協会や共和党農民委員会 の権力を制限していました。<br>また、性別、民族、性自認、宗教的信念に基づく迫害や差別を禁止する法律も成立しました。<br>2205年には<a href="ghoul.html" class="auto-link">グール</a>やその他の変異体にも保護が拡張されましたが、こうした保護の執行は不十分でした。</p><hr name="de3d3a9e-897b-48cb-ab54-2bccfef0f3ff" id="de3d3a9e-897b-48cb-ab54-2bccfef0f3ff"><h2 name="60729f5a-8f62-4539-83e6-dfd8d847bb55" id="60729f5a-8f62-4539-83e6-dfd8d847bb55">経済と通貨</h2><p name="78bf5a17-775e-4378-8d23-0bb1c17efd87" id="78bf5a17-775e-4378-8d23-0bb1c17efd87"><strong>NCR</strong> の市場経済は、巨大な<strong><a href="brahmin.html" class="auto-link">バラモン</a></strong>の群れと、耕作可能な状態に復元された広大な土地という2つの資源に基づいています。<br>その結果、牧場主や農場主が大きな影響力を持っていました。<br>アーロン・キンボール大統領の時代には、富裕な農場主や牧場主（一般に<strong>バラモン男爵</strong>として知られる）が莫大な影響力を及ぼすようになりました。</p><p name="6f94e7c2-cf81-4afe-97ca-370b52e7dae4" id="6f94e7c2-cf81-4afe-97ca-370b52e7dae4"><strong>NCR</strong> は23世紀の初め頃に独自の貨幣を導入し、当初は金から鋳造された硬貨に依存していました。<br>2241年までに、<strong>NCR</strong> の経済は西海岸を支配し、硬貨は普遍的な通貨となりました。<br>しかし、<strong>B.O.S.</strong>との紛争中、辺境にある <strong>NCR</strong> の金準備が襲撃されたため、<strong>NCR</strong> は新しい金貨の鋳造を停止せざるを得なくなりました。<br>これにより <strong>NCR</strong> の紙幣は金によって適切に裏付けられなくなりました。<br>市民はパニックに陥り、残りの金準備から紙幣の額面価値を回収しようと急ぎました。<br><strong>NCR</strong> がこれらの払い戻しを実現できなかったため、通貨への信頼は著しく低下しました。</p><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_7.png" alt="" width="620" height="709"><div class="note-figcaption"></div></div><p name="da4dc7d4-9eef-4fa0-b1d9-e78b216dc593" id="da4dc7d4-9eef-4fa0-b1d9-e78b216dc593">インフレーションを封じ込めるため、政府は金本位制を廃止し、正貨で支払われない<strong>不換紙幣</strong>を確立しました。<br>これに対し、ハブの商人連合は独自の通貨である<a href="bottle-cap.html" class="auto-link">ボトルキャップ</a>を再確立し、それを水で裏付けました。<br>2281年時点で、<strong>NCR</strong> ドルは水に裏打ちされたキャップの約40%の価値しかありません。</p><hr name="79a62520-e39e-457d-98ed-575242759176" id="79a62520-e39e-457d-98ed-575242759176"><h2 name="133424ad-ecd6-4ee3-830d-5d4404c265be" id="133424ad-ecd6-4ee3-830d-5d4404c265be">軍事</h2><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_8.png" alt="" width="620" height="455"><div class="note-figcaption"></div></div><p name="8bf04213-21a5-4344-a710-4dd8880e0331" id="8bf04213-21a5-4344-a710-4dd8880e0331">大統領と議会に従属する <strong>NCR</strong> の軍隊は、その最も特徴的な要素の一つです。<br>中核となる <strong>NCR</strong> 陸軍は、数千人の現役兵を擁していました。<br>彼らは師団と大隊に組織され、標準化された武器とアーマーを装備していました。<br>また、エリート部隊として <strong>NCR</strong> レンジャーが存在します。<br>彼らは新カリフォルニアにおける奴隷制の根絶に捧げられた準軍事的な廃止論者自警団から成長しました。<br>彼らはウェイストランドで最もプロフェッショナルで致命的な軍事組織の一つとなり、陸軍の軍事指揮下に組み込まれました。</p><hr name="285f48fa-f447-4e40-813e-912f8524c87b" id="285f48fa-f447-4e40-813e-912f8524c87b"><h2 name="b8304b0a-0d3b-4418-ac28-ce1912afc7f7" id="b8304b0a-0d3b-4418-ac28-ce1912afc7f7">領土</h2><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_9.png" alt="" width="620" height="264"><div class="note-figcaption"></div></div><p name="7e93212e-4504-49b2-a10b-b6d52c5d1214" id="7e93212e-4504-49b2-a10b-b6d52c5d1214"><strong>NCR</strong> は5つの州の連邦として設立されましたが、その後数十年で領土を拡大しました。<br>シェイディ：<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong>、<strong>Vault 15</strong>、ジャンクタウンなどを含む。<br>ロサンゼルス：アディタムやボーンヤード周辺の定住地を含む。<br>ハブ：ハブとその周辺の町を含む。<br>マクソン：ロスト・ヒルズを含む（現在の状態は不明）。 <br>デイグロウ：エンジェルズ・ボーンヤード南部の町を含む。<br>ニューベガス：併合された場合の潜在的な第6の州。</p><p name="279d89da-7484-4199-b9c3-0b08d7d4e3a2" id="279d89da-7484-4199-b9c3-0b08d7d4e3a2">主なロケーションには、アロヨ 、ボーンヤード、デイグロウ、ハブ 、<strong>The Divide</strong>（以前）、ナヴァロ、ニューレノ、レディング、<strong>Vault 15</strong>、<strong>Vault City</strong> などがあります。<br>モハビにおいては、キャンプ・マッカラン 、キャンプ・フォーローン・ホープ、フーバーダム、モハビ・アウトポストなどに拠点を置いています。</p><hr name="21ea38ba-7473-4ff0-8397-011055b33311" id="21ea38ba-7473-4ff0-8397-011055b33311"><h2 name="e47350f0-2c67-4ea5-a07a-7d2d212d1fa1" id="e47350f0-2c67-4ea5-a07a-7d2d212d1fa1">注記</h2><p name="495c4f9c-31d8-4bc7-8c73-52dbdc842c01" id="495c4f9c-31d8-4bc7-8c73-52dbdc842c01">シーザーによれば、彼は子供の頃 <strong>NCR</strong> の市民であり、母親はボーンヤードの図書室で黙示録の追随者のために働いていました。<br><strong>Fallout: New Vegas</strong> では、キンボール大統領が2281年にフーバーダムに到着した際、戦前のアメリカと同じファンファーレである「Hail to the Chief（大統領万歳）」が演奏されます。<br><strong>Fallout 3</strong> の要塞にあるターミナルでは、<strong>B.O.S.</strong>の創設者ロジャー・マクソンにちなんで名付けられたマクソン州について言及されています。</p><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_10.png" alt="" width="620" height="398"><div class="note-figcaption"></div></div><p name="20cfb223-76d8-40cb-bbfd-e474931ac97f" id="20cfb223-76d8-40cb-bbfd-e474931ac97f">ユリシーズは、<strong>NCR</strong> の旗の由来を知る数少ない人物の一人であり、かつてのクマは頭が一つだったと指摘しています。</p><hr name="c5a312bb-e1c9-4194-bf57-77db57228cd4" id="c5a312bb-e1c9-4194-bf57-77db57228cd4"><h2 name="97bc6ecf-fa06-4909-9751-a13f150f01c6" id="97bc6ecf-fa06-4909-9751-a13f150f01c6">登場作品</h2><p name="3829e55d-370f-471a-8dac-d7edb416cebe" id="3829e55d-370f-471a-8dac-d7edb416cebe"><strong>Fallout</strong>（エンディングで言及）<br><strong>Fallout 2</strong> <strong>Fallout 3</strong>（言及のみ） <br><strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>（言及のみ） <br><strong>Fallout: New Vegas</strong> <br>ドラマ版『<strong>Fallout</strong>』シーズン1および2</p><hr name="8555c5be-8933-4086-b9df-c554a3e3d933" id="8555c5be-8933-4086-b9df-c554a3e3d933"><div class="quote-box">
+<b>感想</b><br><br>
+<b>新カリフォルニア共和国 (NCR)</b> は、Fallout シリーズにおける「文明再建の光と影」を最も鮮明に描き出している勢力ですね。<br><br><b>驚異的な復興</b>: 小さな村から始まり、70万人以上の人口を抱える巨大国家へと成長したプロセスは、人類の底力を感じさせます。特に教育やヘルスケアが制度化されている点は、他の勢力にはない圧倒的なアドバンテージです。<br><br><b>避けられない腐敗</b>: 民主主義を掲げながらも、実態は<b>バラモン男爵 </b>や大企業が政治を支配し、拡張主義に走る姿は、戦前の旧世界が辿った過ちを繰り返しているようで非常に皮肉です。<br><br><b>喪失と継承</b>: 2283年の首都破壊という絶望的な状況にありながら、依然としてその理想を抱き続ける人々がいる事実は、<b>NCR</b> が単なる国家を超えた「思想」としてウェイストランドに根付いていることを示しています。<br><br><div class="note-figure"><img src="images/note_extracted/n343778519ac4_img_11.png" alt="" width="620" height="349"><div class="note-figcaption">
+</div>
+
+<p name="b6be1c82-7c68-4699-a596-25bb3a2196da" id="b6be1c82-7c68-4699-a596-25bb3a2196da">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

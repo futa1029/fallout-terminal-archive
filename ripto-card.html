@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>リプトカ－ド | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">リプトカ－ド</h3>
+            <img src="images/note_extracted/nbbb918a274d0_img_1.png" alt="リプトカ－ド">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nbbb918a274d0" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>リプトカ－ド</h1>
+            <div class="date">DATE: 2025/12/19</div>
+            
+            <p name="f2f530d0-7f7a-4a31-ad72-3d592dfc89c8" id="f2f530d0-7f7a-4a31-ad72-3d592dfc89c8">クリプトカ－ドは、『Fallout 76』の「Once in a Blue Moon」アップデートで導入された8種類の雑多なアイテムのシリーズです。<br>これは、ゲーム内の<a href="tobacco.html" class="auto-link">タバコ</a>「グレイ・トータス」に付属する収集品という設定です。</p><hr name="d8210038-a277-47fb-b8f2-6199bc6a3f91" id="d8210038-a277-47fb-b8f2-6199bc6a3f91"><h2 name="b783893e-3606-4951-946f-d8b5ab3c92d6" id="b783893e-3606-4951-946f-d8b5ab3c92d6">概要</h2><h3 name="345445d4-2f1f-43d4-87c4-4389ba460451" id="345445d4-2f1f-43d4-87c4-4389ba460451">背景</h3><p name="89c0288e-d66e-4fd0-95cf-ef8fa6fe9113" id="89c0288e-d66e-4fd0-95cf-ef8fa6fe9113">「実在するクリプテッド（未確認生物）の神秘的な世界を探求する」と謳い、喫煙者に「科学では説明できない生き物」を見せると称して、「グレイ・トータス」シガレットに同梱された限定ミニシリーズのトレーディングカードです。</p><h3 name="8fc42ca4-fc02-43dc-950b-a943a4fbed9e" id="8fc42ca4-fc02-43dc-950b-a943a4fbed9e">特徴</h3><ol name="cfa47736-d820-406c-a7b2-ee15677e0c67" id="cfa47736-d820-406c-a7b2-ee15677e0c67"><li><p name="bd9a18c4-eeaa-48e7-9e4e-51e500dcf2d4" id="bd9a18c4-eeaa-48e7-9e4e-51e500dcf2d4">様々なクリプテッドを描いたトレーディングカードで、プレイヤー間で取引したり、C.A.M.P.の自動販売機で売却したりできます。</p></li><li><p name="cdfd079e-ef30-4929-b134-899e04aa190d" id="cdfd079e-ef30-4929-b134-899e04aa190d">C.A.M.P.には、集めたカードを飾るための「クリプトカード壁掛けディスプレイ」があります。</p></li><li><p name="361a7f08-827c-48c7-bc97-fcf4ed7cad8a" id="361a7f08-827c-48c7-bc97-fcf4ed7cad8a">（※各カードにはホイル版が存在しますが、現在のところゲーム内でドロップするようには設定されていません。）</p></li></ol><hr name="d10d5bfc-4bdd-4794-8417-f3ef9a66c4a1" id="d10d5bfc-4bdd-4794-8417-f3ef9a66c4a1"><h2 name="08a3982a-96fd-4453-afa9-8e33e6025a3e" id="08a3982a-96fd-4453-afa9-8e33e6025a3e">入手場所</h2><div class="note-figure"><img src="images/note_extracted/nbbb918a274d0_img_2.png" alt="" width="620" height="343"><div class="note-figcaption"></div></div><p name="9eeb5997-e6cf-453a-b6a6-dc4d24da725a" id="9eeb5997-e6cf-453a-b6a6-dc4d24da725a">全8種類のクリプトカ－ドは、以下の2つのパブリックイベントでのみ入手可能です。<br>また、全てトレード可能なアイテムであるため、他のプレイヤーから入手することもできます。</p><h3 name="f32a81a2-789c-411f-a93d-d05206ac8613" id="f32a81a2-789c-411f-a93d-d05206ac8613">Beasts of Burden</h3><p name="c61b5f38-dc8f-4517-88c6-5fd2a0bca2be" id="c61b5f38-dc8f-4517-88c6-5fd2a0bca2be"><a href="flat-woods.html" class="auto-link">フラットウッズ</a>・モンスター・カード<br>グラフトン・モンスター・カード<br><a href="mothman.html" class="auto-link">モスマン</a>・カード<br>オグア・カード</p><h3 name="7d57591e-09de-497a-983b-5829911cbc42" id="7d57591e-09de-497a-983b-5829911cbc42">Safe and Sound</h3><p name="e3d27f0c-2758-4623-8bb4-c4edcf451103" id="e3d27f0c-2758-4623-8bb4-c4edcf451103">ベックリーの獣・カード<br>ブルーデビル・カード<br>ジャージー・デビル・カード<br>シープスカッチ・カード</p><p name="96e40cc0-181b-4a69-81e1-dd9c7cbe4516" id="96e40cc0-181b-4a69-81e1-dd9c7cbe4516">上記のイベントを完了すると、報酬として記載されたカードのいずれか1枚が必ず保証されます。<br>全種類を集めるには、イベントを複数回完了する必要があります。</p><hr name="4549acca-b76e-4085-a04a-096596668e6b" id="4549acca-b76e-4085-a04a-096596668e6b"><h2 name="4955d64e-925a-43d3-b5ca-9de7b452d99b" id="4955d64e-925a-43d3-b5ca-9de7b452d99b">現実</h2><div class="note-figure"><img src="images/note_extracted/nbbb918a274d0_img_3.jpg" alt="" width="620" height="620"><div class="note-figcaption"></div></div><p name="6bae6f69-8114-4593-8042-2fef13ee9c0c" id="6bae6f69-8114-4593-8042-2fef13ee9c0c">コレクター向けのタバコカードは、1870年代から1940年代にかけて一般的な販促品でした。</p><p name="5e4ef36e-0b71-44f2-bf53-7795e63d6e9d" id="5e4ef36e-0b71-44f2-bf53-7795e63d6e9d">シガレットカードまたは煙草カードは、紙巻き<a href="tobacco.html" class="auto-link">タバコ</a>のパッケージにオマケとして封入されていたカード（トレーディングカード）。包装の強化および自社ブランドの宣伝を目的としていた。</p><p name="97960f00-0a35-4340-a448-6fae3dabbbba" id="97960f00-0a35-4340-a448-6fae3dabbbba">1875年から1940年代の間に、タバコ会社は、<a href="tobacco.html" class="auto-link">タバコ</a>のパッケージに収集可能なカードを封入していた。<br>しばしば人気を集めた女優や衣装、スポーツを描いたシガレットカードは、大衆文化を可視化したものとして、当時の流行や文化的コードの考察材料にもなっている。</p><hr name="c4a8b3f4-6f0d-409c-8bd2-6a9f7b773528" id="c4a8b3f4-6f0d-409c-8bd2-6a9f7b773528"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/nbbb918a274d0_img_4.png" alt="" width="620" height="388"><div class="note-figcaption">これって<a href="tobacco.html" class="auto-link">タバコ</a>のカードだったんですね!!<br>全然知らなかった。<br><br><a href="fallout76.html" class="auto-link">Fallout76</a>ではコレクション兼飾り家具として密かな人気があります。<br>重量は0.1と重いのでダブったカードは�捨てちゃいましょう。<br><br>現実ではその時の時代を感じれる良い文化ですね。<br>今では禁煙文化ですがその当時はこんな感じだったんだ~と色々見れて面白いので気になった方は「シガレットカード」で検索してみて下さい。<br>色々なデザインのカードがあって面白いです。<br><br><div class="note-figure"><img src="images/note_extracted/nbbb918a274d0_img_5.png" alt="" width="620" height="388"><div class="note-figcaption">
+</div>
+
+<p name="d86431f3-72e6-4cbc-a522-3e1fff5e9517" id="d86431f3-72e6-4cbc-a522-3e1fff5e9517">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

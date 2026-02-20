@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>オルガン洞窟  | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">オルガン洞窟 </h3>
+            <img src="images/note_extracted/nfd736e388b29_img_1.png" alt="オルガン洞窟 ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nfd736e388b29" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>オルガン洞窟 </h1>
+            <div class="date">DATE: 2026/1/25</div>
+            
+            <p name="2c53357a-6f54-44cb-a3e4-866a7d80310c" id="2c53357a-6f54-44cb-a3e4-866a7d80310c"><strong>オルガン洞窟は、『Fallout 76』のアパラチア、森林地帯に位置するロケーションです。</strong> <br>遠征アップデート「Atlantic City: Boardwalk Paradise」の一部として導入されました。<br>3つの入り口を持つ広大な洞窟群で、現在はモスマン教団によって占拠されています。</p><hr name="d605bd2a-13a7-4dc1-9297-d0b3f8715916" id="d605bd2a-13a7-4dc1-9297-d0b3f8715916"><h2 name="245d2214-c8ee-424f-909f-8d705b87a4f9" id="245d2214-c8ee-424f-909f-8d705b87a4f9">背景</h2><p name="3b48ce95-bdf9-40a4-8891-b073cd53cdd2" id="3b48ce95-bdf9-40a4-8891-b073cd53cdd2">オルガン洞窟という名前は、内部にあるパイプオルガンに似た岩石の形成に由来すると報告されています。<br>ある時期、ヴォルト・テック大学の地質学の学生であるサイラス・キングダムが、この地域で血のように赤い地下水を発見したという噂を耳にしました。<br>サイラスは調査を決意しましたが、落盤によって内部に閉じ込められてしまいました。</p><div class="note-figure"><img src="images/note_extracted/nfd736e388b29_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><hr name="e9eed4e5-fa3b-4f35-a916-3de61bc22dc3" id="e9eed4e5-fa3b-4f35-a916-3de61bc22dc3"><h2 name="7943865d-ee68-4648-9a05-0b21d50698b6" id="7943865d-ee68-4648-9a05-0b21d50698b6">レイアウト</h2><p name="8346a10f-a466-40c9-9992-e57fc9b83c52" id="8346a10f-a466-40c9-9992-e57fc9b83c52">洞窟システムには3つの入り口が存在します：<strong>オルガン洞窟・西</strong>、<strong>オルガン洞窟・北</strong>、そして<strong>オルガン洞窟・南</strong>です。<br>東側の入り口は存在しません。</p><ul name="39b8b538-3bcc-483d-b704-1dca91757bcc" id="39b8b538-3bcc-483d-b704-1dca91757bcc"><li><p name="bf52c4f7-cc02-447c-88d8-4103142d5a99" id="bf52c4f7-cc02-447c-88d8-4103142d5a99"><strong>西の入り口</strong>: ルート88沿い、ブルーリッジ・バンクハウスの北にある看板のジャンクキャンプ内にあります。</p></li><li><p name="11d46b20-7e58-49f1-b042-0ba36c42b724" id="11d46b20-7e58-49f1-b042-0ba36c42b724"><strong>北の入り口</strong>: Vault 76の真北、セトラーズ・リッジの東にあります。</p></li><li><p name="8677a8c4-d506-4618-aecb-39c5f437291b" id="8677a8c4-d506-4618-aecb-39c5f437291b"><strong>南の入り口</strong>: 前哨基地タンゴの北、ブルーリッジ・バンクハウスの東にあります。</p></li></ul><hr name="3a428a3a-8fe5-4a3b-adc3-19884b9a9f26" id="3a428a3a-8fe5-4a3b-adc3-19884b9a9f26"><h2 name="674cad21-2ebe-49ab-b47f-39791cb78e70" id="674cad21-2ebe-49ab-b47f-39791cb78e70">注目の戦利品</h2><ul name="d676318c-5ece-49bb-8d60-dd0d92371c76" id="d676318c-5ece-49bb-8d60-dd0d92371c76"><li><p name="1eb9185f-db2e-483b-bcde-fe99451d26f3" id="1eb9185f-db2e-483b-bcde-fe99451d26f3"><strong>地質学者のメモ (Geologist's note)</strong>: メモ。骸骨の隣の岩の上にあります。中央の広間ではなく、1つの大きな赤い滝がある部屋の先にあります。南西に向かって水の中を歩き、壁に大きな影がある廊下に入ると、左側の洞窟の道（南東向き）にあります。あるいは、滝の部屋の上層階で、スプールの左（南）に行き、洞窟の道を下ってください。</p></li></ul><div class="note-figure"><blockquote><p name="4e3b7012-9d8e-49f9-a9e9-581e554eb9e3" id="4e3b7012-9d8e-49f9-a9e9-581e554eb9e3">見つけたぞ！<br>まさに噂通りだ。<br>ここの地下水は……血のように赤い。<br>ただの鉄分じゃない。<br>何か別のもの、もっと古くからある何かだ。<br>サンプルをヴォルト・テック大学に持ち帰らなければならないが、トンネルが崩落してしまった。<br>閉じ込められた。<br>もし誰かがこれを見つけたら……教授に、<strong>俺が正しかった</strong>と伝えてくれ。</p></blockquote><div class="note-figcaption"></div></div><ul name="8eb1f5b9-6949-478a-acad-48aa9c4d6ea1" id="8eb1f5b9-6949-478a-acad-48aa9c4d6ea1"><li><p name="3a6c7ee4-02e4-4be4-91e5-233c03eb866b" id="3a6c7ee4-02e4-4be4-91e5-233c03eb866b"><strong>ボブルヘッド</strong>: 中央の広間ではなく、1つの大きな赤い滝、仮設のドック、いかだがある部屋にあります。上層階のスプールの隣に置かれています。</p></li></ul><hr name="d30e8470-e39a-442d-8050-43e97de43d97" id="d30e8470-e39a-442d-8050-43e97de43d97"><h2 name="5a58c7c9-fc7b-4efe-a496-8cf7b8d4b56c" id="5a58c7c9-fc7b-4efe-a496-8cf7b8d4b56c">備考</h2><p name="d933b756-2ceb-4f9f-84b4-eb0ede6b5660" id="d933b756-2ceb-4f9f-84b4-eb0ede6b5660">トンネル内の蔓の背後にある裂け目から、<strong>メトロマン</strong>の彫刻の目を見ることができます。</p><div class="note-figure"><img src="images/note_extracted/nfd736e388b29_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><hr name="1fe132ab-67d7-43cc-85c1-1e033157c50e" id="1fe132ab-67d7-43cc-85c1-1e033157c50e"><h2 name="3691162b-a332-4ad9-9a70-11ef8015edac" id="3691162b-a332-4ad9-9a70-11ef8015edac">舞台裏</h2><ul name="86a09369-ef7e-4f63-a65e-f2410a4d4533" id="86a09369-ef7e-4f63-a65e-f2410a4d4533"><li><p name="11fd00a0-4119-4c0b-9f6d-9033d2444af0" id="11fd00a0-4119-4c0b-9f6d-9033d2444af0">オルガン洞窟は、ウェストバージニア州グリーンブライア郡に実在する洞窟システムです。<br>メガロニクス（地上ナマケモノ）の化石が発見された場所として一般に知られており、それが『Fallout 76』へのメガ・スロスの導入にインスピレーションを与えました。<br>最新の証拠では、化石は実際にはウェストバージニア州モンロー郡で発見されたことが示唆されています。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nfd736e388b29_img_4.jpg" alt="" width="620" height="827"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/nfd736e388b29_img_5.jpg" alt="" width="620" height="827"><div class="note-figcaption"></div></div><ul name="b2b08ae5-d74f-4d7d-b1ba-4339c6e67c0a" id="b2b08ae5-d74f-4d7d-b1ba-4339c6e67c0a"><li><p name="9187cbba-3959-4075-a67f-261e9c4ef1af" id="9187cbba-3959-4075-a67f-261e9c4ef1af">開発中に西の入り口が追加された際、隣接する看板のジャンクキャンプをプレイヤーのC.A.M.P.禁止エリアにすることが検討されましたが、開発チームはこの場所が人気のキャンプスポットであることを知っていたため、リリース前に開放したままにしました。</p></li></ul><hr name="7211a45e-3a34-4938-82e0-8287ab9b7e2b" id="7211a45e-3a34-4938-82e0-8287ab9b7e2b"><h2 name="9a5f276c-2d3f-49fa-a087-dc089ff57d41" id="9a5f276c-2d3f-49fa-a087-dc089ff57d41">登場作品</h2><p name="06edcbdb-eef0-4d6e-8889-104a7d1c0d63" id="06edcbdb-eef0-4d6e-8889-104a7d1c0d63">オルガン洞窟は『Fallout 76』にのみ登場します。</p><div class="note-figure"><img src="images/note_extracted/nfd736e388b29_img_6.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><hr name="f5fa4949-6e05-4505-a2c7-98bbbc0f2e06" id="f5fa4949-6e05-4505-a2c7-98bbbc0f2e06"><div class="quote-box">
+<b>感想</b><br><br>
+<b>地質学的なミステリー</b>: 赤い地下水の噂を追って閉じ込められた学生サイラスの物語は、この洞窟の不気味な雰囲気をより際立たせています。<br><br><b>モスマン教団の拠点</b>: 内部の血まみれの祭壇や死体、そしてメトロマンの彫刻など、モスマン教団がここをいかに神聖視（あるいは邪悪な儀式の場として利用）しているかが細部から伝わってきます。<br><br><b>開発者の遊び心</b>: 人気のキャンプ地を潰さないように配慮した開発チームの判断は、多くの居住者にとって嬉しい配慮でした。<br><br>実在の洞窟がメガ・スロスのインスピレーション元になっているという裏話を知ると、洞窟内のナマケモノのような彫刻もまた違った見え方がしますね。<br><br><div class="note-figure"><img src="images/note_extracted/nfd736e388b29_img_7.png" alt="" width="620" height="349"><div class="note-figcaption">
+</div>
+
+<p name="8b649bc7-df5f-4c82-8ccf-b894c57aece3" id="8b649bc7-df5f-4c82-8ccf-b894c57aece3">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

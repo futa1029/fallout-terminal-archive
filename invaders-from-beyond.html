@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Invaders from Beyond | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Invaders from Beyond</h3>
+            <img src="images/note_extracted/n1f08e2befdbf_img_1.png" alt="Invaders from Beyond">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n1f08e2befdbf" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Invaders from Beyond</h1>
+            <div class="date">DATE: 2025/11/16</div>
+            
+            <p name="dc6f9424-23bc-4bfd-8e08-75fefc838a83" id="dc6f9424-23bc-4bfd-8e08-75fefc838a83">イベント「Invaders from Beyond（異星からの侵略者）」は、『Fallout 76』のInvaders from Beyondアップデートで導入されたシーズンのパブリックイベントです。</p><hr name="0b125cda-341f-4381-89ce-2b928a07bae3" id="0b125cda-341f-4381-89ce-2b928a07bae3"><h2 name="6e32799b-f63f-4b0f-b4de-23485644cfd8" id="6e32799b-f63f-4b0f-b4de-23485644cfd8">概要</h2><p name="d57260c6-12cb-4218-96d0-1eac79422c27" id="d57260c6-12cb-4218-96d0-1eac79422c27">Invaders from Beyondは、<a href="zeta-alien.html" class="auto-link">ゼータ星人</a>が侵攻してくるシーズンイベントです。<br>イベントでは、宇宙をテーマにしたアイテムがプレイヤーに報酬として与えられます。</p><hr name="546c1a89-03d6-48e6-93b3-8ff0f4abf0c1" id="546c1a89-03d6-48e6-93b3-8ff0f4abf0c1"><h2 name="bdf4cc70-8385-446b-9e40-4e205da1a6ea" id="bdf4cc70-8385-446b-9e40-4e205da1a6ea">イベントの流れ</h2><div class="note-figure"><img src="images/note_extracted/n1f08e2befdbf_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ol name="6a31c9cd-01b2-41e0-8595-656ecbd059bf" id="6a31c9cd-01b2-41e0-8595-656ecbd059bf"><li><p name="9096375c-cc71-4306-9843-7b5429671696" id="9096375c-cc71-4306-9843-7b5429671696">脳波サイフォンを調べる。</p></li><li><p name="c9d4beec-20aa-4359-8432-9bd4b364d8e5" id="c9d4beec-20aa-4359-8432-9bd4b364d8e5"><a href="homer-saperstein.html" class="auto-link">ホーマー・サパースタイン</a>からの放送を聞く。</p></li><li><p name="daa8d48d-a1e0-42ee-bc4a-d265d7028405" id="daa8d48d-a1e0-42ee-bc4a-d265d7028405">エイリアン、エイリアン侵略者、エイリアン・ドローン、<a href="flat-woods.html" class="auto-link">フラットウッズ</a>・モンスターで構成される敵を30体倒す。</p></li><li><p name="7022e31f-f9db-42db-aa64-23f889609aad" id="7022e31f-f9db-42db-aa64-23f889609aad">エイリアン指揮官を倒す。</p><ul name="de8b7f60-fa30-433b-93f5-123c6001b782" id="de8b7f60-fa30-433b-93f5-123c6001b782"><li><p name="e7edd37e-2abc-4a04-8a7a-480d864aa34c" id="e7edd37e-2abc-4a04-8a7a-480d864aa34c">カッパ中尉を倒す。</p></li><li><p name="40c33a7f-b629-4472-92be-cbd62df0affd" id="40c33a7f-b629-4472-92be-cbd62df0affd">アルファ大尉とオメガ大尉を倒す。</p></li><li><p name="90714ef5-ac01-4ca1-8416-99e9dfe62c5c" id="90714ef5-ac01-4ca1-8416-99e9dfe62c5c">ゼータ将軍を倒す。</p></li></ul></li><li><p name="a82507b0-cb9c-4c3c-9a2a-3e0bcd05ce1b" id="a82507b0-cb9c-4c3c-9a2a-3e0bcd05ce1b">脳波サイフォンを破壊する。</p></li><li><p name="37c373cb-ee80-4e99-ab5b-1d98f58235be" id="37c373cb-ee80-4e99-ab5b-1d98f58235be">次の脳波サイフォンに移動し、3つすべてが破壊されるまで繰り返す。</p></li></ol><hr name="1342276b-d656-40c7-b011-3eddfe79a4de" id="1342276b-d656-40c7-b011-3eddfe79a4de"><h2 name="d11fafe4-2029-4c16-aa72-487bc844f48d" id="d11fafe4-2029-4c16-aa72-487bc844f48d">詳細</h2><p name="2aebc646-6d20-4011-be4e-ede10e52fab0" id="2aebc646-6d20-4011-be4e-ede10e52fab0">エイリアンの侵略者たちは、アパラチアの住人に関するデータを収集するために高度な装置を設置しています。<br><a href="homer-saperstein.html" class="auto-link">ホーマー・サパースタイン</a>という謎の仲間が、これらの脳波サイフォンを囲むフォースフィールドを遠隔で無効化し、Vault居住者にそれらを破壊するように要請します。<br>一方、頭上に浮かぶUFOは、彼らの技術を守るためにエイリアンの兵士を降下させてきます。</p><p name="d6d57188-c01c-4758-a1e2-3cdfc9eb523b" id="d6d57188-c01c-4758-a1e2-3cdfc9eb523b">エイリアンの波を撃退し、彼らのリーダーを倒します。<br>サイフォンが破壊されると、ゼータ将軍が宇宙の全戦力を伴ってテレポートしてきます。<br>彼を倒すことで、侵略者を撤退させることができます。</p><hr name="a3f91bd3-8cb1-4c9f-9857-7493364c57d7" id="a3f91bd3-8cb1-4c9f-9857-7493364c57d7"><h3 name="6989423e-0278-4df7-a762-ff334088a6d3" id="6989423e-0278-4df7-a762-ff334088a6d3">イベントの開始と場所</h3><p name="79b45197-8b1a-4310-ab36-613c3a0da625" id="79b45197-8b1a-4310-ab36-613c3a0da625">イベントは毎時ちょうど（XX:00）に開始されますが、イベントの場所は開催されるたびに異なります。</p><p name="a8344524-920d-4c41-8d97-f5d585523d14" id="a8344524-920d-4c41-8d97-f5d585523d14">イベントの発生候補地:</p><ul name="e41d9c2f-fcca-4581-9789-eb0267cb8d4b" id="e41d9c2f-fcca-4581-9789-eb0267cb8d4b"><li><p name="6c30998b-8f83-417c-a073-68afc2eb3bcd" id="6c30998b-8f83-417c-a073-68afc2eb3bcd">チャールストン議事堂</p></li><li><p name="4d363974-f23a-4a9f-a724-4ae940bafa4e" id="4d363974-f23a-4a9f-a724-4ae940bafa4e">ウェイビー・ウィラーズ・ウォーター・パーク</p></li><li><p name="cfb49d6d-7427-4a50-b8bc-45c6819a3d43" id="cfb49d6d-7427-4a50-b8bc-45c6819a3d43">ガラハン本社周辺</p></li><li><p name="5178f390-e00e-4f9d-a558-e6a04bbaf071" id="5178f390-e00e-4f9d-a558-e6a04bbaf071">モノンガー</p></li><li><p name="fbbdddcd-1eaa-4f50-ac6f-189635f7be60" id="fbbdddcd-1eaa-4f50-ac6f-189635f7be60">ダイアー・ケミカル</p></li><li><p name="2c9edd3e-5d4e-4ba2-bb9f-2267f1f3d8d1" id="2c9edd3e-5d4e-4ba2-bb9f-2267f1f3d8d1">まばらなサンデューの木立</p></li></ul><hr name="c12d7285-418b-4196-b157-b6a3474f0158" id="c12d7285-418b-4196-b157-b6a3474f0158"><h3 name="b5292e5e-df1f-4db4-8de8-c2718fd94544" id="b5292e5e-df1f-4db4-8de8-c2718fd94544">脳波サイフォンの破壊</h3><p name="b4f13db9-6f87-4001-871d-91603cf3082e" id="b4f13db9-6f87-4001-871d-91603cf3082e">エリアに到着したら、サイフォン・カッパを調査すると、<a href="homer-saperstein.html" class="auto-link">ホーマー・サパースタイン</a>から連絡が入ります。<br>彼はエイリアンがサイフォン装置を使って脳波を収集するのを阻止するために、Vault居住者の援助を必要としています。</p><div class="note-figure"><img src="images/note_extracted/n1f08e2befdbf_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="52dd575a-4885-42c7-9b4d-046dd5ff33de" id="52dd575a-4885-42c7-9b4d-046dd5ff33de"><li><p name="442b0f87-cfe9-4a79-9fbf-3f315014d756" id="442b0f87-cfe9-4a79-9fbf-3f315014d756">エネルギーパルス: <br>ホーマーは、サイフォンが有害なエネルギーパルスを放出する可能性があるため、注意するよう警告します。<br>パルスを放出する前に、装置は赤く光り、音声を発します。<br>パルスの範囲内にいる者はダメージを受け、脳波収集のゲージが増加します。<br>ゲージが満杯になると、エイリアンの作戦が成功し、頭上のUFOが撤退するため、イベントは失敗します。</p></li><li><p name="5cbe4b56-4545-4cf4-afaf-640865095d4f" id="5cbe4b56-4545-4cf4-afaf-640865095d4f">指揮官の誘い出し: <br>イベントを完了するには、ドウェラーは各サイフォンで少なくとも30体のエイリアン/ドローンを倒し、指揮官を誘い出して直接戦う必要があります。<br>指揮官が死亡すると、装置のシールドが解除され、破壊できるようになります。</p></li></ul><hr name="41b75a9b-38f3-463c-8dac-98e0c9d5939f" id="41b75a9b-38f3-463c-8dac-98e0c9d5939f"><h3 name="8b7b30c5-1387-4632-afa9-bd7d47f815ff" id="8b7b30c5-1387-4632-afa9-bd7d47f815ff">各サイフォンと指揮官</h3><div class="note-figure"><img src="images/note_extracted/n1f08e2befdbf_img_4.png" alt="" width="620" height="580"><div class="note-figcaption">ゼータ将軍</div></div><ol name="77d1d78b-efeb-4e31-a0ed-da8cb03a3dd6" id="77d1d78b-efeb-4e31-a0ed-da8cb03a3dd6"><li><p name="809bb52f-ebd4-4661-a9a8-db4dc8f8001c" id="809bb52f-ebd4-4661-a9a8-db4dc8f8001c">ターゲット1: サイフォン・カッパ</p><ul name="2e7e033f-14ef-4a05-92f1-895270c248fd" id="2e7e033f-14ef-4a05-92f1-895270c248fd"><li><p name="629564bf-c31d-4a50-b916-7ef0751298f7" id="629564bf-c31d-4a50-b916-7ef0751298f7">30体のエイリアン/ドローンを倒すと、カッパ中尉がビームダウンしてきます。<br>彼は凍結エイリアンをわずかに大きくした姿で容易に識別できます。彼を倒し、無防備になったサイフォンを破壊します。</p></li></ul></li><li><p name="50723563-c45f-439f-b229-fb30435919b5" id="50723563-c45f-439f-b229-fb30435919b5">ターゲット2: サイフォン・オメガ</p><ul name="5a78f211-9e1e-4b58-88cf-d7683315a0e8" id="5a78f211-9e1e-4b58-88cf-d7683315a0e8"><li><p name="431ebffb-9d0f-4303-b67e-98e83c9cdaf5" id="431ebffb-9d0f-4303-b67e-98e83c9cdaf5">このサイフォンに向かう前に、ホーマーは頭上のUFOがミサイル攻撃を開始するため、警戒するように警告します。<br>UFOからの赤いターゲティングレーザーが着弾地点を示します。<br>30体のエイリアンを倒すと、アルファ大尉とオメガ大尉という2体のドローン型指揮官が出現します。<br>彼らを倒し、サイフォンを破壊します。</p></li></ul></li><li><p name="2d2564ef-20fc-4801-b37f-dadce8436a92" id="2d2564ef-20fc-4801-b37f-dadce8436a92">最終ターゲット: サイフォン・ゼータ</p><ul name="2bdff3b5-f6c3-41d9-9abb-75f736027da2" id="2bdff3b5-f6c3-41d9-9abb-75f736027da2"><li><p name="0c724a7e-5935-4595-8987-b7221752570b" id="0c724a7e-5935-4595-8987-b7221752570b">十分なエイリアンを倒すと、ゼータ将軍自身がビームダウンして攻撃してきます。<br>彼は星3レジェンダリーのエイリアン侵略者であり、体力が最初の50%を下回ると一度回復します。<br>彼を倒し、最後のサイフォンを破壊してイベントを完了します。<br>今回は、ゼータ将軍と最後のサイフォンを守るために、UFOからのミサイル攻撃がより多くなるため、注意が必要です。</p></li></ul></li></ol><hr name="98149123-2587-43ae-b5ae-23e0f9f8c68d" id="98149123-2587-43ae-b5ae-23e0f9f8c68d"><h3 name="a08a6161-0934-4686-9934-503d9b3f2c21" id="a08a6161-0934-4686-9934-503d9b3f2c21">その他のクリーチャー</h3><div class="note-figure"><img src="images/note_extracted/n1f08e2befdbf_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="b3935715-fa76-4ca5-966a-aa5d2fa0b5e0" id="b3935715-fa76-4ca5-966a-aa5d2fa0b5e0"><li><p name="620eb8b9-4e99-4a36-b60f-0083ec73a224" id="620eb8b9-4e99-4a36-b60f-0083ec73a224">エイリアンの種類: <br>エイリアンはドローンと共に攻撃してきます。<br>一部のエイリアンは、エイリアンブラスターから凍結弾や酸性弾を発射してきます。</p></li><li><p name="8b2b1f07-188b-48e6-8941-6307493f2072" id="8b2b1f07-188b-48e6-8941-6307493f2072"><a href="flat-woods.html" class="auto-link">フラットウッズ</a>・モンスター: <br>サイフォン・ゼータへの攻撃中は、エイリアンやドローンに加えて、数体の<a href="flat-woods.html" class="auto-link">フラットウッズ</a>・モンスターとも交戦する準備が必要です。</p></li></ul><p name="d3ae73da-7618-4fd5-8bb6-a82a2f9e001b" id="d3ae73da-7618-4fd5-8bb6-a82a2f9e001b">ゼータ将軍が死亡し、最後のサイフォンが破壊されると、マザーシップUFOは次のイベントが始まるまで撤退を余儀なくされます。</p><h2 name="77f7f8c1-a254-4054-81f4-6140c605cedf" id="77f7f8c1-a254-4054-81f4-6140c605cedf">報酬</h2><h3 name="42eb0d56-62df-4e31-bfde-add27f693ebb" id="42eb0d56-62df-4e31-bfde-add27f693ebb">確定報酬</h3><p name="0af7c957-96ef-423f-8b28-68455105fd1d" id="0af7c957-96ef-423f-8b28-68455105fd1d">イベント完了時に必ず獲得できる報酬です。</p><p name="bb853931-8de8-49c2-a90d-65dafcf90c51" id="bb853931-8de8-49c2-a90d-65dafcf90c51">経験値 : 500<br>キャップ : 100<br>星1 レジェンダリーアイテム : 1つ<br>債券 : 2枚<br>レジェンダリー・モジュール : 3個<br>設計図 : エイリアンの記念ビアジョッキ（未習得の場合）</p><h3 name="01208a03-7dd0-4384-8cf5-bcf75267517f" id="01208a03-7dd0-4384-8cf5-bcf75267517f">ランダム戦利品</h3><p name="1fc8631f-6d39-49b5-aa06-82b5100bed17" id="1fc8631f-6d39-49b5-aa06-82b5100bed17">以下のアイテムは、確率に基づき獲得できる可能性があります。</p><p name="79a82204-1dc8-4430-94a4-3c62f05c38ae" id="79a82204-1dc8-4430-94a4-3c62f05c38ae">100% 獲得</p><p name="ba1e9c18-3f23-4ac2-95e3-7d9fbe032c7e" id="ba1e9c18-3f23-4ac2-95e3-7d9fbe032c7e">以下の回復アイテムの中から、指定された数量が獲得できます。</p><ul name="bd20b86b-8766-4d48-bb1b-fbc68e2fe6ff" id="bd20b86b-8766-4d48-bb1b-fbc68e2fe6ff"><li><p name="52deb389-175b-4d63-8056-e8a4e7ccab1c" id="52deb389-175b-4d63-8056-e8a4e7ccab1c"><a href="stim-pack.html" class="auto-link">スティムパック</a> : 2〜6個</p></li><li><p name="3cd6d12a-ee5f-4b5d-aca3-17c43c8c046c" id="3cd6d12a-ee5f-4b5d-aca3-17c43c8c046c"><a href="radaway.html" class="auto-link">RadAway</a>&nbsp;: 2〜6個</p></li><li><p name="5a32b7c3-b658-4df8-85b0-2aa4ebd66f3a" id="5a32b7c3-b658-4df8-85b0-2aa4ebd66f3a">綺麗な水 : 2〜6個</p></li></ul><p name="8bcc7d50-fabb-4e59-ad84-7ec8bee80cca" id="8bcc7d50-fabb-4e59-ad84-7ec8bee80cca">爆発物</p><p name="8068017e-3830-467f-a31c-2500f0e62993" id="8068017e-3830-467f-a31c-2500f0e62993">以下の爆発物または関連設計図の中から、確率で1つ獲得できます。</p><p name="b0786182-82d2-47d5-8fed-8aaa16ff5de2" id="b0786182-82d2-47d5-8fed-8aaa16ff5de2">グレネードおよび地雷の設計図5%<br>地雷 : 19%<br>グレネード : 76%</p><p name="d4dbd295-4141-40fe-a592-80f3a436b2ca" id="d4dbd295-4141-40fe-a592-80f3a436b2ca">設計図：エイリアンの収納箱<br>設計図：小惑星<br>設計図：人間のチューブ1<br>設計図：人間のチューブ2<br>設計図：エイリアンのチューブ<br>設計図：エイリアンブラスターの冷却マガジン<br>設計図：エイリアンブラスターの毒マガジン<br>設計図：エイリアンの解剖台<br>設計図：エイリアンブラスター<br>設計図：エイリアン・ディスインテグレーター<br>設計図：エイリアン・ディスインテグレーターのオートレシーバー<br>設計図：エイリアン・ディスインテグレーターの冷却レシーバー<br>設計図：エイリアン・ディスインテグレーターの毒レシーバー<br>設計図：エイリアン・ディスインテグレーターの高出力レシーバー<br>設計図：エレクトロエンフォーサー<br>設計図：氷結エレクトロエンフォーサー<br>設計図：オーバーチャージ・エレクトロエンフォーサー<br>設計図：毒エレクトロエンフォーサー<br>設計図：エレクトロエンフォーサー・スパイク付き<br>設計図：エイリアンのヘッドランプ<br>設計図：エイリアンのテーブル<br>設計図：発光フラットウッズ・モンスターランプ<br>設計図：エイリアンの射撃訓練のポスター <br>設計図：防護スーツ(ティール色)<br>設計図：天頂エイリアンブラスター塗装<br>設計図：未来的な地球儀<br>設計図：エイリアンのソファー<br>設計図：ヌカ・チェリー・ロケット<br>設計図：ヌカ・コーラ・ロケット<br>設計図：ヌカ・コーラ・ダーク・ロケット<br>設計図：ヌカ・グレープ・ロケット<br>設計図：ヌカ・コーラ・クアンタム・ロケット<br>設計図：ヌカ・コーラ・ツイスト・ロケット<br>設計図：防護スーツ - ピンク<br>設計図：コズミック・キャプチャ</p><hr name="6e66b198-749e-4f0f-9d58-0737f4c4b0ed" id="6e66b198-749e-4f0f-9d58-0737f4c4b0ed"><h2 name="c47728e6-e800-44a4-85a2-e06a4a305350" id="c47728e6-e800-44a4-85a2-e06a4a305350">備考</h2><div class="note-figure"><img src="images/note_extracted/n1f08e2befdbf_img_6.png" alt="" width="620" height="708"><div class="note-figcaption">量子ストーム</div></div><ul name="33ac69c1-05a8-4778-a808-600bb1cb14a8" id="33ac69c1-05a8-4778-a808-600bb1cb14a8"><li><p name="c0dd12df-99f3-4804-a506-a3ce784f67ae" id="c0dd12df-99f3-4804-a506-a3ce784f67ae"><a href="homer-saperstein.html" class="auto-link">ホーマー・サパースタイン</a>は、デイリーオプスのヴァーノン・ドッジと同様に、ラジオで話している間、HUDに表示されます。</p></li><li><p name="37a313fa-fc30-4ee4-b4fd-26a949d38aa3" id="37a313fa-fc30-4ee4-b4fd-26a949d38aa3">このイベントは、エリアの天候を量子ストームに変更します。</p></li><li><p name="a810e963-55f0-4bef-adf9-00ba9973eea3" id="a810e963-55f0-4bef-adf9-00ba9973eea3">チャールストンの鐘は、Invaders From Beyond イベントまたはコミュニティイベントがアクティブな間は鳴りません。<br>これは、Charleston Capitol Buildingと干渉しないようにするためです。</p></li></ul><hr name="59c73562-1efb-44a5-9e79-8ceb1a17db45" id="59c73562-1efb-44a5-9e79-8ceb1a17db45"><h2 name="9cf50bff-a9e4-4669-8b45-fe6d1eae8ff7" id="9cf50bff-a9e4-4669-8b45-fe6d1eae8ff7">制作裏話</h2><ul name="c578cfb9-eb36-49f1-a5ec-47eee41457e7" id="c578cfb9-eb36-49f1-a5ec-47eee41457e7"><li><p name="16dd7de6-710e-4543-b424-7c0b789770af" id="16dd7de6-710e-4543-b424-7c0b789770af">当初の計画: <br>このイベントは、当初は廃止された「Tales from the Stars」アップデートの一部として発表されていましたが、これは最終的に作り直され、Night of the Mothとしてリリースされました。<br>エイリアン関連のコンテンツは、2022年の「Invaders from Beyond」アップデートまで保留されました。</p></li><li><p name="ac02fbef-372c-4f70-8110-cb13039caeeb" id="ac02fbef-372c-4f70-8110-cb13039caeeb"><a href="zeta-alien.html" class="auto-link">ゼータ星人</a>の登場: <br>Bethesda Game Studios Austinのチームは、『Fallout 76』のリリース前から、<a href="zeta-alien.html" class="auto-link">ゼータ星人</a>を使った面白いことをするアイデアを内部で話し合っており、最終的に「Invaders from Beyond」で<a href="zeta-alien.html" class="auto-link">ゼータ星人</a>を登場させました。</p></li><li><p name="697e488f-5080-4cf7-809a-66f26c105c1a" id="697e488f-5080-4cf7-809a-66f26c105c1a">イベントの分類: <br>このイベントは、当初『Fallout 76』初のパブリックイベントとして発表されましたが、この用語は後に棚上げされ、「Invaders from Beyond」は代わりに「<a href="fasnacht-day.html" class="auto-link">Fasnacht Day</a>」や「<a href="the-mothman-equinox.html" class="auto-link">The Mothman Equinox</a>」と同様のシーズンイベントとなりました。</p></li><li><p name="4367714e-956d-47eb-bced-e5eb3a846a41" id="4367714e-956d-47eb-bced-e5eb3a846a41">名称の変更: <br>イベントの公式リリースとPublic Test Server（PTS）の間で、いくつかの名称や用語が変更されました。<br>脳波サイフォンは元々「P.R.O.B.E.s」と呼ばれており、カッパ中尉、アルファ＆オメガ大尉、ゼータ将軍は、それぞれ「Moon Major（ムーン少佐）」「Cosmic Colonel（コズミック大佐）」「Galactic General（ギャラクティック将軍）」と呼ばれていました。</p></li></ul><hr name="abba39e2-1218-4969-8feb-e674a24a8a0c" id="abba39e2-1218-4969-8feb-e674a24a8a0c"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n1f08e2befdbf_img_7.png" alt="" width="620" height="349"><div class="note-figcaption">Fallout3のDLCで出てきた時はネタ的な物でひっぱらないと思ったんですがめっちゃその後も出てきましたね。<br>結局の所噂されてる核を撃ったのは宇宙人説っていうのは本当なんですかねぇ・・・私気になります。 <br>中国が追い詰められて本当に自分から撃ったのかｻﾃﾊﾃ･･。<br>もはや最近では親戚のおじさん感覚でやってきます。<br>前々回からコズミック・キャプチャが追加されたので、それを持ってない人やエイリアン武器関連持ってない人はこの機会に参加しましょう。<br>特にエイリアン武器は強くなったり弱くなったりしてて環境武器になってもおかしくないので取っておくことをオススメします。
+</div>
+
+<p name="1939bca9-15d3-4309-8995-5f0f91048ea3" id="1939bca9-15d3-4309-8995-5f0f91048ea3">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

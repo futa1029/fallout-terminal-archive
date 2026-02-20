@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vault76 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Vault76</h3>
+            <img src="images/note_extracted/nb5b511b5d97e_img_1.jpg" alt="Vault76">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nb5b511b5d97e" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Vault76</h1>
+            <div class="date">DATE: 2025/10/17</div>
+            
+            <h2 name="4e33cefc-d7cd-49f1-84cf-782d0a4a3263" id="4e33cefc-d7cd-49f1-84cf-782d0a4a3263">概要と目的</h2><p name="2bbf9870-073a-46e7-90f8-ecae08456ec1" id="2bbf9870-073a-46e7-90f8-ecae08456ec1">Vault 76は、Vault-Tecが設計・建設した17の「コントロールVault」の一つで、核戦争後の社会実験を目的とした他のVaultとは異なり、純粋に生存と再建を目的とした施設です。<br>アメリカ建国300周年を記念して「Official Vault of the Tricentennial」と称され、2076年に公開されました。<br>主な目的は、核戦争から選ばれた優秀な人材を守り、戦争後20年目に開封してアメリカの再建を推進することです。</p><ul name="4007f364-7dfe-4126-a027-81bb515dc7fe" id="4007f364-7dfe-4126-a027-81bb515dc7fe"><li><p name="ccd20e64-8a50-42a3-85db-972c2377b497" id="ccd20e64-8a50-42a3-85db-972c2377b497"><strong>実験の有無<br></strong>他のVaultが社会実験（例: 放射能暴露、遺伝子操作）の場だったのに対し、Vault 76はコントロールグループとして実験なし。<br>居住者の行動が基準データとして使用され、他のVaultの実験結果を比較するためのものです。<br>これにより、Vault-Tecは人類の長期生存可能性を評価していました。</p></li></ul><ul name="106442ff-f4dc-4217-9869-35e96d3f7e85" id="106442ff-f4dc-4217-9869-35e96d3f7e85"><li><p name="2476ea5e-db1e-43f9-a826-9e15ec25581f" id="2476ea5e-db1e-43f9-a826-9e15ec25581f"><strong>歴史とタイムライン<br></strong>Vault 76の歴史は、Falloutシリーズの過去作（Fallout 3など）で言及されており、『Fallout 76』で詳細が明らかになります。 <br></p></li><li><p name="18fafcf7-b04c-4361-aae4-ce81547b1439" id="18fafcf7-b04c-4361-aae4-ce81547b1439"><strong>建設</strong> <br>2065年2月に着工、2069年10月に完成。<br>場所はウェストバージニアのアパラチア地域（フラッドウッズの北、森林地帯エリア）。 <br>ボルトテック大学（モーガンタウン）と連携し、優秀な卒業生を優先的に収容。 <br></p></li></ul><ul name="a0b5ff58-5b6f-4c0b-bf29-2726df2a3cef" id="a0b5ff58-5b6f-4c0b-bf29-2726df2a3cef"><li><p name="147429ce-80e3-4b69-bc23-eaf5a389855a" id="147429ce-80e3-4b69-bc23-eaf5a389855a"><strong>公開</strong> <br>2076年7月4日、アメリカ独立記念日にテレビ中継でデビュー。<br>Vault-Tecの宣伝として大々的に扱われました。<br><br></p></li><li><p name="479c328b-6881-44da-8797-6b1cb473156b" id="479c328b-6881-44da-8797-6b1cb473156b"><strong>封鎖</strong> <br>2077年10月23日、大戦争発生時に封鎖。 <br>予定では2097年（戦争後20年目）に開封予定でしたが、実際のゲーム開始時は2102年10月23日（再生の日）。 <br>これはVault-Tecの調整によるものとロアで示唆されています。 <br></p></li><li><p name="1aacd7e9-f931-4b0b-a9e7-87a391a435bc" id="1aacd7e9-f931-4b0b-a9e7-87a391a435bc"><strong>開封後</strong><br>開封後24時間以内に居住不能になり、居住者は強制的に退出。 <br>ロボットが施設を保存状態に維持。 <br>ロアによると、Vault 76はアメリカの「finest, brightest, and most talented individuals」（最も優秀で明るく才能ある人々）を集め、核戦争後の再植民化を担うはずでした。<br>実際、居住者は戦争後すぐにアパラチアの脅威に直面し、多くの者が死亡または行方不明になりましたが、これはVault-Tecの計画の一部として解釈されることがあります。</p></li></ul><hr name="4cee518e-572f-46a2-b2e3-43e7f5e4e58c" id="4cee518e-572f-46a2-b2e3-43e7f5e4e58c"><h2 name="5834ca0b-9f9e-47e3-8c76-c2832e4eef90" id="5834ca0b-9f9e-47e3-8c76-c2832e4eef90">特徴と施設</h2><p name="6ccd19b0-7776-4db0-bd67-0afe3c225c1f" id="6ccd19b0-7776-4db0-bd67-0afe3c225c1f">Vault 76は、Vault-Tecの標準技術を備えた豪華な施設で、生存率を最大化する設計です。<br>収容人数 最大500人。 <br>各居住者にフル装備のアパート（寝室、リビング、バスルーム、カラーテレビ付き）が割り当てられました。</p><div class="note-figure"><img src="images/note_extracted/nb5b511b5d97e_img_2.png" alt="" width="620" height="349"><div class="note-figcaption">Vault住民者の部屋の様子</div></div><p name="649180c4-289e-4fa9-9cfd-cf3ca7c32137" id="649180c4-289e-4fa9-9cfd-cf3ca7c32137">電源とシステム LightLife地熱発電、超原子炉、核発電バックアップ。<br>Brainpower 4コンピュータシステム、SimuSun照明、自動清掃システムを搭載。 <br>食料は合成機で供給され、過密時には配給制に切り替え。<br><br>監督官は若く経験の浅い人物で、住民の競争心を管理するため賞やイベント（例: Vault 76 World Cup）を導入。<br>開封前に3つの核サイロ確保を任務としましたが、単独では不可能だった可能性が高い。<br>プライベートセキュリティが厳重で、秘密保持のための脅迫や報酬が用いられました。 <br>内部は清潔でモダンなデザインで、Vault-Tecのモットー「Prepare for the Future」が随所に。<br>ゲームでは内部を自由に探索できませんが、<a href="holotape.html" class="auto-link">ホロテープ</a>や端末から詳細がわかります。<br><br>Vault 76の住民は、アメリカの「finest, brightest, and most talented individuals」で構成され、再建に適した人材が選ばれました。 <br>Vault-Tec大学卒業生、軍人、科学者、元政府関係者などが優先。 <br>プレイヤーキャラクターもその一人。<br><br>封鎖後、25年間の閉鎖生活で教育プログラムや訓練を実施。 <br>開封時にはパーティーで祝い、サバイバルパッケージ（<a href="pip-boy.html" class="auto-link">Pip-Boy</a>、C.A.M.P.など）を受け取って退出。</p><div class="note-figure"><img src="images/note_extracted/nb5b511b5d97e_img_3.jpg" alt="" width="620" height="349"><div class="note-figcaption">Vault開封前日のパーティーの様子</div></div><div class="note-figure"><img src="images/note_extracted/nb5b511b5d97e_img_4.jpg" alt="" width="620" height="349"><div class="note-figcaption">再生の日</div></div><p name="23bc6667-4d7a-41b2-b2df-9f446385b892" id="23bc6667-4d7a-41b2-b2df-9f446385b892">開封後、多くの住民がアパラチアの脅威に敗れましたが、一部は生存し、ゲームのクエストに登場。 <br>主な生存NPCは監督官で、再建を導きます。</p><hr name="f84b5ea8-32d6-497b-9036-5135bc1be6c1" id="f84b5ea8-32d6-497b-9036-5135bc1be6c1"><h2 name="17f6067f-5b2d-4d47-938f-47c4627d1cb6" id="17f6067f-5b2d-4d47-938f-47c4627d1cb6">『Fallout 76』でのゲーム内役割</h2><p name="b6fdd838-34d7-4825-80e4-247303c577de" id="b6fdd838-34d7-4825-80e4-247303c577de">『Fallout 76』は2102年を舞台とし、プレイヤーはVault 76の居住者としてゲームを開始します。 <br>再生の日に開封し、外の世界へ。 <br>内部は再入場不可ですが、外観はランドマークとして存在。<br><br>クエスト関与 メインクエスト「Reclamation Day」から始まり、監督官の<a href="holotape.html" class="auto-link">ホロテープ</a>を探すストーリーが展開。 <br>アパラチアの再建、スコーチ病の解決、核兵器の扱いがテーマ。 <br>アップデート Wastelanders, Steel Dawnで追加ロアがあり、Brotherhood of Steelとの関わりが深まります。<br>Vault 76はアパラチアの他のVault（51, 63など）と対比され、コントロールVaultの成功例として描かれます。<br></p><hr name="c4cc19ab-97f9-4019-95a2-528939f6ced0" id="c4cc19ab-97f9-4019-95a2-528939f6ced0"><div class="quote-box">
+<b>感想</b><br><br>
+再生の日、それは希望に満ちあふれていた。<br>βを徹夜でし、やっと迎えた再生の日。 <br>Vaultが開放されるいつもの演出が記憶に残っています。<br>その時は3人で始めたのに気づいたら一人という・・・アパラチアは過酷ですね。<br>そろそろVault76のNPCを実装してもいいんじゃないでしょうか。 <br>それとは別にロケーション紹介の旅はここから再生の日を迎えます。 <br>とっ散らかってるのを順序にそってロケーション紹介しないと撮ったSSが何処だかもう分からない状態になってて終わってるんですよねw <br>後SSってゲーム内の日が昇って落ちるまでの間かつ、その地方に雨が降ったり、霧が出てない事が自分の条件なのでナカナカ巡り会えない時があります。 <br>私SS撮り始めて初めて地域で天候が同じなの知りました。 てっきり円形描いてそこらへんに雨ふってるのかと・・・。<br><br><div class="note-figure"><img src="images/note_extracted/nb5b511b5d97e_img_5.png" alt="" width="620" height="345"><div class="note-figcaption">5周年の時の様子
+</div>
+
+<p name="64dcc170-91c5-42a0-a9a6-822f5c71f047" id="64dcc170-91c5-42a0-a9a6-822f5c71f047">This article uses material from the <a href="https://starwars.fandom.com/wiki/Endor" target="_blank" rel="nofollow noopener">“Endor”</a> article on the <a href="https://starwars.fandom.com/" target="_blank" rel="nofollow noopener">Star Wars wiki</a> at <a href="https://www.fandom.com/" target="_blank" rel="nofollow noopener">Fandom</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="nofollow noopener">Creative Commons Attribution-Share Alike License</a>.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

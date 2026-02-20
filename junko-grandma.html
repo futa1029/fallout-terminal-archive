@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ジュンコおばあちゃん | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ジュンコおばあちゃん</h3>
+            <img src="images/note_extracted/n611be9d8cfb5_img_1.png" alt="ジュンコおばあちゃん">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n611be9d8cfb5" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ジュンコおばあちゃん</h1>
+            <div class="date">DATE: 2026/1/20</div>
+            
+            <p name="0047da04-4ade-487d-9329-5041d3054159" id="0047da04-4ade-487d-9329-5041d3054159">ジュンコおばあちゃんは、『Fallout 76』のアップデート「Once in a Blue Moon」で導入された、アパラチアでコンパニオンになる可能性のある「同居人」です。<br><strong>最終戦争のトラウマを抱えた生存者であり、ユーモラスでありながら時折混乱した一面も見せるおばあちゃんで、優れた料理の腕前を持っています。</strong></p><p name="3e179cab-69ac-4e4c-81b3-f70c49d3badf" id="3e179cab-69ac-4e4c-81b3-f70c49d3badf">ジュンコは当初、ゲーム内第14シーズン「Fight for Freedom（自由のための戦い）」のランク35の報酬として入手可能でした。<br>現在は、サミュエルから4,000金塊で設計図を購入することができます。</p><hr name="d2d934bd-4846-46c5-aa30-f6cdc5255de4" id="d2d934bd-4846-46c5-aa30-f6cdc5255de4"><h2 name="4a012499-bdfb-43ad-a63a-3c4fe44b6c7f" id="4a012499-bdfb-43ad-a63a-3c4fe44b6c7f">背景</h2><p name="94cc563c-5fe7-44b7-8f71-f560bc48d651" id="94cc563c-5fe7-44b7-8f71-f560bc48d651"><strong>ジュンコは日本系です。<br>父親は彼女に、日本語で「清らかな子供」を意味する「ジュンコ（純子）」という名前を付けました。</strong> <br>彼女が若かった頃、日本の印西市という小さな都市からアメリカに移住しました。<br>彼女は西海岸沿いの小さな町で育ちました。</p><p name="01baf9be-b9fb-460c-8adc-9e9f29085ee0" id="01baf9be-b9fb-460c-8adc-9e9f29085ee0">彼女はカズイチという、物静かだが思いやりのある性格の男性と出会い、二人は恋に落ち、雨の日に結婚しました。<br>彼との間にはサヨコという娘がおり、サヨコはやがて3人の子供を産んでアパラチアに住むことになります。 <br>ジュンコはカズイチの仕事の関係で、アメリカ中を旅していました。</p><p name="18a95c20-7a19-4061-b690-7767264ef3fb" id="18a95c20-7a19-4061-b690-7767264ef3fb">最終戦争が近づく頃、カズイチは不穏な政治情勢に不安を感じ始め、自宅の下にシェルターを建設することに決めました。<br><strong>ジュンコとカズイチは子供たちが現れるのを待ちましたが、彼らが現れることはありませんでした。</strong> <br>カズイチはある時点で食料を補充するために外出し、戻ってきたとき、彼は<a href="ghoul.html" class="auto-link">グール</a>に<a href="mutation.html" class="auto-link">変異</a>しつつあるか、放射能汚染で死にかけていたことが示唆されています。 <br>ジュンコは彼が「眠ってしまった」と言っていますが、彼女の台詞は彼が実際には亡くなっており、彼女は彼が眠っているだけだと信じることで現実に対処しようとしていることを示唆しています。<br>彼女は家族の他のメンバーを探しに行くと記したメモを彼に残し、今でも彼が目を覚まし、再会できることを願っています。</p><p name="e187e44e-d869-4d0c-876d-1eeb3cf4cd1a" id="e187e44e-d869-4d0c-876d-1eeb3cf4cd1a">それから25年以上が経過し、ジュンコはサヨコを捜すためにアパラチアに戻ってきました。 <br>ジュンコは比較的健康を維持しており、その健康的な老化の秘訣は、ヨガ、良い食事、そして時々食べるチョコレートのおかげだとしています。 <br>彼女は生存の秘訣を、可能な限り人々を避けることにあると考えています。<br>彼女が「ファウンデーション」の入植者から食料品を買ったことが知られています。 <br>また、オデッサ・バルデスとも会っており、彼女のことを「いい子」だと思っています。</p><p name="2f06fd30-884b-4ce8-92b0-d43000567a2e" id="2f06fd30-884b-4ce8-92b0-d43000567a2e"><strong>ジュンコの台詞の多くは曖昧であり、彼女がポスト・アポカリプスの重大さを理解した上で、現実に対処するために無邪気な振る舞いをしているのか、あるいは実際に認知症のような状態にあり、すべてが実際よりも深刻ではないと心から信じているのかは不明です。</strong> <br>例えば、彼女は<a href="power-armor.html" class="auto-link">パワーアーマー</a>のことを「ロボットのコスチューム」と呼びます。 <br>戦争が話題に上がると、彼女は「戦争？ ちょっと待って、どの戦争のことだい？」と答えます。 <br>彼女は<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>のことを、衛生状態が悪いために肌が緑色になっているだけだと思っており、モスマン教団のことは、大学の昆虫学部の学生だと思っています。 <br>彼女はエンクレイヴに対しても世間知らずです。</p><hr name="7070d9ab-5b5d-48aa-ae5d-2fc30eb79145" id="7070d9ab-5b5d-48aa-ae5d-2fc30eb79145"><h2 name="18b953c6-5d24-48b6-a414-98b687770126" id="18b953c6-5d24-48b6-a414-98b687770126">プレイヤーキャラクターとのインタラクション</h2><p name="6a72930d-cef8-41bc-b88a-a61530228267" id="6a72930d-cef8-41bc-b88a-a61530228267">ジュンコは居住者の進行状況についていくつか議論することができます：</p><ul name="8bbb231d-e728-4412-8e97-45d90c2216a1" id="8bbb231d-e728-4412-8e97-45d90c2216a1"><li><p name="e4a752b7-8d1b-4fbf-b59a-9bf4d1556c9a" id="e4a752b7-8d1b-4fbf-b59a-9bf4d1556c9a"><a href="flat-woods.html" class="auto-link">フラットウッズ</a>へ行き、料理を学んだ場合：ジュンコは誇りに思います。</p></li><li><p name="0838a81e-d07a-471f-927c-cf54401f3ab0" id="0838a81e-d07a-471f-927c-cf54401f3ab0">スコーチ病の治療法作製を支援した場合：ジュンコはヌカ・コーラを飲むと言います。</p></li><li><p name="60c3d292-d93a-47ee-abd4-50370a5fdfbc" id="60c3d292-d93a-47ee-abd4-50370a5fdfbc">ヴォルトテック大学を卒業し監督官になった場合：ジュンコは卒業式に招待されなかったことを悲しみます。</p></li><li><p name="8f69a81e-80cc-4728-9da1-a891a0deac8e" id="8f69a81e-80cc-4728-9da1-a891a0deac8e">チャールストン議事堂に行き、敵のイ�れと戦った場合：ジュンコは共感し、自分もかつて杖で誰かと戦ったことがあると言います。</p></li></ul><p name="4c5993f4-7c2e-484b-ae6d-3f09d0804802" id="4c5993f4-7c2e-484b-ae6d-3f09d0804802">ジュンコは「古臭い」と呼ばれると気分を害し、謝罪がない限り居住者との会話を拒否します。 <br>家族について尋ねる際にPerception 8以上のチェックに成功すると、一連の会話の選択肢が現れます。 <br>多少のしつこさは気にしませんし、Strength 8以上のチェックで「さっさと教えろ！」と言っても彼女の逆鱗に触れることはありません。 <br>しかし、その後に「言い張る」という選択肢を選ぶと、ジュンコは悲しい過去を話し始め、泣き出してしまいます。 <br>その後、彼女はしばらく一人になりたいと言い、居住者としばらく会話をしてくれなくなります。</p><p name="f3dc263c-43ee-4bad-8235-8be14f37191a" id="f3dc263c-43ee-4bad-8235-8be14f37191a"><strong>デイリーバフ</strong> <br>ジュンコのデイリーバフは「おばあちゃんの手料理」として知られています。<br>これを受けると、プレイヤーの空腹度と喉の渇きメーターが即座に最大まで回復し、1時間の間減少しなくなります。</p><div class="note-figure"><img src="images/note_extracted/n611be9d8cfb5_img_2.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><hr name="3eb7549a-546c-4536-8836-f6970a027272" id="3eb7549a-546c-4536-8836-f6970a027272"><h2 name="7afc776c-bb9e-432c-b2ac-f8d946260e79" id="7afc776c-bb9e-432c-b2ac-f8d946260e79">持ち物</h2><ul name="3275ef6f-2bbe-444e-9952-e543758adca7" id="3275ef6f-2bbe-444e-9952-e543758adca7"><li><p name="3b5ec401-55c3-43f3-83e1-d26f1c227642" id="3b5ec401-55c3-43f3-83e1-d26f1c227642">ビンテージのリネンコート</p></li><li><p name="51df564b-ce4e-466e-a1b2-9deb78f8b03f" id="51df564b-ce4e-466e-a1b2-9deb78f8b03f">眼鏡</p></li><li><p name="5c4f777e-a794-4416-b9f2-d2b8aa46714c" id="5c4f777e-a794-4416-b9f2-d2b8aa46714c">ローリングピン</p></li></ul><hr name="e1f77ed5-3e53-4bcf-80f2-5c45126d4a76" id="e1f77ed5-3e53-4bcf-80f2-5c45126d4a76"><h2 name="b5266d35-4f1b-4544-904e-7ab3297770b0" id="b5266d35-4f1b-4544-904e-7ab3297770b0">備考</h2><p name="6baccf76-413c-491f-98e5-06ae9513abe1" id="6baccf76-413c-491f-98e5-06ae9513abe1">ジュンコのデイリーバフは会話上では彼女の手料理を食べることとして描かれていますが、このバフを受けても、食事に関連するチャレンジのカウントには含まれません。<br>これは、バフが「エフェクト」に過ぎず、実際にアイテムを消費しているわけではないためです。</p><hr name="0ca9ed6c-d5cf-480e-8a95-71c147548c50" id="0ca9ed6c-d5cf-480e-8a95-71c147548c50"><h2 name="5dd109b8-7e36-4195-a4ac-5c30d98b1112" id="5dd109b8-7e36-4195-a4ac-5c30d98b1112">注目の引用</h2><ul name="96ba1d4b-503e-43dc-bf49-11bc11fcd362" id="96ba1d4b-503e-43dc-bf49-11bc11fcd362"><li><p name="6680d54e-9afb-48c8-bb37-81c185f18c9d" id="6680d54e-9afb-48c8-bb37-81c185f18c9d">「ああ、それは簡単だよ、いい子。私は他人のことに首を突っ込まないのさ。関わらないようにしていれば、大抵の人は私を気に留めないということに気づいたんだよ。」</p></li><li><p name="881d3490-cbfe-45cc-b956-34679be58464" id="881d3490-cbfe-45cc-b956-34679be58464">「そろそろ、あの『Vaultとかいうもの』への申し込みを考えたほうがいいかもしれないね。まだやってるのかい？」</p></li><li><p name="e3799fa8-82c1-4084-b955-33982ebb751c" id="e3799fa8-82c1-4084-b955-33982ebb751c">「本当に悲しいことだけど、これが大学を中退した最近の若者の末路だよ。まともな文章も綴れず、基本的な衛生概念がないせいで、病気で緑色になってしまって。おまけにあのペット！ 犬の一匹に危うく噛まれそうになったんだよ！ 謝罪があったと思うかい？ いいえ！ たっぷりお説教してやるまでね！ ふん。ハンターズビルへ行くのはこれきりにするよ！」 — ジュンコ、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>について</p></li><li><p name="81e62ce1-c5f6-4669-a50f-91ea99a06652" id="81e62ce1-c5f6-4669-a50f-91ea99a06652">「最近は何でもハイテクだね。私があなたの年齢だった頃、あなたが入り込んだそのロボットのコスチューム（<a href="power-armor.html" class="auto-link">パワーアーマー</a>のこと）なんて、段ボールと紐の切れ端で作られていたものだよ。」</p></li><li><p name="8cc6c520-af3b-4a21-a798-40a283ca33e9" id="8cc6c520-af3b-4a21-a798-40a283ca33e9">「まあ、なんてこと！ 誰かさんがへそを曲げているみたいだね。昼寝でもして、聞き分けのない子供じゃなくなったら戻っておいで。」</p></li><li><p name="1322e477-60dd-464a-b5eb-07739e29c5ea" id="1322e477-60dd-464a-b5eb-07739e29c5ea">「お願い……思い出させないでおくれ。私を戻らせないで！」</p></li></ul><hr name="4d1d06db-e78a-48fb-958e-378f4bbe54df" id="4d1d06db-e78a-48fb-958e-378f4bbe54df"><h2 name="f7d18eda-b4df-43ed-8f51-5ba3633099b4" id="f7d18eda-b4df-43ed-8f51-5ba3633099b4">登場作品</h2><p name="80ec9f1b-27cd-40ff-84b9-83d18b692a07" id="80ec9f1b-27cd-40ff-84b9-83d18b692a07">ジュンコおばあちゃんは『Fallout 76』のアップデート「Once in a Blue Moon」で導入されました。</p><hr name="251d62ad-9f99-4d6b-965b-6aa7d1988fc7" id="251d62ad-9f99-4d6b-965b-6aa7d1988fc7"><h2 name="5819ed87-f075-433e-a9a4-b0c320ebf1f3" id="5819ed87-f075-433e-a9a4-b0c320ebf1f3">舞台裏</h2><ul name="15d8f97c-478d-4939-8706-f4d45d608728" id="15d8f97c-478d-4939-8706-f4d45d608728"><li><p name="5ef7f5ab-f44b-4ca6-9d5c-c884f96bf0db" id="5ef7f5ab-f44b-4ca6-9d5c-c884f96bf0db"><strong>ジュンコおばあちゃんは、Falloutシリーズの通常のゲームプレイにおいて登場する最初の高齢のアジア人女性です。</strong> <br>ワン・ヤンは通常のゲーム内では見つけることができず、マディソン・リーやナカノ・レイといった他のアジア人女性は、中年として描かれています。</p></li></ul><hr name="b63a6ff3-d869-442b-81ab-bf3655defcae" id="b63a6ff3-d869-442b-81ab-bf3655defcae"><div class="quote-box">
+<b>感想</b><br><br>
+ジュンコおばあちゃん、その愛らしい振る舞いの裏に隠された悲しい過去を知ると、胸が締め付けられますね……。<br><br><b>悲劇を包み込む優しさ</b>: 亡くなった夫を「眠っているだけ」と思い込もうとしたり、恐ろしい怪物を「不潔な学生」だと解釈したりする姿は、過酷な現実から心を守るための防衛本能のようにも見えて、とても人間味を感じます。<br><br><b>日本へのリンク</b>: 日本の千葉県にある実在の都市「印西市」が出身地として設定されているのは、日本のファンとして非常に親近感がわきますね。<br><br><b>実用的なバフ</b>: 1時間もの間、空腹と喉の渇きを完全に無効化してくれるバフは、サバイバル要素のあるアパラチアではトップクラスに便利な効果です。<br><br>彼女をキャンプに迎えて、あの「おばあちゃんの椅子」に座っている姿を見ていると、荒廃した世界でもほんの少しだけ日常の温かさを取り戻せたような気分になれます。<br>お茶を販売してくれるので草食の人にはおすすめできる同居人ですね。<br><br>偶に、「家を間違えてるんじゃないかい?」<br><br>って言われるのが傷つかなければ…。<br><br><div class="note-figure"><img src="images/note_extracted/n611be9d8cfb5_img_3.png" alt="" width="512" height="512"><div class="note-figcaption">
+</div>
+
+<p name="e6cc1e9d-099f-4e02-a507-4697054df17d" id="e6cc1e9d-099f-4e02-a507-4697054df17d">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

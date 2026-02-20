@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>強制進化ウイルス（FEV） | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">強制進化ウイルス（FEV）</h3>
+            <img src="images/note_extracted/na1e233570e36_img_1.png" alt="強制進化ウイルス（FEV）">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_na1e233570e36" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>強制進化ウイルス（FEV）</h1>
+            <div class="date">DATE: 2025/12/10</div>
+            
+            <h2 name="1ced10a3-e9f1-4bee-9a8b-a006dbbdc56c" id="1ced10a3-e9f1-4bee-9a8b-a006dbbdc56c">1.FEVの特性とメカニズム</h2><h3 name="00aab594-27e4-4f81-ba26-47adbc07c405" id="00aab594-27e4-4f81-ba26-47adbc07c405">メカニズム</h3><p name="c85b0257-7b24-49b5-b9b6-e519cbdb4c18" id="c85b0257-7b24-49b5-b9b6-e519cbdb4c18">強制進化ウイルスは「メガウイルス」に分類され、直接接触または注入によって感染します。<br>すでに感染している個体から空気感染することはありません。<br>多くの場合、大型のタンクに満たされた緑色の液体の状態で目にしますが、エアロゾル溶液として散布することも可能です。<br>FEVは非常に強固な構造を持っており、イオン化水素で強化されたタンパク質の鞘が放射性物質を伴わずに中性子を吸収するため、放射能の影響を受けません。</p><p name="742448a3-3033-41fe-be23-c4d28b4992f8" id="742448a3-3033-41fe-be23-c4d28b4992f8">このウイルスの目的は、宿主のDNAを修正し、理論上より優れた個体を創り出すことにあります。<br>FEVは「転移・吸収型」のウイルスであり、RNAのようにDNAパターンをコピーして「エキソン（exon）」に保存し、それをFEV自身と結合させます。<br>ウイルスには、その種にとって（少なくとも理論上）適切とされる修正済みのDNAパターンがあらかじめプログラムされており、FEV独自の再帰的コード（自己反復コード）を通じてDNAが統合されます。<br>こうして完成した遺伝子コードは、一般的なウイルスの感染様式で宿主細胞に再注入され、DNAを再生させます。<br>このプロセスは理論上は健全ですが、FEVは部分的に宿主のDNAに依存しており、細胞への再注入時に宿主のコードの一部を含んでしまうため、予測不能な影響が生じることがあります。</p><p name="8424501a-29e9-423e-afb0-e212205d967f" id="8424501a-29e9-423e-afb0-e212205d967f">さらに、その効果は曝露の方法や量にも左右されます。<br>FEVは宿主の体内で複製されないようであり、その効果は投与量によって制限されます。<br>象徴的な「<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>」は、人間をFEVで満たされたタンクに完全に浸すことで、致命的な過剰投与状態に置くことにより創り出されます。<br>一方で、低濃度のFEVに長期間曝露することでもスーパーミュータント化は起こり得ます（これは、マリポーサ軍事基地で働かされていたエンクレイヴの奴隷たち、いわゆる「第2世代スーパーミュータント」の起源です）。<br>また、直接注入した場合は、特定の部位に限定的な、制御された<a href="mutation.html" class="auto-link">変異</a>を引き起こします。<br>ザ・マスターの実験では、超能力を誘発させるために脳の様々な部位にFEVを直接注入し、いくつかの成功を収めました。</p><hr name="8b73275d-aec9-4d3d-9917-85f1a92a6f66" id="8b73275d-aec9-4d3d-9917-85f1a92a6f66"><h3 name="3e5558d1-75d4-4ed9-b4c7-9e914a755203" id="3e5558d1-75d4-4ed9-b4c7-9e914a755203">効果</h3><p name="ccc846d1-0744-420d-a95b-217518d5c5c8" id="ccc846d1-0744-420d-a95b-217518d5c5c8">遺伝的に適合した個体に投与されると、感染プロセスが宿主のDNAの一部を書き換え、急速な<a href="mutation.html" class="auto-link">変異</a>を引き起こします。<br>これにより、通常はきわめて完全なDNA鎖が形成され、FEV独自のパターンによる再帰的な成長が促されます。<br>このプロセスは、曝露の量や方法にもよりますが、一般に耐え難い苦痛を伴います。<br>ある株では、過剰投与や長期曝露により激しい痛みと身体の変形を引き起こします。<br>また別の株では、短期間で急激な身体的変化と激痛をもたらし、その結果、ほとんどの被験者が永久的な精神的ダメージを負うことになります。<br>一方で、放射線障害や他の形態のFEV曝露により、著しい遺伝子的損傷を負っている「不適合な個体」の場合、FEVの再帰的成長パターンによって強制される<a href="mutation.html" class="auto-link">変異</a>は、全身の機能不全、臓器不全、そして死を招くことになります。</p><p name="a10697af-b9c7-469e-b578-b2ef5fb9fc8e" id="a10697af-b9c7-469e-b578-b2ef5fb9fc8e">このプロセスの実際の結果は、FEVにどのようなDNAがプログラムされているかに大きく依存します。<br>FEVは設計段階から改変可能であり、初期のデザインは「スーパーソルジャー」の作成に焦点を当てていましたが、汎用的な変異ベクターとしても利用可能です。<br>例えば、ザ・マスターは人間の糖タンパク質にのみ結合するようにFEV-2を改良しました。<br>エンクレイヴはその機能を利用して、人間（<a href="mutation.html" class="auto-link">変異</a>の有無を問わず）だけを標的とする強力な毒素「FEVカーリング-13」へと変貌させました。<br>このプロセス全体には数年しかかかりませんでしたが、その間、化学部隊は改良型FEVを用いた実験を行い、フランク・ホリガンを創り出しました。<br>また、大陸の反対側ではウェストン・レスコが、巨大アリを元の大きさに戻すための遺伝子再コード化を目的とした変異剤としてFEVを実験しました。<br>しかし、FEVの予測不能な性質により、グレイディッチを壊滅させる悲劇を招きました。</p><p name="4735f264-84ca-4620-be62-914398c9c595" id="4735f264-84ca-4620-be62-914398c9c595">FEVの共通する効果の一つは、細胞の増殖が継続的に強化されることです。<br>これは、FEVが細胞のDNAに対して常に再生的なアップデートを行うためです。<br>人間の場合、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>の細胞分裂速度は少なくとも15％速くなり、寿命が延びることになります。<br>戦後の分析では寿命が10％延びると理論化されていましたが、実際にはFEVは宿主を不老不死にする可能性があります。<br>強化された成長が細胞死を相殺し、絶え間ない再生アップデートが老化の原因となる遺伝子的損傷を防ぐためです。<br>また、電離放射線や遺伝病によるダメージも防ぎます。<br>しかし、潜在的な副作用も存在します。<br>変異プロセスの過程で、FEVが生殖細胞を「損傷した細胞」と誤認した場合、不妊を引き起こす可能性があります。<br>この場合、FEVは「損傷」を「修復」してしまい、これらの細胞を永久に機能不能にしてしまうのです。</p><p name="d4374ceb-1ccb-4bf6-ac7b-a64b1cf33864" id="d4374ceb-1ccb-4bf6-ac7b-a64b1cf33864">FEVが精子にどのように影響するかは明確ではありません。<br>しかし、卵母細胞の蓄えが更新されない種（人間のように、女性個体が一生の間に成熟し得る卵細胞の数に限りを持って生まれてくる種）において、FEVはこの卵母細胞群を標的として「修正」してしまいます。<br>そのため、たとえ男性側で精子形成が再開され、生存可能な精子が作られたとしても、その精子は「修正」された卵子と結合することができず、繁殖の試みはすべて失敗に終わります。<br>その結果、ザ・マスターによって創られたFEV-2型の<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>は不妊となりました。<br>しかし、この事実は数年間気づかれませんでした。<br>なぜなら、その影響は細胞レベルで発生しており、FEV-2は一次性徴（ペニス、睾丸、あるいは外陰部、子宮、卵巣）を損なうことなく残していたからです。</p><hr name="dea10dfc-8862-437d-909e-7b5bc0fa3351" id="dea10dfc-8862-437d-909e-7b5bc0fa3351"><h3 name="27844c98-153b-4c31-9740-aa7ef5962864" id="27844c98-153b-4c31-9740-aa7ef5962864">治療法</h3><p name="d210caba-9b52-4e35-858c-60df763a6ac1" id="d210caba-9b52-4e35-858c-60df763a6ac1">FEVは宿主に永続的な変化をもたらすように設計されているため、被験者の変質前のオリジナルのDNAコピーは保持されません。<br>理論上、「治療」ができる可能性があるとすれば、それはFEVが行ったのと同様に、オリジナルのDNAを被験者に再感染させるウイルスによるものだけであり、これは技術的には治療というよりも「第2の強制変異」と呼ぶべきものです。<br>そもそも、大戦前には宿主からFEVを除去する既知の方法は存在しませんでした。<br>エンクレイヴは、独自のFEVが被験者に影響を与えるのを防ぐ「接種剤」を開発し、注入やエアロゾル曝露によって投与していましたが、これは特定のバージョンの毒素にのみ有効なものであり、治療薬ではありませんでした。</p><p name="d42bf2e5-aa82-4a1e-8b02-6f83d44709fb" id="d42bf2e5-aa82-4a1e-8b02-6f83d44709fb">潜在的な治療法は、インスティチュートによって生み出されました。<br>大戦後も続けられたFEVの実験は、オリジナルのデザインを反復・改良していきました。<br>23世紀後半、ブライアン・バージル博士はこの仮説を証明し、自身のスーパーミュータント化を逆転させることのできるレトロウイルス血清を作成しました（これはインスティチュートの地下施設から脱出するために不可欠でした）。<br>一週間にわたるこの変異プロセスは厳密には治療ではなく、人間への「二次的な<a href="mutation.html" class="auto-link">変異</a>」でしたが、遺伝子リシーケンサー（配列再決定剤）によって、生え際の復活や筋肉量の増加といった副作用が生じました。<br>これは大きな進歩でしたが、あくまでインスティチュート独自のFEV株に合わせて設計されたものであり、この処方を汎用化するには、数年から数十年におよぶさらなる研究が必要であるとされています。</p><hr name="898c6806-7ed4-4bcb-b0dd-a022317fe873" id="898c6806-7ed4-4bcb-b0dd-a022317fe873"><h2 name="cdcf15fe-75e0-469e-8541-e134f5b20816" id="cdcf15fe-75e0-469e-8541-e134f5b20816">ウイルス株</h2><h3 name="3f2978c2-151f-46ef-af74-8de40688d858" id="3f2978c2-151f-46ef-af74-8de40688d858">FEV-1</h3><p name="6123f22b-dcbd-41ad-aa56-10ddd1fc674d" id="6123f22b-dcbd-41ad-aa56-10ddd1fc674d">FEVの研究は、2075年3月、汎免疫ビリオン（Pan-Immunity Virion / PV）プロジェクトの開始から2年目に派生しました。<br>当初は「新プラズマ（New Plague）」や中国の生物兵器に対する治療法と考えられていましたが、このビリオンが伝染性の遺伝子工学ウイルスとなり、感染による進化を可能にすることが判明しました。<br>暫定的に「強制進化ウイルス（FEV）」と改名されたバッチ10-011をベースとしたこのウイルスは、PVの4重螺旋構造を継承していました。<br>単細胞生物に対する初期実験では、感染や放射能に対する免疫力の向上が示され、有望な結果が得られました。<br>一方で葉緑体には影響を与えなかったため、植物への実験は中止されました。</p><p name="b75451a0-3892-4f2a-8719-a36b54efbd0f" id="b75451a0-3892-4f2a-8719-a36b54efbd0f">その後の扁形動物（プラナリア等）を用いた実験では、FEVがリアルタイムで生物に影響を与えることが証明されました。<br>扁形動物は数時間以内にサイズが28％増加し、39種類の異なるウイルス感染症に対する耐性を示しました。<br>各検体は（無性生殖のみではあるが）繁殖に成功し、4重螺旋構造も維持されていました。<br>昆虫への実験はあまり成功せず、無期限に延期されました。</p><p name="0f9f460a-587f-4814-a7f1-af655df8f743" id="0f9f460a-587f-4814-a7f1-af655df8f743">白ネズミなどの脊椎動物では、FEVはさらに大きな効果を示しました。<br>成長は数時間以内に始まり、9日後に安定しました。<br>横紋筋組織や肝臓、心臓、腎臓といった臓器が最も大きく増大しました。<br>知能の向上も認められ、迷路の攻略時間は対照群の半分に短縮されました。<br>ウサギを用いた追加実験では、注入後平均3.2秒で脳活動が直ちに活発化し、通常のサイズ増大も確認されました。<br>FEVは主に辺縁系や前頭前皮質の樹状突起接続に影響を与えました（これは攻撃性や威嚇行動の増加に関係していると考えられました）。</p><p name="2228ccb8-ce58-480e-93d2-1784e0ff8f2c" id="2228ccb8-ce58-480e-93d2-1784e0ff8f2c">2076年、有糸分裂周期の効率を改善したバッチ11-011を用いた実験が始まりました。<br>アライグマを用いた実験では、通常通りの体格増大に加え、知能と手先の器用さが「シューラー・カップ指数」で19ポイント上昇したことが行動テストで確認されました。<br>この結果、FEVを投与された複数の検体が実際に拘束施設から脱走しました。<br>さらに、バーネットのアドバイザリーチームが提供したバッチ11-101aでは、即時の成長、最終サイズの増大、高い攻撃性がもたらされましたが、被験体となった犬の知能には影響しませんでした。<br>このバッチから92組の対立遺伝子が選ばれ、バッチ11-011との組み換えが行われました。</p><p name="b192b7cd-6a62-43b6-b85b-d4809bb7dfbf" id="b192b7cd-6a62-43b6-b85b-d4809bb7dfbf">この交配には4ヶ月を要し、バッチ11-111が誕生しました。<br>チンパンジーに使用したところ、前例のない成長を遂げ、化学兵器や放射性物質に対する免疫を獲得しました。<br>意図的な発がん実験も失敗に終わりました。<br>被験体は攻撃性の増大を示したため隔離を余儀なくされ、15体中2体がてんかん発作を起こして死亡しました。<br>2077年1月、軍はウエスト・テック社スタッフの反対を押し切り、カリフォルニア中部の新設されたマリポーサ軍事基地に全資産を移し、ヒトへの被験実験を開始することを決定しました。<br>この時点でFEVはほぼ完成に近いとみなされており、体格と筋肉密度の約60％の安定した増加、および200％の知能向上の可能性を示していました。<br>スーパーソルジャーを創出する可能性は絶大でした。</p><p name="a67b9566-b3a2-49c5-b55b-4987ae4832e4" id="a67b9566-b3a2-49c5-b55b-4987ae4832e4">FEVがいつFEV-1とFEV-2に分割されたのかは完全には明らかではありません。<br>当初、FEVは単純にPVの変種であり、識別名なしで命名され、両方の名称が互換的に使用されていました。<br>バッチ識別子からは論理的な進行がうかがえます。<br>10-011が最初のFEV（10進法で2-3に相当）であり、2076年1月の11-011（10進法で3-3）が、後にFEV-2となるものの基礎として使用されました。「FEV-2」という用語は、マリポーサで使用され、後にザ・マスターによって改変され、その後のすべてのFEV変異株の基礎となった株のみを指します。</p><hr name="294f3792-f0ee-46ba-9222-f3e333820302" id="294f3792-f0ee-46ba-9222-f3e333820302"><h3 name="1385945b-b3c8-4b6b-b35c-0d584dcee5cd" id="1385945b-b3c8-4b6b-b35c-0d584dcee5cd">FEV-2</h3><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_2.png" alt="" width="620" height="465"><div class="note-figcaption"></div></div><p name="39e418e1-e572-4cdd-88f6-f15b4122bb31" id="39e418e1-e572-4cdd-88f6-f15b4122bb31">FEV-2はマリポーサ軍事基地を起源とするウイルス株であり、ニュー・カリフォルニアやモハビ・ウェイストランドを含む「ニュー・ウエスト」全域における多くの<a href="mutation.html" class="auto-link">変異</a>の原因となっています。<br>ザ・マスターと「ユニティ」の主導により、サイカー、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>、ケンタウロス、フローターといった多様な生物が生み出されました。<br>当初は遺伝子スプライシングのための汎用変異ベクターとして使用されていましたが、最終的にザ・マスターは、人間の糖タンパク質にのみ結合するようにFEV-2を改良しました。<br>このバージョンのFEV-2からは、第1世代および第2世代の<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>が生まれました。<br>後者は、2161年に「Vaultの住人」によって基地が破壊された後、エンクレイヴが基地を再発掘した際に誕生したものです。</p><p name="4d71658a-72c3-44fd-bc54-157880832d5e" id="4d71658a-72c3-44fd-bc54-157880832d5e">FEV-2株が人間にもたらす身体的・観察的な変化は甚大です。<br>第1世代スーパーミュータントの精鋭である「ナイトキン」は、放射線や<a href="mutation.html" class="auto-link">変異</a>したFEVへの曝露が限定的だった人間（地域のVault居住者など）から作られました。<br>最も驚異的な<a href="mutation.html" class="auto-link">変異</a>を起こさせるには、人間をFEV-2のタンクに24時間浸し、ウイルスの重度な過剰投与を受けさせ、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>への変身を完了させる必要がありました。<br>一度に最大6人が性別に関係なく処理されました。<br>「Vaultの住人」がタンクを破壊するまでに、23,800組以上のバッチが処理されました。</p><p name="35c85639-f906-49c7-a7bf-20adae240df0" id="35c85639-f906-49c7-a7bf-20adae240df0">その結果生まれたミュータントは驚くべき肉体を持っていました。<br>筆頭書記官ブリーが解剖した第1世代スーパーミュータントは、身長3.2メートル、体重363.21キログラムでした。<br>総重量のうち、77.41％が筋肉量、10.23％が骨量、3.02％が脂肪量、9.34％が組織量でした。<br>肌の色は、ロスト・ヒルズのバンカーの照明下で緑がかった灰色と表現され、皮膚の構成はより硬く乾燥し、時に鱗状になり、外傷に対する耐性が高まっていました。<br>外傷には強い一方で、完全に破壊された組織は治癒できず、損傷の程度や場所によっては傷跡が残ったり臓器を喪失したりします。<br>また、皮膚に角化症（良性の非がん性腫瘍）が生じることもありました。</p><p name="b0695719-1411-47d8-8fad-347c49133666" id="b0695719-1411-47d8-8fad-347c49133666">遺伝子レベルでは、細胞分裂が促進され、有糸分裂は平均的な人間の15％速くなっています。<br>ミュータントは人間と非常によく似た細胞・遺伝子構造を持っていましたが、疾患に関連するすべての劣性遺伝子が体内から排除されているようでした。<br>また、RNA鎖は信号伝達を向上させ、可能な限り最高の組み合わせを引き出すように操作されていることが判明しました。<br>この修正は生殖細胞にも及び、ミュータントは繁殖能力を失いました。</p><p name="15acdeca-f090-487a-806e-ef7cd42b5ef7" id="15acdeca-f090-487a-806e-ef7cd42b5ef7">FEV-2株によって知能が向上する確率は低く、ほとんどの者は曝露前の知能を維持するか、大多数が約30％の知能低下を経験しました。<br>しかし、微量のFEV-2に長期間曝露された者（第2世代スーパーミュータントなど）は、第1世代よりも著しく知能が低く、自分で考えることができず、しばしば他人の影響下に従属します。</p><hr name="5669f2fb-cf1a-4fa7-9d2e-b9c146c671ea" id="5669f2fb-cf1a-4fa7-9d2e-b9c146c671ea"><h3 name="6dae81bf-5f9c-4173-9c6f-2cb3db9b9851" id="6dae81bf-5f9c-4173-9c6f-2cb3db9b9851">サイカー・プログラム</h3><p name="42080561-06b4-407c-89b0-86ccb51aa20e" id="42080561-06b4-407c-89b0-86ccb51aa20e">人間を<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>に変えるだけでなく、ザ・マスターとそのスタッフは、FEVを被験者の脳（通常は松果体、あるいは扁桃体や延髄）に注入し、脳内化学物質の変化を誘発する実験を行いました。<br>これらの実験は限定的な成功を収め、理論上は人類を絶滅させるほど強力な4人の「サイカー」が生み出されました。<br>しかし、超能力を増大させたのと同じ変化が末期的な精神狂乱も引き起こしたため、彼らは隔離され、自他を傷つけないよう専用の装置で無効化される必要がありました。</p><hr name="5c1d9375-7507-4312-9ca7-af2bb124ab1b" id="5c1d9375-7507-4312-9ca7-af2bb124ab1b"><h2 name="6f1dcc45-5d83-4cec-b5d5-8ac36c8f1ed6" id="6f1dcc45-5d83-4cec-b5d5-8ac36c8f1ed6">EEP株</h2><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_3.png" alt="" width="620" height="443"><div class="note-figcaption"></div></div><p name="8b543937-42c3-43b7-ae09-7b53d1e0c539" id="8b543937-42c3-43b7-ae09-7b53d1e0c539">Vault 87で使用された派生FEV株は、FEV特有の再帰的成長パターンを保持していますが、その効果は異なっており、これは実験室内での感染方法にも起因している可能性があります。<br>テストは2078年に開始され、被験者は隔離された室内で、空気中のエアロゾルとして散布されたFEVに一度だけ曝露されました。<br>表現型の変化は3日以内に起こり、筋肉量の増加、骨格構造の変化、そして体毛を含む一次・二次性徴の萎縮が含まれます。<br>10日目には、皮膚の着色は黄色と緑が混ざったものになり、その厚さと放射能やその他の環境危害に対する耐性は急速に高まります。</p><p name="a0ddd981-fe3b-4099-9ed2-7c9fb91e6dfc" id="a0ddd981-fe3b-4099-9ed2-7c9fb91e6dfc">しかし、最大の懸念は<a href="mutation.html" class="auto-link">変異</a>が止まらないことでした。<br>最初の曝露から14日以内に、被験者はほとんど野生に近い状態まで退行し、ミュータント以外のあらゆる存在に対して極度の攻撃性を示すようになります。<br>言葉を話し、機械を操作し、戦闘において基本的な戦術を用いる能力があることから、ある程度の認知能力は保持されているものの、このタイプの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>は通常、著しい知能の低下が特徴とされています。<br>この結果は、FEV-2と同様の要因、つまり表現型の急速な変化によって引き起こされる既存の神経パターンの損傷によってもたらされた可能性が非常に高いです。<br>その影響は通常、長期記憶に重大なダメージを与えますが、これも共通の特徴です。<br>また、変身に伴うトラウマ的な性質も要因の一つです。それに伴う耐え難い痛みは、被験者を狂気に陥らせる原因となります。</p><p name="7159c785-d118-4af8-8586-e7383431cbcf" id="7159c785-d118-4af8-8586-e7383431cbcf">もう一つの予見されなかった副作用は、未完成のウイルス株が肉体に対して継続的な成長をコード化してしまうことです。<br>このタイプの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>が長期間死を免れた場合、小型ビルほどの大きさにまで達し、多大な脅威となる可能性があります。</p><hr name="8c8c4d4e-02a4-4cdf-b17e-1bd7c02b8d5f" id="8c8c4d4e-02a4-4cdf-b17e-1bd7c02b8d5f"><h2 name="022477e2-da9d-498e-a5c4-0be869b68ba7" id="022477e2-da9d-498e-a5c4-0be869b68ba7">インスティチュート株</h2><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_4.png" alt="" width="620" height="643"><div class="note-figcaption"></div></div><p name="656385e4-4a89-4936-8418-80485383f906" id="656385e4-4a89-4936-8418-80485383f906">コモンウェルスの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>は、他とは完全に異なるウイルス株によるものです。<br>彼らは以前の株に見られた圧倒的な筋肉組織と弾力性を備えている一方で、知能レベルは比較的高く、指揮系統に従い、要塞を築き、さらには罠や伏兵を配置することさえ可能です。<br>例えばトリニティ・タワーでは、フィストという個体がレックスイグッドマンを意図的な囮として使い、人間を誘き寄せて自軍の中の弱いミュータントを排除しようとしました。<br>彼らはキャピタル・ウェイストランドの野生化した同胞とは異なり、普通の人間のように話すことができ、自らをコモンウェルスの優れた人種であると考えています。</p><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="1eb590c2-abb6-4d76-ba3a-6c48ce24cedd" id="1eb590c2-abb6-4d76-ba3a-6c48ce24cedd">コモンウェルスの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>はすべて、地上で拉致されたウェイストランダーを用いたインスティチュートのFEV実験の産物です。<br>これらの実験は、人造人間（シンセ）を機械構造から、人間のDNAをベースに合成人間を構築する新たな領域へと進化させるための基礎研究でした。<br>コモンウェルスの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>は、アパラチアのウエスト・テックが「ハンターズビル株」で行った実験由来のミュータントと似た形態を共有していますが、これら2つの株が密接に関連しているかどうかは不明です。</p><hr name="c731024e-3e67-44c4-9e99-26d402f61997" id="c731024e-3e67-44c4-9e99-26d402f61997"><h3 name="888606bb-f068-4fa9-a26c-fc2bc92b5868" id="888606bb-f068-4fa9-a26c-fc2bc92b5868">第3世代人造人間</h3><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_6.png" alt="" width="620" height="388"><div class="note-figcaption"></div></div><p name="bc712c30-c4a6-4acf-930d-b051dcc163cc" id="bc712c30-c4a6-4acf-930d-b051dcc163cc">インスティチュートによって創り出された最も高度な人造人間は、それ以前のものとは根本的に異なります。<br>一連の番号が振られていますが、実際には機械的なモデルとは無関係です。<br>彼らはショーンの戦前のDNAに由来しており、インスティチュート独自の強制進化ウイルス（FEV）研究を用いて広範囲に改変されています。<br>FEVにコードされた有利な適応能力と、人間の体型の汎用性を組み合わせることで、ベースとなるDNAソースが一つであるにもかかわらず、多様な人種や外見の人造人間を作り出すことを可能にしました。<br>これらは、2178年から2227年までの約50年にわたる研究の成果です。</p><p name="c9c88488-3260-411f-b849-98a3cb9592f9" id="c9c88488-3260-411f-b849-98a3cb9592f9">第3世代人造人間は人間とは異なり、解放された一部の人造人間は自分たちを人間であるとは全く考えていません。<br>これには複数の理由がありますが、主なものはその組み立て工程にあります。<br>他の理由としては、第3世代人造人間は正常に機能するために睡眠を必要とせず、病気に対する耐性が高く、体内のエネルギーを生成するために食物や水を必要としない場合があるという事実が挙げられます。</p><hr name="ca4dcb67-c144-4067-843e-518f824d5576" id="ca4dcb67-c144-4067-843e-518f824d5576"><h2 name="f2ac9f6f-172c-4011-b484-69c44da4df3c" id="f2ac9f6f-172c-4011-b484-69c44da4df3c">ハンターズビル株</h2><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_7.png" alt="" width="620" height="822"><div class="note-figcaption"></div></div><p name="841cb6ec-d73c-478f-b2ff-0eefbfea1095" id="841cb6ec-d73c-478f-b2ff-0eefbfea1095">アパラチアの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>は、核戦争の直前に創られました。<br>現地のウエスト・テック施設が、実験の一環としてハンターズビルを流れる川の水を独自のFEV株で汚染したことが発端です。</p><p name="8efe0885-143b-485d-a610-e30be15a9ff1" id="8efe0885-143b-485d-a610-e30be15a9ff1">ハンターズビルの<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>は、マリポーサやインスティチュートのものと似ています。<br>緑色の肌、高度に発達した筋肉組織を持ち、廃材やガラクタから即席のアーマーを作るほど賢いです。<br>Vault 87やインスティチュート株の個体ほど大規模な要塞は使いませんが、時折小さな砦を築いたり、建物全体を占拠したりします。<br>彼らは同等の筋力と耐久力を備えており、ハンターズビルの戦いやアトラス砦でのB.O.S.遠征軍への襲撃のように、他のグループと長期戦を繰り広げる知能を持っています。<br>他の株と同様に、ベヒモスへと成長することもあり、主要拠点を守る姿が見られます。<br>大半のミュータントはプレイヤーキャラクターを攻撃しますが、<a href="grams.html" class="auto-link">グラム</a>のような一部の個体は友好的で、人間と取引を行うことさえあります。</p><hr name="2068eec3-5527-4824-96fd-efe3100c7997" id="2068eec3-5527-4824-96fd-efe3100c7997"><h2 name="4c8e34e6-beb4-459b-b28d-18fb33411ca3" id="4c8e34e6-beb4-459b-b28d-18fb33411ca3">関連プロジェクト</h2><h3 name="4e61db1f-c60e-4448-bb1b-b73c4c26e061" id="4e61db1f-c60e-4448-bb1b-b73c4c26e061">アパラチアでの実験</h3><p name="31788410-7e7f-45df-b290-6f9ab877f236" id="31788410-7e7f-45df-b290-6f9ab877f236">アパラチアのウエスト・テック研究センターで行われた組み換えFEV株の実験では、多くの変異失敗例が生じましたが、2つの例外がありました。</p><ul name="16d12314-1a79-4e8a-90be-512d88f68830" id="16d12314-1a79-4e8a-90be-512d88f68830"><li><p name="a9d2cc28-6076-40fa-b810-77d1139cf2e6" id="a9d2cc28-6076-40fa-b810-77d1139cf2e6">FEVS-006443（スナリーギャスター株）： 2077年10月14日に誕生したフェーズ2の複合株で、複数の異なる種の形質を組み合わせたものでした。<br>研究者たちは結果を「不快」と感じましたが、組み換えFEVの能力に関する貴重な洞察を提供しました。<br>注目すべき変化には、拡大した上半身に沿って多数の眼器官が配置され、第2の腕の先端が鉤爪状の指で終わり、内側の各つま先に大きな鎌状の爪があることが含まれます。<br>この生きた、安定して機能する被験体は正常に自活しており（プログラムにとって大きな成果）、後の実験が成熟した後、ハンターズビルに放される予定でした。<br>このミュータントは2078年1月3日に拘束を逃れ、施設から脱走するまでその地域に戻されることはありませんでした。<br>このミュータントは繁殖し、アパラチア全域でスナリーギャスターのミュータントが出現する原因となりました。</p></li><li><p name="87040e18-6ab6-4994-8366-b3f05245ff54" id="87040e18-6ab6-4994-8366-b3f05245ff54">FEVS-006458（グラフトン・モンスター株）： 2077年10月23日、研究者たちはスナリーギャスター株を微調整し、ゲノムを調整した結果、拘束ユニットを粉砕するほどの巨大な個体を生み出しました。<br>しかし、それ以外は安定していました（識別可能な頭部がないことを除いて）。<br>このミュータントは鎮静され、施設外へ輸送されましたが、輸送隊は大戦によって脱線し、グラフトン・モンスターが野生に逃げ出すことになりました。</p></li></ul><hr name="31675c62-c689-4b46-b8c2-31478a05e3f8" id="31675c62-c689-4b46-b8c2-31478a05e3f8"><h3 name="1044750b-8c5d-4c61-aafd-ee6535427c49" id="1044750b-8c5d-4c61-aafd-ee6535427c49">アルビノ・<a href="mall-rat.html" class="auto-link">モールラット</a></h3><p name="dc2223f6-eba8-4f12-ac02-4d960e48bd07" id="dc2223f6-eba8-4f12-ac02-4d960e48bd07">グロウ（The Glow）が破壊される前、実験用ラットがFEVに曝露されました。<br>施設の混乱の中で、彼らはウェイストランドに逃げ出しました。<br>エンクレイヴが後にデスクローに行った実験と同様に、これら2匹の特異なラットは知能と話す能力、そして長い寿命を獲得しました。</p><hr name="766f6164-b969-443f-a3de-f79a2fe33eb4" id="766f6164-b969-443f-a3de-f79a2fe33eb4"><h3 name="8e8cb3d6-f92f-432a-8fc2-0cd8bb663b34" id="8e8cb3d6-f92f-432a-8fc2-0cd8bb663b34">FEVカーリング-13株</h3><p name="d9fa5c7a-2732-4c32-97c1-e0e2dea0eacc" id="d9fa5c7a-2732-4c32-97c1-e0e2dea0eacc">マリポーサ軍事基地の廃墟でエンクレイヴによって回収されたオリジナルのFEV-2を基に、FEVカーリング-13は、最小限の曝露レベルで最大限の致死性を発揮するように調整されたウイルス剤でした。<br>これは、エンクレイヴによるジェノサイドの手段を提供するために、2236年以来、化学部隊のチャールズ・カーリング中佐の指揮下で開発されていました。<br>わずか0.0001％のエアロゾル溶液への曝露でさえ、1時間以内にアローヨ村の村人を殺すのに十分でした。<br>これは、大規模な出血と炎症が始まり、60分以内に犠牲者の臓器が完全に機能不全に陥るためです。<br>したがって、著しい放射線誘発性の<a href="mutation.html" class="auto-link">変異</a>がある方が有利かもしれません。<br>放射線量が少ない人間は、はるかに悲惨な運命を辿ります。<br>ウイルスに曝露された<a href="mutation.html" class="auto-link">変異</a>していない<a href="vault-13.html" class="auto-link">Vault 13</a>の住民は、曝露から60分以内に皮下出血と痙攣を経験しましたが、彼らの苦痛は平均14.5時間と、より長く続きました。<br>エンクレイヴ管制ステーションでのテストで生き残った被験者はいませんでした。</p><p name="d338d543-ef33-4312-8176-c6122978d646" id="d338d543-ef33-4312-8176-c6122978d646">全世界に放出された場合でも、根絶されるのは人間と人間をベースとしたミュータントのみでした。<br>FEVは人間の糖タンパク質にのみ結合するように設計されており、他の動物や植物の生命は生きたまま、影響を受けません。<br>FEVカーリング-13は、その効果に対する完全な免疫を付与する接種剤が開発された唯一の既知のFEV株であるという点でも特異的です。<br>ただし、この接種剤が完成するまでには数回の反復が必要でした。<br>エンクレイヴの副大統領ダニエル・バードのように、志願した後、永久的な脳損傷を負った被験者もいました。</p><hr name="a764b09f-77e1-4036-86fa-5f521b10daab" id="a764b09f-77e1-4036-86fa-5f521b10daab"><h3 name="40675c99-3164-4d9d-a028-0378aae4bd69" id="40675c99-3164-4d9d-a028-0378aae4bd69">改良型FEVカーリング-13</h3><p name="32c1344d-c2d2-4fce-8e8d-1180ec921059" id="32c1344d-c2d2-4fce-8e8d-1180ec921059">改良型FEVは、ジョン・ヘンリー・エデンによって開発されたFEVの改変株であり、2241年にエンクレイヴが使用した初期のFEVカーリング-13株に基づいています。<br>ただし、今回はプロジェクト・ピュリティの浄水システムに投入されるように設計されました。<br>エデン大統領によると、この改良株は<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>、<a href="ghoul.html" class="auto-link">グール</a>、そしてその他の「不浄な」住民、すなわちウェイストランドで生まれ、誕生から放射線やその他の変異効果に曝露されたすべての人々を根絶するだろうとされています。<br>この感染から生き残るのは、危険な放射能レベルがない人間とVaultで生まれた人間のみです。</p><p name="269fccb3-570d-4584-8368-dd3b4cf57bac" id="269fccb3-570d-4584-8368-dd3b4cf57bac">追加コンテンツ『Broken Steel』では、もし一匹狼が改良型FEVで浄水器を汚染することを選択した場合、エデン大統領が主張したことが正確であることが確認され、水中に拡散したFEVは完全に致死性となります。<br>キャピタル・ウェイストランドのすべての都市（テンプニータワーとパラダイスフォールズを除く）の医療施設は、FEV感染で死につつある新たな患者で溢れます。<br>これらの新たな患者は腹部を抱え、「内側が焼けるように痛い」といった会話を繰り返します。<br>ドクター・プレストンとドクター・バローズの両者によると、このFEVは特に感染者の免疫システムを標的にしており、その結果、他の病気に対して脆弱になります。<br>これは、<a href="ghoul.html" class="auto-link">グール</a>がほとんどの病気に対して免疫を持っているにもかかわらず、人間と<a href="ghoul.html" class="auto-link">グール</a>の両方で発生します。<br>免疫システムに影響を与えることに加えて、この改良型FEVは、物理的および精神的に個人を著しく弱体化させ、最終的に死に至らせます。<br>また、この改良型FEVはいかなる種類の検査でも完全に検出されないため、感染した水を検査する方法は存在せず、きれいな精製水としてしか結果が出ません。</p><p name="a853830c-a9f3-4ae5-80bc-a64d6959fb8c" id="a853830c-a9f3-4ae5-80bc-a64d6959fb8c">FEVの伝播は物理的な接触や体液からは不可能であるため、FEVは感染した水を摂取した人々に限定されます。<br>リベット・シティでは、プレストンが安全のために遺体を焼却していると述べています。<br>改良型FEVの拡散は、今のところ「アクア・ピュラ」のボトルとタイダル・ベイシンに限定されています。<br>しかし、最終的にはFEVに感染した水はタイダル・ベイシンから拡散し、キャピタル・ウェイストランド全体の水に影響を与えることになります。</p><hr name="f12c3993-ed7b-42d7-bad9-1d558e28b024" id="f12c3993-ed7b-42d7-bad9-1d558e28b024"><h3 name="9705e019-71c4-41fa-af3d-5815ab08b918" id="9705e019-71c4-41fa-af3d-5815ab08b918">知的デスクロー</h3><p name="ff6dc65f-f827-42fe-a631-6f8ecc1f9a93" id="ff6dc65f-f827-42fe-a631-6f8ecc1f9a93">2235年、エンクレイヴは、捕獲したデスクローを彼らのための消耗可能な突撃隊として作成する実験を開始し、戦前のプロジェクトを継続しました。<br>マリポーサからFEVを回収したことにより、彼らは局所的な注入後にデスクローの知能を高めるように調整された変異体�を作成することができました。<br>これにより、デスクローは複雑な命令を理解し、それに従い、コミュニケーションが可能になりました。<br>結果として生じた改変はプロジェクトの目標を超え、彼らに人間レベルの知能、博識、そして最も重要なことに道徳観を与えました。<br>これが発見されれば絶滅させられることを悟ったグルサーは、<a href="vault-13.html" class="auto-link">Vault 13</a>に配備されるまで、群れに知能がないふりをするように指示しました。<br>エンクレイヴは彼らを抑止力として使用するつもりでしたが、デスクローは代わりに共同体を形成し、任務を放棄しました。<br>すべてのデスクローが均等に知能を与えられたわけではなく、一部は灰色の皮膚やボブテイルといったさらなる変化を経験しました。</p><p name="15421283-1ac0-40ba-86af-92063d578dcd" id="15421283-1ac0-40ba-86af-92063d578dcd">すべての知的デスクローは、フランク・ホリガンが率いるタスクフォースによって一掃され、プロジェクトは清算されました。</p><hr name="52b9d6db-6641-4110-9f99-6a5d9367810d" id="52b9d6db-6641-4110-9f99-6a5d9367810d"><h3 name="d17ca4a5-7303-4b0c-893b-8b1d9329ab9e" id="d17ca4a5-7303-4b0c-893b-8b1d9329ab9e">ファイヤーアント</h3><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_8.png" alt="" width="620" height="470"><div class="note-figcaption"></div></div><p name="fbf9d3d3-b6bb-41f9-89a1-3c5a8e095dac" id="fbf9d3d3-b6bb-41f9-89a1-3c5a8e095dac">ウェストン・レスコ博士は、2277年頃にキャピタル・ウェイストランドでFEVを合成し、遺伝子操作を通じて巨大アリを元のサイズに戻そうとする試みで使用しました。<br>彼の野望は、数世代にわたって<a href="ali.html" class="auto-link">アリ</a>のサイズを指数関数的に縮小することでした。<br>しかし、合成プロセスでのエラーにより、<a href="ali.html" class="auto-link">アリ</a>のサイズを変化させないものの、彼らの毒嚢を改変して可燃性の液体を生成させるウイルスが作成されました。<br>この液体は、<a href="ali.html" class="auto-link">アリ</a>がエアロゾル化して噴射し、大顎をカチカチと鳴らすことで生成される火花で着火することができます。<br>彼が「ピロシス（発火症）」と呼ぶこの結果により、彼らは事実上、歩く火炎放射器と化しました。</p><hr name="ed244505-c2e2-4df3-acaa-fa36b104cf29" id="ed244505-c2e2-4df3-acaa-fa36b104cf29"><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_9.png" alt="" width="620" height="447"><div class="note-figcaption"></div></div><h2 name="2ab1090b-71d7-4ff4-873d-bd90011e90bb" id="2ab1090b-71d7-4ff4-873d-bd90011e90bb">制作の裏側</h2><div class="note-figure"><blockquote><p name="be61d1c5-37e3-4e68-95f0-1a169e875820" id="be61d1c5-37e3-4e68-95f0-1a169e875820">「FEVに浸ることで知能が変化する可能性はありますが、必ずしも向上するわけではありません。一部の人は知能が向上し、大多数は低下し、ほとんどの人はそのままです。また、その人が<a href="ghoul.html" class="auto-link">グール</a>や<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>に変わるほどの放射線ダメージを受けているかどうかにも左右されます。」</p></blockquote><div class="note-figcaption">— クリス・テイラー（『Fallout Bible 5』より）</div></div><p name="67dbc532-15a0-422f-998a-1942d7c53871" id="67dbc532-15a0-422f-998a-1942d7c53871">「なぜ放射能が<a href="mutation.html" class="auto-link">変異</a>を引き起こしたという設定にするだけでなく、わざわざ『強制進化ウイルス』を持ち出したのでしょうか？ <br>残念ながら科学的な知見では、高レベルの放射線は単に対象を死に至らしめます。<br>低レベルであれば<a href="mutation.html" class="auto-link">変異</a>を引き起こすこともありますが、その99％以上は生存に有利ではなく、往々にして早期死亡を招きます。<br>私は、ラッドスコルピオンのような存在がわずか60年の間にどのように進化し増殖したのかを説明したかったのです。<br>私にとって『放射能の力だ！』というのは、あまりに明白なジャンク・サイエンス（まがいもの科学）でした。<br>説得力のあるゲームのバックストーリーにするために、もう少し科学的に妥当な（あるいは少なくとも映画『放射能X』のプロットよりは信じられる）説明が欲しかったのです。<br>また、このウイルスをメインヴィランの基本計画の一部にしたかったという意図もありました。<br>つまり、精製されたウイルス剤のタンクに人間を浸すことで、人間という素材から<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>という種族を作るという計画です。」 — スコット・キャンベル（『The Origins of Fallout』より）</p><p name="46388d83-5ff5-45d0-8c5c-24b9a05d20b1" id="46388d83-5ff5-45d0-8c5c-24b9a05d20b1">スコット・キャンベルはさらに、『Origins』の中でこのアイデアを詳しく説明しており、FEVを最終戦争の触媒の一つとして位置づけ、「ザ・グロウ（The Glow）」が巨大なクレーターになっている理由の説明にしたかったと述べています。</p><p name="0a1e9635-b465-45ec-9563-374ec084119a" id="0a1e9635-b465-45ec-9563-374ec084119a">『Fallout』におけるFEVのバリエーションは、通常は単に「FEV」と呼ばれますが、時折「FEV-2」という付記で区別されることがあります。<br>ゲーム内では一貫してアラビア数字が使用されますが、ローマ数字の「FEV-II」は『Fallout Bible』内でのみ使用されています。</p><p name="13686fbe-1dbc-4422-aed9-685de05c126a" id="13686fbe-1dbc-4422-aed9-685de05c126a">「FEV-2」という名称は初期のデザインの名残であり、当初は後に「ザ・グロウ」となる場所で研究されていた「FEV-1」という明確な区分がありました。<br>FEV-1は2057年に作られ、最終的に<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>を生み出す優れたウイルスであるFEV-2へと道を譲りました。<br>この区分はゲーム内では明示されておらず、FEVの前身は汎免疫ビリオン（PV）として特定されています。<br>しかし、どちらも一貫して新プラズマ（New Plague）への対策として設定されています。</p><p name="56a50266-988f-41d7-9342-ba83392180eb" id="56a50266-988f-41d7-9342-ba83392180eb">詳細に述べると、FEVがまだPVの変種であった頃、それは単に「FEV」と指定されていました。<br>その後、大幅な変更と改変が加えられ、改変された各バッチはより複雑な生物のテストに使用されました。<br>しかし、ゲーム内のいくつかの箇所（デインの発言など）で、マリポーサのFEV株を指して「FEV-2」という用語が使用されており、後に『Fallout: Brotherhood of Steel』のマニュアルでも、ウイルスの優れたバージョンを特定するために明示的に使用されました。<br>ほとんどの場合、FEV-2バリアントは単に「FEV」と呼ばれ、「FEV-1」という明確な言及は見当たりません。</p><p name="853304d2-7761-415d-ade6-ce8eb62b68e1" id="853304d2-7761-415d-ade6-ce8eb62b68e1">バリアントを識別する一つの有力な方法は、「バッチ番号」を用いることです。<br>FEVはもともとPVの変種であり、2075年3月に暫定的にFEVと名付けられた際はバッチ「10-011」（10進法の2-3に相当。識別子の01または1はPVを意味する可能性があります）を使用していました。後にFEV-2となるバージョンは「11-111」（3-7）と特定されており、これは2076年1月と5月のバッチ「11-011」（3-3）と「11-101a」（3-5a）を組み合わせた結果です。</p><hr name="e97bafd0-0ec8-488b-bf66-cdfc18fdfdcf" id="e97bafd0-0ec8-488b-bf66-cdfc18fdfdcf"><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_10.png" alt="" width="620" height="866"><div class="note-figcaption"></div></div><div class="quote-box">
+<b>感想</b><br><br>
+読み物としては非常に面白いですね。<br>ただ倫理観がぶっとんでたり、治療法を確立しないまま発展していった結果、今のFalloutの様な実害が出てるんですよね。<br>科学者が行いがちな末路ですね。<br><br>特に知能が低下する株を何故亜種に打ち込んだのか意味が分からないですし、そこから戻って知能を保持、向上した安定した株を作ってそこから治療法も確立してから実験を行ったのであればこの様な悲劇も起きなかったとは思いますが・・・。<br><br>まぁ戦争でお盆が全部ひっくり返ったのも少しの原因ではありますが、制御できない物を作った結果でもありますので軍とエンクレイヴとウェストテックは徹底的に叩きましょう…!<br><br><div class="note-figure"><img src="images/note_extracted/na1e233570e36_img_11.png" alt="" width="620" height="446"><div class="note-figcaption">
+</div>
+
+<p name="57765182-6501-4408-817a-5d527d218b5f" id="57765182-6501-4408-817a-5d527d218b5f">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

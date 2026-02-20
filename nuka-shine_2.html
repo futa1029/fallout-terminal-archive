@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ヌカシャイン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff66cc; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ヌカシャイン</h3>
+            <img src="images/note_extracted/nf3c0bb68f4c7_img_1.png" alt="ヌカシャイン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>アイテム</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nf3c0bb68f4c7" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ヌカシャイン</h1>
+            <div class="date">DATE: 2026/1/15</div>
+            
+            <p name="9c2a2b00-6224-4bfa-aadc-02fdb00f2f8c" id="9c2a2b00-6224-4bfa-aadc-02fdb00f2f8c"><strong>ヌカシャインは、モーガンタウンにある「<a href="big-al-s-tattoo-parlor.html" class="auto-link">ビッグ・アルのタトゥー・パーラー</a>」の地下に位置するロケーションです。</strong></p><hr name="adaafecf-8bd6-4576-b53d-bab0a021ee6c" id="adaafecf-8bd6-4576-b53d-bab0a021ee6c"><h2 name="ba4c652a-f960-499d-8d7b-70b09b17ad06" id="ba4c652a-f960-499d-8d7b-70b09b17ad06">背景</h2><p name="b51eb61e-862b-4acd-ba4f-0a3dafb2a5e1" id="b51eb61e-862b-4acd-ba4f-0a3dafb2a5e1">ヴォルト・テック大学のフラタニティ「イータ・プサイ・イプシロン・タウ」の会長であるジュディ・ローウェルは、タトゥー・パーラーの地下室をリースし、その貯蔵庫を「ヌカシャイン」へと作り変えました。 <br>この場所はボルトテック大学の学生たちのための秘密の酒場（スピークイージー）として機能し、そこではヌカシャインそのものを含むアルコール類が、仲間の学生ルイスが入手したプロトタイプの<a href="robobrain.html" class="auto-link">ロボブレイン</a>、<strong>ビブ</strong>によってテストされていました。</p><hr name="dc4ff07a-d257-4a9b-818e-ed55c36f55c8" id="dc4ff07a-d257-4a9b-818e-ed55c36f55c8"><h2 name="1c7211e7-dbf8-42d1-8ad2-00ccaec3228d" id="1c7211e7-dbf8-42d1-8ad2-00ccaec3228d">レイアウト</h2><p name="60ba9b93-d3c2-4e1a-b9ae-7b6c4adedd93" id="60ba9b93-d3c2-4e1a-b9ae-7b6c4adedd93">ヌカシャインへはタトゥー・パーラーを通じて入ることができます。 <br>休憩室にあるヌカ・コーラの自動販売機を調べることで、この場所への入り口が明らかになります。</p><p name="1212839f-8f11-4816-b333-ed3264820d52" id="1212839f-8f11-4816-b333-ed3264820d52">ヌカシャインは小さなスピークイージー・スタイルのバーで、楽器が置かれたステージ、トイレ、そしてビブがいる蒸留所があります。</p><div class="note-figure"><img src="images/note_extracted/nf3c0bb68f4c7_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="47bae4eb-6c5f-495c-9fd2-267a1b98ab97" id="47bae4eb-6c5f-495c-9fd2-267a1b98ab97">蒸留所には2つの醸造ステーションと、クエスト <strong><a href="wasted-on-nukashine.html" class="auto-link">Wasted on Nukashine</a></strong>の間だけ使用可能なプロトタイプの発酵槽が設置されています。<br>醸造エリアの先には、ヌカ・ケグが置かれた施錠された保管室があり、そこではかつてルイスがヌカシャインを醸造するための核物質を保管していました。 <br>この部屋には中身が漏れ出している放射能バレルがいくつか置かれており、漏れ出したバレルから放出される高い放射線レベルのため、非常に危険です。</p><p name="2ab30975-80eb-4171-9f40-b1b53f558f1d" id="2ab30975-80eb-4171-9f40-b1b53f558f1d">保管室へは、<a href="eta-psi-house.html" class="auto-link">イータ・プサイ・ハウス</a>で関連するパスワードを入手するか、パスワードを知っている人物と同行している場合にのみ入ることができます。</p><hr name="0ac899f5-3da7-4304-9fc5-16bd1421c160" id="0ac899f5-3da7-4304-9fc5-16bd1421c160"><h2 name="6d8f1473-f35a-4362-bdd1-1b5d9bc92063" id="6d8f1473-f35a-4362-bdd1-1b5d9bc92063">注目の戦利品</h2><ul name="197d3818-b028-40eb-b2f6-9d7fd0ecc239" id="197d3818-b028-40eb-b2f6-9d7fd0ecc239"><li><p name="f3bd1c73-9b6e-4c2a-aeef-870e38990294" id="f3bd1c73-9b6e-4c2a-aeef-870e38990294"><strong>メモ「ヌカシャインの材料 第2部」</strong>: 施錠された備品室の中にあります。</p></li></ul><div class="note-figure"><blockquote><p name="cc7c59ec-4336-4d24-b8df-15bac4826b97" id="cc7c59ec-4336-4d24-b8df-15bac4826b97">核物質 3個</p></blockquote><div class="note-figcaption"></div></div><ul name="b7832475-a41c-47e3-8561-a729b4d59cdb" id="b7832475-a41c-47e3-8561-a729b4d59cdb"><li><p name="c20a5956-cc86-48f6-b902-fcf010fea1b6" id="c20a5956-cc86-48f6-b902-fcf010fea1b6"><strong>メモ「警告！」</strong>: 高速発酵槽が置かれているテーブルに貼り付けられています（入手不可）。</p></li></ul><div class="note-figure"><blockquote><p name="bc2b30f2-ff2a-40e8-9a5d-d6b0994b00c7" id="bc2b30f2-ff2a-40e8-9a5d-d6b0994b00c7">ヌカシャインが飛ぶように売れているので、ルイスは熟成を早めるための「高速発酵槽」の開発に取り組んでいる。<br>まだ準備が整っていないため、自分自身の安全のために、ルイス本人でない限りは絶対に触らないこと。<br>この警告は本気だ。<br>私は操作すらしていなかったのに、危うく片目を失うところだった。<br>— ジュディ</p></blockquote><div class="note-figcaption"></div></div><ul name="99b3fdfc-9fd5-41d4-8ef9-6f398991b30c" id="99b3fdfc-9fd5-41d4-8ef9-6f398991b30c"><li><p name="6fa244af-69d2-4ebe-9303-83728af3100e" id="6fa244af-69d2-4ebe-9303-83728af3100e"><strong>Vault-Tecボブルヘッド</strong>:</p></li></ul><div class="note-figure"><img src="images/note_extracted/nf3c0bb68f4c7_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="5ba3e9db-4db4-40ad-a3aa-eb733bfcc7de" id="5ba3e9db-4db4-40ad-a3aa-eb733bfcc7de">ヌカシャインのバーカウンターの後ろ、最上段の棚の左端、タオルの横の隅。</p><div class="note-figure"><img src="images/note_extracted/nf3c0bb68f4c7_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="9436555d-fd1c-4845-908c-8f2baa42df1a" id="9436555d-fd1c-4845-908c-8f2baa42df1a">蒸留所備品室のテーブルの上（アクセスにはクエスト関連のターミナルが必要です）。</p><div class="note-figure"><img src="images/note_extracted/nf3c0bb68f4c7_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="169f5746-267a-4483-bf5c-0b4ec81662f4" id="169f5746-267a-4483-bf5c-0b4ec81662f4"><strong><a href="magazine.html" class="auto-link">雑誌</a></strong>: <br>ビブがいる醸造室、入り口のドアの隣、階段を過ぎて最初の醸造ステーションの横にあるバレル（樽）の上にあります。</p><hr name="85555f4e-e265-43b6-a3e0-39197830781b" id="85555f4e-e265-43b6-a3e0-39197830781b"><h2 name="84f42fd7-a03a-47bf-949c-31fcb319d5e2" id="84f42fd7-a03a-47bf-949c-31fcb319d5e2">備考</h2><ul name="c66449e9-3a4b-4463-9735-6c214ead9294" id="c66449e9-3a4b-4463-9735-6c214ead9294"><li><p name="161b9f1e-4901-45bd-ae2e-156b5034db54" id="161b9f1e-4901-45bd-ae2e-156b5034db54">いずれかの楽器を演奏することは、チャレンジ「ポッサム：ミュージシャン」の一部となっています。</p></li></ul><hr name="802a1763-42c4-4001-92ee-f71200fee402" id="802a1763-42c4-4001-92ee-f71200fee402"><h2 name="c7bbdd74-9dca-41b1-9cac-46a509d8a08e" id="c7bbdd74-9dca-41b1-9cac-46a509d8a08e">登場作品</h2><p name="43957268-60e3-402f-acd8-a3ec81acc63e" id="43957268-60e3-402f-acd8-a3ec81acc63e">ヌカシャインは『Fallout 76』にのみ登場し、アップデート「Wild Appalachia」で導入されました。</p><hr name="508f3eb2-a630-4969-ab13-524c184e2cdd" id="508f3eb2-a630-4969-ab13-524c184e2cdd"><h2 name="6f9f5309-c86c-42aa-b69c-ce702d71c9b1" id="6f9f5309-c86c-42aa-b69c-ce702d71c9b1">舞台裏</h2><p name="566238a4-12a5-4711-a546-e89d9f9d3233" id="566238a4-12a5-4711-a546-e89d9f9d3233">ヌカシャインで流れている曲は、ハインツ・ローア（Heinz Lohr）作曲の「Tea at the Ritz」で、APM Musicからライセンスを受けています。</p><div class="note-figure">  </div><hr name="cd769324-82ec-410c-9f1b-b5b6a33a500c" id="cd769324-82ec-410c-9f1b-b5b6a33a500c"><h2 name="4c4b5115-42f5-4cf7-8ab8-6034bbbd5429" id="4c4b5115-42f5-4cf7-8ab8-6034bbbd5429">まとめ</h2><ul name="47a4aa5b-bcbf-4553-ab7e-a7a7ef03839b" id="47a4aa5b-bcbf-4553-ab7e-a7a7ef03839b"><li><p name="4c2aafbf-99b7-4ef8-8f11-9b880f92c20b" id="4c2aafbf-99b7-4ef8-8f11-9b880f92c20b"><strong>隠れ家的な魅力</strong>: 自動販売機が入り口になっているという遊び心がたまりません。 内部もJAZZが流れる落ち着いたバーの雰囲気と、カオスな蒸留所が同居していて独特です。</p></li><li><p name="54790790-b9a5-4827-8185-4e7e7a788b8b" id="54790790-b9a5-4827-8185-4e7e7a788b8b"><strong>醸造の聖地</strong>: ここは単なる酒場ではなく、アパラチアの醸造文化の中心地です。 ビブから受けられるクエストを通じて、様々なお酒のレシピを学ぶことができます。</p></li><li><p name="db9bbd93-78b1-4645-8a60-c91f2b846c44" id="db9bbd93-78b1-4645-8a60-c91f2b846c44"><strong>危険な裏側</strong>: 奥の保管室は放射能で汚染されており、ヌカシャインが「核物質」を使って作られているというヤバい裏事情が視覚的に表現されていますね。</p></li></ul><p name="d58a675e-481a-4c28-a297-8c5526aabdb7" id="d58a675e-481a-4c28-a297-8c5526aabdb7">ビブの酔っ払ったセリフが大好きです!<br>個人的にはこのゲームの好きなキャラで割と上位に入るキャラですね!</p><p name="82050647-8664-4ab1-90b8-7b3305980aaa" id="82050647-8664-4ab1-90b8-7b3305980aaa">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

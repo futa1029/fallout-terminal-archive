@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Fallout 4 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Fallout 4</h3>
+            <img src="images/note_extracted/nfa9f46bafa92_img_1.png" alt="Fallout 4">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nfa9f46bafa92" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Fallout 4</h1>
+            <div class="date">DATE: 2025/11/11</div>
+            
+            <p name="645060c9-580b-44ff-9adf-6247d28edcc9" id="645060c9-580b-44ff-9adf-6247d28edcc9">『Fallout 4』 は、Bethesda Game Studios（ベセスダ・ゲーム・スタジオ）によって開発され、Bethesda Softworks（ベセスダ・ソフトワークス）によって発売された、ポストアポカリプスを舞台とするロールプレイングゲームです。<br>これは『Fallout』シリーズの第5の主要な作品（全体では8番目）にあたります。</p><hr name="da6bffe5-6f71-4046-9f2b-aaa4002997b0" id="da6bffe5-6f71-4046-9f2b-aaa4002997b0"><h2 name="21156fe8-cf5a-4729-902b-ddd844992000" id="21156fe8-cf5a-4729-902b-ddd844992000">概要と設定</h2><h3 name="91864941-ba46-4549-8763-3d8d906d2202" id="91864941-ba46-4549-8763-3d8d906d2202">発売日</h3><p name="f3bec710-96cb-48be-bfbb-28ab1579d2fc" id="f3bec710-96cb-48be-bfbb-28ab1579d2fc">Microsoft Windows、PlayStation 4、Xbox One向けに2015年11月11日に発売されました。日本国内では、2015年12月18日に発売されました。</p><p name="c2d4fa47-fe68-431b-a5d9-fc09149a4f3b" id="c2d4fa47-fe68-431b-a5d9-fc09149a4f3b">ゲームのVR版は、2017年にHTC Vive向けにMicrosoft Windowsでリリースされ、独立したスタンドアロンゲームとして扱われています。</p><hr name="78aeaa09-980b-4d9e-b1fe-a887a0ebdb93" id="78aeaa09-980b-4d9e-b1fe-a887a0ebdb93"><h3 name="e7ee32ca-ca1b-40ed-af33-7551936bcbb6" id="e7ee32ca-ca1b-40ed-af33-7551936bcbb6">ストーリーと舞台</h3><p name="0228c0e5-c090-43fa-b49a-7053995e5eb4" id="0228c0e5-c090-43fa-b49a-7053995e5eb4">『Fallout 4』の物語は、Sole Survivorに焦点を当てています。彼（または彼女）は戦前の時代から来たVaultの居住者であり、Vault 111の中で極低温冷凍され、200年以上後にウェイストランドで目覚め、行方不明になった子供、ショーンを探す旅に出ます。</p><p name="8813fe6a-07ee-4015-9503-71566ea84173" id="8813fe6a-07ee-4015-9503-71566ea84173">『Fallout 4』の舞台は、以前『Fallout 3』で言及されたCommonwealth（コモンウェルス）、具体的にはマサチューセッツ州ボストンとその周辺地域です。<br>旅の途中で、唯一の生存者はインスティチュートとして知られる謎の組織に対する恐怖と不安に支配された世界を発見します。</p><p name="5f1871b7-9838-4bc9-af82-33b0ea542163" id="5f1871b7-9838-4bc9-af82-33b0ea542163">インスティチュートは、Synth（人造人間、シンセ）として知られる人工的な人間そっくりの存在に取って代わられるかもしれないというパラノイアをコモンウェルスの人々に植え付けています。<br>このシンセを中心とした物語の結果、プレイヤー（唯一の生存者）は、科学実験をどこまで進めるべきか、感情と苦痛を表現する知覚のある機械を作成する道徳性、そして人間であることの意味といった倫理的な問いに直面します。</p><p name="a2a1a04e-308a-47a0-8e57-0feed5d5c466" id="a2a1a04e-308a-47a0-8e57-0feed5d5c466">以前のゲーム、特に『Fallout 3』のストーリー要素も存在し、『Fallout 4』のメインストーリーは、『Fallout 3』のサイドクエスト「The Replicated Man（複製された男）」の要素を拡張しています。</p><hr name="58b1688c-ae4c-4c64-8b38-245f9e5be76c" id="58b1688c-ae4c-4c64-8b38-245f9e5be76c"><h3 name="5f0718c2-d9bf-402e-932d-91d43231dea3" id="5f0718c2-d9bf-402e-932d-91d43231dea3">アップデート</h3><ul name="81d93902-664e-483f-b239-5660f7aeae86" id="81d93902-664e-483f-b239-5660f7aeae86"><li><p name="a20af9a8-817a-49c1-809e-ea3b6de63e91" id="a20af9a8-817a-49c1-809e-ea3b6de63e91">Next-Gen Patch: <br>2022年、BethesdaはPC、PlayStation 5、Xbox Series X向けに無料の次世代パッチをリリースすると発表しました。<br>2024年4月25日にリリースされたこのパッチには、バグ修正、高フレームレートのためのパフォーマンスモード機能、4K解像度ゲームプレイのための品質機能、および新しいCreation Clubコンテンツが含まれています。</p></li><li><p name="bd7714f9-c89e-47dc-b6ba-f68560f29723" id="bd7714f9-c89e-47dc-b6ba-f68560f29723">2025年再リリース: <br>ゲームの完全再リリースである『Fallout 4: Anniversary Edition（アニバーサリー・エディション）』が2025年11月11日に発売され、オリジナルのCreation Clubの仕組みを置き換えるCreationsシステムとVerified Creator Program**と共に開始されます。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_2.png" alt="" width="620" height="349"><div class="note-figcaption">Fallout 4: Anniversary Edition</div></div><hr name="36495698-c9c3-4487-8eab-7838d7c8d460" id="36495698-c9c3-4487-8eab-7838d7c8d460"><h2 name="ad7413c1-e74f-46dd-8606-294d6721c317" id="ad7413c1-e74f-46dd-8606-294d6721c317">ゲームプレイ</h2><p name="5d199a1d-9aec-456d-b37e-86fe29bf6e55" id="5d199a1d-9aec-456d-b37e-86fe29bf6e55">『Fallout 4』のゲームプレイは、『Fallout 3』や『Fallout: New Vegas』といくつかの類似点を共有しており、一人称視点から三人称視点へ自由に切り替えられる機能などが含まれます。<br><a href="mall-rat.html" class="auto-link">モールラット</a>、マイルアーク、レイダー、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>、デスクロー、フェラル・<a href="ghoul.html" class="auto-link">グール</a>などの敵がシリーズに再登場します。<br>プレイヤーキャラクターは、<a href="pip-boy.html" class="auto-link">Pip-Boy</a>（ピップボーイ）を通じてゲーム内メニューにアクセスし、ステータス、マップ、データ、アイテムを管理します。</p><p name="d36f15c0-5cb1-4bac-acb0-7f6c4d057d61" id="d36f15c0-5cb1-4bac-acb0-7f6c4d057d61">メインクエストをすべて完了した後もプレイを続けることが可能で、イ�れは『Fallout 3』のアドオン「Broken Steel（ブロークン・スチール）」から復活した機能であり、プレイヤーは自分の決定の結果を体験することができます。<br>メインストーリー終了後も、多くのサイドクエストを追求することができます。</p><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"><a href="pip-boy.html" class="auto-link">Pip-Boy</a>で遊ぶゲームの様子</div></div><hr name="99538f6c-146b-4e00-9437-1061b1557024" id="99538f6c-146b-4e00-9437-1061b1557024"><h3 name="604bdbf4-5a0a-4803-9135-c428893880c6" id="604bdbf4-5a0a-4803-9135-c428893880c6">『Fallout 3』および『New Vegas』からの変更点</h3><ul name="7d91f173-7feb-4e88-8e1b-2e7d7065801d" id="7d91f173-7feb-4e88-8e1b-2e7d7065801d"><li><p name="5c1c13a8-c27c-43f9-b5c7-6d8ff507f8d8" id="5c1c13a8-c27c-43f9-b5c7-6d8ff507f8d8">主人公の音声: <br>プレイヤーキャラクターである主人公は、男性と女性の両方の性別でフルボイスのセリフを持つようになりました。<br>ただし、会話の選択肢の表示は、最初から完全な応答内容を示さず、選択肢が選ばれた場合に主人公が何を言うかの一般的なアイデアを示す短いフレーズのみが表示されます。<br>会話はよりシネマティックになり、カメラアングルを使用して主人公の表情や顔も表示します。</p></li><li><p name="4efde733-3094-4b10-8b22-9ca5b3d4701d" id="4efde733-3094-4b10-8b22-9ca5b3d4701d">移動: <br>プレイヤーキャラクターは、ジョギングだけでなくスプリント（ダッシュ）する能力を持つようになりました。<br>歩行、ジョギング、スプリントのモードがありますが、スプリントはAP（アクションポイント）を消費し、初期の戦闘ではV.A.T.S.を使用する能力を制限する可能性があります。</p></li><li><p name="1a23c0f5-ef1e-4f02-9fdd-529ec632ffa8" id="1a23c0f5-ef1e-4f02-9fdd-529ec632ffa8">コンパニオン: <br>採用可能なコンパニオンはアフィニティ（親密度）システムを持つようになり、プレイヤーの選択によって主人公に対して肯定的または否定的な意見を持つようになります。<br>コンパニオンは行動に対して異なる反応を示すことがあります。<br>例えば、あるコンパニオンは主人公が利己的に行動するのを好むかもしれませんが、別のコンパニオンはそれを嫌うかもしれません。<br>アドオンからのコンパニオンを含め、『Fallout 4』の17人のコンパニオンのうち、7人と同性愛の関係を含む関係を結ぶことができますが、『New Vegas』のような寝る相手を持つことはできません。<br>代わりに、『Fallout 4』の関係にあるコンパニオンは、言葉で愛情や感情を表現するなど、非身体的な側面に焦点を当てています。<br>ただし、コンパニオンが近くにいる状態でベッドで寝た後のコメントは、性的な交流があったことを示唆しており、「Well Rested（よく休めた）」のポップアップは「Lover's Embrace（恋人の抱擁）」に置き換わります。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_4.png" alt="" width="620" height="349"><div class="note-figcaption">コンパニオン</div></div><ul name="11d88b0b-a2fd-41d3-b616-d21855693262" id="11d88b0b-a2fd-41d3-b616-d21855693262"><li><p name="c499815b-e4cf-4038-8eb9-57cfde5fd8a3" id="c499815b-e4cf-4038-8eb9-57cfde5fd8a3">クラフト: <br>以前のゲームにはマイナーなクラフト要素がありましたが、『Fallout 4』ではクラフトがより焦点となり、クラフトシステムはゲーム内のすべてのルート可能なオブジェクトを利用し、それらをジャンクアイテムと呼びます。<br>プレイヤーは、<a href="pip-boy.html" class="auto-link">Pip-Boy</a>でプレイできるレトロテーマのミニゲームが入ったゲームカートリッジを含む一連の<a href="magazine.html" class="auto-link">雑誌</a>を見つけることもできます。<br>また、ゲーム発売当初は、ゲームと同期してスマートフォンを<a href="pip-boy.html" class="auto-link">Pip-Boy</a>のように使用できる無料のスマートフォンアプリ「Fallout <a href="pip-boy.html" class="auto-link">Pip-Boy</a>」も提供されていました。</p></li></ul><hr name="f6e7e52d-6bde-416a-ba68-e40bc4387d98" id="f6e7e52d-6bde-416a-ba68-e40bc4387d98"><h3 name="9e2a2bf6-1872-4f9c-8101-adf32f931be5" id="9e2a2bf6-1872-4f9c-8101-adf32f931be5">キャラクターカスタマイズ</h3><ul name="efa96293-50eb-48e6-914e-909a7a4d8c69" id="efa96293-50eb-48e6-914e-909a7a4d8c69"><li><p name="76f86c86-f2c7-40a9-8036-2bed827766e7" id="76f86c86-f2c7-40a9-8036-2bed827766e7">スキル廃止: <br>スキルが削除され、7x10のPerk（パーク）チャートに置き換えられました。<br>レベルアップするたびに、プレイヤーは新しいPerkを取得でき、それぞれにSPECIAL属性とレベルに基づく前提条件があり、ほとんどに複数のティアがあります。<br>この新しい成長システムの結果として、明確なレベルキャップがなくなり、プレイヤーは探索と戦闘においてより自由を体験できます。</p></li></ul><hr name="66082431-87a6-423d-a804-0daa570cf345" id="66082431-87a6-423d-a804-0daa570cf345"><h3 name="8bf61991-4a15-4bee-9ea6-757cc82f644d" id="8bf61991-4a15-4bee-9ea6-757cc82f644d">装備</h3><ul name="43cf3fe8-d6d4-4153-8038-15c56868f480" id="43cf3fe8-d6d4-4153-8038-15c56868f480"><li><p name="53ad7660-a644-4dae-9f4d-eb7680a60ea0" id="53ad7660-a644-4dae-9f4d-eb7680a60ea0">武器/アーマーのカスタマイズ: <br>新しい装備システムにより、武器とアーマーの幅広いアップグレードとカスタマイズが可能になりました。<br>以前の2つの『Fallout』ゲームとは異なり、武器とアーマーは使用による劣化がなくなり、絶え間ないメンテナンスを必要としなくなりました。</p></li><li><p name="babdc401-3158-485a-ad96-2f71343a2f58" id="babdc401-3158-485a-ad96-2f71343a2f58">アーマーシステム: <br>アーマーは、左腕や右脚などの異なる四肢ごとに分割されたピースシステムになり、プレイヤーはセットを組み合わせて着用できます。</p></li><li><p name="3db07cdb-8a93-40f3-9b88-eb60dbcb6a48" id="3db07cdb-8a93-40f3-9b88-eb60dbcb6a48"><a href="power-armor.html" class="auto-link">パワーアーマー</a>: <br><a href="power-armor.html" class="auto-link">パワーアーマー</a>は、最高のパフォーマンスで動作し続けるためにフュージョン・コアと呼ばれるバッテリーを必要とするようになりました。</p></li></ul><hr name="127b8af7-6a71-47e1-8b30-7426d1f55d7e" id="127b8af7-6a71-47e1-8b30-7426d1f55d7e"><h3 name="ca3f65d7-2987-4e56-9352-148fbb75f82b" id="ca3f65d7-2987-4e56-9352-148fbb75f82b">戦闘</h3><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_5.png" alt="" width="620" height="349"><div class="note-figcaption">V.A.T.S.</div></div><ul name="972ee935-6e61-4d3f-b917-c45f46c47585" id="972ee935-6e61-4d3f-b917-c45f46c47585"><li><p name="0453c0e6-1846-4297-b1b9-ddf8d4283b50" id="0453c0e6-1846-4297-b1b9-ddf8d4283b50">V.A.T.S.: <br>Vault-Tec Assisted Targeting System（V.A.T.S.）が復活し、戦闘で重要な役割を果たします。<br>V.A.T.S.を使用している間、リアルタイムの戦闘は減速され、アクションは「バレットタイム」のコンピューターグラフィックスバージョンで様々なカメラアングルから再生されます。<br>V.A.T.S.での攻撃にはアクションポイント（AP）がかかるため、一度に利用可能な行動回数が制限されます。<br>また、プレイヤーは特定の身体の部位をターゲットにして攻撃し、特定の負傷を負わせることができます。<br>ヘッドショットは素早いキルや盲目化に使用でき、脚は敵の動きを遅くするためにターゲットにでき、武器を撃つことで敵の武装を解除できます。</p></li><li><p name="af4a7b2d-1201-4c06-b601-7b0d96616ee2" id="af4a7b2d-1201-4c06-b601-7b0d96616ee2">クリティカルヒットの変更: <br>『Fallout 4』からクリティカルヒットを扱う方法が変わりました。<br>以前は敵を攻撃する際にランダムでしたが、『Fallout 4』ではクリティカルチャンスのステータスが廃止され、クリティカルメーターが満たされるようになり、プレイヤーはいつクリティカルヒットを実行するかを決定できるようになりました。</p></li><li><p name="1ef2f2e5-2c4d-459e-b477-809cf07e2d1b" id="1ef2f2e5-2c4d-459e-b477-809cf07e2d1b">グレネード: <br>グレネードを副次的な武器として装備することも可能になりました。</p></li></ul><hr name="c81b9acd-04bd-4dcf-9af3-f412d5ca35a6" id="c81b9acd-04bd-4dcf-9af3-f412d5ca35a6"><h3 name="8406da9f-7d6a-4754-a2b2-b7bbd6aa9bab" id="8406da9f-7d6a-4754-a2b2-b7bbd6aa9bab">入植地（Settlements）</h3><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_6.png" alt="" width="620" height="349"><div class="note-figcaption">作物と建築</div></div><ul name="c71a9f21-e791-4da7-a0eb-21352a62e8f6" id="c71a9f21-e791-4da7-a0eb-21352a62e8f6"><li><p name="07aa5a64-3de9-44e6-aaa1-8354de5e22b9" id="07aa5a64-3de9-44e6-aaa1-8354de5e22b9">建設機能: <br>シリーズの新しい機能として、入植地を建設する能力が追加されました。入植地の境界内で、プレイヤーはオブジェクトや構造物を解体して資源にし、それらを使用して住宅、菜園、防御施設、店舗、クラフトステーションなどの独自の構造物を構築できます。</p></li><li><p name="11576b87-47f1-441a-9808-0361ca5cb014" id="11576b87-47f1-441a-9808-0361ca5cb014">資源共有: <br>各入植地は、<a href="brahmin.html" class="auto-link">バラモン</a>の隊商によって他の入植地と接続し、資源を共有することができます。</p></li><li><p name="9bbccbfe-b70b-4b10-99bc-72b6f97a0bc5" id="9bbccbfe-b70b-4b10-99bc-72b6f97a0bc5">運営: <br>町は動的な電力線システムを使用して電力供給でき、水ポンプや作物/菜園を装備して、食料と飲み物の安定した収入を維持できます。商人や非プレイヤーキャラクターがプレイヤーの町に住み着き、コミュニティとして入植地の運営を助けます。</p></li><li><p name="3823f79c-f5be-4fdf-b6ed-f03a1c98f84e" id="3823f79c-f5be-4fdf-b6ed-f03a1c98f84e">防御: <br>プレイヤーは、タレット、警備塔、トラップなど、さまざまな防御施設を入植地の周囲に建設して、襲撃や攻撃から入植地を守ることができます。</p></li></ul><hr name="0951adfe-5bd2-4280-9386-3cbf2787607c" id="0951adfe-5bd2-4280-9386-3cbf2787607c"><h3 name="87f62328-6cfc-4739-ab2b-512bf23b3ccc" id="87f62328-6cfc-4739-ab2b-512bf23b3ccc">サバイバルモード</h3><p name="2e5cf5f0-86e1-48e3-b774-ce423443c0c4" id="2e5cf5f0-86e1-48e3-b774-ce423443c0c4">サバイバルモードはハードコアな難易度であり、オートセーブとメニューからの手動セーブが無効になります。<br>ゲームをセーブする唯一の方法は、ベッド、マットレス、または寝袋で眠ることです。<br>終了セーブ機能は利用可能ですが、これはロード時に自動的に削除される一時的なセーブです。<br>ファストトラベルは不可能であり、プレイヤーは飢餓、喉の渇き、疲労にさらされます。<br>コンパニオンは立ち直るために回復を必要とします。ここにはリストされていない、難易度を上げる他の多くの側面もあります。</p><hr name="960e4cc8-ce20-45f2-a466-556dc3254f6f" id="960e4cc8-ce20-45f2-a466-556dc3254f6f"><h3 name="8df2aadc-8b9c-42c3-83e3-981fa3c31c35" id="8df2aadc-8b9c-42c3-83e3-981fa3c31c35">MODサポート</h3><p name="ae266bed-5401-4348-8a98-afcb204f4c54" id="ae266bed-5401-4348-8a98-afcb204f4c54">『Fallout 4』は、コンソール向けのネイティブなMODサポートを持つ最初の『Fallout』ゲームです。<br>E3 2015で、Todd Howardは、PC向けCreation Kitのリリース（2016年4月26日にダウンロード可能）に続いて、Xbox OneバージョンがMODサポートを提供することを明らかにしました。<br>Xbox OneのMODサポートは5月31日にリリースされました。<br>PlayStation 4向けのMODサポートは当初6月中に予定されていましたが延期され、9月までにPS4でのMODはキャンセルされたと報じられました。<br>しかし、その後BethesdaとSonyは合意に達し、『The Elder Scrolls V: Skyrim Special Edition』のリリース後にPS4でのMODを許可しました。<br>最終的にコンソールにMODが実装されましたが、ゲームファイル内に既にあるアセットの使用に限定されています。</p><hr name="904ec6ee-1024-46b5-ab4c-607aaeecbf8d" id="904ec6ee-1024-46b5-ab4c-607aaeecbf8d"><h2 name="5da76a75-3f85-4d4e-a028-ecec552dc47f" id="5da76a75-3f85-4d4e-a028-ecec552dc47f">設定</h2><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_7.png" alt="" width="620" height="347"><div class="note-figcaption">ボストン</div></div><p name="4896eb38-cf03-43a4-9fd5-9705bf903b6f" id="4896eb38-cf03-43a4-9fd5-9705bf903b6f">『Fallout 4』の出来事は、2287年に発生します。『Fallout 3』の10年後、『Fallout: New Vegas』の6年後です。</p><p name="831f2425-6480-409d-ac2e-c4f5c08b1232" id="831f2425-6480-409d-ac2e-c4f5c08b1232">ゲームの舞台は、主に旧マサチューセッツ州で構成されるCommonwealth（コモンウェルス）でありイ�州の東部に深く設定されています。<br>ゲームの最大の中心都市はボストンですが、ケンブリッジ、コンコード、レキシントン、マルデン、ナハント、ネイティック、クインシー、リビア、セーラムといった周辺の町や都市も含まれます。<br>その他の実世界の場所も、ベッドフォード駅のように簡略化されて表現されています。<br>ゲームには、ゲームが始まるSanctuary Hills（サンクチュアリ・ヒルズ）のような架空の町も含まれています。</p><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_8.png" alt="" width="620" height="349"><div class="note-figcaption">ダイヤモンドシティ</div></div><p name="5cf03f63-6fdc-4b91-844a-b0c277f45ffb" id="5cf03f63-6fdc-4b91-844a-b0c277f45ffb">Paul Revere Monument（ポール・リビアの像）、USS Constitution（USSコンスティチューション）、そして独特の金色のドームを持つマサチューセッツ州議事堂などの有名な地元のランドマークがゲームの世界に含まれています。その他にゲームに登場する場所としては、Goodneighbor（グッドネイバー）に改名されたスコレー広場、バンカーヒル、そしてDiamond City（ダイヤモンドシティ）と呼ばれるスラム街になっている野球場フェンウェイ・パークがあります。</p><p name="2f658ebf-5891-45b0-a32d-d59da531079a" id="2f658ebf-5891-45b0-a32d-d59da531079a">『Fallout 4』のボストン地域は、現実と比較してかなり浸水しており、新しい川ができています。Glowing Sea（光の海）と呼ばれる大規模で依然として人が住めない核爆発跡地が南西にあります。北西の開始エリアは低レベルの敵が含まれ比較的安全ですが、敵はマップの南東エリアに向かって徐々にタフになっていきます。</p><hr name="7131fdf0-87e6-4dc4-9e01-56e51ca820a0" id="7131fdf0-87e6-4dc4-9e01-56e51ca820a0"><h2 name="fa16c8ea-2251-4697-9f3d-21490ea4aa0f" id="fa16c8ea-2251-4697-9f3d-21490ea4aa0f">ストーリー</h2><h3 name="63c6f2bf-ffb9-499c-b1a4-4e58c3aa85c0" id="63c6f2bf-ffb9-499c-b1a4-4e58c3aa85c0">概要</h3><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_9.png" alt="" width="620" height="388"><div class="note-figcaption">Vault 111の唯一の生存者</div></div><p name="623dc748-95d2-49c7-8b31-462c42385b8b" id="623dc748-95d2-49c7-8b31-462c42385b8b">プレイヤーはVault 111の唯一の生存者です。<br>プレイヤーは唯一の生存者の名前、性別、外見を決定できますが、父は一般的に「Nate（ネイト）」、母は一般的に「Nora（ノラ）」と呼ばれています。</p><p name="9fdd672e-c10c-40f3-bd49-3fdbf201551d" id="9fdd672e-c10c-40f3-bd49-3fdbf201551d">『Fallout 4』は、2077年10月23日（グレート・ウォーの日）に始まり、プレイヤーが配偶者と子供のショーンと暮らしている様子が短く描かれます。一連の出来事の後、彼らはグレート・ウォーの後に姿を現します。</p><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_10.png" alt="" width="620" height="349"><div class="note-figcaption">平和な一時</div></div><p name="5c0815f1-dc7c-4ba7-8ff9-57cc5e8b9db7" id="5c0815f1-dc7c-4ba7-8ff9-57cc5e8b9db7">物語は、プレイヤーをその世界へと導き、シンセに対するさまざまな見解を持つ異なる勢力のリーダーを発見します。<br>これには、シンセについて強い意見を持たないMinutemen（ミニッツメン）のPreston Garvey（プレストン・ガービー）、シンセを擁護するThe Railroad（レールロード）のDesdemona（デズデモーナ）、反シンセのBrotherhood of Steel（BOS）のArthur Maxson（アーサー・マックスソン）、そしてシンセの背後にいるインスティチュートのリーダーである「Father（ファーザー）」が含まれます。</p><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_11.png" alt="" width="620" height="349"><div class="note-figcaption">シンセ</div></div><p name="30b1f310-e12b-42d3-bf8e-2890bf344f73" id="30b1f310-e12b-42d3-bf8e-2890bf344f73">シンセがゲームの主要な焦点であるため、プレイヤーは誰を信頼すべきかについてのキャラクターの不信感と不確実性に共感することが促され、キャラクターとの交流にパラノイアのレベルが加わります。<br>ゲーム中に、一見無害なキャラクターが実はシンセであることが明らかにされます。<br>主要なすべての派閥には、組織内に少なくとも1人のシンセがいます。</p><hr name="b2e9dbfd-c2ac-47fd-af2c-d574443199b9" id="b2e9dbfd-c2ac-47fd-af2c-d574443199b9"><h3 name="e34d42b1-883a-4c88-be5a-74ebbed1375b" id="e34d42b1-883a-4c88-be5a-74ebbed1375b">プロット</h3><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_12.png" alt="" width="620" height="349"><div class="note-figcaption">サンクチュアリ・ヒルズの住民たちの、爆弾が落ちる直前にボルト111へ逃げ込む様子</div></div><p name="ea973d33-f240-4999-84ac-0a6f8b873ced" id="ea973d33-f240-4999-84ac-0a6f8b873ced">2077年10月23日の朝、父は曇った鏡に映る自分の姿を見つめ、「戦争は決して変わらない」とつぶやきます。<br>妻は鏡を独占しないように言います。<br>主人公は母親または父親としてプレイできます。<br>主人公は家の中を歩き回り、Mr. Handy（<a href="mr-handy.html" class="auto-link">ミスター・ハンディ</a>）のCodsworth（<a href="codsworth.html" class="auto-link">コズワース</a>）に話しかけます。<br>Vault-Tec Corporationの代表者が到着し、家族の国への貢献により、地元のVault、Vault 111に入ることを許可する対象に選ばれたと告げます。</p><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_13.png" alt="" width="620" height="343"><div class="note-figcaption">Vault-Tec Corporationの代表者が到着</div></div><p name="67ee450c-ffd0-4553-9165-9532ae833102" id="67ee450c-ffd0-4553-9165-9532ae833102">主人公は情報を確認することにします。<br>代表者が去った後、ショーンが泣き、その親は彼を落ち着かせるためにベビーベッドの上でモビールを回します。<br><a href="codsworth.html" class="auto-link">コズワース</a>は家族にテレビ放送を見るように懇願し、アメリカが核攻撃を受けていることが確認されます。<br>サンクチュアリ・ヒルズでサイレンが鳴り始め、すべての住民が地元のVaultに逃げますが、警備ゲートを通過できるのは承認された者だけです。</p><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_14.png" alt="" width="620" height="349"><div class="note-figcaption">核攻撃の様子</div></div><p name="d8723560-122d-4b35-9ba8-913fe1bdcec3" id="d8723560-122d-4b35-9ba8-913fe1bdcec3">その後のストーリーは自分の目でお確かめ下さい。</p><hr name="410ac6e4-370f-4e5c-81da-847e838b816a" id="410ac6e4-370f-4e5c-81da-847e838b816a"><h2 name="bab14398-dc97-4520-9ca3-dda83d083f63" id="bab14398-dc97-4520-9ca3-dda83d083f63">開発</h2><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_15.png" alt="" width="620" height="392"><div class="note-figcaption">The Fallout 4 Bethesda Game Studios Team</div></div><ul name="44902edd-38cb-44e0-99b0-fe8a844080bf" id="44902edd-38cb-44e0-99b0-fe8a844080bf"><li><p name="12a247ca-6d05-4817-9541-30d91ede4819" id="12a247ca-6d05-4817-9541-30d91ede4819">ライセンス取得: <br>2004年、Bethesda Softworksは、Interplay Entertainment（インタープレイ・エンターテイメント）から『Fallout』ゲーム3作（『Fallout 3』、『Fallout: New Vegas』、『Fallout 4』）を制作・発売する権利をライセンス供与されました。<br>その後、2007年にBethesdaがフランチャイズ全体を購入し、InterplayはBethesdaから『Fallout』MMORPGの権利をライセンスバックしました。<br>法的な論争は2012年1月に終結し、Bethesda Softworksとその社内開発スタジオがMMOを含む『Fallout』フランチャイズ全体の権利を保持することになりました。</p></li><li><p name="dde9ca11-94b3-4b6f-a0fc-a8e184a34bdb" id="dde9ca11-94b3-4b6f-a0fc-a8e184a34bdb">開発期間: <br>開発は『Fallout 3』のリリース直後の2008年に開始されました。『Skyrim』が同時期に開発されていたため、当初は小規模な開発でした。<br>『Skyrim』が2011年にリリースされた後、『Fallout 4』がBethesdaの主要プロジェクトとなりました。</p></li><li><p name="4e94ca53-037e-4d84-9a0c-11343fefec2d" id="4e94ca53-037e-4d84-9a0c-11343fefec2d">ボイスレコーディング: <br>ボイスレコーディング中、『Fallout 4』はAngelina（アンジェリーナ）というコードネーム（表向きは宇宙SFゲーム）で呼ばれていました。<br>当時は秘密主義的なプロセスであり、多くの声優は最初、自分が取り組んでいるのが『Fallout』ゲームであることに気づいていませんでした。</p></li><li><p name="d77982f4-10fc-4564-809d-57b97aa2a4b9" id="d77982f4-10fc-4564-809d-57b97aa2a4b9">セリフの量: <br>このゲームには、111,000行以上のセリフがあり、これは『Fallout 3』と『The Elder Scrolls V: Skyrim』のセリフを合計した数よりも多いです。</p></li></ul><hr name="64703789-a188-4e9c-b0a4-792ec230230a" id="64703789-a188-4e9c-b0a4-792ec230230a"><h2 name="51f32265-2972-4c72-afb6-0f32f9c44e89" id="51f32265-2972-4c72-afb6-0f32f9c44e89">発表</h2><ul name="ffee86ea-3364-4951-a2af-2654bd88b24c" id="ffee86ea-3364-4951-a2af-2654bd88b24c"><li><p name="4b206b22-5a3a-49bb-b8a0-7f90a5024e75" id="4b206b22-5a3a-49bb-b8a0-7f90a5024e75">2010年: <br>Todd Howardは、Bethesdaが2つのプロジェクトに取り組んでいることを明らかにしました。<br>1つは2年間開発中（『Fallout 3』後に開始）、もう1つはまだプリプロダクション中でした。<br>後に、開発が進んでいたタイトルが『Skyrim』であり、『Fallout 4』がプリプロダクション中のタイトルであったことが判明しました。</p></li><li><p name="e86d8a7a-6c34-4315-9692-9a2576299b9a" id="e86d8a7a-6c34-4315-9692-9a2576299b9a">2015年: <br>2015年6月2日、Bethesdaの『Fallout』ウェブサイトにカウントダウンタイマーが設定され、翌日午前10時（EDT）に期限切れとなりました。<br>6月3日、午前10時EDTの数秒前に『Fallout 4』のトレーラーがYouTubeで公開されました。<br>Bethesda初のE3ショーケースが6月14日に開催され、そこでゲームプレイ映像、改良されたVATSシステム、新しいクラフトシステム、そして2015年11月10日のリリース日が明らかにされました。</p></li></ul><hr name="1d722e44-b37e-46a0-9461-c7a63387f546" id="1d722e44-b37e-46a0-9461-c7a63387f546"><h2 name="3a4fc6ca-5186-49ed-b901-177fb3ee181a" id="3a4fc6ca-5186-49ed-b901-177fb3ee181a">音楽</h2><ul name="8c1f3bc2-578c-4790-b7cc-3d81c683cb23" id="8c1f3bc2-578c-4790-b7cc-3d81c683cb23"><li><p name="41657f73-52f0-40c8-9eb7-510bad288bbf" id="41657f73-52f0-40c8-9eb7-510bad288bbf">作曲: 『Fallout 4』のサウンドトラックは、以前に『Fallout Tactics』、『Fallout 3』、『Fallout: New Vegas』のサウンドトラックを担当したInon Zur（イノン・ツゥール）によって作曲されました。ツゥールは、『Fallout 4』がより個人的なストーリーを持っていると感じたため、ゲームのスコアでピアノがより目立つ役割を果たすようにしました。</p></li></ul><hr name="3bce7d51-704b-4bdf-a786-0decd65c8d59" id="3bce7d51-704b-4bdf-a786-0decd65c8d59"><h2 name="f490a9c8-bb90-4fa8-bece-74e2e6ab8c11" id="f490a9c8-bb90-4fa8-bece-74e2e6ab8c11">製品とDLC</h2><h3 name="c268d1a3-5054-42d1-989f-8e0eb9ddffce" id="c268d1a3-5054-42d1-989f-8e0eb9ddffce">特別版</h3><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_16.png" alt="" width="620" height="392"><div class="note-figcaption"><a href="pip-boy.html" class="auto-link">Pip-Boy</a> Edition</div></div><ul name="2d3ea16c-50e8-4587-87fe-c4bdd9628c7f" id="2d3ea16c-50e8-4587-87fe-c4bdd9628c7f"><li><p name="45f0f99b-b6e7-4f61-a33f-45024c76b57b" id="45f0f99b-b6e7-4f61-a33f-45024c76b57b"><a href="pip-boy.html" class="auto-link">Pip-Boy</a> Edition: <br>着用可能な<a href="pip-boy.html" class="auto-link">Pip-Boy</a>（スマートフォンを挿入可能）、Pip-Boyポケットガイド、Perkポスターなどが含まれます。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_17.png" alt="" width="620" height="480"><div class="note-figcaption">Game of the Year Edition</div></div><ul name="bf00deed-df6a-442a-aaa0-eb09da56d1a1" id="bf00deed-df6a-442a-aaa0-eb09da56d1a1"><li><p name="6e3cf8f4-9d3d-407e-97a3-283e2d8c421e" id="6e3cf8f4-9d3d-407e-97a3-283e2d8c421e">Game of the Year Edition: <br>2017年9月26日にリリースされ、6つのメインアドオンすべてが含まれています。</p></li></ul><h3 name="4d65e26d-c20f-401c-9450-ed5de6269c50" id="4d65e26d-c20f-401c-9450-ed5de6269c50">ダウンロードコンテンツ（DLC）</h3><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_18.png" alt="" width="620" height="884"><div class="note-figcaption"></div></div><ul name="a52859f0-3bb0-4ecb-87b6-c036901caee6" id="a52859f0-3bb0-4ecb-87b6-c036901caee6"><li><p name="bdb9737a-eb1f-4b34-a58f-30a7d50e418f" id="bdb9737a-eb1f-4b34-a58f-30a7d50e418f">Automatron（オートマトロン）: <br>謎のメカニストがロボットの大群を放ち、プレイヤーは彼らの部品を収穫して独自のカスタムロボットコンパニオンを構築・改造します。</p></li><li><p name="5d534581-a3f2-42cb-a4dc-8a3153a9b6e3" id="5d534581-a3f2-42cb-a4dc-8a3153a9b6e3">Wasteland Workshop（ウェイストランド・ワークショップ）: <br>レイダーからデスクローまで、生きたクリーチャーを捕獲するためのケージを設計・設置します。</p></li><li><p name="bdf65d67-0ea3-4aac-8345-a0bb38997def" id="bdf65d67-0ea3-4aac-8345-a0bb38997def">Far Harbor（ファー・ハーバー）: <br>メイン州沖の神秘的な島が舞台。<br>シンセ、Children of Atom（アトムの子供たち）、地元住民の間の紛争をナビゲートする、史上最大級の追加マップ。</p></li><li><p name="bc87318c-b5c4-4b0f-940a-f696eecbb253" id="bc87318c-b5c4-4b0f-940a-f696eecbb253">Contraptions Workshop（混成ワークショップ）: <br>コンベアベルト、足場キット、ロジックゲートなどを使用して、クレイジーで複雑なガジェットを構築できます。</p></li><li><p name="dc90a0a1-f358-42ed-ad8c-f4ad7182ca66" id="dc90a0a1-f358-42ed-ad8c-f4ad7182ca66">Vault-Tec Workshop（Vault-Tecワークショップ）: <br>プレイヤーが巨大なVaultを作成し、入植者を引き付け、居住者に対してVault-Tec公認の実験を実行できます。</p></li><li><p name="a9f5e06f-d847-4f9b-8bc6-6a13f7de5009" id="a9f5e06f-d847-4f9b-8bc6-6a13f7de5009">Nuka-World（ヌカ・ワールド）: <br>巨大な遊園地が舞台。無法地帯のレイダーの街となった新しい地域を探検します。</p></li></ul><hr name="af945988-51d9-4ec4-b4bf-cd464f252e6f" id="af945988-51d9-4ec4-b4bf-cd464f252e6f"><h2 name="3fa50265-0276-4ee8-98d6-427c37e113a6" id="3fa50265-0276-4ee8-98d6-427c37e113a6">Creation ClubとCreations</h2><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_19.png" alt="" width="620" height="349"><div class="note-figcaption">Creation Club</div></div><ul name="eaac93eb-f777-430e-8820-7b55f642978d" id="eaac93eb-f777-430e-8820-7b55f642978d"><li><p name="37cd3c23-cbd4-4a79-9fbe-5699aabece37" id="37cd3c23-cbd4-4a79-9fbe-5699aabece37">Creation Club: <br>2017年8月28日にゲームに追加されたマイクロトランザクションストア。<br>コンテンツの通貨には、現実のお金でのみ入手可能なBethesda Store Creditsが使用されます。</p></li><li><p name="91abb18f-f6e2-4214-988f-ae7e15807b00" id="91abb18f-f6e2-4214-988f-ae7e15807b00">Creations: <br>Creation Clubの後継システムとして、2025年11月10日に『Fallout 4: Anniversary Edition』と共に開始されます。<br>Verified Creator Programによって運営され、プロの開発者やファンが有料MODを公開できるようにします。</p></li></ul><hr name="f6556199-c3fa-4e19-9943-1b795f3bcff9" id="f6556199-c3fa-4e19-9943-1b795f3bcff9"><h2 name="2c6bcaea-d1e4-4937-bd8f-56b2529a0179" id="2c6bcaea-d1e4-4937-bd8f-56b2529a0179">&nbsp;評価</h2><ul name="be6ec05b-b54e-4db3-a5e6-b25ad623325b" id="be6ec05b-b54e-4db3-a5e6-b25ad623325b"><li><p name="7b41877e-0784-498a-aaa0-75da65de857a" id="7b41877e-0784-498a-aaa0-75da65de857a">メタスコア: <br>PCで84/100、PS4で87/100、Xbox Oneで88/100を獲得しました。</p></li><li><p name="5550815f-77e5-4f13-b4c1-194514312f4b" id="5550815f-77e5-4f13-b4c1-194514312f4b">出荷本数: <br>初日の需要を満たすために1,200万本が出荷されました。</p></li><li><p name="8fcbc70d-e7f4-4c0d-807c-e9d8fd59cf32" id="8fcbc70d-e7f4-4c0d-807c-e9d8fd59cf32">受賞歴: <br>2016年D.I.C.E.ゲーム・オブ・ザ・イヤー、2016年ゲーム・デベロッパーズ・チョイス・アワード ゲーム・オブ・ザ・イヤーなど、いくつかの賞を受賞しました。</p></li><li><p name="20bb40d0-cb56-4f8c-8484-252cad1d0ffd" id="20bb40d0-cb56-4f8c-8484-252cad1d0ffd">肯定的評価: <br>IGNは9.5/10を与え、「世界、探索、クラフト、雰囲気、ストーリーのすべてが、この大成功を収めたサンドボックスRPGの重要な部分である」と述べています。<br>PC Gamerは88/100を与え、カスタマイズの量を称賛しました。</p></li></ul><hr name="52dc7c8d-ae69-46cf-9d12-e7ac3b04b641" id="52dc7c8d-ae69-46cf-9d12-e7ac3b04b641"><h3 name="27a5d53f-79e1-494d-af8e-e53654bf9da5" id="27a5d53f-79e1-494d-af8e-e53654bf9da5">批判点</h3><ul name="557cb334-e856-47fc-a238-9c11fd48e648" id="557cb334-e856-47fc-a238-9c11fd48e648"><li><p name="247b6fff-0bca-4ca0-8640-814cc962b70c" id="247b6fff-0bca-4ca0-8640-814cc962b70c">技術的な問題: <br>フリーズ、クラッシュ、クエストの進行不能などの技術的な問題により、特にPC版のユーザーメタスコアは5〜6と低迷し、評価を下げました。</p></li><li><p name="46529e28-8264-4978-bc16-230d1b2143da" id="46529e28-8264-4978-bc16-230d1b2143da">ゲームプレイとRPG要素: <br>一部の古い『Fallout』ファンからは、『New Vegas』に比べてロールプレイング要素が少ない、「ルーターシューター」だと呼ばれ、道徳的な意思決定が異なる結末につながるクエストの不足が指摘されました。</p></li><li><p name="42cf1e5b-06ed-470e-868f-12dbdd0a53f0" id="42cf1e5b-06ed-470e-868f-12dbdd0a53f0">主人公の固定化: <br>フルボイスの主人公と、より固定されたバックストーリーが強制されることに対しては賛否両論でした。<br>例えば、唯一の生存者は異性の配偶者を持つことが強制されるため、一部のLGBT+プレイヤーから強制的な異性愛規範を押し付けているとして批判されました。</p></li><li><p name="e6c8178a-1d88-4a42-916c-418c0ac8afb1" id="e6c8178a-1d88-4a42-916c-418c0ac8afb1">会話システム: <br>完全なセリフではなく短いキーワードのみを表示する会話システム、およびSPECIALチェックやスキル要件が削除された点も批判されました（SPECIALチェックは次作『Fallout 76』で復活）。</p></li><li><p name="7b046043-4704-4d17-b8f7-54b49ebcd157" id="7b046043-4704-4d17-b8f7-54b49ebcd157">ストーリーの矛盾: <br>ストーリーと執筆の一部（Emil Pagliaruloが監督）も批判を受けました。<br>例えば、シンセが睡眠を必要とするかどうかに矛盾がある（Max Lokenは不要と言うが、Curieは必要だと論じる）ことや、ストーリーにレトコン（設定の変更）が見られることなどが挙げられました。</p></li><li><p name="c252fae5-2080-4095-8493-5f595c33b8ea" id="c252fae5-2080-4095-8493-5f595c33b8ea">その他の批判: <br>敵が「弾丸スポンジ」のように感じる、レベルアップのペースが遅い、カバーシステム（遮蔽物から体を乗り出して撃つ）がないことなどが指摘されました。</p></li></ul><hr name="75fcb0ac-af66-472e-b2a6-51fe3482be50" id="75fcb0ac-af66-472e-b2a6-51fe3482be50"><h2 name="3f4ffb25-1d17-42f4-a3b0-3fde479b3c5b" id="3f4ffb25-1d17-42f4-a3b0-3fde479b3c5b">制作裏話</h2><ul name="6f77fd23-d839-47bf-ab96-3623c09e0fbd" id="6f77fd23-d839-47bf-ab96-3623c09e0fbd"><li><p name="8c719009-a2e9-4f07-ac28-384e6f675134" id="8c719009-a2e9-4f07-ac28-384e6f675134">イースターエッグ: <br>ゲーム内時計が10月31日または12月25日の場合、ダイヤモンドシティにお祭り気分を盛り上げる装飾が施されます。</p></li><li><p name="f4a3af62-f95c-442a-bb5d-399231faa1a8" id="f4a3af62-f95c-442a-bb5d-399231faa1a8">カットされた要素: <br>『ワンダと巨像』に触発された、光の海にいるはずだった巨大な300フィートの光る<a href="ghoul.html" class="auto-link">グール</a>「May-Pole」は、技術的な問題でカットされました。</p></li><li><p name="f8f9f4a8-f1aa-4565-8336-88646518e156" id="f8f9f4a8-f1aa-4565-8336-88646518e156">タコ: <br>Todd Howardは、知覚のあるタコがいる『BioShock』スタイルのVaultがあったはずだと述べており、これが「20 Leagues Under the Sea」クエストの舞台となる予定でした。</p></li><li><p name="e37e0f33-d198-44ff-8a72-94d98e4711d6" id="e37e0f33-d198-44ff-8a72-94d98e4711d6">Fallout Shelter Online: <br>外部スタジオ（Shengqu Games）によって開発されたアジア限定の『Fallout Shelter』の続編は、主にコモンウェルスを舞台としており、『Fallout 4』の前日譚として機能しますが、本編の連続性における位置づけは確立されていません。</p></li></ul><hr name="9134543e-4860-432b-9db2-a3755e299e15" id="9134543e-4860-432b-9db2-a3755e299e15"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_20.png" alt="" width="620" height="349"><div class="note-figcaption">ガレージ今日に限っては、私の感想いりますかね?<br>気づいたらストーリーの最後まで書いちゃってたんですけど皆が見れるようにカットしました!<br>AnniversaryEditionも出たことですし、自分の目でストーリーは確認してみて下さい。<br>きっと気に入ってもらえるはずです。<br>AnniversaryEditionはいつものベセスダよろしくバグってますが..少ししたら落ち着くと思います。<br><br><div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_21.png" alt="" width="620" height="331"><div class="note-figcaption">核爆発<div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_22.png" alt="" width="620" height="434"><div class="note-figcaption">ガレージ<div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_23.png" alt="" width="620" height="206"><div class="note-figcaption">Red Rocket<div class="note-figure"><img src="images/note_extracted/nfa9f46bafa92_img_24.png" alt="" width="620" height="424"><div class="note-figcaption">ベルチバード
+</div>
+
+<p name="bf5a271a-74ba-4b6d-b8aa-d28ac5bb8de9" id="bf5a271a-74ba-4b6d-b8aa-d28ac5bb8de9">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div></div></div></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

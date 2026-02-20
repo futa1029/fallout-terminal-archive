@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ダッチェス | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ダッチェス</h3>
+            <img src="images/note_extracted/n525d3cc2b61a_img_1.png" alt="ダッチェス">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n525d3cc2b61a" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ダッチェス</h1>
+            <div class="date">DATE: 2025/11/27</div>
+            
+            <h3 name="327ef3b7-b327-42ea-813a-2125f2ca4579" id="327ef3b7-b327-42ea-813a-2125f2ca4579">戦前と犯罪歴</h3><ul name="1b8bd791-bd1a-42f2-9ca9-f3d3d9e54d13" id="1b8bd791-bd1a-42f2-9ca9-f3d3d9e54d13"><li><p name="703acfbe-facb-4e3a-9f07-c7e77bc71dcf" id="703acfbe-facb-4e3a-9f07-c7e77bc71dcf">職業: <br>核戦争前、ダッチェスはER（救急救命室）の看護師として3年間働いていました。</p></li><li><p name="58f81dc5-fef7-444f-b007-eced6b5a1cfc" id="58f81dc5-fef7-444f-b007-eced6b5a1cfc">裏稼業: <br>その後、その職業を辞め、ウェルチを拠点とするドラッグの元締めとして、<a href="buffout.html" class="auto-link">バファウト</a>などの薬物を扱っていました。<br>この間、彼女にはブッチという用心棒とRoberta Declandという顧客がいました。<br>彼女の活動は大規模で成功していたため、アルコール・麻薬・<a href="tobacco.html" class="auto-link">タバコ</a>・銃器・レーザー取締局などの政府機関の注目を集めていました。</p></li><li><p name="f10d8e3a-5e6a-4f74-b5d7-99c2fdb08a1e" id="f10d8e3a-5e6a-4f74-b5d7-99c2fdb08a1e">不正行為: <br>彼女は、ジェラルド・ホワイトヘッドという汚職警官と協力していましたが、彼は後に彼女の行為について考え直すようになり、彼女に捜査を受けていることを伝えました。<br>ダッチェスは、賄賂や脅迫によって捜査官を回避することに成功しました。</p></li><li><p name="b6c9a8ca-67b4-4fe3-915a-9ea9e250e62e" id="b6c9a8ca-67b4-4fe3-915a-9ea9e250e62e">オートメーション暴動: <br>彼女は、肉体労働者の鉱夫たちのために武器を調達することで、オートメーション暴動にも関与していました。</p></li></ul><hr name="173ba9c7-8d54-4123-981d-7c20467d28fe" id="173ba9c7-8d54-4123-981d-7c20467d28fe"><h3 name="0e03b189-61b9-44f8-8ff5-ed447eaeca3e" id="0e03b189-61b9-44f8-8ff5-ed447eaeca3e">戦後の帰還と事業</h3><div class="note-figure"><img src="images/note_extracted/n525d3cc2b61a_img_2.png" alt="" width="620" height="427"><div class="note-figcaption"></div></div><ul name="30b0fe02-a78c-4395-9567-f3c09f545db4" id="30b0fe02-a78c-4395-9567-f3c09f545db4"><li><p name="c191a034-e64c-4221-bcca-1c2335ba6da1" id="c191a034-e64c-4221-bcca-1c2335ba6da1">生還: <br>ダッチェスはなんとか核戦争を生き延び、蓄積した富と物資のおかげで、ほとんどの人よりも終末的な状況を乗り切ることができました。</p></li><li><p name="9a95f90e-574f-448f-a252-8d9974e9d5fd" id="9a95f90e-574f-448f-a252-8d9974e9d5fd">心機一転: <br>彼女はアパラチアを離れていましたが、スコーチ病やモンスターの話を聞いて帰還をためらっていました。<br>しかし、秘宝を探しに人々が戻ってきたと聞き、その話は人々を追い払うための作り話だろうと考え、帰還を決意しました。<br>彼女は古い生活を捨て去りたいと考えており、ウェルチにいたダッチェスは核爆弾投下時に消滅したと感じていました。</p></li><li><p name="9ce9a8d1-34d5-4a8b-8e9b-44285100b27d" id="9ce9a8d1-34d5-4a8b-8e9b-44285100b27d">Waywardの設立: <br>2103年、ダッチェスはthe Waywardのオーナーとなります。<br>これは監督官のキャンプの近くに最近建設された酒場と宿屋です。<br>彼女はウェイワードの運営のために財産のほとんどを取引し、この施設を自身のレガシーと考えています。</p></li><li><p name="26a4d91c-eb7b-4430-bd6a-d78aa75becd2" id="26a4d91c-eb7b-4430-bd6a-d78aa75becd2">ロボット: <br>彼女は2体のロボット、<a href="polly.html" class="auto-link">ポリー</a>とベッシーを所有しています。</p></li></ul><hr name="6f4e5456-160d-4184-a686-0fbfa8030abb" id="6f4e5456-160d-4184-a686-0fbfa8030abb"><h3 name="054fdbff-be10-4241-8bca-ac8feedb3481" id="054fdbff-be10-4241-8bca-ac8feedb3481"><a href="crane.html" class="auto-link">クレーン</a>との関係</h3><ul name="3687cd8e-6f54-46ce-9f01-9858c1217771" id="3687cd8e-6f54-46ce-9f01-9858c1217771"><li><p name="785592d3-a74b-40de-95db-2fdc2a7083ed" id="785592d3-a74b-40de-95db-2fdc2a7083ed">遭遇: <br>最近、ダッチェスはフリー・ラディカルズというレイダーに<a href="crane.html" class="auto-link">クレーン</a>というトレジャーハンターについて問いただされるという問題に直面していました。</p></li><li><p name="a909302a-7808-419d-9b0e-fff6e53eeb0f" id="a909302a-7808-419d-9b0e-fff6e53eeb0f">秘密: <br>ダッチェスが<a href="crane.html" class="auto-link">クレーン</a>をウェイワードの正面ポーチで見つけたとき、彼は<a href="scorch.html" class="auto-link">スコーチ</a>へと<a href="mutation.html" class="auto-link">変異</a>している途中でした。<br><a href="crane.html" class="auto-link">クレーン</a>の要望により、ダッチェスは彼を拘束し、ウェイワードの2階の物置に閉じ込めました。<br><a href="crane.html" class="auto-link">クレーン</a>がモンスターになった後も、ダッチェスは彼に慈悲の殺しをすることができませんでした。</p></li><li><p name="c2375f27-b95d-4eb7-8b9f-597aaedc3d9d" id="c2375f27-b95d-4eb7-8b9f-597aaedc3d9d">秘宝: <br><a href="crane.html" class="auto-link">クレーン</a>が持っていた地図とRobCoの実験用キーカードにより、Vault居住者は秘宝にアクセスできるようになります。</p></li></ul><hr name="97025227-a6d7-481b-8573-01e70f54a6c4" id="97025227-a6d7-481b-8573-01e70f54a6c4"><h2 name="fefc89d8-e7d7-4875-ab05-a53d96b05c24" id="fefc89d8-e7d7-4875-ab05-a53d96b05c24">プレイヤーとの交流</h2><ul name="a7db562b-16fa-45d1-a8b8-3db47192f5e6" id="a7db562b-16fa-45d1-a8b8-3db47192f5e6"><li><p name="e4ba6676-199f-4dc7-bfed-b0087e230c48" id="e4ba6676-199f-4dc7-bfed-b0087e230c48">グールプレイヤーは、このキャラクターと交流するために変装を着用する必要があります。</p></li><li><p name="4cd16f7f-2a27-478e-867a-b1fcaf98fbee" id="4cd16f7f-2a27-478e-867a-b1fcaf98fbee">ベンダー: <br>弾薬、医薬品、アルコールなど、酒場のさまざまな商品を販売しています。<br>彼女自身の酒のブランドであるダッチェスのドラム酒も含まれます。</p></li></ul><hr name="f934413e-5ab5-459d-b47f-3d7a2771b47a" id="f934413e-5ab5-459d-b47f-3d7a2771b47a"><h3 name="bfcdd8ee-8fd3-46b7-ba21-fd2bdbc8da64" id="bfcdd8ee-8fd3-46b7-ba21-fd2bdbc8da64">その他の交流</h3><div class="note-figure"><img src="images/note_extracted/n525d3cc2b61a_img_3.png" alt="" width="620" height="447"><div class="note-figcaption"></div></div><ul name="8b02c392-6089-41af-9898-74967226d850" id="8b02c392-6089-41af-9898-74967226d850"><li><p name="c44338ce-3fba-4692-9c95-3406d0402fb6" id="c44338ce-3fba-4692-9c95-3406d0402fb6">初遭遇: <br>ダッチェスは、バッターに銃を突きつけられ、<a href="crane.html" class="auto-link">クレーン</a>についての情報を要求されている状態で最初に見つかります。<br>モートがバッターを待ち伏せして殺害し、ダッチェスの命を救います。</p></li><li><p name="cbf010ee-49cd-44ac-aba0-5904cbf79173" id="cbf010ee-49cd-44ac-aba0-5904cbf79173">過去の清算: <br>クエスト「Find Duchess's Stash」から得たメモで、プレイヤーがウェルチの元ドラッグの元締めと同一人物かどうか尋ねると、ダッチェスは今は別人になったと説明し、過去に引き起こした苦しみを深く後悔していると述べます。</p></li><li><p name="7a5a3e7e-4150-4a00-9466-be53b7bb0667" id="7a5a3e7e-4150-4a00-9466-be53b7bb0667">報酬: <br>The Elusive Craneを完了した後、彼女はVault居住者に彼女の在庫の約25%割引を提供します。</p></li><li><p name="3e8f0c85-1a26-41d5-8fa1-de39180073d4" id="3e8f0c85-1a26-41d5-8fa1-de39180073d4">5周年記念: <br>ダッチェスは『Fallout 76』の5周年記念ストリーム中に一時的に登場し、ティソを遮って話しました。<br>その際、<br>「ええと、ええと、ここにいるのね。寄りかかられるのは好まないわ。何かのパーティーらしいわね？立ち寄って『ハッピー何とか』と言うといって言われたの。それがあなたの目的かしら？だから言うわ。ハッピーアニバーサリー。『Fallout 76』5周年おめでとう」<br>と述べています。</p></li></ul><hr name="f9a9cf6b-eb27-4f96-ab46-bf5b6fa1f4ec" id="f9a9cf6b-eb27-4f96-ab46-bf5b6fa1f4ec"><div class="quote-box">
+<b>感想</b><br><br>
+5周年の時にメッセージ出してたんですねー。<br>そういうの7周年はないのかな。<br><br>ダッチェスはいいキャラしてるんですが、お使いにたらい回しされたせいでイメージとしてはあまり良くないですね。<br><br>後過去やんちゃしてたというには、周りをシャブ漬けにしてるので結構取り返しのつかないことをしてるのでイメージは払拭されないですねぇ。<br>後グール差別反対!!
+</div>
+
+<p name="d0dba31d-3698-401e-9095-7cad11da5a8e" id="d0dba31d-3698-401e-9095-7cad11da5a8e">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

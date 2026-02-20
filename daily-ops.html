@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>デイリー・オプス | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">デイリー・オプス</h3>
+            <img src="images/note_extracted/n6f3a53ea8d2a_img_1.png" alt="デイリー・オプス">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n6f3a53ea8d2a" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>デイリー・オプス</h1>
+            <div class="date">DATE: 2025/12/31</div>
+            
+            <p name="6f44b50a-5b8b-4400-8f29-90e117e0ed78" id="6f44b50a-5b8b-4400-8f29-90e117e0ed78">デイリー・オプスは、Fallout 76に「One Wasteland For All」アップデートで導入された、繰り返しプレイ可能なインスタンス化されたダンジョン遭遇戦です。<br>プレイヤーはソロ、または最大4人のチームで、ランダムに生成される敵、ロケーション、<a href="mutation.html" class="auto-link">変異</a>の組み合わせに挑みます。</p><hr name="8bc1321d-3bae-4fc0-a6b7-8a9d5b6a32c2" id="8bc1321d-3bae-4fc0-a6b7-8a9d5b6a32c2"><h2 name="55318e2d-74c5-4cac-8a15-5f7d0015498d" id="55318e2d-74c5-4cac-8a15-5f7d0015498d">参加方法</h2><ul name="b1f0c40c-f80f-4906-998a-1441a67d6f74" id="b1f0c40c-f80f-4906-998a-1441a67d6f74"><li><p name="dc77fa79-bb0a-443a-bcb1-f006ab94428e" id="dc77fa79-bb0a-443a-bcb1-f006ab94428e"><strong>開始:</strong> <br><a href="pip-boy.html" class="auto-link">Pip-Boy</a>の「マップ」画面にある「ワールド・アクティビティ」トラッカーから直接開始できます。</p></li><li><p name="e29cfea9-96a2-4e15-9132-de66dad0f08b" id="e29cfea9-96a2-4e15-9132-de66dad0f08b"><strong>レベル:</strong> <br>レベル1から参加可能ですが、レベル1～49のプレイヤーには難易度が調整（スケーリング）され、レベル50以上のプレイヤーには標準の難易度が適用されます。</p></li><li><p name="8800c6fb-aec0-47f0-b80e-4fd5c6c9d112" id="8800c6fb-aec0-47f0-b80e-4fd5c6c9d112"><strong>チーム:</strong> <br>最大4人までのプレイヤーが参加できます。<br>デイリー・オプス専用のパブリックチームを作成することで、チームメイトとの連携や獲得経験値ボーナスを得ることができます。</p></li></ul><hr name="1fe0d6ec-40c1-4393-9a54-092be5988ef8" id="1fe0d6ec-40c1-4393-9a54-092be5988ef8"><h2 name="ddaf3ee9-7094-4fb3-bf02-12daac4fefd5" id="ddaf3ee9-7094-4fb3-bf02-12daac4fefd5">ミッション・タイプ</h2><p name="e3ee1fae-d8a5-47c9-8a1b-e82e1cbce7e7" id="e3ee1fae-d8a5-47c9-8a1b-e82e1cbce7e7">デイリー・オプスには現在、2つの主要なミッション形式があります。</p><h3 name="2eba0d20-f3e7-4e02-858c-056a64124eec" id="2eba0d20-f3e7-4e02-858c-056a64124eec">1. アップリンク</h3><p name="a003c8d6-5e52-42f4-a74a-184fb57c1ad6" id="a003c8d6-5e52-42f4-a74a-184fb57c1ad6">このミッションでは、信号反復機を修理し、2つのアップリンク地点を確保して信号を強化する必要があります。</p><ul name="1f2feaaf-ad03-4430-81dd-18c559091424" id="1f2feaaf-ad03-4430-81dd-18c559091424"><li><p name="90d75021-facb-4b41-93ff-6c96127bff6c" id="90d75021-facb-4b41-93ff-6c96127bff6c"><strong>ステップ 1:</strong> 信号反復機を修理する。</p></li><li><p name="7d422652-a458-4730-93d8-23cc8f921aad" id="7d422652-a458-4730-93d8-23cc8f921aad"><strong>ステップ 2:</strong> 指定された地点（アルファまたはブラボー）の近くに留まり、信号をブーストする。<br>範囲内にいるプレイヤーの数が多いほど、ゲージの進行が早くなります。</p></li><li><p name="3df1f2c8-812f-4b3d-93fa-2a348121cecc" id="3df1f2c8-812f-4b3d-93fa-2a348121cecc"><strong>ステップ 3:</strong> 2箇所のアップリンクを完了後、指定された地点に移動して残りの敵を排除する。</p></li><li><p name="94969a6d-536b-492f-9701-3fdce443f11e" id="94969a6d-536b-492f-9701-3fdce443f11e"><strong>ステップ 4:</strong> 出現したボス（グループリーダー）を撃破し、最後に送信端末を操作して完了。</p></li><li><p name="909d5691-ad78-46f1-822e-123132321578" id="909d5691-ad78-46f1-822e-123132321578"><strong>デフォルト変異:</strong> <strong>鋭い視線</strong>。敵の知覚が非常に高く、ステルスは不可能です。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n6f3a53ea8d2a_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><h3 name="9d876342-2a88-4a3d-b43c-805bb8593618" id="9d876342-2a88-4a3d-b43c-805bb8593618">2. 解読</h3><p name="bc83c55f-441d-4f7d-956a-4de6e15d306b" id="bc83c55f-441d-4f7d-956a-4de6e15d306b">このミッションでは、敵の「コードキャリア」を狩り、無線受信機を停止させる必要があります。</p><ul name="45489c9c-0c8e-4d1a-97ad-e51d6718e669" id="45489c9c-0c8e-4d1a-97ad-e51d6718e669"><li><p name="a230a60d-d52d-43d2-9748-7adce3218741" id="a230a60d-d52d-43d2-9748-7adce3218741"><strong>ステップ 1:</strong> コードキャリアを3体倒し、コードを入手する。</p></li><li><p name="59f2272c-0389-4309-840a-d729fc681c88" id="59f2272c-0389-4309-840a-d729fc681c88"><strong>ステップ 2:</strong> 無線受信機を停止させる。</p></li><li><p name="f2efdb9d-31df-4042-8f9c-61deaad674e7" id="f2efdb9d-31df-4042-8f9c-61deaad674e7"><strong>ステップ 3:</strong> これを合計3回繰り返す（計9体のキャリアと3つの受信機）。</p></li><li><p name="afd13225-ca5c-4938-9319-7ec56e96093c" id="afd13225-ca5c-4938-9319-7ec56e96093c"><strong>ステップ 4:</strong> 出現したボス（グループリーダー）を撃破し、最後の受信機を停止させて完了。</p></li><li><p name="50c4b274-59be-455d-812c-8a23c1b9b9de" id="50c4b274-59be-455d-812c-8a23c1b9b9de"><strong>デフォルト変異:</strong> <strong>獰猛な打撃</strong>。敵の攻撃がプレイヤーの耐性を完全に無視します。</p></li></ul><hr name="9f735339-197c-4db2-94d1-4f28789ce9c7" id="9f735339-197c-4db2-94d1-4f28789ce9c7"><h2 name="1c62c52e-e35d-4528-97a8-423306e39735" id="1c62c52e-e35d-4528-97a8-423306e39735">完了と報酬</h2><div class="note-figure"><img src="images/note_extracted/n6f3a53ea8d2a_img_3.png" alt="" width="620" height="388"><div class="note-figcaption"></div></div><p name="b1a55e17-6d99-4f03-92d5-ad33f0934ae8" id="b1a55e17-6d99-4f03-92d5-ad33f0934ae8">デイリー・オプスは何度でもプレイ可能ですが、「レア報酬」の獲得チャンスは各ランクで1日1回（日本時間午前2時リセット）に制限されています。完了時間に基づいて3つのランクに分けられます。</p><ul name="b7b6978a-c421-4f7b-bb40-1d346e73c4a5" id="b7b6978a-c421-4f7b-bb40-1d346e73c4a5"><li><p name="11f01db5-21ab-4c91-898e-7782cd641f88" id="11f01db5-21ab-4c91-898e-7782cd641f88"><strong>イニシエイト・ランク (Initiate Tier):</strong> 16分以内に完了。</p><ul name="68848162-b79e-40b0-bfc1-a5696c295746" id="68848162-b79e-40b0-bfc1-a5696c295746"><li><p name="4f266199-989b-4601-993d-96433df0cb4d" id="4f266199-989b-4601-993d-96433df0cb4d">報酬チャンス: 5%</p></li></ul></li><li><p name="e454e833-66b3-434e-8dbb-fa04c7e68926" id="e454e833-66b3-434e-8dbb-fa04c7e68926"><strong>パラディン・ランク (Paladin Tier):</strong> 12分以内に完了。</p><ul name="b4bdbb2b-71d6-44bc-ac21-259ce2ee869d" id="b4bdbb2b-71d6-44bc-ac21-259ce2ee869d"><li><p name="d7a3f046-bb98-47e8-9718-2367ecfd0e4e" id="d7a3f046-bb98-47e8-9718-2367ecfd0e4e">報酬チャンス: 10%</p></li></ul></li><li><p name="402816b7-435f-45eb-9aed-a4c67a57b282" id="402816b7-435f-45eb-9aed-a4c67a57b282"><strong>エルダー・ランク (Elder Tier):</strong> 8分以内に完了。</p><ul name="1a449d63-8ba0-4d06-9692-07a9226bae95" id="1a449d63-8ba0-4d06-9692-07a9226bae95"><li><p name="c47039d2-e5d8-4a25-9682-3520f1d53e11" id="c47039d2-e5d8-4a25-9682-3520f1d53e11">報酬チャンス: 80%</p></li></ul></li></ul><p name="6c1e299f-5a18-4e63-9deb-73f4d702d333" id="6c1e299f-5a18-4e63-9deb-73f4d702d333">※エルダー・ランクを達成すると、それ以下のランクの報酬チャンスも同時に判定されます。エルダー達成後のレア報酬獲得率は実質100%ではありませんが、非常に高い確率になります。</p><p name="9a593600-fc4e-4064-85b8-78eebbed7fa9" id="9a593600-fc4e-4064-85b8-78eebbed7fa9"><strong>基本報酬（毎回獲得可能）:</strong></p><ul name="eb88a4f7-6fa4-4477-b06c-eed984411131" id="eb88a4f7-6fa4-4477-b06c-eed984411131"><li><p name="5fbadb27-7c25-4db4-b03a-100d3b0dbde9" id="5fbadb27-7c25-4db4-b03a-100d3b0dbde9"><strong>弾薬:</strong> 使用中の武器に応じた弾薬（コンテクスチュアル・アモ）。</p></li><li><p name="4818442b-3eef-4e56-bb45-90a4c4722dc2" id="4818442b-3eef-4e56-bb45-90a4c4722dc2"><strong>通貨:</strong> キャップ、証書（レジェンダリー証書）、債券。</p></li><li><p name="1a19db84-aabb-4a69-b900-32673d3bc533" id="1a19db84-aabb-4a69-b900-32673d3bc533"><strong>消耗品:</strong> <a href="stim-pack.html" class="auto-link">スティムパック</a>、RADアウェイ、薬品など。</p></li><li><p name="bccbdf95-dbbb-4aef-8e66-dd53778e9097" id="bccbdf95-dbbb-4aef-8e66-dd53778e9097"><strong>経験値およびレジェンダリー装備:</strong> 完了時に獲得。</p></li></ul><p name="fa5b1ef4-d6bc-4a02-89b0-50583015b76b" id="fa5b1ef4-d6bc-4a02-89b0-50583015b76b">報酬設計図はぬかキャンさんをご覧下さい。<br><a href="https://vault76.info/archives/30461997.html" target="_blank" rel="nofollow noopener">https://vault76.info/archives/30461997.html</a></p><hr name="a3b5e093-ebd0-4a59-98f4-527f528073fa" id="a3b5e093-ebd0-4a59-98f4-527f528073fa"><h2 name="ee255e24-483c-4ac2-9896-ea898a4fc50e" id="ee255e24-483c-4ac2-9896-ea898a4fc50e">ダブル変異</h2><p name="6f96cf73-b945-4a88-8827-5bede59799bf" id="6f96cf73-b945-4a88-8827-5bede59799bf">数週間ごとに開催される週末イベントでは「ダブル変異」が発生します。</p><ul name="244b4458-b150-4ef3-8509-907e5870baf7" id="244b4458-b150-4ef3-8509-907e5870baf7"><li><p name="0e00b995-ff93-4000-bc29-ac0a26fec819" id="0e00b995-ff93-4000-bc29-ac0a26fec819"><strong>内容:</strong> <br>敵が2つの異なる<a href="mutation.html" class="auto-link">変異</a>を同時に持ちます。</p></li><li><p name="a4381a88-bebb-4cd5-9feb-658e83688c40" id="a4381a88-bebb-4cd5-9feb-658e83688c40"><strong>報酬:</strong> <br>通貨（キャップ、証書、債券）が2倍、経験値が2倍になり、レア報酬の判定ロールも2回行われます。</p></li></ul><hr name="1c8b2a4a-ecec-4962-b28f-1f979eb4f55a" id="1c8b2a4a-ecec-4962-b28f-1f979eb4f55a"><h2 name="c3622695-34a3-4f9b-b7ab-9f2c90edd5ef" id="c3622695-34a3-4f9b-b7ab-9f2c90edd5ef"><a href="mutation.html" class="auto-link">変異</a></h2><p name="c513176f-f2d1-4429-ada7-fdda553f621c" id="c513176f-f2d1-4429-ada7-fdda553f621c">敵にはミッションの種類に応じた「デフォルト変異」と、ランダムに選ばれる「固有変異」が付与されます。</p><p name="2c59351f-fda6-4874-a6a4-fd0326aaee8c" id="2c59351f-fda6-4874-a6a4-fd0326aaee8c"><strong>デフォルト変異:</strong></p><ul name="ec8f678a-6ccc-444c-823a-0ca334db4103" id="ec8f678a-6ccc-444c-823a-0ca334db4103"><li><p name="35909a10-20ce-4ee1-b894-1e02e67b44f7" id="35909a10-20ce-4ee1-b894-1e02e67b44f7"><strong>鋭い視線 :</strong> 「アップリンク」ミッションで適用。敵の感知能力が大幅に強化され、ステルスがほぼ不可能になります。</p></li><li><p name="8153c4d5-ffb3-4871-83a6-c5ddb85122bd" id="8153c4d5-ffb3-4871-83a6-c5ddb85122bd"><strong>獰猛な打撃 :</strong> 「解読」ミッションで適用。敵の攻撃がプレイヤーの防御耐性を無視します。</p></li></ul><p name="cd05f0c7-d63c-4e37-9197-583eb2972bdf" id="cd05f0c7-d63c-4e37-9197-583eb2972bdf"><strong>ランダム変異:</strong></p><ul name="cf316c81-a037-47f2-8f34-bd42edd793ef" id="cf316c81-a037-47f2-8f34-bd42edd793ef"><li><p name="b6fd5981-12d5-402b-8dc6-0c7960815079" id="b6fd5981-12d5-402b-8dc6-0c7960815079"><strong>不安定:</strong> 敵が死亡時に爆発します。</p></li><li><p name="d052f4d6-241e-4fc5-995e-bb573b4a9483" id="d052f4d6-241e-4fc5-995e-bb573b4a9483"><strong>アクティブ迷彩:</strong> 攻撃時以外、敵が透明になります。</p></li><li><p name="e4b7651e-0e6e-40c3-93a6-31f706d967c9" id="e4b7651e-0e6e-40c3-93a6-31f706d967c9"><strong>弾力性:</strong> 近接攻撃（バッシュ含む）でしかトドメを刺せません。</p></li><li><p name="c9acf3d8-dd9d-4c53-8d06-002a0b008c38" id="c9acf3d8-dd9d-4c53-8d06-002a0b008c38"><strong>凍結の波動:</strong> 敵の攻撃を受けると移動速度と攻撃速度が低下します。</p></li><li><p name="649f9ea1-308f-4b3b-81de-9b20f98d51cb" id="649f9ea1-308f-4b3b-81de-9b20f98d51cb"><strong>毒の血:</strong> 敵が死亡時に毒の雲を残します。</p></li><li><p name="a3984150-78dd-4ec9-ac20-595f61aa0ce1" id="a3984150-78dd-4ec9-ac20-595f61aa0ce1"><strong>俊足:</strong> 敵の移動速度が大幅に上昇します。</p></li><li><p name="1eea481c-a2ed-48da-aeb0-d0106e23036f" id="1eea481c-a2ed-48da-aeb0-d0106e23036f"><strong>グループ再生:</strong> 敵が互いに近くにいると体力が回復します。</p></li><li><p name="3d17dd04-92f6-43fb-b39b-c1c6812a96a9" id="3d17dd04-92f6-43fb-b39b-c1c6812a96a9"><strong><a href="reflection.html" class="auto-link">反射</a>:</strong> 敵が定期的にダメージを<a href="reflection.html" class="auto-link">反射</a>する状態になります。</p></li><li><p name="41317d72-f4a2-412c-915b-822435f302b7" id="41317d72-f4a2-412c-915b-822435f302b7"><strong>危険な雲:</strong> 敵が周囲にダメージを与える毒ガスを放出します。</p></li><li><p name="2612e05a-b0dd-4e2c-9735-fc2f101cfd1f" id="2612e05a-b0dd-4e2c-9735-fc2f101cfd1f"><strong>エリート</strong>: なんか前のupdateでひっそり追加されてた。強くなるらしい</p></li></ul><hr name="d139f894-d5d2-459f-a10a-c4c7b84a006a" id="d139f894-d5d2-459f-a10a-c4c7b84a006a"><h2 name="2c2a5523-2b63-427a-b9e9-58cf60af343c" id="2c2a5523-2b63-427a-b9e9-58cf60af343c">ロケーション</h2><ul name="4156facb-33e3-4e38-826a-15398e505f94" id="4156facb-33e3-4e38-826a-15398e505f94"><li><p name="1282c7eb-41af-48f7-81fe-1088228924fd" id="1282c7eb-41af-48f7-81fe-1088228924fd"><strong>アークトス・ファーマ生体実験ラボ:</strong> <br>森林地帯の<a href="arktos-pharma.html" class="auto-link">アークトス・ファーマ</a>の地下に位置するこの施設は、3つの異なるバイオーム（生物群系）で構成されており、非常に複雑で入り組んだ多層構造が特徴です。</p></li><li><p name="6d4c0b3c-69d5-428b-a382-c0132e6dfa9d" id="6d4c0b3c-69d5-428b-a382-c0132e6dfa9d"><strong>バローズ:</strong> <br>湿地帯のハーパーズ・フェリーの地下に広がる、広大で迷路のような下水道システムです。<br>暗い通路が続き、視界が制限される場所が多くあります。</p></li><li><p name="c2f2fc42-72c1-4b26-bd78-13b4c7a44c62" id="c2f2fc42-72c1-4b26-bd78-13b4c7a44c62"><strong>燃える鉱山:</strong> <br>灰の山にある、地下深くへと続く炭鉱施設です。<br>内部には溶岩のような熱源があり、オレンジ色の光と煙によって視界が悪くなっています。</p></li><li><p name="42bc8aa1-613d-4114-b524-ef1a3714ce94" id="42bc8aa1-613d-4114-b524-ef1a3714ce94"><strong>チャールストン議事堂:</strong> <br>森林地帯のチャールストンにある大規模な行政施設です。<br>多くの小部屋、回廊、そして崩落したエリアが入り混じった複雑なレイアウトになっています。</p></li><li><p name="ec2ccbc4-84c0-41c5-8cee-e5a3dfbe72da" id="ec2ccbc4-84c0-41c5-8cee-e5a3dfbe72da"><strong>グラスド・キャバーン:</strong> <br>クランベリー湿原の南東端にある、ウルトラサイトの結晶に覆われた巨大な洞窟です。<br>かつて<a href="scorch.html" class="auto-link">スコーチ</a>の巣窟となっていた場所で、非常に長く、結晶によって視界が遮られる入り組んだトンネルが続いています。</p></li><li><p name="a1b60573-e59b-43e5-ae79-79cab2dedda8" id="a1b60573-e59b-43e5-ae79-79cab2dedda8"><strong>モーガンタウン高校:</strong> <br>森林地帯のモーガンタウンにある2階建ての校舎です。<br>教室、ジム、カフェテリア、そして長い廊下があり、屋内での激しい戦闘が繰り広げられます。</p></li><li><p name="d10ee9f1-de44-4596-b273-23e9521e4e88" id="d10ee9f1-de44-4596-b273-23e9521e4e88"><strong>アンキャニー洞窟:</strong> <br>サベージ・レイド（荒野）にある観光用の洞窟です。<br>通路は比較的狭く、敵との距離が近くなりやすい場所です。</p></li><li><p name="74dfb987-edc4-4510-8b54-dda92be03d91" id="74dfb987-edc4-4510-8b54-dda92be03d91"><strong>バレー・ガレリア:</strong> <br>湿地帯にある大規模なショッピングモールです。<br>多数の店舗が並ぶ広場、2階の通路、そして従業員用のバックヤードで構成される広大なエリアです。</p></li><li><p name="41a2621c-65d0-4a1d-af40-73db836fff75" id="41a2621c-65d0-4a1d-af40-73db836fff75"><strong>Vault 94:</strong> <br>荒野（サベージ・レイド）に位置するVault施設です。<br>以前はレイドコンテンツ用として設計されており、非常に広大で機能的な区画に分かれています。</p></li><li><p name="31f83701-0682-44a6-9cd7-c068008e721e" id="31f83701-0682-44a6-9cd7-c068008e721e"><strong>Vault 96:</strong> <br>荒野に位置する、氷と雪に覆われた実験施設です。<br>内部は極低温の環境を模しており、凍結した実験室や特殊な区画が連続しています。</p></li><li><p name="db8780c6-414d-4deb-b869-c415f5d51410" id="db8780c6-414d-4deb-b869-c415f5d51410"><strong>ワトガ・アリーナ:</strong> <br>ワトガの東にある、レイダーたちが闘技場として利用している場所です。<br>中央の広場と、それを取り囲む観客席や通路が含まれます。</p></li><li><p name="fba74bf9-d6e9-4f54-ae0e-f4a38ce3f46b" id="fba74bf9-d6e9-4f54-ae0e-f4a38ce3f46b"><strong>ワトガ・シビックセンター:</strong> <br>ワトガ市内にある巨大なスポーツ・娯楽施設です。<br>広大なアリーナフロア、観客席、そして裏方の通路やオフィスエリアが含まれます。</p></li><li><p name="2a0e14ac-df82-4cd5-a7bd-49ee315a7e55" id="2a0e14ac-df82-4cd5-a7bd-49ee315a7e55"><strong>ワトガ高校:</strong> <br>ワトガにある自動化された高校です。<br>入り組んだ教室、複数の階層、そして広いカフェテリアエリアで構成されています。</p></li><li><p name="6475a983-a750-474a-b6f7-df8f628d487a" id="6475a983-a750-474a-b6f7-df8f628d487a"><strong>ウエストテック研究センター:</strong> <br>荒野にある、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>が拠点としている巨大な研究施設です。<br>多数のバイオタンク、研究所、そして複雑な通路が存在します。</p></li></ul><hr name="ba11eb7c-1ea6-42e3-b17f-22ba17df3f66" id="ba11eb7c-1ea6-42e3-b17f-22ba17df3f66"><h2 name="e1cb9515-1bfd-44a3-ae8a-f201ae9a000d" id="e1cb9515-1bfd-44a3-ae8a-f201ae9a000d">敵勢力</h2><div class="note-figure"><img src="images/note_extracted/n6f3a53ea8d2a_img_4.png" alt="" width="500" height="581"><div class="note-figcaption"></div></div><ul name="3abf7d9c-654f-4cd8-a2c9-6481061d8c56" id="3abf7d9c-654f-4cd8-a2c9-6481061d8c56"><li><p name="68aff613-bc7e-4862-9bb7-00c168f80da1" id="68aff613-bc7e-4862-9bb7-00c168f80da1"><strong>エイリアン:</strong> <br><a href="zeta-alien.html" class="auto-link">ゼータ星人</a>。<br>エネルギー武器や強力な遠距離攻撃を多用し、しばしば期間限定イベントと連動して登場します。</p></li><li><p name="85418de1-572a-4e91-81f5-0fa7a07926eb" id="85418de1-572a-4e91-81f5-0fa7a07926eb"><strong>ブラッドイーグル:</strong> <br>暴力的な人間のレイダー集団です。<br>実弾武器、火炎放射器、近接武器など多種多様な装備を使用します。</p></li><li><p name="569a17d9-27d2-41a1-929b-9d5ae1c61975" id="569a17d9-27d2-41a1-929b-9d5ae1c61975"><strong>共産主義者:</strong> <br>中国軍の生き残りやそのロボットです。<br>ステルス技術を使用する歩兵や、エネルギー武器を装備したロボットが含まれます。</p></li><li><p name="614ed963-4cff-4dc0-af21-bfd128d626ef" id="614ed963-4cff-4dc0-af21-bfd128d626ef"><strong>モスマン教団:</strong> <br><a href="mothman.html" class="auto-link">モスマン</a>を崇拝する人間たちです。<br>儀式用の近接武器や実弾武器を使用し、時には毒や炎を利用します。</p></li><li><p name="ca8a85db-2348-4c59-80fb-85fe1c9cf039" id="ca8a85db-2348-4c59-80fb-85fe1c9cf039"><strong>モールマイナー:</strong><br><a href="mutation.html" class="auto-link">変異</a>した採掘者たちです。<br>ガトリングガン、ミサイルランチャー、近接用のガントレットなどを装備しています。</p></li><li><p name="b452dcf6-4487-4d0f-b933-6daba5291a2c" id="b452dcf6-4487-4d0f-b933-6daba5291a2c"><strong>ロボット:</strong> <br>適切に保守されていない軍用および家庭用ロボットの集団。<br><a href="assaultron.html" class="auto-link">アサルトロン</a>、<a href="sentry-bot.html" class="auto-link">セントリーボット</a>、Mr.ハンディなどが含まれます。</p></li><li><p name="65a4a252-80e3-4aff-803d-6a09fb96f06e" id="65a4a252-80e3-4aff-803d-6a09fb96f06e"><strong><a href="scorch.html" class="auto-link">スコーチ</a>:</strong><br>スコーチ病に感染した人間。<br>意思疎通は取れず、実弾武器や近接武器を用いて波のように押し寄せます。</p></li><li><p name="0168454b-f9b6-467d-9632-c550e9741411" id="0168454b-f9b6-467d-9632-c550e9741411"><strong><a href="super-mutant.html" class="auto-link">スーパーミュータント</a>:</strong> <br>FEVによって<a href="mutation.html" class="auto-link">変異</a>した強靭な人型生物。<br>高い耐久力を持ち、ヘビーウェポンや強力な打撃を放ちます。</p></li><li><p name="98427edb-d884-429b-b920-5438656c06d8" id="98427edb-d884-429b-b920-5438656c06d8"><strong>オーバーグロウン:</strong><br>アトランティック・シティを起源とする、人型の植物生物やクリーチャーです。<br>彼らはしばしば「レッサー・デビル」を伴って出現します。</p></li></ul><hr name="11bb6f43-7605-42dc-8807-333ce45f4b71" id="11bb6f43-7605-42dc-8807-333ce45f4b71"><h2 name="b8836c1d-f565-4beb-9ce3-f63991894156" id="b8836c1d-f565-4beb-9ce3-f63991894156">ノート</h2><div class="note-figure"><img src="images/note_extracted/n6f3a53ea8d2a_img_5.png" alt="" width="218" height="217"><div class="note-figcaption"></div></div><ul name="c9f531d7-5caf-45f0-9491-4fb406519695" id="c9f531d7-5caf-45f0-9491-4fb406519695"><li><p name="9d31b059-71ab-4ac9-bc5e-a3da55431721" id="9d31b059-71ab-4ac9-bc5e-a3da55431721">デイリー・オプス内では、武器やアーマーのコンディション（耐久度）が低下しません。</p></li><li><p name="5588d155-76c9-4a06-b368-d65373536191" id="5588d155-76c9-4a06-b368-d65373536191">出現する敵の死体からは、プレイヤーがその時装備している武器に対応した弾薬がドロップします。<br>これを利用した「弾薬稼ぎ」が一般的です。</p></li><li><p name="d60e04c3-ce5f-4325-b8db-b4e518ab5a65" id="d60e04c3-ce5f-4325-b8db-b4e518ab5a65">ミッション完了後の「リザルト画面」を閉じる前に、周囲の死体からアイテムを全て回収（付近の死体を調べる）することを推奨します。</p></li></ul><hr name="c66ebfc3-dc55-40a5-a9b9-501290e1ea4a" id="c66ebfc3-dc55-40a5-a9b9-501290e1ea4a"><h2 name="094f6450-1939-4a91-a27a-5a2e0a9add0d" id="094f6450-1939-4a91-a27a-5a2e0a9add0d">舞台裏</h2><ul name="c1135cef-0942-4f74-9c82-e764a039776f" id="c1135cef-0942-4f74-9c82-e764a039776f"><li><p name="2a9143e3-f09f-4003-b8a2-2c353f9d1f05" id="2a9143e3-f09f-4003-b8a2-2c353f9d1f05">デイリー・オプスは、元々「レイド」に代わるエンドコンテンツとして設計されました。<br>Vault 94レイドが廃止された後に�そのアセットの多くがデイリー・オプスに転用されました。</p></li></ul><hr name="9b52aa93-4aff-468c-b5c7-28f294c9f147" id="9b52aa93-4aff-468c-b5c7-28f294c9f147"><div class="quote-box">
+<b>感想</b><br><br>
+<b>最高のアドレナリン:</b> 8分という絶妙な制限時間の中、チームで一気に駆け抜けるスピード感は、アパラチアの他のイベントにはない刺激です。<br><br><b>「弾薬」と「ガチャ」の魅力:</b> 終わる頃には使った以上の弾薬が手に入り、さらにエルダーランクの報酬画面を開く瞬間のワクワク感……あれが中毒性の正体ですね。<br><br><b><a href="mutation.html" class="auto-link">変異</a>との知恵比べ:</b> 「<a href="reflection.html" class="auto-link">反射</a>」や「弾力性」に苦戦することもありますが、装備やビルドを工夫して対策を練る時間は、まさに「生き残り」を実感できて楽しいものです。<br><br><div class="note-figure"><img src="images/note_extracted/n6f3a53ea8d2a_img_6.png" alt="" width="155" height="209"><div class="note-figcaption">
+</div>
+
+<p name="009771fa-f396-4f6f-b0f1-b2894f11002c" id="009771fa-f396-4f6f-b0f1-b2894f11002c">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

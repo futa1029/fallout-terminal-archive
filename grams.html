@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>グラム | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">グラム</h3>
+            <img src="images/note_extracted/nf10c3a7cb29f_img_1.png" alt="グラム">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nf10c3a7cb29f" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>グラム</h1>
+            <div class="date">DATE: 2025/11/14</div>
+            
+            <p name="a9f3912b-7ef2-4dd1-a791-b3cb731239f9" id="a9f3912b-7ef2-4dd1-a791-b3cb731239f9">グラムは、フレンドリーな<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>の商人でありシェフです。<br>彼のパックバラモン（荷運び用の<a href="brahmin.html" class="auto-link">バラモン</a>）の相棒、チャリーのムームーと共にアパラチアに住んでいます。</p><hr name="cec25d30-e365-42b1-b57b-0f5b13f5a58e" id="cec25d30-e365-42b1-b57b-0f5b13f5a58e"><h2 name="15326d9c-52f0-472c-b974-c3c55d2124d1" id="15326d9c-52f0-472c-b974-c3c55d2124d1">背景</h2><h3 name="e9c26459-a68c-426e-a691-15ce5af1dd0d" id="e9c26459-a68c-426e-a691-15ce5af1dd0d">戦前の情報と行商人になった経緯</h3><ul name="afbdd655-1275-4fe5-a1c7-9a3eb8be2fb7" id="afbdd655-1275-4fe5-a1c7-9a3eb8be2fb7"><li><p name="21b04cea-131d-4c35-88cf-e64d5e700614" id="21b04cea-131d-4c35-88cf-e64d5e700614">歴史: <br>2102年以前のグラムの歴史については、彼のセリフから得られるわずかな情報以外、ほとんど知られていません。<br>彼は「Smarty（賢い奴）」と呼ぶ誰かについて言及しており、その人物の助言がグラムを商人へと導きました。</p></li><li><p name="08bbe7da-9afa-4137-844c-de56c1e6fb37" id="08bbe7da-9afa-4137-844c-de56c1e6fb37">Vault居住者との交流: <br>2102年までに、グラムはアパラチアに残る、人間に対して友好的で知性を持つ唯一の生きた人型生物の一人であった可能性があります。<br>Vault 76の居住者たちが世界に戻り、アパラチアに押し寄せた際、グラムは彼らとの取引を大いに楽しむようになりました。</p></li><li><p name="b177bc8d-b0b7-4c43-837a-f0f7d42119ab" id="b177bc8d-b0b7-4c43-837a-f0f7d42119ab">チャリーとの絆: <br>グラムは「チャリーのムームー」（「alley」と韻を踏む）と共に旅をしており、取引を<a href="brahmin.html" class="auto-link">バラモン</a>とのゲームだと考えています。<br>彼はチャリーの幸福全般に個人的な責任を負っており、旅の途中で彼女と一方的な会話を頻繁に行います。</p></li></ul><hr name="3630c69f-0f14-46c7-9fea-dfb3162d6418" id="3630c69f-0f14-46c7-9fea-dfb3162d6418"><h3 name="8a968c9c-8d55-462c-8036-26005ab06312" id="8a968c9c-8d55-462c-8036-26005ab06312">Meat Weekの起源</h3><div class="note-figure"><img src="images/note_extracted/nf10c3a7cb29f_img_2.png" alt="" width="620" height="462"><div class="note-figcaption"></div></div><ul name="f6a3659d-2fc5-448c-85a7-bf3ec3616e1c" id="f6a3659d-2fc5-448c-85a7-bf3ec3616e1c"><li><p name="c190d010-9f73-4583-9326-d680e6e050ba" id="c190d010-9f73-4583-9326-d680e6e050ba">昔の思い出: <br>昔の暖かい日、グラムは友人と時間を過ごし、肉を料理していました。<br>それ以来、彼は孤独を感じ、古き良き日々を思い出していました。<br>そのため、グラムはアパラチアでできた新しい友人のために再び肉を料理することにしました。</p></li><li><p name="d85f04c4-ac0c-40f3-a90c-eac3dc81cc84" id="d85f04c4-ac0c-40f3-a90c-eac3dc81cc84">「Meat Week」の命名: <br>グラムによると、最初のMeat Weekは晴れた日で、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>である彼を外で過ごして料理をしたい気分にさせました。<br>グラムはこれらの「肉の日」をどんどん増やすようになり、それに名前を付けたいと考えました。<br>「Meat Many Days（肉たくさんの日）」を却下した後、最終的に「Meat Week（肉週間）」に決定しました。</p></li><li><p name="27ad9bbb-aead-4954-8463-8449aeaa6d18" id="27ad9bbb-aead-4954-8463-8449aeaa6d18">イベントの開催: <br>グラムとチャリーはVault 76の近くで「Meat Week」イベントを主催し、Vault居住者を招待しました。<br>ここで、グラムは盛大なバーベキューを用意し、居住者は過去1年間に取引を通じて集めた様々な賞品と引き換えに、彼のグリルを手伝うことになります。</p></li></ul><hr name="a62c019f-bf86-418c-b9d6-5e9e475b76b2" id="a62c019f-bf86-418c-b9d6-5e9e475b76b2"><h3 name="d8b19184-d70e-43ba-8bd8-3bf9523af956" id="d8b19184-d70e-43ba-8bd8-3bf9523af956">戦後の交流</h3><ul name="6c03be81-2e0e-438e-b7d0-cb7671dd80fa" id="6c03be81-2e0e-438e-b7d0-cb7671dd80fa"><li><p name="8f851bc4-12e0-4e38-90a4-f32508aa525e" id="8f851bc4-12e0-4e38-90a4-f32508aa525e">新たな住民との関係: <br>2103年までに、グラムはアイラやソフィア・ダゲールなど、アパラチアに新しく到着した多くの人々と知り合いました。<br>彼は、新しく出現した農場や入植地に立ち寄ることを好んでおり、これは彼らがもたらす新しいビジネスチャンスによる可能性が高いです。</p></li><li><p name="162fd257-6ce1-4974-9d27-b6962a34f428" id="162fd257-6ce1-4974-9d27-b6962a34f428">知名度: <br>彼のビジネスはアパラチア中でよく知られており、主に商品を売る<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>という目新しさで知られています。<br>エメット山の処理場のスカベンジャーでさえ、この友好的なスーパーミュータント商人の話を聞いたことがあります。<br>別の<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>であるマウルもグラムを知っています。</p></li></ul><hr name="081621f5-43e6-4ab0-bace-4d477613f0b8" id="081621f5-43e6-4ab0-bace-4d477613f0b8"><h2 name="e9b30a44-a190-4494-b73a-29314c0913ce" id="e9b30a44-a190-4494-b73a-29314c0913ce">プレイヤーとの交流</h2><div class="note-figure"><img src="images/note_extracted/nf10c3a7cb29f_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="4b67c775-4d17-4417-a0f6-c64ce28f7127" id="4b67c775-4d17-4417-a0f6-c64ce28f7127">グラムは、倒されることはありません（ダウンすることはあってもすぐに回復します）。<br>プレイヤーからの攻撃には反応しませんが、ルート沿いにいる敵とは戦うため、プレイヤーは敵をグラムのところに誘導して利用することができます。</p><ul name="54fb1c76-a51b-4892-9e7d-61993b2242a4" id="54fb1c76-a51b-4892-9e7d-61993b2242a4"><li><p name="c9e1a32f-5e60-4b4a-9bf2-f58c6df50027" id="c9e1a32f-5e60-4b4a-9bf2-f58c6df50027">ベンダー: <br>キャップを受け入れ、設計図、ジャンク、弾薬、モッドなどを販売します。</p></li><li><p name="432ee870-0cfa-495f-b629-9f2432f76f20" id="432ee870-0cfa-495f-b629-9f2432f76f20">イベント: <br>Grahm's Meat-Cookイベントに関与します。</p></li><li><p name="08d191cd-3eb7-428d-b3f4-593fb47e9a96" id="08d191cd-3eb7-428d-b3f4-593fb47e9a96">ランダムエンカウント: <br>アパラチア中の旅のエンカウントで出現する可能性があります。</p></li></ul><hr name="a6599b14-4d6a-4cb9-930b-574ae4368bad" id="a6599b14-4d6a-4cb9-930b-574ae4368bad"><h2 name="6f53bebd-3fc8-4dd6-98ae-5e80bac93b8a" id="6f53bebd-3fc8-4dd6-98ae-5e80bac93b8a">商品（ユニークな設計図）</h2><p name="1ce637b2-d9bd-4504-aecd-7463c45b7352" id="1ce637b2-d9bd-4504-aecd-7463c45b7352">グラムは以下のアイテムの唯一の供給源です。</p><ul name="d52ebff9-0e69-4474-ad40-d57fe4e6407e" id="d52ebff9-0e69-4474-ad40-d57fe4e6407e"><li><p name="c23874ca-3944-4685-a3f5-fabdb42c20a2" id="c23874ca-3944-4685-a3f5-fabdb42c20a2">設計図：黒い家庭用キッチンテーブル</p></li><li><p name="576192d0-5da0-4ace-b3b5-3f91595839c7" id="576192d0-5da0-4ace-b3b5-3f91595839c7">設計図：茶色の家庭用キッチンテーブル</p></li><li><p name="73cb9907-3f12-4053-9483-5e2ab59bb84c" id="73cb9907-3f12-4053-9483-5e2ab59bb84c">設計図：きれいな公園のベンチ</p></li><li><p name="509c4f43-022c-4e2b-9e96-5e3e6cd8c690" id="509c4f43-022c-4e2b-9e96-5e3e6cd8c690">設計図：家庭用キッチンテーブル</p></li><li><p name="9e6615d9-d774-41cd-97df-3e46368f46ce" id="9e6615d9-d774-41cd-97df-3e46368f46ce">設計図：金属製ピクニックテーブル</p></li><li><p name="6c7a037f-1747-4f46-806e-5b52a461d970" id="6c7a037f-1747-4f46-806e-5b52a461d970">設計図：ミラーボール</p></li><li><p name="873659bb-3ccc-49a8-b1de-88c3db932386" id="873659bb-3ccc-49a8-b1de-88c3db932386">設計図：放射線エミッター</p></li><li><p name="2461be94-59e8-4a97-8493-62774e381f32" id="2461be94-59e8-4a97-8493-62774e381f32">設計図：スターバースト時計</p></li><li><p name="f9a8c985-848f-4ffc-9805-38a607c2f2e6" id="f9a8c985-848f-4ffc-9805-38a607c2f2e6">設計図：石のベンチ</p></li><li><p name="91d79d55-ca08-43f5-b2cb-f69114f5197d" id="91d79d55-ca08-43f5-b2cb-f69114f5197d">レシピ：チャリーの餌（Meat Week期間中のみ入手可能）</p></li><li><p name="96591383-3430-4855-8d25-2f6dcb4b4c54" id="96591383-3430-4855-8d25-2f6dcb4b4c54">(その他、色違いのミラーボール、ピクニックテーブル、スーツケースの設計図など多数。)</p></li></ul><p name="911ae055-c401-46ad-8fea-c143a1bc8164" id="911ae055-c401-46ad-8fea-c143a1bc8164">彼はまた、中国軍将校の剣、火炎放射器、シシケバブ、スーパースレッジなどの設計図も販売していますが、これらは他の手段でも入手可能です。</p><hr name="3bb36fa8-5468-4cf6-a935-220c3859bad5" id="3bb36fa8-5468-4cf6-a935-220c3859bad5"><h2 name="8f71ca13-515d-44e2-a05e-0631b2fdaceb" id="8f71ca13-515d-44e2-a05e-0631b2fdaceb">出現場所</h2><ul name="78778618-0e23-4409-8ec9-5fad63d2ada1" id="78778618-0e23-4409-8ec9-5fad63d2ada1"><li><p name="b282b750-3ccd-40e1-8b5b-771701248248" id="b282b750-3ccd-40e1-8b5b-771701248248">旅のエンカウント: <br>アパラチア全域の移動タイプのエンカウントでスポーンする可能性があります。</p></li><li><p name="bf7ee096-a329-481e-9c4d-f272c0cc9a58" id="bf7ee096-a329-481e-9c4d-f272c0cc9a58">イベント中: <br>Meat Weekが開催されている間、イベント期間中ずっとVault 76の南西にある非表示のバーベキュー場所で見つけることができます。</p></li></ul><hr name="5235bbc4-c15c-453b-9438-ff96bd5f5b08" id="5235bbc4-c15c-453b-9438-ff96bd5f5b08"><div class="quote-box">
+<b>感想</b><br><br>
+英語だとチャーリーなんですけどね。<br>日本語だとチャリーですね。<br>チャリーの餌を草食動物で食べてLuck3上げてた時期があるので、へぇーと思った記憶があります。<br>チャリーの餌はミートウィーク中にしか手に入らないので買い忘れに注意して下さい。<br>又、ミートウィーク期間は同じ場所に居続けるのでサーバーチェンジを繰り返して必要な設計図を手に入れておくことをオススメします!<br><br>後、なんか前まではプレイヤーのハウジングのタレットと喧嘩してたんですが、最近タレット外したので直ってるかは分かりません!<br>多分直ってると思うけど!<br><br>又、ミートウィーク中にしか聞けない台詞も多く、全部楽しそうで愉快な台詞になっているので15分くらいぼーっとグラムの横に居ると楽しくなってきますのでオススメですよ!<br>中々復刻されないイベントなので開催された時は是非参加しましょう!<br><br><div class="note-figure"><img src="images/note_extracted/nf10c3a7cb29f_img_4.png" alt="" width="512" height="512"><div class="note-figcaption">グラムの人形
+</div>
+
+<p name="70f3a3e0-dbca-443f-8309-245b29ad5051" id="70f3a3e0-dbca-443f-8309-245b29ad5051">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

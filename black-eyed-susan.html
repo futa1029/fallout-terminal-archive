@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブラックアイド・スーザン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #aaff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ブラックアイド・スーザン</h3>
+            <img src="images/note_extracted/na2516c2cd521_img_1.png" alt="ブラックアイド・スーザン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>植物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_na2516c2cd521" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ブラックアイド・スーザン</h1>
+            <div class="date">DATE: 2025/11/13</div>
+            
+            <h2 name="54f0696d-9457-49a2-95bd-3806d51cd5bc" id="54f0696d-9457-49a2-95bd-3806d51cd5bc">概要</h2><h2 name="f8accac2-634d-4fc2-8646-c4199a85a73f" id="f8accac2-634d-4fc2-8646-c4199a85a73f">背景</h2><h3 name="65df38e8-9c60-413a-9212-ff260cb96244" id="65df38e8-9c60-413a-9212-ff260cb96244">戦前と核戦争</h3><ul name="dd86e73b-64ca-4f15-b525-629b866b978c" id="dd86e73b-64ca-4f15-b525-629b866b978c"><li><p name="2b441f87-a3bb-4a01-ac82-11d9270b5304" id="2b441f87-a3bb-4a01-ac82-11d9270b5304">スーザンは核戦争前に育ちました。<br>彼女の子供時代は共産主義者に関する「赤狩り」の時代でしたが、彼女は数年経った今でもそれを懐かしく思い出しています。</p></li><li><p name="d4de913e-b536-425b-a47b-0e40bddd88dd" id="d4de913e-b536-425b-a47b-0e40bddd88dd">彼女は女子学校、または「フィニッシングスクール」に通っており、そこで出会った特に醜いドロシーのような人々をまだ覚えています。</p></li><li><p name="9693efc8-88fa-4a88-8784-084f24a93f44" id="9693efc8-88fa-4a88-8784-084f24a93f44">核爆弾が投下されたとき、スーザンは家族や知人全員を亡くしました。</p></li></ul><h3 name="9e855dd9-af93-41aa-b64d-9bff6908c68c" id="9e855dd9-af93-41aa-b64d-9bff6908c68c">レイダーとしての過去</h3><ul name="a2a94f2c-937d-4760-87e3-c2c55833b93a" id="a2a94f2c-937d-4760-87e3-c2c55833b93a"><li><p name="d8fad68f-0454-43d6-aebc-0300f6d60638" id="d8fad68f-0454-43d6-aebc-0300f6d60638">しかし、スーザンはレイダーと行動を共にすることで新しい家族を見つけました。<br>彼女はレイダーと共に、行商人を脅し、町を略奪し、腹を切り裂く、喉を切り裂く、歯を抜く、人間の皮膚をなめし革に使う、人の腸でセーターを作るなど、さまざまな手段でウェイストランドの住民を残酷に犠牲にしました。</p></li><li><p name="91a8de5f-bda7-4ede-a3b0-70ad96dff20f" id="91a8de5f-bda7-4ede-a3b0-70ad96dff20f">彼女は自分の暴力的で冷酷な過去を平然と振り返り、明るい口調で過去の残虐行為に言及します。</p></li><li><p name="956b0c93-d036-4c64-a25a-82514a9e3056" id="956b0c93-d036-4c64-a25a-82514a9e3056">彼女はクレーター・レイダーのより組織化された秩序を嘆き、「クレーター以前」の日々、つまり人を殺す前にリーダーに確認する必要がなかった時代を懐かしんでいます。</p></li><li><p name="0c1a60ad-020b-4da0-8ab2-23ee1a601a1c" id="0c1a60ad-020b-4da0-8ab2-23ee1a601a1c">これは、彼女がアパラチアの初代レイダーと関係があった可能性を示唆していますが、彼女は自分のギャングがサリー・ニッカーバッカーのような女性が主体であったことも示唆しています。</p></li><li><p name="9bee17b8-89d9-462c-8609-5490b02aebb7" id="9bee17b8-89d9-462c-8609-5490b02aebb7">ある時点で、「女の子たち」は西に向かい、さらに長年別の場所で遺産を築き続けることを決意しましたが、スーザンは高齢のためレイダー稼業から引退することを選択しました。<br>しかし、彼女はギャングとの関係を人生で最高の時期として覚えています。</p></li><li><p name="8fc82752-09d9-406e-b850-3f1bbc65e326" id="8fc82752-09d9-406e-b850-3f1bbc65e326">もし核爆弾が投下されなかったらどうなっていたかを考えると、スーザンは刑務所にいた可能性が高いと結論付けています。</p></li></ul><hr name="01a7c1c3-b123-458b-b202-14729499c83f" id="01a7c1c3-b123-458b-b202-14729499c83f"><h3 name="c2d3d821-5c04-49d8-8338-08327b56df28" id="c2d3d821-5c04-49d8-8338-08327b56df28">引退後の生活</h3><ul name="91561570-0e30-4e36-83b8-9fa1abbc8152" id="91561570-0e30-4e36-83b8-9fa1abbc8152"><li><p name="e64c91d5-53b3-4f2e-a280-5cf30114d828" id="e64c91d5-53b3-4f2e-a280-5cf30114d828">小屋への定住: <br>スーザンは最終的にスカイライン・バレーの東にある小屋に落ち着きました。</p></li><li><p name="646758bb-af41-4e78-b3ca-43337b4a4048" id="646758bb-af41-4e78-b3ca-43337b4a4048">謎の牧草地: <br>小屋の隣には、花が咲き乱れる牧草地があることを発見しました。<br>そこには、カーナルウィーパー、クリスタルカップ、ラッドリリーなど多種多様な花が含まれているにもかかわらず、牧草地全体が多年草のように振る舞い、春に咲き、永続的な寿命を持っています。<br>彼女はその理由を理解していませんが、「贈り物には文句を言わない」と言って気にしていません。</p></li><li><p name="3b5f0674-f6ac-4388-b5ea-c2b240b1afbb" id="3b5f0674-f6ac-4388-b5ea-c2b240b1afbb">ニックネーム: <br>彼女自身が花を植えたわけではありませんが、彼女はすでに生け花を趣味として長く続けていました。<br>彼女のニックネーム「ブラックアイド・スーザン」は、花好きであることと、人にブラックアイ（殴ってできるあざ）を与える能力（彼女は「もうそんな時代は過ぎた」と言っていますが）の両方に由来しています。</p></li><li><p name="67b3b7e3-6fb5-4d96-b250-d1173a417f76" id="67b3b7e3-6fb5-4d96-b250-d1173a417f76">元夫の殺害: <br>スーザン自身によると、彼女は最終的にリチャードという名の人物と結婚しましたが、最終的に彼を殺害し、小屋近くの牧草地に埋めました。<br>リチャードが彼女の冷酷なレイダーとしての経歴を疑ったことが、殺害の理由の一端にあることを示唆しています。</p></li><li><p name="0276409c-db38-4efd-a174-e8d691d93041" id="0276409c-db38-4efd-a174-e8d691d93041">家族: <br>リチャードまたは他のパートナーとの間に子供がいたかどうかは言及していませんが、彼女は数人の孫に言及しており、その中には彼女が失敗作と呼ぶタイラーが含まれています。<br>タイラーの失敗の一例として、彼は爆弾の代わりにマカロニ・アートをスーザンに持ってきたことがあり、彼女を大いに失望させました。</p></li><li><p name="806a40d2-15e6-4e56-a000-dd4f3f2921f9" id="806a40d2-15e6-4e56-a000-dd4f3f2921f9">ペット: <br>かつてデイジーというペットを飼っていましたが、2105年以前のいつか亡くなりました。<br>スーザンはデイジーを「子犬」と呼んでいますが、実際には家畜化されたヤオ・グアイでした。<br>ヤオ・グアイを飼い慣らしたことは、スーザンが非常に誇りに思っている功績でした。</p></li></ul><hr name="d362dc04-8914-4cab-8203-fcde86210132" id="d362dc04-8914-4cab-8203-fcde86210132"><h3 name="53c4c3ba-a789-412a-9bc6-aa0a570bfc74" id="53c4c3ba-a789-412a-9bc6-aa0a570bfc74">現在の生活とイベント</h3><ul name="97d0a384-4df6-47e3-976a-309713c6338e" id="97d0a384-4df6-47e3-976a-309713c6338e"><li><p name="cedbbba2-0f81-4978-904a-90a2e5e1a98e" id="cedbbba2-0f81-4978-904a-90a2e5e1a98e">退屈: <br>スーザンは、退職後の生活が過去の人生に比べてやや退屈であると感じています。</p></li><li><p name="8f88326b-b11c-4532-896d-d6c44d917571" id="8f88326b-b11c-4532-896d-d6c44d917571">脅威: <br>アトランティック・シティから来たマゼランの到着以来、彼女の小屋での生活は少し変わりました。<br>マゼランのキャラバンは、放たれたオーバーグロウンによって彼女の小屋の近くで壊滅し、クリーチャーが近隣一帯に広がり、彼女は攻撃を受けるようになりました。<br>スーザン自身はオーバーグロウンがどこから来たのか見当もついていません。</p></li><li><p name="6cee0b59-70bb-4d06-9faa-b8848a16e266" id="6cee0b59-70bb-4d06-9faa-b8848a16e266">宿敵: <br>彼女はまた、牧草地の近くにハニービーストの問題を抱えており、その多くはそこに咲く花のせいで花のような外見をしています。<br>これらのハニービーストの中で最大のものが、彼女が「宿敵」と呼ぶベルゼバブです。スーザンはベルゼバブによる牧草地の支配に異議を唱え、そこを所有しているのは自分だと主張し、次に現れたら「巨大で怪物的な放射能汚染された蜂」を殺すつもりでいます。ベルゼバブが倒され、彼女の敷地への包囲が止まったら、スーザンはハニー・クッキーを作って祝う計画です。</p></li></ul><hr name="72290bc8-a586-45a5-9c96-69c013471975" id="72290bc8-a586-45a5-9c96-69c013471975"><h2 name="8abcf461-57a8-48e4-84ac-8c52ad27a460" id="8abcf461-57a8-48e4-84ac-8c52ad27a460">プレイヤーとの交流</h2><div class="note-figure"><img src="images/note_extracted/na2516c2cd521_img_2.png" alt="" width="310" height="534"><div class="note-figcaption"></div></div><ul name="ec8997fe-d438-4813-aa54-032a1c6c232f" id="ec8997fe-d438-4813-aa54-032a1c6c232f"><li><p name="e6240664-d45c-4e3b-ab50-04fa24d8a202" id="e6240664-d45c-4e3b-ab50-04fa24d8a202">イベント: <br>Event: <a href="the-big-bloom.html" class="auto-link">The Big Bloom</a>のメインアナウンサーであり、イベント参加者に花集めを指示し、オーバーグロウンを焼き払うように求めます。<br>イベントはスーザンの宿敵である巨大ハニービースト、ベルゼバブとのボス戦でクライマックスを迎えます。<br>イベント中、スーザンは解説やヒントを提供し、近くの敵にミサイルランチャーを発射してプレイヤーを助けることがあります。</p></li></ul><hr name="06e8fdbc-a557-4b9f-8279-1fccceee497a" id="06e8fdbc-a557-4b9f-8279-1fccceee497a"><h2 name="bcdfbfad-8add-47bf-8ebe-482998633aed" id="bcdfbfad-8add-47bf-8ebe-482998633aed">名前の元ネタ?</h2><div class="note-figure"><img src="images/note_extracted/na2516c2cd521_img_3.jpg" alt="" width="592" height="391"><div class="note-figcaption"></div></div><p name="632628d3-2694-4871-8707-9533c54d7ada" id="632628d3-2694-4871-8707-9533c54d7ada">「ブラックアイド・スーザン (Black-eyed Susan)」は主に、キク科の植物であるルドベキアの英語名として知られています。<br>和名はアラゲハンゴンソウ（荒毛反魂草）やマツカサギク（松笠菊）などと呼ばれます。</p><p name="599fd3fb-aa44-4a5e-89c0-1434bff4287b" id="599fd3fb-aa44-4a5e-89c0-1434bff4287b">特徴は以下の通りです。</p><ul name="6e0f2876-40c7-4fbb-9aa4-5d805cc729dc" id="6e0f2876-40c7-4fbb-9aa4-5d805cc729dc"><li><p name="ae3086da-1cfc-4622-9ae5-23a87864224c" id="ae3086da-1cfc-4622-9ae5-23a87864224c">外見: <br>花の中心部分（花芯）が黒色や濃褐色で、その周りを黄色の花びらが囲む特徴的な外見をしています。<br>この黒い中心が「黒い瞳」のように見えることから、「ブラックアイド・スーザン」という名前が付けられました。</p></li><li><p name="d86be1db-43ef-4f33-ac0a-8761fb466410" id="d86be1db-43ef-4f33-ac0a-8761fb466410">植物の種類: <br>北アメリカ原産の一年草または多年草です。</p></li><li><p name="e6107b19-cde1-47b6-a244-3e0b1035f59e" id="e6107b19-cde1-47b6-a244-3e0b1035f59e">草丈: <br>品種によりますが、100cmから150cmになるものや、50cm程度の矮性種もあります。</p></li><li><p name="5c07c56f-3c2c-40da-8499-a434678774a7" id="5c07c56f-3c2c-40da-8499-a434678774a7">花言葉: <br>「正義」「公平」「あなたを見つめる」などがあります。</p></li></ul><p name="ca9e557b-9773-490a-800b-81069364f360" id="ca9e557b-9773-490a-800b-81069364f360">また、この名前はルドベキア以外にも、類似の外見を持つ別のつる植物（ツンベルギア属のブラック・アイド・イーザン・バインなど）を指す場合もあります。</p><hr name="afca2b97-5608-463d-88a7-bc07d006db28" id="afca2b97-5608-463d-88a7-bc07d006db28"><div class="quote-box">
+<b>感想</b><br><br>
+最強のおばあちゃん。<br>名言生成装置!<br>発する言葉全てが素晴らしいおばあちゃん。<br>戦闘中はロケランとリーパーで戦うNPCの中で最強格のNPCです。<br>是非うちのCampに蓄音機と共に来てほしいです。<br><br>ただ彼女はレイダーOfレイダーで、過去は無茶苦茶してて、今でも後悔はせず一番輝いてた時だと考えてる等、聖人プレイの方とは合わないかもしれませんね。<br><br>イベント中は彼女のナレーションを是非楽しんで下さい!
+</div>
+
+<p name="d5cc35aa-fb26-4425-bfcf-c8d8d4019857" id="d5cc35aa-fb26-4425-bfcf-c8d8d4019857">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

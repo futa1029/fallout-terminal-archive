@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アパラチア・ラジオ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">アパラチア・ラジオ</h3>
+            
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n8861cbecec42" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>アパラチア・ラジオ</h1>
+            <div class="date">DATE: 2026/1/23</div>
+            
+            <div class="note-figure"><blockquote><p name="e7054301-168f-4775-bedf-3a2f20743aff" id="e7054301-168f-4775-bedf-3a2f20743aff"><strong>「緩んだネジや回路基板のためにバラバラにされていない、この世界に残された数少ないものの一つ、それがアパラチア・ラジオです！」</strong></p></blockquote><div class="note-figcaption">— ジュリー</div></div><p name="ad12fbbb-59e4-4fde-8dac-9d4958ecdb1c" id="ad12fbbb-59e4-4fde-8dac-9d4958ecdb1c">アパラチア・ラジオは、アパラチアにあるラジオ局です。<br>以前はこの局にはDJがいませんでしたが、2103年にジュリーが運営を引き継ぎました。</p><hr name="73fb9037-e294-4777-8558-86ac7358ac24" id="73fb9037-e294-4777-8558-86ac7358ac24"><h2 name="d849fe55-b1aa-4e2e-9e45-91c7eed8ef27" id="d849fe55-b1aa-4e2e-9e45-91c7eed8ef27">背景</h2><p name="ca3f04d0-59eb-477f-8a9f-5dbe4812eb7b" id="ca3f04d0-59eb-477f-8a9f-5dbe4812eb7b">アパラチア・ラジオは、ゲーム内では言及されていないアパラチア内の不明な場所から放送されています。<br>戦前のロケーションにラジオが配置されていることは、最終戦争前から放送されていたことを示唆していますが、2077年から2102年までの歴史は定かではありません。<br>ジュリーは、自分が運営を引き継ぐ前は局が自動化されていたことを示唆しています。 <br>2102年の「再生の日」にVault 76の居住者たちが現れたとき、ラジオにはDJがおらず、解説なしで曲を流していました。</p><p name="f8d1173c-db20-476b-9be4-c5a21fea4969" id="f8d1173c-db20-476b-9be4-c5a21fea4969">スコーチ病が収まり、人々がこの地域に戻ってくると、地元出身の若い女性であるジュリーが、アパラチア・ラジオの起点となる放送局を見つけました。 <br>彼女は以前からこの局を聴いており、流れる曲が彼女にとって大きな意味を持っていたため、ラジオが正常に動作し続けるようにしたいと考えました。<br><strong>ジュリーは、局に到着したとき、機器は故障まであと数日の状態であり、彼女の到着によって、コール・ポーターの「Anything Goes」が永遠にループ放送され続ける事態を回避できたと主張しています。<br></strong> また、放送局内のいくつかのターミナルには、最終戦争前に放送されていた最も人気のある曲が記録されていました。 <br>「Take Me Home, Country Roads」が圧倒的な人気を博しており、ジュリーは爆弾投下から数十年経った今でもそれが真実であると推測しています。</p><p name="7d88552d-b678-4a4d-8eb4-b2744d448f5b" id="7d88552d-b678-4a4d-8eb4-b2744d448f5b">ジュリーは引き続きアパラチア・ラジオのDJを務め、曲やその演奏者について、特にそれらがポスト・アポカリプス（終末後）の世界とどのように関連しているかについてコメントしています。 <br>彼女はまた、旅の商人グラム、耐衝撃ファイバーの希少性、<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の効果など、戦後アパラチアのユニークな文化的トピックについても言及します。</p><hr name="ab0c2a77-b859-4d0e-a01e-f359b4030f4e" id="ab0c2a77-b859-4d0e-a01e-f359b4030f4e"><h2 name="474ba944-95d2-4c51-9651-cce021c53c1e" id="474ba944-95d2-4c51-9651-cce021c53c1e">トラック</h2><ul name="a030afcc-fd02-491a-b56a-d4439a2c1729" id="a030afcc-fd02-491a-b56a-d4439a2c1729"><li><p name="4ab8df17-544b-4bc3-a64b-fdd8f005412a" id="4ab8df17-544b-4bc3-a64b-fdd8f005412a"><strong>"A Good Man is Hard to Find"</strong> - Sonny Burke and His Orchestra, featuring Cass Daley (1949)</p></li><li><p name="64376844-5ebc-4aea-b1e4-dc40dc6b979e" id="64376844-5ebc-4aea-b1e4-dc40dc6b979e"><strong>"Ain't Misbehavin'"</strong> - Fats Waller (1943)</p></li><li><p name="df44f05a-4544-4105-8515-29670b87b91d" id="df44f05a-4544-4105-8515-29670b87b91d"><strong>"Answer to Drivin' Nails in My Coffin"</strong> - Jerry Irby and His Texas Rangers (1948)</p></li><li><p name="4049be32-ab97-4fe3-b9f1-6f7129109950" id="4049be32-ab97-4fe3-b9f1-6f7129109950"><strong>"Anything Goes"</strong> - Vince Giordano and the Nighthawks, featuring Cole Porter (1934, 2004 re-recording)</p></li><li><p name="9c91f333-54eb-4c47-bd21-332395b611c8" id="9c91f333-54eb-4c47-bd21-332395b611c8"><strong>"Atom Bomb Baby"</strong> - The Five Stars (1957)</p></li><li><p name="208d9791-a489-4211-b0bd-6835b90e6d42" id="208d9791-a489-4211-b0bd-6835b90e6d42"><strong>"Bubbles in My Beer"</strong> - Bob Wills (1947)</p></li><li><p name="8d431947-e2b0-414c-98a8-d9b45b85f0d0" id="8d431947-e2b0-414c-98a8-d9b45b85f0d0"><strong>"Butcher Pete (Part 1)"</strong> - Roy Brown and his Mighty, Mighty Men (1950)</p></li><li><p name="09779586-dfe5-4671-abae-53e16476d824" id="09779586-dfe5-4671-abae-53e16476d824"><strong>"Civilization" (Bongo Bongo Bongo)</strong> - Vic Schoen and His Orchestra, featuring Danny Kaye and the Andrews Sisters (1947)</p></li><li><p name="99859116-7a51-429a-9a8f-0905f8cfa0a1" id="99859116-7a51-429a-9a8f-0905f8cfa0a1"><strong>"Crazy He Calls Me"</strong> - Billie Holiday (1949)</p></li><li><p name="1c14ec2a-537b-4891-a9bf-cacec1abfef1" id="1c14ec2a-537b-4891-a9bf-cacec1abfef1"><strong>"Dark as a Dungeon"</strong> - Tennessee Ernie Ford (1955)</p></li><li><p name="4f415c38-79e2-415e-92a7-f692c8b51136" id="4f415c38-79e2-415e-92a7-f692c8b51136"><strong>"Dear Hearts and Gentle People"</strong> - Bob Crosby and the Bob Cats (1950)</p></li><li><p name="1f1b6397-4bd5-4784-b740-168989fd0fe5" id="1f1b6397-4bd5-4784-b740-168989fd0fe5"><strong>"Doin' the Uptown Lowdown"</strong> - The Isham Jones Orchestra, featuring Joe Martin (1933)</p></li><li><p name="cffe7628-c4ce-4626-8ce9-4b2b2b5068cc" id="cffe7628-c4ce-4626-8ce9-4b2b2b5068cc"><strong>"Don't Fence Me In"</strong> - Vic Schoen and His Orchestra, featuring Bing Crosby and the Andrews Sisters (1944)</p></li><li><p name="ef25ab65-1aa8-4d67-a686-bbe17461a113" id="ef25ab65-1aa8-4d67-a686-bbe17461a113"><strong>"Ghost Riders in the Sky"</strong> - The Sons of the Pioneers (1960)</p></li><li><p name="5f07752b-6621-4d13-8072-10c306a9fc3a" id="5f07752b-6621-4d13-8072-10c306a9fc3a"><strong>"Happy Days Are Here Again"</strong> - Ben Selvin and His Orchestra (1930)</p></li><li><p name="8502ff96-1df1-401f-9049-7e5f83d201e6" id="8502ff96-1df1-401f-9049-7e5f83d201e6"><strong>"Happy Times"</strong> - Bob Crosby (1950)</p></li><li><p name="e10e1232-a283-4a76-bb2d-ca66067f86d2" id="e10e1232-a283-4a76-bb2d-ca66067f86d2"><strong>"Headin' Down the Wrong Highway"</strong> - Johnny Bond (1944)</p></li><li><p name="f7526c50-040f-44df-a138-a64be3ec66bb" id="f7526c50-040f-44df-a138-a64be3ec66bb"><strong>"I Can't Dance (I Got Ants in My Pants)"</strong> - Chick Webb's Savoy Orchestra (1934)</p></li><li><p name="2f99588c-f6f1-47b6-ac31-d793b67bfadf" id="2f99588c-f6f1-47b6-ac31-d793b67bfadf"><strong>"I Didn't Know the Gun Was Loaded"</strong> - Patsy Montana and her Buckaroos (1949)</p></li><li><p name="d7423542-1bac-41b0-b0f9-81d893567a6a" id="d7423542-1bac-41b0-b0f9-81d893567a6a"><strong>"I Don't Want to Set the World on Fire"</strong> - The Ink Spots (1941)</p></li><li><p name="e605c641-5493-41d0-a8f8-22903dae7293" id="e605c641-5493-41d0-a8f8-22903dae7293"><strong>"In a Shanty in Old Shanty Town"</strong> - Johnny Long and his Orchestra (1946)</p></li><li><p name="949c15b4-2901-4542-b21c-80da1e1863a2" id="949c15b4-2901-4542-b21c-80da1e1863a2"><strong>"It's All Over But the Crying"</strong> - The Ink Spots (1947)</p></li><li><p name="bdb2c1a0-c341-43d5-b0d5-9dedf4709a27" id="bdb2c1a0-c341-43d5-b0d5-9dedf4709a27"><strong>"Jukebox Saturday Night"</strong> - Glenn Miller and His Orchestra, featuring the Modernaires and the Ink Spots (1942)</p></li><li><p name="7a41d865-2e57-44a3-ae5d-111cb0a16c0f" id="7a41d865-2e57-44a3-ae5d-111cb0a16c0f"><strong>"Jumpin' at the Woodside"</strong> - Count Basie and His Orchestra (1938)</p></li><li><p name="9f3d21db-7eb7-4e52-9a74-fd0f843fe82d" id="9f3d21db-7eb7-4e52-9a74-fd0f843fe82d"><strong>"Just a Fair Weather Friend"</strong> - Henry King and His Orchestra, featuring Joe Sudy (1934)</p></li><li><p name="45d01ad8-ed6a-4614-82d3-f843186f8929" id="45d01ad8-ed6a-4614-82d3-f843186f8929"><strong>"Keep A Knockin"</strong> - Milton Brown (1936)</p></li><li><p name="62e8d899-db84-4261-9508-527b8d0a466d" id="62e8d899-db84-4261-9508-527b8d0a466d"><strong>"Maybe"</strong> - The Ink Spots (1940)</p></li><li><p name="b0b690ed-02a4-4351-8f6e-388543451979" id="b0b690ed-02a4-4351-8f6e-388543451979"><strong>"Midnight in a Madhouse"</strong> - Chick Webb and His Orchestra (1937)</p></li><li><p name="7aecfc8e-9e99-4f19-9d46-c66502311cb1" id="7aecfc8e-9e99-4f19-9d46-c66502311cb1"><strong>"Mister Five by Five"</strong> - Freddie Slack, featuring Johnny Mercer and Ella Mae Morse (1942)</p></li><li><p name="c410b928-03f4-43f7-97af-2a277f248470" id="c410b928-03f4-43f7-97af-2a277f248470"><strong>"Mr. Sandman"</strong> - The Chordettes (1954)</p></li><li><p name="b1a2e6e1-f1a6-4691-b092-92b4295ced33" id="b1a2e6e1-f1a6-4691-b092-92b4295ced33"><strong>"Nobody's Fault but Mine"</strong> - Blind Willie Johnson (1934)</p></li><li><p name="8111da5f-56d6-449c-9a08-9b942349ab6e" id="8111da5f-56d6-449c-9a08-9b942349ab6e"><strong>"Ol' Man Mose"</strong> - Eddy Duchin and His Orchestra, featuring Patricia Norman (1938)</p></li><li><p name="6f10e144-f5f6-4029-abf1-eff3dcc07906" id="6f10e144-f5f6-4029-abf1-eff3dcc07906"><strong>"Opus No. 1"</strong> - Tommy Dorsey (1944)</p></li><li><p name="ce058ab8-c1cc-49df-a00d-578d0dabc79a" id="ce058ab8-c1cc-49df-a00d-578d0dabc79a"><strong>"Orange Colored Sky"</strong> - Stan Kenton, featuring Nat King Cole (1950)</p></li><li><p name="d2387f65-2195-4717-bc19-ead0140281c5" id="d2387f65-2195-4717-bc19-ead0140281c5"><strong>"Pig Foot Pete"</strong> - Freddie Slack, featuring Ella Mae Morse (1946)</p></li><li><p name="bcdfc910-03a3-4fb2-83ee-8d2eb8021597" id="bcdfc910-03a3-4fb2-83ee-8d2eb8021597"><strong>"Pistol Packin' Mama"</strong> - Bing Crosby and the Andrews Sisters (1943)</p></li><li><p name="f255c3df-4f4a-4f2d-b087-35e3474dbb86" id="f255c3df-4f4a-4f2d-b087-35e3474dbb86"><strong>"Praise the Lord and Pass the Ammunition"</strong> - Kay Kyser (1943)</p></li><li><p name="00bdf1cd-83e8-46df-a5f5-da44f75d35c4" id="00bdf1cd-83e8-46df-a5f5-da44f75d35c4"><strong>"Ring of Fire"</strong> - Spank Live (2019)</p></li><li><p name="c4db62ab-e051-4cf9-ad1e-9afea6f51dea" id="c4db62ab-e051-4cf9-ad1e-9afea6f51dea"><strong>"Salt Pork, West Virginia"</strong> - Louis Jordan (1945)</p></li><li><p name="cc5bb4c1-2976-4f7c-a720-fa10e661ce5e" id="cc5bb4c1-2976-4f7c-a720-fa10e661ce5e"><strong>"Shenandoah"</strong> - Tennessee Ernie Ford (1961)</p></li><li><p name="1dcb72d4-76ba-459d-b793-a6dee0d7d3f9" id="1dcb72d4-76ba-459d-b793-a6dee0d7d3f9"><strong>"Sixteen Tons"</strong> - Tennessee Ernie Ford (1955)</p></li><li><p name="438b7f4a-f388-4a3c-b916-ba0ba1c0bf41" id="438b7f4a-f388-4a3c-b916-ba0ba1c0bf41"><strong>"Steel Guitar Rag"</strong> - Bob Wills and His Texas Cowboys (1936)</p></li><li><p name="5a4ac187-123a-4041-853d-96afd6bf9801" id="5a4ac187-123a-4041-853d-96afd6bf9801"><strong>"Straighten Up and Fly Right"</strong> - Vic Schoen and His Orchestra, featuring the Andrews Sisters (1944)</p></li><li><p name="9e18ad73-cf45-4815-83cd-25258f7548c9" id="9e18ad73-cf45-4815-83cd-25258f7548c9"><strong>"Take Me Home, Country Roads"</strong> - Spank Live (2018)</p></li><li><p name="1f74f993-3f81-4ea7-961d-3e4c547ed9b2" id="1f74f993-3f81-4ea7-961d-3e4c547ed9b2"><strong>"Two Left Hands"</strong> - Freddie Slack and His Orchestra, featuring Charlotte Blackburn (1948)</p></li><li><p name="d9d5caa4-1754-4309-92c8-dbb459663295" id="d9d5caa4-1754-4309-92c8-dbb459663295"><strong>"Uranium"</strong> - The Commodores (1955)</p></li><li><p name="bce28b99-b800-4abb-b2bb-1df8d44bd6c5" id="bce28b99-b800-4abb-b2bb-1df8d44bd6c5"><strong>"Walking the Floor Over You"</strong> - Ernest Tubb (1941)</p></li><li><p name="581299d7-661b-430b-b651-2fce71780624" id="581299d7-661b-430b-b651-2fce71780624"><strong>"We Three (My Echo, My Shadow and Me)"</strong> - The Ink Spots (1940)</p></li><li><p name="6784c7e9-4e81-4ca8-9762-9cf583b1a679" id="6784c7e9-4e81-4ca8-9762-9cf583b1a679"><strong>"When I Get Low I Get High"</strong> - Chick Webb and His Orchestra, featuring Ella Fitzgerald (1937)</p></li><li><p name="ec26c087-e447-4e7c-a2d5-44a80cdf190e" id="ec26c087-e447-4e7c-a2d5-44a80cdf190e"><strong>"Wouldn't It Be Nice"</strong> - The Beach Boys (1966)</p></li></ul><hr name="a7d65f0e-caf0-4229-af18-532190856873" id="a7d65f0e-caf0-4229-af18-532190856873"><h2 name="f757be65-9cd4-44c9-a005-bd0267de0b90" id="f757be65-9cd4-44c9-a005-bd0267de0b90">カットされた曲</h2><p name="34af8a8e-4e87-42f1-8be8-deafc69a23c4" id="34af8a8e-4e87-42f1-8be8-deafc69a23c4">β版では含まれていましたが、製品版で削除された曲です：</p><ul name="eb25d243-2828-411e-b58a-997b460254f3" id="eb25d243-2828-411e-b58a-997b460254f3"><li><p name="890259d2-4c5b-417e-9e6e-ae0d6ed156c0" id="890259d2-4c5b-417e-9e6e-ae0d6ed156c0"><strong>"Great Long Pistol"</strong> - Jerry Irby and His Texas Ranchers (1947)</p></li><li><p name="627c013f-f719-4aca-ab18-e8c638878f15" id="627c013f-f719-4aca-ab18-e8c638878f15"><strong>"Jumpin' Jive"</strong> - Cab Calloway and his Orchestra, featuring the Nicholas Brothers (1943)</p></li><li><p name="ae3d6ca4-44e3-4b33-9064-34000d05504a" id="ae3d6ca4-44e3-4b33-9064-34000d05504a"><strong>"Swinging on a Star"</strong> - Bing Crosby (1944)</p></li><li><p name="44296bb3-c9e4-457d-8cf9-1b6c60154a64" id="44296bb3-c9e4-457d-8cf9-1b6c60154a64"><strong>"That's the Good Old Sunny South"</strong> - Emmett Miller (1929)</p></li><li><p name="771d390e-5e80-4137-a4ff-676671e6f234" id="771d390e-5e80-4137-a4ff-676671e6f234"><strong>"Tumbling Tumbleweeds"</strong> - Sons of the Pioneers (1946)</p></li></ul><hr name="9cc2199a-bf9f-4729-a7b9-ccae001c66a5" id="9cc2199a-bf9f-4729-a7b9-ccae001c66a5"><h2 name="397c54e5-aa03-4451-93c7-54e94d74cdcd" id="397c54e5-aa03-4451-93c7-54e94d74cdcd">備考</h2><p name="bc14d77d-5d9d-4f4c-bc7e-18e5bbce036f" id="bc14d77d-5d9d-4f4c-bc7e-18e5bbce036f">アパラチア・ラジオ、および他の2つの全域放送局（クラシック・ラジオと<a href="pirate-broadcast.html" class="auto-link">海賊放送</a>）は、アパラチアから離れているにもかかわらず、ザ・ピットやアトランティック・シティでも聴くことができます。</p><hr name="92d04c91-195b-409d-8ec3-e820e46c0336" id="92d04c91-195b-409d-8ec3-e820e46c0336"><h2 name="1a22a065-fdab-4569-93ce-8d6f8f3ec027" id="1a22a065-fdab-4569-93ce-8d6f8f3ec027">舞台裏</h2><p name="914f4e02-1006-4ba0-8e44-c180107a0310" id="914f4e02-1006-4ba0-8e44-c180107a0310"><strong>アップデート「Wastelanders」で導入されたアパラチア・ラジオのホストであるジュリーの声は、『スティーブン・ユニバース』シリーズのコニー・マヘスワラン役で知られるグレース・ロレック（Grace Rolek）が担当しています。</strong> 『Fallout 76』の音声プロデューサーであるコーリー・ギボンズによれば、彼はカントリー歌手で女優のドリー・パートンをホスト役に起用しようと個人的に強く推していましたが、実現には至りませんでした。</p><hr name="97bc4218-ec31-45d7-8b93-9b0090296036" id="97bc4218-ec31-45d7-8b93-9b0090296036"><div class="quote-box">
+<b>感想</b><br><br>
+アパラチア・ラジオ、アパラチアでの生活には欠かせない存在ですよね！<br><br><b>ジュリーの親しみやすさ</b>: 彼女の、時々自信なさげだけど一生懸命な語り口を聴いていると、荒廃した世界でも一人じゃないんだな、と勇気づけられます。<br><br><b>名曲の数々</b>: 「Country Roads」を聴きながらアパラチアの山々を眺める瞬間は、まさにこのゲームの最高の贅沢だと思います。<br><br><b>制作の裏話</b>: もしドリー・パートンがホストになっていたら、どんな雰囲気になっていたんだろう……と想像するのも楽しいですね。<br><br>耐衝撃ファイバーが見つからなくて嘆くジュリーのセリフには、多くの初心者プレイヤーが「わかる！」と頷いているはずです。
+</div>
+
+<p name="fc535237-e229-40a6-b2ae-af4ec472f552" id="fc535237-e229-40a6-b2ae-af4ec472f552">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

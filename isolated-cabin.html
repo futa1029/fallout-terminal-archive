@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>孤立したキャビン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">孤立したキャビン</h3>
+            <img src="images/note_extracted/n678547c07d38_img_1.png" alt="孤立したキャビン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n678547c07d38" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>孤立したキャビン</h1>
+            <div class="date">DATE: 2026/1/30</div>
+            
+            <p name="9a0e8d3e-ebc7-4a75-9bb9-14a304cf5bbb" id="9a0e8d3e-ebc7-4a75-9bb9-14a304cf5bbb"><strong>孤立したキャビンは、アパラチアの森林地帯地域にあるロケーションです。</strong></p><hr name="97204894-9766-41df-bf11-5bd04ec6ff2d" id="97204894-9766-41df-bf11-5bd04ec6ff2d"><h2 name="65fc1b12-6175-4e8c-9b48-172dc42a0aa0" id="65fc1b12-6175-4e8c-9b48-172dc42a0aa0">背景</h2><p name="bdbbe426-936a-4b97-a69d-528a0e1ae06d" id="bdbbe426-936a-4b97-a69d-528a0e1ae06d">最終戦争から20年後の2097年、<strong>孤立したキャビン</strong>には<a href="ghoul.html" class="auto-link">グール</a>の生存者であるブラクストン夫妻が住んでいました。<br>彼らは、アパラチアのより大きな生存者コミュニティを代表する同じ<a href="ghoul.html" class="auto-link">グール</a>のウィリアム・ケラーと少なくとも一度接触していました。<br>ケラーは当初、連帯を申し出るために連絡を取り、後にキャピタル・ウェイストランドで形成されつつある大規模なグールコミュニティの存在をブラクストン夫妻に伝えました。<br>2102年までに、この小屋は放棄されました。</p><p name="9cd8ba12-9fc2-4894-b68a-5e234badb60e" id="9cd8ba12-9fc2-4894-b68a-5e234badb60e">Vault 76が開かれた後のいずれかの時点で、ルーベン・ギルがこの小屋の内部で死亡しました。</p><hr name="292ad3e3-82d9-4e93-a1f7-9e2f75461ffa" id="292ad3e3-82d9-4e93-a1f7-9e2f75461ffa"><h2 name="705ee0a6-8afa-4da4-9400-6bf483774d21" id="705ee0a6-8afa-4da4-9400-6bf483774d21">レイアウト</h2><p name="9607c950-a463-4533-b51b-3550f717e2d9" id="9607c950-a463-4533-b51b-3550f717e2d9"><strong>孤立したキャビン</strong>には小さな室内の居住エリアがあり、破壊されたベッドの上にはスーツケース、左側の壁には鍵のかかった金庫（ピッキングレベル0）、テーブルの上には道具箱が置かれています。<br>小屋のすぐ外にはウォーターポンプとクッキングステーションがあり、破壊されたベンチの上にはクーラーボックスが置かれています。</p><div class="note-figure"><img src="images/note_extracted/n678547c07d38_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="ec2542e4-c2d7-4b2b-a98d-34acd4d1f6fc" id="ec2542e4-c2d7-4b2b-a98d-34acd4d1f6fc">小屋の外側の裏の角付近には武器作業台があり、室内には <a href="vault-51.html" class="auto-link">Vault 51</a> のジャンプスーツを着たルーベン・ギルの遺体があります。<br>ギルの遺体からは、金庫の鍵と2つのメモを見つけることができます。</p><p name="4f494cc9-e08a-46cf-aa1e-8a78d2c7d712" id="4f494cc9-e08a-46cf-aa1e-8a78d2c7d712">クッキングステーションの近くには薪の山があり、小屋の側面に沿ってさらなる薪の山が並んでいます。</p><div class="note-figure"><img src="images/note_extracted/n678547c07d38_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="34d62feb-fb42-4591-a7e3-da376e283b95" id="34d62feb-fb42-4591-a7e3-da376e283b95">丘を少し上がったところにある屋外トイレには、救急箱とメモが入っています。<br>犬小屋には試験管などの科学機器があり、内側の壁には元素周期表が貼られています。<br>小屋の外にはスターライト・クリーパーの茂みが2つ自生しています。</p><hr name="1adb0020-eb1e-4cfd-957c-d62f952d501f" id="1adb0020-eb1e-4cfd-957c-d62f952d501f"><h2 name="016ae170-f1b2-4f02-9ccc-aa92e4a13d3f" id="016ae170-f1b2-4f02-9ccc-aa92e4a13d3f">注目の戦利品</h2><div class="note-figure"><img src="images/note_extracted/n678547c07d38_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="e76e8408-bfd7-41f5-bd2e-c2806fb3209e" id="e76e8408-bfd7-41f5-bd2e-c2806fb3209e"><strong><a href="ghoul.html" class="auto-link">グール</a>のメモ1およびメモ2</strong>：小屋のドアの横に掛けられているメモです。</p><div class="note-figure"><blockquote><p name="f645fab9-a307-4442-8add-5d935dcdbb2d" id="f645fab9-a307-4442-8add-5d935dcdbb2d">ブラクストン夫妻へ。 <br>私の名前はウィリアム・ケラーです。<br>私は、あなた方が会いたいと思うかもしれない、勇敢な男女のグループを代表しています。<br>私たちの新しい生活が始まってからの数年間で、私たちの多くはかつて当たり前だと思っていたものを失い始めました。<br>肌。顔。昔の声。<br>最も痛ましいことに、私たちは皆、友人や愛する人が周囲で死んでいくのを見て生きてきました。<br>二十年が経ちました。<br>孤独と恐怖の中で苦しむ必要はありません。<br>あなたは一人ではないのです。</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="bbd9657a-66ee-4085-82fa-50c14a403092" id="bbd9657a-66ee-4085-82fa-50c14a403092"><strong>もし面会に興味があるなら、あなたの隣人たちのグループが東に集まっています。</strong> <br><strong>キャピトル</strong>に住んでいる、私たちのようなより大規模なコミュニティから連絡がありました。<br>どうやらその都市はひどい打撃を受けたようですが、あちらでは社会が成長し始めているとのことです。<br><strong>私たちは彼らに加わることを検討しています。</strong><br>――W.K.</p></blockquote><div class="note-figcaption"></div></div><p name="bdfd396e-d778-4971-a4ea-d43491eb38aa" id="bdfd396e-d778-4971-a4ea-d43491eb38aa">W.K.ことウィリアム・ケラーが言及している「<strong>キャピトル</strong>」は、文脈からワシントンD.C.（キャピタル・ウェイストランド）を指している可能性が高いと考えられます。<br>これは、後の『Fallout 3』に登場する<a href="ghoul.html" class="auto-link">グール</a>の街「アンダーワールド」の成り立ちを示唆する、シリーズファンにとって非常に興味深いイースターエッグの一つです。</p><p name="979fc941-ff3a-48d3-a885-067456f3ed03" id="979fc941-ff3a-48d3-a885-067456f3ed03"><strong>無題の詩</strong>：小屋の東側にある屋外トイレの中にあるメモです。</p><div class="note-figure"><blockquote><p name="d05a9d54-37f5-4455-b5f3-956aa6d4fb51" id="d05a9d54-37f5-4455-b5f3-956aa6d4fb51">木々に覆われた森の中の 月明かりに照らされた、木の「月見室（トイレ）」<br>ランプ草の茂みとラズベリーの棘の下にある鋭い岩<br>私は暗闇の中を素早く走る <br>さらに暗い空間へと手探りで進み 座ることもなく、スパイスの効いた卵の塊を解き放つ<br>私は爆撃機の銃手だ <br>積雲の上を物憂げに旋回しながら <br>アメリカ的な精密さで死を降らせている</p></blockquote><div class="note-figcaption"></div></div><p name="f8621c88-37a9-4317-807e-150fae24b2ed" id="f8621c88-37a9-4317-807e-150fae24b2ed">この詩の面白さは、排泄行為という極めて個人的で泥臭い出来事を、「爆撃機からの精密爆撃」という国家的かつ破壊的なイメージに重ね合わせている点にあります。</p><p name="d2b0d8e2-b3c1-4357-b70f-c6e49d17a16e" id="d2b0d8e2-b3c1-4357-b70f-c6e49d17a16e"><strong>チェックリスト</strong>：ルーベン・ギルの遺体が持っているメモです。</p><div class="note-figure"><blockquote><p name="b64a149a-26ea-41b2-89d9-f96513db62bc" id="b64a149a-26ea-41b2-89d9-f96513db62bc">ギュンターへ。<br>銀食器。 調理器具。<strong>優先</strong> 缶詰類。<br>ジャガイモがあるか確認しろ。塔の下に植えることができる。<br>気をつけて。 <strong><a href="vault-51.html" class="auto-link">Vault 51</a> 監督官</strong><br>（以下、手書きのチェックリスト項目）<br><strong>X 彼をそらす</strong> <br><strong>X 残りの物資を隠す</strong> <br><strong>X 別の箱に飛び込む</strong> <br><strong>X 生き残れるよう神に祈る</strong> <br><strong>X Vault 76 の誰かを見つける</strong> <br><strong>ZAX</strong> を殺す</p></blockquote><div class="note-figcaption"></div></div><p name="04a7148e-cf04-443f-8037-18ed770863ab" id="04a7148e-cf04-443f-8037-18ed770863ab"><strong>シェルター建設物資</strong>：ルーベン・ギルの遺体が持っているメモです。</p><div class="note-figure"><blockquote><p name="89f65ddc-1a7a-4d3d-bcfe-a5e1772ba5e5" id="89f65ddc-1a7a-4d3d-bcfe-a5e1772ba5e5">シェルターで建設を続けるためにもっと材料が必要だ：<br>X 木材 <br>X 鉄 <br>X ねじ <br>ギア <br>銅</p></blockquote><div class="note-figcaption"></div></div><p name="bb27abfc-0476-440d-97f4-744767b64ac8" id="bb27abfc-0476-440d-97f4-744767b64ac8"><strong>ルーベンの金庫の鍵</strong>：ルーベン・ギルの遺体が持っています。</p><hr name="4bf7679c-161f-41af-b0b9-103aa5c988a6" id="4bf7679c-161f-41af-b0b9-103aa5c988a6"><h2 name="fe1a3581-6c02-4627-a803-bca89bcb1afc" id="fe1a3581-6c02-4627-a803-bca89bcb1afc">舞台裏</h2><div class="note-figure"><img src="images/note_extracted/n678547c07d38_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="67498cda-14e4-4683-91d5-b8bc9e099e54" id="67498cda-14e4-4683-91d5-b8bc9e099e54">錆びたトラックの近くにある犬小屋の内部には、チョークで数式が書かれています。<br>これはアインシュタインの場の方程式と重力定数であり、1915年にアルベルト・アインシュタインによって初めて発表されたものです。</p><hr name="dc9a306f-eae9-470b-baef-abe9898623ea" id="dc9a306f-eae9-470b-baef-abe9898623ea"><h2 name="8a0abe26-b178-4103-9d9c-1af582f1dd73" id="8a0abe26-b178-4103-9d9c-1af582f1dd73">登場作品</h2><p name="5440ac65-5231-47ac-9701-9865337d29b7" id="5440ac65-5231-47ac-9701-9865337d29b7"><strong>孤立したキャビン</strong>は <strong>Fallout 76</strong> にのみ登場し、アップデート <strong>Steel Dawn</strong> でその内容が拡張されました。</p><hr name="435b291d-e422-40f0-99d2-446aaa787e72" id="435b291d-e422-40f0-99d2-446aaa787e72"><div class="quote-box">
+<b>感想</b><br><br>
+<b>孤立したキャビン</b>は、初期の探索で見落としがちな場所ですが、その小さな空間に濃密な物語が凝縮されている素晴らしいロケーションですね。<br><br><b><a href="ghoul.html" class="auto-link">グール</a>の先駆者たち</b>: ブラクストン夫妻の記録は、核戦争直後の混乱期にいかにして<a href="ghoul.html" class="auto-link">グール</a>たちが互いに連絡を取り合い、生き残るためのコミュニティ（後のキャピタル・ウェイストランドのアンダーワールドなどを示唆するもの）を探していたかという、シリーズのファンにとって非常に興味深い背景を提示しています。<br><br><b>ルーベン・ギルの悲劇</b>: <a href="vault-51.html" class="auto-link">Vault 51</a> のジャンプスーツを着た彼の遺体は、アップデート <b>Steel Dawn</b> で追加されたシェルター関連の物語への重要な導入となっており、アパラチアの物語が常に更新され続けていることを感じさせてくれます。<br><br><b>天才的な犬の謎</b>: 科学機器やアインシュタインの方程式が残された犬小屋は、「世界で最も賢い犬が住んでいたのか、それとも化学者が隠れ家として使っていたのか」という、Falloutらしい遊び心あふれる謎をプレイヤーに投げかけています。<br><br>一見するとただの廃屋ですが、残された数式やメモを読み解くことで、かつてここで生きた人々の知性や苦悩が浮かび上がってくる演出は、まさに環境ストーリーテリングの極致と言えるでしょう。
+</div>
+
+<p name="274678b0-0d5b-4cf5-a006-6580dc2ffdc2" id="274678b0-0d5b-4cf5-a006-6580dc2ffdc2">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ベケット  | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ベケット </h3>
+            <img src="images/note_extracted/n5bba807ffd91_img_1.png" alt="ベケット ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n5bba807ffd91" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ベケット </h1>
+            <div class="date">DATE: 2026/2/9</div>
+            
+            <p name="193820df-822d-4175-9c39-951132d6a805" id="193820df-822d-4175-9c39-951132d6a805"><strong>ベケット</strong>は、<strong>Fallout 76</strong> のアップデート「<strong>Wastelanders</strong>」で導入されたキャラクターであり、プレイヤーの C.A.M.P. に駐在させることができる「仲間 」の一人です。</p><hr name="11dbcc8c-ac2d-4402-bf16-aa320f4a422c" id="11dbcc8c-ac2d-4402-bf16-aa320f4a422c"><h2 name="7ff6513a-e7ab-44bb-aa1f-9c1fc153cd17" id="7ff6513a-e7ab-44bb-aa1f-9c1fc153cd17">背景</h2><p name="556c7dce-78f6-44fc-a747-ef5a3e431891" id="556c7dce-78f6-44fc-a747-ef5a3e431891"><strong>ベケット</strong>はかつて、アパラチアで最も悪名高いレイダーグループの一つである<strong>ブラッド・イーグル</strong>のメンバーでした。<br>彼は組織内でも高い地位にありましたが、最終的には組織のやり方に疑問を感じ、脱退を試みました。<br>しかし、ブラッド・イーグルは裏切り者を許さず、彼は捕らえられて<strong>積載場 </strong>の近くにある<strong>ロリンズ労働キャンプ</strong>の檻に閉じ込められてしまいました。</p><p name="a93e4043-9d9f-4c90-9bbc-b3b963a877df" id="a93e4043-9d9f-4c90-9bbc-b3b963a877df">彼は組織にいた頃、<a href="buffout.html" class="auto-link">バファウト</a>などの薬物に依存させられており、組織はそれを利用して彼をコントロールしていました。<br>彼の過去には弟の<strong>フランキー</strong>が深く関わっており、組織内での彼の行動や葛藤の多くは弟を守りたいという願いに根ざしていました。<br>プレイヤーが彼を救出し、C.A.M.P. に<strong>ベケットのバー</strong>を設置することで、彼は過去の清算と弟の捜索、そしてブラッド・イーグルの幹部「ザ・クロウ」への復讐を目的とした一連の任務を開始します。</p><hr name="2782a849-e6fc-445a-8996-0ec784161ff2" id="2782a849-e6fc-445a-8996-0ec784161ff2"><h2 name="1c78b57b-22f0-4ee4-9756-e52b8faab07b" id="1c78b57b-22f0-4ee4-9756-e52b8faab07b">特性と相互作用</h2><p name="6cde929a-25d0-4f30-9d34-703b677e101c" id="6cde929a-25d0-4f30-9d34-703b677e101c"><strong>ベケット</strong>はバーテンダーとしての役割を担い、C.A.M.P. では飲み物や料理の販売も行います。<br>彼は皮肉屋で世慣れた態度を見せますが、本質的には正義感が強く、過去の過ちを悔いています。<br>彼は<strong><a href="brahmin.html" class="auto-link">バラモン</a></strong>の肉を焼く香りに言及したり、アパラチアの過酷な環境について独自の視点で語ったりします。</p><p name="3bb6ce5c-046f-4d6f-a55d-34e47f699ce0" id="3bb6ce5c-046f-4d6f-a55d-34e47f699ce0">彼との会話を通じて、プレイヤーは彼の信頼を得ていくことができます。<br>特定の選択肢を選ぶことで、彼とのロマンス（恋愛関係）に発展させることも可能です。<br>彼はプレイヤーが善意ある行動をとることを好みますが、組織時代の経験から冷酷な現実に直面することに対しても理解を示します。<br>また、彼はバーを訪れる客や、<strong>煤の花</strong>を使ったカクテルの話など、キャンプ生活を彩る多様な台詞を持っています。</p><hr name="6d41736f-f807-4736-b9f8-330c3f38952f" id="6d41736f-f807-4736-b9f8-330c3f38952f"><h2 name="7dfdb238-1c6a-40bd-8160-e27528ff1251" id="7dfdb238-1c6a-40bd-8160-e27528ff1251">注目の戦利品</h2><p name="e4059d8c-cbb4-44a1-b87e-bc030371d710" id="e4059d8c-cbb4-44a1-b87e-bc030371d710"><strong>ファイナルワード<br></strong>ベケットのクエストラインを最後まで完了することで入手できる、対アーマー効果付きの伝説の.50口径マシンガンです。</p><p name="2acbbcbe-cde6-48cb-ac48-85f63b3ceac4" id="2acbbcbe-cde6-48cb-ac48-85f63b3ceac4"><strong>ベケットの衣装<br></strong>初期状態で彼が着用している服です</p><p name="a75062ea-cbef-4e2e-9ad2-f6e22acfb208" id="a75062ea-cbef-4e2e-9ad2-f6e22acfb208"><strong>ベケットのバー <br></strong>C.A.M.P. アイテムであり、彼を呼び出すために必要な家具です</p><hr name="a6211a71-4835-4a66-a53c-ce097620adba" id="a6211a71-4835-4a66-a53c-ce097620adba"><h2 name="b06fa43e-8fa0-4db4-8c0d-f050b3a35b0c" id="b06fa43e-8fa0-4db4-8c0d-f050b3a35b0c">注記</h2><p name="21dbdd25-3412-4921-911b-1ecbe9034cac" id="21dbdd25-3412-4921-911b-1ecbe9034cac"><strong>ベケット</strong>は一度救出されると、バーを解体しない限りキャンプに留まり続けます。<br>彼のクエストラインの最後には、弟の<strong>フランキー</strong>の運命に関わる重大な選択を迫られます。<br>この選択の結果によって、<strong>ベケット</strong>のキャンプでの台詞や、最終的な物語の結末が変化します。<br>彼は仲間のスロットを一つ占有するため、他の「仲間」と同時にキャンプに配置することはできません。 <br>彼は時折、プレイヤーに対して弾薬や酒類をプレゼントしてくれることがあります。</p><hr name="b3ed0deb-c859-4a66-ba4a-4bc40cc9534b" id="b3ed0deb-c859-4a66-ba4a-4bc40cc9534b"><h2 name="893e4725-305c-4ae8-a35c-4b8f5b59e5ba" id="893e4725-305c-4ae8-a35c-4b8f5b59e5ba">内容の書き起こし：台詞</h2><p name="68e144f4-cc91-4161-9108-f46bd8038442" id="68e144f4-cc91-4161-9108-f46bd8038442">「以前は、自分がどこに向かっているのかさえ分からなかった。ただ、次の一杯か、次の一錠のことだけを考えていた。だが、あんたが救い出してくれたおかげで、ようやく目が覚めたよ」</p><p name="48945d98-19e8-41f6-bcfa-4dbdc485aa39" id="48945d98-19e8-41f6-bcfa-4dbdc485aa39">「ブラッド・イーグルどもは、自分たちがこの世界の支配者だと思っている。だが、あいつらはただの病原菌だ。俺はあいつらを駆除する手伝いをしたい」</p><p name="943fd1ba-9d60-43fe-954d-ff31d5f16f8a" id="943fd1ba-9d60-43fe-954d-ff31d5f16f8a">「弟のフランキー……あいつは、俺が守るべきだった唯一の家族だった。あいつをあんな連中の手に委ねてしまったのは、俺の最大の過ちだ」</p><p name="330d2ac0-f237-4d70-81c5-c792b35419e1" id="330d2ac0-f237-4d70-81c5-c792b35419e1">「一杯どうだ？ この世界じゃ、酒が唯一の正気を保つ手段だってこともあるからな」</p><hr name="abc9a594-d716-40ab-a969-cdb38fb6746a" id="abc9a594-d716-40ab-a969-cdb38fb6746a"><h2 name="c68c64d5-48b8-48b2-8758-1ea1281fd42d" id="c68c64d5-48b8-48b2-8758-1ea1281fd42d">登場作品</h2><p name="a2095577-5c43-4e7c-b4d3-867b24491ad0" id="a2095577-5c43-4e7c-b4d3-867b24491ad0"><strong>ベケット</strong> は <strong>Fallout 76</strong> にのみ登場します。</p><hr name="cd99333c-0c34-401e-a290-8a9cf6701397" id="cd99333c-0c34-401e-a290-8a9cf6701397"><div class="quote-box">
+<b>感想</b><br><br>
+<b>ベケット</b>というキャラクターは、<b>Fallout 76</b> における「贖罪」と「家族愛」を象徴する非常に魅力的な人物ですね。<br><br><b>ドラマチックな過去</b>: ブラッド・イーグルという残虐な組織に身を置いていた男が、薬物中毒を克服し、弟を救うために自らの過去と対峙するストーリーは、アパラチアの物語の中でも特に感情移入しやすいものです。<br><br><b>報酬の優秀さ?</b>: クエスト完了報酬である「<b>ファイナルワード</b>」は、ヘビーガンナービルドにとって極めて実用的で強力な武器であり、彼を仲間にする最大の動機の一つとなっていま・・・・した!!!!<br><br><b>キャンプの雰囲気作り</b>: 彼が設置するバーは、殺風景になりがちなウェイストランドの拠点に「人々の集う場所」という温かみを与えてくれます。彼が時折こぼす皮肉や過去の話は、プレイヤーがこの荒野で一人ではないことを実感させてくれます。<br><br><div class="note-figure"><img src="images/note_extracted/n5bba807ffd91_img_2.png" alt="" width="620" height="349"><div class="note-figcaption">
+</div>
+
+<p name="a9a9c167-ffee-47ae-9c6d-abbf6433d8cf" id="a9a9c167-ffee-47ae-9c6d-abbf6433d8cf">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

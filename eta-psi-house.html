@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>イータ・プサイ・ハウス | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">イータ・プサイ・ハウス</h3>
+            <img src="images/note_extracted/n1abdd2958268_img_1.png" alt="イータ・プサイ・ハウス">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n1abdd2958268" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>イータ・プサイ・ハウス</h1>
+            <div class="date">DATE: 2026/1/21</div>
+            
+            <p name="6e66c283-f971-41dc-b5b5-8fd167267557" id="6e66c283-f971-41dc-b5b5-8fd167267557"><strong>イータ・プサイ・ハウスは、アパラチアの森林地帯にある未マークのロケーションであり、モーガンタウンのフラタニティ・ロウ沿いに位置しています。</strong>&nbsp;<a href="pie-house.html" class="auto-link">パイハウス</a>の隣にあります。</p><hr name="38d98c49-0d61-4432-9e7b-9edd23a498ef" id="38d98c49-0d61-4432-9e7b-9edd23a498ef"><h2 name="bf1954ca-ea56-456e-b6b9-9f95f33fc904" id="bf1954ca-ea56-456e-b6b9-9f95f33fc904">背景</h2><p name="95c812e3-f666-4983-bafa-ff0e4b759541" id="95c812e3-f666-4983-bafa-ff0e4b759541">この家は、ヴォルト・テック大学のフラタニティ（男子学生親睦団体）である<strong>イータ・プサイ・イプシロン・タウ</strong>、通称「イータ・プサイ」の拠点でした。 <br>最終戦争直前の会長はジュディという学生でした。</p><p name="e164e0f1-f507-4e38-a5fc-45c4820e0891" id="e164e0f1-f507-4e38-a5fc-45c4820e0891">イータ・プサイは、隣のフラタニティであるパイ・カッパ・ミューからの絶え間ないいたずらの対象となっていましたが、最終的には「<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>」プロジェクトにおいて彼らと協力することになりました。 <br><strong>ジュディは、<a href="big-al-s-tattoo-parlor.html" class="auto-link">ビッグ・アルのタトゥー・パーラー</a>の地下にある秘密の酒場を管理しており、そこで<a href="robobrain.html" class="auto-link">ロボブレイン</a>のビブに新製品のテストをさせていました。</strong></p><p name="03ec0ad1-d883-409d-93b1-82d4b8a90fd4" id="03ec0ad1-d883-409d-93b1-82d4b8a90fd4">他の多くの学生団体と同様に、イータ・プサイもまた、規律違反を理由に2077年10月20日に大学から立ち退きを命じられました。</p><hr name="47b403b5-5854-403a-ba7d-cb5eecff054c" id="47b403b5-5854-403a-ba7d-cb5eecff054c"><h2 name="1ba98173-afcf-4846-994c-5593daedf984" id="1ba98173-afcf-4846-994c-5593daedf984">レイアウト</h2><p name="42110f1d-ea93-4028-b304-153d7421775e" id="42110f1d-ea93-4028-b304-153d7421775e">家は3階建てで構成されています。<br>1階には玄関、リビングルーム、そしてジュディのターミナルがある小部屋があります。<br>2階と3階は学生たちの寝室とラウンジで構成されています。<br>地下室は<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の秘密の酒場へと通じていますが、現在は封鎖されており、<a href="big-al-s-tattoo-parlor.html" class="auto-link">ビッグ・アルのタトゥー・パーラー</a>の隠し入り口から入る必要があります。</p><hr name="ad4be0b8-8f56-444f-b555-97e0499cfc83" id="ad4be0b8-8f56-444f-b555-97e0499cfc83"><h2 name="c32ca9b7-9ad5-43fe-bc71-3ce9a977b9e0" id="c32ca9b7-9ad5-43fe-bc71-3ce9a977b9e0">注目の戦利品</h2><p name="df41419c-133c-4ffe-be47-dbc47b553503" id="df41419c-133c-4ffe-be47-dbc47b553503">話し合いが必要：メモ。2階の寝室にあるタンスの中に入っています。</p><div class="note-figure"><blockquote><p name="aa46a8e8-30f4-4efb-b9f6-487ac0e4b895" id="aa46a8e8-30f4-4efb-b9f6-487ac0e4b895">ジュディ、話し合いが必要よ。<br>あのパイ・ミューの男の子たちとの関わりや、あなたのあの機械……度が過ぎているわ。<br>家に帰ってきなさい。<br>－ お母さんより</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n1abdd2958268_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="dae4daef-067b-4a07-882a-7a326e089267" id="dae4daef-067b-4a07-882a-7a326e089267">ギリシャ文字：メモ。1階にあるジュディのターミナルの下にあります。</p><div class="note-figure"><blockquote><p name="9483d93c-921f-4173-8f98-bc9c42071ec0" id="9483d93c-921f-4173-8f98-bc9c42071ec0">個人ログ、タイムスタンプ 1120761344。<br>俺の限定版ヌカ・コーラ・ランプが、満足のいく状態で届いた。<br>いくつか……改造を施した後、俺は非常に満足している。<br>これで間違いなく、俺はこの街で最高のヌカ・コーラ・コレクションを手に入れたことになるが、このちっぽけな住処の収容能力を限界まで押し広げてしまった。<br>解決策：さらなる拡張のために、モーガンタウンに倉庫を確保する必要がある。<br>だがその前に、適切な資金が必要だ……。<br>商業的な事業を成功させるための戦略を練る必要があるのは明らかだ。<br>大学生なら腐るほどいる。<br>だが、彼らが求めているものは……あはあ！ 提案だ。<br>学生はアルコールが大好きだ。<br>そして俺はヌカ・コーラが大好きだ。<br>俺はヌカ・コーラを使った、アルコール度数の高い蒸留酒を考案するつもりだ。<br>完璧な飲料だ！ <br>うーん……あとは名前が必要だな。ヌカホール？ ヌカマッシュ？ ヌカブリュー？ ああ、その部分は後で考えよう。</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n1abdd2958268_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="f80b643c-dbae-40d0-aea0-84d22d0135bd" id="f80b643c-dbae-40d0-aea0-84d22d0135bd">ジュディのターミナル：1階にあります。秘密の酒場の備品室のパスワードを入手できます。</p><div class="note-figure"><blockquote><p name="8755525b-aba2-4dc2-bd08-a4f70049638b" id="8755525b-aba2-4dc2-bd08-a4f70049638b">今日、秘密の酒場の備品室を施錠しなければならなかった。<br>最近はいろいろなことが頭をよぎって、<strong>パスワイド</strong>を忘れてしまいそうだから、ここに書いておく。<br>それは：<strong>SHINE</strong>（シャイン）。<br>皮肉なものね、そうでしょう？<br>ルイスがあの奥に何を隠しているのか、彼が<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>のレシピに何を付け加えているのかを誰かに知られたら……大変なことになる。<br>そのことを忘れて、みんなの前で作り笑いを浮かべられればいいのだけれど。<br>今夜がいよいよ本番。<br><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>は今年最大のパーティーに招待されたし、今回ばかりはエトペッツも同様よ。<br>もし万が一何かが起きても、私が彼らの身代わりになる。<br>これが永遠に続かないことは分かっている。<br>でも……それだけの価値はあるわよね。そうでしょう？</p></blockquote><div class="note-figcaption"></div></div><p name="d1e62988-91c2-4753-ad8d-691ee5229819" id="d1e62988-91c2-4753-ad8d-691ee5229819">ボブルヘッド：2階の一番奥の部屋にある本棚の上にあります。</p><p name="833d9bc8-d021-4df5-abe4-bd52dfcfb2cd" id="833d9bc8-d021-4df5-abe4-bd52dfcfb2cd"><a href="magazine.html" class="auto-link">雑誌</a>：1階のリビングルームにあるコーヒーテーブルの上にあります。</p><hr name="be17a4d5-814e-4fe4-8551-c1c6d412046a" id="be17a4d5-814e-4fe4-8551-c1c6d412046a"><h2 name="5342e730-773b-4082-9c7f-101e8e7f964e" id="5342e730-773b-4082-9c7f-101e8e7f964e">備考</h2><p name="24e6c807-14fd-4fd0-91fa-7ca80a498b21" id="24e6c807-14fd-4fd0-91fa-7ca80a498b21">家の外には、戦前のボルトン家が飾り付けたクリスマスライトが今も残っています。 <br>これは、隣の家の住人が「早すぎる」と苦情のメモを玄関マットの下に残していた家そのものです。</p><hr name="6f8ba2e8-9a50-4492-8c25-436eaf38045a" id="6f8ba2e8-9a50-4492-8c25-436eaf38045a"><h2 name="b0e570f2-bd29-4009-9138-5fec18ff0e9a" id="b0e570f2-bd29-4009-9138-5fec18ff0e9a">登場作品</h2><p name="6344e7e7-54d1-4da7-92e0-36922e4647f8" id="6344e7e7-54d1-4da7-92e0-36922e4647f8">イータ・プサイ・ハウスは『Fallout 76』にのみ登場し、アップデート「Wild Appalachia」で導入されました。</p><hr name="e9c75c8e-8233-461a-8bab-9fff97f76659" id="e9c75c8e-8233-461a-8bab-9fff97f76659"><h2 name="e622ece4-6498-4bcc-be33-dc84a55d1ac9" id="e622ece4-6498-4bcc-be33-dc84a55d1ac9">関連クエスト</h2><ul name="9d020602-7a99-429e-9ff4-71cff47ff0e2" id="9d020602-7a99-429e-9ff4-71cff47ff0e2"><li><p name="e5a51e98-8234-456e-8509-c31b1ae4093a" id="e5a51e98-8234-456e-8509-c31b1ae4093a"><strong><a href="wasted-on-nukashine.html" class="auto-link">Wasted on Nukashine</a></strong></p></li></ul><hr name="ad4bbc6c-5438-4346-823a-7f160b48323b" id="ad4bbc6c-5438-4346-823a-7f160b48323b"><div class="quote-box">
+<b>感想</b><br><br>
+学内で「負け犬」扱いされていたイータ・プサイが、<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>という禁断の果実によって一時的に頂点へ登り詰め、活気に沸いていた様子が伝わります。<br>しかし、その輝きの源が備品室に隠された「核物質」であったことは、タイトルの通りまさに<b>命を削るような危うい成功</b>でした。<br>ルイスの無邪気なコレクター精神が、結果として多くの仲間を死に至らしめる猛毒を生み出してしまったという事実は、Falloutの世界観らしい残酷な皮肉です。<br><br><hr name="1f099b14-b616-43d7-b14e-c20064d03eb2" id="1f099b14-b616-43d7-b14e-c20064d03eb2"><h3 name="1878cada-984d-4002-9055-ca957f5e9f5c" id="1878cada-984d-4002-9055-ca957f5e9f5c">ジュディという人物が背負った孤独</h3>特に印象的なのは、会長ジュディの心の揺れ動きです。<br>母親からの「話し合いが必要」という切実な帰宅の促しをタンスにしまい込み、迫り来る立ち退きや隣人とのトラブルに頭を悩ませながらも、<b>「仲間のためなら泥をかぶる」</b>と決意した彼女の責任感は、あまりにも孤独で悲劇的です。<br>彼女が必死に守ろうとした「居場所」は、皮肉にも彼女自身が管理していた地下の酒場と、その後の最終戦争によって永遠に失われることになりました。<br><br><hr name="b9c5394b-ef1f-48d4-916e-3390d2d45642" id="b9c5394b-ef1f-48d4-916e-3390d2d45642"><h3 name="8cfa9764-0e74-4562-857e-3108edc08206" id="8cfa9764-0e74-4562-857e-3108edc08206">日常の断片が語る、奪われた未来</h3>軒先に残されたクリスマスライトや、限定版ランプが届いて喜ぶルイスの記録は、彼らが私たちと変わらない<b>「明日があることを信じて疑わなかった若者」</b>であったことを象徴しています。<br>10月20日の立ち退き期限を巡るドタバタ劇が、人類滅亡のわずか3日前の出来事だったという時間軸の重なりが、このロケーションを訪れるたびに言葉にできない虚無感を抱かせます。<br><br><hr name="a4d1cfb3-4c29-4db5-ab94-69da56c6e413" id="a4d1cfb3-4c29-4db5-ab94-69da56c6e413">イータ・プサイ・ハウスは、単にお酒のレシピを手に入れる場所ではなく、アパラチアに生きた学生たちの、<b>「最後の、そして最高に狂った一週間」</b>の記憶が閉じ込められたタイムカプセルのような場所ですね。<br><br><a href="sugar-bomb.html" class="auto-link">シュガーボム</a>とかチェスの駒とかが手に入れれるのでちょこちょこ用がある人も多いかもしれませんね。
+</div>
+
+<p name="730f8f79-e7b2-4f09-bbd1-ad8c2e70c00c" id="730f8f79-e7b2-4f09-bbd1-ad8c2e70c00c">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

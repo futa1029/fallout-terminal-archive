@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>前線基地タンゴ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">前線基地タンゴ</h3>
+            <img src="images/note_extracted/n3c5338cf5e1d_img_1.png" alt="前線基地タンゴ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n3c5338cf5e1d" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>前線基地タンゴ</h1>
+            <div class="date">DATE: 2025/11/24</div>
+            
+            <p name="f6fa955d-d525-4426-b9d7-e5bd8b1865a0" id="f6fa955d-d525-4426-b9d7-e5bd8b1865a0">前線基地タンゴは、『Fallout 76』のExpeditions: Atlantic Cityアップデート第一弾「Boardwalk Paradise」で導入された、アパラチアの森林地域にあるロケーションです。</p><p name="0349e3cc-b3f9-4126-89d1-831a5c0ace38" id="0349e3cc-b3f9-4126-89d1-831a5c0ace38">この場所は、<a href="moonshiner-s-hut.html" class="auto-link">密造酒業者の小屋</a>の少し南西に位置し、<a href="gilman-sawmill.html" class="auto-link">ギルマン製材所</a>のまだ北西にあります。</p><hr name="0131cb26-46f7-42f6-84d3-43c78b156eba" id="0131cb26-46f7-42f6-84d3-43c78b156eba"><h2 name="69a6b7d2-4bad-4817-99e1-ad7ef1e4f6c6" id="69a6b7d2-4bad-4817-99e1-ad7ef1e4f6c6">背景</h2><p name="a3ff8f29-033d-4907-b179-e797daa35366" id="a3ff8f29-033d-4907-b179-e797daa35366">前線基地タンゴは、BOS第一次遠征軍によって、次の二つの目的のために設立されました。</p><ol name="dc3f2d93-7983-4b3f-82fa-f14eee56c6c8" id="dc3f2d93-7983-4b3f-82fa-f14eee56c6c8"><li><p name="980b5ed5-a139-4f0e-ae86-69eb685ef308" id="980b5ed5-a139-4f0e-ae86-69eb685ef308">近くのベルチバードの残骸を回収すること。</p></li><li><p name="23f53272-b10d-4ec5-b1e9-b9194c0f2af6" id="23f53272-b10d-4ec5-b1e9-b9194c0f2af6">周辺地域にある程度の治安を提供すること。<br>彼らは敷地境界線と近くの道路沿いでパトロールを実施しています。</p></li></ol><p name="7c938fff-4331-43fb-beb4-b09e560c1e4a" id="7c938fff-4331-43fb-beb4-b09e560c1e4a">非公式には、ここに駐屯しているデルタ分隊は、新米の入隊者に戦闘経験を積ませる機会としてパトロールを利用しています。</p><hr name="d3a5032d-92ee-4107-a3e4-37c63fe48a49" id="d3a5032d-92ee-4107-a3e4-37c63fe48a49"><h2 name="46614235-73d1-4ffd-8848-c5dbc6976a47" id="46614235-73d1-4ffd-8848-c5dbc6976a47">所属するNPC</h2><div class="note-figure"><img src="images/note_extracted/n3c5338cf5e1d_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><h3 name="a61c15b3-1cba-4098-bb51-7c4fae76d703" id="a61c15b3-1cba-4098-bb51-7c4fae76d703">ニコール・ゲインズ</h3><div class="note-figure"><blockquote><p name="0bb6e502-efd1-4607-b7fb-3ab06862db54" id="0bb6e502-efd1-4607-b7fb-3ab06862db54">私たちは、アメリカ合衆国に平和と秩序を再確立することに専念する組織です。<br>私たちの創設者は軍隊の残党ですが、私たちは厳密には軍事組織ではありません。<br>私たちはまた、戦前の技術の保存と再現に努めるため、その研究も行っています。<br>私たちの活動は、私たちすべてのためになります。</p></blockquote><div class="note-figcaption"></div></div><h3 name="682028c2-54d5-4da4-8f49-c1e777629fed" id="682028c2-54d5-4da4-8f49-c1e777629fed">背景</h3><ul name="33b93e60-cd7b-4de4-b929-ee8290b63271" id="33b93e60-cd7b-4de4-b929-ee8290b63271"><li><p name="4f1e0561-aa0b-4612-841f-a121dcd3e40f" id="4f1e0561-aa0b-4612-841f-a121dcd3e40f">出身: <br>ゲインズはアパラチアの地元出身者です。</p></li><li><p name="3417bb18-4887-4cb6-bd74-35b578188ccc" id="3417bb18-4887-4cb6-bd74-35b578188ccc">家族: <br>彼女には核戦争中に軍にいた兄がいました。<br>彼はカリフォルニア、そして別のどこかへ送られました。<br>彼女は兄が生きているかどうか確信していませんが、生きていると信じることを好み、再会を望んでいます。</p></li><li><p name="fec29e88-6a5d-45f8-9bfb-bb63c0608c8e" id="fec29e88-6a5d-45f8-9bfb-bb63c0608c8e">BOSへの入隊: <br>彼女の自宅兼農場は、壊滅的な<a href="scorch.html" class="auto-link">スコーチ</a>の攻撃を受けました。<br>万事休すかと思われたとき、ダニエル・シンと彼の部隊が現れ、事態を収束させました。</p></li><li><p name="b3dc2d32-7f0a-4fe1-aa67-0e1ac78aed05" id="b3dc2d32-7f0a-4fe1-aa67-0e1ac78aed05">動機と目標: <br>BOSが入隊を募集した際、ゲインズは二度と無力だと感じたくないという理由で志願しました。<br>彼女は、<a href="mutation.html" class="auto-link">変異</a>したクリーチャーに反撃するために、いつかナイトになることを熱望しています。</p></li></ul><hr name="7c5dbd46-e420-412c-af2b-74622cd903d3" id="7c5dbd46-e420-412c-af2b-74622cd903d3"><h3 name="f5593cfd-559f-4e24-b32e-6506799ea970" id="f5593cfd-559f-4e24-b32e-6506799ea970">プレイヤーとの交流</h3><ul name="fdccd9f4-45a2-4159-a6f5-96388227d159" id="fdccd9f4-45a2-4159-a6f5-96388227d159"><li><p name="8df63c4b-1926-4611-82ab-f95e4f3f3e90" id="8df63c4b-1926-4611-82ab-f95e4f3f3e90">ダイアログ: <br>彼女は、ダニエル・シンまたはレイラ・ラフマニが殺害されたか、またはBOSを去った場合にコメントします。</p></li><li><p name="a22e9d13-fff1-4148-9f7e-d9058c420309" id="a22e9d13-fff1-4148-9f7e-d9058c420309">称号: <br>クエスト「The Catalyst」が完了している場合、Vault居住者のことを流浪のナイトと呼びます。</p></li></ul><ul name="b7fad36b-cb0d-4460-a471-c94a7a45fa0f" id="b7fad36b-cb0d-4460-a471-c94a7a45fa0f"><li><p name="708ba276-63d5-4a27-aa95-fe67809a3199" id="708ba276-63d5-4a27-aa95-fe67809a3199">服装: <br>Military fatigues（ミリタリー・ファティーグ）</p></li></ul><hr name="07fe8b87-b9fc-48fd-9a8b-369f49fdbbac" id="07fe8b87-b9fc-48fd-9a8b-369f49fdbbac"><h2 name="63dd7968-17eb-4863-b017-689f6cc6a3ef" id="63dd7968-17eb-4863-b017-689f6cc6a3ef">注目すべき戦利品</h2><h3 name="697e65a2-7aa6-444b-8f3a-b38824f06980" id="697e65a2-7aa6-444b-8f3a-b38824f06980">キャンプを設営する- メモ。</h3><div class="note-figure"><img src="images/note_extracted/n3c5338cf5e1d_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="05a63f37-3b62-455b-92d0-b00acf5dee22" id="05a63f37-3b62-455b-92d0-b00acf5dee22">テント内の棚の上、応急処置ボックスの隣。</p><div class="note-figure"><blockquote><p name="219735ea-2211-415d-9573-7557162f8e3c" id="219735ea-2211-415d-9573-7557162f8e3c">この任務にサインアップしたことを後悔し始めている。<br>私が知っていたのは、古い墜落したベルチバードを回収し、近くの崖の上に基地を設営するということだけだった。<br>考えが及ばなかったのは、ここに来るまでの道のりだ。うちのAPC（装甲兵員輸送車）がどうやってあの丘の斜面を上り下りできたのか、いまだに謎だ。<br>残りの物資を運び上げるのが最悪だった。<br><br>運が変わり始めたのは、偵察隊がすぐ東に小さな<a href="moonshiner-s-hut.html" class="auto-link">密造酒業者の小屋</a>があると言って戻ってきてからだ。<br>デイヴィスと俺は昨夜こっそりそこへ行き、いい酒を少し買ってきた。<br>クソ、翌朝はひどく痛んだ（二日酔いになった）がな。<br><br>今、近くをカルト信者がうろついていて、洞窟のシステムに入っていくのが目撃されたという報告を聞いている。<br>彼らが何を企んでいるのか、まだ確認しに行っていない。</p></blockquote><div class="note-figcaption"></div></div><p name="9af86b1e-ef31-49c7-94c3-259ec0f3403c" id="9af86b1e-ef31-49c7-94c3-259ec0f3403c">このメモは、BOS（ブラザーフッド・オブ・スティール）の兵士が前線基地タンゴを設立した際の苦労と、その後の発見（<a href="moonshiner-s-hut.html" class="auto-link">密造酒業者の小屋</a>）や新たな懸念（カルト信者）について書かれており、ゲーム世界の雰囲気を伝えています。</p><hr name="0a2b5b35-21dd-4837-8927-243e5de3a390" id="0a2b5b35-21dd-4837-8927-243e5de3a390"><h3 name="1ecf29d3-12e0-4eca-aace-40c73a2c161c" id="1ecf29d3-12e0-4eca-aace-40c73a2c161c">あなたの任務- メモ。</h3><p name="18324701-7dc0-4165-b661-e4a38f83950a" id="18324701-7dc0-4165-b661-e4a38f83950a">別のテントの地面で見つかります。</p><div class="note-figure"><blockquote><p name="d8d27a56-428d-472e-abc2-97e67a9ab2d7" id="d8d27a56-428d-472e-abc2-97e67a9ab2d7">Delta、君たちの通常のパトロールルートを調整する。<br>いつもの周辺区域を巡回するループではなく、近くの道路を含めるように半径を広げてほしい。<br><br>基地のすぐ近くの瓦礫は片付けたし、この数日間は基地の安全も確保されているが、Alpha（アルファ）からの報告によると、あの主要幹線道路沿いで交通量が増加している――敵対的かどうかにかかわらず、だ。<br><br><a href="scorch.html" class="auto-link">スコーチ</a>、レイダー、カルト信者、そして奇妙なロボットなどがいるため、これは我々の新米兵たちにとって肥沃な訓練場になるはずだ。<br><br>これが我々の主要任務に厳密には沿っていないことは承知しているが、タンゴで発生するかもしれない予期せぬ事態に対処するために、我々には効果的な戦闘部隊が必要だと強く感じている。<br><br>とはいえ、これは依然としてパトロールであり、捜索・破壊任務ではない。わざわざ行動を探し出して危険に身をさらす必要はない。明日朝には、少し経験を積んだ状態で、無事に基地に戻ってくることを期待している。<br><br>Ad victoriam、入隊者たちよ。</p></blockquote><div class="note-figcaption"></div></div><p name="6f2abf8a-c3b6-4b3d-8e14-1751c7f8c50a" id="6f2abf8a-c3b6-4b3d-8e14-1751c7f8c50a">このメモは、表向きの任務（バルチバードの残骸回収と治安維持）の裏で、上官が新兵の訓練という非公式な目的を優先していることを示しており、BOS（ブラザーフッド・オブ・スティール）の内情を垣間見せています。</p><hr name="a0fde27e-9d39-4c05-99cb-495a09af251e" id="a0fde27e-9d39-4c05-99cb-495a09af251e"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n3c5338cf5e1d_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"><a href="gilman-sawmill.html" class="auto-link">ギルマン製材所</a>のデイリークエストで行く場所ですね。<br>それ以上ロアも何もないと思ってましたが一人固有NPC居たんですね。<br>アドビクトリアム!
+</div>
+
+<p name="bb1f2dc0-fee7-427d-bcf6-563b73a4a560" id="bb1f2dc0-fee7-427d-bcf6-563b73a4a560">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Blight (ブライト) | Overseer Mohi's Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffaa00;
+            /* Blight Orange */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #ffcc66;
+            background: rgba(255, 170, 0, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Blight<br>(ブライト)</h3>
+            <img src="./images/note/231/1.webp" alt="Blight">
+
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>植物 (菌類)</span></div>
+            <div class="infobox-row"><span class="infobox-label">重量</span><span>0.25</span></div>
+            <div class="infobox-row"><span class="infobox-label">価値</span><span>6キャップ</span></div>
+            <div class="infobox-row"><span class="infobox-label">HP回復</span><span>25</span></div>
+            <div class="infobox-row"><span class="infobox-label">食料</span><span>5%</span></div>
+            <div class="infobox-row"><span class="infobox-label">Rads</span><span>+5</span></div>
+            <div class="infobox-row"><span class="infobox-label">病気確率</span><span>15%</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">
+                    < BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="blight" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+                    <h1>Blight (ブライト)</h1>
+
+                    <div class="quote-box">
+                        「ブライトは、Fallout 76 に登場する収穫可能な植物（菌類）の一種です」
+                    </div>
+
+                    <h2>概要</h2>
+                    <p>
+                        ブライトは、主に積灰の山地域で見られる、枯れた木の幹に付着して成長する鮮やかな赤色またはオレンジ色の菌類です。収穫すると「ブライト」というアイテムを入手できます。
+                    </p>
+
+                    <h2>生物学と生息地</h2>
+                    <p>
+                        この菌類は積灰の山の汚染された環境、特に煙と灰に覆われた枯れ木で繁栄しているようです。その外見は木にできた腫瘍や病変のように見え、鮮やかな色が暗い風景の中で目立ちます。
+                    </p>
+
+                    <img src="./images/note/231/2.webp" class="article-image" alt="Blight Habitat">
+
+                    <h2>効果</h2>
+                    <p>生のまま摂取した場合の効果は以下の通りです。</p>
+                    <ul>
+                        <li><b>HP回復:</b> 25</li>
+                        <li><b>食料:</b> 5%</li>
+                        <li><b>Rads:</b> +5</li>
+                        <li><b>病気になる確率:</b> 15%</li>
+                    </ul>
+
+                    <h2>クラフト</h2>
+                    <p>
+                        ブライトは、クッキングステーションで以下のアイテムを作成するために使用されます。
+                    </p>
+                    <h3>ブライトのスープ</h3>
+                    <ul>
+                        <li><b>材料:</b> ブライトx1、汚れた水x1、木材x1</li>
+                        <li><b>効果:</b> HP回復：60 / 食料：20% / 水分：15% / 病気耐性：+15</li>
+                        <li><b>ボーナス効果:</b> 30分間、クリティカルダメージが +50% 増加します。</li>
+                        <li><b>注記:</b> 草食動物の変異がある場合は +100%、さらに「Stranger in Numbers」Perkがあれば +125% まで上昇します。</li>
+                    </ul>
+
+                    <h2>ロケーション</h2>
+                    <ul>
+                        <li>積灰の山全域の枯れ木に自生しています。</li>
+                        <li>AMS実験場の周辺エリアに集中して生えています。</li>
+                        <li>ブラックウォーター鉱山の南側の斜面周辺で見つかります。</li>
+                        <li>ウェルチの周辺や北側の丘陵地帯でも見られます。</li>
+                        <li>Vault 63 の周辺エリアでも確認されています。</li>
+                    </ul>
+
+                    <h2>注記</h2>
+                    <p>
+                        パークカード「Green Thumb」を装備していると、一度の収穫で2倍の量（2つ）を入手できます。ブライトは腐るまでの時間が比較的早いため、使用する際は早めに調理するか、「Good with
+                        Salt」Perkや冷凍庫などで保存性を高めることが推奨されます。
+                        他の植物と同様に、ブラストゾーン内で収穫すると、未処理の深紅の溶剤 に変化します。
+                    </p>
+
+                    <div class="quote-box">
+                        <b>感想</b><br><br>
+                        ブライトは、一見すると積灰の山の殺風景な景色の一部に過ぎない毒々しいキノコですが、熟練のレジデントにとってはアパラチアで最も重要な植物の一つと言えます。<br>
+                        <br>
+                        <b>クリティカルビルドの要:</b>
+                        ブライトのスープが提供する「クリティカルダメージの大幅な増加」は、火力を劇的に向上させる手段です。特にレイドにおいて、その効果は絶大です。<br>
+                        <br>
+                        <b>腐りやすさとの戦い:</b>
+                        効果が強力である反面、保存がきかないため、必要な時に必要な分だけ集めるか、保存用のPerkを工夫する必要がある点も、サバイバル要素としてのバランスが取れています。<br>
+                        <br>
+                        <b>草食動物の入門として:</b>
+                        手軽に作れて非常に協力な効果になっています。これは30分料理なのですが1時間Verのご飯もあります。ですが手間はもうちょっとかかるので入門としては十分な性能とコストパフォーマンスに秀でてます。ここから火力を目指すバフを考えてもいいと思います。
+                    </div>
+
+                    <img src="./images/note/231/3.webp" class="article-image" alt="Blight Soup">
+
+                    <div
+                        style="margin-top: 30px; border-top: 1px solid #444; padding-top: 10px; font-size: 0.8em; color: #888;">
+                        <div style="margin-bottom: 10px;">
+                            TAGS: <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Fallout76</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Plant</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Consumable</span>
+                        </div>
+                        This article uses material from the “Blight” article on the Fallout wiki at Fandom and is
+                        licensed under the Creative Commons Attribution-Share Alike License.
+                    </div>
+
+        </main>
+    </div>
+
+
+        <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            // ローカルには自分が「押したかどうか(true/false)」だけを記録
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+            // ボタン連打防止のため一時的に無効化
+            btn.disabled = true;
+
+            if (isLiked) {
+                // いいね解除 (-1)
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                // いいね！ (+1)
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+            
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        // ページ読み込み時にデータベースから現在の総いいね数を取得して表示
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+                // DBから現在のカウントを取得
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    // まだ誰もいいねしていない（行がない）場合
+                    count = 0;
+                }
+
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+
+</html>

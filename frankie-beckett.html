@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>フランキー・ベケット | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">フランキー・ベケット</h3>
+            <img src="images/note_extracted/n59f014d21b63_img_1.png" alt="フランキー・ベケット">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n59f014d21b63" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>フランキー・ベケット</h1>
+            <div class="date">DATE: 2026/2/12</div>
+            
+            <p name="a9295873-d0f3-4d56-a50f-59dfad0de3ad" id="a9295873-d0f3-4d56-a50f-59dfad0de3ad">そこで驚愕したベケットは、「ザ・クロウ」の正体がずっと自分の弟であったことに気づきます。<br>フランキーは、ベケットが今でも「ザ・クロウ」の地位を求めていると誤解しており、自分を殺して新しい「ザ・クロウ」になるためにやってきたのだと思い込んでいます。</p><div class="note-figure"><img src="images/note_extracted/n59f014d21b63_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="d624f0b2-24a3-44e7-9f74-00bd857a8c14" id="d624f0b2-24a3-44e7-9f74-00bd857a8c14">フランキーはベケットに、自分を殺して仕事を終わらせろと言い放ちます。<br>その際、居住者はベケットを説得して弟を殺させるか、あるいは彼を正気に戻すかを選択できます。</p><div class="note-figure"><img src="images/note_extracted/n59f014d21b63_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="32068dfc-910d-4fe8-8c87-af72f4bbe62b" id="32068dfc-910d-4fe8-8c87-af72f4bbe62b">もし殺害された場合、ベケットは弟の遺体を<a href="ronnie.html" class="auto-link">ロニー</a>に送って埋葬させます。<br>ベケットは最終的にフランキーの恋人であるアイラにこの出来事を伝え、物事を円滑に進めるためにいくつかのキャップを彼女に送ります。</p><p name="6fce0906-d07d-4f4f-845c-56f06d0df897" id="6fce0906-d07d-4f4f-845c-56f06d0df897">もしフランキーが助けられた場合、ベケットは弟を<a href="ronnie.html" class="auto-link">ロニー</a>のキャンプに送り、薬物中毒を治療させます。<br>最終的に彼は放浪の商人となり、時折<strong>唯一の生存者 (Sole Survivor)</strong> ではなく、居住者の C.A.M.P. にいる兄を訪ねるようになります。<br>ベケットは、フランキーがいつか<strong>ファウンデーション</strong>にいるアイラを訪ねると確信しています。</p><hr name="447e9ccb-91be-4d91-9b30-516a0ffa1091" id="447e9ccb-91be-4d91-9b30-516a0ffa1091"><h2 name="a5836e4c-b4fd-4131-a357-e67f1a7ed4c2" id="a5836e4c-b4fd-4131-a357-e67f1a7ed4c2">プレイヤーキャラクターとの関わり</h2><p name="026accba-b118-46bc-b10b-ff6cf65415a7" id="026accba-b118-46bc-b10b-ff6cf65415a7">このキャラクターは殺害可能です。 <br>関連クエスト：<strong>Thicker Than Water</strong> クエスト「<strong>Thicker Than Water</strong>」において、フランキーはプレイヤーの促しによって救われるか、あるいは殺されます。<br>フランキーがプレイヤーキャラクターによって直接攻撃されたり殺されたりすることはありません。<br>代わりに、常にベケットが弟を撃ちます。<br>撃つ前にベケットはフランキーに謝罪しますが、フランキーは「ザ・クロウ」が再誕すると主張します。<br>フランキーの死体はアイテムを持っていません。</p><hr name="eb60ea44-ab46-42ec-9a50-e4477c9c1d20" id="eb60ea44-ab46-42ec-9a50-e4477c9c1d20"><h2 name="fb1534ed-0f23-48f5-8e26-57f7b92d1165" id="fb1534ed-0f23-48f5-8e26-57f7b92d1165">所持品</h2><p name="63ad8606-d853-4e02-a13b-f7c855c046d0" id="63ad8606-d853-4e02-a13b-f7c855c046d0"><strong>ブラッド・イーグルのレザージャケットとジーンズ</strong><br>死亡時に着用していますが、死体からアイテムを回収することはできません</p><hr name="47f31ace-b930-4124-afa7-226de769944c" id="47f31ace-b930-4124-afa7-226de769944c"><h2 name="efb23b58-448d-4771-b61e-538f483a4795" id="efb23b58-448d-4771-b61e-538f483a4795">注記</h2><div class="note-figure"><img src="images/note_extracted/n59f014d21b63_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="391293dd-94d6-457b-9b35-32f2c60bffba" id="391293dd-94d6-457b-9b35-32f2c60bffba">クエスト中、フランキーの玉座の裏には、そのクエストの間だけアクセスできる部屋があります。<br>そこにはベビーベッド、様々な玩具、そして壁に書かれた「HELP ME」の文字があります。</p><hr name="55e0a0bb-3d51-4a5e-aaa3-b91ebfe9be14" id="55e0a0bb-3d51-4a5e-aaa3-b91ebfe9be14"><h2 name="11a51d4f-13e4-4e8e-897d-933cca4e6bd4" id="11a51d4f-13e4-4e8e-897d-933cca4e6bd4">印象的な引用句</h2><p name="ce3196de-156d-423d-9156-52613484c816" id="ce3196de-156d-423d-9156-52613484c816">「あれは……目か？ 目玉だ。ああ、なんてことだ……なんてことだ」 ―― <a href="holotape.html" class="auto-link">ホロテープ</a>の中で「ジ・アイ」に拷問されている時の台詞</p><p name="7da9c60f-071e-43d3-8da2-4ca66c77cca3" id="7da9c60f-071e-43d3-8da2-4ca66c77cca3">「その通りだ、ベケット！ 俺だよ、お前の弟だ。驚いたか！」</p><p name="545393b9-79ae-45ef-9a52-9bc525f3c691" id="545393b9-79ae-45ef-9a52-9bc525f3c691">「戦いは始まるずっと前に終わっていたんだよ、兄さん。お前が俺を<strong>ファウンデーション</strong>に置き去りにした時に死んだんだ。自分自身が『ザ・クロウ』になるためにな！」</p><p name="d4f06180-3fed-4daf-9c6d-8d44f0d0f033" id="d4f06180-3fed-4daf-9c6d-8d44f0d0f033">「でも分かっているんだ。お前が本当になぜここにいるのか。俺を殺して、お前自身が再び『ザ・クロウ』になるためだろう。仕事を終わらせろよ、ベケット。やるべきことをやれ」</p><p name="129c8f9e-8e24-407a-a14d-c45cd7061528" id="129c8f9e-8e24-407a-a14d-c45cd7061528">「お前も愛しているよ、ベケット。それから……ごめん。すべてにおいて」</p><p name="3d1b73f6-7b98-420f-a76d-ce9073c3b6a4" id="3d1b73f6-7b98-420f-a76d-ce9073c3b6a4">「そうだ。そして……新しい『ザ・クロウ』が再誕するんだ！」 ―― 殺害された場合のフランキーの最期の言葉</p><hr name="040595a8-4803-404f-988a-81ff2c13b194" id="040595a8-4803-404f-988a-81ff2c13b194"><h2 name="07954a94-970e-45f2-aab0-ece54d4c3423" id="07954a94-970e-45f2-aab0-ece54d4c3423">登場作品</h2><p name="38400d21-7dd2-444e-b6e0-73e55a65c0d3" id="38400d21-7dd2-444e-b6e0-73e55a65c0d3"><strong>フランキー・ベケット</strong> は <strong>Fallout 76</strong> に登場し、アップデート「<strong>Wastelanders</strong>」で導入されました。</p><hr name="1924ea20-1d7c-4136-b291-3050c19b8d48" id="1924ea20-1d7c-4136-b291-3050c19b8d48"><h2 name="a636b828-9533-42e7-b2dc-294ba7cbd4e6" id="a636b828-9533-42e7-b2dc-294ba7cbd4e6">舞台裏</h2><p name="09d8c89f-af5a-472e-8974-da000ba0e3e7" id="09d8c89f-af5a-472e-8974-da000ba0e3e7">フランキーを助けた場合、ベケットは彼が放浪の商人になり、時々 C.A.M.P. を訪れるようになると言及します。<br>しかし、製品版のゲームでは彼はプレイヤーの C.A.M.P. には現れません。<br>カットされたエンカウンターでは、ベケットのバーが存在する場合、フランキーがキャンプのベケットを訪ねてくることになっていました。<br>しかし、このエンカウンターはキャンセルされました。<br>これは、ゲームファイル内に削除されたバージョンと未使用のバージョンの両方のフランキーが存在することからも明らかです。<br>それにもかかわらず、一部のプレイヤーは彼が訪ねてきたと主張していますが、現在のところ証拠はありません。</p><hr name="9b12420c-90af-41d8-b545-26e528037c9c" id="9b12420c-90af-41d8-b545-26e528037c9c"><div class="quote-box">
+<b>感想</b><br><br>
+<b>フランキー・ベケット</b>というキャラクターは、アパラチアにおける「家族の絆の崩壊と変質」を象徴する悲劇的な人物ですね。<br><br><b>歪んだ憧れ</b>: 兄に見捨てられたという恨みを抱きながらも、その兄がかつて所属していた組織で「ザ・クロウ」という同じ地位を目指してしまった皮肉は、彼の複雑な愛情と執着を感じさせます。<br><br><b>薬物による洗脳の恐怖</b>: ブラッド・イーグルのリーダーとしての狂気は、自発的なものではなく、過酷な拷問と薬物（<a href="buffout.html" class="auto-link">バファウト</a>）の過剰摂取によって強制的に作り上げられたものである点が、この組織の残虐さを際立たせています。<br><br><b>救済の可能性</b>: プレイヤーの選択次第で、彼はかつての恋人が待つ<b>ファウンデーション</b>へ戻るための長い回復の道を歩むことができます。この「希望」を残せるかどうかは、ベケットの個人的なクエストラインを締めくくる上で非常に重い意味を持っています。
+</div>
+
+<p name="c3dfba2c-c0f0-4f5a-ba1e-b0e2d0b43f3a" id="c3dfba2c-c0f0-4f5a-ba1e-b0e2d0b43f3a">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

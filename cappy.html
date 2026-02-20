@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>キャッピー | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">キャッピー</h3>
+            <img src="images/note_extracted/nd3b9fd6af3fe_img_1.png" alt="キャッピー">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nd3b9fd6af3fe" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>キャッピー</h1>
+            <div class="date">DATE: 2026/1/10</div>
+            
+            <p name="31ca211b-474d-47f2-accd-f8896a45b329" id="31ca211b-474d-47f2-accd-f8896a45b329">キャッピーはヌカ・コーラ社のマスコットであり、最終戦争以前、ヌカ・ワールド遊園地のプロモーションに使用されていました。</p><hr name="969c57b7-65e9-4d3a-ab42-2fa8c38f9ee6" id="969c57b7-65e9-4d3a-ab42-2fa8c38f9ee6"><h2 name="9bc51304-11ae-4c3d-9f9e-391cf3e7d843" id="9bc51304-11ae-4c3d-9f9e-391cf3e7d843">背景</h2><div class="note-figure"><img src="images/note_extracted/nd3b9fd6af3fe_img_2.png" alt="" width="620" height="960"><div class="note-figcaption"></div></div><p name="67e9fa8f-e0a5-4b56-bb2f-48489a59385d" id="67e9fa8f-e0a5-4b56-bb2f-48489a59385d">ヌカ・コーラの<a href="bottle-cap.html" class="auto-link">ボトルキャップ</a>をモチーフにしたキャッピーは、マーケティング目的で使用され、友人のボトルと共にパークの安全規則ガイドやポストカードに掲載されていました。<br>キャッピーは「キャピーズ・ツリーハウス」に住んでいます。</p><p name="4e394dc5-4595-45d3-91e6-4b4acb0261fe" id="4e394dc5-4595-45d3-91e6-4b4acb0261fe">Vault Seller's Survival Guideのエピソード「Meet Me in Coswald!」の中で、ボトルは「世間の思い込みとは裏腹に、自分たち二人は非常に独立した生活を送っている」と主張しています。</p><p name="454618e0-2b61-4ac3-83a0-f618bae7bad4" id="454618e0-2b61-4ac3-83a0-f618bae7bad4">パークの安全ビデオにおいて、キャッピーは<strong>底抜けに明るく、悩み事など一つもないような態度</strong>を見せますが、その態度のせいで、安全規則を無視したボトルがしばしば身体的な被害を受けるという結果を招いています。</p><hr name="a18e234f-017e-47ea-83e7-29e9bf7b4747" id="a18e234f-017e-47ea-83e7-29e9bf7b4747"><h2 name="6913bb83-3ad8-4951-ba11-f848f7357429" id="6913bb83-3ad8-4951-ba11-f848f7357429">ゲームプレイ</h2><h3 name="22a4fd13-4a31-4af4-9d5d-66fb5af7f674" id="22a4fd13-4a31-4af4-9d5d-66fb5af7f674">Nuka-World</h3><p name="59324bd7-5f1c-47df-9baa-dba4cc2897bf" id="59324bd7-5f1c-47df-9baa-dba4cc2897bf">キャッピーは、ヌカ・ワールドのマスコットコンビ「ボトル＆キャッピー」の片割れです。<br>彼はパーク内の様々な広告や、クエスト<strong>The Grand Tour</strong>のサブクエストアイコンで見ることができます。<br>また、彼は「Hidden Cappy」コンテストのキャラクターでもあり、隠されたヒントを見つけるために必要な「キャッピーのメガネ」にもその意匠が使われています。</p><h3 name="0083acf4-4fd4-4ecf-a9df-3cf674da246f" id="0083acf4-4fd4-4ecf-a9df-3cf674da246f">Fallout 76</h3><div class="note-figure"><img src="images/note_extracted/nd3b9fd6af3fe_img_3.png" alt="" width="430" height="469"><div class="note-figcaption"></div></div><p name="5e35398b-8afe-4bcf-98a3-449f849aa929" id="5e35398b-8afe-4bcf-98a3-449f849aa929">キャッピーとボトルは、ヌカ・ワールド・オン・ツアーのイベント<strong>Spin the Wheel</strong>のホストを務めています。<br>イベント中は彼らの自動音声が流れ、風変わりなゲームショーを進行します。<br>キャッピーとボトルのポスター、像、広告はアパラチアの各地でも目にすることができます。</p><h3 name="83aa7ecc-a238-4c25-942b-9a0e8e7d1788" id="83aa7ecc-a238-4c25-942b-9a0e8e7d1788">Fallout Shelter</h3><p name="f23adf33-8d27-430e-a4c9-3f619f143a99" id="f23adf33-8d27-430e-a4c9-3f619f143a99">クエストシリーズ<strong>Nabbed from Nuka-World</strong>において、キャッピーとボトルはレイダーの集団に誘拐されます。<br>彼らを救出すると、このペアは時折Vaultに姿を現すようになります。<br>彼らがいる間、どの部屋にいるかに関わらず、すべての居住者の幸福度が一時的に20%上昇します。<br>彼らが去ると、幸福度は元のレベルに戻ります。<br>ダンスを踊って立ち止まった際にいずれかのマスコットをタップすると、キャップ（通貨）を入手でき、ボトルからは時折ヌカ・コーラ・クアンタムを入手できることもあります。</p><hr name="2f2bec82-f32a-4c6d-8d42-ade188797395" id="2f2bec82-f32a-4c6d-8d42-ade188797395"><h2 name="e508ef5f-2fb9-4640-988a-3dce871557ae" id="e508ef5f-2fb9-4640-988a-3dce871557ae">登場作品</h2><p name="3a69f0a7-9868-4ef8-8153-573c588745de" id="3a69f0a7-9868-4ef8-8153-573c588745de">キャッピーは、<a href="fallout-4.html" class="auto-link">Fallout 4</a>のアドオン『Nuka-World』、Fallout 76、Fallout Shelter、Fallout Shelter Online、およびVault Seller's Survival Guideのエピソード「Meet Me in Coswald!」に登場します。</p><hr name="f54b0260-eba9-4027-a034-c1b832c49a11" id="f54b0260-eba9-4027-a034-c1b832c49a11"><h2 name="8fcbc05f-f9ee-46ae-b38b-586d36281b39" id="8fcbc05f-f9ee-46ae-b38b-586d36281b39">舞台裏</h2><p name="820256b0-75e1-4256-aeab-66c1a01a41b6" id="820256b0-75e1-4256-aeab-66c1a01a41b6"><a href="fallout-4.html" class="auto-link">Fallout 4</a>のアドオン『Nuka-World』では、ボトルとキャッピーの両方の声を<strong>アイヴァン・ディクソン</strong>が担当しており、彼は短編アニメの制作も行いました。<br>Fallout 76のアップデート「Nuka-World on Tour」では、<strong>フィリップ・ライヒ</strong>が両方の声を担当しており、彼は同アップデートのボイスオーバー・ディレクターも務めています。</p><hr name="90cffae4-f91d-4ffb-97b3-73f3fa393763" id="90cffae4-f91d-4ffb-97b3-73f3fa393763"><h2 name="f6695bc2-0dca-490e-9fe7-75f00dfbc2fe" id="f6695bc2-0dca-490e-9fe7-75f00dfbc2fe">クエスト</h2><p name="1a767ee1-9355-4d21-8a35-1baae763d3c0" id="1a767ee1-9355-4d21-8a35-1baae763d3c0">キャッピーに関連する主なクエストは以下の通りです。</p><ul name="4f7b99fc-ceb8-457a-b6d8-a2ad32844b34" id="4f7b99fc-ceb8-457a-b6d8-a2ad32844b34"><li><p name="e8cee3c6-2558-46ba-b427-74e12f168f76" id="e8cee3c6-2558-46ba-b427-74e12f168f76"><strong>Cappy in a Haystack</strong> (<a href="fallout-4.html" class="auto-link">Fallout 4</a>: Nuka-World)</p></li><li><p name="9daf3c6e-ae7f-4511-b3f3-7f218df4def8" id="9daf3c6e-ae7f-4511-b3f3-7f218df4def8"><strong>The Grand Tour</strong> (<a href="fallout-4.html" class="auto-link">Fallout 4</a>: Nuka-World)</p></li><li><p name="8cf2daae-a8f6-4d20-ace4-53a019223e0f" id="8cf2daae-a8f6-4d20-ace4-53a019223e0f"><strong>Nabbed from Nuka-World</strong> (Fallout Shelter)</p></li><li><p name="929f57df-b579-4824-972f-4e903cb49726" id="929f57df-b579-4824-972f-4e903cb49726"><strong>Spin the Wheel</strong> (Fallout 76)</p></li></ul><hr name="5178e73d-93d3-4c07-aa3a-7e5b46edb964" id="5178e73d-93d3-4c07-aa3a-7e5b46edb964"><h2 name="c03864b5-5dda-4878-bc18-7ec955e04ef7" id="c03864b5-5dda-4878-bc18-7ec955e04ef7">注釈</h2><p name="068eb1a8-5ef7-4101-8b8d-5b901ebd0b27" id="068eb1a8-5ef7-4101-8b8d-5b901ebd0b27">パークの安全規則ビデオの内容について： <br>ビデオ内でのキャッピーは常に陽気な振る舞いを崩しませんが、それが原因でボトルが酷い目に遭うというブラックユーモアが定番となっています。<br>例えば、キャッピーが楽しく遊んでいる横でボトルが爆発に巻き込まれたり、重いものに押しつぶされたりしますが、キャッピーはそれを全く気に留めない様子で描かれています。</p><hr name="e73844d2-2452-4dc4-afab-ead2bd4e8d7f" id="e73844d2-2452-4dc4-afab-ead2bd4e8d7f"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/nd3b9fd6af3fe_img_4.png" alt="" width="620" height="596"><div class="note-figcaption">キャッピーは、相棒のボトルがどれほど悲惨な目に遭っても笑顔を絶やさないという、Falloutシリーズ特有の<b>「企業の冷徹さとブラックユーモア」</b>を完璧に体現したキャラクターだと感じます。<br>単なる可愛いマスコットではなく、戦前社会の異常なまでのポジティブさを象徴する存在として、非常に強いインパクトを放っています。<br><br>また、ドラマ版に関連した公式短編アニメーション <b>Vault Seller's Survival Guide</b> のエピソード <b>"Meet Me in Coswald!"</b> においても、その個性を損なうことなく登場していたのが印象的でした。<br>実写本編の背景には登場しませんでしたが、こうした関連メディアでしっかりと描かれる点に、彼がいかにシリーズのアイコンとして欠かせない存在であるかが伝わってきます。
+</div>
+
+<p name="6b919c16-7605-4e53-bd91-cc4930d44418" id="6b919c16-7605-4e53-bd91-cc4930d44418">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

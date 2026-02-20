@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Wasted on Nukashine | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Wasted on Nukashine</h3>
+            <img src="images/note_extracted/nbb113ccc6800_img_1.png" alt="Wasted on Nukashine">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nbb113ccc6800" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Wasted on Nukashine</h1>
+            <div class="date">DATE: 2026/1/19</div>
+            
+            <p name="5563cf20-2d2e-4856-a07d-5b3d2cf6a105" id="5563cf20-2d2e-4856-a07d-5b3d2cf6a105"><strong>「危険なほど強力な飲料の供給源を見つけ出せ。」</strong></p><p name="2b7b4469-d9c6-46d5-9a38-ef8ca18679ab" id="2b7b4469-d9c6-46d5-9a38-ef8ca18679ab"><strong>Wasted on Nukashine</strong>（ウェイステッド・オン・<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>）は、『Fallout 76』のアップデート「Wild Appalachia」で導入されたサイドクエストです。</p><hr name="b051b3e0-671f-4245-9143-c914304880f8" id="b051b3e0-671f-4245-9143-c914304880f8"><h2 name="8a149d88-85e8-459e-9cc1-f839a658346b" id="8a149d88-85e8-459e-9cc1-f839a658346b">クイック攻略</h2><ol name="153108d3-905d-4feb-990a-6fa679aca9bc" id="153108d3-905d-4feb-990a-6fa679aca9bc"><li><p name="ef9d8571-8f3d-4e81-b927-0c8aa84e9ac9" id="ef9d8571-8f3d-4e81-b927-0c8aa84e9ac9">パイ・ハウス（Pi house）で開催されているフラタニティ・パーティーに参加する。</p></li><li><p name="20482095-aedf-475c-857b-ec5e78b38299" id="20482095-aedf-475c-857b-ec5e78b38299">建物を調査し、<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を1瓶飲む。</p></li><li><p name="70ac3b9d-ab13-4886-9a9b-c3dda3cb518a" id="70ac3b9d-ab13-4886-9a9b-c3dda3cb518a">2分間にわたってその飲料の効果を体験し、乱入してきたパーティー・クラッシャーたちを撃退する。</p></li><li><p name="b01ec2b6-7cf0-4167-be74-cb8789895462" id="b01ec2b6-7cf0-4167-be74-cb8789895462">ラベルを読み、「<a href="big-al-s-tattoo-parlor.html" class="auto-link">ビッグ・アルのタトゥー・パーラー</a>」の裏手へ行くことで、そこに記された謎を解く。</p></li><li><p name="e78dab89-7592-4739-9978-5545c2c339c4" id="e78dab89-7592-4739-9978-5545c2c339c4">ビブと話す。</p></li><li><p name="4302478f-a360-4fe8-9309-058d8431c9f5" id="4302478f-a360-4fe8-9309-058d8431c9f5"><a href="eta-psi-house.html" class="auto-link">イータ・プサイ・ハウス</a>を探索し、備品室のパスワードを入手する。</p></li><li><p name="21aab767-62fb-4711-946c-29251eb42b8c" id="21aab767-62fb-4711-946c-29251eb42b8c">備品室を開ける。</p></li><li><p name="bc61fcb2-3325-45c5-b9a3-44e6339a396b" id="bc61fcb2-3325-45c5-b9a3-44e6339a396b"><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の6つの材料を入手する。</p></li><li><p name="ad7bbee0-90a5-4d7d-827b-a6172cf440e5" id="ad7bbee0-90a5-4d7d-827b-a6172cf440e5">醸造ステーションで<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を作製する。</p></li><li><p name="c8443d46-26ea-4ffe-b758-d666a4f9ba87" id="c8443d46-26ea-4ffe-b758-d666a4f9ba87">（任意）高速発酵槽を使用して発酵を早める。</p></li><li><p name="9c2ba48d-a583-498c-892e-7d91c54c324e" id="9c2ba48d-a583-498c-892e-7d91c54c324e"><strong>報酬</strong>：醸造ステーションの設計図、発酵槽の設計図、<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>×1、150キャップ、500 XP。</p></li></ol><hr name="1e9c6612-93e3-4a64-90bc-da7e35d7d272" id="1e9c6612-93e3-4a64-90bc-da7e35d7d272"><h2 name="930c90a0-b1a2-45c0-85f9-7a7c74f76f2e" id="930c90a0-b1a2-45c0-85f9-7a7c74f76f2e">クエストステージ</h2><p name="fd1d37f3-f463-432e-8177-c4defbf7dc61" id="fd1d37f3-f463-432e-8177-c4defbf7dc61"><strong>ポスターを読む</strong> <strong>フラタニティ・パーティーに参加する</strong> <strong>パーティーの参加者が何を飲んでいたのか調査する</strong> <br>モーガンタウンにあるフラタニティ・ハウスに入ると、あまりに激しくて……人を死なせるほどのパーティーの残骸を発見した。<br>ここで何が起きたのか、何か手がかりを見つけられないだろうか。</p><div class="note-figure"><img src="images/note_extracted/nbb113ccc6800_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="822d1e48-a899-4d64-a4b1-c8d4bf7a9f59" id="822d1e48-a899-4d64-a4b1-c8d4bf7a9f59"><strong><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を1瓶飲む</strong> <br>パイ・ミュー支部の会長であるテッド・ドーフマンのターミナルには、<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>という新しいアルコール飲料に関するメッセージがいくつかある。<br>パーティーで死んでいた学生たちは皆、それを飲んでいたようだ。自分も一口試してみるべきだろう。</p><p name="7515b748-e930-4d7c-9808-86bb44d132c2" id="7515b748-e930-4d7c-9808-86bb44d132c2"><strong>(02:00) <a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の効果を体験する<br></strong> <strong>(任意) パーティー・クラッシャーを一掃する！<br></strong> <strong>所持品にある<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>のラベルを読む</strong> <br><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を飲んだ後、意識を失った。<br>とんでもない飲み物だ。どこから来たのか突き止める価値があるかもしれない。<br>ボトルのラベルに何かが書かれていたような気がするが？</p><p name="cccf068a-5eb4-4777-843b-0d9b6c9f1809" id="cccf068a-5eb4-4777-843b-0d9b6c9f1809"><strong>謎を解く</strong> <br>我が母校には一人の少年が立っている。<br>灰色で、冷たい。 <br>彼の背後の階段が、最初の入り口だ。<br>右の角を曲がり、通りをよく見て。<br>すぐ左にあるのが、私たちの集う場所。<br>そこではインクで肌を汚すことができる。 <br>だが裏口を見つければ、一杯おごってあげよう。</p><div class="note-figure"><img src="images/note_extracted/nbb113ccc6800_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="0ea54555-9f94-48c4-9363-61fb08c809b4" id="0ea54555-9f94-48c4-9363-61fb08c809b4"><strong><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>に関する情報を探す</strong> <br><strong>所持品にある<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の材料リストを読む</strong> <br><strong><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の足りない材料を突き止める</strong> <br>ヴォルト・テック大学の近くで秘密の酒場を発見した。<br>そこでは<a href="robobrain.html" class="auto-link">ロボブレイン</a>のビブがお酒の品質テストを任されていた。<br>彼は<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>のレシピの半分をくれた。<br>残りの半分もこの秘密の酒場のどこかで見つけられるかもしれない。</p><p name="2f1ace2f-7f82-4961-b677-0730ae621b71" id="2f1ace2f-7f82-4961-b677-0730ae621b71"><strong>備品室のパスワードを見つける</strong> <br>秘密の酒場の奥にロックされた備品室があり、そこに<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>に関するさらなる情報があるかもしれない。<br>中に入るには、イータ・プサイ・ギリシャ協会の会長であり秘密の酒場のオーナーであるジュディからパスワードを追跡する必要がある。</p><p name="c1ffaa97-179b-4e69-a263-76977697fb1c" id="c1ffaa97-179b-4e69-a263-76977697fb1c"><strong>備品室を開ける</strong> <br><a href="eta-psi-house.html" class="auto-link">イータ・プサイ・ハウス</a>にあるジュディのターミナルでパスワードを見つけた。<br>秘密の酒場に戻り、あのロックされたドアの向こう側に<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>に関するさらなる情報がないか確認すべきだ。</p><p name="70d05a74-f908-4552-9bca-fe7e967bcdb3" id="70d05a74-f908-4552-9bca-fe7e967bcdb3"><strong><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の材料を集める</strong> <br>そして<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>の最後の材料は……核廃棄物だ！<br>パーティーの学生たちの体に合わなかったのはこのせいだろうか？ <br>いずれにせよ、<a href="robobrain.html" class="auto-link">ロボブレイン</a>のビブはまだ品質テストを完了させる必要があるため、彼のために<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を作るべきだ。</p><p name="caf288ce-1fbb-4962-ba3d-abc36751faa3" id="caf288ce-1fbb-4962-ba3d-abc36751faa3"><strong>核物質を集める (#/3)<br></strong> <strong>木材を集める (#/5)</strong> <br><strong>沸騰させた水を集める (#/2)</strong> <br><strong>トウモロコシを収穫する (#/5)</strong> <br><strong>レイザーグレインを収穫する (#/5)</strong> <br><strong>ヌカ・コーラ・クアンタムを回収する (#/1)</strong> <br><strong>醸造ステーションで<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を作製する</strong> <br><strong><a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>が発酵するのを待つ</strong> <strong>(任意) プロセスを早める方法を見つける<br></strong> <a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を作ったが、飲む前に最終的な形態へと発酵させる必要がある。<br>秘密の酒場の周りを見渡せば、これを早める方法が見つかるかもしれない。</p><p name="f2b323c2-4c54-4a70-bd4c-7cfebecc10ac" id="f2b323c2-4c54-4a70-bd4c-7cfebecc10ac"><strong>(任意) 高速発酵槽を使用してプロセスを早める</strong> <br><strong>(任意) <a href="eta-psi-house.html" class="auto-link">イータ・プサイ・ハウス</a>を調査する</strong> <br><strong>クエスト終了：ビブに<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を渡す</strong></p><hr name="c40a172d-8cc9-433d-a5c9-d78b8cc45f51" id="c40a172d-8cc9-433d-a5c9-d78b8cc45f51"><h2 name="e7de2399-0b9b-4739-8252-4d5b3d4906ec" id="e7de2399-0b9b-4739-8252-4d5b3d4906ec">備考</h2><div class="note-figure"><img src="images/note_extracted/nbb113ccc6800_img_4.png" alt="" width="620" height="849"><div class="note-figcaption"></div></div><ul name="3fdc7849-390d-4224-a26a-611b17fd2781" id="3fdc7849-390d-4224-a26a-611b17fd2781"><li><p name="f8bcea10-c789-4b5e-ad96-10dc798cb1de" id="f8bcea10-c789-4b5e-ad96-10dc798cb1de">もしパーティーのポスターをアトミック・ショップで購入した場合、それをクラフトしてC.A.M.P.に設置することで、固定の場所まで移動することなく即座にクエストを開始できます。</p></li><li><p name="06a9d5ca-a033-48fe-be80-e34568505e95" id="06a9d5ca-a033-48fe-be80-e34568505e95">目を覚ます場所は、<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を飲んだ場所よりもはるかにレベルの高いエリアになる可能性があり、付近にシープスカッチのスポーン地点がある「湿原」などの地域も含まれます。</p></li></ul><hr name="d8059560-27d1-46d7-bdf4-63c6fd9edbb8" id="d8059560-27d1-46d7-bdf4-63c6fd9edbb8"><div class="quote-box">
+<b>感想</b><br><br>
+<b>Wasted on Nukashine</b>、Fallout 76の中でも特にお気に入りのクエストです！<br><br><b>酔っ払い<a href="robobrain.html" class="auto-link">ロボブレイン</a>のビブ</b>: 彼のユーモアあふれる（というか酔っ払っている）台詞は最高に親しみやすくて、同居人としてもキャンプに呼びたくなっちゃいますね。<br><br><b>アパラチアの伝統（？）行事</b>: 謎解きをしながら秘密の酒場を見つけたり、とんでもないお酒を自作したりするプロセスは、まさに世紀末の「大人の遊び」という感じでワクワクします。<br><br><b>究極のギャンブル</b>: 飲んだ後にどこへ飛ばされるかわからないというスリルは、このクエストが終わった後も<a href="nuka-shine.html" class="auto-link">ヌカシャイン</a>を飲みたくなる中毒性があります。
+</div>
+
+<p name="c0b53b04-c490-498a-9eaa-23ecb5d465d5" id="c0b53b04-c490-498a-9eaa-23ecb5d465d5">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>スーザンの小屋 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">スーザンの小屋</h3>
+            <img src="images/note_extracted/n001d27ce982e_img_1.png" alt="スーザンの小屋">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n001d27ce982e" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>スーザンの小屋</h1>
+            <div class="date">DATE: 2025/11/13</div>
+            
+            <p name="21a231c5-9912-4f37-b4e3-75967a14aecf" id="21a231c5-9912-4f37-b4e3-75967a14aecf">スーザンの小屋は、『Fallout 76』のGhoul Withinアップデートで導入された、アパラチアのスカイライン・バレー地域にあるロケーションです。<br>シーズンイベント「<a href="the-big-bloom.html" class="auto-link">The Big Bloom</a>」の拠点となっており、スカイライン・バレーの極東端、サベージ・ディバイドとクランベリーレリッシュの境界近くに位置しています。</p><hr name="73d5e0b5-1f0c-4386-a839-95a93485c9cd" id="73d5e0b5-1f0c-4386-a839-95a93485c9cd"><h2 name="d0926381-2ec0-4b1e-88a1-cb5f70d33ec5" id="d0926381-2ec0-4b1e-88a1-cb5f70d33ec5">背景</h2><ul name="70fb74de-e6be-4762-bd0c-b7c82547c022" id="70fb74de-e6be-4762-bd0c-b7c82547c022"><li><p name="5da32a28-7135-4389-a1a5-2d848f2bfd41" id="5da32a28-7135-4389-a1a5-2d848f2bfd41">場所: <br>アパラチアの南東端にあるこの小屋は、カーナルウィーパー、クリスタルカップ、ラッドリリーなど、様々な種類の花が咲き乱れる色鮮やかな牧草地に隣接しています。</p></li><li><p name="ab00311b-5891-4390-8446-458f32eb9f33" id="ab00311b-5891-4390-8446-458f32eb9f33">牧草地の特性: <br>植生は多様であるにもかかわらず、牧草地全体が多年草のように振る舞い、春に咲き、永続的な寿命を持つという、異常な特性を持っています。<br>小屋の住人は、元レイダーでアマチュア花屋の<a href="black-eyed-susan.html" class="auto-link">ブラックアイド・スーザン</a>です。</p></li><li><p name="5a2a571a-d8e7-406b-bf05-83565406645b" id="5a2a571a-d8e7-406b-bf05-83565406645b">スーザンの態度: <br>スーザンは牧草地の多年草の特性の理由を理解していませんが、「恵まれた贈り物に文句を言うつもりはない」と述べて、知らなくても構わないと考えています。<br>彼女自身が花を植えたわけではありませんが、レイダー稼業を引退して以来、この小屋で生け花を趣味として続けています。</p></li><li><p name="f0977044-cf15-4871-b7e5-2999ea2ec73e" id="f0977044-cf15-4871-b7e5-2999ea2ec73e">オーバーグロウンの脅威: <br>アトランティック・シティから来たマゼランが死亡し、その結果オーバーグロウンがアパラチアに放たれて以来、スーザンの生活は変化しました。<br>マゼランのキャラバンは小屋の近くでオーバーグロウンによって一掃され、クリーチャーが周辺地域に広がり、彼女は攻撃を受けるようになりました。</p></li><li><p name="119c9799-0ff5-49c4-b68d-99024860d0a5" id="119c9799-0ff5-49c4-b68d-99024860d0a5">宿敵ベルゼバブ: <br>彼女はまた、牧草地の近くでハニービーストの問題を抱えており、最大の一体が「宿敵」と呼ぶベルゼバブです。<br>スーザンはベルゼバブの支配に異議を唱え、次に現れたら殺すつもりでいます。<br>ベルゼバブが倒されたら、ハニー・クッキーを作って祝う計画です。</p></li></ul><hr name="933c350b-73a9-4b45-b193-7e04bc80d1ad" id="933c350b-73a9-4b45-b193-7e04bc80d1ad"><h2 name="b8842453-dfd4-49b1-af15-dff2db9a2022" id="b8842453-dfd4-49b1-af15-dff2db9a2022">レイアウト</h2><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_2.png" alt="" width="620" height="349"><div class="note-figcaption">接近路</div></div><ul name="99363874-a5d7-41ce-b7da-692e9b5984d1" id="99363874-a5d7-41ce-b7da-692e9b5984d1"><li><p name="6f9f7830-32b9-4071-a19d-5d4807313ab9" id="6f9f7830-32b9-4071-a19d-5d4807313ab9">接近路: <br>スーザンの小屋と牧草地へは2本の未舗装の道が続いています。<br>南側から小屋に近づく場合は、左側の道がマゼランのキャラバンの残骸（死んだ<a href="brahmin.html" class="auto-link">バラモン</a>、放棄されたカートなど）がある牧草地へ、右側の道が小屋へ直行します。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_3.png" alt="" width="620" height="349"><div class="note-figcaption">壊れた車の残骸のプランター</div></div><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_4.png" alt="" width="620" height="349"><div class="note-figcaption">小屋の前のプランター</div></div><ul name="46fed7ba-d65c-4085-a78a-9100979d9fb3" id="46fed7ba-d65c-4085-a78a-9100979d9fb3"><li><p name="f0eb63ae-faf1-4e57-8964-7a9d775108de" id="f0eb63ae-faf1-4e57-8964-7a9d775108de">小屋の前: <br>小屋の前には、スーザンが手入れする小さなジャンクの壁といくつかのプランターがあります。<br>壊れた車の残骸にプランターが置かれ、鍬が突き刺さっています。<br>車の反対側の手押し車のそばにはシャベルがあります。<br>小屋の西には屋外トイレがあり、中にケムボックスがあります。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_5.png" alt="" width="620" height="349"><div class="note-figcaption">剥製とテーブル</div></div><ul name="375c0c12-a939-42b0-9a91-e0a88504713b" id="375c0c12-a939-42b0-9a91-e0a88504713b"><li><p name="9423add1-8f69-40be-a114-5858b46be3e3" id="9423add1-8f69-40be-a114-5858b46be3e3">小屋の内部: 小屋自体には玄関ドアがなく、自由に出入りできます。内部に入ると、左側の壁に剥製にされたオオカミがあり、その近くのテーブルには鉢植えと光るロウソクがあります。右側には調理用ストーブがあり、棚には調理材料やジャンクアイテム、薪の山があります。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_6.png" alt="" width="620" height="349"><div class="note-figcaption">寝室</div></div><ul name="eaa45d62-a820-4da7-849b-ba8b4d4d4987" id="eaa45d62-a820-4da7-849b-ba8b4d4d4987"><li><p name="6de610d4-373f-48f2-817a-c9dc62928a98" id="6de610d4-373f-48f2-817a-c9dc62928a98">寝室と音楽: <br>小屋の後ろ左隅にはスーザンのベッドがあり、隣の書棚の上には蓄音機があります。<br>この蓄音機が「<a href="the-big-bloom.html" class="auto-link">The Big Bloom</a>」イベント中に聞こえる音楽を再生します。</p></li><li><p name="be7130f2-dae9-47a1-83da-5ea327fabe82" id="be7130f2-dae9-47a1-83da-5ea327fabe82">裏側: <br>裏口から出ると、壁に取り付けられた改造作業台があります。<br>小屋の側面の階段を使って屋根に上がることができ、ここにあるバスケットからイベント中に使用する除草剤（モロトフ）を回収できます。</p></li><li><p name="2a788f91-f28e-4910-bd8e-6a7eda1fe588" id="2a788f91-f28e-4910-bd8e-6a7eda1fe588">牧草地とボス出現地点: 牧草地は小屋の南西にあり、カーナルウィーパー、クリスタルカップ、ラッドリリーが満開です。小屋の西側にある岩の形成物には大きな穴があり、イベント中にベルゼバブが出現する場所です。岩の上にはマゼランの遺体と黒いブリーフケースがあります。</p></li></ul><hr name="c1b4f6f1-ee72-4455-aecc-2762c58abc85" id="c1b4f6f1-ee72-4455-aecc-2762c58abc85"><h2 name="63f040d0-55ef-4859-9eb0-df39af857e30" id="63f040d0-55ef-4859-9eb0-df39af857e30">注目すべき戦利品</h2><p name="df2d4aa3-4ac7-4d12-a128-1210285d45eb" id="df2d4aa3-4ac7-4d12-a128-1210285d45eb">以下のアイテムは、小屋周辺やマゼランのキャラバン跡地で見つかります。</p><h3 name="3916052c-030a-4534-a396-293ae5e1db3a" id="3916052c-030a-4534-a396-293ae5e1db3a">マゼランのログ 1</h3><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_7.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="f415bafb-a911-4bca-b683-64021037d3e3" id="f415bafb-a911-4bca-b683-64021037d3e3">マゼラン：<br>よし、私の可愛い子たち！リハーサルの時間よ！さあ、位置についてちょうだい、お願い！<br>（オーバーグロウンのゴボゴボという音）<br><a href="alistair.html" class="auto-link">アリステア</a>、お願いだから。<br>大物になってから歌姫になればいいじゃない。<br>それまでは、私の言う通りにしなさい。分かった？<br>（オーバーグロウンの唸り声）<br>オーケー！<br>じゃあ、ヴィオレッタのパフォーマンスから始めるわ。<br>ヴィオレッタ、Eマイナーで最後のサビを歌ってちょうだい。<br>（フローターのノイズ）<br>キャッ！すぐにやめなさい！<br>人生でこれほど音痴な歌手を聞いたことがないわ！<br>ああ、神様、どうしたらいいの？！<br>このオーバーグロウンたちは才能のないペテン師だわ！</p></blockquote><div class="note-figcaption"></div></div><p name="6d21f169-20b6-436b-bfba-33f2975dd5ed" id="6d21f169-20b6-436b-bfba-33f2975dd5ed">このログは、マゼランがオーバーグロウンをパフォーマーとして訓練しようとしていたことを示唆しています。<br>彼はオーバーグロウンたちを人間のように名前（<a href="alistair.html" class="auto-link">アリステア</a>、ヴィオレッタ）で呼び、音楽のリハーサルをさせていたようですが、その結果は散々だったようです。</p><hr name="6322ea8b-7d8d-460f-83cc-1917e5f3c748" id="6322ea8b-7d8d-460f-83cc-1917e5f3c748"><h3 name="539923b2-7d89-433c-99df-10e0e9a2c7e2" id="539923b2-7d89-433c-99df-10e0e9a2c7e2">マゼランのログ 2</h3><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_8.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="d159ba43-9ced-4e7e-a8ad-bac47030dab6" id="d159ba43-9ced-4e7e-a8ad-bac47030dab6">マゼラン：<br>私の東部アメリカ・ツアーは、もう崩壊寸前だわ。<br>もともとは、ピッツバーグに数週間立ち寄って公演を行う予定だったんだけど、もうその計画は確実にお蔵入りよ。<br>街全体がこの忌まわしいスモッグに覆われているの。<br>街の境界線ですら、ガイガーカウンターがオペラを歌っているわ。<br>もしそこに誰か残っているとしても、私たちのショーを目撃する目も耳も残っているかどうかも怪しいわね。<br>ルートを変更しなきゃならない、おそらく田舎道を通って。<br>なんてこと、垢まみれの田舎者の匂いを嗅ぐことを考えただけで恐ろしいわ。<br>それでも、私には選択肢がないのよ。<br>サルヴァトーレ・スティッキー・フィンガーズめ！なんてことしてくれたのよ！！</p></blockquote><div class="note-figcaption"></div></div><ul name="b66276f6-8c4f-4f6b-b255-00b6569ed930" id="b66276f6-8c4f-4f6b-b255-00b6569ed930"><li><p name="2d0fa87c-a572-4f48-b2bc-95ccab4d670b" id="2d0fa87c-a572-4f48-b2bc-95ccab4d670b">ツアーの目的地: <br>マゼランはオーバーグロウンと共に「東部アメリカ・ツアー」を計画しており、当初はピッツバーグ（『Fallout 76』の「Atlantic City - America's Playground」で言及される場所）での公演を予定していました。</p></li><li><p name="c224ecb6-4f52-4062-94f2-84c50298de84" id="c224ecb6-4f52-4062-94f2-84c50298de84">ピッツバーグの状態: <br>街は「忌まわしいスモッグ」と高い放射能レベル（ガイガーカウンターが鳴り響く）により、公演が不可能であると判断されています。</p></li><li><p name="a968ac71-02f0-42d7-9f93-7d49136cd13f" id="a968ac71-02f0-42d7-9f93-7d49136cd13f">ルート変更: <br>仕方なく、田舎道（アパラチア方面）を通ってルートを変更せざるを得なくなったようです。</p></li><li><p name="7afb8b56-1707-4f87-b7b2-d47a3cc65b7f" id="7afb8b56-1707-4f87-b7b2-d47a3cc65b7f">敵対者: <br>ツアーの失敗（またはピッツバーグでの問題）の原因として、「サルヴァトーレ・スティッキー・フィンガーズ」という人物を激しく非難しています。</p></li></ul><hr name="58861c38-ec99-44a1-920c-a8f12ccd9035" id="58861c38-ec99-44a1-920c-a8f12ccd9035"><h3 name="3c332679-7e3d-4257-93bf-0065555a65ef" id="3c332679-7e3d-4257-93bf-0065555a65ef">マゼランのログ 3</h3><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_9.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="dae2437d-9730-4047-bdd6-391e37813d1d" id="dae2437d-9730-4047-bdd6-391e37813d1d">マゼラン：<br>エメリックとジョリーをクビにしたわ。<br>不名誉除隊よ！<br>彼らは私の判断に疑問を呈する勇気を持ったのよ。<br>「オーバーグロウンなんてただ放り出せばいいんだ！」<br>「彼らなんて必要ない！」<br>ですって！<br>だからこそ、ショーには頂点に立つ先見の明のある人物が必要で、近視眼的な変人たちの集まりじゃダメなのよ。<br>（オーバーグロウンのノイズ）<br>ああ、<a href="alistair.html" class="auto-link">アリステア</a>、あなたが私のことを本当に理解してくれる唯一の存在だと感じる時があるわ。<br>（オーバーグロウンのゴボゴボという音）<br>もしかしたら…もしかしたら、あなたの檻のラッチを外してあげましょう。<br>もうこの鉄格子の中に閉じ込められることはないわ！<br>代わりに、私たちは対等な存在になるのよ！<br>（ラッチが外れる金属音）<br>（オーバーグロウンの唸り声）<br>待って、何を…何をしているの？<br><a href="alistair.html" class="auto-link">アリステア</a>、お願い、自分を抑えて！<br>（攻撃的なオーバーグロウンのノイズ）<br>いや、いや、お願い！ああっ！！<br>（オーバーグロウンの攻撃音）</p></blockquote><div class="note-figcaption"></div></div><ul name="17372fd8-3f1e-4f25-baee-bbf7ae575d07" id="17372fd8-3f1e-4f25-baee-bbf7ae575d07"><li><p name="d164a107-b671-4fcc-bceb-7cf1b5c6263d" id="d164a107-b671-4fcc-bceb-7cf1b5c6263d">クルーの解雇: <br>マゼランの部下（エメリックとジョリー、リック）は、オーバーグロウンを連れてのツアー計画に反対し、オーバーグロウンを放り出すべきだと主張したため、解雇されました。</p></li><li><p name="a51f4115-5213-470f-b855-43bf6e625cef" id="a51f4115-5213-470f-b855-43bf6e625cef">オーバーグロウンの解放: <br>マゼランは、オーバーグロウン（特に<a href="alistair.html" class="auto-link">アリステア</a>）が自分を理解していると信じ、檻のロックを自ら解除し、対等な存在として解放します。</p></li><li><p name="0c7fc2a3-1186-4f52-a4d0-0addce4f4172" id="0c7fc2a3-1186-4f52-a4d0-0addce4f4172">マゼランの死: <br>しかし、解放されたオーバーグロウン（<a href="alistair.html" class="auto-link">アリステア</a>）はマゼランに襲いかかり、これがマゼランの悲劇的な死につながったことが示唆されています。</p></li></ul><hr name="99c4a909-6a45-4c2f-8421-9a23f854bcdb" id="99c4a909-6a45-4c2f-8421-9a23f854bcdb"><h3 name="6f7df0b7-7799-42ca-8db3-3982661f8196" id="6f7df0b7-7799-42ca-8db3-3982661f8196">売買証明書</h3><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_10.png" alt="" width="620" height="349"><div class="note-figcaption">キャラバン跡地のトラックの運転台</div></div><div class="note-figure"><blockquote><p name="1fb731c6-1be5-4559-b020-1817bc84adc8" id="1fb731c6-1be5-4559-b020-1817bc84adc8">マゼラン様<br><br>この件は内密にしておきましょうね？<br>私がメインの取引ルートからこんなにも遠く離れた、いまいましい吟遊詩人に物を売っていると知れたら、叔父貴は激怒するでしょうから。<br>でも、ティム市長との取引としてごまかしてみます。<br>注文書に「Atlantic City（アトランティック・シティ）」と記入しておけば、彼はそれ以上何も詮索しないでしょう。<br>この明らかな秘密取引にもかかわらず、私たちの小さな取引を書面に残しておきたいと思いました。<br>これがその内訳です。<br>木製ワゴン1台 1,500caps<br>生きたバラモン3頭 2,500caps<br>臨時警備請負人3人 3,000caps<br>合計7,000caps<br>合計で、あなたは私に7,000キャップを前払いする必要があります。<br>あなたが剣玉や、やっていることが何であれ、どれだけ稼いでいるかは知りませんが、正直なところ、私にはどうでもいいことです。<br>金さえ払ってもらえれば。<br>あなたが頼んでいた金属製の家畜用檻は持っていません。<br>どこに送ればいいのかも分かりません。<br>もしあなたがすでにアトランティック・シティにいるなら、ロンバルディ・ファミリーに連絡してみるといいかもしれません。<br>彼らは通常、そのような「事情」がある品物を持っている理由がありますから。<br>あなたの事業が成功することを願っています。<br><br>敬具、<br>ルカ・コスタ</p></blockquote><div class="note-figcaption"></div></div><p name="f5a9d74c-9505-407c-a1b0-4f44545c4f24" id="f5a9d74c-9505-407c-a1b0-4f44545c4f24">補足情報</p><ul name="4179a522-a151-4f43-bc8c-853433b586bf" id="4179a522-a151-4f43-bc8c-853433b586bf"><li><p name="5fbae890-a8c7-484e-ad1b-6ed33d5684aa" id="5fbae890-a8c7-484e-ad1b-6ed33d5684aa">裏取引: <br>ルカ・コスタは、アトランティック・シティの市長の名前を使って、マゼランとの取引を秘密裏に進めていたことが分かります。</p></li><li><p name="6d8b57c1-8ea9-45af-8090-eb39435b2b07" id="6d8b57c1-8ea9-45af-8090-eb39435b2b07">檻の調達: <br>マゼランは、オーバーグロウンを輸送するための金属製の檻を探しており、ルカ・コスタはそれをロンバルディ・ファミリー（アトランティック・シティの組織の一つ）に問い合わせるよう促しています。</p></li><li><p name="ff170e34-53c2-466e-a5fd-1ff6786969ef" id="ff170e34-53c2-466e-a5fd-1ff6786969ef">キャラバン構成: <br>マゼランのキャラバンは、少なくとも3頭の<a href="brahmin.html" class="auto-link">バラモン</a>と、3人の警備請負人（<a href="holotape.html" class="auto-link">ホロテープ</a>で解雇されたエメリックとジョリーを含むリック）で構成されていたことが分かります。</p></li></ul><p name="3c72e12d-379b-4e0a-87e6-96e8ffb10145" id="3c72e12d-379b-4e0a-87e6-96e8ffb10145">この情報と以前のログを合わせると、マゼランがオーバーグロウンをアトランティック・シティからアパラチアに連れてくるまでの経緯が、かなり明確になりますね。</p><hr name="8cd9068c-4ca9-4431-b822-2251019f2d0c" id="8cd9068c-4ca9-4431-b822-2251019f2d0c"><h3 name="0fb07f55-c33a-428e-90f2-fbfbcb035031" id="0fb07f55-c33a-428e-90f2-fbfbcb035031">強奪！</h3><p name="49c3a755-04aa-4323-9a1f-b453e47467ee" id="49c3a755-04aa-4323-9a1f-b453e47467ee">マゼランの遺体の隣にある黒いブリーフケースの上。</p><div class="note-figure"><blockquote><p name="6a5df016-fa5d-406a-a784-ac1dcc0969c1" id="6a5df016-fa5d-406a-a784-ac1dcc0969c1">サル！！！<br>このヌメヌメした、ろくでもない、裏切り者の、役者潰しのクソ野郎め！<br>私はこのベンチャーに、自分の全財産を賭けたのよ！<br>ボードウォークで大道芸をして稼いだキャップ一つ残らず、シャーロットの賭博で働いて流した血と汗と涙（特に血ね）。<br>そのすべてが、無駄になったわ！<br>あなたが話すべきだと言った「科学者」？<br>ええ、あなたに教えてもらった住所に行ったわよ。<br>そして、どうなったと思う？<br>「全米植物ヒューマノイド研究所」なんてものは存在しないわ。<br>ただの、廃墟となった建物に居座っているならず者の集団だった！<br>私は、そもそもオーバーグロウンが訓練できるのかどうか真剣に疑い始めているわ。<br>まったく、くそったれ！<br>私は詐欺師に騙されて終わるなんて絶対に許さない！<br>「かの詩人（シェイクスピア）」がかつて書き残したように、この下働きめ！<br>この悪党め！<br>この役立たずめ！ <br>あんたの災難をくすぐってやる！（破滅させてやる！）<br>私は私の名前の由来となった人物の遺産を称え、彼の航海術の才能を使って、このビジネスで自力で道を見つけるつもりよ！<br>最も不誠意を込めて、あんたのものではない。<br>マゼラン</p></blockquote><div class="note-figcaption"></div></div><hr name="c9291287-0950-48cb-ba50-4fa04aba9de9" id="c9291287-0950-48cb-ba50-4fa04aba9de9"><p name="94040be8-cb03-41f0-ba5e-0a66d54da1fc" id="94040be8-cb03-41f0-ba5e-0a66d54da1fc">補足情報</p><ul name="04ee2c22-9dd8-4c28-a922-647153ed3015" id="04ee2c22-9dd8-4c28-a922-647153ed3015"><li><p name="70164860-e4fc-44d7-8871-2482c48ab5ea" id="70164860-e4fc-44d7-8871-2482c48ab5ea">敵意の対象: <br>マゼランは、サルという人物が、存在しない「全米植物ヒューマノイド研究所」という架空の住所を教え、彼女を騙したことに対して激怒しています。</p></li><li><p name="d57364c7-0e5e-47f0-8d36-3013e0e14928" id="d57364c7-0e5e-47f0-8d36-3013e0e14928">投資の損失: <br>彼女は、アトランティック・シティのボードウォークでの大道芸や、シャーロットの下でのゲームでの仕事で稼いだ全財産を、オーバーグロウンの「パフォーマー」化というベンチャーに投資していました。</p></li><li><p name="d5ff03e1-9db0-468a-89c5-e6e44ce287c9" id="d5ff03e1-9db0-468a-89c5-e6e44ce287c9">シェイクスピアの引用: <br>怒りの表現として、シェイクスピアの『ヘンリー四世 第2部』からの罵り言葉（scullion, rampallian, fustiliarian）を引用し、マゼランの役者（芝居）の背景が強調されています。</p></li><li><p name="9fbc2486-75db-48dd-8ff6-560758292252" id="9fbc2486-75db-48dd-8ff6-560758292252">名前の由来: <br>マゼランは、自分の名前の由来となった人物（探検家のフェルディナンド・マゼラン）の航海術になぞらえて、自力で進むことを決意しています。</p></li></ul><p name="bcaa835b-d839-47a9-98d4-2d6683dd61b9" id="bcaa835b-d839-47a9-98d4-2d6683dd61b9">このログは、マゼランが詐欺に遭い、ピッツバーグでのツアーを断念し、絶望的な状況でアパラチアへ向かわざるを得なくなった決定的な経緯を説明しています。</p><hr name="ab6e3696-6735-4772-879d-1b8a1282e15c" id="ab6e3696-6735-4772-879d-1b8a1282e15c"><h3 name="6395ba53-45a5-4227-9471-fa16da123a81" id="6395ba53-45a5-4227-9471-fa16da123a81">辞表</h3><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_11.png" alt="" width="620" height="349"><div class="note-figcaption">マゼランの遺体の上</div></div><div class="note-figure"><blockquote><p name="9bf3bff2-d3c7-4934-bdf3-54e3e299fd90" id="9bf3bff2-d3c7-4934-bdf3-54e3e299fd90">マゼランへ<br>知っているだろうが、こうして面と向かって言う代わりに全て書き残すのは、卑怯者の逃げ道のように感じる。<br>だが正直言って、あなたにはもうまともな話し合いができるだけの分別が残っていないと思う。<br>はっきり言うわ。<br>これは私の辞表だ。<br>いいかい、私たちは良い時間を過ごしたこともある…いや、ほとんどが悪い時間だったな。<br>実を言うと、俺は数えきれないほどのキャラバンの腕力（用心棒）を担ってきたが、仕事を途中で投げ出したことは一度もない。<br>これが、その例外だ。<br>あなた自身のためにも、頼むから、本当に頼むから、この「オーバーグロウンを訓練する」という考えを諦めてくれ。<br>奴らは檻の中で口から泡を吹いて、俺たちの顔を引き裂き、ソテーにされるのを待っているんだ。<br>埋没費用（サンク・コスト）の誤謬という言葉を聞いたことがあるか？<br>人が莫大な時間、努力、あるいは金銭を何かに投じたとき、たとえそれが悲惨な失敗に終わっていても、最後までやり遂げなければならないと考えてしまう考え方だ。<br>ああ、あなたはまさにそれだと思う。<br>あなたの「費用」は、現時点でマリアナ海溝にまで沈んでいるぞ。<br>もう諦めろよ、あんた。アトランティック・シティに戻りな。<br>あなたは騙されたんだ。<br>俺たち全員がな。<br>リック</p></blockquote><div class="note-figcaption"></div></div><p name="2205132a-6cf0-4b34-8f6e-e2adbe8f965a" id="2205132a-6cf0-4b34-8f6e-e2adbe8f965a">補足情報</p><ul name="2e630827-7f69-4bfa-967d-731a5ae14e62" id="2e630827-7f69-4bfa-967d-731a5ae14e62"><li><p name="6d303aba-eab8-4bda-90d7-e1f956d05bbf" id="6d303aba-eab8-4bda-90d7-e1f956d05bbf">辞職の理由: <br>リックは、マゼランの「オーバーグロウンを訓練する」という危険な計画に対するマゼランの固執と、それによるキャラバンの危険な状況に耐えかねて辞職を決意しました。</p></li><li><p name="c13ab2e5-0d6f-466c-8ec9-b63b615fa191" id="c13ab2e5-0d6f-466c-8ec9-b63b615fa191">リックの経歴: <br>彼は、仕事を決して投げ出さない熟練の用心棒であったことが分かります。</p></li><li><p name="4da604ec-7ca4-4fb1-bd96-ed615e495b52" id="4da604ec-7ca4-4fb1-bd96-ed615e495b52">埋没費用の誤謬: <br>リックは、マゼランが既に費やした時間と資金のために、失敗しているプロジェクトを継続しようとしている非合理性を指摘しています。</p></li><li><p name="936ec297-0fc2-4718-8667-48d55d08768b" id="936ec297-0fc2-4718-8667-48d55d08768b">オーバーグロウンの危険性: <br>「顔を引き裂き、ソテーにされる」という表現は、オーバーグロウンがいかに獰猛で制御不能であるかを強烈に示しています。</p></li></ul><p name="99c69293-1f88-4baf-af02-5be43b0a8146" id="99c69293-1f88-4baf-af02-5be43b0a8146">このログは、マゼランが部下の警告を無視し、最終的に彼自身がオーバーグロウンに襲われる運命（以前のログで示唆されている）につながった、キャラバンの崩壊を補完する重要な情報です。</p><hr name="e1d17a19-d3cd-4cf6-85b0-1c6490f49b5c" id="e1d17a19-d3cd-4cf6-85b0-1c6490f49b5c"><h3 name="eeee2cf6-00ed-4ad1-86e1-585db55bfde0" id="eeee2cf6-00ed-4ad1-86e1-585db55bfde0">訓練計画</h3><div class="note-figure"><img src="images/note_extracted/n001d27ce982e_img_12.png" alt="" width="620" height="349"><div class="note-figcaption">キャラバン跡地のワゴン横の木箱の上。</div></div><div class="note-figure"><blockquote><p name="8b929b53-9667-4f54-8b0d-24dc5659391f" id="8b929b53-9667-4f54-8b0d-24dc5659391f">月曜日 - 基本的な単語とフレーズ- ジャグリング（ボール。ナイフは絶対に無理）- 呼吸法<br>火曜日 - 認知行動療法- フラフープ- テーブルマナー<br>水曜日 - 数字によるペインティング（塗り絵）- 音階による歌唱- タップダンス<br>木曜日 - ラップ- 空中ブランコ- バレエダンス<br>金曜日 - ピラティス- 剣呑み（棒から始める）- バランス訓練<br>土曜日 - 休養日<br>日曜日 - フェンシング- 筋力訓練- アクロバット</p></blockquote><div class="note-figcaption"></div></div><hr name="6729403f-f4e2-4420-87a9-13e2bcf91785" id="6729403f-f4e2-4420-87a9-13e2bcf91785"><div class="quote-box">
+<b>感想</b><br><br>
+兎に角イベントやってると辞表がめっちゃ溜まっていく!!<br>それは置いておいて、スーザンの住んでる場所すごくいい場所ですよね。<br><br>ログからはここにオーバーグローンが居る理由が良く分かる構成になっています。<br>じゃあデイリーオプスのオーバーグローンはなんなんでしょうね..?
+</div>
+
+
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

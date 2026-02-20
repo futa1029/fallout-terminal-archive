@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>グログナック | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">グログナック</h3>
+            <img src="images/note_extracted/n939f80d783c6_img_1.png" alt="グログナック">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n939f80d783c6" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>グログナック</h1>
+            <div class="date">DATE: 2026/1/16</div>
+            
+            <p name="50c7a090-5602-47ec-b87e-a0156ff64f21" id="50c7a090-5602-47ec-b87e-a0156ff64f21"><strong>グログナックは、架空のキャラクターであり、『グログナック』フランチャイズの主人公です。</strong></p><hr name="d56e82fc-1916-4d8d-aab3-ce6506190077" id="d56e82fc-1916-4d8d-aab3-ce6506190077"><h2 name="d59fd032-263b-479c-b97a-8b832d6aea66" id="d59fd032-263b-479c-b97a-8b832d6aea66">背景</h2><p name="ce1f831b-cea8-47f4-a507-1b3d52df5fe7" id="ce1f831b-cea8-47f4-a507-1b3d52df5fe7"><strong>グログナックは、ヒューブリス・コミックによって生み出された架空のキャラクターです。</strong> <br>彼は古代の土地を旅し、邪悪な魔術師グレロックのような様々な空想上の怪物や悪党と戦う野蛮人の戦士です。<br>彼は通常、茶色のブーツと手袋にシンプルな緑色の腰布を身につけ、神秘的な戦斧を振るう姿で描かれていますが、時にはオフハンドで剣を使用することもあります。</p><p name="628bc831-1127-4d49-b3e7-26bd519f7fb9" id="628bc831-1127-4d49-b3e7-26bd519f7fb9">彼は戦闘において主に怪力に頼っていますが、神秘的な力と交わったこともあります。<br>ある冒険では死から蘇り、別の冒険では「ラグナロク（Ragnarök）」として知られる存在に憑依され、抑えきれない「グログ＝ナ＝ロク（Grog-Na-Rök）」となりました。</p><p name="3d7eb8f7-ae13-449b-91b6-dca398628d81" id="3d7eb8f7-ae13-449b-91b6-dca398628d81">自身のシリーズに加えて、彼はシルバー・シュラウドやマンタマンといった他のヒューブリス・コミックのレジェンドたちで構成されるスーパーヒーローチーム「<a href="unstoppable.html" class="auto-link">アンストッパブル</a>（The Unstoppables）」のメンバーとして定期的に登場しました。<br>グログナックは、Don't Be Bored Games Companyのボードゲーム『<a href="unstoppable.html" class="auto-link">アンストッパブル</a>・シンディグ』にプレイアブルキャラクターとして登場しました。 <br>また、アニメ番組）である『グログナック＆ルビー遺跡』にも登場しました。</p><p name="1a77e99b-8e3b-4675-aa18-2c99228c61a4" id="1a77e99b-8e3b-4675-aa18-2c99228c61a4">『Fallout 76』のアトミック・ショップにある衣装は、フランチャイズのどこかの時点でグログナックが王になることを示唆しています。</p><div class="note-figure"><img src="images/note_extracted/n939f80d783c6_img_2.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><p name="45197bed-9ab2-41f8-add4-6f0d01e83b4c" id="45197bed-9ab2-41f8-add4-6f0d01e83b4c">『Fallout 76』の<a href="pirate-broadcast.html" class="auto-link">海賊放送</a>の広告では、グログナックをテーマにした「アックス（斧）」（楽器）が宣伝されています。</p><hr name="e0f43b96-aaab-47fd-b156-05203ef5801a" id="e0f43b96-aaab-47fd-b156-05203ef5801a"><h2 name="8fa5bd94-4df1-496c-9a1a-8673e74a00d2" id="8fa5bd94-4df1-496c-9a1a-8673e74a00d2">登場作品</h2><p name="f2538c1c-71e7-4f37-bf09-978e74d512d7" id="f2538c1c-71e7-4f37-bf09-978e74d512d7"><strong>グログナックは、『Fallout 3』、『Fallout: New Vegas』、『<a href="fallout-4.html" class="auto-link">Fallout 4</a>』、『Fallout 76』、Fallout TVシリーズ シーズン1 第1話「始まり」、および『Fallout Shelter Online』に登場します。</strong></p><div class="note-figure"><img src="images/note_extracted/n939f80d783c6_img_3.png" alt="" width="620" height="1101"><div class="note-figcaption"></div></div><hr name="4b095d2f-322c-4d20-8fd8-66e9ecd33fe0" id="4b095d2f-322c-4d20-8fd8-66e9ecd33fe0"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n939f80d783c6_img_4.png" alt="" width="620" height="802"><div class="note-figcaption">野蛮人グログナック、Falloutの世界でこれほど愛されているキャラクターも珍しいですよね！<br><br><b>王道のヒーロー像</b>: 斧一本で怪物や魔術師に立ち向かうというシンプルで力強いスタイルが、ウェイストランドに住む人々の憧れになっているのがよくわかります。<br><br><b>意外な設定</b>: ただの戦士かと思いきや、死から蘇ったり、別の存在に憑依されてパワーアップしたりと、設定が意外と盛りだくさんなのもコミックヒーローらしくて面白いです。<br><br><b>多岐にわたるメディア展開</b>: コミックだけでなく、ボードゲームやアニメ、さらには現代のラジオ広告にまで登場するなど、戦前から戦後まで一貫してトップスターなのが凄いですね。<br><br><div class="note-figure"><img src="images/note_extracted/n939f80d783c6_img_5.gif" alt="" width="257" height="257"><div class="note-figcaption">
+</div>
+
+<p name="f5c743f3-f570-483e-8f48-65227eecd065" id="f5c743f3-f570-483e-8f48-65227eecd065">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

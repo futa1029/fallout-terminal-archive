@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>シェイディ・サンズ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">シェイディ・サンズ</h3>
+            <img src="images/note_extracted/nbec0466de2aa_img_1.png" alt="シェイディ・サンズ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+            <div class="infobox-row"><span class="infobox-label">2161年</span><span>1,000人未満</span></div>
+            <div class="infobox-row"><span class="infobox-label">2241年</span><span>3,000人</span></div>
+            <div class="infobox-row"><span class="infobox-label">2283年以前</span><span>34,852人</span></div>
+            <div class="infobox-row"><span class="infobox-label">2161年</span><span><a href="aradesh.html" class="auto-link">アラデシュ</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">2241年</span><span>タンディ大統領</span></div>
+            <div class="infobox-row"><span class="infobox-label">2281年</span><span>キンボール大統領</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属勢力</span><span>新カリフォルニア共和国</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nbec0466de2aa" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>シェイディ・サンズ</h1>
+            <div class="date">DATE: 2026/2/13</div>
+            
+            <p name="4a209834-3ada-4998-8071-7d39374e3aba" id="4a209834-3ada-4998-8071-7d39374e3aba"><strong>シェイディ・サンズ</strong>は、後に口語的に <strong>NCR</strong> や <strong>新カリフォルニア共和国 </strong>と呼ばれるようになった場所であり、『Fallout』および『Fallout 2』の主要なロケーションです。また、ドラマ版『Fallout』のシーズン1においても極めて重要なプロット要素として機能しています。</p><p name="2e35458d-d274-4091-aebb-1a580da9bd61" id="2e35458d-d274-4091-aebb-1a580da9bd61">元々は核戦争後のカリフォルニアの荒野において、<strong>Vault 15</strong> の元居住者たちによって設立された小さな農村でした。<br>しかし、変異体至上主義を掲げる「ザ・マスター」と「ユニティ」が壊滅した後、<strong>シェイディ・サンズ</strong>は戦前のアメリカ合衆国に基づいたインフラを急速に発展させ、近隣のジャンクタウンと協力して暫定国家「シェイディ」を形成、これが成長著しい国家である <strong>新カリフォルニア共和国 (New California Republic / NCR)</strong> の最初の州となりました。<br><strong>シェイディ・サンズ</strong>自体は、共和国建国から9年後の2198年に初代首都として選出されました。</p><p name="d8bdbe6c-9f4a-48b1-ac9d-ad2c2f30a97a" id="d8bdbe6c-9f4a-48b1-ac9d-ad2c2f30a97a">その存在期間を通じて、ここは <strong>NCR</strong> および派生領土である新カリフォルニア において最大の都市の一つでした。<br>また、戦前の廃墟を土台にせずに建設された既知の都市としては最大規模であり、2241年までに3,000人以上、2283年直前には約35,000人の人口を誇っていました。<br><strong>シェイディ・サンズ</strong>には、<strong>NCR</strong> の議事堂や大統領府が置かれていました。</p><p name="aa58ebe1-04bc-4cc9-bd11-6624d09cdf66" id="aa58ebe1-04bc-4cc9-bd11-6624d09cdf66">2277年頃、「シェイディ・サンズの没落」と後に総称される一連の出来事が始まりましたが、その正確な性質や状況については公式に明らかにされていません。<br>2283年、<strong>Vault 33</strong> の監督官であり <strong>Vault-Tec</strong> 社の重役であったハンク・マクレーンの命令により、<strong>シェイディ・サンズ</strong>は核爆弾によって破壊されました。<br>彼はあらゆる派閥争いを消し去り、世界を <strong>Vault-Tec</strong> の理想通りに再構築することを望んでいました。<br>これにより、地上の真実が <strong>Vault 32</strong> や <strong>Vault 33</strong> の居住者から隠蔽されることとなりました。<br>少数の生存者は近隣の町や <strong>Vault</strong>、あるいは <strong>B.O.S. </strong>に救いを求めました。</p><p name="ca763fe5-3f1a-4087-b05a-0872a67ba99d" id="ca763fe5-3f1a-4087-b05a-0872a67ba99d">首都の破壊により行政・立法機関が壊滅した後、科学者リー・モルデイヴァーに率いられた共和国の残存勢力は、グリフィス天文台に新たな地域本部を設立しました。<br>しかし、この戦力は2296年に <strong>B.O.S.</strong>西部支部との「グリフィス天文台の戦い」で全滅し、ロサンゼルス周辺における <strong>NCR</strong> の実質的な存在感は失われました。</p><hr name="42dd017b-e9d6-4eb5-9130-da9af7469453" id="42dd017b-e9d6-4eb5-9130-da9af7469453"><h2 name="1c7c82b9-b7bd-495d-83cc-229f4d466686" id="1c7c82b9-b7bd-495d-83cc-229f4d466686">統計情報</h2><p name="e9b201ef-bd42-4e6a-8d53-98c0bfc86e0a" id="e9b201ef-bd42-4e6a-8d53-98c0bfc86e0a"><strong>人口</strong></p><p name="8a70821b-2e6a-47ed-bca7-cea51bc1cd27" id="8a70821b-2e6a-47ed-bca7-cea51bc1cd27"><strong>指導者</strong></p><p name="97e44063-091b-4960-9140-e504c865b27c" id="97e44063-091b-4960-9140-e504c865b27c"><strong>B.O.S.<br></strong>家畜業者協会<br><strong>NCR</strong> レンジャー</p><hr name="c39ac67a-2808-4e06-b935-6248d151ca53" id="c39ac67a-2808-4e06-b935-6248d151ca53"><h2 name="b4daa28b-5fda-4863-a721-0899ab550700" id="b4daa28b-5fda-4863-a721-0899ab550700">歴史</h2><h3 name="6e16890a-77b3-4a82-a4d2-35f51fa191fc" id="6e16890a-77b3-4a82-a4d2-35f51fa191fc">シェイディ・サンズの創設</h3><p name="41e30bef-87bf-4e2b-89a4-2e1398656972" id="41e30bef-87bf-4e2b-89a4-2e1398656972"><strong>シェイディ・サンズ</strong>は、<a href="aradesh.html" class="auto-link">アラデシュ</a>の先祖が <strong>Vault 15</strong> を去った後、2141年に創設されました。<br>公式な設立記録は2142年とされています。<br><strong>Vault 15</strong> は意図的に過密状態にされ、多様な思想や背景を持つ人々が収容されていましたが、一部の居住者が対立の末に離脱し、砂漠の中に平和なコミュニティを形成しました。</p><p name="bc90581f-ef9b-4ce9-991d-7c574d92aeac" id="bc90581f-ef9b-4ce9-991d-7c574d92aeac">集落の立ち上げには <strong>Vault 15</strong> の <strong>G.E.C.K.</strong>が使用され、初歩的な農業や「サンドクリート（砂混じりのコンクリート）」によるアドビ（土着）スタイルの建物の建設が可能となりました。<br>冬場に食料を求めて襲撃してくるレイダー部族から町を守るために防壁が築かれ、セスが率いる最初の町警備隊が設立されました。</p><hr name="de255c98-e23b-49b4-aee7-baab8e009e33" id="de255c98-e23b-49b4-aee7-baab8e009e33"><h3 name="3eab4253-259e-4932-8f24-3153f6c37a86" id="3eab4253-259e-4932-8f24-3153f6c37a86">Fallout 1 の時代</h3><p name="4439186c-f5b0-42f0-98d5-ec8504a085f5" id="4439186c-f5b0-42f0-98d5-ec8504a085f5">2161年時点では、小さくも繁栄した自給自足の集落となっていました。<br>彼らは荒野の土壌を灌漑してトウモロコシやキャベツを育て、井戸を掘り、<strong><a href="brahmin.html" class="auto-link">バラモン</a></strong>の群れを飼育することに成功していました。<br><strong>ダルマ</strong>の教えが影響力を持ち、「多くの棒は折れるが、束ねたものは折れない」という格言に従い、住民は互いに助け合っていました。<br>部外者の訪問は歓迎されましたが、コミュニティに害を及ぼさないよう厳重に監視されていました。</p><div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_2.png" alt="" width="620" height="447"><div class="note-figcaption"></div></div><p name="5c272f17-1fcd-4014-8160-93e992c49bea" id="5c272f17-1fcd-4014-8160-93e992c49bea">集落はジャンクタウンやハブの商人との取引を除き、基本的には孤立を保っていました。<br>当時のリーダーである<a href="aradesh.html" class="auto-link">アラデシュ</a>は、安全面への懸念から過度な貿易拡大を避けていました。<br>しかし、2161年12月までに、<strong>Vault 15</strong> から分かれたレイダー部族（カーンズ、ジャッカルズ、バイパーズ）やラッドスコーピオンの脅威がエスカレートし、ついには<a href="aradesh.html" class="auto-link">アラデシュ</a>の娘である<a href="tandy.html" class="auto-link">タンディ</a>が誘拐される事件が発生しました。<br>この窮地を救ったのが、<strong>Vault 15</strong> へ向かう途中に立ち寄った<strong>Vaultの居住者 (Vault Dweller)</strong> でした。</p><h3 name="a80a14b5-3f70-4c05-a2c2-9930ad6496eb" id="a80a14b5-3f70-4c05-a2c2-9930ad6496eb">NCR の基盤形成</h3><p name="d533caf8-79f9-408f-aed2-e3b603e3986c" id="d533caf8-79f9-408f-aed2-e3b603e3986c"><strong>Vaultの居住者 (Vault Dweller)</strong> によってレイダーや「ユニティ」が壊滅した後、<strong>シェイディ・サンズ</strong>は飛躍的な発展を遂げました。<a href="tandy.html" class="auto-link">タンディ</a>は父アラデシュを助け、荒野の中に新たな生活とコミュニティを築き、それが後の <strong>NCR</strong> 発足へとつながりました。<br>2186年、<a href="aradesh.html" class="auto-link">アラデシュ</a>は共和国の構想を地域に提案し、2189年にハブでの住民投票を経て正式に <strong>NCR</strong> が結成されました。<br><a href="aradesh.html" class="auto-link">アラデシュ</a>の死後、<a href="tandy.html" class="auto-link">タンディ</a>が大統領に就任し、2198年に <strong>シェイディ・サンズ</strong>は公式に首都となりました。</p><h3 name="f984458c-83dc-4120-ba69-bc7efb0befab" id="f984458c-83dc-4120-ba69-bc7efb0befab">NCR の首都としての発展 (Fallout 2)</h3><div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_3.png" alt="" width="620" height="350"><div class="note-figcaption"></div></div><p name="bd845b7c-39bb-44ef-82be-372372a6e1b3" id="bd845b7c-39bb-44ef-82be-372372a6e1b3">続く40年以上の間に、都市は共和国北部の重要拠点として、また「シェイディ州」の州都として拡大し続けました。<br>2241年には人口が3,000人に達し、電力プラントによる十分な電力供給、門に設置されたフォースフィールド・エミッター、上下水道システム、消防栓、そして市民が休息できる公園など、戦前の世界に近い生活の質を提供していました。</p><p name="53828d1c-679f-4c9a-9ece-32246bb7d8e8" id="53828d1c-679f-4c9a-9ece-32246bb7d8e8">制服を着た警察隊が平和を維持し、武器の携行、ギャンブル、公の場での飲酒や薬物の使用、そして特に奴隷制を禁止する市条例を執行していました。<br>都市内には <strong>NCR</strong> 議事堂、家畜業者協会の本部、<strong>B.O.S. </strong>の出張所、<strong>NCR</strong> レンジャーの隠密本部などが置かれていました。<br>また、都市の門のすぐ外側には「バザール」と呼ばれる市場が形成され、共和国の厳しい法律を嫌うトレーダーや、奴隷所有者が一時的に奴隷を預けるためのペン（囲い）などが存在していました。</p><h3 name="49b6e52d-5a15-4b8c-8be6-d6c162dff514" id="49b6e52d-5a15-4b8c-8be6-d6c162dff514">シェイディ・サンズの没落と破壊</h3><div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_4.png" alt="" width="620" height="259"><div class="note-figcaption"></div></div><p name="29f0f5c0-89ad-45fd-8021-e31731814e09" id="29f0f5c0-89ad-45fd-8021-e31731814e09">2248年の<a href="tandy.html" class="auto-link">タンディ</a>の死後、積極的な拡張政策により共和国は東へと進出しました。<br>2274年の新ベガス条約により、フーバーダムからの水と電力が首都に流れ込み、人口は2281年までに34,852人にまで急増しました。<br>当時の <strong>シェイディ・サンズ</strong>には公共交通機関、ギリシャ復興様式の裁判所、公立学校、図書館などが完備されていました。</p><p name="014bc8b2-94cc-40ca-9722-832dde8e51ec" id="014bc8b2-94cc-40ca-9722-832dde8e51ec">しかし、急激な資本主義の再興に伴い、<strong><a href="brahmin.html" class="auto-link">バラモン</a></strong>男爵や農業バロンといった富裕層が政治的決定に影響を及ぼすようになり、民主的な機関への信頼が揺らぎ始めました。</p><div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_5.png" alt="" width="620" height="308"><div class="note-figcaption"></div></div><p name="ee6aa2b7-6ec1-4e93-9872-fd41bb596831" id="ee6aa2b7-6ec1-4e93-9872-fd41bb596831">2283年、<strong>Vault 33</strong> の監督官ハンク・マクレーンは、地上の文明を消し去るために核爆弾を積んだキャラバンを首都に送り込みました。<br>爆発の結果、かつての首都は巨大なクレーターとなりました。</p><div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_6.png" alt="" width="620" height="259"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_7.png" alt="" width="620" height="337"><div class="note-figcaption"></div></div><p name="895a03ee-fdbd-41ee-8f7e-1fc59677e505" id="895a03ee-fdbd-41ee-8f7e-1fc59677e505">この爆発で数万人が死亡し、生存者の多くも心身に深い傷を負いました。マキシマスのように <strong>B.O.S.</strong>に引き取られた者もいれば、<strong>Vault 4</strong> などの避難所に逃げ込んだ者もいました。<br>リー・モルデイヴァーは生存者たちを導き、彼女は「炎の母」として崇拝されるようになりました。<br>2296年時点でも、<strong>シェイディ・サンズ</strong>の跡地は依然として高い放射能に包まれています。</p><hr name="859d059d-e425-434c-be2e-88bd9a01f2ac" id="859d059d-e425-434c-be2e-88bd9a01f2ac"><h2 name="8f415a3c-53c2-40ee-9580-036487ba29c4" id="8f415a3c-53c2-40ee-9580-036487ba29c4">注記</h2><p name="7d883c58-482e-45af-9918-564848cd5f2d" id="7d883c58-482e-45af-9918-564848cd5f2d">ハンクが核爆弾をどこで入手したのか、また爆発直後に <strong>B.O.S. </strong>の<a href="power-armor.html" class="auto-link">パワーアーマー</a>が現場にいた理由はまだ解明されていません。 <br><strong>シェイディ・サンズ</strong>はゲーム版ではアドビスタイル（泥レンガ）の建物として描かれていますが、ドラマ版ではその描写は見られません。<br>『Fallout: Wasteland Warfare』のルールブックでは、首都になった際に名称が「サンディ・ショアーズ」に変更されたと記載されていますが、これは他の作品では確認できない設定です。</p><hr name="86d84e44-4f85-4fc3-9890-73e1a318c5a5" id="86d84e44-4f85-4fc3-9890-73e1a318c5a5"><h2 name="c4eafefb-9b70-4d4c-9633-41db4ac6c795" id="c4eafefb-9b70-4d4c-9633-41db4ac6c795">登場作品</h2><p name="927a2029-3e87-43f3-94ef-245f48b7d1c7" id="927a2029-3e87-43f3-94ef-245f48b7d1c7"><strong>Fallout</strong> <br><strong>Fallout 2</strong> <br><strong>Fallout: New Vegas</strong>（言及のみ） <br><strong>Fallout 3</strong>（ラジオドラマ「ダリング・ダッシュウッド」内で言及）<br><strong><a href="fallout-4.html" class="auto-link">Fallout 4</a></strong>（ニック・バレンタインの調書や、ケロッグの記憶の中で言及）<br>ドラマ版『<strong>Fallout</strong>』シーズン1および2</p><hr name="33fd9cd2-d65f-47e2-83bd-a6833cd96722" id="33fd9cd2-d65f-47e2-83bd-a6833cd96722"><h2 name="03ada307-dbb6-4410-ae70-0ff3664888e3" id="03ada307-dbb6-4410-ae70-0ff3664888e3">舞台裏</h2><h3 name="81fcd346-2bd6-4d01-864c-143a99708bf6" id="81fcd346-2bd6-4d01-864c-143a99708bf6">設立と破壊の日付</h3><p name="9454f8a4-0fff-4a19-b76d-92d02deae77e" id="9454f8a4-0fff-4a19-b76d-92d02deae77e">設立日は2142年とされていますが、これは『Fallout Bible 0』に由来します。<br>破壊の日付についてはドラマ放送後に議論を呼びましたが、トッド・ハワード氏は『New Vegas』の出来事の直後（2282年頃）に発生したと明言しています。<br>ドラマ版の脚本に基づくと、マキシマスの年齢から2283年が核爆発の年と推定されています。</p><h3 name="b9f6e711-c13b-4f42-8511-7efde46b4c2b" id="b9f6e711-c13b-4f42-8511-7efde46b4c2b">場所の矛盾</h3><p name="59b4623c-0813-4f68-a493-134ad5bd0f15" id="59b4623c-0813-4f68-a493-134ad5bd0f15">ゲーム版ではシエラネバダ山脈の東、デスバレーの近隣に位置していましたが、ドラマ版ではロサンゼルスの廃墟の中に建設されたことになっています。<br>これは物語上の経済性（効率的なストーリーテリング）のための改変と考えられています。</p><hr name="efa209a6-717c-4be9-901f-3468b967b166" id="efa209a6-717c-4be9-901f-3468b967b166"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_8.png" alt="" width="620" height="258"><div class="note-figcaption"><b>シェイディ・サンズ</b>の歴史は、Fallout シリーズにおける「希望と悲劇」を象徴する壮大な物語ですね。<br><br><b>ゼロからの文明構築</b>: 荒野の小さな村が、独自の哲学（ダルマ）と <b>G.E.C.K.</b> を武器に、ついには3万人を超える大都市、そして巨大国家の首都へと成長していくプロセスは、シリーズの中で最も「文明の再興」を感じさせる素晴らしい設定です。<br><br><b>皮肉な最期</b>: <b>Vault</b> の元居住者が作り上げた「地上の文明」が、同じ <b>Vault</b> 出身の（しかも戦前のイデオロギーに囚われた）人物によって核で消し去られるという展開は、あまりにも残酷で皮肉に満ちています。<br><br><b>NCR の象徴</b>: 共和国が腐敗や拡張主義に苦しみながらも、依然として「法と秩序」の象徴であり続けていたことが、生存者たちの儀式やモルデイヴァーの執念からも伝わってきます。<br><br><div class="note-figure"><img src="images/note_extracted/nbec0466de2aa_img_9.png" alt="" width="620" height="259"><div class="note-figcaption">Vault-Tekのクソがよぉー!
+</div>
+
+<p name="7439ce41-ec8e-4bb1-a315-340908d0694a" id="7439ce41-ec8e-4bb1-a315-340908d0694a">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>フレアガン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">フレアガン</h3>
+            <img src="images/note_extracted/ncb36c1ed0cc0_img_1.png" alt="フレアガン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_ncb36c1ed0cc0" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>フレアガン</h1>
+            <div class="date">DATE: 2026/1/11</div>
+            
+            <h2 name="65bb70e0-ec0c-4e26-b976-6c1aff4fece2" id="65bb70e0-ec0c-4e26-b976-6c1aff4fece2">フレアガン - <a href="fallout-4.html" class="auto-link">Fallout 4</a></h2><h3 name="7eb69a4e-0ad9-49bf-a267-61f093162275" id="7eb69a4e-0ad9-49bf-a267-61f093162275">特徴</h3><p name="a91d9e44-cb57-4c08-9976-9435855af2c1" id="a91d9e44-cb57-4c08-9976-9435855af2c1"><strong>フレアガンは中折れ式の単発武器で、直接ダメージを与えるようには設計されていません。<br>その代わり、フレアを使用して近くのミニッツメンを召喚し、支援を求めるために使用されます。</strong> <br>また、近くにいる「B.O.S.（Brotherhood of Steel）」のベルチバードを引き寄せることもできます。 <br>敵に直接フレアを撃ち込むとわずかなダメージを与えますが、戦闘の最中においては、事実上他のどの武器を使用してもより良い結果が得られます。</p><hr name="6cd1f963-898d-4665-ae1c-238c5f28a6dc" id="6cd1f963-898d-4665-ae1c-238c5f28a6dc"><h3 name="f483dc39-ffd4-4493-ae37-018d1efcde92" id="f483dc39-ffd4-4493-ae37-018d1efcde92">武器の改造</h3><p name="b3d5620d-46d1-48db-81fe-be5f59f148c2" id="b3d5620d-46d1-48db-81fe-be5f59f148c2">フレアガンは改造不可能です。<br>これは戦闘用武器として想定されていない可能性が高く、ミニッツメンに支援を求める信号を送るという用途にほぼ限定されているためです。<br>フレアは表面に付着せず、点火までにタイムラグがあるため、暗い場所を照らす用途には不向きです。</p><h3 name="245aaf6e-8bed-407d-bb00-2343a09024e7" id="245aaf6e-8bed-407d-bb00-2343a09024e7">場所</h3><p name="41d891ae-2f90-4d81-a703-a1fe10c73f67" id="41d891ae-2f90-4d81-a703-a1fe10c73f67">唯一の生存者（Sole Survivor）は、ミニッツメンのクエストである <strong>The First Step</strong>を完了した後、プレストン・ガービーからフレアガンを受け取ります。</p><h3 name="6d34832a-b98e-4559-9ce6-77ba59b9113e" id="6d34832a-b98e-4559-9ce6-77ba59b9113e">備考</h3><ul name="92f571db-304f-464b-8697-78571d642921" id="92f571db-304f-464b-8697-78571d642921"><li><p name="6b309b79-f965-4fb0-aabe-da69ae0bf92e" id="6b309b79-f965-4fb0-aabe-da69ae0bf92e">援軍を呼ぶには、自身が所有する居住地からマップタイル3～4枚分の範囲内にいる必要があります。</p></li><li><p name="4a51de5a-17cb-4759-832f-7ef0d055cb0d" id="4a51de5a-17cb-4759-832f-7ef0d055cb0d">範囲のすぐ外にいる場合でも、居住地の方角に向かって発射することでNPCを正常に召喚できる場合があります。</p></li><li><p name="b72539bb-8a71-44d8-9036-ff9559a64fe2" id="b72539bb-8a71-44d8-9036-ff9559a64fe2">逆に、範囲内にいても反対方向に発射すると、味方の召喚に失敗することがあります。</p></li><li><p name="763bebfb-a4b0-490f-a01d-3344788a7e9c" id="763bebfb-a4b0-490f-a01d-3344788a7e9c">最も確実な結果を得るためには、銃を居住地の方角に向ける必要があります（マップを確認し、基準点として最も近い所有居住地に合わせてマーカーを置くことを推奨します）。</p></li><li><p name="306cbfdd-cc2d-4d95-a03c-0204a6b88cf5" id="306cbfdd-cc2d-4d95-a03c-0204a6b88cf5">フレアガンは3人から6人のミニッツメンと、場合によっては犬1匹を召喚します。</p></li><li><p name="3aa726ba-e46a-4a02-987a-0b9f817cb3ad" id="3aa726ba-e46a-4a02-987a-0b9f817cb3ad">召喚されたミニッツメンがレベル1を超えることは稀です。</p></li><li><p name="52d423ed-1158-461d-b7d0-06a2a8917108" id="52d423ed-1158-461d-b7d0-06a2a8917108">援軍の召喚に使用できるのは、ゲーム内時間で24時間に1回のみです。</p></li><li><p name="0a732289-b337-4235-a687-bf65a5030976" id="0a732289-b337-4235-a687-bf65a5030976">各種の条件がすべて満たされていない場合、「応答できるミニッツメンがいません」というキャプションが表示されます。</p></li><li><p name="96e2eb5b-ba09-4997-94d6-9a07549884d4" id="96e2eb5b-ba09-4997-94d6-9a07549884d4">メッセージが表示されずに召喚に失敗することもあります。</p></li><li><p name="1ff81cd4-caf0-418a-99d8-930ac0d5bca1" id="1ff81cd4-caf0-418a-99d8-930ac0d5bca1">範囲内でフレアを発射すると、通常、分隊側も応答として自身のフレアを打ち上げ、どちらの方角から向かっているか（通常は最寄りの居住地の方角から）をプレイヤーに知らせます。</p></li><li><p name="1537007f-06e2-4fcc-aa46-d55e3b4d4def" id="1537007f-06e2-4fcc-aa46-d55e3b4d4def">召喚されたミニッツメンはプレイヤーの付近に留まり、短時間周辺をパトロールした後、ランダムな方向に去っていきます。</p></li><li><p name="682766ee-a63c-4972-b6ff-fa525f160939" id="682766ee-a63c-4972-b6ff-fa525f160939">居住地内でフレアを発射した場合、ミニッツメンは殺されるかプレイヤーが現在のゲームセルを離れるまで、無期限にその場に留まることがあります。</p></li><li><p name="bf3a298c-aa97-4e9d-a60a-b5b5b0a693e5" id="bf3a298c-aa97-4e9d-a60a-b5b5b0a693e5">この間、居住地のプロビジョナーも静止したように見えることがあります。</p></li><li><p name="b4297be1-a0d1-45fb-b45f-f6ac5d891710" id="b4297be1-a0d1-45fb-b45f-f6ac5d891710">ミニッツメンのメインストーリーを完了した後、フレアガンはより有用になり、より多くの場所で使用できるようになります。</p></li><li><p name="0f7882dc-b489-4217-b65e-5f51cd7dd83d" id="0f7882dc-b489-4217-b65e-5f51cd7dd83d">その際、居住地またはミニッツメンが占拠している多くの検問所の範囲内で発射する必要があります。</p></li><li><p name="e29379b4-9e32-44bd-ad59-8e87d1688827" id="e29379b4-9e32-44bd-ad59-8e87d1688827">「ファー・ハーバー」にはミニッツメンが存在しないため、フレアガンはほとんど機能せず、援軍を呼ぶために使用することはできません。</p></li><li><p name="08882c65-32db-4d14-a5a8-1a361ec1ff13" id="08882c65-32db-4d14-a5a8-1a361ec1ff13">フレアガンを武器ラックに飾ることはできません。</p></li></ul><hr name="73ef0ed2-eaa7-43b6-b5ce-61324d6f6483" id="73ef0ed2-eaa7-43b6-b5ce-61324d6f6483"><div class="note-figure"><img src="images/note_extracted/ncb36c1ed0cc0_img_2.png" alt="" width="620" height="416"><div class="note-figcaption"></div></div><h2 name="82e1c7d2-9518-4f84-b501-258c594cfb73" id="82e1c7d2-9518-4f84-b501-258c594cfb73">フレアガン- Fallout 76</h2><h3 name="647fc4f0-0e66-449e-9b0b-460b817d18e8" id="647fc4f0-0e66-449e-9b0b-460b817d18e8">特徴</h3><p name="8d317ebd-688f-49ba-9ec2-fadec2a9b064" id="8d317ebd-688f-49ba-9ec2-fadec2a9b064"><strong>フレアガンは中折れ式の単発武器で、戦闘用ではなく（空に向かって発射することで）信号を送るために設計されています。<br></strong> 敵に直接フレアを撃つと、無視できる程度のダメージを与えます。<br><strong>フレアガンは武器作業台で改造することはできません。</strong></p><hr name="5a699541-b6ff-4b0c-b9c9-08dd6c5a86dd" id="5a699541-b6ff-4b0c-b9c9-08dd6c5a86dd"><div class="quote-box">
+<b>感想</b><br><br>
+<b><a href="fallout-4.html" class="auto-link">Fallout 4</a></b>: ミニッツメンを呼ぶための特別な道具としての側面が強く、撃つ方角や場所が重要になるなど、ロールプレイに深みが出る設定になっています。<br><br><b>Fallout 76</b>: 援軍の仕組みはありませんが、自分で作って好きな時に打ち上げられる、サバイバルの小道具のような存在です。<br><br>どちらも「戦うための銃ではない」という一貫した個性が面白いですよね。
+</div>
+
+<p name="30af3295-556e-4d23-bbf9-e134cdcf7ba1" id="30af3295-556e-4d23-bbf9-e134cdcf7ba1">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

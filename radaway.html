@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>RadAway | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff66cc; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">RadAway</h3>
+            <img src="images/note_extracted/nfd3cdbbf597d_img_1.png" alt="RadAway">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>アイテム</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nfd3cdbbf597d" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>RadAway</h1>
+            <div class="date">DATE: 2025/11/9</div>
+            
+            <h2 name="eeead826-8ef7-4070-bbf8-939ed586ae81" id="eeead826-8ef7-4070-bbf8-939ed586ae81">背景</h2><p name="0d18f989-e9a6-47ad-9114-b504e9405f35" id="0d18f989-e9a6-47ad-9114-b504e9405f35">RadAwayは、戦前の高価な薬であり、放射性粒子と結合し、それを人間の体内から除去する化学溶液です。</p><h3 name="efd6b9f4-8f09-431f-b31f-eac358ed5623" id="efd6b9f4-8f09-431f-b31f-eac358ed5623">機能</h3><p name="2ce18d15-80ef-4a8d-a1e4-85bd63abb414" id="2ce18d15-80ef-4a8d-a1e4-85bd63abb414"><a href="rad-x.html" class="auto-link">Rad-X</a>が体の自然な放射線抵抗力を高めるように設計されているのに対し、ラッドアウェイは被曝後に使用されるように設計されています。</p><h3 name="2516b678-c6e1-4509-82e5-5f771ad41bd2" id="2516b678-c6e1-4509-82e5-5f771ad41bd2">投与方法</h3><p name="d44a540e-2d2c-4a6a-b0e7-a7a8b73b3bef" id="d44a540e-2d2c-4a6a-b0e7-a7a8b73b3bef">IVバッグ（点滴バッグ）または注射器を使用して静脈内に投与され、蓄積された放射線を除去する数少ない方法の一つです。<br>そのため、Vault Cityなど製造できる場所にとっては、主要な交易品となっています。</p><h3 name="6e5d2ddd-c0c0-4692-8e6a-3fd57cc8ded0" id="6e5d2ddd-c0c0-4692-8e6a-3fd57cc8ded0">除去プロセス</h3><p name="3452a75e-1773-4c3a-8100-b42d3d41d1e8" id="3452a75e-1773-4c3a-8100-b42d3d41d1e8">体内から放射線を取り除くのには時間がかかり、放射線は排尿を通じて排出されます。</p><h3 name="5aa03960-4637-48ef-83d6-5d66fdba0857" id="5aa03960-4637-48ef-83d6-5d66fdba0857">副作用</h3><p name="3de18317-7d86-4cdd-b6ef-ed7fc4177cfe" id="3de18317-7d86-4cdd-b6ef-ed7fc4177cfe">使用者は必ず副作用を経験します。ラッドアウェイは強力な利尿薬であり、吐き気、下痢、腹痛、頭痛を引き起こす可能性があります。</p><h3 name="33531079-bf6a-4915-aafb-d254fdf63378" id="33531079-bf6a-4915-aafb-d254fdf63378">限界</h3><p name="740b5364-bfd7-4b18-a8ff-7fe2cbacff70" id="740b5364-bfd7-4b18-a8ff-7fe2cbacff70">さらに、ラッドアウェイは万能薬ではなく、すでに被曝によって引き起こされた内部の損傷を治癒するわけではありません。</p><hr name="ecea070b-06f6-4772-ac09-7aad8fa72f4e" id="ecea070b-06f6-4772-ac09-7aad8fa72f4e"><h2 name="1d01ccec-be20-40fb-a732-f26a87c75db6" id="1d01ccec-be20-40fb-a732-f26a87c75db6">詳細</h2><h3 name="0cb99e66-6f70-4e13-a57c-e4f76da42f0a" id="0cb99e66-6f70-4e13-a57c-e4f76da42f0a">登場作品</h3><p name="acb0a4b3-a57f-4764-b800-a2b2c507695e" id="acb0a4b3-a57f-4764-b800-a2b2c507695e">Fallout全作品</p><h3 name="05962f47-70e9-47e5-8a3d-ed8fb5a5c051" id="05962f47-70e9-47e5-8a3d-ed8fb5a5c051">効果</h3><p name="7e292ead-7921-49c1-94b7-30416e857d01" id="7e292ead-7921-49c1-94b7-30416e857d01">使用時にプレイヤーキャラクターの放射線量を減少させるラッドアウェイのパケット（包装）。</p><h3 name="69646585-d20d-44e8-871f-c0b02bc50313" id="69646585-d20d-44e8-871f-c0b02bc50313">依存性</h3><p name="a37c6626-5b15-4781-87e5-625848602f23" id="a37c6626-5b15-4781-87e5-625848602f23">Fallout, Fallout 2, Fallout Tactics では依存性があります。<br>Fallout 3, Fallout: New Vegas, <a href="fallout-4.html" class="auto-link">Fallout 4</a>, Fallout 76 では依存性はありません。</p><h3 name="6bb01466-047e-4336-bcff-39711561b249" id="6bb01466-047e-4336-bcff-39711561b249">外観の変化</h3><p name="6f7570f4-ff42-4854-8417-bd27604d1b8a" id="6f7570f4-ff42-4854-8417-bd27604d1b8a">ゲームによって外観が多少異なります。</p><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_2.png" alt="" width="93" height="61"><div class="note-figcaption">Fallout1、2</div></div><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_3.png" alt="" width="108" height="75"><div class="note-figcaption">Fallout Tactics</div></div><p name="5fba711f-857e-4dec-9652-eb7bdc28fb04" id="5fba711f-857e-4dec-9652-eb7bdc28fb04">Fallout, Fallout 2, Fallout Tactics では、大きな赤い十字が付いた半透明のIVバッグとして描かれています。</p><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_4.png" alt="" width="620" height="577"><div class="note-figcaption">fallout3、Fallout: New Vegas</div></div><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_5.png" alt="" width="620" height="443"><div class="note-figcaption">fallout4</div></div><p name="0978b39b-a4ed-4e2d-92e4-59e2da0380ea" id="0978b39b-a4ed-4e2d-92e4-59e2da0380ea">Fallout 3, Fallout: New Vegas, <a href="fallout-4.html" class="auto-link">Fallout 4</a> では、マーカーペンで「Rad Away」と書かれたシンプルなIVバッグです。</p><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_6.png" alt="" width="620" height="728"><div class="note-figcaption"><a href="fallout76.html" class="auto-link">Fallout76</a></div></div><p name="ff99e240-1166-4641-a6e1-d411e924c2d7" id="ff99e240-1166-4641-a6e1-d411e924c2d7">Fallout 76 では、RadAwayのロゴが入ったユニークなブランドパッケージとトレードドレス（商品デザイン）で登場します。</p><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_7.png" alt="" width="620" height="773"><div class="note-figcaption">Fallout TV series</div></div><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_8.png" alt="" width="296" height="462"><div class="note-figcaption">Fallout Shelter</div></div><hr name="0f3f9254-5bfa-4e02-835c-e68f11d68d32" id="0f3f9254-5bfa-4e02-835c-e68f11d68d32"><div class="quote-box">
+<b>感想</b><br><br>
+言われてみれば確かに<a href="fallout76.html" class="auto-link">Fallout76</a>のRadAwayってなんか豪華ですよね。 <br>中毒性が過去作に存在したのも知らなかったです。<br>誰もが知らない間に<a href="mutation.html" class="auto-link">変異</a>を治しちゃった事があるはず。 <br>ない?そんなバカな。<br><a href="fallout76.html" class="auto-link">Fallout76</a>では家具にRad除去シャワーが存在しますが、必要アイテムが特殊な物が多いのでクリアまでRadAwayに頼ることになると思います。<br>ちょっとでもRadたまってると気になるんですよね..。<br>そんな人は希釈版を使いましょう。 <br>半分の効果ですが気楽に使えます。 <br>なんか歴代の主人公はジュースかのようにがぶ飲みしてますけどRadAwayのせいで違う何かに<a href="mutation.html" class="auto-link">変異</a>しそうですね。<br><br><div class="note-figure"><img src="images/note_extracted/nfd3cdbbf597d_img_9.jpg" alt="" width="265" height="370"><div class="note-figcaption">MTG
+</div>
+
+<p name="b5dcf142-6890-4450-9e44-15eac5304586" id="b5dcf142-6890-4450-9e44-15eac5304586">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

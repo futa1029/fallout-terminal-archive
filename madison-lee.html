@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>マジソン・リー | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">マジソン・リー</h3>
+            <img src="images/note_extracted/nb2ecec7eada6_img_1.png" alt="マジソン・リー">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nb2ecec7eada6" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>マジソン・リー</h1>
+            <div class="date">DATE: 2025/10/19</div>
+            
+            <p name="d4c1a6e5-0f4e-4943-b750-4e7a6a802814" id="d4c1a6e5-0f4e-4943-b750-4e7a6a802814">マジソン・リー博士は、 2277 年のキャピタル・ウェイストランドのリベット・シティの科学研究所に居住する科学者であり、 Fallout 3の メイン クエストラインの主要キャラクターとして登場します。</p><p name="892b5311-456f-41a0-bc3f-0082f66945f1" id="892b5311-456f-41a0-bc3f-0082f66945f1">彼女は2287年に連邦の研究所に高度システム部門の責任者として再登場し（研究所のユーザー名は Li.M）、 <a href="fallout-4.html" class="auto-link">Fallout 4</a>の研究所とBrotherhood of Steelのクエストライン でサポートキャラクターとして登場します。</p><hr name="58a47d1a-058d-484c-86d0-21479113b0ca" id="58a47d1a-058d-484c-86d0-21479113b0ca"><h2 name="769c6532-120c-4843-bf9e-aaf6f6c91cd4" id="769c6532-120c-4843-bf9e-aaf6f6c91cd4">背景</h2><h3 name="699c1848-7393-4391-a8b3-ab17552f2fee" id="699c1848-7393-4391-a8b3-ab17552f2fee">若いころ</h3><p name="fdd3cbe9-fb7b-4b27-bf0b-01ada66b3aca" id="fdd3cbe9-fb7b-4b27-bf0b-01ada66b3aca">マジソンは2229年頃に生まれた。<br>ジェームズとキャサリンに出会った頃は、まだ理想主義的な若き科学者だった。<br>二人の計画を知ると、他の科学者たちと同様に、浄化プロジェクトの成功に全身全霊を注ぎ、その実現のために精力的に働いた。<br>ジェームズへの憧れは、後に仕事の中で恋愛感情へと発展したが、ジェームズとキャサリンの結婚生活を尊重し、その感情を隠していた。<br>二人との個人的な関係は悪化したが、仕事上の関係は変わらなかった。</p><p name="fffbb8cd-9546-4313-84cb-662db2d61365" id="fffbb8cd-9546-4313-84cb-662db2d61365">プロジェクトの進捗は数々の困難に直面した。<br>中でも頻繁な<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>の襲撃は大きな問題だったが、リオンズ率いるB.O.Sの武力支援により、比較的安全にプロジェクトを進めることができた。<br>マジソン自身は、B.O.Sが支援を行う動機を疑っていた。<br>しかし、B.O.Sの支援があったにもかかわらず、研究者たちの努力はすぐに暗転した。<br><a href="super-mutant.html" class="auto-link">スーパーミュータント</a>の襲撃は激化し、浄水技術を大規模展開に適応させる作業も行き詰まった。<br>そして、それまでチームに更なる努力を促していたキャサリンの妊娠が、ついに限界点を迎えた。<br>キャサリンが陣痛に襲われた時、マジソンは無事に子供を出産させることができたが、キャサリンは心停止に陥り、出産直後に死亡した。</p><div class="note-figure"><img src="images/note_extracted/nb2ecec7eada6_img_2.png" alt="" width="620" height="388"><div class="note-figcaption">出産を手伝うマジソン</div></div><p name="8bee4fe1-c283-40a4-91a9-3d7672b68c07" id="8bee4fe1-c283-40a4-91a9-3d7672b68c07">その後、ジェームズは子供の安全を優先し、浄化プロジェクトを放棄することを選択した。<br>キャサリンの死に対するマジソンの悲しみは、まだ愛していたジェームズに裏切られたという思いへと変わり、残ったメンバーの間では急速に亀裂が生じました。<br>特にマジソンがブラザーフッドを嫌っていたことが原因です。<br>最終的にブラザーフッドも脱退し、彼らの保護も道連れにしました。<br>チームはまもなく完全に解散し、浄化プロジェクトは未完のまま、それぞれ別々の道を歩んでいきました。<br></p><h3 name="192a21fe-d078-40d9-bff0-a535c6a3224c" id="192a21fe-d078-40d9-bff0-a535c6a3224c">リベットシティ</h3><p name="960bb210-98dd-4409-9b4c-862cd350653f" id="960bb210-98dd-4409-9b4c-862cd350653f">2259年頃に浄化プロジェクトを離れた後、マジソンはホレス・ピンカートンが設立した科学者コミュニティが活発に活動していると聞いて、リベット・シティに向かった。<br>プロジェクトは未達成のままだったが、彼女はその使命を諦めてはおらず、小規模ではあるものの浄水に関する研究を続けた。<br>すぐにピンカートンは彼女のビジョンに賛同せず、時間の無駄だと考えていたことが明らかになった。<br>マジソンと何度も口論や意見の相違があった後、彼はリベット・シティを去り航空母艦の船首に居を構えたが、街全体では彼が姿を消したと信じられていた。<br>彼の去りとともに、マジソンはリベット・シティ評議会に就任し、入植地の主任科学者となり、残った科学者たちを組織して水耕栽培、浄水、ポータブル核融合発電などのプロジェクトに取り組むよう指導した。<br>彼らの仕事により、リベット・シティでは新鮮なリンゴやナシなど健康的で放射線のない農産物を栽培することができた。<br>マジソンはその後18年間その職に留まり、その間に「年を重ね、賢くなり、そしてより冷笑的になった」。</p><p name="76c4d521-fd94-4564-bd61-6aed65dc84e1" id="76c4d521-fd94-4564-bd61-6aed65dc84e1">マジソンが初めて研究所と関わったのは、リベット・シティの繁栄に尽力していた頃のことだった。<br>2277年、当時シンス収容局長だったジマー博士が、逃亡したアンドロイドの追跡のためマジソンのチームに協力を要請し、リベット・シティを訪れたのがきっかけだった。<br>しかし、ジマー博士はそれ以上の説明を拒否し、彼らの仕事に対して上から目線で接したため、マジソンは彼に好意を抱くことはなかった。<br>マジソン自身も、ジマー博士を邪魔者とみなし、要請に応じなかった。<br></p><h3 name="2a532f27-9a41-4306-beca-24d5774dd11f" id="2a532f27-9a41-4306-beca-24d5774dd11f">プロジェクト・ピュリティに戻る</h3><p name="cb44b9e9-f88d-430e-bc43-fb350a8830c5" id="cb44b9e9-f88d-430e-bc43-fb350a8830c5">2277年後半、マジソンの人生は再び劇的な方向へ向かう。<br>彼女は、<a href="vault-101.html" class="auto-link">Vault 101</a>から脱走し、リベット・シティへやって来て、浄化プロジェクトの復活にマジソンの協力を得ようとしていたジェームズの予期せぬ訪問を受けた。<br>しかし、これにより昔の感情が再燃し、マジソンは怒って彼への援助を拒否し、自分は前に進み、時間が経ちすぎていると主張した。<br>後に彼女は密かに自分の爆発を後悔し、ジェームズに再び会えることを願っていた。<br>ジェームズとの対決と、ジェームズがVault 112とスタニスラウス・ブラウンを探すために出発した直後、彼女は成長したローン・ワンダラーと出会い、最終的にジェームズ捜索に協力することに同意し、ジェファーソン記念館にある彼らの古い研究室の方向を指し示した。</p><p name="044ec8f6-9ed1-4627-88cb-909bbef02660" id="044ec8f6-9ed1-4627-88cb-909bbef02660">ローン・ワンダラーによってトランクウィリティ・レーンのシミュレーションからジェームズが救出された後、父と子はリベット・シティに戻り、マジソンはジェームズとの再会を非常に喜んだ（彼女はそれを認めようとはしなかったが）。<br>彼女はリベット・シティから彼女のチームを追加の人員として派遣し、浄化プロジェクトの作業を再開するのを手伝うことに同意した。</p><p name="251ea72e-8e56-4f59-b225-ce76d06901ac" id="251ea72e-8e56-4f59-b225-ce76d06901ac">プロジェクトの作業が再開されて間もなく、記念碑の下の施設はオーガスタス・オータム大佐率いるエンクレイヴの侵略を受けた。<br>オータム大佐は、キャピタル・ウェイストランドにおけるエンクレイヴの優位を確固たるものにするため、科学者たちに浄化プロジェクトの管理を引き渡すよう要求した。<br>マジソンを気にかけていたジェームズは、オータムが危険な場所にいないことを確かめてから、彼女の要求に応じるふりをした。<br>その後の出来事で、ジェームズが制御室に致死量の放射線を充満させ、エンクレイヴによる乗っ取りを回避するために命を犠牲にした（オータムは最終的に生き残ったが）、その前に子供に別れを告げることができた。<br>マジソンはショックを受けながらもなんとか指揮権を握り、ローン・ワンダラーと生き残った科学者たちとともに脱出した。<br>彼らはシタデルに逃げ、ブラザーフッド・オブ・スティールに身を隠した。<br>過去の敵意にもかかわらず、マジソンは継続的な不信感と大量破壊兵器の開発への不快感にもかかわらず、ブラザーフッドがエンクレイヴとの戦いに備えるのを手伝い、携帯型核融合発電に関する知識を生かしてスクライブ・ロスチャイルドが軍用ロボット「リバティ・プライム」を修復するのを支援した。</p><p name="3a6a2633-5bcb-44ea-b4b2-b8146fc82f71" id="3a6a2633-5bcb-44ea-b4b2-b8146fc82f71">マジソンはブラザーフッドに同行し、浄化プロジェクトの戦いにおいて、ジェファーソン記念館周辺のエンクレイヴの封鎖を突破したリバティ・プライムとローン・ワンダラーの後を追った。<br>エンクレイヴの敗北後、彼女は浄化装置の状態を監視するために現場に到着し、深刻な損傷を受けていることを発見した。<br>彼女はインターコムを通じてローン・ワンダラーとサラ・リオンズに、浄化装置は放射線で汚染された制御室から手動で起動させる必要があると伝えた。<br>さもなければ施設全体が爆発するだろうと。<br></p><h3 name="8f5cf47c-f5d9-4f94-b8ad-f2ba8ba93431" id="8f5cf47c-f5d9-4f94-b8ad-f2ba8ba93431">北へ向かう</h3><p name="b25b2577-a9b2-4131-b151-46aba35c5447" id="b25b2577-a9b2-4131-b151-46aba35c5447">ブラザーフッドが浄化プロジェクトの活動を再開するのを手伝った後、ローン・ワンダラーが浄化装置の起動と放射線被爆によって昏睡状態から目覚める前に、マジソンはキャピタル・ウェイストランドを去った。<br>彼女は依然としてブラザーフッドを信用しておらず、キャピタル・ウェイストランドの軍事占領と浄化装置の独占管理、そして彼女の研究を管理し兵器化しようとする試みにも反対していた。<br>エルダー・リオンズは彼女の出発を許可したが、マジソンはブラザーフッドの秘密にアクセスできる部外者である彼女の立場から、ブラザーフッド内の他の意見が彼女を安全上のリスクと見なしていることに気づき、彼らが彼女を黙らせようとすることを恐れていた。<br>彼女の目的地は北の連邦であり、そこでインスティチュートに避難することを望んでいた。<br>インスティチュートの噂の技術的進歩が、ブラザーフッドによる搾取と報復から彼女を守ってくれると信じていたからである。<br></p><h3 name="24af3fae-dec5-4de0-a300-980566b9e9f3" id="24af3fae-dec5-4de0-a300-980566b9e9f3">研究所</h3><p name="8dbc2ebf-9604-41ef-8493-2c286bf83b3b" id="8dbc2ebf-9604-41ef-8493-2c286bf83b3b">マジソンの探検隊は連邦への到達に成功し、彼女は後に研究所と接触した。<br>ファーザーが彼女に同行を申し出たとき、彼女はただB.O.Sからの平和と研究を続ける余地を望んでいたため、喜んで受け入れた。<br>研究所の科学的資源と知識人コミュニティはマジソンがこれまで見たことのないものであり、彼女はすぐに研究所の庇護の下で研究と科学的専門知識の拡大に身を捧げた。<br>部外者であるという不信感に直面したが、マジソンは粘り強く努力し、昇進を重ねて研究所の最も機密性の高いプロジェクトのいくつかに関わるようになった。<br>2287年より前に、彼女は先端システム部門の責任者に選ばれた。<br><br>マジソンは、研究所が全人類にとって最善のものを望んでいると心から信じるようになった。<br>ブラザーフッドでの過去に対する彼女の皮肉な考えから、当初は組織の利己主義、孤立、透明性の欠如、およびファーザーの不合理な行動を大目に見ていた。<br>彼女は内心、ディレクターの子供シンセの作成というお気に入りのプロジェクトに嫌悪感を抱いていたが、とにかく協力を申し出た。<br>彼女はまた、ファーザーが彼女に秘密を隠しているのではないかと疑い始めたが、それが彼女が残りの人生を捧げたグループに背を向けるほどの問題だとは考えなかった。<br>しかし、最終的に、ある事件が彼女を動揺させ、研究所への忠誠心を揺るがすことになった。<br>マジソンは、研究所のFEVラボの主任研究員であるブライアン・ヴァージル博士と友人だったが、FEVラボを閉鎖した事故で彼が死亡したと発表されたのである。<br>マジソンは徹底的な調査を強く求めていたが、ファーザーは彼女の懸念をことごとく無視し、研究所は封鎖された。<br>今回は、透明性の欠如を無視することはできなかった。<br>疑わしい状況から確固たる証拠は得られなかったものの、彼女は事故だと信じようとしなかった。<br>しかし、真実は彼女の予想をはるかに超えるものだった。<br>ヴァージルは幻滅して研究所を脱出し、今も生きており、連邦のどこかに身を隠していたのだ。</p><p name="ac64a50f-4d65-4f80-ad6d-4529ac4d3fa3" id="ac64a50f-4d65-4f80-ad6d-4529ac4d3fa3">研究所の方針とヴァージルの「死」に対する疑念を抱きながらも、マジソンは組織の目標達成に向けて努力を続けた。<br>彼女は一般的に社交を避けているものの、多くの同僚とは良好な関係を築いており、中にはロザリンド・オーマンという弟子もいる。<br>オーマンは研究所全体で最高の物理学者（そして最も才能のある人物の一人）だと彼女は考えている。<br>もう一人の部下であるエヴァン・ワトソンに対する彼女の評価は、より中立的である。</p><hr name="815b2f60-e84d-4eb8-bdad-0a0e14be26e3" id="815b2f60-e84d-4eb8-bdad-0a0e14be26e3"><h2 name="fcd99441-78bc-4148-bc32-b803a3a7250e" id="fcd99441-78bc-4148-bc32-b803a3a7250e">声優</h2><p name="8b90bb99-6cdf-442a-97aa-ab1dd7759115" id="8b90bb99-6cdf-442a-97aa-ab1dd7759115">彼女の声は、Fallout: New Vegasの日本語版でもヴェロニカ・サンタンジェロの声を担当した甲斐田裕子が吹き替えを担当している。</p><hr name="4d5eec3c-b615-4d4c-85de-2f23d8efb320" id="4d5eec3c-b615-4d4c-85de-2f23d8efb320"><div class="quote-box">
+<b>感想</b><br><br>
+科学者という割には私情に流される辺りが非常に人間らしいですよね。<br>Fallout3のプレイヤーの出産に立ち会ったキャラであり、Fallout4にも再登場した数少ないキャラクターです。<br>気難しそうな性格に感じますが、実際は同僚と仲良くやってたみたいなので割と人当たりは良い人なんでしょうね。<br>私も反B.O.Sなので仲良くできそうです。<br><br><div class="note-figure"><img src="images/note_extracted/nb2ecec7eada6_img_3.png" alt="" width="620" height="1101"><div class="note-figcaption">Fallout Shelter Online<div class="note-figure"><img src="images/note_extracted/nb2ecec7eada6_img_4.jpg" alt="" width="620" height="866"><div class="note-figcaption">マジック：ザ・ギャザリング
+</div>
+
+<p name="ed0313ce-6bbf-4121-bc48-ec0a439017ac" id="ed0313ce-6bbf-4121-bc48-ec0a439017ac">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

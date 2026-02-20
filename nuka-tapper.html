@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ヌカ・タッパー | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ヌカ・タッパー</h3>
+            <img src="images/note_extracted/na4b6c16a24a6_img_1.png" alt="ヌカ・タッパー">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_na4b6c16a24a6" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ヌカ・タッパー</h1>
+            <div class="date">DATE: 2025/11/23</div>
+            
+            <h3 name="ea65becb-b5fd-45ab-947a-f831fbf403e0" id="ea65becb-b5fd-45ab-947a-f831fbf403e0">入手場所</h3><ul name="b2201557-95c4-4636-88a0-8325e96e1319" id="b2201557-95c4-4636-88a0-8325e96e1319"><li><p name="4a56ef06-08fc-4800-a39b-d1df42da94ea" id="4a56ef06-08fc-4800-a39b-d1df42da94ea">初期入手場所: <br>Vault 76の開始時の住居にあるターミナルに挿入された状態で見つけることができます。</p></li><li><p name="bbfd3c48-58d1-4898-b331-8be0b02e4c5d" id="bbfd3c48-58d1-4898-b331-8be0b02e4c5d">再入手: <br>Vault 76を離れたプレイヤーは、再侵入が制限されているため、他の場所で入手する必要があります。</p></li><li><p name="1bf71293-316a-4e9a-8ffb-0b6051ba796e" id="1bf71293-316a-4e9a-8ffb-0b6051ba796e">その他の場所: <br>ランダム化された<a href="magazine.html" class="auto-link">雑誌</a>の出現場所で見つかることがあります。</p></li><li><p name="62ab5976-b403-4ec1-9b72-559bc69b4dcc" id="62ab5976-b403-4ec1-9b72-559bc69b4dcc">サイト・チャーリーの監督官のキャッシュの足元でも、この<a href="holotape.html" class="auto-link">ホロテープ</a>の<a href="magazine.html" class="auto-link">雑誌</a>を見つけることができます。</p></li><li><p name="446f46b0-8398-4e8f-8a2c-9604157dda05" id="446f46b0-8398-4e8f-8a2c-9604157dda05">これを拾うことで、<a href="holotape.html" class="auto-link">ホロテープ</a>に加え、1時間+1 CHA（カリスマ）のボーナスがプレイヤーに付与されます。</p></li></ul><hr name="71eeaa5d-9364-44a7-8473-4a2e4b194014" id="71eeaa5d-9364-44a7-8473-4a2e4b194014"><h2 name="3a3ba036-9f02-4309-bebc-512d11c251dd" id="3a3ba036-9f02-4309-bebc-512d11c251dd">ゲームプレイ</h2><div class="note-figure"><img src="images/note_extracted/na4b6c16a24a6_img_2.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><ul name="c31c2b43-8778-480c-a981-6148f90bad24" id="c31c2b43-8778-480c-a981-6148f90bad24"><li><p name="36b2144a-956d-44f0-a64b-224046c6bbc4" id="36b2144a-956d-44f0-a64b-224046c6bbc4">操作: <br>プレイヤーはVault Boyを操作し、Nuka-Colaバーのサーバーとして働きます。</p></li><li><p name="088cc48b-e929-4ed2-95a4-fcc2c990f35a" id="088cc48b-e929-4ed2-95a4-fcc2c990f35a">客: <br>人間とMr. Handyの客が、4つのカウンターのいずれかをゆっくりと降りてきます。</p></li><li><p name="9b32e81d-e2d1-4fc5-ad6e-7b3416877f5c" id="9b32e81d-e2d1-4fc5-ad6e-7b3416877f5c">目的: <br>プレイヤーは4つのタップのうち1つからマグカップを満たし、客が端に到達する前にカウンターを滑らせて客に届けなければなりません。<br>客がバーの端に到達すると、プレイヤーはライフを1つ失います。</p></li><li><p name="8084292e-5ad2-4eb4-9cec-0f66ab0222d4" id="8084292e-5ad2-4eb4-9cec-0f66ab0222d4">ミスのペナルティ: <br>客がいない空のバーにヌカ・コーラを滑らせてしまい、誰も受け取らない場合も、プレイヤーはライフを1つ失い、ラウンドが再開されます。</p></li></ul><div class="note-figure"><img src="images/note_extracted/na4b6c16a24a6_img_3.png" alt="" width="620" height="476"><div class="note-figcaption"></div></div><ul name="bfbe345a-65c4-463e-91f0-3f505c34d5e4" id="bfbe345a-65c4-463e-91f0-3f505c34d5e4"><li><p name="dec1f865-29e5-46a8-8188-7e104bea4528" id="dec1f865-29e5-46a8-8188-7e104bea4528">マグカップの回収: <br>人間の客はコーラを受け取ると、時々立ち止まって飲み、マグカップをVault Boyに向かって滑り戻します。<br>Vault Boyはマグカップをキャッチしなければなりません。<br>キャッチに失敗するとマグカップが落ちて割れ、プレイヤーはライフを1つ失い、ラウンドが再開します。<br>ただし、Mr. Handyの客の場合、飲み物を持って最後まで滑り続けるため、回収の必要はありません。</p></li><li><p name="55b2e03b-bdfe-45a9-b29a-7e8e12f9ed60" id="55b2e03b-bdfe-45a9-b29a-7e8e12f9ed60">チップとボトル＆<a href="cappy.html" class="auto-link">キャッピー</a>: <br>一部の客はコーラを飲んだ後にチップを残します。<br>このチップを回収すると、ボトルと<a href="cappy.html" class="auto-link">キャッピー</a>が出現してダンスを始め、客の一部を短時間引きつけます。<br>引きつけられた客はバーを降りてこなくなりますが、彼らがキャッチする客がいない場合にヌカ・コーラを滑らせると、それらを無視して床に衝突し、ライフを失う原因にもなります。<br>ボトルと<a href="cappy.html" class="auto-link">キャッピー</a>が出現するかどうかにかかわらず、チップを回収することでポイントも獲得できます。</p></li><li><p name="3bfa4466-094a-443f-b577-ec28b538cce5" id="3bfa4466-094a-443f-b577-ec28b538cce5">ボーナスレベル: <br>数レベルごとにボーナスレベルが出現します。<br>バンディットがランダムに1本を除くすべてのヌカ・コーラボトルを振り、それらをランダムにシャッフルします。<br>プレイヤーはVault Boyを操作し、バンディットに振られなかったボトルを選ばなければなりません。<br>失敗してもペナルティはありませんが、正解のボトルを選ぶと3,000ポイントを獲得できます。</p></li><li><p name="4c2d25a1-21b9-4ed2-a5cd-b8201cc91a2a" id="4c2d25a1-21b9-4ed2-a5cd-b8201cc91a2a">難易度: <br>数レベル後、ゲームのレイアウトと客が来るバーの位置が変わり始めます。</p></li><li><p name="a9ba6e5f-a09c-4b3a-b742-6fea083e8192" id="a9ba6e5f-a09c-4b3a-b742-6fea083e8192">ライフ: <br>プレイヤーは3つのライフからスタートします。<br>特定のポイントマイルストーンで追加のライフを獲得できますが、最大4つを超えることはできません。</p></li><li><p name="bbae4de3-1dee-494e-bc87-22d485cb0f62" id="bbae4de3-1dee-494e-bc87-22d485cb0f62">終了: <br>客がいなくなるとレベルが完了し、すべてのライフが失われるまでゲームは無期限に続きます。</p></li></ul><hr name="a7500a40-537a-4cda-85fa-67507bbc131b" id="a7500a40-537a-4cda-85fa-67507bbc131b"><h2 name="ac7c4eeb-5e92-4f1d-bd4d-2ba6686ca37a" id="ac7c4eeb-5e92-4f1d-bd4d-2ba6686ca37a">備考</h2><div class="note-figure"><img src="images/note_extracted/na4b6c16a24a6_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="7f45ac6b-3028-4817-a384-9909a5960db1" id="7f45ac6b-3028-4817-a384-9909a5960db1"><li><p name="3d4681cd-baef-4c9b-aa6d-543e6b61b839" id="3d4681cd-baef-4c9b-aa6d-543e6b61b839">Nuka Tapperのハイスコアは20,950点まであり、これはエンクレイヴ研究施設にある表示器にKIJによって達成されたものとして見られます。</p></li><li><p name="dbc72e3c-c1e8-4c02-a67c-ed7309cd1263" id="dbc72e3c-c1e8-4c02-a67c-ed7309cd1263">セーブデータが失われる可能性があります。</p></li></ul><hr name="22fef954-d441-4f2f-a590-522c92fa29e4" id="22fef954-d441-4f2f-a590-522c92fa29e4"><h2 name="1bbef699-e263-4180-8e4d-f6e61a044826" id="1bbef699-e263-4180-8e4d-f6e61a044826">制作裏話</h2><ul name="e86d775d-5c14-4062-bfbe-c7b32bbecdca" id="e86d775d-5c14-4062-bfbe-c7b32bbecdca"><li><p name="e5314b53-183f-4355-98cf-6a82bd990588" id="e5314b53-183f-4355-98cf-6a82bd990588">Nuka-Tapperの名前とゲームプレイは、1983年のアーケードゲーム、Bally Midwayによる『Tapper』に基づいています。</p></li><li><p name="b62bca25-1ecf-4731-bc34-810d5b731ed1" id="b62bca25-1ecf-4731-bc34-810d5b731ed1">客のスプライト（画像）は『Fallout Shelter』が起源です。</p></li></ul><hr name="793fbf48-becb-4f30-a744-4b5c96f95a39" id="793fbf48-becb-4f30-a744-4b5c96f95a39"><h2 name="a9d89663-9cf8-4b82-b61e-dee20a574425" id="a9d89663-9cf8-4b82-b61e-dee20a574425">現実世界では?</h2><div class="note-figure"><img src="images/note_extracted/na4b6c16a24a6_img_5.jpg" alt="" width="620" height="665"><div class="note-figcaption"></div></div><p name="46e396ea-b97c-47ba-8fd0-e37c627175c9" id="46e396ea-b97c-47ba-8fd0-e37c627175c9">ヌカタッパーはゲーム内のミニゲームをモチーフにした公式グッズとして存在します。<br>主にBethesda Gear StoreやFanattikから販売される「Nuka Tapper Holotape Replica」で、重厚な金属製のホロテープレプリカです。<br>限定5000個生産で、両面にエンボス加工が施され、コレクタブルアイテムとして人気です。 <br>価格は約$20-30程度で、ディスプレイ用に設計されており、実際のゲーム機能はありませんが、ゲーム内の<a href="holotape.html" class="auto-link">ホロテープ</a>を忠実に再現しています。</p><hr name="8bf47d97-7c02-4cf7-ba5f-ad6c78696736" id="8bf47d97-7c02-4cf7-ba5f-ad6c78696736"><div class="note-figure"><img src="images/note_extracted/na4b6c16a24a6_img_6.jpg" alt="" width="620" height="827"><div class="note-figcaption"></div></div><p name="9fd584c7-71b9-4649-97f5-aa43ad3f4ea4" id="9fd584c7-71b9-4649-97f5-aa43ad3f4ea4">元ネタの「Tapper」ゲームは現実の1983年アーケードゲームで、ビール（またはルートビア版）を客に届ける内容。</p><h3 name="546c1395-ad0b-4d27-950e-9c8fee472886" id="546c1395-ad0b-4d27-950e-9c8fee472886">ゲームの概要</h3><p name="7a55ce40-22a9-4da5-81f8-8d15b6ba425d" id="7a55ce40-22a9-4da5-81f8-8d15b6ba425d">1983年にリリースされたアーケードゲーム「Tapper」（タッパー）は、Bally Midwayが発売したクラシックなアクションゲームで、プレイヤーがバーテンダー（またはソーダジャーク）となり、ビール（またはルートビア）を客に素早く届ける内容です。 <br>このゲームは、バーやアーケードで人気を博し、アルコール飲料のプロモーションとして始まったものの、子供向けに非アルコール版が作られるなど、ユニークな歴史を持っています。 <br>開発はMarvin Glass and Associatesが担当し、当時のアーケードシーンで革新的なタイムマネジメント要素を取り入れました。 <br>ゲームのコンセプトはシンプルながら中毒性が高く、複数のステージとボーナスラウンドを備えています。</p><h3 name="ababf7d7-3541-4077-84af-92d3029592b1" id="ababf7d7-3541-4077-84af-92d3029592b1">歴史と開発</h3><p name="ba57c646-33a8-4896-93e0-14d8b8bfa037" id="ba57c646-33a8-4896-93e0-14d8b8bfa037">元々はバー向けのプロモーションゲームとして設計されました。 <br>キャビネットはブラス製のフットレストやドリンクホルダーを備え、コントローラーはバドワイザーのビールタップハンドルを模した形状でした。 <br>しかし、アルコールを子供に宣伝する懸念から、1984年に非アルコール版の「Root Beer Tapper」がリリースされ、ビールをルートビアに置き換え、バーテンダーをソーダジャーク（ソーダ販売員）に変更しました。<br>日本ではセガが1984年に配給し、サントリー版も存在します。<br>音楽と効果音はRick HicaroがSynclavier IIシンセサイザーで作成し、「Oh! Susanna」やBudweiserのテーマ曲、「Galop Infernal」などが使用されています。 <br>開発の背景には、当時のアーケードゲームブームがあり、Tapperはバー設置を想定したユニークなマーケティングで注目を集めました。</p><h3 name="94ced4e1-309d-454b-9162-2a1af2a5acef" id="94ced4e1-309d-454b-9162-2a1af2a5acef">ゲームプレイの詳細</h3><p name="ee2d079c-749c-4f01-934b-594e840611d5" id="ee2d079c-749c-4f01-934b-594e840611d5">Tapperのゲームプレイは、プレイヤーがバーテンダーを操作し、4つのテーマ別バー（西部サルーン、スポーツバー、パンクロックバー、宇宙バー）で客に飲み物をサービスするものです。 <br>ジョイスティックとタップハンドルを使って操作します。</p><h3 name="a2e5bd5f-c8e8-41a8-a63b-ef21dd92e70b" id="a2e5bd5f-c8e8-41a8-a63b-ef21dd92e70b">基本ルール</h3><p name="bd578efd-aea5-4fa5-9fe7-7e9505ae7949" id="bd578efd-aea5-4fa5-9fe7-7e9505ae7949">客がドアから入ってきてカウンターを進み、飲み物を要求します。 <br>プレイヤーはタップで飲み物を注ぎ、カウンターに滑らせて客に届けます。 客が満足すると空のマグを返してくるので、それをキャッチします。<br>失敗するとライフが減少し、3回でゲームオーバーです。</p><h3 name="5c58c50a-6cbf-4900-ad7f-8f017486376b" id="5c58c50a-6cbf-4900-ad7f-8f017486376b">追加要素</h3><p name="e6cc5f7c-d18b-4e62-b025-fc027f0afbaa" id="e6cc5f7c-d18b-4e62-b025-fc027f0afbaa">チップを置く客がおり、それを取ると女性ダンサーが登場して客を一時的に止めるボーナスが発生します。 <br>各レベルは一定数のスクリーンをクリアし、難易度が上がるごとに客の数（最大4人/バー）や速度が増します。</p><h3 name="897fb1e0-b8f4-4225-b25f-fb6e472876c6" id="897fb1e0-b8f4-4225-b25f-fb6e472876c6">ボーナスラウンド</h3><p name="5669f4e0-ad6d-464c-abde-7239f0db5547" id="5669f4e0-ad6d-464c-abde-7239f0db5547">各レベルの終わりに、シェイクされた缶を避けるミニゲームがあり、正解でポイント獲得、失敗でバーテンダーが噴射されるコミカルな演出があります。</p><h3 name="2d42cdf0-89ef-415d-bc87-adfe552a7cd0" id="2d42cdf0-89ef-415d-bc87-adfe552a7cd0">難易度と魅力</h3><p name="44e2da32-3601-452c-b3cd-64323e73feb3" id="44e2da32-3601-452c-b3cd-64323e73feb3">ゲームは速さと正確さを要求し、初心者には難しく感じる一方で、ハイスコアを目指す中毒性があります。 <br>グラフィックはピクセルアートで、音響効果がコミカルさを強調します。</p><h3 name="dfdd6c22-e41a-4196-b05a-6bd000dfe8c1" id="dfdd6c22-e41a-4196-b05a-6bd000dfe8c1">文化的影響と注目点</h3><p name="364f42b6-2856-436a-8d02-dadd6d90fa79" id="364f42b6-2856-436a-8d02-dadd6d90fa79">Tapperは1980年代のアーケード文化を象徴するゲームで、日本で最も成功したテーブルアーケードユニットとして評価されました（1984年3月）。<br>Commodore 64版はSinclair Userから「SU Classic」賞を受賞し、難易度の高さとエンターテイメント性が称賛されました。 <br>文化的には、Disney映画『シュガー・ラッシュ』（2012年）と『シュガー・ラッシュ:オンライン』（2018年）に登場し、キャラクターがBudweiserとRoot Beer版のハイブリッドで描かれました。 <br>アートスタイルは同時代のゲーム（Domino Man、Timber）と似ており、開発者のMike Ferrisの影響が見られます。 <br>アルコール広告の議論を呼んだ点も注目され、今日のゲームデザインに影響を与えています。</p><hr name="884070da-e3dc-4912-9744-56d86c0366cb" id="884070da-e3dc-4912-9744-56d86c0366cb"><div class="quote-box">
+<b>感想</b><br><br>
+ヌカタッパーは単純で面白いですよね。 <br>日本人で英語パッパラパーの私でも直感で出来るし。 <br>後キャッピーとボトルもこのゲームに出てきます。<br>一回だけで良いので本気で遊んでみるのも面白いと思いますよ。 <br>(FF14をやってた方なら宿屋のミニゲームと同じと思って下さい。)<br><br>最初はベンダーをゲーム屋さんにしようと思って<a href="holotape.html" class="auto-link">ホロテープ</a>を取得したらマメにスタッシュに突っ込んで個数貯めて行ってたんですが、イベントの設計図売ったりなんやかんやしてる間にレイドが始まり完全にMOD屋さんになっちゃってます。 <br>100個ちょっとあるのでヌカタッパーを無くしちまったあの人に金塊と交換で渡せるイベント実装下さい!
+</div>
+
+<p name="f430b016-ccd3-4afd-b7e4-a3b35d82ee1f" id="f430b016-ccd3-4afd-b7e4-a3b35d82ee1f">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tandi (タンディ) | Overseer Mohi's Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffd700;
+            /* NCR Gold */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #ffe066;
+            background: rgba(255, 215, 0, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Tandi<br>(タンディ)</h3>
+            <img src="./images/note/236/1.webp" alt="Tandi">
+
+            <div class="infobox-row"><span class="infobox-label">称号</span><span>グレート・マザー</span></div>
+            <div class="infobox-row"><span class="infobox-label">生誕</span><span>2145年</span></div>
+            <div class="infobox-row"><span class="infobox-label">死没</span><span>2248年</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>NCR</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>大統領</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">
+                    < BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="tandi" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+                    <h1>Tandi (タンディ)</h1>
+
+                    <div class="quote-box">
+                        「それについては彼らを羨ましく思ったものよ。私は冒険のある人生を望んでいたけれど、父が死んで市長を継ぐためにここに留まった。それ以来ずっと、この場所を運営し、NCRを築き上げてきたわ。結局のところ、なかなか大した人生になったみたいね」<br>
+                        <br>
+                        ―― タンディ
+                    </div>
+
+                    <p>
+                        タンディ（2145年 - 2248年）は、シェイディ・サンズの指導者アラデシュ の娘であり、将来の創設者、新カリフォルニア共和国 (New California Republic / NCR)
+                        の第2代大統領、そして戦後の世界全体で最も影響力のある人物の一人です。
+                    </p>
+                    <p>
+                        彼女は Fallout では シェイディ・サンズ に、Fallout 2 では共和国の首都である NCR（はるかに拡大した町）に登場します。彼女の遺産は Fallout: New Vegas
+                        で議論されており、彼女の死後に台頭した、より帝国主義的で攻撃的な共和国とは対照的です。
+                    </p>
+
+                    <h2>背景</h2>
+                    <h3>初期の日々</h3>
+                    <p>
+                        2145年に生まれたタンディは、愛嬌のある表情と、旅や冒険への夢でいっぱいの頭を持った少女でした。幼い頃から、彼女はその容姿の良さを補って余りあるほどの並外れた精神力と快活さを発揮していました。しかし、父のアラデシュは用心深い男であり、彼女を自分の近くに留め置きました。彼女は
+                        シェイディ・サンズ での安定した仕事に伴う退屈さを軽蔑していました。
+                    </p>
+                    <p>
+                        16歳の時にVaultの居住者 (Vault Dweller)
+                        と出会った際、この短い出会いは若い彼女に強い印象を残しました。それは、カーンズによる誘拐と、その後の救出によってさらに強化されました。Vaultの居住者がカーンズを虐殺した後、レイダーたちが寄り付かなくなったため、シェイディ・サンズ
+                        の町は平和な時期を享受しました。
+                    </p>
+
+                    <img src="./images/note/236/2.webp" class="article-image" alt="Young Tandi">
+
+                    <h3>国家の礎</h3>
+                    <p>
+                        アラデシュとタンディはこの機会を利用してコミュニティを発展させました。村は繁栄し、やがて新カリフォルニアにおける経済大国となりました。貿易ルートの発展に伴い、町同士の文化交流も進みました。タンディは父を助けて
+                        シェイディ・サンズ を拡大し、新カリフォルニア共和国 (NCR) の基礎を築きました。
+                    </p>
+                    <p>
+                        2186年、新カリフォルニア共和国 (NCR) が設立されました。憲法を起草するために試行評議会政府が結成されました。NCR の理想はカリフォルニア中に着実に広まり、ジャンクタウンは
+                        シェイディ・サンズ の最も古く信頼できる貿易相手の一つであったため、NCR
+                        の最初の暫定州の一つとなりました。2189年、共和国は5つの州（シェイディ、ロサンゼルス、マクソン、ハブ、デイグロウ）の連邦として投票により成立しました。
+                    </p>
+                    <p>
+                        2196年にアラデシュが失踪し死亡したと推定された後、彼の娘は全会一致で NCR
+                        の第2代大統領に選出されました。彼女は死ぬまで連続するすべての選挙に勝ち続け、満10期を務め上げ、11期目に入っていました。大統領として、タンディは最終戦争後に生まれたどの指導者よりもウェイストランドを統一するために多くのことを成し遂げました。
+                    </p>
+
+                    <img src="./images/note/236/3.webp" class="article-image" alt="NCR Flag">
+
+                    <h3>拡張政策</h3>
+                    <p>
+                        タンディは父の後を継いで共和国の大統領となり、それ以降、議会と共に NCR
+                        を統治しました。彼女は荒野に平和と安定をもたらすために国家を拡大することに焦点を当てていました。彼女の理想はずっと以前にプラグマティズム（実用主義）に置き換えられており、Vault City
+                        を脅して NCR に加盟させ、優れた医療技術を供給させるためにニューレノと取引を結ぶことも厭いませんでした。
+                    </p>
+                    <p>
+                        旅を通じて、選ばれし者 (Chosen One) は北部における共和国の拡大を確保する決定的な要因となり、Vault 15
+                        を巡る紛争を共和国に有利に解決し、タンディの拡大政策を正当化しました。それだけでなく、ジョン・ビショップの主導とタンディ大統領の支援の下、ニューアロヨ、レディング、そして Vault City
+                        も NCR の領土となりました。
+                    </p>
+                    <p>
+                        2248年、タンディ大統領は52年間の在任期間を経て、名前不明の病気により103歳で死去しました。彼女の後継者は副大統領のジョアンナ・チベットでした。しかし、彼女の遺産は生き続け、彼女は現在に至るまで最も人気があり、最も長く務めた
+                        NCR 大統領であり続けています。
+                    </p>
+
+                    <img src="./images/note/236/4.webp" class="article-image" alt="President Tandi">
+
+                    <h2>プレイヤーキャラクターとの関わり</h2>
+                    <h3>Fallout 1</h3>
+                    <p>
+                        <b>クエスト Rescue Tandi from the Raiders:</b> タンディは数名のカーンズに捕らえられており、救出する必要があります。救出後、シェイディ・サンズ
+                        に戻されるまで、タンディは Vaultの居住者のパーティーに残ります。
+                    </p>
+
+                    <h2>印象的な引用句</h2>
+                    <h3>Fallout 1</h3>
+                    <div class="quote-box">
+                        「あら、またあなた！ 私を出してくれるの？」<br>
+                        「ついに！ 他に話が通じる人がいたわ！ もちろん、あなたはいろんな場所に行っているでしょうから、ここは地獄に違いないわね」<br>
+                        「もしもし、誰かいないの？ ここから出してくれない？ 私をここから出して！」
+                    </div>
+
+                    <h3>Fallout 2</h3>
+                    <div class="quote-box">
+                        「私はタンディ、NCR の大統領よ。部下から、あなたが仕事を探していると聞いたわ。何が得意なの？」<br>
+                        「ああ、間違いを犯しているのは分かっているけど……やってみなさい。もし私の言ったことが何か理解できたのならね」<br>
+                        「ああ、ずいぶん昔のことよ！ 当時自分が誰だったかほとんど覚えていないわ。ただの世間知らずな少女だった。あなたが Vaultの居住者 (Vault Dweller)
+                        と呼ぶあの人……彼はまだ生きているの？」
+                    </div>
+
+                    <div class="quote-box">
+                        <b>感想</b><br><br>
+                        タンディは、Fallout シリーズにおいて最も象徴的な「成功した指導者」の一人ですね。<br>
+                        <br>
+                        <b>少女から国母へ:</b>
+                        Fallout 1 での世間知らずで退屈していた少女が、Fallout 2
+                        では100歳近い老練な大統領として再登場し、巨大国家を率いているという変貌ぶりは、プレイヤーに時間の経過と歴史の重みを感じさせる最高の演出です。<br>
+                        <br>
+                        <b>実利主義への転換:</b>
+                        若い頃の理想を捨て、政治的な目的のためにマフィアや傭兵を利用することも厭わなくなった彼女の姿勢は、文明を再建するために必要な「汚れ仕事」を引き受ける覚悟を示しており、単なる英雄ではない深みのあるキャラクター像を作り上げています。<br>
+                        <br>
+                        <b>平和の象徴:</b>
+                        彼女の死後、NCR
+                        が急速に軍国主義化し、腐敗していく様子と比較すると、彼女がいかにバランス感覚に優れ、カリスマ性を持った指導者であったかが浮き彫りになります。彼女の顔が紙幣に印刷されているのも納得です。
+                    </div>
+
+                    <img src="./images/note/236/5.webp" class="article-image" alt="Legacy">
+
+                    <div
+                        style="margin-top: 30px; border-top: 1px solid #444; padding-top: 10px; font-size: 0.8em; color: #888;">
+                        <div style="margin-bottom: 10px;">
+                            TAGS: <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Fallout</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Fallout2</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Person</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#NCR</span>
+                        </div>
+                        This article uses material from the “Tandi” article on the Fallout wiki at Fandom and is
+                        licensed under the Creative Commons Attribution-Share Alike License.
+                    </div>
+
+        </main>
+    </div>
+
+
+        <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            // ローカルには自分が「押したかどうか(true/false)」だけを記録
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+            // ボタン連打防止のため一時的に無効化
+            btn.disabled = true;
+
+            if (isLiked) {
+                // いいね解除 (-1)
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                // いいね！ (+1)
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+            
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        // ページ読み込み時にデータベースから現在の総いいね数を取得して表示
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+                // DBから現在のカウントを取得
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    // まだ誰もいいねしていない（行がない）場合
+                    count = 0;
+                }
+
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+
+</html>

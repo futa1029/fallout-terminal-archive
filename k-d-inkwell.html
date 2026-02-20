@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>K.D.インクウェル | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">K.D.インクウェル</h3>
+            <img src="images/note_extracted/nf7c248274041_img_1.png" alt="K.D.インクウェル">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nf7c248274041" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>K.D.インクウェル</h1>
+            <div class="date">DATE: 2026/1/14</div>
+            
+            <p name="0db064fa-9642-46ed-bff5-35c0465e9b38" id="0db064fa-9642-46ed-bff5-35c0465e9b38">K.D.インクウェルは、パルプ・マガジン「驚くほど素晴らしい話」のシリーズ作品『K.D.インクウェルのアトミック・クロニクル』のタイトル・キャラクターであり主人公です。<br>彼女はボードゲーム「アバロンの書記」および「42世紀からの脱出」に登場します。</p><hr name="fcc28eeb-47e4-4ab2-9b68-296302f6d41c" id="fcc28eeb-47e4-4ab2-9b68-296302f6d41c"><h2 name="367a4bf4-3804-4c67-ad71-a507213f31d7" id="367a4bf4-3804-4c67-ad71-a507213f31d7">背景</h2><p name="50dd3d5b-c428-4bfc-a3b5-c9705bab7913" id="50dd3d5b-c428-4bfc-a3b5-c9705bab7913">「驚くほど素晴らしい話」によって生み出された架空のキャラクターであるK.D.インクウェルは、冒険好きな歴史家であり、骨董品ギルドのシニア・タイム・オペレーティブです。<br>ギルドの刻印が入った「クロノトロン」を使用し、インクウェルはギルドの任務として様々な時代へタイムトラベルを行います。</p><div class="note-figure"><img src="images/note_extracted/nf7c248274041_img_2.png" alt="" width="256" height="256"><div class="note-figcaption"></div></div><p name="ec7e4657-f6d3-4663-9ee1-443de95ffd8b" id="ec7e4657-f6d3-4663-9ee1-443de95ffd8b">インクウェルは「アトミック・クイル」と呼ばれる、トーチほどの大きさの複雑な万年筆を武器として扱い、それを前腕に装備しています。 <br>彼女の服装は、袖のないダブルブレストのダークティールまたは黒のベスト、白いアンダーシャツ、濃いタン色のカーキパンツ、そして茶色の編み上げブーツで構成されています。 <br>背中にはクロノトロンを装着しており、ベストの襟には骨董品ギルドのピンが留められています。 <br>彼女の右目の下には、涙の跡のようなシミがあります。</p><div class="note-figure"><img src="images/note_extracted/nf7c248274041_img_3.png" alt="" width="620" height="611"><div class="note-figcaption"></div></div><p name="8abfaa25-eebe-4ca9-9998-6473fb190b36" id="8abfaa25-eebe-4ca9-9998-6473fb190b36">「アバロンの書記」において、インクウェルは高度なテクノロジーのカタログ作成を支援するとされるアバロンの書記、シノックを捜索するために、ギルドによって5世紀へと送り込まれます。<br>ギルドは、書記の居場所を突き止めるための助っ人として、アバロンの騎士アリステアを探すことを提案しました。</p><div class="note-figure"><img src="images/note_extracted/nf7c248274041_img_4.png" alt="" width="620" height="712"><div class="note-figcaption"></div></div><p name="d14127ed-2937-4f48-9722-1889dab9b3d2" id="d14127ed-2937-4f48-9722-1889dab9b3d2">「42世紀からの脱出」では、装備の故障によりインクウェルは42世紀へと放り出されてしまいます。<br>彼女は、邪悪なイルカと人間のハイブリッド集団「MIND」による同化から逃れ、元の時代へと戻らなければなりません。 <br>そこで彼女はクロノトロンの再調整を辛抱強く待ちながら、ジェイソン・デイビッド・ブレイデン率いる人類の抵抗軍に加わります。 <br>彼女は抵抗軍に対し「個人は共に集まれば強い」と説くことで彼らを鼓舞し、MINDの打倒を支援した後、自身のタイムラインへと帰還しました。<br>彼女は元の時代に戻った後、その遭遇について温かく笑いながら振り返ることができました。</p><hr name="f5b7e1cd-76d6-4180-b880-9967b6c6a54e" id="f5b7e1cd-76d6-4180-b880-9967b6c6a54e"><h2 name="12e5816c-069c-410f-a20f-a4d823e706f5" id="12e5816c-069c-410f-a20f-a4d823e706f5">登場作品</h2><p name="6c62a779-2cbf-4c22-8258-fe07597c96eb" id="6c62a779-2cbf-4c22-8258-fe07597c96eb">K.D.インクウェルは『Fallout 76』においてのみ言及されています。 <br>彼女は、それぞれアップデート「Steel Dawn」および「Steel Reign」の一部として、シーズン3とシーズン5のプレイ可能エリアとなったボードゲーム「アバロンの書記」および「42世紀からの脱出」に登場します。</p><div class="note-figure"><img src="images/note_extracted/nf7c248274041_img_5.png" alt="" width="512" height="512"><div class="note-figcaption">K.D. Inkwell's quill</div></div><div class="note-figure"><img src="images/note_extracted/nf7c248274041_img_6.png" alt="" width="512" height="512"><div class="note-figcaption">K.D. Inkwell's Chronotron</div></div><div class="note-figure"><img src="images/note_extracted/nf7c248274041_img_7.png" alt="" width="512" height="512"><div class="note-figcaption">Wearable costume</div></div><p name="e593ffb3-bf17-4982-a20e-35271e39c19d" id="e593ffb3-bf17-4982-a20e-35271e39c19d">アトミックショップにも彼女の服装等のアイテムが売っています。</p><hr name="653200dc-533f-4a83-b308-69bd548d6cdf" id="653200dc-533f-4a83-b308-69bd548d6cdf"><h2 name="87c447ce-9d62-4c93-b22c-b5b13e96430c" id="87c447ce-9d62-4c93-b22c-b5b13e96430c">舞台裏</h2><p name="b74e9beb-c425-4929-be3a-ee7500bd124f" id="b74e9beb-c425-4929-be3a-ee7500bd124f">「42世紀からの脱出」の設計プロセスの一環として、Arkane Studiosの開発者であるサディ・ボイド（Sadie Boyd）が、K.D.インクウェルの内部プレゼン用ボイスオーバーを担当しました。</p><hr name="4109f2d9-724f-4659-a767-16cf063184f6" id="4109f2d9-724f-4659-a767-16cf063184f6"><div class="quote-box">
+<b>感想</b><br><br>
+K.D.インクウェル、タイムトラベラーで歴史家という設定が最高にかっこいいですね！ <br>武器が「万年筆型のレーザー（？）」だったり、イルカの怪物と戦ったりと、戦前の人たちが想像していたSFのワクワク感が詰まっていて大好きです。<br><br><div class="note-figure"><img src="images/note_extracted/nf7c248274041_img_8.png" alt="" width="256" height="256"><div class="note-figcaption">Player icon
+</div>
+
+<p name="d73bc89d-8bb1-45cd-ac40-7a7e727dd0b2" id="d73bc89d-8bb1-45cd-ac40-7a7e727dd0b2">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

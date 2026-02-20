@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブラムコ・ブランド・マック＆チーズ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff66cc; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ブラムコ・ブランド・マック＆チーズ</h3>
+            <img src="images/note_extracted/n0e5559a1a5ad_img_1.png" alt="ブラムコ・ブランド・マック＆チーズ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>アイテム</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n0e5559a1a5ad" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ブラムコ・ブランド・マック＆チーズ</h1>
+            <div class="date">DATE: 2025/12/29</div>
+            
+            <p name="eddfdfee-50df-4c42-8c71-5726fa7d91f6" id="eddfdfee-50df-4c42-8c71-5726fa7d91f6">ブラムコ・マック＆チーズ（またはブラムコ・ブランド・マック＆チーズ）は、Falloutシリーズのほぼすべての作品に登場する戦前の食品アイテムです。<br>これは戦前に製造された箱入りのマカロニ・アンド・チーズであり、核戦争から200年以上が経過した後も、アパラチアや連邦、モハビ、キャピタル・ウェイストランドの至る所で、腐敗することなく発見されます。</p><hr name="96a20bca-7861-467d-ba40-465ff9bbe1f7" id="96a20bca-7861-467d-ba40-465ff9bbe1f7"><h2 name="09c94fb2-6af2-4cdc-a298-090034ee3db3" id="09c94fb2-6af2-4cdc-a298-090034ee3db3">特徴と性能</h2><p name="84456ef5-3a3f-4e4c-9dff-fe26a3bd4d7b" id="84456ef5-3a3f-4e4c-9dff-fe26a3bd4d7b">このアイテムは「戦前の加工食品」に分類され、摂取すると体力を回復しますが、保存料や時間の経過、あるいは環境の影響により、少量の放射能（Rad）を帯びています。</p><p name="45c5e1d2-8010-4d75-a85b-c8f9b080f5f9" id="45c5e1d2-8010-4d75-a85b-c8f9b080f5f9"><strong>【Fallout および Fallout 2】</strong></p><ul name="a7fb5c48-17ce-40b3-9dd8-52b0e33129a0" id="a7fb5c48-17ce-40b3-9dd8-52b0e33129a0"><li><p name="7a8c1d99-0fc8-480d-b318-15d4cfeef0b8" id="7a8c1d99-0fc8-480d-b318-15d4cfeef0b8"><strong>説明:</strong> <br>箱の裏面には「スライスされたパン以来の最高傑作」と記載されています。<br>調理にはお湯が必要ですが、ウェイストランドの住人はそのまま食べることも多いようです。</p></li><li><p name="5a4bf502-a708-4935-b40b-471dac6bcb4b" id="5a4bf502-a708-4935-b40b-471dac6bcb4b"><strong>重量:</strong> 1ポンド</p></li><li><p name="2528a7b5-e4cd-41ca-9665-5d4327d654f2" id="2528a7b5-e4cd-41ca-9665-5d4327d654f2"><strong>価値:</strong> 2キャップ</p></li></ul><p name="98f208bc-e9e8-4625-b752-b8fd7a6b6c5c" id="98f208bc-e9e8-4625-b752-b8fd7a6b6c5c"><strong>【Fallout 3 および Fallout: New Vegas】</strong></p><div class="note-figure"><img src="images/note_extracted/n0e5559a1a5ad_img_2.png" alt="" width="620" height="605"><div class="note-figcaption"></div></div><ul name="660fc4a8-d51f-40a6-87b6-c0ee233f7073" id="660fc4a8-d51f-40a6-87b6-c0ee233f7073"><li><p name="def7c51a-a98b-4a9e-8cbd-dcd608143966" id="def7c51a-a98b-4a9e-8cbd-dcd608143966"><strong>効果:</strong>&nbsp;<br>HP: +5、Rad: +2</p></li><li><p name="2ec7d8bc-b749-4a38-9e3d-74545ab81099" id="2ec7d8bc-b749-4a38-9e3d-74545ab81099"><strong>重量:</strong> 1</p></li><li><p name="da0b98d5-c8e4-4a41-915a-ec556ab4665e" id="da0b98d5-c8e4-4a41-915a-ec556ab4665e"><strong>価値:</strong> 5</p></li><li><p name="cbd6aaad-d9f3-455e-ab69-31688061ffc5" id="cbd6aaad-d9f3-455e-ab69-31688061ffc5"><strong>特徴:</strong> 他の戦前の食品と同様に、カルマや陣営に影響を与えることなく摂取できる一般的な食料です。</p></li></ul><p name="02e74141-8e94-4aed-8bf7-b4733ccdd8d0" id="02e74141-8e94-4aed-8bf7-b4733ccdd8d0"><strong>【<a href="fallout-4.html" class="auto-link">Fallout 4</a>】</strong></p><div class="note-figure"><img src="images/note_extracted/n0e5559a1a5ad_img_3.png" alt="" width="620" height="629"><div class="note-figcaption"></div></div><ul name="ad8f441f-2c0b-4c54-b23b-6268c09fbab6" id="ad8f441f-2c0b-4c54-b23b-6268c09fbab6"><li><p name="2e114499-5f0f-4d1c-865e-bda273d92408" id="2e114499-5f0f-4d1c-865e-bda273d92408"><strong>効果:</strong> HP: +20、Rad: +7</p></li><li><p name="2d724888-fb85-47bb-a2f5-5c1a2ea91b9f" id="2d724888-fb85-47bb-a2f5-5c1a2ea91b9f"><strong>重量:</strong> 0.5</p></li><li><p name="7654a9f6-5e2e-447b-a684-61321bb348d5" id="7654a9f6-5e2e-447b-a684-61321bb348d5"><strong>価値:</strong> 10</p></li><li><p name="d3365a86-7f9f-40a2-a406-e2a093cca7b8" id="d3365a86-7f9f-40a2-a406-e2a093cca7b8"><strong>バリエーション:</strong> <br><strong>保存されたマック＆チーズ :</strong> 放射能が含まれていない高品質なバージョンが存在します。<br>これは主にVault内や清潔な施設で発見されます。</p></li></ul><p name="47c113c4-bd0e-460f-b25e-059f2d53e3bf" id="47c113c4-bd0e-460f-b25e-059f2d53e3bf"><strong>【Fallout 76】</strong></p><ul name="de5d56ef-413d-42c2-a328-ca5d195bad8b" id="de5d56ef-413d-42c2-a328-ca5d195bad8b"><li><p name="ae8c2603-4f7b-41e3-bef0-11a20dfe2dd3" id="ae8c2603-4f7b-41e3-bef0-11a20dfe2dd3"><strong>効果:</strong> 空腹回復: 15%、Rad: +5、HP: +25（ゆっくり回復）</p></li><li><p name="0a2374ba-bf00-452d-b41c-949eed78d285" id="0a2374ba-bf00-452d-b41c-949eed78d285"><strong>重量:</strong> 0.5</p></li><li><p name="5d8feab4-9d68-4dce-90a6-3751b386a884" id="5d8feab4-9d68-4dce-90a6-3751b386a884"><strong>価値:</strong> 12</p></li><li><p name="f94c9ce5-a9df-4f87-9971-d455cd865376" id="f94c9ce5-a9df-4f87-9971-d455cd865376"><strong>特徴:</strong> 腐敗しないため、長期間の探索における非常食として非常に優秀です。</p></li><li><p name="c9ea2631-2120-4204-8a69-188422166901" id="c9ea2631-2120-4204-8a69-188422166901"><strong>レシピへの利用:</strong>&nbsp;<br>「ファンシー・ラッド・スナックケーキ」などの特定のクラフトや、毎日の「戦前の食品を食べる」というチャレンジの対象になります。</p></li></ul><hr name="0e8d6d96-89c2-4d37-a7fd-9b65dfb2fca0" id="0e8d6d96-89c2-4d37-a7fd-9b65dfb2fca0"><h2 name="2f424717-30c7-4ef4-8480-3cf712b7d456" id="2f424717-30c7-4ef4-8480-3cf712b7d456">出現場所</h2><p name="8adba162-4b79-4bef-8858-6dd8b4c0f651" id="8adba162-4b79-4bef-8858-6dd8b4c0f651">このアイテムはアパラチアや連邦のいたる場所で一般的（コモン）に見つけることができます。</p><ul name="fb88275f-367b-4982-b714-692122bd5477" id="fb88275f-367b-4982-b714-692122bd5477"><li><p name="79010343-8f65-4973-afc6-415d665072ef" id="79010343-8f65-4973-afc6-415d665072ef"><strong>キッチンと食堂:</strong> <br>戦前の民家、レストラン、ダイナーの棚やカウンターの上によく置かれています。</p></li><li><p name="f48b438b-905c-4642-ba10-5aff24d4256c" id="f48b438b-905c-4642-ba10-5aff24d4256c"><strong>スーパーマーケット:</strong> <br>スーパーウルトラ・マーケットなどの食料品店跡地の棚。</p></li><li><p name="7e1a2dac-2fc7-4bee-bbbe-198d2aab024d" id="7e1a2dac-2fc7-4bee-bbbe-198d2aab024d"><strong>Vault内:</strong> Vault-Tecの施設内のカフェテリアや居住区。</p></li><li><p name="392b5825-dbb5-454e-8d27-90165371a142" id="392b5825-dbb5-454e-8d27-90165371a142"><strong>木箱やクーラーボックス:</strong> <br>ランダムなコンテナの中に含まれていることがよくあります。</p></li><li><p name="44fe12dd-2af4-41d0-91f8-e04852810239" id="44fe12dd-2af4-41d0-91f8-e04852810239"><strong>ベンダー:</strong> <br>ウェイストランドの各地にいる料理人や商人から購入することが可能です。</p></li></ul><hr name="dca67775-0f47-479f-b901-31335976d4b6" id="dca67775-0f47-479f-b901-31335976d4b6"><h2 name="b6960ee6-4852-4664-9afe-3762106c90ec" id="b6960ee6-4852-4664-9afe-3762106c90ec">舞台裏</h2><h3 name="43988665-be4a-4ade-ad1c-bd7381e4d2d3" id="43988665-be4a-4ade-ad1c-bd7381e4d2d3"><br></h3><div class="note-figure"><img src="images/note_extracted/n0e5559a1a5ad_img_4.jpg" alt="" width="600" height="600"><div class="note-figcaption"></div></div><ul name="6a72c69a-8527-4c2c-85f6-7aaf87bc5582" id="6a72c69a-8527-4c2c-85f6-7aaf87bc5582"><li><p name="b294f911-01f0-4310-9972-bd429d871d8b" id="b294f911-01f0-4310-9972-bd429d871d8b"><strong>モデル:</strong> <br>現実にアメリカで非常にポピュラーな「クラフト・マカロニ・アンド・チーズ (Kraft Macaroni &amp; Cheese)」のパロディです。箱のデザインやオレンジ色のチーズソースという特徴が酷似しています。</p></li><li><p name="afe8b90a-b901-4085-9c03-fda50f1da708" id="afe8b90a-b901-4085-9c03-fda50f1da708"><strong>キャッチコピー:</strong> <br>「スライスされたパン以来の最高傑作」というフレーズは、アメリカで「画期的な素晴らしい発明」を指す際によく使われる慣用句です。</p></li><li><p name="316b6dc4-a89c-4ff8-b09f-b346f340eb50" id="316b6dc4-a89c-4ff8-b09f-b346f340eb50"><strong>栄養価への皮肉:</strong> <br>ゲーム内のパッケージや広告では栄養価が高いように謳われていますが、実際には高度に加工されており、ナトリウム（塩分）が非常に多いことが示唆されています。</p></li></ul><hr name="00f1385c-7888-4d54-bb63-ee40b883ddc0" id="00f1385c-7888-4d54-bb63-ee40b883ddc0"><h2 name="d8d3079f-9431-46a6-8366-5f245899eed4" id="d8d3079f-9431-46a6-8366-5f245899eed4">その他の詳細情報</h2><p name="42ad464c-742a-4dd4-8559-39e285cc1afd" id="42ad464c-742a-4dd4-8559-39e285cc1afd"><strong>広告の描写</strong> <br>戦前のポスターや看板では、幸せそうな家族がこのマック＆チーズを囲んでいる様子が描かれており、中産階級の家庭における「安価で簡単な食事」の象徴であったことが分かります。</p><p name="af7c4984-843c-45fa-af19-e1857dc2fd18" id="af7c4984-843c-45fa-af19-e1857dc2fd18"><strong>成分に関する考察</strong> <br>長期間放置されても箱の中で形状を維持していることから、ウェイストランドの住人の間では、本物のチーズではなく「チーズに似た化学物質」でできているのではないかというジョークのネタにされることもあります。</p><hr name="91904e28-a019-4def-9fbf-3c6e5d53f085" id="91904e28-a019-4def-9fbf-3c6e5d53f085"><div class="quote-box">
+<b>感想</b><br><br>
+ウェイストランドを歩き疲れた私たちの「胃袋の味方」ですね。 200年以上経っても腐らずに箱の中にあり続けるなんて、戦前の保存技術（というか、もはや化学の魔法？）には驚かされるばかりです。<br><br>「スライスされたパン以来の最高傑作」という誇らしげなキャッチコピーも、今の荒廃した世界で見ると、少し切ないユーモアを感じてしまいます。 本物のチーズが並ぶ<a href="helvetia.html" class="auto-link">ヘルヴェティア</a>の「チーズハウス」を見た後だと、この便利な箱入り食品が、当時の忙しくも平和だった日常を象徴しているようで、なんだか愛おしくなってしまいますね。
+</div>
+
+<p name="da956624-1506-4b20-922b-9a70b4c31854" id="da956624-1506-4b20-922b-9a70b4c31854">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

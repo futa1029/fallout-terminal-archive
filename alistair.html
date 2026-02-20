@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アリステア | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">アリステア</h3>
+            <img src="images/note_extracted/n98e9bebd0e33_img_1.png" alt="アリステア">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n98e9bebd0e33" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>アリステア</h1>
+            <div class="date">DATE: 2026/2/6</div>
+            
+            <p name="83ff20b5-88e3-4349-84f5-69bafa6a0810" id="83ff20b5-88e3-4349-84f5-69bafa6a0810"><strong>アリステア</strong>は、戦前のフランチャイズ作品である『<strong><a href="k-d-inkwell.html" class="auto-link">K.D.インクウェル</a>：アトミック・クロニクル</strong>』に登場する架空のキャラクターです。</p><hr name="625f5c11-8036-4356-a864-4a40705757ba" id="625f5c11-8036-4356-a864-4a40705757ba"><h2 name="116eb922-e1af-4e30-83b3-0cae5b15ea70" id="116eb922-e1af-4e30-83b3-0cae5b15ea70">背景</h2><p name="aee2b869-7be3-4cdf-8c04-69a660bda612" id="aee2b869-7be3-4cdf-8c04-69a660bda612">『<strong>驚くほど素晴らしい話</strong>』のキャラクターであるアリステアは、5世紀の「<strong>伝説のアヴァロンの騎士</strong>」です。<br>骨董品ギルドは、アリステアがタイムトラベルをする歴史家 <strong><a href="k-d-inkwell.html" class="auto-link">K.D.インクウェル</a></strong>の助けになるかもしれないと考えています。<br>彼女は、歴史上「<strong>アヴァロンの書記官</strong>」として知られる、神出鬼没の<strong>シノック</strong>を探し求めています。</p><hr name="a4a9790c-4b4d-4518-9eaf-e3776a35e9dc" id="a4a9790c-4b4d-4518-9eaf-e3776a35e9dc"><h2 name="465bb14a-2ddc-43d5-92d8-dbbaee02cddb" id="465bb14a-2ddc-43d5-92d8-dbbaee02cddb">注目の戦利品</h2><p name="d9d07863-89b5-4c39-a3c4-b72db5324064" id="d9d07863-89b5-4c39-a3c4-b72db5324064"><strong>アリステアの剣<br></strong>剣のスキン、あるいは独自の近接武器スキンとして登場します</p><p name="167b8311-932f-43e6-a928-42caed38d903" id="167b8311-932f-43e6-a928-42caed38d903"><strong>アリステアのアーマー</strong></p><p name="5426b655-e151-4e11-9cf0-a62ed19624e8" id="5426b655-e151-4e11-9cf0-a62ed19624e8">コスチューム/アウトフィットのセットです</p><p name="0f2346d2-712d-44d3-9478-0436c4fb1b2c" id="0f2346d2-712d-44d3-9478-0436c4fb1b2c"><strong>アリステアのヘルメット<br></strong>ヘッドウェアのアイテムです</p><p name="ca800679-4b44-4b3c-b8f8-c3eb6f4d6b98" id="ca800679-4b44-4b3c-b8f8-c3eb6f4d6b98"><strong>勇敢なアリステアのスーツ<br></strong>バリエーション版のアウトフィットです</p><p name="d29ebb10-fc0c-4ca1-a412-9c70711c35b0" id="d29ebb10-fc0c-4ca1-a412-9c70711c35b0"><strong>アリステアの<a href="backpack.html" class="auto-link">バックパック</a></strong></p><div class="note-figure"><img src="images/note_extracted/n98e9bebd0e33_img_2.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><p name="279e5f39-36bf-46a1-ac67-8756bb3f42d6" id="279e5f39-36bf-46a1-ac67-8756bb3f42d6"><a href="backpack.html" class="auto-link">バックパック</a>の外装スキンです</p><p name="e023b17f-4a93-434a-8406-9807334cae6f" id="e023b17f-4a93-434a-8406-9807334cae6f"><strong>アリステアの<a href="backpack.html" class="auto-link">バックパック</a>・フレア</strong></p><div class="note-figure"><img src="images/note_extracted/n98e9bebd0e33_img_3.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><p name="4a7d0fec-9a9a-46c5-9995-eb02d6fc0470" id="4a7d0fec-9a9a-46c5-9995-eb02d6fc0470">バックパック用の装飾アイテムです</p><p name="008e2c96-74a4-4baf-a192-74825395e097" id="008e2c96-74a4-4baf-a192-74825395e097"><strong>ガトリング・プラズマのアリステア塗装</strong></p><div class="note-figure"><img src="images/note_extracted/n98e9bebd0e33_img_4.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><p name="808ad212-8c06-4e73-a80c-92341d85fceb" id="808ad212-8c06-4e73-a80c-92341d85fceb">武器用のスキン塗装です</p><p name="c4d478f0-1313-4823-9ea7-c8a21015875a" id="c4d478f0-1313-4823-9ea7-c8a21015875a"><strong>アリステアの意気揚々としたエモート</strong></p><div class="note-figure"><img src="images/note_extracted/n98e9bebd0e33_img_5.png" alt="" width="512" height="512"><div class="note-figcaption"></div></div><p name="90a97755-0f04-409c-906b-7221d10aba0b" id="90a97755-0f04-409c-906b-7221d10aba0b">プレイヤーが使用できるエモートです</p><hr name="0c9063d8-5552-4b59-8fbf-707f739dd012" id="0c9063d8-5552-4b59-8fbf-707f739dd012"><h2 name="6131219e-cc24-46af-a319-69604fa1f516" id="6131219e-cc24-46af-a319-69604fa1f516">登場作品</h2><p name="5a71908f-1b93-46d4-a399-3246bf0c72d2" id="5a71908f-1b93-46d4-a399-3246bf0c72d2"><strong>アリステア</strong> は <strong>Fallout 76</strong> において名前のみ言及される形で登場し、アップデート「<strong>Steel Dawn</strong>」で導入されました。<br>彼は主にシーズン報酬（スコアボード）のテーマキャラクターとしてその存在が描かれています。</p><hr name="184dc4c1-b3fa-4f5b-8cc2-418ffcffd3fa" id="184dc4c1-b3fa-4f5b-8cc2-418ffcffd3fa"><div class="quote-box">
+<b>感想</b><br><br>
+<b>イン・ユニバースの設定</b>: アリステアは実在の人物ではなく、戦前の人気コミックやラジオドラマの世界におけるヒーローです。<br>Fallout 76 のシーズン5「<b>42世紀からの脱出</b>」では、彼と <a href="k-d-inkwell.html" class="auto-link">K.D.インクウェル</a>が中心的な役割を担っています。<br><br><b>アヴァロンとの繋がり</b>: 5世紀の騎士という設定ながら、タイムトラベルを駆使する <a href="k-d-inkwell.html" class="auto-link">K.D.インクウェル</a>と共に未来や過去を駆け巡る「レトロフューチャーなファンタジー」の象徴的なキャラクターと言えます。<br><br><b>報酬としての価値</b>: 彼の装備一式（アーマーや剣）は、プレイヤーがその英雄的な外見を再現するための「戦利品」やエモートが非常に人気が高いアイテム群です。
+</div>
+
+<p name="ae1335bc-7b0e-4869-822e-01c0a997af6a" id="ae1335bc-7b0e-4869-822e-01c0a997af6a">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

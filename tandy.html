@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>タンディ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">タンディ</h3>
+            <img src="images/note_extracted/n15a069065ee0_img_1.png" alt="タンディ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n15a069065ee0" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>タンディ</h1>
+            <div class="date">DATE: 2026/2/15</div>
+            
+            <p name="ca7bbce2-97ff-4dd6-9252-55fa90477d22" id="ca7bbce2-97ff-4dd6-9252-55fa90477d22">2145年に生まれたタンディは、愛嬌のある表情と、旅や冒険への夢でいっぱいの頭を持った少女でした。<br>幼い頃から、彼女はその容姿の良さを補って余りあるほどの並外れた精神力と快活さを発揮していました。<br>しかし、父の<a href="aradesh.html" class="auto-link">アラデシュ</a>は用心深い男であり、彼女を自分の近くに留め置きました。<br>彼女は <strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> での安定した仕事に伴う退屈さを軽蔑していました。<br>16歳の時に<strong>Vaultの居住者 (Vault Dweller)</strong> と出会った際、この短い出会いは若い彼女に強い印象を残しました。<br>それは、カーンズによる誘拐と、その後の救出によってさらに強化されました。<br><strong>Vaultの居住者</strong>がカーンズを虐殺した後、レイダーたちが寄り付かなくなったため、<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> の町は平和な時期を享受しました。</p><h3 name="12070f88-1e3e-484c-a9c2-297a6b5eb10a" id="12070f88-1e3e-484c-a9c2-297a6b5eb10a">国家の礎</h3><p name="9e96e50b-047a-40b8-898f-9088c611dfc7" id="9e96e50b-047a-40b8-898f-9088c611dfc7"><a href="aradesh.html" class="auto-link">アラデシュ</a>とタンディはこの機会を利用してコミュニティを発展させました。村は繁栄し、やがて新カリフォルニアにおける経済大国となりました。<br>貿易ルートの発展に伴い、町同士の文化交流も進みました。<br>タンディは父を助けて <strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> を拡大し、<strong>新カリフォルニア共和国 (NCR)</strong> の基礎を築きました。<br>彼女がジャンクタウンやハブとの貿易ルートを開くと、<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> はすぐに大幅に成長しました。<br>これは明らかな利点があったにもかかわらず、父が躊躇していたことでした。<br>強力な経済とタンディの決意ある指導の下、<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> はすぐに<strong><a href="brahmin.html" class="auto-link">バラモン</a></strong>貿易を支配し、やがて来るべき <strong>NCR</strong> の最初の州が出現し、<strong>B.O.S. </strong>（当面は権力構造の外に留まっていましたが）の助けを借りて、徐々に独立した政治的実体へと統合されていきました。</p><p name="69fd4003-cb8f-4897-8891-b43b34ee0ece" id="69fd4003-cb8f-4897-8891-b43b34ee0ece">これは、徐々に大衆の支持を得る国民的アイデンティティ運動の出現につながりました。<br>2186年、<strong>新カリフォルニア共和国 (NCR)</strong> が設立されました。<br>憲法を起草するために試行評議会政府が結成されました。<br><strong>NCR</strong> の理想はカリフォルニア中に着実に広まり、ジャンクタウンは <strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> の最も古く信頼できる貿易相手の一つであったため、<strong>NCR</strong> の最初の暫定州の一つとなりました。<br>この同盟はハブで多少の懸念を引き起こしましたが、最終的に関係への影響はほとんどありませんでした。<br>2189年、共和国は5つの州（シェイディ、ロサンゼルス、マクソン、ハブ、デイグロウ）の連邦として投票により成立しました。</p><p name="8709f8c9-2d56-4394-abf0-06732da1829f" id="8709f8c9-2d56-4394-abf0-06732da1829f">2196年に<a href="aradesh.html" class="auto-link">アラデシュ</a>が失踪し死亡したと推定された後、彼の娘は全会一致で <strong>NCR</strong> の第2代大統領に選出されました。<br>彼女は死ぬまで連続するすべての選挙に勝ち続け、満10期を務め上げ、11期目に入っていました。<br>大統領として、タンディは<strong>最終戦争</strong>後に生まれたどの指導者よりもウェイストランドを統一するために多くのことを成し遂げました。<br>それには、増加する人口を支えるための戦前のインフラの再建、新しい輸送手段や製造形態の発見、道路や鉄道路線の整備、砦の建設、共和国の内外でのキャラバンや貿易の育成、そして脅威への迅速かつ効率的な対処が含まれます。<br>タンディが10期目の任期を開始した2241年までに、共和国はウェイストランドで最大の経済的および政治的権力となっていました。<br>その力の多くは、肉、革、駄獣、その他の貿易品を提供する広大な<strong><a href="brahmin.html" class="auto-link">バラモン</a> </strong>の群れによって供給されていました。</p><h3 name="4657655d-20ee-4364-a4b2-62c02cfb4581" id="4657655d-20ee-4364-a4b2-62c02cfb4581">拡張政策</h3><div class="note-figure"><img src="images/note_extracted/n15a069065ee0_img_2.png" alt="" width="388" height="200"><div class="note-figcaption"></div></div><p name="ec8ed893-a598-4cf7-94d2-e50dba398f59" id="ec8ed893-a598-4cf7-94d2-e50dba398f59">タンディは父の後を継いで共和国の大統領となり、それ以降、議会と共に <strong>NCR</strong> を統治しました。<br>彼女は荒野に平和と安定をもたらすために国家を拡大することに焦点を当てていました。彼女の理想はずっと以前にプラグマティズム（実用主義）に置き換えられており、<strong>Vault City</strong> を脅して <strong>NCR</strong> に加盟させ、優れた医療技術を供給させるためにニューレノと取引を結ぶことも厭いませんでした。<br>2241年に100歳に近づいていたタンディは、依然として現職の大統領であり、機知と若々しい情熱を保っていました。<br>認知症やその他の高齢者の病気は、彼女には無縁のように見えました。</p><p name="0afcfcda-d896-4150-81e4-52e556dab054" id="0afcfcda-d896-4150-81e4-52e556dab054">南カリフォルニアの状況が安定すると、タンディ大統領は北への拡大を意図しました。<br>しかし、北カリフォルニアは <strong>NCR</strong> が2つのライバル、<strong>Vault City</strong> とニューレノを支配するために苦闘するアリーナとなりました。<br>タンディはまた、平和的拡大という自身の政治に対する反対にも直面し、<strong>Vault 15</strong> がその試験場として機能しました。<br>地政学的な闘争は、この地域の主要な金鉱石の供給源であるレディングの町を中心に展開しました。<br>共和国が通貨をドルに切り替え、それを金で裏付けた時、この鉱山都市は新カリフォルニア全体の貿易の鍵となりました。<br>金の供給を制する者が、通貨を制するのです。<br>レディングは幸運にも、軍事的占領を不経済にするほど十分に離れた場所に位置していました。<br>3つの勢力は代わりに、送り込まれたエージェント（「ペインレス」ドック・ジョンソン）や自発的な支持者（マージ・ルバージやダン・マクグリュー）を通じて、都市を自分たちと連携させることを決定しました。<br>2241年までに、状況は徐々に危機的局面に近づいていました。<br>1月には、ドラッグを通じて鉱山都市を支配しようとするモルディーノ・ファミリーの計画の一環として、最初のジェットのバッチがレディングに到着し始めました。<br><strong>Vault City</strong> は2月にビショップ・ファミリーおよび <strong>NCR</strong> と同盟を結ぶという申し出を拒否し、その1か月後には都市を同盟に脅し込むために計画された傭兵の攻撃が始まりました。<br>これらすべては、北カリフォルニアで干ばつを引き起こした数年で最悪の乾季を背景にしており、アロヨやモドックなどの開発の遅れた地域で広範な食糧不足を引き起こしていました。</p><p name="b6326862-c986-4b23-a890-47d059315d0f" id="b6326862-c986-4b23-a890-47d059315d0f">旅を通じて、<strong>選ばれし者 (Chosen One)</strong> は北部における共和国の拡大を確保する決定的な要因となり、<strong>Vault 15</strong> を巡る紛争を共和国に有利に解決し、タンディの拡大政策を正当化しました。<br>それだけでなく、ジョン・ビショップの主導とタンディ大統領の支援の下、ニューアロヨ、レディング、そして <strong>Vault City</strong> も <strong>NCR</strong> の領土となりました。<br>共和国はさらに、2242年のエンクレイヴ・オイルリグの破壊から数年以内にエンクレイヴの残党を攻撃することで、その利益を確保しました。<br>ナヴァロは共和国軍によって陥落し、それに伴い武器の隠し場所や多数のベルチバードも手に入りました。</p><p name="4e446eb8-0d74-4771-a1af-f525133cbfc9" id="4e446eb8-0d74-4771-a1af-f525133cbfc9">2248年、タンディ大統領は52年間の在任期間を経て、名前不明の病気により103歳で死去しました。<br>彼女の後継者は副大統領のジョアンナ・チベットでした。<br>しかし、彼女の遺産は生き続け、彼女は現在に至るまで最も人気があり、最も長く務めた <strong>NCR</strong> 大統領であり続けています。<br>囚人の拷問を禁止する法律など、彼女の法律の多くは、その後の政権による覆す努力にもかかわらず、2281年時点でも効力を保っています。<br>彼女はまた、<strong>NCR</strong> の100ドル紙幣にその姿が不滅のものとして描かれています。</p><h3 name="8446192b-5447-4fa7-ae7e-665470f8c468" id="8446192b-5447-4fa7-ae7e-665470f8c468">家族</h3><p name="0405ecdd-3ad6-484d-89b5-e75642815aa5" id="0405ecdd-3ad6-484d-89b5-e75642815aa5">タンディの父は <strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> のリーダーである<a href="aradesh.html" class="auto-link">アラデシュ</a>であり、母の名前は不明のままです。<br>セスとタンディは彼女が <strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> に住んでいた頃親密で、セスは彼女の救出クエストで訂正する前に彼女イ�「俺の女」と表現していました。<br>タンディは結婚し、息子のホスをもうけましたが、彼については滅多に話しませんでした。</p><hr name="1ccc64da-89d0-4de0-a672-41888a4e2fa5" id="1ccc64da-89d0-4de0-a672-41888a4e2fa5"><h2 name="ea4a56ac-1985-43ab-840b-5583f7e396e2" id="ea4a56ac-1985-43ab-840b-5583f7e396e2">プレイヤーキャラクターとの関わり</h2><h3 name="1ba5a1aa-e460-46be-b0d6-6c46f6c48c64" id="1ba5a1aa-e460-46be-b0d6-6c46f6c48c64">Fallout 1</h3><p name="f97d9639-bb9c-4398-9652-85192be7f7e6" id="f97d9639-bb9c-4398-9652-85192be7f7e6"><strong>クエスト</strong> <strong>Rescue Tandi from the Raiders</strong>: タンディは数名のカーンズに捕らえられており、救出する必要があります。<br>救出後、<strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> に戻されるまで、タンディは <strong>Vaultの居住者</strong>のパーティーに残ります。<br>彼女を救出した後 <strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> を避けることで、タンディはドッグミート、イアン、タイコ、カジャと並ぶ5人目のNPCパーティーメンバーとして機能することができます。<br>ただし、タンディは本来NPCコンパニオンとしての使用を意図されていないため、戦闘コマンドや命令を出すことはできません。<br>彼女のインベントリも（スリ取る以外では）操作できず、彼女はゲームの残りの期間、最初に抜いた武器を使い続けます（弾薬が十分にある場合など）。</p><h3 name="8ba2b080-ace2-4101-ada3-3e25e71d54e8" id="8ba2b080-ace2-4101-ada3-3e25e71d54e8">その他のインタラクション</h3><p name="8f550ea5-31f8-4e48-9bdf-8dff01f1879d" id="8f550ea5-31f8-4e48-9bdf-8dff01f1879d">タンディはいくつかの背景情報を持っており、説得できればハブにいるデスクローについても少し話してくれます。<br>彼女は <strong>Vaultの居住者</strong>が <strong><a href="shady-sands.html" class="auto-link">シェイディ・サンズ</a></strong> を発見し、ラッドスコーピオンを駆除した2日後に、近くのレイダーグループであるカーンズに誘拐されます。<br>男性の <strong>Vaultの居住者</strong>が彼女とロマンスを試みた場合、タンディはプレイヤーに自分はそのようなタイプの女の子ではないと伝え、ブラマ（<strong><a href="brahmin.html" class="auto-link">バラモン</a></strong>の誤記の可能性あり、または文脈上のジョーク）を見つけるよう提案します。<br>女性の <strong>Vaultの居住者</strong>が同じことをした場合、タンディは自分が男性を好きだと伝え、会話を終わらせます。</p><h3 name="02be774b-010f-4ec4-82f0-d2022d5a526f" id="02be774b-010f-4ec4-82f0-d2022d5a526f">Fallout 2</h3><p name="a9f520e9-2477-4580-ae4b-7670bbf87f32" id="a9f520e9-2477-4580-ae4b-7670bbf87f32"><strong>クエスト</strong> <strong>Retrieve Parts/Gain Access to Vault 15<br>Complete Deal with NCR</strong></p><hr name="8494e463-6c2f-4d5e-9a76-a9031296b910" id="8494e463-6c2f-4d5e-9a76-a9031296b910"><h2 name="441367ee-f1da-41ce-bb4f-aac5d84bf8be" id="441367ee-f1da-41ce-bb4f-aac5d84bf8be">注記</h2><p name="140b512e-4656-4644-8b82-c6c76fd9e0a0" id="140b512e-4656-4644-8b82-c6c76fd9e0a0"><strong>Fallout 2</strong> のマニュアルでは、タンディの名前は "Tandy" と綴られています。<br>キャンセルされたプロジェクト『Van Buren』では、アンジェラ (Angela) が、タンディは平和的に死んだのではなく暗殺されたと主張する予定でした。（非正史）</p><hr name="666423e6-3a7e-4ddf-b1fa-6af4deae78ee" id="666423e6-3a7e-4ddf-b1fa-6af4deae78ee"><h2 name="eb62b051-21db-4eb1-b67b-85d73e366a20" id="eb62b051-21db-4eb1-b67b-85d73e366a20">印象的な引用句</h2><h3 name="ab552864-41da-4593-b891-0050a7c5d26e" id="ab552864-41da-4593-b891-0050a7c5d26e">Fallout 1</h3><p name="b12eec2d-85e2-49e3-bf0d-2dcb8b41a74f" id="b12eec2d-85e2-49e3-bf0d-2dcb8b41a74f">「あら、またあなた！ 私を出してくれるの？」 <br>「ついに！ 他に話が通じる人がいたわ！ もちろん、あなたはいろんな場所に行っているでしょうから、ここは地獄に違いないわね」<br>「もしもし、誰かいないの？ ここから出してくれない？ 私をここから出して！」 <br>「あら、皮肉屋さんなのね？ 私を出してくれるの、どうなの！？」</p><h3 name="0eec3632-ef34-416d-8d5a-a6d19a14a955" id="0eec3632-ef34-416d-8d5a-a6d19a14a955">Fallout 2</h3><div class="note-figure"><img src="images/note_extracted/n15a069065ee0_img_3.png" alt="" width="280" height="190"><div class="note-figcaption"></div></div><p name="14753bfe-5a79-4ad5-87ec-65acfe4e20c0" id="14753bfe-5a79-4ad5-87ec-65acfe4e20c0">「私はタンディ、<strong>NCR</strong> の大統領よ。部下から、あなたが仕事を探していると聞いたわ。何が得意なの？」 <br>「ああ、間違いを犯しているのは分かっているけど……やってみなさい。もし私の言ったことが何か理解できたのならね」 <br>「ああ、ずいぶん昔のことよ！ 当時自分が誰だったかほとんど覚えていないわ。ただの世間知らずな少女だった。あなたが <strong>Vaultの居住者 (Vault Dweller)</strong> と呼ぶあの人……彼はまだ生きているの？」</p><hr name="1061e609-c33e-4f82-9a49-b9ae3e40a245" id="1061e609-c33e-4f82-9a49-b9ae3e40a245"><div class="quote-box">
+<b>感想</b><br><br>
+<b>タンディ</b>は、Fallout シリーズにおいて最も象徴的な「成功した指導者」の一人ですね。<br><br><b>少女から国母へ</b>: <b>Fallout 1</b> での世間知らずで退屈していた少女が、<b>Fallout 2</b> では100歳近い老練な大統領として再登場し、巨大国家を率いているという変貌ぶりは、プレイヤーに時間の経過と歴史の重みを感じさせる最高の演出です。<br><br><b>実利主義への転換</b>: 若い頃の理想を捨て、政治的な目的のためにマフィアや傭兵を利用することも厭わなくなった彼女の姿勢は、文明を再建するために必要な「汚れ仕事」を引き受ける覚悟を示しており、単なる英雄ではない深みのあるキャラクター像を作り上げています。<br><br><b>平和の象徴</b>: 彼女の死後、<b>NCR</b> が急速に軍国主義化し、腐敗していく様子と比較すると、彼女がいかにバランス感覚に優れ、カリスマ性を持った指導者であったかが浮き彫りになります。彼女の顔が紙幣に印刷されているのも納得です。<br><br><div class="note-figure"><img src="images/note_extracted/n15a069065ee0_img_4.png" alt="" width="620" height="709"><div class="note-figcaption">
+</div>
+
+<p name="e80c4ef3-4bd0-404b-bd72-3bbd43306852" id="e80c4ef3-4bd0-404b-bd72-3bbd43306852">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -177,6 +177,49 @@
                 font-size: 1.5em;
             }
         }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 
@@ -205,6 +248,12 @@
 
         <!-- MAIN ARTICLE -->
         <main class="content">
+            <div class="action-header">
+                <div></div>
+                <button class="like-button" data-article-id="wayward_jp" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
             <h1>The Wayward (ザ・ウェイワード)</h1>
 
             <div class="wiki-text">
@@ -305,6 +354,87 @@
         </main>
     </div>
 
+
+        <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            // ローカルには自分が「押したかどうか(true/false)」だけを記録
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+            // ボタン連打防止のため一時的に無効化
+            btn.disabled = true;
+
+            if (isLiked) {
+                // いいね解除 (-1)
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                // いいね！ (+1)
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+            
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        // ページ読み込み時にデータベースから現在の総いいね数を取得して表示
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+                // DBから現在のカウントを取得
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    // まだ誰もいいねしていない（行がない）場合
+                    count = 0;
+                }
+
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
 </body>
 
 </html>

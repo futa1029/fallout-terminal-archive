@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>抗議プラカード | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">抗議プラカード</h3>
+            <img src="images/note_extracted/na71f7eb46d5f_img_1.png" alt="抗議プラカード">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_na71f7eb46d5f" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>抗議プラカード</h1>
+            <div class="date">DATE: 2025/11/27</div>
+            
+            <ul name="fd79d547-0cf6-4972-8950-0b71d6602c24" id="fd79d547-0cf6-4972-8950-0b71d6602c24"><li><p name="9a877d31-0134-4476-b716-5226ff4a84a1" id="9a877d31-0134-4476-b716-5226ff4a84a1">"My dad needs a job!"（父さんに仕事が必要だ！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_2.png" alt="" width="620" height="619"><div class="note-figcaption"></div></div><ul name="1e94e227-80bb-4aed-8850-6265dece14be" id="1e94e227-80bb-4aed-8850-6265dece14be"><li><p name="95ab894a-020e-4669-95a3-f7e4c747a3f1" id="95ab894a-020e-4669-95a3-f7e4c747a3f1">"Jobs!"（仕事を！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_3.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><ul name="a1dcd991-6972-493d-b205-dea4f3b2b954" id="a1dcd991-6972-493d-b205-dea4f3b2b954"><li><p name="fd1e40e6-4404-4c8e-ae37-21920a9ca1f1" id="fd1e40e6-4404-4c8e-ae37-21920a9ca1f1">"Workers united against automation!"（労働者はオートメーションに団結して反対する！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_4.png" alt="" width="620" height="619"><div class="note-figcaption"></div></div><ul name="62a307bb-fb36-48dc-a960-45d2d2e5db18" id="62a307bb-fb36-48dc-a960-45d2d2e5db18"><li><p name="efa9c6cb-8aee-4b6f-af62-76533ddf017b" id="efa9c6cb-8aee-4b6f-af62-76533ddf017b">"I want to work!"（働きたい！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_5.png" alt="" width="620" height="619"><div class="note-figcaption"></div></div><ul name="5e7e22bd-39ce-4536-933d-1ef5c1971b5b" id="5e7e22bd-39ce-4536-933d-1ef5c1971b5b"><li><p name="e8302b88-0d39-4c35-bded-13d2b54dd263" id="e8302b88-0d39-4c35-bded-13d2b54dd263">"People before machines!"（機械よりも人を！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_6.png" alt="" width="620" height="621"><div class="note-figcaption"></div></div><ul name="7b17996b-22c7-4f56-87f7-895c097a1676" id="7b17996b-22c7-4f56-87f7-895c097a1676"><li><p name="00a0a3ec-2933-4739-8983-25a234ac9822" id="00a0a3ec-2933-4739-8983-25a234ac9822">"Jobs today or blood tomorrow!"（今日仕事か、明日血を見るか！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_7.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><ul name="30d7099c-e8c8-4cbc-8632-53a87812cf33" id="30d7099c-e8c8-4cbc-8632-53a87812cf33"><li><p name="9072f429-3719-4761-97bc-2603304d31de" id="9072f429-3719-4761-97bc-2603304d31de">"Give our jobs back! Or we'll take yours!"（仕事を返せ！さもなくばお前の仕事を取るぞ！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_8.png" alt="" width="620" height="619"><div class="note-figcaption"></div></div><ul name="577d5a94-0fe9-4b08-9c74-0830e5d98a84" id="577d5a94-0fe9-4b08-9c74-0830e5d98a84"><li><p name="a36c7ad9-0334-4ec6-a280-cc7228803b39" id="a36c7ad9-0334-4ec6-a280-cc7228803b39">"Block the bot!"（ボットを阻止せよ！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_9.png" alt="" width="620" height="620"><div class="note-figcaption"></div></div><ul name="1726a8ba-7084-45be-bf61-fafca6dc9a8d" id="1726a8ba-7084-45be-bf61-fafca6dc9a8d"><li><p name="b2f19c35-f87e-4377-9fe6-7120e2f19c29" id="b2f19c35-f87e-4377-9fe6-7120e2f19c29">"Work for men! Not machines!"（仕事は人間のために！機械のためではない！）</p></li></ul><div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_10.png" alt="" width="620" height="619"><div class="note-figcaption"></div></div><ul name="b727a97e-d01a-4a02-a6c5-98492511d940" id="b727a97e-d01a-4a02-a6c5-98492511d940"><li><p name="7f6a30d2-dd7d-41cf-9621-406d441257bf" id="7f6a30d2-dd7d-41cf-9621-406d441257bf">"I aint a commie but I get where theyre comin from!"（俺は共産主義者じゃないが、彼らの気持ちは分かる！）</p></li></ul><hr name="412da594-73ce-44b3-9c88-ee20fd5b2a5f" id="412da594-73ce-44b3-9c88-ee20fd5b2a5f"><h2 name="cb69bb97-73ae-4ed5-b353-87d4773b42fb" id="cb69bb97-73ae-4ed5-b353-87d4773b42fb">ロケーション</h2><ul name="9fbeb5a2-ec24-4fc8-9418-cdf793e0b1e4" id="9fbeb5a2-ec24-4fc8-9418-cdf793e0b1e4"><li><p name="f18b3b81-36f8-4af3-a410-b38ff3efbba2" id="f18b3b81-36f8-4af3-a410-b38ff3efbba2">ポセイドン・エネルギー・プラント WV-06: <br>全10種類のバリエーションがプラント外で見つかります。</p></li><li><p name="cfda5e0f-e783-4c2a-ba28-ff4cfaf796b7" id="cfda5e0f-e783-4c2a-ba28-ff4cfaf796b7">鉱夫の記念碑: <br>いくつかの抗議プラカードが見つかります。</p></li><li><p name="2fd8693c-8943-461c-a327-26be393f14b6" id="2fd8693c-8943-461c-a327-26be393f14b6">クラークスバーグ: <br>アイスクリーム店の上のアパート（裏の非常階段からアクセス可能）に5つ見つかります。</p></li><li><p name="71ebaeec-0edb-4a07-9bab-16cbcea2f4fb" id="71ebaeec-0edb-4a07-9bab-16cbcea2f4fb">アンキャニー洞窟: <br>外の小さな小屋に2つ見つかります。</p></li><li><p name="382faad4-7b27-4be1-a560-9790142d3336" id="382faad4-7b27-4be1-a560-9790142d3336">チャールストン操作車: <br>駐車中のピックアップトラックの荷台に2つ見つかります。</p></li><li><p name="59d1c168-6f31-4c4c-8008-d7535bf1033d" id="59d1c168-6f31-4c4c-8008-d7535bf1033d">ウェルチ駅: <br>「jobs or blood」の看板が1つ見つかります。</p></li><li><p name="399a44ef-5ffc-4ad6-972b-6b0d85391cf8" id="399a44ef-5ffc-4ad6-972b-6b0d85391cf8">ストライキ集会所: <br>少なくとも15個見つかります。</p></li><li><p name="c78a2603-fa8e-478f-bc9a-98055b65c837" id="c78a2603-fa8e-478f-bc9a-98055b65c837">Protest March: <br>イベント「Protest March」中に<a href="scorch.html" class="auto-link">スコーチ</a>によってドロップされます。</p></li><li><p name="b0fda0d3-51f3-462d-8f8e-4b3aeb85de40" id="b0fda0d3-51f3-462d-8f8e-4b3aeb85de40">グラフトン給水塔: <br>グラフトンの給水塔の下に吊るされたマネキンに取り付けられたものが1つあります。</p></li></ul><hr name="8644f72d-e52e-4322-b32c-8942989e9676" id="8644f72d-e52e-4322-b32c-8942989e9676"><h2 name="5b541593-1e1f-4d56-94dc-d2ef3c6bd98d" id="5b541593-1e1f-4d56-94dc-d2ef3c6bd98d">制作裏話</h2><ul name="48bc5806-1adf-4ed8-987f-e82b08b73dc1" id="48bc5806-1adf-4ed8-987f-e82b08b73dc1"><li><p name="f0119149-ced1-4690-ba0e-aca6e68b3c90" id="f0119149-ced1-4690-ba0e-aca6e68b3c90">『Fallout 76 Vault Dweller's Survival Guide』は、抗議プラカードのバリエーションが2種類しかないと誤って述べていますが、実際には10種類あります。</p></li></ul><hr name="9a0072ae-2964-413b-b612-3267bc625508" id="9a0072ae-2964-413b-b612-3267bc625508"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/na71f7eb46d5f_img_11.jpg" alt="" width="620" height="349"><div class="note-figcaption">抗議デモに参加する私最近のファスナハトが開催された皆のやる気がある頃に、プラカード持ったロールプレイ団体がパレードのロボット殴ってたのが印象的です。<br>残念ながら近接武器が強化される中強化されませんでした。<br><b>ホーンライトの陰謀ですか!?<br>レジェンダリークラフトして戦いたいです!</b>
+</div>
+
+</div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

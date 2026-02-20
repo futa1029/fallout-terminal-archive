@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>コンスタンティン・チェイス  | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">コンスタンティン・チェイス </h3>
+            <img src="images/note_extracted/neee0afd89d6a_img_1.png" alt="コンスタンティン・チェイス ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_neee0afd89d6a" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>コンスタンティン・チェイス </h1>
+            <div class="date">DATE: 2025/11/23</div>
+            
+            <h2 name="5ffe87a0-74eb-417f-8f13-166a2d4eedb6" id="5ffe87a0-74eb-417f-8f13-166a2d4eedb6">概要</h2><p name="be1cd2a9-831c-4960-a04d-66cf51919eca" id="be1cd2a9-831c-4960-a04d-66cf51919eca">シミュレーション内のチェイス将軍は、彼の派手な個性に忠実であり、彼のセリフは軽度の冒涜的な言葉や反共産主義的な表現で彩られています。<br>また、葉巻を吸いながら冷静に部隊を指揮する、実物よりも遥かに偉大な人物として描かれています。<br>シミュレーションでは、彼の部隊はアラスカでの10年間の消耗戦の後のPLAの残党と戦っているというよりも、圧倒的で容赦ない敵と格闘する劣勢の兵士として描かれています。</p><p name="bd3b66f2-9efe-468c-b487-121926d78b62" id="bd3b66f2-9efe-468c-b487-121926d78b62">シミュレーション内のチェイスは、他の兵士には呪いの言葉を使ったりプロトコルを破ったりする同じ特権を許さず、シミュレーションを実行している訓練生が適切な敬意を示さない場合はすぐに叱責します。</p><hr name="911136b7-8b67-490e-bb40-05b6fe3852e2" id="911136b7-8b67-490e-bb40-05b6fe3852e2"><h2 name="0fdf1ad6-a866-46f2-98f6-da53044609dd" id="0fdf1ad6-a866-46f2-98f6-da53044609dd">ユニフォームと勲章（制作裏話）</h2><div class="note-figure"><img src="images/note_extracted/neee0afd89d6a_img_2.png" alt="" width="620" height="233"><div class="note-figcaption"></div></div><p name="29b06e29-fce0-4c78-9c7c-460137843df1" id="29b06e29-fce0-4c78-9c7c-460137843df1">チェイスのコートに付けられた略綬（リボン）は、左胸と右胸の上に2つのブロックに分かれて着用されています。<br>（現実では、それらは優先順位に従って単一のユニットとして着用されます。）</p><p name="b9351037-1b2f-4733-ae94-e46332b8595b" id="b9351037-1b2f-4733-ae94-e46332b8595b">位置勲章名<br>左胸ブロック陸軍殊勲十字章（非凡な戦闘での英雄的行為）、国防殊勲章（大きな責任のある任務における優れた功績）、陸軍殊勲章（政府への優れた功績）、シルバースター（敵に対する勇敢な行動）、レジオブメリット（優れた功績）、パープルハート章（戦闘による負傷）。<br>右胸ブロック統合役務褒章メダル（英雄的行為、功績）、陸軍褒章メダル（陸軍固有の褒賞）、南極勤務メダル（南極大陸での勤務）、軍遠征メダル（国連支援作戦などでの勤務）、予備軍メダル、ゴールド救命メダル（遭難からの救助）。</p><hr name="511f08fb-1220-4540-8e89-1f02e4cb750e" id="511f08fb-1220-4540-8e89-1f02e4cb750e"><div class="quote-box">
+<b>感想</b><br><br>
+ということでこの人が前回お伝えした、<a href="psycho.html" class="auto-link">サイコ</a>を実戦投入して流通させた犯人です!<br>アラスカ開放はFallout3のDLCの中でも個人的には好きなDLCで、凄いひりつきの中楽しめた記憶が残ってるくらいです!<br>圧倒的不利な戦況化という最前線の事情を楽しめるDLCとなっているので是非リマスターの際はプレイしてみて下さい!<br><br>それとは別に<a href="psycho.html" class="auto-link">サイコ</a>を広めた件はプレイヤーにとっては良いですが、後の世的には凄い失態ですね。<br>これのおかげで薬物中毒が広まり、<a href="fallout76.html" class="auto-link">Fallout76</a>ではブラッドイーグルが洗脳に使用したりしています。<br>要は頭空っぽにして人間の限界を超える薬ですね。<br>その代わりに記憶障害等が起きるのでいい子の皆は使用は程々にしましょう。<br>でないと私みたいにレイドに毎日なんでか知らないけど通う様になったりと脳に障害を起こす可能性があります。
+</div>
+
+
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

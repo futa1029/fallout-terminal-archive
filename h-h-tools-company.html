@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>H&H Tools Company | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">H&H Tools Company</h3>
+            <img src="images/note_extracted/n1788e6f7bd1b_img_1.png" alt="H&H Tools Company">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+            <div class="infobox-row"><span class="infobox-label">業種</span><span>工具、ロボット工学</span></div>
+            <div class="infobox-row"><span class="infobox-label">創設者</span><span>ロバートとアンソニー・ハウスの父</span></div>
+            <div class="infobox-row"><span class="infobox-label">リーダー</span><span>アンソニー・ハウス（戦前）</span></div>
+            <div class="infobox-row"><span class="infobox-label">国</span><span>アメリカ合衆国</span></div>
+            <div class="infobox-row"><span class="infobox-label">本部</span><span>H&amp;Hツールズ工場（ネバダ州ラスベガス）</span></div>
+            <div class="infobox-row"><span class="infobox-label">施設</span><span>H&amp;Hツールズ工場、ミケランジェロのワークショップ</span></div>
+            <div class="infobox-row"><span class="infobox-label">企業関係</span><span>ロブコ・インダストリーズ（RobCo Industries）に所属</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n1788e6f7bd1b" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>H&H Tools Company</h1>
+            <div class="date">DATE: 2026/1/9</div>
+            
+            <h2 name="5aa9ead9-ce83-49ff-96db-55722ad14dac" id="5aa9ead9-ce83-49ff-96db-55722ad14dac">基本情報</h2><ul name="a2d90aba-15b7-4bd7-977a-98911042ccf8" id="a2d90aba-15b7-4bd7-977a-98911042ccf8"><li><p name="274ef60b-3758-40f6-8f57-e3765e0ebe3a" id="274ef60b-3758-40f6-8f57-e3765e0ebe3a">H&amp;Hツールズ工場</p></li><li><p name="e03f78d0-d0b0-464c-87f2-d2b6a08b2d8c" id="e03f78d0-d0b0-464c-87f2-d2b6a08b2d8c">ミケランジェロのワークショップ</p></li></ul><hr name="2cd83d8c-be94-462c-8dfa-fd28bf8ae94b" id="2cd83d8c-be94-462c-8dfa-fd28bf8ae94b"><h2 name="ac175423-75f5-4001-8fb7-f2c89f747a64" id="ac175423-75f5-4001-8fb7-f2c89f747a64">製品</h2><div class="note-figure"><img src="images/note_extracted/n1788e6f7bd1b_img_2.png" alt="" width="620" height="413"><div class="note-figcaption">PDQ-88b セキュリトロン</div></div><ul name="a6ac001c-1bf5-4e0e-ad7f-5a0a8e6be919" id="a6ac001c-1bf5-4e0e-ad7f-5a0a8e6be919"><li><p name="7ff7960e-712a-4fd6-b404-33da9fbeed50" id="7ff7960e-712a-4fd6-b404-33da9fbeed50">PDQ-88b セキュリトロン（主要な下請け業者）</p></li><li><p name="c66e784f-dec3-41d1-9171-1f38b1647f96" id="c66e784f-dec3-41d1-9171-1f38b1647f96"><strong>Lonesome Road</strong>（アドオン）</p></li></ul><div class="note-figure"><img src="images/note_extracted/n1788e6f7bd1b_img_3.png" alt="" width="620" height="391"><div class="note-figcaption">ネイルガン</div></div><ul name="d32ddf1e-c4e9-466b-846a-ccdfa29fe04a" id="d32ddf1e-c4e9-466b-846a-ccdfa29fe04a"><li><p name="71fd3515-f04b-4123-9ef2-c5e86ed0bfd0" id="71fd3515-f04b-4123-9ef2-c5e86ed0bfd0"><strong>"ネイラー"</strong> ネイルガン— Creation Club</p></li><li><p name="42bff3fb-e2a9-46a0-a7b5-6777559bd244" id="42bff3fb-e2a9-46a0-a7b5-6777559bd244">ネイルガン— Creation Club</p></li><li><p name="74f036f7-80d3-477f-bcfc-0cfcf489e4f2" id="74f036f7-80d3-477f-bcfc-0cfcf489e4f2">H&amp;Hツールズ・ブロウジェット CC-500E 落ち葉掃除機</p></li></ul><div class="note-figure"><img src="images/note_extracted/n1788e6f7bd1b_img_4.png" alt="" width="620" height="273"><div class="note-figcaption">オート・アックス</div></div><ul name="52c1180d-d933-47a4-822b-168e17c09db3" id="52c1180d-d933-47a4-822b-168e17c09db3"><li><p name="7363e428-a83e-4d39-8e00-fbe3f201a26a" id="7363e428-a83e-4d39-8e00-fbe3f201a26a">オート・アックス— Fallout 76</p></li></ul><hr name="21e292eb-c8de-4893-9ffe-5d461d17856f" id="21e292eb-c8de-4893-9ffe-5d461d17856f"><h2 name="22ed4e4e-6418-4d14-9a82-17f5647f4927" id="22ed4e4e-6418-4d14-9a82-17f5647f4927">既知の従業員</h2><ul name="689bcae3-83e4-4e13-9836-5cad9dc071cd" id="689bcae3-83e4-4e13-9836-5cad9dc071cd"><li><p name="560f72df-d34a-41bb-9322-4e11fd6604e0" id="560f72df-d34a-41bb-9322-4e11fd6604e0">アンソニー・ハウス - CEO</p></li><li><p name="4f01dfb1-cef5-437d-bd43-a134a46c332f" id="4f01dfb1-cef5-437d-bd43-a134a46c332f">シンディ＝ルー・クレブ - 人事</p></li><li><p name="99050bfb-7fbb-4f32-afbb-577baacc2ebc" id="99050bfb-7fbb-4f32-afbb-577baacc2ebc">ジャック・メイナード - 従業員</p></li><li><p name="aef2ea7e-36fd-479a-9f9f-e4c7d44fc25a" id="aef2ea7e-36fd-479a-9f9f-e4c7d44fc25a">ヘンダーソン - 従業員</p></li><li><p name="719eea57-dc5b-4e25-ac6d-ab7b62312cf4" id="719eea57-dc5b-4e25-ac6d-ab7b62312cf4">ジェニー・デソト - 従業員</p></li><li><p name="1151c122-f9d7-4047-9d58-f22b9038f382" id="1151c122-f9d7-4047-9d58-f22b9038f382">アラン・ダルトン - 従業員</p></li><li><p name="5ba138dd-d1c3-4c6f-b1e4-c8fb70e44e36" id="5ba138dd-d1c3-4c6f-b1e4-c8fb70e44e36">ドブソン・オギル - 従業員</p></li><li><p name="d4965c79-77c7-4f63-a18d-db884beb7046" id="d4965c79-77c7-4f63-a18d-db884beb7046">マツモト - 従業員</p></li></ul><hr name="7259940e-a532-437f-99e9-7c90bf6e8876" id="7259940e-a532-437f-99e9-7c90bf6e8876"><h2 name="346e3140-1e2a-4e65-bd7b-7dc7a5df07a7" id="346e3140-1e2a-4e65-bd7b-7dc7a5df07a7">注釈</h2><p name="83cf7bf6-7e34-4189-b37d-a1bb7a5ec579" id="83cf7bf6-7e34-4189-b37d-a1bb7a5ec579">この会社は2020年5月までに存在していました。<br>ロバート・ハウスは2020年6月に生まれました。<br>会社や場所の名称には「H&amp;H Tool」という単数形と「H&amp;H Tools」という複数形が交互に使われています。</p><p name="35beb1ce-0c1d-4c2d-a3cb-f89f3a014b3d" id="35beb1ce-0c1d-4c2d-a3cb-f89f3a014b3d">ウィリアム・ファーバーはメイン工場を<strong>「ハウス・ツールズ（House Tools）」</strong>と呼んでいます。</p><p name="5d55813f-1c38-4532-b6fa-db6786d038d0" id="5d55813f-1c38-4532-b6fa-db6786d038d0">Fallout 76に登場する戦前のオート・アックスにはH&amp;Hツールズのロゴが付いています。<br>そのアセット（アニメーションや改造を含む）はWastelandersアップデートでファイルに追加されましたが、<strong>Expeditions: The Pitt</strong>まで実装されませんでした。</p><div class="note-figure"><img src="images/note_extracted/n1788e6f7bd1b_img_5.png" alt="" width="512" height="512"><div class="note-figcaption">プラズマキャスター用インダストリアル塗装</div></div><p name="4424f497-7934-468d-83a8-2867544236e4" id="4424f497-7934-468d-83a8-2867544236e4">Atomic ShopにおけるFallout 76のプラズマキャスター用インダストリアル塗装にもH&amp;Hツールズのロゴが描かれています。<br>アトミックショップのコンテンツが正史であるか非正史であるかは明記されていません。<br>また、スクラップボックスのテクスチャ変更版にもH&amp;Hツールズのロゴが付いています。</p><hr name="1ae62217-f0ec-49dc-8618-d40d40632a7f" id="1ae62217-f0ec-49dc-8618-d40d40632a7f"><h2 name="b3927324-83b7-4f31-82ae-f83a426b5c08" id="b3927324-83b7-4f31-82ae-f83a426b5c08">ウィリアム・ファーバーの会話内容</h2><p name="60537f79-a58e-42bf-b91c-817dc07e96a0" id="60537f79-a58e-42bf-b91c-817dc07e96a0">運び屋：「それらのパーツはどこで見つかるでしょうか？」<br>ウィリアム・ファーバー：「さあな。ウェイストランドのあちこちにいる商人か、ウエストサイドの質屋にいくつかあるかもしれない。ああ、<strong>ハウス・ツールズ</strong>という場所をチェックしてみるといいと聞いたことがある！ベガスの北側にある古い工場だ。ただ警告しておくがな。あそこに入った奴は誰も戻ってこないと聞いている。罠や狂ったロボット、あるいは正体不明の何かがいるのかもしれない。」</p><hr name="03d665be-f310-4953-a378-d2478854323b" id="03d665be-f310-4953-a378-d2478854323b"><h2 name="8259c077-e03a-4478-84ab-7b640fb4270b" id="8259c077-e03a-4478-84ab-7b640fb4270b">ドラマ版における「H&amp;Hツールズ社」の登場シーンとソース</h2><p name="d8385299-b3e6-421d-84f4-abb9edc8b25e" id="d8385299-b3e6-421d-84f4-abb9edc8b25e">ドラマ版『Fallout』において、H&amp;Hツールズ社（およびその製品）が明確に言及・描写されるのは、主に<strong>シーズン2・第1話</strong>となイ�ます。</p><ul name="fd618367-27e3-404e-bea9-073309a19ac4" id="fd618367-27e3-404e-bea9-073309a19ac4"><li><p name="e58fa37d-6d8c-4e64-a4ba-06e47d272303" id="e58fa37d-6d8c-4e64-a4ba-06e47d272303"><strong>登場箇所：シーズン2・第1話の冒頭シーン</strong></p><ul name="8d588303-f60a-4869-a5d7-d61963415373" id="8d588303-f60a-4869-a5d7-d61963415373"><li><p name="f1400719-cefb-425d-98c9-44caae2654ab" id="f1400719-cefb-425d-98c9-44caae2654ab"><strong>内容：</strong> ジャスティン・セロー演じる<strong>ロバート・ハウス（またはその影武者/兄弟のアンソニーとされる人物）が、戦前のシーンで登場します。この際、彼は自社の技術や製品について語る中で、「H&amp;Hネイルガン（H&amp;H Nail Gun）」</strong>という具体的な製品名を口にします。</p></li><li><p name="189355f8-2de7-40e5-8b14-cbd6fb2d58dd" id="189355f8-2de7-40e5-8b14-cbd6fb2d58dd"><strong>背景：</strong> これはゲーム『Fallout: New Vegas』におけるH&amp;Hツールズ社の設定（ハウス兄弟の確執）を直接的に踏まえたイースターエッグであり、ドラマ内での同社の存在を決定づける描写です。</p></li></ul></li></ul><hr name="edf29348-fa76-441f-b809-e590c1ab533a" id="edf29348-fa76-441f-b809-e590c1ab533a"><h2 name="ee7e4d82-4978-49ff-9b8b-49af865d2cf0" id="ee7e4d82-4978-49ff-9b8b-49af865d2cf0">登場作品</h2><p name="a587e51d-cd90-4749-80be-277e02c8fc9e" id="a587e51d-cd90-4749-80be-277e02c8fc9e">H&amp;Hツールズ社はFallout: New Vegasに登場し、その製品はアドオンの<strong>Lonesome Road</strong>や、<strong>Expeditions: The Pitt</strong>アップデートで導入されたFallout 76に登場します。<br>H&amp;Hツールズ社のコスメティックアイテムは、Fallout 76のシーズン10および13でアンロック可能でした。<br>その製品は2024年の次世代アップデートで<a href="fallout-4.html" class="auto-link">Fallout 4</a>にも導入されました。</p><hr name="1a9d5e82-4c45-402a-9948-17da0c1474b6" id="1a9d5e82-4c45-402a-9948-17da0c1474b6"><h2 name="7ac2fbce-0203-4bcb-b00f-528a6c992c81" id="7ac2fbce-0203-4bcb-b00f-528a6c992c81">舞台裏</h2><div class="note-figure"><img src="images/note_extracted/n1788e6f7bd1b_img_6.jpg" alt="" width="400" height="238"><div class="note-figcaption">Hughes Tool Company</div></div><p name="6c212768-6462-4617-98a1-6e18c0bda601" id="6c212768-6462-4617-98a1-6e18c0bda601">H&amp;Hツールズ社は、現実世界のヒューズ・ツール・カンパニー（Hughes Tool Company）へのオマージュです。</p><p name="c6c6c45c-4a80-4225-ae9e-e3cc80371f1b" id="c6c6c45c-4a80-4225-ae9e-e3cc80371f1b"><strong>ヒューズ・ツール・カンパニー（Hughes Tool Company）</strong>は、かつてアメリカ合衆国に存在した石油掘削用ドリルビットの製造メーカーです。1908年に創設され、テキサス州ヒューストンを拠点に世界的なシェアを誇りました。1987年にベイカー・インターナショナル（Baker International）と合併し、現在はベイカー・ヒューズ（Baker Hughes）の一部となっています。</p><hr name="6d657aba-ad9d-40d6-9044-f54df31eb2f1" id="6d657aba-ad9d-40d6-9044-f54df31eb2f1"><div class="quote-box">
+<b>感想</b><br><br>
+<h3 name="abf41281-8416-4dfc-b776-5fbe017f61f5" id="abf41281-8416-4dfc-b776-5fbe017f61f5">H&amp;H Tools Companyについての感想</h3>H&amp;Hツールズ社は、Falloutシリーズの中でも特に<b>「身内同士の確執」と「行き過ぎた被害妄想」</b>が招く悲劇を象徴する場所だと感じます。<br><br><b>兄弟の対照的な運命：</b> 異母弟のロバート・ハウス（Mr. ハウス）がロブコ・インダストリーズを築き、世界屈指の成功者となった一方で、父の遺産を奪った兄アンソニーが、弟への恐怖から精神を病んで自滅していく様は非常に皮肉です。<br><br><b>狂気のセキュリティ：</b> 工場内に設置された無数の罠やロボットは、外部の敵ではなく「実の弟」を恐れた結果であり、戦前の企業の腐敗や異常性を端的に表しています。
+</div>
+
+<p name="fe595918-f703-4eb7-8a01-3d29eb201b81" id="fe595918-f703-4eb7-8a01-3d29eb201b81">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.　</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

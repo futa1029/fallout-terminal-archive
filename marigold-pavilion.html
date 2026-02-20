@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>マリーゴールド・パビリオン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">マリーゴールド・パビリオン</h3>
+            <img src="images/note_extracted/nb4b0cab1b47d_img_1.png" alt="マリーゴールド・パビリオン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_nb4b0cab1b47d" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>マリーゴールド・パビリオン</h1>
+            <div class="date">DATE: 2025/12/3</div>
+            
+            <p name="b4f2453c-da03-415b-b9b9-bbf7d3831346" id="b4f2453c-da03-415b-b9b9-bbf7d3831346">マリーゴールド・パビリオンは、アパラチアの森林地域にあるロケーションです。</p><hr name="73c6fa28-9404-426d-a920-a7a051c4e16c" id="73c6fa28-9404-426d-a920-a7a051c4e16c"><h2 name="80591c6b-f43f-4630-ac2a-12caa6e7f10c" id="80591c6b-f43f-4630-ac2a-12caa6e7f10c">背景</h2><div class="note-figure"><img src="images/note_extracted/nb4b0cab1b47d_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="b3a65bca-03be-4996-bcaa-ebbcff201eb7" id="b3a65bca-03be-4996-bcaa-ebbcff201eb7"><li><p name="794f7af8-5f96-40d7-a2a9-220f0ece81e4" id="794f7af8-5f96-40d7-a2a9-220f0ece81e4">元々の用途: <br>この場所はかつて小さな公園であり、中央のパビリオンと湖で構成され、観光客やハイカーにとってのアトラクションとして機能していました。</p></li></ul><hr name="e68fe1b4-3e5d-4eb5-bf11-54da7f32b978" id="e68fe1b4-3e5d-4eb5-bf11-54da7f32b978"><h2 name="7a9a8869-6f70-4d25-a4ac-ddfbdc09b24e" id="7a9a8869-6f70-4d25-a4ac-ddfbdc09b24e">レイアウト</h2><ul name="9e206885-f2f7-4e45-9f0a-be602ece6cb9" id="9e206885-f2f7-4e45-9f0a-be602ece6cb9"><li><p name="afe22e0d-a4bc-4587-aa58-782e0e568b68" id="afe22e0d-a4bc-4587-aa58-782e0e568b68">構造: <br><a href="point-pleasant.html" class="auto-link">ポイント・プレザント</a>の東側の山腹にある木造の建造物です。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nb4b0cab1b47d_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="23b76271-7fad-4159-afa4-4f739a543511" id="23b76271-7fad-4159-afa4-4f739a543511"><li><p name="38a47776-1d7d-4879-84d3-d50b5702fd30" id="38a47776-1d7d-4879-84d3-d50b5702fd30">周辺: <br>大きなビルボードが南の小さな池を見下ろしており、そこにはカヌーが結び付けられています。<br>池のすぐ後ろには、パビリオンの前に小さなキャンプサイトがあります。<br>ここには、テーブルと椅子の隣にクッキングステーションがあります。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nb4b0cab1b47d_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="74a5654a-56c2-47d8-bf45-8ea97614eefc" id="74a5654a-56c2-47d8-bf45-8ea97614eefc"><li><p name="1de6da16-1959-4705-84a8-bec56a8778af" id="1de6da16-1959-4705-84a8-bec56a8778af">パビリオン内部: <br>パビリオンの階下には武器作業台があります。<br>二階へは、天井の壊れた部分が即席の傾斜路を形成しており、そこからアクセスできます。</p></li></ul><div class="note-figure"><img src="images/note_extracted/nb4b0cab1b47d_img_5.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="854866da-3a99-49a8-83db-66be93f423b3" id="854866da-3a99-49a8-83db-66be93f423b3"><li><p name="181005e1-c1f1-41e7-a6a6-6b4f17da48f2" id="181005e1-c1f1-41e7-a6a6-6b4f17da48f2">二階には2枚のマットレス、いくつかのおもちゃ、そしてバンジョーがあります。</p></li><li><p name="d4597ac0-a599-4ebc-bfa5-a95f73643ea2" id="d4597ac0-a599-4ebc-bfa5-a95f73643ea2">東側: <br>パビリオンの真東、小さな小道を進むと、花が供えられた最近の墓地があり、そのそばにはラッドベアがいます。</p></li></ul><hr name="b5475a5c-6268-419b-a34d-6d4ba5af7ac5" id="b5475a5c-6268-419b-a34d-6d4ba5af7ac5"><h2 name="95449369-746e-41f6-8806-0c3bcf623745" id="95449369-746e-41f6-8806-0c3bcf623745">注目すべき戦利品</h2><ul name="baae6cc1-ef52-4ebf-a186-d14d75f35dc5" id="baae6cc1-ef52-4ebf-a186-d14d75f35dc5"><li><p name="d6e8dc96-fff2-4ada-864b-b54f210c1818" id="d6e8dc96-fff2-4ada-864b-b54f210c1818">ボブルヘッド: <br>二階の2枚のマットレスの間、突き出た床板の上にあります。</p></li><li><p name="bba093e3-7b1d-469e-934f-b369e377cb69" id="bba093e3-7b1d-469e-934f-b369e377cb69"><a href="magazine.html" class="auto-link">雑誌</a>: <br>二階の、赤く汚れたベッドの左側にあります。</p></li></ul><hr name="a60c438d-65e4-434d-b84d-ae30ac777be7" id="a60c438d-65e4-434d-b84d-ae30ac777be7"><h2 name="ee2e0cf1-7139-4d10-9c4b-e07812dc5437" id="ee2e0cf1-7139-4d10-9c4b-e07812dc5437">備考</h2><ul name="e786e906-633b-4261-b8df-23ed7dc91691" id="e786e906-633b-4261-b8df-23ed7dc91691"><li><p name="b998d6f5-89e1-4033-87eb-e7684316a2a8" id="b998d6f5-89e1-4033-87eb-e7684316a2a8">このロケーションは、2つの敵対するNPCグループが戦闘するランダムエンカウントが発生する可能性があります。</p></li></ul><hr name="572c373a-2a1d-4f52-9836-1322dd9a904f" id="572c373a-2a1d-4f52-9836-1322dd9a904f"><div class="quote-box">
+<b>感想</b><br><br>
+確かここの池ってCamp建つんですよね。<br>それとは別にボブルヘッドと<a href="magazine.html" class="auto-link">雑誌</a>の聖地でもあります。<br>珍しくなんのロアも無い場所ですね。<br>バルコニーからの見晴らしは良いんですけどね。<br>いつも違う勢力が戦い合ってて賑やかな所です。
+</div>
+
+<p name="d072789b-428b-4731-988b-b04666d63a7c" id="d072789b-428b-4731-988b-b04666d63a7c">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

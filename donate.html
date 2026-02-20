@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Support the Archives | Fallout Wiki JP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --term-green: #33ff33;
+            --term-bg: #000;
+            --term-dim: #00aa00;
+            --term-amber: #ffce07;
+            --term-highlight: rgba(51, 255, 51, 0.2);
+        }
+
+        body {
+            background-color: var(--term-bg);
+            color: var(--term-green);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            margin: 0;
+            height: 100vh;
+            overflow-y: auto;
+            text-shadow: 0 0 5px var(--term-dim);
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* CRT Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--term-green);
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .back-to-main {
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--term-green);
+            text-decoration: none;
+            border: 1px solid var(--term-green);
+            padding: 5px 10px;
+            font-size: 0.9em;
+            background: rgba(51, 255, 51, 0.1);
+            transition: all 0.2s;
+        }
+
+        .back-to-main:hover {
+            background: var(--term-green);
+            color: #000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: normal;
+            letter-spacing: 2px;
+            padding-top: 30px;
+        }
+
+        .header .sub {
+            font-size: 1.2em;
+            color: var(--term-amber);
+            margin-top: 10px;
+        }
+
+        .message-box {
+            border: 1px solid var(--term-dim);
+            padding: 30px;
+            background: rgba(0, 51, 0, 0.2);
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0, 170, 0, 0.1);
+        }
+
+        .message-box p {
+            margin-bottom: 20px;
+        }
+
+        .message-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn-donate {
+            display: block;
+            text-align: center;
+            padding: 20px;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--term-bg);
+            background-color: var(--term-amber);
+            border: 2px solid var(--term-amber);
+            transition: all 0.3s ease;
+            animation: pulse 4s infinite ease-in-out;
+            margin: 0 auo;
+        }
+
+        .btn-donate:hover {
+            background-color: transparent;
+            color: var(--term-amber);
+            box-shadow: 0 0 30px var(--term-amber), inset 0 0 20px var(--term-amber);
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8em;
+            opacity: 0.6;
+            border-top: 1px dashed var(--term-dim);
+            padding-top: 20px;
+            width: 100%;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.5em;
+                padding-top: 40px;
+            }
+
+            .message-box {
+                padding: 20px;
+                font-size: 1em;
+            }
+
+            .btn-donate {
+                font-size: 1.2em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-to-main">
+                < BACK TO MAIN</a>
+                    <h1>SUPPORT THE ARCHIVES</h1>
+                    <div class="sub">運営支援・寄付のお願い</div>
+        </div>
+
+        <div class="message-box">
+            <p>
+                ホームページ（データベースサイト）は、皆様に快適に情報を探していただくため、不快な広告などを一切表示させない「完全無広告」で運営したいと強く考えております。<br>
+                しかし、無広告でデータベースサイトを維持していくには、サーバー代などの継続的な運営コストがどうしても発生してしまいます。
+            </p>
+            <p>
+                完全無広告でのサイト維持や、日頃から皆様と交流しているDiscordおよびXのコミュニティの維持、そしてロアを整理し続ける私自身の活動そのものを応援していただける方は、ぜひFANBOXより寄付・ご支援をお願いできないでしょうか。
+            </p>
+            <p>
+                いただいた支援金は、サイトを無広告で維持するための費用やコミュニティの運営、そして今後のさらなる資料収集・データベース拡張のために全額を大切に活用させていただきます。
+            </p>
+        </div>
+
+        <a href="https://mohi3.fanbox.cc/" target="_blank" class="btn-donate">
+            > ACCESS FANBOX (寄付・支援ページへ)
+        </a>
+
+        <div class="footer">
+            ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM LEVEL 5
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>レーザーガン | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff4444; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">レーザーガン</h3>
+            <img src="images/note_extracted/n1a5f8a68cca2_img_1.png" alt="レーザーガン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n1a5f8a68cca2" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>レーザーガン</h1>
+            <div class="date">DATE: 2025/11/12</div>
+            
+            <h3 name="11f0870f-93b1-4c22-8595-1fc11db1b328" id="11f0870f-93b1-4c22-8595-1fc11db1b328">Fallout4、<a href="fallout76.html" class="auto-link">Fallout76</a></h3><p name="192db02f-b0d1-4a89-a598-672445671495" id="192db02f-b0d1-4a89-a598-672445671495">レーザーガンは、Fallout4、Fallout 76に登場する武器です。<br>ここでは<a href="fallout76.html" class="auto-link">Fallout76</a>の性能データを中心に紹介します。</p><hr name="6ef6f8ad-3749-468d-8053-72232f5704d3" id="6ef6f8ad-3749-468d-8053-72232f5704d3"><h2 name="088ef40b-158f-4aa4-ba6d-c5983463446b" id="088ef40b-158f-4aa4-ba6d-c5983463446b">レーザーライフル (AER9) の背景設定</h2><p name="e4036305-3d53-473f-af7c-304918296222" id="e4036305-3d53-473f-af7c-304918296222">AER9は、チタン製のハウジングに収められたクリスタルアレイ（結晶配列）を特徴としています。<br>これは、後のモデルの金合金製ハウジングよりも、長期間の外的要因への露出に非常によく耐えることが証明されました。<br>その結果、クリスタルアレイは動作パラメータ内で焦点を維持し続け、新しいモデルのように完全に焦点が合わなくなることはありませんでした。</p><p name="cec48f07-e992-4a9e-97d1-1dd0cb1f91c2" id="cec48f07-e992-4a9e-97d1-1dd0cb1f91c2">電力はマイクロフュージョン・セルから供給され、General Atomics International（ジェネラル・アトミックス・インターナショナル）が製造した波/粒子ダイバーターを通じて処理されます。<br>このダイバーターはカーボンファイバー製のハウジングによって保護されており、頻繁な誤作動を防いでいますが、ダイバーターが故障すると武器は使用不能になります。</p><p name="a6339b86-5d6f-4858-ac03-404d473b10d5" id="a6339b86-5d6f-4858-ac03-404d473b10d5">実は、AER9は核戦争当時、現役で最も優れたレーザーライフルではありませんでした。<br>モデルラインは、一握りの特殊部隊で使用されていた最新鋭のAER12まで存在していました。<br>AER9は、後続のモデルよりもはるかに頑丈で信頼性が高かったため、より一般的に見つけることができます。</p><p name="40f41d65-701a-4445-b99f-0fb931aa0860" id="40f41d65-701a-4445-b99f-0fb931aa0860">さらに新しいモデルであるAER14が戦争前に開発中であり、少なくとも1つのプロトタイプがVault 22に現存しています。</p><hr name="7c5f0c2b-ca3a-4f85-8fe5-01182e833002" id="7c5f0c2b-ca3a-4f85-8fe5-01182e833002"><h2 name="97850a38-78d8-41b9-a39b-531b0b69071d" id="97850a38-78d8-41b9-a39b-531b0b69071d">基本性能</h2><p name="1a6a4f9c-0e79-40fc-9cf6-fd1ef856b38d" id="1a6a4f9c-0e79-40fc-9cf6-fd1ef856b38d">種類 : ピストル/ライフル<br>作成可能Level : レベル5 / 15 / 25 / 35 / 45<br>Damage : 24 / 31 / 39 / 50 / 64<br>Ammo : フュージョン・セル（ウルトラサイト弾も使用可能）<br>Magazine size : 201<br>Fire rate : 40<br>Range : 145<br>Accuracy : 68<br>AP : 6<br>Weight : 3.0</p><hr name="2696dd7b-39b2-40bd-a330-dcabb5d41186" id="2696dd7b-39b2-40bd-a330-dcabb5d41186"><h2 name="7290c6a1-2a0b-407b-bf75-9d8db866fdf3" id="7290c6a1-2a0b-407b-bf75-9d8db866fdf3">特徴</h2><p name="eadb1995-508f-468a-9b80-2ce2c868418b" id="eadb1995-508f-468a-9b80-2ce2c868418b">レーザーガンは、レーザービームを発射するエネルギー兵器です。</p><h3 name="b78f16f8-a10a-45b2-9cd6-3d1fd7e6dc3d" id="b78f16f8-a10a-45b2-9cd6-3d1fd7e6dc3d">変形性</h3><p name="5976084c-86a5-4287-8746-16686338c7df" id="5976084c-86a5-4287-8746-16686338c7df"><a href="plasma-gun.html" class="auto-link">プラズマガン</a>やパイプピストルと同様に、この武器は最初はピストルとして始まりますが、グリップをストックに付け替えることで、名称が「レーザーライフル」に変わり、ゲーム内ではライフルとしてのステータスを使用するように再割り当てされます。</p><h3 name="31d405ba-5fe2-42bc-a1b5-4262026d1b91" id="31d405ba-5fe2-42bc-a1b5-4262026d1b91">汎用性</h3><p name="a4c8eae1-e089-4c0a-9103-4797d3c2a744" id="a4c8eae1-e089-4c0a-9103-4797d3c2a744">利用可能なMOD（改造パーツ）により、妥当な連射速度と装弾数を持ち、多用途なオールラウンドな武器となっています。</p><hr name="cf4230d3-d42f-4a7d-bb1a-dc17cbbc668c" id="cf4230d3-d42f-4a7d-bb1a-dc17cbbc668c"><h2 name="36b5bea5-ab3d-4595-a194-b76213e83980" id="36b5bea5-ab3d-4595-a194-b76213e83980">バリエーション</h2><p name="a0c7c3b0-acdc-43c2-a678-e9571cc66e2f" id="a0c7c3b0-acdc-43c2-a678-e9571cc66e2f"><strong>Acceptable Overkill (アクセプタブル・オーバーキル)<br></strong>ニュークリアウィンターの報酬</p><div class="note-figure"><img src="images/note_extracted/n1a5f8a68cca2_img_2.png" alt="" width="620" height="300"><div class="note-figcaption"></div></div><p name="a53f7ac1-4939-48f7-961f-897d00bd535d" id="a53f7ac1-4939-48f7-961f-897d00bd535d"><strong>V63-OLGA<br></strong>Neurological Warfareの報酬</p><hr name="b455f586-b340-45fa-9d3d-986f19def282" id="b455f586-b340-45fa-9d3d-986f19def282"><h2 name="83e8eb14-85e9-4a08-b730-c795a324b17e" id="83e8eb14-85e9-4a08-b730-c795a324b17e">入手場所</h2><ul name="322b4c29-5b38-4d50-b880-c0856c581d38" id="322b4c29-5b38-4d50-b880-c0856c581d38"><li><p name="afb62461-856b-453e-8f85-b0922126401d" id="afb62461-856b-453e-8f85-b0922126401d"><a href="super-mutant.html" class="auto-link">スーパーミュータント</a>が時々携行しています。</p></li><li><p name="926186a8-36c7-4164-8c60-624f195c4698" id="926186a8-36c7-4164-8c60-624f195c4698">ブラッドイーグルが頻繁に携行しています。</p></li><li><p name="d548813d-e209-4b69-8357-fb3e5211772b" id="d548813d-e209-4b69-8357-fb3e5211772b">ディファイアンス砦にいるBOSの遺体から見つかることがあります。</p></li><li><p name="4e0495cb-1285-47f3-87b1-b835be49141e" id="4e0495cb-1285-47f3-87b1-b835be49141e">ワトガの周辺、主にBOSの遺体の上や近くで複数見つかります。</p></li><li><p name="1d8499a8-e7c9-4365-88ce-324e35fa32f4" id="1d8499a8-e7c9-4365-88ce-324e35fa32f4">設計図を読んで武器作業台から作成</p></li></ul><hr name="a8547db3-fad5-4fbb-a43b-df72159d7509" id="a8547db3-fad5-4fbb-a43b-df72159d7509"><h2 name="5fafffc8-af8b-4d76-bcf1-5763ccacb3e9" id="5fafffc8-af8b-4d76-bcf1-5763ccacb3e9">その他の注意点</h2><p name="4cc2cc91-47a9-44ba-8a82-72b6b98113c2" id="4cc2cc91-47a9-44ba-8a82-72b6b98113c2">倒された敵は灰の山になることがあります。<br>クリティカルヒットで仕留められた敵は、必ず灰になります。</p><hr name="78b80c23-e3b5-4451-8a23-79a88842f61a" id="78b80c23-e3b5-4451-8a23-79a88842f61a"><div class="quote-box">
+<b>感想</b><br><br>
+残念ながら書いてる時点ではウルトラサイトレーザーガンに勝ってる部分がないです。<br>V63-OLGAは見た目格好良いんですけどねー。<br><a href="fallout76.html" class="auto-link">Fallout76</a>のユニーク武器は大体レジェンダリークラフトに非対応なのが非常に惜しいです。<br>というか全武器対応してください!
+</div>
+
+<p name="4e6b7203-06a9-4ce8-8286-8489d40377b4" id="4e6b7203-06a9-4ce8-8286-8489d40377b4">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

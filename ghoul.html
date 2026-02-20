@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>グール | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">グール</h3>
+            <img src="images/note_extracted/n0bcb510e6034_img_1.png" alt="グール">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n0bcb510e6034" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>グール</h1>
+            <div class="date">DATE: 2025/12/21</div>
+            
+            <p name="b7029522-7650-4cec-b763-1aab3a9f32b4" id="b7029522-7650-4cec-b763-1aab3a9f32b4">グールは、核爆発による大量の放射線を浴びたことで<a href="mutation.html" class="auto-link">変異</a>した「元人間」です。 <br>皮膚が腐敗し脱落しているため「ゾンビ」のように見えますが、死体ではなく生きた人間です。<br>放射線によって代謝が変化しており、老化が停止しています。</p><hr name="63d89684-8a7b-49c3-af24-5781d4f33a5d" id="63d89684-8a7b-49c3-af24-5781d4f33a5d"><h2 name="f6d67d94-c86a-4d4a-9675-8456fc43ad45" id="f6d67d94-c86a-4d4a-9675-8456fc43ad45">1. 生物学的な特徴</h2><ul name="5f432f21-7a72-4171-898b-c73b9f7d0385" id="5f432f21-7a72-4171-898b-c73b9f7d0385"><li><p name="2ed2618c-cf34-4f5b-b5fb-783d633d6441" id="2ed2618c-cf34-4f5b-b5fb-783d633d6441">不老長寿: <br>自然な老化プロセスが停止しており、寿命が極端に長いです。<br>2077年の最終戦争以前から200年以上生き続けている個体も多く存在します。</p></li><li><p name="4538bfec-726b-408e-afd4-fa7f67dfdf62" id="4538bfec-726b-408e-afd4-fa7f67dfdf62">放射線による回復: <br>放射線障害を受けないどころか、放射線を浴びることで傷が癒え、体力が回復する特異体質を持っています。</p></li><li><p name="ebdd4461-3869-4751-bd03-1eb59c7d9444" id="ebdd4461-3869-4751-bd03-1eb59c7d9444">身体の<a href="mutation.html" class="auto-link">変異</a>: <br>皮膚や靭帯が壊死・脱落しており、鼻や耳が欠けていることが多いです。また、副作用として生殖能力を完全に失っています（不妊）。</p></li><li><p name="0b1e3c8f-05af-4d59-95c5-9a8c9c1c2dfb" id="0b1e3c8f-05af-4d59-95c5-9a8c9c1c2dfb">食事と睡眠: <br>人間と同様に必要としますが、代謝の変化により、非常に少ない摂取量で生存できるケースもあります。</p></li></ul><hr name="3dd7c7f3-a725-4604-8033-cf47c33ab533" id="3dd7c7f3-a725-4604-8033-cf47c33ab533"><h2 name="ee657484-0736-41d0-af48-47c5ce7f2535" id="ee657484-0736-41d0-af48-47c5ce7f2535">2. 精神状態と「フェラル化」</h2><div class="note-figure"><img src="images/note_extracted/n0bcb510e6034_img_2.png" alt="" width="620" height="443"><div class="note-figcaption"></div></div><p name="7b20804d-55e8-4249-9e43-8ada54145f2d" id="7b20804d-55e8-4249-9e43-8ada54145f2d">グールは精神状態によって大きく2種類に分類されます。</p><ul name="16e4d1ab-ec0f-4e85-97c7-665f5d5dbde1" id="16e4d1ab-ec0f-4e85-97c7-665f5d5dbde1"><li><p name="f7b56333-18c8-4afb-bc71-c48864fb9e5d" id="f7b56333-18c8-4afb-bc71-c48864fb9e5d">通常のグール : <br>人間としての知性、記憶、人格を保っている個体。<br>声はしわがれていますが、会話が可能で、文明的な生活を送ろうと努力しています。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n0bcb510e6034_img_3.png" alt="" width="441" height="600"><div class="note-figcaption"></div></div><ul name="74ece835-b12c-44e3-920d-43828ab07da1" id="74ece835-b12c-44e3-920d-43828ab07da1"><li><p name="dda0c040-7313-40ca-b59f-a82b74b390e1" id="dda0c040-7313-40ca-b59f-a82b74b390e1">フェラル・グール: <br>放射線による脳の損傷により、理性を失い野生化した個体。<br>人間としての意識はなく、動くものすべてに襲いかかる危険な怪物です。<br>※通常のグールがいつかフェラル化する恐怖は、彼らの大きな悩みの一つです。</p></li></ul><hr name="44ec9f21-2987-459e-ad97-7f5d83ab53ff" id="44ec9f21-2987-459e-ad97-7f5d83ab53ff"><h2 name="a1e1a74b-9b9d-48bf-8702-dcd16891197b" id="a1e1a74b-9b9d-48bf-8702-dcd16891197b">3. 主な亜種・バリエーション</h2><div class="note-figure"><img src="images/note_extracted/n0bcb510e6034_img_4.png" alt="" width="620" height="942"><div class="note-figcaption"></div></div><ul name="bee109c1-31a6-4da4-bf2d-ed65e354f75b" id="bee109c1-31a6-4da4-bf2d-ed65e354f75b"><li><p name="f1ef29e9-0775-4e24-90df-c421597b91bf" id="f1ef29e9-0775-4e24-90df-c421597b91bf">光りし者 : <br>体内に過剰な放射線を蓄積し、暗闇で緑色に発光する強力な個体。<br>周囲のフェラル・グールを復活させる「放射能バースト」を放つことがあります。</p></li><li><p name="6abf69fb-66d9-4770-ac83-8047da257666" id="6abf69fb-66d9-4770-ac83-8047da257666">マークドマン : （Fallout: New Vegas）<br>皮膚がない状態で生き続ける、過酷な環境に適応した兵士の成れの果てです。</p></li></ul><div class="note-figure"><img src="images/note_extracted/n0bcb510e6034_img_5.png" alt="" width="534" height="665"><div class="note-figcaption"></div></div><ul name="0ba52eaa-cb4f-4ffb-abb4-c1b976b4bb9d" id="0ba52eaa-cb4f-4ffb-abb4-c1b976b4bb9d"><li><p name="9269f81b-d62b-4137-8cd0-f8130c3bf8a6" id="9269f81b-d62b-4137-8cd0-f8130c3bf8a6">ロスト: （Fallout 76）<br>天候制御実験の影響で、生体電気を帯びて<a href="mutation.html" class="auto-link">変異</a>した特殊なグールです。</p></li></ul><hr name="d44e6af8-1778-47c2-906d-178aba0abb3a" id="d44e6af8-1778-47c2-906d-178aba0abb3a"><h2 name="9e402560-84c1-42ac-9798-da1d5bd0a297" id="9e402560-84c1-42ac-9798-da1d5bd0a297">4. 社会的な立場</h2><div class="note-figure"><img src="images/note_extracted/n0bcb510e6034_img_6.png" alt="" width="620" height="388"><div class="note-figcaption"></div></div><ul name="9fe2b041-51bc-4472-80e2-a5ae1117bfb5" id="9fe2b041-51bc-4472-80e2-a5ae1117bfb5"><li><p name="2e51fb88-7a8a-4551-8bb8-d8aa39d8559a" id="2e51fb88-7a8a-4551-8bb8-d8aa39d8559a">激しい差別: <br>その見た目や「人を襲うフェラルになるかもしれない」という恐怖から、多くの人間（特にB.O.S.や居住地の人々）から忌み嫌われています。</p></li><li><p name="65dc6f66-5fdc-4dea-8a8a-97af8f0e21d0" id="65dc6f66-5fdc-4dea-8a8a-97af8f0e21d0">隔離社会: <br>人間の居住地を追い出されることが多いため、グールだけのコミュニティ（『Fallout 3』のアンダーワールド、『<a href="fallout-4.html" class="auto-link">Fallout 4</a>』のグッドネイバーなど）を形成して暮らす傾向があります。</p></li></ul><hr name="0b596899-e7fe-48b3-b08a-6a986402b880" id="0b596899-e7fe-48b3-b08a-6a986402b880"><h2 name="15288314-c2a3-4be6-b60b-ab301d92be4d" id="15288314-c2a3-4be6-b60b-ab301d92be4d">5. グールになる原因</h2><div class="note-figure"><img src="images/note_extracted/n0bcb510e6034_img_7.png" alt="" width="620" height="786"><div class="note-figcaption"></div></div><ul name="704446c9-27d4-41ad-9165-aac9b374424c" id="704446c9-27d4-41ad-9165-aac9b374424c"><li><p name="51a3c552-3f76-4a09-982f-53e31d7f7793" id="51a3c552-3f76-4a09-982f-53e31d7f7793">核戦争: <br>最も一般的な原因。<br>2077年の核爆発の余波で多くの市民が<a href="mutation.html" class="auto-link">変異</a>しました。</p></li><li><p name="79741ff2-da59-438b-bbe7-8f8a783a7021" id="79741ff2-da59-438b-bbe7-8f8a783a7021">薬物・実験: 戦前の実験的な放射線薬物（エディ・ウィンターなど）や、特定の薬物の過剰摂取（ハンコック）によって意図的にグール化した例もあります。</p></li></ul><hr name="66d5b0b9-e6af-4007-9862-9c553b0cd3c0" id="66d5b0b9-e6af-4007-9862-9c553b0cd3c0"><div class="quote-box">
+<b>感想</b><br><br>
+「グール」の設定や背景を踏まえると、単なる敵キャラクター（モンスター）の枠を超えた、非常に奥深く、哀愁漂う存在であるという感想を抱きました。<br><br>具体的に、以下の4つの視点で強く印象に残りました。<br><br><h3 name="f84a9e76-417b-43be-a41a-64f9f7ac815a" id="f84a9e76-417b-43be-a41a-64f9f7ac815a">1. 「永遠の命」という呪い</h3>多くの物語で「不老不死」は追い求められる夢ですが、グールにとってのそれは「終わりのない苦しみ」に見えます。<br>体は腐敗し続け、愛する人々が老いて死んでいくのを200年以上も見送り続けなければならない孤独感は計り知れません。<br>「死ぬことができない」というのは、ある意味で死ぬこと以上に残酷な運命だと感じさせられます。<br><br><h3 name="299bdd8b-59ce-48ea-89b9-3fafc5a94e4b" id="299bdd8b-59ce-48ea-89b9-3fafc5a94e4b">2. 「フェラル化」への根源的な恐怖</h3>グールたちが抱える「いつか理性を失い、ただの怪物（フェラル）になってしまうかもしれない」という恐怖は、現実世界における認知症やアルツハイマーへの恐怖と重なる部分があり、胸が締め付けられます。<br>昨日まで普通に話していた友人が、今日は言葉の通じない怪物になって襲いかかってくる――その悲劇性が、Falloutの世界観に深い影を落としていると感じました。<br><br><h3 name="342b1bf9-cb7e-4f5d-8c49-5beba0cebd78" id="342b1bf9-cb7e-4f5d-8c49-5beba0cebd78">3. 差別のメタファーとしての重み</h3>「中身は人間なのに、見た目で怪物扱いされる」という彼らの境遇は、現実社会における差別や偏見の強烈なメタファー（隠喩）になっています。<br>特に、理性的で紳士的なグールであっても、一部の人間（B.O.S.など）からは問答無用で排除対象とされる理不尽さには、プレイしていて（あるいはドラマを見ていて）強い憤りや葛藤を覚えるポイントです。<br><br><h3 name="1c3c27d2-23e1-4f70-a8fe-cc8c827e56ab" id="1c3c27d2-23e1-4f70-a8fe-cc8c827e56ab">4. 「歩く歴史書」としての役割</h3>一方で、彼らは200年前の「文明があった頃の世界」を知る唯一の生き証人でもあります。<br>荒廃した世界で、戦前の文化やジョーク、当時の価値観を語れるのは彼らだけです。<br>その「古き良き時代」の記憶を抱えたまま、瓦礫の中で生き続ける姿には、独特のダンディズムや哀愁（ロマン）を感じざるを得ません。<br><br><hr name="b7a74cab-27ae-4929-bab1-119bcfba4487" id="b7a74cab-27ae-4929-bab1-119bcfba4487">総評： グールは、Falloutシリーズにおいて「放射能の恐怖」と「人間のしぶとさ」の両方を体現する象徴的な存在だと思います。<br>ただのゾンビだと思って接すると痛い目を見る（あるいは深い話に引き込まれる）、非常に魅力的なキャラクター種族だと改めて感じました。<br><br>私のキャラもグールですけどB.O.Sや各勢力と監督官の差別はあきませんね!<br>Fallout3とかしてる時は気持ち悪い…ってなってたけど可愛そうな事したなぁ…。
+</div>
+
+<p name="ba11e2f8-8568-46b4-9db2-8ee71c5f8832" id="ba11e2f8-8568-46b4-9db2-8ee71c5f8832">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

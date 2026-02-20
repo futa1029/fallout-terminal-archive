@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>サマーズビル | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">サマーズビル</h3>
+            <img src="images/note_extracted/n37de72a5b4c7_img_1.png" alt="サマーズビル">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n37de72a5b4c7" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>サマーズビル</h1>
+            <div class="date">DATE: 2026/1/29</div>
+            
+            <p name="522fd6a2-be94-4866-b430-c02574ee67e2" id="522fd6a2-be94-4866-b430-c02574ee67e2"><strong>サマーズビルは、アパラチアの森林地帯地域にある町です。</strong></p><hr name="0a27dd64-cf40-434c-8666-45108a32732c" id="0a27dd64-cf40-434c-8666-45108a32732c"><h2 name="833d0ef6-3f98-4eb8-bee8-eb32d89808e8" id="833d0ef6-3f98-4eb8-bee8-eb32d89808e8">背景</h2><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="bf839691-1b60-479d-acb2-7e3ee8ec0725" id="bf839691-1b60-479d-acb2-7e3ee8ec0725"><strong>サマーズビル</strong>は、その名の由来となった湖の北端に位置する小さな町で、最終戦争前の人口は724人でした。<br>戦後、2102年以前は暴力とレイダーによる待ち伏せの温床となりました。<br>2086年、<strong>オーダー・オブ・ミステリー</strong>のアリソン・ロングがこの町でレイダーの待ち伏せにあって殺害されましたが、彼女を殺したのはレイダーではなく、彼女を裏切った味方のオリビア・リバースでした。<br>2103年までには、町は<strong>ブラッド・イーグル</strong>によって占拠されています。</p><hr name="9e877976-818c-4d44-abc6-705612737dd5" id="9e877976-818c-4d44-abc6-705612737dd5"><h2 name="63d314b8-c5c5-4f85-9ff1-92bac22851c1" id="63d314b8-c5c5-4f85-9ff1-92bac22851c1">レイアウト</h2><p name="5b366e10-5ae9-4048-ab2a-47ad37c55c91" id="5b366e10-5ae9-4048-ab2a-47ad37c55c91">戦前、この町では次期選挙のために自動投票システムが利用されており、複数の投票テントやブースが設置されていました。<br>建物の屋上には複数の急造のキャンプがあり、そこには武器作業台やアーマー作業台が含まれています。</p><p name="46635024-355e-465f-a9bf-b1d7fc5e3cf8" id="46635024-355e-465f-a9bf-b1d7fc5e3cf8">町は通過する道路によって4つの区画に分かれており、東側は山腹、西側は貯水池の残骸に囲まれています。また、かなりの量の戦利品、回収すべきノート、そして利用可能なクッキングステーションが存在します。</p><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="4b22a72f-6dd8-4cb1-aba9-cf8d1c105912" id="4b22a72f-6dd8-4cb1-aba9-cf8d1c105912">北半分には、貯水池を見下ろす西側に投票サービス用のテントがあり、そのすぐ隣には教会、裏手には墓地があります。<br>ヴォルトテック大学の博士課程の学生であったアリーヤが住んでいた家が北端に位置しており、そこにはクエスト <strong>Trade Secrets</strong> の一部である実験的な設計図があります。<br>この区画の残りの部分は、荒れ果てた住宅や商業ビルで構成されています。</p><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_4.png" alt="" width="620" height="309"><div class="note-figcaption">アイスクリームショップ</div></div><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_5.png" alt="" width="620" height="349"><div class="note-figcaption">コインランドリー</div></div><p name="64248b6b-e35c-4020-9792-ed111d1ec51e" id="64248b6b-e35c-4020-9792-ed111d1ec51e">西側の区画には、草が生い茂った遊び場、中に入ることができるコインランドリーとアイスクリームショップがあり、南東の角の上にはスナイパーの巣が設置されています。<br>道路の反対側には宝飾店と南端にアパートがあり、その中にはスチーマー・トランクが置かれています。<br>この区画の北端にはデリカテッセン、クリーニング店、そして別の投票テントがあります。<br>両方の投票テントの外には、ぼろぼろになったアメリカ合衆国の国旗が掲げられています。</p><hr name="1e681f81-8784-4b18-9d78-c2664473ee43" id="1e681f81-8784-4b18-9d78-c2664473ee43"><h2 name="d83dbf21-01a3-4efc-8799-d666ad29feb4" id="d83dbf21-01a3-4efc-8799-d666ad29feb4">注目の戦利品</h2><p name="6f3bac95-0fcf-4ceb-b3e5-a6ced8406e27" id="6f3bac95-0fcf-4ceb-b3e5-a6ced8406e27"><strong>大切な日</strong>：<a href="holotape.html" class="auto-link">ホロテープ</a>。干上がった湖を見下ろす町の端にあるベンチの上にあります。</p><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_6.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="1e424d03-ac99-4956-80d0-51bfaa474e5a" id="1e424d03-ac99-4956-80d0-51bfaa474e5a"><strong><a href="amy-kelly.html" class="auto-link">エイミー・ケリー</a></strong>：待って、それは……<a href="holotape.html" class="auto-link">ホロテープ</a>・レコーダーを持ってきたの？<br><br><strong><a href="jeff-nakamura.html" class="auto-link">ジェフ・ナカムラ</a></strong>：あ、ああ……うん。記録しておきたいことがあって。心配しないで、変なことじゃないから、約束するよ。とにかく、僕が一人になって考え事をしたい時にどこへ行くか、君が聞いていただろう。ここがその場所さ。<br><br>エイミー：<strong>ヴォルト・テック大学</strong>の学生だった頃、<strong>サマーズビル</strong>は私が見た中で最も美しい町の一つだと思っていたわ。趣があって、古風で。でも今は、私にとっての魅力はすべて失われてしまった。ただ、忘れ去られた世界の幽霊たちが住む、悲しく朽ち果てた場所にしか見えないの。あなたをここに引き寄せるものは何？ 静寂かしら？<br><br>ジェフ：景色だよ、実は。ここからは氾濫原が完璧に見えるんだ。<br><br>エイミー：泥地を？ どうして？ あそこには見るべきものなんて何もないわ。ただの廃墟よ。 <br><br>ジェフ：自分が生きていることがいかに幸運であるかを、一瞬たりとも忘れたくないからさ。僕は人生に刺激が欲しくて、退屈だったから<strong><a href="flat-woods.html" class="auto-link">フラットウッズ</a></strong>への任務に志願した。分かってる、若くて愚かだったんだ。町を出て1時間も経たないうちに、ダムが爆発する音が聞こえた。川がチャールストンの半分を押し流していくのを、僕たちは見ていた。あの日、僕はすべての友人を失った。長い間、自分だけが生き残ったのは不公平だと感じていたよ。彼らと一緒に死ぬべきだったんじゃないかって。でも、エイミー、君に出会った日にすべてが変わったんだ。君は僕に、生きたいと思う理由をくれた。だから、君に聞きたかったんだ……。 <br><br>エイミー：ジェフ、やめて。あなたが何を言いたいかは分かっているけれど……今はその時じゃないわ。そんな時が来るかどうかも分からない。今はただ、そのことを考えられないの。あなたのことを大切に思っていないわけじゃない。でも、私には環境モニタリング・プログラムの仕事があるし、あなたには<strong>レスポンダー</strong>としての任務があるわ。人々は私たちが無私であることを頼りにしている。自分たちのニーズよりも、彼らのニーズを優先することをね。 <br><br>ジェフ：分かっているよ。でも、世界を再建することの一部は……そう、再び家族を持つことだ。それも重要な責任だと僕は思うんだ。それに、もし生きる価値のあるものが何もないのなら、なぜ生き残ろうとする必要がある？ ……もし君にとってこれが早すぎるなら、君の準備ができるまで待つよ。ただ、もし気が変わったら教えてくれると約束して。 <br><br>エイミー：分かったわ。約束する。</p></blockquote><div class="note-figcaption"></div></div><h3 name="db681f7e-1359-41ac-8a8f-92f4a7cd59b7" id="db681f7e-1359-41ac-8a8f-92f4a7cd59b7">感想</h3><p name="9c19d356-5d72-409d-9f54-37b142dff706" id="9c19d356-5d72-409d-9f54-37b142dff706"><strong>大切な日</strong>は、核戦争後も生き残った人々が、いかにして過去のトラウマを抱えながら新しい未来を築こうとしていたかを象徴する、非常に切ない物語ですね。</p><ul name="79c1c009-860f-403c-ae62-3e7aefbeac06" id="79c1c009-860f-403c-ae62-3e7aefbeac06"><li><p name="9c7a1720-d8f8-4108-a38e-da60f3e5ecee" id="9c7a1720-d8f8-4108-a38e-da60f3e5ecee"><strong>チャールストンの悲劇</strong>: ジェフが語るダム決壊の瞬間の描写は、サマーズビルから見える現在の干上がった景色の裏にある、凄まじい破壊の歴史を思い出させます。</p></li><li><p name="694f1749-01a5-4908-96aa-d4f3d8e40116" id="694f1749-01a5-4908-96aa-d4f3d8e40116"><strong>無私と幸福の板挟み</strong>: 人々のために尽くそうとするエイミーと、だからこそ「生きる価値のあるもの（家族）」が必要だと説くジェフの対比は、崩壊した世界における個人の幸せの難しさを浮き彫りにしています。</p></li><li><p name="c12cc469-6d85-43b9-95ad-00bc7e5d103d" id="c12cc469-6d85-43b9-95ad-00bc7e5d103d"><strong>静かな名残</strong>: ベンチに残された古い指輪とこのテープは、ジェフの想いが結実したのか、あるいはエイミーの危惧した通り任務の中で散っていったのか、プレイヤーにその後の想像を委ねる静かな余韻を残しています。</p></li></ul><p name="1bec2a27-381b-4f47-a8c8-2fba3bf529f0" id="1bec2a27-381b-4f47-a8c8-2fba3bf529f0"><strong>投票のチラシ</strong>：メモ。投票機のテントの前にあるテーブルの上にあります。</p><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_7.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="2712286e-752b-4a57-9b17-4c9e8400e76d" id="2712286e-752b-4a57-9b17-4c9e8400e76d">新しい投票方法は1、2、3と数えるほど簡単です！<br><br><strong>1.投票用紙を受け取る</strong> ...有効な投票用紙プリンターから！<br><strong>2.記入する</strong> ...お好みの候補者に！<br><strong>3.投入する</strong> ...投票カウンターに！<br><br>投票用紙は一人一枚まで！ それ以上は<strong>投票不正</strong>になります！</p></blockquote><div class="note-figcaption"></div></div><p name="89c58df6-e0ee-45cc-b159-f776560062fa" id="89c58df6-e0ee-45cc-b159-f776560062fa"><strong>実験的な<a href="pip-boy.html" class="auto-link">Pip-Boy</a>の設計図</strong>：クエストアイテム。町の北端にある家（アリーヤの家）の地下にあります。</p><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_8.png" alt="" width="620" height="404"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="78697153-0469-4c4b-960e-fada0753af61" id="78697153-0469-4c4b-960e-fada0753af61">このアイテムは、<strong><a href="pip-boy.html" class="auto-link">Pip-Boy</a> 2000 Mark VI</strong> のための実験的な設計図です。<br>アリーヤという名の博士課程候補者が率いる <strong>ヴォルト・テック大学</strong> の研究チームによって開発されていましたが、最終戦争の勃発によってその開発が中断され、完成することはありませんでした。</p></blockquote><div class="note-figcaption"></div></div><p name="39f3145b-7ae3-45af-9c4b-c33f56d174dc" id="39f3145b-7ae3-45af-9c4b-c33f56d174dc"><strong>ボブルヘッド</strong>：町の北西側にある水色の家の裏、屋外トイレの隣にあります（マップ上でルート87Aの標識のすぐ左側に位置します）。</p><p name="32d6e668-4dcd-442f-b9f5-b0859dfb30a0" id="32d6e668-4dcd-442f-b9f5-b0859dfb30a0"><strong>古い指輪</strong>：<strong>サマーズビル</strong>の南にある、干上がった湖を見下ろす草むらのベンチの上にあります。<br>帽子の下に隠れており、帽子を拾わない限り見ることはできません。</p><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_9.png" alt="" width="594" height="472"><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_10.png" alt="" width="620" height="585"><div class="note-figcaption"></div></div><div class="note-figure"><blockquote><p name="f019b17a-c5a2-41c4-ac8e-538717a2b0b9" id="f019b17a-c5a2-41c4-ac8e-538717a2b0b9"><strong>古い指輪</strong>は、単なる装身具ではなく、特定の背景物語を持つユニークなアイテムです。<br>これは、<a href="holotape.html" class="auto-link">ホロテープ</a>「<strong>大切な日</strong>」に記録されている通り、<a href="jeff-nakamura.html" class="auto-link">ジェフ・ナカムラ</a>が<a href="amy-kelly.html" class="auto-link">エイミー・ケリー</a>にプロポーズをしようとした際に用意していた婚約指輪であると考えられます。</p></blockquote><div class="note-figcaption"></div></div><p name="853ec1ac-a545-421c-b661-7ff77cd27620" id="853ec1ac-a545-421c-b661-7ff77cd27620"><strong>大量の焼けた本および焼けた教科書</strong>：町の北端にある家（アリーヤの家）の中にあります。</p><hr name="a3b9e28c-b72b-496a-969e-2f7bb117a7cb" id="a3b9e28c-b72b-496a-969e-2f7bb117a7cb"><h2 name="c63af8b3-6547-4170-8388-ab1bd6a3b030" id="c63af8b3-6547-4170-8388-ab1bd6a3b030">注記</h2><p name="ba2f6455-ebc7-4bc8-800c-147b75119187" id="ba2f6455-ebc7-4bc8-800c-147b75119187"><strong>Burning Springs</strong> のパブリック・テスト・サーバー（PTS）中、アリーヤの家はメインフロアと2階エリアに何度かの変更が行われました。最終的なPTSパッチでは、両方のエリアの家具の配置が変更され、室内壁にあった「books」という看板の一つが家の外正面に移動しました。<br>ただし、入手可能な戦利品の量は変更されていません。<br>町の北端の家には、<strong><a href="brain-mushroom.html" class="auto-link">脳みそキノコ</a></strong>が自生している箇所があります。</p><hr name="f14be97d-3d73-4215-be29-3cefe0dca5bc" id="f14be97d-3d73-4215-be29-3cefe0dca5bc"><h2 name="14a102e4-a357-450b-999b-facec203702a" id="14a102e4-a357-450b-999b-facec203702a">関連クエスト</h2><ul name="401d2b7a-e1c1-4730-9e61-b84d249e527f" id="401d2b7a-e1c1-4730-9e61-b84d249e527f"><li><p name="f0983235-56bb-4633-a245-28994ba88960" id="f0983235-56bb-4633-a245-28994ba88960"><strong>Find jukeboxes to bring the music back to Summersville</strong></p></li><li><p name="a182ce33-7ce8-44df-a291-51229ccd5b16" id="a182ce33-7ce8-44df-a291-51229ccd5b16"><strong>Trade Secrets</strong></p></li></ul><hr name="40889780-7b15-4a92-b424-b8722f3d6ef9" id="40889780-7b15-4a92-b424-b8722f3d6ef9"><h2 name="e7e30cbb-5015-4f13-b99b-c78e49735e08" id="e7e30cbb-5015-4f13-b99b-c78e49735e08">登場作品</h2><p name="4de8b150-b69d-4fd2-b3d0-550ef848c3b5" id="4de8b150-b69d-4fd2-b3d0-550ef848c3b5"><strong>サマーズビル</strong>は <strong>Fallout 76</strong> にのみ登場します。</p><hr name="77d9cafe-7e39-487f-90e4-f11309cb0fb5" id="77d9cafe-7e39-487f-90e4-f11309cb0fb5"><h2 name="032a192f-5e4a-46a0-931c-d19430ab32c7" id="032a192f-5e4a-46a0-931c-d19430ab32c7">舞台裏</h2><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_11.jpg" alt="" width="620" height="388"><div class="note-figcaption"></div></div><p name="0968f64e-7cec-4db1-aabd-afa623fadb05" id="0968f64e-7cec-4db1-aabd-afa623fadb05"><strong>サマーズビル</strong>および同名の他の場所は、実在するウェストバージニア州のサマーズビルへのオマージュです。</p><p name="8ea08bd0-b400-4988-8782-4b956ad330a5" id="8ea08bd0-b400-4988-8782-4b956ad330a5">サマーズビルは、アメリカ合衆国ウェストバージニア州ニコラス郡に位置する都市であり、同郡の郡庁所在地です。</p><h3 name="e51346bd-dda3-4978-8c6e-642c4bf9f802" id="e51346bd-dda3-4978-8c6e-642c4bf9f802">概要と歴史</h3><p name="e9e3948f-b8fa-4a4e-babb-2a8410cf02cf" id="e9e3948f-b8fa-4a4e-babb-2a8410cf02cf">サマーズビルは1824年に設立され、地元の有力者であったルイス・サマーズ判事にちなんで名付けられました。<br>2020年の統計による人口は3,431人です。歴史的には、南北戦争中に戦略的な拠点となったことでも知られています。</p><h3 name="27e2b1d4-b1a8-4e91-9074-8eddde541283" id="27e2b1d4-b1a8-4e91-9074-8eddde541283">地理</h3><p name="c10074cd-6b0b-426f-8592-0802b1fe9508" id="c10074cd-6b0b-426f-8592-0802b1fe9508">ウェストバージニア州の中央部に位置し、近くには州内最大の湖である<strong>サマーズビル湖</strong>や、ラフティングで有名なゴーリィ川があります。</p><h3 name="5601ac35-7357-4b0d-aaf5-e44b8909422b" id="5601ac35-7357-4b0d-aaf5-e44b8909422b">文化とイベント</h3><p name="53653d5e-edda-42f7-8685-9e198e6ae936" id="53653d5e-edda-42f7-8685-9e198e6ae936">この町で最も有名なイベントは、毎年9月に開催される「ニコラス郡ポテトフェスティバル」です。<br>また、サマーズビル湖周辺でのボート、ダイビング、ロッククライミングといったアウトドア活動の拠点としても人気があります。</p><h3 name="4628a39b-91ed-4e4d-9aca-3da2aaf5a5fd" id="4628a39b-91ed-4e4d-9aca-3da2aaf5a5fd">経済</h3><p name="154efc62-8e32-4855-b09c-d69c8d5f2a99" id="154efc62-8e32-4855-b09c-d69c8d5f2a99">主な産業は観光業であり、特に湖や河川を利用したレクリエーションが地域経済を支えています。<br>また、伝統的な石炭産業や、郡庁所在地としての行政・サービス業も中心となっています。</p><hr name="2850b656-920d-4059-9a48-98ef24300d01" id="2850b656-920d-4059-9a48-98ef24300d01"><div class="quote-box">
+<b>感想</b><br><br>
+<b>サマーズビル</b>は、戦前の民主主義の名残と、戦後の荒廃した暴力が奇妙に共存している場所ですね。<br><br><b>本収集の聖地</b>: イ�端にある通称「本の家（アリーヤの家）」には、250冊を超える焼けた本が詰め込まれており、解体して「布」を大量に入手したい人やデイリーで指定された居住者にとっては聖地のような場所です。<br><br><b>悲劇の舞台</b>: <b>オーダー・オブ・ミステリー</b>の裏切り劇が起きた場所という設定は、この美しい景観の裏に隠された冷酷な物語を感じさせます。<br><br><b>ブラッド・イーグルの要塞</b>: <b>Wastelanders</b>以降、屋上のいたる所に足場が組まれ、どこから狙撃されるかわからない緊張感のある戦闘エリアへと変貌を遂げた点も、探索のしがいがあります。<br><br>干上がった湖のほとりで古い指輪を見つけるなどの、小さな発見（イースターエッグ）が散りばめられているのも、Falloutらしい情緒を感じさせてくれます。<br><br><div class="note-figure"><img src="images/note_extracted/n37de72a5b4c7_img_12.png" alt="" width="620" height="349"><div class="note-figcaption">
+</div>
+
+<p name="9589b12b-e43e-4cc8-adfb-078cde54e3a7" id="9589b12b-e43e-4cc8-adfb-078cde54e3a7">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

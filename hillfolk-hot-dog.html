@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ヒルフォーク・ホットドッグ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ヒルフォーク・ホットドッグ</h3>
+            <img src="images/note_extracted/n3fb7ea64c96a_img_1.png" alt="ヒルフォーク・ホットドッグ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n3fb7ea64c96a" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ヒルフォーク・ホットドッグ</h1>
+            <div class="date">DATE: 2025/12/30</div>
+            
+            <p name="e05f73db-0368-46fd-ba84-9f889b36095e" id="e05f73db-0368-46fd-ba84-9f889b36095e">ヒルフォーク・ホットドッグは、Fallout 76のアパラチア、「森林地帯」にあるロケーションです。</p><hr name="99b791c6-7080-4ddc-a43c-bf76c372f1e3" id="99b791c6-7080-4ddc-a43c-bf76c372f1e3"><h2 name="e4addaaa-ac79-4e37-b202-a0d877340b0b" id="e4addaaa-ac79-4e37-b202-a0d877340b0b">背景</h2><p name="56c3b162-ab5a-4163-9b63-84c294d9eb1a" id="56c3b162-ab5a-4163-9b63-84c294d9eb1a">大戦争の前、ヒルフォーク・ホットドッグは地元の人々や、近くの国道88号線を旅する人々にとって人気の休憩所でした。<br>ここはヒル家によって所有・運営されていた家族経営のダイナーでした。<br>看板には「アパラチアで最高のホットドッグ」という誇らしげな主張が掲げられており、その素朴な魅力とカナー川沿いという風光明媚なロケーションで知られていました。</p><p name="2e6a2172-df2b-44d6-b891-3c125f44c3bf" id="2e6a2172-df2b-44d6-b891-3c125f44c3bf">爆弾が投下された後、ダイナーは放置されました。<br>かつて客で賑わっていた場所は、今ではスカベンジャーや、近くの川からやってくる<a href="mall-rat.html" class="auto-link">モールラット</a>などの危険なクリーチャーが頻繁に訪れる場所となっています。</p><hr name="d56e4cf8-450b-424a-8cb4-1a8d2eed46ab" id="d56e4cf8-450b-424a-8cb4-1a8d2eed46ab"><h2 name="aaaeff62-af06-401d-96aa-a70eee3ed54b" id="aaaeff62-af06-401d-96aa-a70eee3ed54b">レイアウト</h2><h3 name="66c7fc7d-175d-433e-8117-1102ebee4cf0" id="66c7fc7d-175d-433e-8117-1102ebee4cf0"><br></h3><p name="a45660aa-8228-4ab7-b975-e15d38107828" id="a45660aa-8228-4ab7-b975-e15d38107828">このロケーションは、カナー川の東岸、国道88号線沿いに位置する小さな平屋のダイナービルで構成されています。</p><ul name="dd605faa-a86c-4ae3-9a8b-b08bc11b3b9f" id="dd605faa-a86c-4ae3-9a8b-b08bc11b3b9f"><li><p name="b1b0d175-5688-437e-9217-d3ecbafcb461" id="b1b0d175-5688-437e-9217-d3ecbafcb461"><strong>メインビルディング:</strong> <br>ダイナーの内部には、かつて客に食事を出していたカウンターとスツールがいくつか残っています。<br>キッチンの裏手には調理エリアがあり、現在ではプレイヤーが利用できるクッキングステーション（コンロ）が設置されています。</p></li><li><p name="7413160c-57a8-42c6-94dc-9860057eaab1" id="7413160c-57a8-42c6-94dc-9860057eaab1"><strong>屋外ダイニングエリア:</strong> <br>建物のすぐ外には、川を見渡せる位置にいくつかのピクニックテーブルが配置されています。</p></li><li><p name="1f18f2cc-c597-4baf-805a-3d1889b22c99" id="1f18f2cc-c597-4baf-805a-3d1889b22c99"><strong>ドック（桟橋）:</strong> <br>ダイナーの裏手（西側）には、カナー川に突き出た小さな木造のドックがあります。<br>ここには小さな小屋もあり、釣り道具やボート用品などが残されていることがあります。</p></li><li><p name="38c2477e-c8aa-4c56-81ea-d20a04ac646b" id="38c2477e-c8aa-4c56-81ea-d20a04ac646b"><strong>周辺環境:</strong> <br>ロケーションはサンシャイン・メドウズ工業農場の南、カナー郡墓地の北に位置しています。<br>国道からは大きなホットドッグの看板が目印となります。</p></li></ul><hr name="55e3dfe7-9e09-4f9f-9ad3-619fafc6dfe4" id="55e3dfe7-9e09-4f9f-9ad3-619fafc6dfe4"><h2 name="87903a8a-6e17-4250-ac30-c195d09d1150" id="87903a8a-6e17-4250-ac30-c195d09d1150">注目すべき戦利品</h2><div class="note-figure"><img src="images/note_extracted/n3fb7ea64c96a_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="30c6e245-f4f7-4c91-a567-3c626e4e070b" id="30c6e245-f4f7-4c91-a567-3c626e4e070b"><li><p name="0bf50e4b-a6b7-42af-89c7-6a200bc1e68e" id="0bf50e4b-a6b7-42af-89c7-6a200bc1e68e"><strong>コルトン・ピキンズの警察報告書</strong></p><ul name="8d6b0ae7-6255-4d7b-8748-269a1332005a" id="8d6b0ae7-6255-4d7b-8748-269a1332005a"><li><p name="2e464c8d-dd2e-4ad1-8e86-2755b8e172c7" id="2e464c8d-dd2e-4ad1-8e86-2755b8e172c7"><a href="holotape.html" class="auto-link">ホロテープ</a>。バスの外にあるパティオテーブルの上、警官の帽子の隣にあります。</p></li></ul></li></ul><div class="note-figure"><blockquote><p name="d6897427-e8ad-4738-b0cc-042ecdcb2e8d" id="d6897427-e8ad-4738-b0cc-042ecdcb2e8d"><strong>ウォルトン巡査：</strong> こちらはD.B.ウォルトン保安官補。聴取開始時刻は午前3時35分。よし、ピキンズさん。最初から何が起きたのか、順を追ってすべて話してくれ。<br><strong>コルトン・ピキンズ：</strong> ホットドッグ売店の裏でゴミ出しをしていたら、森の方から光が差し込んでいるのが見えたんです。最初は懐中電灯を持った猟師かと思ったんですが、その光が……変わり始めたんです。<br><strong>ウォルトン巡査：</strong> 変わり始めた？ どういう風にだ？<br><strong>コルトン・ピキンズ：</strong> ええ、光がいろんな色に変わり始めたんです。最初は青、それから緑、赤、そしてまた青に戻って。あ、待てよ、たぶん緑、青、赤だったかな。いや、本当は赤、青……<br><strong>ウォルトン巡査：</strong> ああ、分かったよ。それで、次は何が起きたんだ？<br><strong>コルトン・ピキンズ：</strong> 急に猛烈なめまいがして、持っていたゴミ袋を落としてしまったんです。次に気づいたときには、地面に倒れていました。……倒れた時の記憶すらありません。顔を上げると、その時……「そいつ」が見えたんです。<br><strong>ウォルトン巡査：</strong> 「そいつ」だと？ もっと具体的に言えるか？<br><strong>コルトン・ピキンズ：</strong> 人間のようでしたが、人間ではありませんでした。肌は灰色で、巨大な黒い目をしていて。それで、宇宙服か何かのようなものを着ていました。本当に奇妙だったのは、そいつは何も喋っていないのに、それでも声が聞こえてきたんです。私の頭の中に。そいつは自分の宇宙船についてこいと言ってきました。<br><strong>ウォルトン巡査：</strong> （ため息）また「<a href="flat-woods.html" class="auto-link">フラットウッズ</a>・モンスター」か？ よし、もう十分だ。コルトン・ピキンズ、君を飲酒による治安紊乱罪、および公然わいせつ罪で逮捕する。<br><strong>コルトン・ピキンズ：</strong> 公然何だって？ 何の話をしてるんですか？ 私は何も悪いことなんてしてない！<br><strong>ウォルトン巡査：</strong> コルトン、君は自分の小屋の屋根の上で、真っ裸になって、喉の限りを尽くして叫んでいるところを発見されたんだぞ。血中アルコール濃度は0.23。君に手錠をかけるのに4人がかりだった。たまに泥酔して羽目を外すのは誰にでもあることだが、やるなら家の中でやってくれ。<br><strong>コルトン・ピキンズ：</strong> 何ですって？ 違う！ やめてくれ！ 信じてください。あの怪物が私を酔わせたんだ、あいつが……私に実験をしていたんだ！ 私の心を操っていたんだ！ あんたたち、いつになったら<a href="flat-woods.html" class="auto-link">フラットウッズ</a>・モンスターを何とかしてくれるんですか！？ あいつは殺さなきゃいけないんだ！<br><strong>ウォルトン巡査：</strong> もうたくさんだ。こいつを連れて行け。こちらはD.B.ウォルトン保安官補。聴取終了。</p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n3fb7ea64c96a_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="9a75aade-1cdc-4dd0-8514-3ef9e3136d5e" id="9a75aade-1cdc-4dd0-8514-3ef9e3136d5e"><li><p name="d7b4a087-8cd5-4a0b-8c8e-b85632c7fb79" id="d7b4a087-8cd5-4a0b-8c8e-b85632c7fb79"><strong>ショッピング・リスト</strong></p><ul name="2e9d546d-58ef-48f6-8a55-431fef514b22" id="2e9d546d-58ef-48f6-8a55-431fef514b22"><li><p name="2b433f12-151a-4aef-abbf-11333700a3f2" id="2b433f12-151a-4aef-abbf-11333700a3f2">メモ。トレーラー内にある冷蔵庫の側面に、マグネットで留められています。</p></li></ul></li></ul><div class="note-figure"><blockquote><p name="3f977d0e-2c9e-4955-9f5a-45b5e9b5e48e" id="3f977d0e-2c9e-4955-9f5a-45b5e9b5e48e"><strong>ショッピング・リスト</strong> <br><br><strong>もっとビールを</strong> <br><strong><a href="tobacco.html" class="auto-link">タバコ</a></strong> <br><strong>肉</strong> <br><strong>紙皿<br>ナプキン</strong> <br><strong>豆</strong></p></blockquote><div class="note-figcaption"></div></div><div class="note-figure"><img src="images/note_extracted/n3fb7ea64c96a_img_4.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><ul name="daad6d99-bc31-4f09-bb68-4ca0719f50e5" id="daad6d99-bc31-4f09-bb68-4ca0719f50e5"><li><p name="bc848290-ad85-4233-8cb7-f712a8922cf5" id="bc848290-ad85-4233-8cb7-f712a8922cf5"><strong>無題の詩</strong></p><ul name="ed64ce7e-a3c2-4242-904d-fbc0128e4167" id="ed64ce7e-a3c2-4242-904d-fbc0128e4167"><li><p name="5db01db8-16b7-4026-80e0-2061f79a204b" id="5db01db8-16b7-4026-80e0-2061f79a204b">メモ。屋外便所（アウトハウス）の中のベンチの上に置かれています。</p></li></ul></li></ul><div class="note-figure"><blockquote><p name="d8936f1a-f066-4af7-8510-b9f9ca40995b" id="d8936f1a-f066-4af7-8510-b9f9ca40995b"><strong>高く積み上げられた錆びたパイプ</strong><br>ずっと前に死に絶えた、投げ捨てられた博打の混ざり合い<br>きついポケットに詰め込まれ、あらゆる扉を抜けて運ばれた<br><strong>封じられた唇</strong> <strong>汚れたブランコの揺れ</strong> <strong>枠に詰まり、擦れて光沢を放つキャップ</strong><br>どの顔も同じ泥で埃まみれ　こびりつき、層を成し、続いていく<br><strong>ハエの群れが、唯一の自然の形見</strong><br>あらゆる小さな隙間を、自然が取り戻していく</p></blockquote><div class="note-figcaption"></div></div><hr name="4ee41a32-c7b2-4233-a62c-11aea534f901" id="4ee41a32-c7b2-4233-a62c-11aea534f901"><h2 name="46d6658b-8d51-49f5-b698-bfaae490b965" id="46d6658b-8d51-49f5-b698-bfaae490b965">現実では</h2><div class="note-figure"><img src="images/note_extracted/n3fb7ea64c96a_img_5.jpg" alt="" width="620" height="412"><div class="note-figcaption"></div></div><h3 name="087bcc1b-3d81-4d20-bdc6-e22f7816f523" id="087bcc1b-3d81-4d20-bdc6-e22f7816f523">ヒルビリー・ホットドッグ：伝説的ホットドッグ店</h3><p name="28bfa798-7838-459b-9ecc-83a980737f44" id="28bfa798-7838-459b-9ecc-83a980737f44">ウエストバージニア州レサージュのカノーワ川沿いにあるこの店は、単なる飲食店ではなく、全米から観光客が訪れる「ロードサイド・アトラクション（路傍の名所）」です。</p><p name="b3a5ac24-e152-4179-bc63-f18b2cee9164" id="b3a5ac24-e152-4179-bc63-f18b2cee9164"><strong>1. 創業ストーリーとコンセプト</strong></p><ul name="4fad2705-0cde-42c4-839c-53c10c092b4c" id="4fad2705-0cde-42c4-839c-53c10c092b4c"><li><p name="06e0282d-11d2-4ef3-a43f-4bd155b42dfc" id="06e0282d-11d2-4ef3-a43f-4bd155b42dfc"><strong>愛の物語:</strong> <br>1999年、ウエストバージニア州出身のソニーと、カリフォルニア州出身のシャーリーのカップルが、ソニーの故郷の土地に小さな売店を建てたのが始まりです。<br>オープン3日後には自分たちの結婚式のために一度店を閉めたという逸話があり、以来30回以上もそこで誓いの更新を行っています。</p></li><li><p name="42a4eb8c-392a-4369-b2d2-e27c08a6d735" id="42a4eb8c-392a-4369-b2d2-e27c08a6d735"><strong>外観と雰囲気:</strong> <br>店は「ジャンクヤード（がらくた置き場）」のような独特のスタイル。<br>落書きだらけの古いスクールバスが客席になっていたり、いたる所にガラクタや看板が飾られていたりと、強烈な個性を放っています。</p></li></ul><p name="d81e0f93-bccc-4509-84ee-8c005c38f6eb" id="d81e0f93-bccc-4509-84ee-8c005c38f6eb"><strong>2. 名物メニュー</strong></p><p name="45cb58eb-ea50-42bb-b4a4-bc769c33b15c" id="45cb58eb-ea50-42bb-b4a4-bc769c33b15c">25種類以上のユニークなホットドッグがあり、特に以下のメニューが有名です。</p><div class="note-figure"><img src="images/note_extracted/n3fb7ea64c96a_img_6.jpg" alt="" width="620" height="465"><div class="note-figcaption"></div></div><ul name="9e3bf540-4473-43f5-9d4d-5d6b75149ba2" id="9e3bf540-4473-43f5-9d4d-5d6b75149ba2"><li><p name="76a5262e-7470-455c-bdc2-52637100da3c" id="76a5262e-7470-455c-bdc2-52637100da3c"><strong>ホームレッカー（Homewrecker）:</strong> <br>15インチ（約38cm）の巨大なホットドッグ。<br>1ポンドのソーセージに、炒めたピーマン、タマネギ、2種類のチーズ、レタス、トマト、ハラペーニョ、特製ソース、マスタード、ケチャップ、コールスローがどっさり乗っています。</p></li><li><p name="af66fcfd-4a18-4abc-893b-bc724d514c1d" id="af66fcfd-4a18-4abc-893b-bc724d514c1d"><strong><a href="mothman.html" class="auto-link">モスマン</a>・ドッグ（Mothman Dog）:</strong> <br>地元の伝説「<a href="mothman.html" class="auto-link">モスマン</a>」にちなんだ、揚げたソーセージ、チリソース、サウザンアイランド・ドレッシング、オニオンリング、トマトが乗った一品。</p></li><li><p name="be759d55-3e60-4328-82ed-4aa873833d8d" id="be759d55-3e60-4328-82ed-4aa873833d8d"><strong>コール・マイナー（炭鉱夫）:</strong> <br>揚げたソーセージにチリソース、マスタード、タマネギ、ケイジャンスパイスを効かせた、ウエストバージニアの歴史を感じさせるメニュー。</p></li><li><p name="2f35708b-9ba5-4536-9584-c3f5f2726c29" id="2f35708b-9ba5-4536-9584-c3f5f2726c29"><strong>巨大バーガー:</strong> <br>15ポンド（約6.8kg）もある超巨大ハンバーガーも提供しています。</p></li></ul><p name="1f86346d-5d56-4625-a394-bfc81021614c" id="1f86346d-5d56-4625-a394-bfc81021614c"><strong>3. 挑戦とエンターテインメント</strong></p><div class="note-figure"><img src="images/note_extracted/n3fb7ea64c96a_img_7.jpg" alt="" width="620" height="395"><div class="note-figcaption"></div></div><ul name="68847d14-7a7f-4e34-bfd4-8ad4951b5f5b" id="68847d14-7a7f-4e34-bfd4-8ad4951b5f5b"><li><p name="229b46f9-0a04-47d1-b4f0-4ab7d5fa6ad6" id="229b46f9-0a04-47d1-b4f0-4ab7d5fa6ad6"><strong>ホームレッカー・チャレンジ:</strong> <br>巨大な「ホームレッカー」を12分以内に完食すると、特製Tシャツがもらえます。</p></li><li><p name="1a0bb7ef-31fa-41ea-a21c-f05b02e69972" id="1a0bb7ef-31fa-41ea-a21c-f05b02e69972"><strong>ウェディング・チャペル:</strong> <br>店の裏には小さな結婚式用チャペルがあり、実際に結婚式を挙げることができます。</p></li><li><p name="05e0b298-55a9-477d-aa17-7ef932a5e1a4" id="05e0b298-55a9-477d-aa17-7ef932a5e1a4"><strong>ウィーニー・ソング（Weenie Song）:</strong> <br>店には独自のテーマソングがあり、陽気な雰囲気で客を迎えます。</p></li></ul><p name="e135336d-cc2e-422b-ac2b-36ea96bbc132" id="e135336d-cc2e-422b-ac2b-36ea96bbc132"><strong>4. メディア露出とポップカルチャー</strong></p><ul name="d264fb5a-229d-4463-a5c4-041d7e2c1f12" id="d264fb5a-229d-4463-a5c4-041d7e2c1f12"><li><p name="250b5ab2-3249-40d2-8a1d-9c6cf26eeec9" id="250b5ab2-3249-40d2-8a1d-9c6cf26eeec9"><strong>全米放送:</strong> <br>フードネットワークの有名番組『Diners, Drive-Ins and Dives』でガイ・フィエリに紹介されるなど、何度も全米テレビ番組に登場しています。</p></li><li><p name="69c8fc99-fae2-44f2-ab29-8890e411e8af" id="69c8fc99-fae2-44f2-ab29-8890e411e8af"><strong>Fallout 76:</strong> ゲーム内の「ヒルフォーク・ホットドッグ」として忠実に再現されており、特にスクールバスを改造した店舗のデザインなどはゲーム内でもその雰囲気を感じることができます。</p></li></ul><hr name="1d0cb218-84c6-465d-a893-3a98a86984b3" id="1d0cb218-84c6-465d-a893-3a98a86984b3"><div class="quote-box">
+<b>感想</b><br><br>
+実在する「ヒルビリー・ホットドッグ」が、愛と笑いに溢れたとっても賑やかでハッピーな場所なのに対して、ゲームの中では静まり返って、少し寂しい雰囲気なのが対照的で胸に響きますね。<br><br>かつては巨大なホットドッグを囲んで笑い合っていた人たちがいたんだな……と思うと、放置されたバスや、トイレにポツンと残された詩が、より一層切なく、愛おしく感じられます。<br><br>でも、現実の「シャーリーさん」たちが今も元気に愛を届けていると知ると、アパラチアのあの景色も、少しだけ温かい場所に見えてくるから不思議です。いつか本物の「ホームレッカー」を食べてみたくなっちゃいますね。
+</div>
+
+<p name="c2e26d49-653d-4690-9685-068c55e1ef11" id="c2e26d49-653d-4690-9685-068c55e1ef11">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

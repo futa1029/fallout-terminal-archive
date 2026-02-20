@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>アンカー農場 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffce07; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">アンカー農場</h3>
+            <img src="images/note_extracted/n00a24a380fd7_img_1.png" alt="アンカー農場">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n00a24a380fd7" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>アンカー農場</h1>
+            <div class="date">DATE: 2025/10/18</div>
+            
+            <p name="5c47ff59-f88a-479f-9746-b6500ddfccb0" id="5c47ff59-f88a-479f-9746-b6500ddfccb0">Vault 76の北西にある小さな農場。<br>農場の名前は、農場の外に掲げられた大きな錨に由来する。<br>大戦後の数日後、ダーラという女性を除くすべての住民は、米軍によって<a href="flat-woods.html" class="auto-link">フラットウッズ</a>へ避難した。<br>軍人も、戦後農場にいた他の者も、2102年までに全員死亡し、骸骨だけが残った。</p><p name="de7bbbdb-8bd7-47a0-9113-82be0bebad4c" id="de7bbbdb-8bd7-47a0-9113-82be0bebad4c">2103年、ダニエル率いる一家が農場に居を構え、この地を復興・強化しました。<br>到着後まもなく、彼らはフリー・ラディカルズのリーダー、ローパーから恐喝を受けました。<br>住民の一人、マギーは彼らとのいかなる取引にも強く反対しましたが、ダニエルは密かに彼女を殺害。<br>壊滅を免れるためフリー・ラディカルズとの合意を成立させました。</p><hr name="a80445c6-04ef-479b-b531-e5d8fe2e843e" id="a80445c6-04ef-479b-b531-e5d8fe2e843e"><h2 name="60d1ccef-5871-45be-9e4c-bff707a70bf3" id="60d1ccef-5871-45be-9e4c-bff707a70bf3">レイアウト</h2><p name="68bffa65-7c59-4db8-8004-eb2521e46d63" id="68bffa65-7c59-4db8-8004-eb2521e46d63">Wastelandersでオープンしたこの農家は、寝室が2つあるシンプルな2階建ての家です。<br>道路には古い装甲兵員輸送車（APC）が停まっており、敷地内には植物がいくつか生えています。<br>農場には、農家の北にある小さな池の上に設置された工業用浄水器からきれいな水と、大型発電機からの電力が供給されています。</p><p name="2ed6fef6-bcc7-488f-aa87-d90a941469f6" id="2ed6fef6-bcc7-488f-aa87-d90a941469f6">アンカー・ファームの名の由来となった錨は、農家の外に展示されています。</p><p name="100631ae-18cd-4616-a86e-4ec24a5df5ce" id="100631ae-18cd-4616-a86e-4ec24a5df5ce">農場の反対側には、損傷した青と黄色の複葉機が家の近くに設置されており、その隣には簡易修理工場があり、化学ステーション、調理ステーション、細工作業台、武器作業台が備え付けられています。<br>この辺りにはマレーがいます。<br>他にも、木のそばに置かれたクーラーボックスなど、ちょっとした戦利品がいくつか見つかります。<br>家の東側には <a href="brahmin.html" class="auto-link">バラモン</a>の囲いがあります。</p><p name="2fd0f924-a9d7-44a5-b60c-092e0e9b3730" id="2fd0f924-a9d7-44a5-b60c-092e0e9b3730">農場の周囲には複数の警備所があります。<br>屋根の上の警備所にはウルサラが配置されており、鎧作業台のある木造小屋の階段を上るとそこにアクセスできます。<br>農場の裏手には給水塔の上にも警備所があり、夜はザビエルがそこにいます。<br>近くには、シルトビーンズ、レイザーグレイン、<a href="pumpkin.html" class="auto-link">カボチャ</a>が栽培されている、柵で囲まれた小さな農地があります 。</p><hr name="fd8856ac-aa7a-44f0-a51d-2b837fe5bf97" id="fd8856ac-aa7a-44f0-a51d-2b837fe5bf97"><h2 name="d9887167-2f16-4ca9-839d-f9681583eba0" id="d9887167-2f16-4ca9-839d-f9681583eba0">住民</h2><h3 name="e5d5c543-9e56-4eda-b8f3-84a99b054dee" id="e5d5c543-9e56-4eda-b8f3-84a99b054dee">ダニエル</h3><div class="note-figure"><img src="images/note_extracted/n00a24a380fd7_img_2.png" alt="" width="620" height="498"><div class="note-figcaption">ダニエル</div></div><p name="2e7d48e3-1af6-498e-a357-bfc0eadb2d32" id="2e7d48e3-1af6-498e-a357-bfc0eadb2d32">ダニエルは家族と共にアパラチア地方に移住し、そこでの生活を再建しようとした。<br>彼は「アパラチアの宝」には全く興味がなく、ただ静かにプライバシーを保って暮らせる場所を求めているだけだった。<br>到着すると、ダニエルと彼のグループはフリー・ラディカルズに襲撃され、毎月食料や物資を届けるよう要求された。<br>ダニエルのグループにいた女性マギーは襲撃者たちに立ち向かい、協力を拒否したため、ダニエルは治安維持のためにその場で彼女を殺害した。<br>ダニエルはギャング団からの保護を申し出られ、ローパーのギャング団の拠点であるウェストバージニア・ランバー・カンパニーに毎月の物資を自ら届けることに同意した。<br>ダニエルは月に一度、マレーと共に食料、弾薬、スクラップを届けに行った。<br>現在、彼は子供のハンナ、ザビエルという男性、マレーという男性、そしてウルサラという女性とともにアンカー農場に住んでいます。<br></p><h3 name="2d9f60e6-93f3-4465-b9e2-e35933a1604b" id="2d9f60e6-93f3-4465-b9e2-e35933a1604b">ハンナ</h3><div class="note-figure"><img src="images/note_extracted/n00a24a380fd7_img_3.png" alt="" width="620" height="853"><div class="note-figcaption">ハンナ</div></div><p name="0f0c85ff-e40f-441c-8450-c4725971034d" id="0f0c85ff-e40f-441c-8450-c4725971034d">ハンナは父親と他のウェイストランダーズと共に農場で暮らしている。<br>農場で暮らす唯一の子供である。<br>フリーラジカルの現状については何も知らないが、ダニエルが一人で<a href="holotape.html" class="auto-link">ホロテープ</a>を聴いているのを残念そうに見ていることに気づいている。<br></p><h3 name="3d59501d-2315-44ec-b3cc-50d999ecae3b" id="3d59501d-2315-44ec-b3cc-50d999ecae3b">マレー</h3><div class="note-figure"><img src="images/note_extracted/n00a24a380fd7_img_4.png" alt="" width="620" height="498"><div class="note-figcaption">マレー</div></div><p name="92368842-4bb7-4ab9-be68-6a5235a757e5" id="92368842-4bb7-4ab9-be68-6a5235a757e5">マレーはキャピタル・ウェイストランド出身で、より良い生活を求めて2103年にダニエルのグループと共にアパラチア地方へと旅立った。<br>マレーは月に一度、 ダニエルがフリーラジカルに物資を輸送するのを手伝っている。<br>彼は農家の裏にある作業場エリアにいます。<br>他の入植者に比べると部外者に対しては少し友好的ですが、それでも一人にしておくことを望んでいます。<br></p><h3 name="dc307bba-d603-481a-af0b-b59fecf431de" id="dc307bba-d603-481a-af0b-b59fecf431de">ウルサラ</h3><div class="note-figure"><img src="images/note_extracted/n00a24a380fd7_img_5.png" alt="" width="620" height="806"><div class="note-figcaption">ウルサラ</div></div><p name="f9c29086-2b59-4c92-91ab-0ece0d979b46" id="f9c29086-2b59-4c92-91ab-0ece0d979b46">ウルサラはほとんどの時間を農家の屋根の上で過ごし、屋上に設置された木製の監視所に陣取っている。<br>彼女はVault居住者をあまり信用しておらず、この集落には干渉しないことを望んでいる。<br></p><h3 name="5bcd4ad9-14b6-46ee-88ca-e942088c622f" id="5bcd4ad9-14b6-46ee-88ca-e942088c622f">ザビエル</h3><div class="note-figure"><img src="images/note_extracted/n00a24a380fd7_img_6.png" alt="" width="620" height="667"><div class="note-figcaption">ザビエル</div></div><p name="435351d1-2c10-4c4c-9c22-3e985b213fc7" id="435351d1-2c10-4c4c-9c22-3e985b213fc7">ザビエルは2103年にダニエルのグループと共にアパラチア地方を旅しました。<br>彼は農家の裏手にあり、日中は小さな農地で働き、夜は近くの給水塔の上に建てられた小屋で寝ています。<br>彼は部外者を信用しておらず、話しかけられると無礼な態度をとります。</p><hr name="b137e783-3656-4ad9-aac3-525c3d404a29" id="b137e783-3656-4ad9-aac3-525c3d404a29"><div class="quote-box">
+<b>感想</b><br><br>
+個人的にはアンカーより飛行機が目立つ農場ってイメージですね。<br>特にめぼしい農作物も無いのでメインストーリー時でしか寄らないというイメージが強い農場です。<br>フリー・ラディカルズとの接触のせいで非常に排他的なコミュニティとなっています。<br>キャピタル・ウェイストランド出身だったんですね!へぇー!<br><br><div class="note-figure"><img src="images/note_extracted/n00a24a380fd7_img_7.png" alt="" width="620" height="349"><div class="note-figcaption">目立つ飛行機<div class="note-figure"><img src="images/note_extracted/n00a24a380fd7_img_8.png" alt="" width="620" height="349"><div class="note-figcaption">ヌカ・コーラ看板
+</div>
+
+</div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

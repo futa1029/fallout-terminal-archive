@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>シェルター受付センター | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">シェルター受付センター</h3>
+            <img src="images/note_extracted/n0c234b51cdd3_img_1.png" alt="シェルター受付センター">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>記録</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n0c234b51cdd3" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>シェルター受付センター</h1>
+            <div class="date">DATE: 2025/11/11</div>
+            
+            <h3 name="8f52a304-9137-4a48-bea8-fadb770020cc" id="8f52a304-9137-4a48-bea8-fadb770020cc"><a href="fallout76.html" class="auto-link">Fallout76</a></h3><p name="c1a8e80c-931c-430b-9958-22fd68a711c4" id="c1a8e80c-931c-430b-9958-22fd68a711c4">アパラチア・シェルター受付センターは、一般にシェルター受付センターとして知られ、アパラチアの森林地域にあるロケーションです。</p><hr name="3b1e7cf0-2a86-4bdf-af62-cb8efbcc01fb" id="3b1e7cf0-2a86-4bdf-af62-cb8efbcc01fb"><h2 name="6399efc3-45fc-4c40-94c1-89b6309d4751" id="6399efc3-45fc-4c40-94c1-89b6309d4751">背景</h2><p name="5f5dfc74-57b8-45af-9141-d0b139b708a2" id="5f5dfc74-57b8-45af-9141-d0b139b708a2">核戦争以前、この受付センターは、Vault-Tec Sheltersを発売するためのマーケティングキャンペーンの準備を進めていました。<br>これは、Vault-Tecを有名にした従来の社会保全を目的とした大規模なVaultとは異なり、より小規模なグループ向けに設計された個人用のVaultでした。</p><p name="399eec11-a3bf-4ed5-8857-f9bf749ebc20" id="399eec11-a3bf-4ed5-8857-f9bf749ebc20">核爆弾が投下されたとき、2人のエンジニア、ジェイムソン・グリロとアーロン・ブレイディが受付センターに詰めていました。<br>彼らは約2か月にわたり、固定電話での外部への連絡を試みたり、<a href="vault-51.html" class="auto-link">Vault 51</a>の内部ネットワークにハッキングを試みたりしましたが、すべて失敗に終わりました。<br>2077年の厳しい冬の極度の寒さのため、二人は受付センターを放棄せざるを得なくなり、より温暖な気候を求めてポトマック川沿いに南へと向かいました。<br>Mr.クラークは、自分の持ち場を離れることを拒否して、センターに残りました。</p><p name="8de47516-ae95-4e04-b025-17787ea5418b" id="8de47516-ae95-4e04-b025-17787ea5418b">隣接する<a href="vault-51.html" class="auto-link">Vault 51</a>から脱出したルーベン・ギルは、数か月間この受付センターで過ごし、Vaultの内部ネットワークへのアクセスを試みました。<br>彼は最終的に、Mr. クラークを利用してアクセスに成功しました。<br>ギルは、彼が信じ込まされていたのとは異なり、<a href="vault-51.html" class="auto-link">Vault 51</a>が完全には自動化されていなかったという、彼の核心を揺るがす恐ろしい発見をしました。<br>さらに悪いことに、Mr. クラークがギルを「ミスター・候補者」と呼び始め、奇妙な記憶の不具合を報告したため、ギルはZAXがこのロボットのネットワークにアクセスしたのではないかと疑うようになりました。<br>これらの状況から、ギルは受付センターで身を守るための防御を構築するために、追加の物資を見つけに出発します。<br>しかし、ギルは二度と戻りませんでした。<br>彼の説明と一致する遺体は、孤立した小屋で見つけることができます。</p><hr name="5d59b3d5-34de-43ac-85c0-18e4a27a66aa" id="5d59b3d5-34de-43ac-85c0-18e4a27a66aa"><h2 name="b690d5fb-02e9-4d9f-b990-6f626eb97f5b" id="b690d5fb-02e9-4d9f-b990-6f626eb97f5b">レイアウト</h2><h3 name="f480bda3-7e2c-4c81-a67a-de8baddb7665" id="f480bda3-7e2c-4c81-a67a-de8baddb7665">外観</h3><p name="d1dc3819-b048-4346-8645-06d7117285a3" id="d1dc3819-b048-4346-8645-06d7117285a3">目立たないハッチと、Sheltersの広告ポスターがあるだけです。</p><h3 name="549e09d7-4a2b-410a-aaa2-286582f5dcf2" id="549e09d7-4a2b-410a-aaa2-286582f5dcf2">内部</h3><p name="7cc6b098-4b49-4745-8b29-dfad5c014776" id="7cc6b098-4b49-4745-8b29-dfad5c014776">ハッチを入ると、細長いロビーがあり、武器作業台とフーズボール台があります。</p><div class="note-figure"><img src="images/note_extracted/n0c234b51cdd3_img_2.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="d7ccf57a-dac8-47c1-81d4-621babb4de02" id="d7ccf57a-dac8-47c1-81d4-621babb4de02">隣接する部屋には、Vault-Tec Sheltersの販売と顧客サービスを担当するユニークな<a href="mr-handy.html" class="auto-link">ミスター・ハンディ</a>であるMr. クラークがいます。</p><div class="note-figure"><img src="images/note_extracted/n0c234b51cdd3_img_3.png" alt="" width="620" height="349"><div class="note-figcaption"></div></div><p name="c3f6064c-2260-427f-bc0c-316dff484e96" id="c3f6064c-2260-427f-bc0c-316dff484e96">この部屋には、食堂エリアに化学作業台、そしてルーベン・ギルの仮設の寝床と彼の金庫がある場所にアーマー作業台があります。</p><hr name="2e8bae6a-88f5-4311-a1fd-cb5e989ed907" id="2e8bae6a-88f5-4311-a1fd-cb5e989ed907"><h2 name="3a5a217b-9d0a-44af-89a1-2326439a0d86" id="3a5a217b-9d0a-44af-89a1-2326439a0d86">注目すべき戦利品</h2><h3 name="72312993-c892-4c1e-b107-584a993350af" id="72312993-c892-4c1e-b107-584a993350af">Passwords（パスワード）</h3><p name="a6ec66c4-83b9-4f9a-9729-ffbbe02a6023" id="a6ec66c4-83b9-4f9a-9729-ffbbe02a6023">Mr. ギルの金庫の中にロックされています。<br>ロック解除には彼の金庫の鍵が必要です。</p><hr name="81db4b25-7b1f-400c-aa0e-b3bccbd5e5db" id="81db4b25-7b1f-400c-aa0e-b3bccbd5e5db"><h2 name="ff580746-0fc6-4da1-999f-ff410cc88480" id="ff580746-0fc6-4da1-999f-ff410cc88480">登場作品</h2><p name="062e97db-148a-4bf3-96fa-3634d1135dcb" id="062e97db-148a-4bf3-96fa-3634d1135dcb">シェルター受付センターは、Fallout 76にのみ登場し、Steel Dawnアップデートで導入されました。</p><hr name="a49fec0b-98cf-41e6-afd7-27bf3f2aa64f" id="a49fec0b-98cf-41e6-afd7-27bf3f2aa64f"><div class="quote-box">
+<b>感想</b><br><br>
+<div class="note-figure"><img src="images/note_extracted/n0c234b51cdd3_img_4.png" alt="" width="620" height="876"><div class="note-figcaption">ここは駅のシェルターサービスのポスターを調べるとマッピングされる場所です。<br>なので初心者さんでも駅のポスターポチポチしてると訪れる場所となっています。<br>Vault51の生存者であるルーベン・ギルが過ごした場所ということもあり、ニュークリアウィンターの報酬であるトロフィーが展示してあります。<br>彼の箱を開けるにはサブクエストが発生した状態で、孤立した小屋のルーベン・ギルの死体から鍵を取得する必要があります。<br>これにてVault51関連の謎は全て解明となります。<br>お付き合いありがとうございました。<br><br>ちなみにここでは自分のC.A.M.Pに設置できるShelterを貰えることができます。<br><br><div class="note-figure"><img src="images/note_extracted/n0c234b51cdd3_img_5.png" alt="" width="620" height="349"><div class="note-figcaption">
+</div>
+
+<p name="81f56ee4-f9dd-42c7-87ac-4abd043179fb" id="81f56ee4-f9dd-42c7-87ac-4abd043179fb">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p></div></div></div></div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

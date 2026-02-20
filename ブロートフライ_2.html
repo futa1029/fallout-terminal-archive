@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブロートフライ | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ff8800; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">ブロートフライ</h3>
+            <img src="images/note_extracted/n2c0655c7a314_img_1.png" alt="ブロートフライ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_n2c0655c7a314" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ブロートフライ</h1>
+            <div class="date">DATE: 2025/10/21</div>
+            
+            <p name="be23b09d-0da9-4fdd-b239-2246a5d6ed5e" id="be23b09d-0da9-4fdd-b239-2246a5d6ed5e"><strong>Fallout3 Fallout:NewVegas Fallout4 <a href="Fallout76.html" class="auto-link">Fallout76</a></strong></p><p name="ba5bef7c-1b56-46d0-ba60-2453d4618e73" id="ba5bef7c-1b56-46d0-ba60-2453d4618e73">ブロートフライは、アパラチア、キャピタル・ウェイストランド、コモンウェルス、モハビ・ウェイストランドでよく見られる、特大の噛みつくウマバエや一般的なイエバエが<a href="変異.html" class="auto-link">変異</a>した害虫です。</p><h2 name="947b5118-28a1-4e94-bcbd-df17e52dce10" id="947b5118-28a1-4e94-bcbd-df17e52dce10">詳細</h2><p name="7574c837-42b7-44be-880b-62fc52d234c3" id="7574c837-42b7-44be-880b-62fc52d234c3">大戦によって引き起こされた突然変異の一例として、ブロートフライはイエバエ科（Musca domestica ）またはアブ属（Tabanus）の吸血性アブのいずれかの進化形である。<br>エンクレイヴによって暫定的に双翅目、昆虫綱、節足動物門、動物界、アブ科に分類されており、進化上の祖先とは大きく異なる。</p><h3 name="a16140b7-4bce-4e44-ad62-b78f7cd8ec20" id="a16140b7-4bce-4e44-ad62-b78f7cd8ec20">生物学</h3><p name="ce438534-63b6-4835-8521-17c547f45332" id="ce438534-63b6-4835-8521-17c547f45332">標準的なブロートフライは緑と茶色の甲羅を持ち、以前の種よりもかなり大きく、より粘り強い。<br>その体格は以前の飛翔特性と敏捷性を阻害し、戦前のアブのように摂食することは不可能である。<br>代わりに、膨張した針と腹部で妊娠している蛹を使って獲物を無力化する。<br>針は、先端にとげのある針を持つ成熟した幼虫を発射することができる。<br>幼虫は獲物に掛かり、より大きな獲物を無力化する神経毒を放出することで、ブロートフライとその幼虫は摂食できるようになる。</p><p name="9dbe6a4a-27c1-4fcd-b24e-c1d315bc30bd" id="9dbe6a4a-27c1-4fcd-b24e-c1d315bc30bd">その神経毒は人間や大型の標的には効果がなく、局所的な壊死のみを引き起こす。<br>その結果、ブロートフライは、その肉を食料として利用する人々にとって、捕食者というよりは獲物として機能している。<br>ブロートフライは、獲物や他の栄養源が乏しい状況では、腐肉食に頼ることがある。<br>独特の腺を持ち、その体格に適応することで、体が大きくなってもバランスを取り、速度を維持することができる。<br>その腺自体は摂取すると有毒である可能性がある。<br></p><div class="note-figure"><img src="images/note_extracted/n2c0655c7a314_img_2.png" alt="" width="620" height="468"><div class="note-figcaption">ブロードフライの肉</div></div><div class="note-figure"><img src="images/note_extracted/n2c0655c7a314_img_3.png" alt="" width="620" height="455"><div class="note-figcaption">ブロードフライの大群</div></div><h3 name="4d85f328-d36c-4b20-b6bc-e6b4a1c1c670" id="4d85f328-d36c-4b20-b6bc-e6b4a1c1c670">行動</h3><p name="5922d633-c956-45f7-8b63-ffe8bdbbd3a2" id="5922d633-c956-45f7-8b63-ffe8bdbbd3a2">ブロートフライは荒野でよく見られる生物で、大きさは様々で、縄張り意識が強く、自己保存能力は低い。<br>2～4匹の群れで現れ、容赦なく標的を攻撃する。<br>ブロートフライは死ぬと爆発することがある。<br></p><h3 name="2fd2983c-ef82-4daf-adec-e5e757a732bb" id="2fd2983c-ef82-4daf-adec-e5e757a732bb">変種</h3><div class="note-figure"><img src="images/note_extracted/n2c0655c7a314_img_4.png" alt="" width="620" height="647"><div class="note-figcaption">変種</div></div><p name="63a9bf45-e0cb-4f3c-a1ff-218f2370aebf" id="63a9bf45-e0cb-4f3c-a1ff-218f2370aebf">ブロートフライは、腹部から発射した棘のある幼虫を獲物に浴びせ、遠距離から攻撃します。<br>集団で攻撃する傾向があり、遠距離からの攻撃能力によって更なる脅威となる場合があります。<br></p><h3 name="d09fd245-49cc-4938-87db-7e014353639a" id="d09fd245-49cc-4938-87db-7e014353639a">NPCやロード画面の言及</h3><p name="99e59c80-6eef-49e2-ba3f-5a22069b2b15" id="99e59c80-6eef-49e2-ba3f-5a22069b2b15">「外へ出て、ブロートフライ腺を探しに行こう。ほら、今の特大サイズのブロートフライは、もっと古い種の小型ハエから進化したんだ。放射能への適応によって、その体格にもかかわらずバランスを取り、速度を維持できる独特の腺が生まれた。さあ、どうだ？解剖する準備はいいかい？」</p><p name="22a4edf2-87f7-4734-8cbc-d98ac40b6a21" id="22a4edf2-87f7-4734-8cbc-d98ac40b6a21">「忘れるな、腺は無傷で持ち帰るんだ。ああ、噛んではいけない。あのミスのせいで生徒の一人がひどい病気になったんだ。」</p><p name="28d3b726-4492-4dd3-89de-ef2a1adee512" id="28d3b726-4492-4dd3-89de-ef2a1adee512">「ウェイストランドで最も不快な生物の 1 つであるブロートフライは、ウジ虫を弾丸のように発射し、死ぬと爆発することが多い。」</p><div class="note-figure"><img src="images/note_extracted/n2c0655c7a314_img_5.png" alt="" width="620" height="307"><div class="note-figcaption">Fallout 3とFallout: New Vegasのブロートフライダーツ</div></div><div class="quote-box">
+<b>感想</b><br><br>
+ブロードフライは私が嫌いな敵キャラクター4位です。<br>まず音が嫌い。<br>倒したら破裂するのも嫌い。<br>ロア調べたら蛆虫飛ばしてる事を知って更に嫌いになりました。<br>あれ針じゃ無かったのかよ…。
+</div>
+
+<p name="0e9f0d6b-e565-49d6-829a-0a6009fb8d09" id="0e9f0d6b-e565-49d6-829a-0a6009fb8d09">This article uses material from the “Endor” article on the Star Wars wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.</p>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mr. Prize Bot (ミスター・プライズボット) | Overseer Mohi's Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ccff;
+            /* Prize Bot Cyan */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #80e5ff;
+            background: rgba(0, 204, 255, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        /* Certificate Style */
+        .certificate {
+            border: 2px double var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.3);
+            font-family: 'Share Tech Mono', monospace;
+            color: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Mr. Prize Bot<br>(ミスター・プライズボット)</h3>
+            <img src="./images/note/230/2.webp" alt="Mr. Prize Bot">
+
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>ロボット</span></div>
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>ミスター・ハンディ</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>グレート・アパラチア・スイープステークス</span></div>
+            <div class="infobox-row"><span class="infobox-label">ステータス</span><span>殺害可能</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">
+                    < BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="prize_bot" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+                    <h1>Mr. Prize Bot (ミスター・プライズボット)</h1>
+
+                    <div class="quote-box">
+                        「ついにあなたを見つけられて本当に嬉しいです！」<br>
+                        <br>
+                        ―― ミスター・プライズボット
+                    </div>
+
+                    <p>
+                        ミスター・プライズボットは、Fallout 76 のシーンタイプのランダムエンカウンター「受賞者」で見つかるユニークなミスター・ハンディです。
+                    </p>
+
+                    <h2>背景</h2>
+                    <p>
+                        Vault 居住者は、ランダムエンカウンターで
+                        ミスター・プライズボットにアプローチされることがあります。彼は居住者が「グレート・アパラチア・スイープステークス」で賞品を獲得したと主張します。その後、彼はプレイヤーに与える賞品をランダムに一つ選択します。
+                    </p>
+                    <p>
+                        賞品には、3種類の異なる G.A.S. 賞品証明書のうちの1つ、50または100戦前のお金、銀の懐中時計、金の懐中時計、銀のロケット、または基本的なピストルやライフルが含まれます。
+                    </p>
+                    <p>
+                        Vault
+                        居住者に賞品を渡した後、彼は免責事項やその他の警告を読み上げます。例えば、未払いの手数料があることや、個人情報が同意なしに共有されることなどを告げ、最後に幸運を祈って去っていきます。
+                    </p>
+
+                    <img src="./images/note/230/3.webp" class="article-image" alt="Mr. Prize Bot Encounter">
+                    <div style="font-size:0.8em; color:#888; text-align:center;">積灰の山Ver</div>
+
+                    <h2>G.A.S. 賞品証明書一覧</h2>
+
+                    <div class="certificate">
+                        <h3>G.A.S. 賞品証明書</h3>
+                        <p>
+                            当選者様、おめでとうござい ます 。グランプリ賞品のクリスラス・コルベガ （新品）に当選しました。賞品のお届けには16～52週間かかります。
+                            グレート・アパラチア・スウィープステークス・インコーポレーテッドは、5ポンドを超える賞品の保管および配送料については責任を負いません。この証明書を受け取ることで、当選者は配送確認が届くまですべての保管料を支払うことに同意したことになります。
+                        </p>
+                    </div>
+
+                    <div class="certificate">
+                        <h3>G.A.S. 賞金証明書</h3>
+                        <p>
+                            当選者様、おめでとうございます。 2等賞の賞金 10万ドルに当選され たことをお知らせいたします。 小切手のお届けには16週間から52週間かかります。
+                            グレート・アパラチア・スウィープステークス・インコーポレーテッドは、小切手のお届け前に発生した利息については一切責任を負いません。この証明書を受け取ることで、当選者は2077年10月31日までに小切手請求書A37-Jを提出することに同意したものとみなされます。提出しない場合は、賞金の請求権を放棄するものとします。
+                        </p>
+                    </div>
+
+                    <div class="certificate">
+                        <h3>G.A.S. カタログ証明書</h3>
+                        <p>
+                            当選者様、おめでとうございます 。 第3賞品の当選 をお知らせいたします。賞品はクラム1年分です。賞品のお届けは16～52週間後となります。
+                            グレート・アパラチア・スウィープステークス・インコーポレーテッドは、5ポンドを超える賞品の保管および配送料については責任を負いません。
+                            この証明書を受け取ることで、当選者は配送確認書を受け取るまですべての保管料を支払うことに同意したことになります。
+                        </p>
+                    </div>
+
+                    <h2>舞台裏</h2>
+                    <p>
+                        ミスター・プライズボットの台詞の最後に登場する可能性がある「通知：プライバシーポリシーを更新しました (Notice: we've updated our privacy
+                        policy)」という一節は、現実世界のウェブサイトやアプリ、その他のソフトウェアからの同様の文言の通知への言及です。こうしたサービスでは、プライバシーポリシーが更新された際にそれを開示しなければならないことが多いためです。
+                    </p>
+                    <p>
+                        2018年の Fallout 76 のリリースに先立ち、2018年5月に欧州連合 (EU) で一般データ保護規則 (GDPR)
+                        が可決された結果、多くの企業やウェブサイトがこれに準拠したため、プライバシーポリシーの通知がオンライン上でミームとなりました。ミスター・プライズボットの台詞は、現実世界のタイミングに基づき、このミームの影響を受けたものと思われます。
+                    </p>
+
+                    <div class="quote-box">
+                        <b>感想</b><br><br>
+                        ミスター・プライズボットは近づいてきて即壊されるロボット第2位ではないでしょうか。<br>
+                        <br>
+                        自分が大事にとってたのは入賞の物だけだったので他の物は英語からの翻訳になっています。日本語だと個人情報が公開されるどーたらこーたらもあったと思います。<br>
+                        <br>
+                        戦前の企業の倫理観が終わってるのを象徴しますね!
+                    </div>
+
+                    <div
+                        style="margin-top: 30px; border-top: 1px solid #444; padding-top: 10px; font-size: 0.8em; color: #888;">
+                        <div style="margin-bottom: 10px;">
+                            TAGS: <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Fallout76</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Robot</span>
+                            <span
+                                style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color);">#Encounter</span>
+                        </div>
+                        This article uses material from the “Mr. Prize Bot” article on the Fallout wiki at Fandom and is
+                        licensed under the Creative Commons Attribution-Share Alike License.
+                    </div>
+
+        </main>
+    </div>
+
+
+        <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            // ローカルには自分が「押したかどうか(true/false)」だけを記録
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+            // ボタン連打防止のため一時的に無効化
+            btn.disabled = true;
+
+            if (isLiked) {
+                // いいね解除 (-1)
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                // いいね！ (+1)
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+            
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        // ページ読み込み時にデータベースから現在の総いいね数を取得して表示
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+                // DBから現在のカウントを取得
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    // まだ誰もいいねしていない（行がない）場合
+                    count = 0;
+                }
+
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+
+</html>
