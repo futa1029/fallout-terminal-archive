@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>バッファロー・ゴードの種 | Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        /* 2-Column Grid Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .date {
+            font-size: 1.1em;
+            color: #888;
+            margin-bottom: 20px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area matching manual entries */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Quote Box for Impressions */
+        .quote-box {
+            font-style: auto;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* Auto Cross-Links */
+        .auto-link {
+            color: #ffce07 !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed #ffce07 !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: rgba(255, 206, 7, 0.2);
+            border-bottom: 1px solid #ffce07 !important;
+        }
+
+        /* Note specific Inline Images */
+        .note-figure {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        /* Terminal / Holotape / Note Logs */
+        .note-figure blockquote {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 20px;
+            margin: 0;
+            border-radius: 4px;
+            color: #dcdcdc;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            text-align: left;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+
+        .note-figcaption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">バッファロー・ゴードの種</h3>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>植物 / アイテム</span></div>
+            <div class="infobox-row"><span class="infobox-label">重量</span><span>0.02</span></div>
+            <div class="infobox-row"><span class="infobox-label">価値</span><span>2</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="buffalo_gourd_seed" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>バッファロー・ゴードの種</h1>
+            <div class="date">DATE: 2026/2/21</div>
+
+            <p>バッファロー・ゴードの種は、Fallout: New Vegas に登場する消耗品です。</p>
+
+            <h2>特性</h2>
+            <p>つるから収穫するか、モハビの商人から購入できる一般的な消耗品です。<br>
+                つるは道路沿いや開けた砂漠で見つけることができ、その薄緑色で識別可能です。</p>
+            <p>アドオン「Lonesome Road」を導入している場合、バッファロー・ゴードの種はサージカルチューブと組み合わせて、<b>スネークバイト止血帯</b>を作成するために使用されます。</p>
+
+            <h2>効果</h2>
+            <p>
+                2秒間、毎秒HPが +1 回復します。<br>
+                ハードコアモードのみ：飢餓-10 中毒性：なし 重量：0.02 価値：2キャップ
+            </p>
+
+            <h3>サバイバルスキルによる効果</h3>
+            <p>スキル値に応じて効果が変動します。</p>
+            <ul>
+                <li>スキル 10：2秒間、毎秒HP +1（飢餓 -12）</li>
+                <li>スキル 20：2秒間、毎秒HP +1（飢餓 -14）</li>
+                <li>スキル 30：2秒間、毎秒HP +1（飢餓 -16）</li>
+                <li>スキル 40：2秒間、毎秒HP +1（飢餓 -18）</li>
+                <li>スキル 50：2秒間、毎秒HP +2（飢餓 -20）</li>
+                <li>スキル 60：2秒間、毎秒HP +2（飢餓 -22）</li>
+                <li>スキル 70：2秒間、毎秒HP +2（飢餓 -24）</li>
+                <li>スキル 80：2秒間、毎秒HP +2（飢餓 -26）</li>
+                <li>スキル 90：2秒間、毎秒HP +2（飢餓 -28）</li>
+                <li>スキル 100：2秒間、毎秒HP +3（飢餓 -30）</li>
+            </ul>
+
+            <h2>ロケーション</h2>
+
+            <h3>植物</h3>
+            <p>モハビ・ウェイストランド全域で合計80個の採取可能なバッファロー・ゴードの植物が見つかります。</p>
+            <ul>
+                <li>モハビ・アウトポスト本部ビルの裏にあるピクニックエリアに4つの植物があり、道路を挟んだ向かい側のバラモンの囲いのそばに3つあります。</li>
+                <li>プリムビーグル保安官代理の住居のすぐ外に2つの植物があります。</li>
+                <li>H&Hツール工場の西にある近隣地域の廃墟となった家や通りの間に、いくつかのつるが点在しています。</li>
+                <li>モンテカルロ・スイートの南東に巨大なバージョンの植物が見つかります。</li>
+                <li>グッドスプリングス雑貨店の前の道路に1つあります。</li>
+            </ul>
+
+            <h3>種</h3>
+            <ul>
+                <li>ラッキー38カジノの東側にあるバーの後ろの棚に7個あります。</li>
+                <li>グッドスプリングスゲーム開始時のドック・ミッチェルの家に3個の種があります。これらには所有権が設定されておらず、プレイヤーキャラクターがカルマを失うことなく取得できます。</li>
+                <li>ヘリオス１発電所ビルの最後の部屋、展望室のドアの隣にいくつか見つかります。</li>
+                <li>188交易所とボルダーシティの間の道路上で見つかります。</li>
+                <li>部族の村の最南端のキャンプにある棚に、所有権のない種が2個あります。</li>
+            </ul>
+
+            <h2>注記</h2>
+            <p>以前はゲッコー・ケバブを作るために使用されていましたが、パッチ 1.2.0.31x 以降、材料の一つではなくなりました。</p>
+
+            <h2>舞台裏</h2>
+            <p>バッファロー・ゴードの種は、現実世界の植物であるバッファロー・ゴードに基づいています。</p>
+
+            <h2>バグ</h2>
+            <p>PlayStation 3版において、バッファロー・ゴードの種を落としてから見ると、重量が 0.00 と表示されることがあります。</p>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                <div class="note-figure">
+                    <div class="note-figcaption">
+                        バッファロー・ゴードの種は、New Vegasの砂漠地帯でサバイバル生活を送る運び屋にとって、地味ながらも生命線となり得るアイテムですね。<br><br>
+                        <b>ハードコアモードでの有用性</b>:
+                        重量が軽く、かつ飢餓値を下げてくれるため、長旅の携帯食料として非常に優秀です。特に序盤の金欠時や食料不足時には、そこら辺に生えているつるから手軽に入手できる点が頼もしいです。<br><br>
+                        <b>毒対策への転用</b>:
+                        アドオン導入後はスネークバイト止血帯の材料になるため、カサドールやナイトストーカーが徘徊する危険地帯へ挑む際の必需品へと価値が上がります。単なる種が命を救う薬に変わるというクラフト要素は、ウェイストランドの知恵を感じさせます。<br><br>
+                        <b>不運な科学者の末路</b>: ビッグマウンテンでのエピソード（種を喉に詰まらせて死に、ロボット犬の銃を持って蘇る）は、Fallout
+                        らしいブラックユーモア全開の小話であり、たかが種一つにもこうした背景ストーリーが用意されている点に開発者のこだわりを感じます。
+                    </div>
+                </div>
+                <p>This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Supabase Scripts -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+
+</html>
