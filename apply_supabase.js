@@ -26,7 +26,7 @@ const newScriptBlock = `    <!-- Supabase CDN -->
     <script>
         const supabaseUrl = '${supabaseUrl}';
         const supabaseKey = '${supabaseKey}';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         async function toggleLike(btn) {
             const articleId = btn.getAttribute('data-article-id');
@@ -39,7 +39,7 @@ const newScriptBlock = `    <!-- Supabase CDN -->
             if (isLiked) {
                 // いいね解除 (-1)
                 isLiked = false;
-                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
                 if (!error) {
                     localStorage.setItem(articleId + '_liked', isLiked);
                     updateLikeButton(btn, isLiked, data);
@@ -49,7 +49,7 @@ const newScriptBlock = `    <!-- Supabase CDN -->
             } else {
                 // いいね！ (+1)
                 isLiked = true;
-                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
                 if (!error) {
                     localStorage.setItem(articleId + '_liked', isLiked);
                     updateLikeButton(btn, isLiked, data);
@@ -83,7 +83,7 @@ const newScriptBlock = `    <!-- Supabase CDN -->
                 const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
 
                 // DBから現在のカウントを取得
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('likes')
                     .select('like_count')
                     .eq('article_id', articleId)
