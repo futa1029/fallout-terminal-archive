@@ -420,7 +420,7 @@
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
         const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         async function toggleLike(btn) {
             const articleId = btn.getAttribute('data-article-id');
@@ -433,7 +433,7 @@
             if (isLiked) {
                 // いいね解除 (-1)
                 isLiked = false;
-                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
                 if (!error) {
                     localStorage.setItem(articleId + '_liked', isLiked);
                     updateLikeButton(btn, isLiked, data);
@@ -443,7 +443,7 @@
             } else {
                 // いいね！ (+1)
                 isLiked = true;
-                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
                 if (!error) {
                     localStorage.setItem(articleId + '_liked', isLiked);
                     updateLikeButton(btn, isLiked, data);
