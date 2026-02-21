@@ -50,5 +50,27 @@ node generate_notes_html.js
 4. Step 4（`remove_duplicates.js` と `generate_notes_html.js` の実行）を行い、相互リンクを反映します。
 5. 処理が完了した `.md` ファイルは `f:\Fallout\_drafts\published\` フォルダに移動して退避させてください。
 
+## Step 5.1: X投稿フォーマットの生成
+Step 5のウェブ記事生成と同時に、X（Twitter）投稿用フォーマットも必ず生成してください：
+1. 以下のコマンドを実行する（または手動で同等の処理を行う）：
+   ```bash
+   node generate_x_post.js
+   ```
+   これにより `_X/<slug>/post.md` と `_X/<slug>/images/` が生成されます。
+
+2. **X投稿フォーマットのルール**：
+   - 「。」の後は改行して読みやすくする
+   - `---` でセクションを区切る（概要→詳細→感想の流れ）
+   - 絵文字で各セクションにアイキャッチを付ける
+   - ハッシュタグは先頭にまとめて記載（XHashtagsフィールドを参照）
+   - 画像は最大**4枚**まで（`_X/<slug>/images/`に格納）
+   - 末尾にWikiのURLを追記：`https://futa1029.github.io/fallout-terminal-archive/lore.html`
+
+3. **GitHub公開時の移動先**：
+   - X投稿済みの `_X/<slug>/` フォルダは `_drafts/published/X/<slug>/` に移動して件数管理します。
+
 ## Step 6: 完了報告
-作業完了後は、ユーザーに作成した記事（や相互リンク反映の完了）について必ず報告し、ブラウザで確認をしてもらいます。
+作業完了後は、ユーザーに以下を必ず報告します：
+- 作成したHTML記事と相互リンク反映の完了
+- 生成されたX投稿ファイル (`_X/<slug>/post.md`) の場所
+- ブラウザでの確認依頼

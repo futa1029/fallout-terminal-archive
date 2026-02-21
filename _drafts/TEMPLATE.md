@@ -2,6 +2,7 @@ Title: [記事のタイトルを書く]
 Category: [人物 / ブースト / 勢力 / 場所 / 武器 / アイテム / 読み物 / その他]
 Appearance: [Fallout 76, Fallout 3, Fallout 4, Fallout: New Vegas など]
 Date: [YYYY-MM-DD (投稿予定日)]
+XHashtags: [#Fallout #カテゴリ名 #登場作品 #記事タイトル #ロア解説 など]
 ---
 # 概要
 [ここに記事の概要・導入文を書きます。必要に応じて段落を分けてください。]
