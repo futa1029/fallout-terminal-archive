@@ -29,7 +29,7 @@ manualFiles.forEach(entry => {
 
     // Remove existing copyright blocks to prevent duplicates
     content = content.replace(/<div style="margin-top: 30px; border-top: 1px (solid|dashed) [^>]+>[\s\S]*?This article uses material[\s\S]*?<\/div>/i, "");
-    content = content.replace(/<p[^>]*>This article uses material.*?<\/p>/i, "");
+    content = content.replace(/<p[^>]*>This article uses material[\s\S]*?<\/p>/ig, "");
 
     let tagsHtml = entry.tags.map(t => `<span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">${t}</span>`).join('');
 
