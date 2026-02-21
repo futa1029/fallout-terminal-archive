@@ -97,6 +97,17 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
 <head>
     <meta charset="UTF-8">
     <title>${safeTitle} | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="${safeTitle} | Overseer Mohi's Terminal">
+    <meta property="og:description" content="${safeTitle}のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/${firstImageUrl || 'images/og-default.png'}">
+    <meta property="og:url" content="https://www.fallout-jp.com/${article.key ? article.key + '.html' : ''}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${safeTitle} | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="${safeTitle}のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/${firstImageUrl || 'images/og-default.png'}">
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
