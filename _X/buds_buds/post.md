@@ -1,18 +1,8 @@
----
-title: バッズ・バッズ（Bud's Buds）
-source_draft: _drafts/buds_buds.md
-category: 勢力
-appearance: Fallout TV
-date: 2026-02-22
-images:
-  - images/buds_buds_1.png  # 勝利のチーム！バッド・アスキンスと「バッズ・バッズ」のメンバー
-  - images/buds_buds_2.png  # Vault 31内で立ち並ぶクリオベイ（冷凍睡眠ポッド）
-  - images/buds_buds_3.png  # Vault 31出身の監督官たち
----
-
 #FalloutOnPrime #FalloutTV
 
 🧊 バッズ・バッズ
+
+https://www.fallout-jp.com/buds_buds.html
 
 バッズ・バッズ（Bud's Buds）は、ボルトテック・コーポレーションというより広範な組織の中でバッド・アスキンスによって組織された、実験的な経営訓練グループであり、ドラマ『Fallout』に登場します。
 
@@ -102,8 +92,3 @@ Vault 31の住人たちは、エンクレイヴの「投資家」によって計
 「時間は究極の武器」って言って、エリート社員を冷凍保存して次世代の支配層にする発想が、ウェイストランドでの泥臭いサバイバルと対極すぎてヤバいよね。
 安全な地下から文字通り時間を使って勝とうとする姿勢は、ドラマならではの素晴らしいヴィラン描写だったと思う！
 FEV絡みの「フェーズ2」とか、こういう裏設定とかロア掘り下げるのはたまらんね。
-
----
-
-🔗 詳しくはWikiで！
-https://futa1029.github.io/fallout-terminal-archive/lore.html
