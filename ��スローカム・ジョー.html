@@ -313,7 +313,7 @@
             if (btn) {
                 const articleId = btn.getAttribute('data-article-id');
                 const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('likes')
                     .select('like_count')
                     .eq('article_id', articleId)

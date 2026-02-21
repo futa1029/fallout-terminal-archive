@@ -427,7 +427,7 @@
                 const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
 
                 // DBから現在のカウントを取得
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('likes')
                     .select('like_count')
                     .eq('article_id', articleId)
