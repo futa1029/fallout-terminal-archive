@@ -21,6 +21,7 @@ if (!fs.existsSync(IMG_DIR)) {
 function guessCategoryAndAppearance(title, bodyText) {
     let cat = "";
     let apps = new Set();
+    let tags = new Set();
 
     const t = title.toLowerCase();
     const b = bodyText ? bodyText.toLowerCase() : "";
@@ -36,7 +37,25 @@ function guessCategoryAndAppearance(title, bodyText) {
     else if (/(イベント|デイリー|クエスト|Fasnacht|Mischief|Meat-Cook|Equinox|パブリックイベント|変異|反射)/i.test(t)) cat = "イベント・現象";
     else cat = "記録"; // デフォルト
 
-    return { category: cat };
+    if (/(Fallout 76|アパラチア|ウェイワード|76)/i.test(b) || /(Fallout 76)/i.test(t)) tags.add("#Fallout76");
+    if (/(Fallout 4|連邦|サンクチュアリ)/i.test(b) || /(Fallout 4)/i.test(t)) tags.add("#Fallout4");
+    if (/(Fallout 3|キャピタル)/i.test(b) || /(Fallout 3)/i.test(t)) tags.add("#Fallout3");
+    if (/(New Vegas|モハビ|ニューベガス)/i.test(b) || /(New Vegas)/i.test(t)) tags.add("#FalloutNV");
+    if (/(Fallout 1|Fallout 2|クラシック)/i.test(b)) tags.add("#ClassicFallout");
+
+    switch (cat) {
+        case "場所": tags.add("#Location"); break;
+        case "武器": tags.add("#Weapon"); break;
+        case "勢力": tags.add("#Faction"); break;
+        case "人物": tags.add("#Person"); break;
+        case "クリーチャー": tags.add("#Creature"); break;
+        case "植物": tags.add("#Plant"); break;
+        case "アイテム": tags.add("#Item"); break;
+        case "イベント・現象": tags.add("#Event"); break;
+        default: tags.add("#Lore"); break;
+    }
+
+    return { category: cat, tags: Array.from(tags) };
 }
 
 function getThemeColor(category) {
@@ -55,7 +74,7 @@ function getThemeColor(category) {
 
 // 共通レイアウト用HTMLジェネレータ
 // firstImageUrl: 本文中の一番最初の画像（もしあれば抽出用）
-function generateHtml(article, processedBody, firstImageUrl, categoryName, themeColor, infoboxItems = []) {
+function generateHtml(article, processedBody, firstImageUrl, categoryName, themeColor, infoboxItems = [], tags = [], copyrightText = "") {
     const safeTitle = article.title.replace(/"/g, '&quot;');
     const articleId = `note_${article.key}`; // supabaseのlike用キー
 
@@ -70,6 +89,8 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
     }
 
     infoboxRows = finalItems.map(item => `<div class="infobox-row"><span class="infobox-label">${item.label}</span><span>${item.value}</span></div>`).join('\n            ');
+
+    let tagsHtml = tags.map(t => `<span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">${t}</span>`).join('');
 
     return `<!DOCTYPE html>
 <html lang="ja">
@@ -334,6 +355,13 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
             <div class="date">DATE: ${new Date(article.date).toLocaleDateString('ja-JP')}</div>
             
             ${processedBody}
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: ${tagsHtml}
+                </div>
+                ${copyrightText}
+            </div>
         </main>
     </div>
 
@@ -580,13 +608,11 @@ async function processArticles() {
 
         // ==== 感想セクションの quote-box 化 ====
         // <h2>感想</h2> から末尾のライセンス記述 (This article uses material...) までの内容を抽出し、変換する
-        // 末尾のライセンス文言が存在する場合は分離して残す
-        const kansoRegex = /(<h2[^>]*>感想<\/h2>\s*)([\s\S]*?)(<p[^>]*>This article uses material[\s\S]*?<\/p>)?$/i;
+        const kansoRegex = /(<h2[^>]*>感想<\/h2>\s*)([\s\S]*?)$/i;
         const matchKanso = finalBody.match(kansoRegex);
 
         if (matchKanso) {
             let kansoContent = matchKanso[2];
-            let copyright = matchKanso[3] || "";
 
             // </div> ゴミが混ざっている場合があるので消去
             kansoContent = kansoContent.replace(/<\/div>/gi, '');
@@ -616,12 +642,21 @@ async function processArticles() {
 
             const newKansoHtml = `<div class="quote-box">\n<b>感想</b><br><br>\n${kansoContent}\n</div>\n\n`;
 
-            finalBody = finalBody.replace(kansoRegex, `${newKansoHtml}${copyright}`);
+            finalBody = finalBody.replace(kansoRegex, `${newKansoHtml}`);
+        }
+
+        // ==== Copyright 分離 ====
+        let copyrightText = "";
+        const copyRegex = /<p[^>]*>(This article uses material.*?|The Fallout wiki.*?Fandom.*?)<\/p>/i;
+        const matchCopy = finalBody.match(copyRegex);
+        if (matchCopy) {
+            copyrightText = matchCopy[0];
+            finalBody = finalBody.replace(copyRegex, ""); // 本文からは消し、フッター用に抽出
         }
 
         // カテゴリ名とテーマカラーの推定
         let firstImageUrl = article.firstImageUrl || "";
-        const { category } = guessCategoryAndAppearance(article.title, article.bodyHtml);
+        const { category, tags } = guessCategoryAndAppearance(article.title, article.bodyHtml);
         const themeColor = getThemeColor(category);
 
         // ==== Infobox 項目の抽出 ====
@@ -704,7 +739,7 @@ async function processArticles() {
 
         finalBody = $.html();
 
-        const finalHtml = generateHtml(article, finalBody, firstImageUrl, category, themeColor, infoboxItems);
+        const finalHtml = generateHtml(article, finalBody, firstImageUrl, category, themeColor, infoboxItems, tags, copyrightText);
         fs.writeFileSync(htmlSavePath, finalHtml, 'utf8');
         console.log(`[${i + 1}/${articles.length}] Processing HTML: ${article.htmlFilename}`);
     }
