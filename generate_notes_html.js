@@ -577,9 +577,17 @@ async function processArticles() {
             if (excludeFromLinking.includes(linkObj.title)) continue; // 除外リストのタイトルならばスキップ
 
             const escapedTitle = linkObj.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            // 前後にカタカナ・漢字・アルファベット・数字が連続している場合は「単語の一部」と見なして置換しない
-            // 正規表現の否定後読み(?<!...)と否定先読み(?!=...)を利用
-            const searchRegex = new RegExp(`(?<![ァ-ヶー一-龠A-Za-z0-9])(${escapedTitle})(?![ァ-ヶー一-龠A-Za-z0-9])`, 'g');
+            // 文字種（カタカナ、英数字）のみのタイトルの場合、同じ文字種が前後にある場合のみ置換を除外する
+            let beforeBlock = '[ァ-ヶー一-龠A-Za-z0-9]';
+            let afterBlock = '[ァ-ヶー一-龠A-Za-z0-9]';
+            if (linkObj.title.match(/^[ァ-ヶー]+$/)) {
+                beforeBlock = '[ァ-ヶー]';
+                afterBlock = '[ァ-ヶー]';
+            } else if (linkObj.title.match(/^[A-Za-z0-9\\s-]+$/)) {
+                beforeBlock = '[A-Za-z0-9]';
+                afterBlock = '[A-Za-z0-9]';
+            }
+            const searchRegex = new RegExp(`(?<!${beforeBlock})(${escapedTitle})(?!${afterBlock})`, 'g');
 
             // HTMLをタグとテキストに分解（`<...>` にマッチさせる）
             const parts = finalBody.split(/(<[^>]+>)/g);
