@@ -118,17 +118,17 @@
         
         /* Auto Cross-Links */
         .auto-link {
-            color: #ffce07 !important;
+            color: var(--accent-color) !important;
             font-weight: bold;
             text-decoration: none;
-            border-bottom: 1px dashed #ffce07 !important;
+            border-bottom: 1px dashed var(--accent-color) !important;
             transition: all 0.2s;
             padding: 0 2px;
         }
 
         .auto-link:hover {
-            background-color: rgba(255, 206, 7, 0.2);
-            border-bottom: 1px solid #ffce07 !important;
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
         }
 
         /* Note specific Inline Images */

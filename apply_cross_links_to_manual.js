@@ -21,13 +21,18 @@ const manualFiles = [
     { name: "バッファロー・ゴードの種", url: "buffalo-gourd-seed.html" }
 ];
 
-const extractedLinkDict = articles.map(a => {
-    let sanitized = titleToSlug[a.title] || a.title.replace(/[\\/:*?"<>|]/g, '_').trim();
-    return { title: a.title, url: `${sanitized}.html` };
-});
+const manualDict = manualFiles.map(m => ({ title: m.name, url: m.url }));
+const manualTitles = manualDict.map(m => m.title);
+
+const extractedLinkDict = articles
+    .filter(a => !manualTitles.includes(a.title))
+    .map(a => {
+        let sanitized = titleToSlug[a.title] || a.title.replace(/[\\/:*?"<>|]/g, '_').trim();
+        return { title: a.title, url: `${sanitized}.html` };
+    });
 
 // Combine and sort
-const linkDict = [...manualFiles, ...extractedLinkDict]
+const linkDict = [...manualDict, ...extractedLinkDict]
     .filter(a => a.title && a.title.length >= 2)
     .sort((a, b) => b.title.length - a.title.length);
 
