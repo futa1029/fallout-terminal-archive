@@ -21,6 +21,19 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
   - Supabase連携用の `<button class="like-button" data-article-id="..." onclick="toggleLike(this)">` を配置します（一意なキーを作成）。
 - インラインの画像がある場合は `<div class="note-figure">...</div>` などで囲んでも構いません。
 
+### ⚠️ 相互リンク（auto-link）の誤リンク防止ルール
+記事内のキーワードに `<a href="..." class="auto-link">` を手動で付ける際は、必ず以下を確認してください：
+
+1. **同名でも別エンティティには絶対にリンクしない**
+   - 例：「ロニー・マッカーティ（Vault 31の社員）」→ `ronnie.html`（Fallout 76のロニー）には**リンクしない**
+   - 例：「エンクレイヴ」→ `forced-evolution-virus-fev.html`（FEV記事）には**リンクしない**
+
+2. **リンク先の記事が「同一の概念・同一人物・同一組織」を扱っているときのみリンクする**
+   - 登場作品・所属組織・役割が一致しているかを必ず照合すること
+
+3. **不確かな場合はリンクしない**（プレーンテキストのままにする）
+
+
 ## Step 3: `lore.html` のインデックス更新
 - `f:\Fallout\lore.html` 内の `const loreEntries = [...]` 配列を探し、**先頭**または適切な位置に新しい記事のオブジェクトを追加してください。
   ```javascript
