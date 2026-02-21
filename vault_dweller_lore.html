@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 
 <head>
@@ -382,7 +382,7 @@
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
         const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         async function toggleLike(btn) {
             const articleId = btn.getAttribute('data-article-id');
