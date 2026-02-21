@@ -189,6 +189,31 @@
                 font-size: 1em;
             }
         }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* Auto Cross-Links */
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
     </style>
 </head>
 
@@ -201,7 +226,7 @@
             <img src="./images/note/230/2.webp" alt="Mr. Prize Bot">
 
             <div class="infobox-row"><span class="infobox-label">種族</span><span>ロボット</span></div>
-            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>ミスター・ハンディ</span></div>
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span><a href="mr-handy.html" class="auto-link">ミスター・ハンディ</a></span></div>
             <div class="infobox-row"><span class="infobox-label">所属</span><span>グレート・アパラチア・スイープステークス</span></div>
             <div class="infobox-row"><span class="infobox-label">ステータス</span><span>殺害可能</span></div>
         </aside>

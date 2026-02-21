@@ -185,6 +185,31 @@
                 font-size: 1em;
             }
         }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* Auto Cross-Links */
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
     </style>
 </head>
 
@@ -193,7 +218,7 @@
     <div class="container">
         <!-- Sidebar -->
         <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Recovered Assaultron Head<br>(回収されたアサルトロン頭部)</h3>
+            <h3 style="margin-top:0; text-align:center;">Recovered Assaultron Head<br>(回収された<a href="assaultron.html" class="auto-link">アサルトロン</a>頭部)</h3>
             <img src="./images/note/232/1.webp" alt="Recovered Assaultron Head">
 
             <div class="infobox-row"><span class="infobox-label">タイプ</span><span>遠距離武器</span></div>
