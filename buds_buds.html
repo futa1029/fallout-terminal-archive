@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>バッズ・バッズ (Bud's Buds) | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="バッズ・バッズ (Bud's Buds) | Overseer Mohi's Terminal">
+    <meta property="og:description"
+        content="バッズ・バッズ（Bud's Buds）のFalloutロア記事。ボルトテック社の経営訓練グループとVault 31の真実。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/buds_buds_1.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/buds_buds.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="バッズ・バッズ (Bud's Buds) | Overseer Mohi's Terminal">
+    <meta name="twitter:description"
+        content="バッズ・バッズ（Bud's Buds）のFalloutロア記事。ボルトテック社の経営訓練グループとVault 31の真実。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/buds_buds_1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffcc00;
+            /* Vault-Tec Gold */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #ffff88;
+            background: rgba(255, 204, 0, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* Auto Cross-Links */
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">バッズ・バッズ<br>(Bud's Buds)</h3>
+            <img src="./images/note_extracted/buds_buds_1.png" alt="バッズ・バッズ">
+
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>経営訓練グループ</span></div>
+            <div class="infobox-row"><span class="infobox-label">設立者</span><span>バッド・アスキンス</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>ボルトテック社</span></div>
+            <div class="infobox-row"><span class="infobox-label">拠点</span><span>Vault 31</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout TV</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">
+                    &lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="buds_buds" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>バッズ・バッズ（Bud's Buds）</h1>
+
+            <div class="quote-box">
+                「究極の大量破壊兵器は時間である」<br>
+                <br>
+                —— バッド・アスキンス
+            </div>
+
+            <p>
+                バッズ・バッズ（Bud's Buds）は、ボルトテック・コーポレーションというより広範な組織の中でバッド・アスキンスによって組織された、実験的な経営訓練グループであり、ドラマ『Fallout』に登場します。
+            </p>
+            <p>
+                バッドによれば、このグループの公言された目的は、他のあらゆる勢力よりも長く生き残り、彼らを圧倒することによって「完全な独占状態」を達成することでした。グループのメンバーは、ボルトテック大学の最近の卒業生を含む、厳選されたボルトテック社の若手社員たちでした。
+            </p>
+
+            <img src="./images/note_extracted/buds_buds_1.png" class="article-image" alt="バッズ・バッズのメンバー">
+
+            <h2>概要</h2>
+            <p>
+                バッズ・バッズは、ボルトテック社の役員であったバッド・アスキンスによって組織された、実験的な経営訓練グループです。ドラマ版『Fallout』において、シリーズの中核を成す重要な勢力として描かれています。
+            </p>
+            <p>
+                彼らの目的は、他のあらゆる勢力よりも「長く生き残る」ことでウェイストランドを圧倒し、地上の完全な独占状態を達成することにあります。創設者のバッドは「究極の大量破壊兵器は『時間』である」と主張しており、このグループはその異常な思想をそのまま体現した組織です。
+            </p>
+
+            <h2>Vault 31における計画</h2>
+            <p>
+                グループのメンバーは、ボルトテック大学の卒業生の中でも特に優秀な若手社員で構成されています。核戦争が勃発した際、彼らは用意されていた「Vault
+                31」へと入り、全員がコールドスリープ（冷凍睡眠）に入りました。
+            </p>
+            <p>
+                ボルトテック社の投資家たち（実際には<a href="forced-evolution-virus-fev.html"
+                    class="auto-link">エンクレイヴ</a>）の協力を得て、バッドの構想は最終的にカリフォルニア州サンタモニカの地下に建設された3つのVault（相互接続されたVault 31、Vault
+                32、Vault 33）によって結実することになります。
+            </p>
+            <p>
+                Vault 31にはバッズ・バッズのメンバーが保存されるコールドスリープ用のポッドのみが設置される一方で、Vault
+                32と33には実際の民間人の人口が収容されることになりました。30年ごとに、あるいは必要に応じて、バッズ・バッズのメンバー1人がポッドから目覚めさせられ、Vault
+                31から接続された他の2つのVaultの住民の中へと解放されます。
+            </p>
+            <p>
+                Vault 32と33の住民は皆、「Vault 31も自分たちと同じような普通の居住者がいるVaultである」と教え込まれていました。「バッズ」たちは、災害を人為的に引き起こすなどの手段を用いてVault
+                32および33の監督官になる方法を見つけ、その地位を利用して住民たちを理想的なボルトテック市民へと教化・洗脳していきます。最終的な目標は、オリジナルのボルトテックのスタッフから「スーパー・マネージャー」の世代を繁殖させ、彼らが戦後の世界を自分たちのものとして主張し、君臨し続けることでした。
+            </p>
+
+            <img src="./images/note_extracted/buds_buds_2.png" class="article-image" alt="Vault 31のクリオベイ">
+
+            <h2>エンクレイヴとの関係・フェーズ2</h2>
+            <p>
+                すべての競争相手の排除に成功した後、すべての「バッズ」は再建の日（Reclamation
+                Day）のために地上へと解放されることになっていました。しかし、これは実験の第1段階に過ぎず、投資家であるエンクレイヴがVault-Tecとウェイストランドに対して抱いている包括的な目標の一部に過ぎないことが示唆されていました。
+            </p>
+            <p>
+                Vault
+                31の住人たちは、エンクレイヴの「投資家」によって計画されバッドが承認した「フェーズ2（第2段階）」の存在について、少なくともある程度は内情を知らされていました。このフェーズの詳細は不明ですが、Vault
+                32および33の住民と、「ヒューチャー・エンタープライズ・ベンチャーズ」と呼ばれた<a href="forced-evolution-virus-fev.html"
+                    class="auto-link">強制進化ウイルス（FEV）</a>が関与することが示唆されています。
+            </p>
+
+            <h2>戦後の活動</h2>
+            <p>
+                爆弾が投下された当日、バッズ・バッズのメンバーはVault
+                31へと群がり、クリオポッド（冷凍睡眠ポッド）に入りました。大戦争から約219年後の2296年になっても、グループのメンバーの大多数は依然として冷凍睡眠の状態で眠っていました。
+            </p>
+            <p>
+                実験のプロセスは、2294年までの217年間は中断されることなく続きました。しかしこの年、Vault 32の住民たちは3つのVaultとVault
+                31の「管理層」の背後にある真実を突き止めてしまったようです。これが原因で彼らは反乱を起こし、ついに<a href="lee_moldaver.html"
+                    class="auto-link">リー・モルデイヴァー</a>のレイダーグループがVault 32に侵入し、Vault 32の住民を装ってVault 33を襲撃しました。
+            </p>
+            <p>
+                バッド・アスキンス自身は、自分自身をいわゆる「ルンバの上の脳」へと変えることで、大戦争後も219年間生き延びることができました。2296年には、Vault
+                31から目覚めて外に出たバッズ・バッズのメンバーの一部も生存しており、その中にはハンク・マクレーン、ベティ・ピアソン、ステファニー・ハーパー（ステフ）らが含まれていました。
+            </p>
+
+            <img src="./images/note_extracted/buds_buds_3.png" class="article-image" alt="Vault 31出身の監督官たち">
+
+            <h2>崩壊</h2>
+            <p>
+                2296年7月、ハンクの息子であるノルム・マクレーンがVault
+                31に侵入し、バッズ・バッズの背後にある真実を発見しました。ノルムはVault間の通信を妨害し、バッドのロボットの体を破壊して彼を無力化しました。同時に、クラーク、クラウディア、ピート、<a
+                    href="ronnie.html" class="auto-link">ロニー・マッカーティ</a>を含む、冷凍状態にあった22人のVault 31の居住者を解放しました。
+            </p>
+            <p>
+                バッドの死にもかかわらず、彼の訓練生たちは彼の計画を固く信じており、依然としてそれを実行するつもりでした。バッドの個人助手であったロニー・マッカーティはフェーズ2を（少なくともある程度は）知らされており、彼はフェーズ2を開始するために投資家と接触する意図を持って、再起動されたVault
+                31の居住者たちをかつてのVault-Tec本社へと導きました。
+            </p>
+            <p>
+                ノルムの欺瞞が発覚した後、訓練生たちは最終的にVault-Tec本社でラッドローチの群れの攻撃の犠牲となってしまいます。ノルムとクラウディアはどうにか生き残りましたが、他の幹部たちは殺されるか重傷を負い、ロニーの運命は不明のままです。
+            </p>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                バッズ・バッズ、Vault-Tecらしい冷酷さが出てて最高だなー。<br>
+                「時間は究極の武器」って言って、エリート社員を冷凍保存して次世代の支配層にする発想が、ウェイストランドでの泥臭いサバイバルと対極すぎてヤバいよね。安全な地下から文字通り時間を使って勝とうとする姿勢は、ドラマならではの素晴らしいヴィラン描写だったと思う！<br>
+                FEV絡みの「フェーズ2」とか、こういう裏設定とかロア掘り下げるのはたまらんね。
+            </div>
+
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span
+                        style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutTV</span><span
+                        style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Faction</span>
+                </div>
+                <p name="copyright-default">This article uses material from the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.</p>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            // ローカルには自分が「押したかどうか(true/false)」だけを記録
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+            // ボタン連打防止のため一時的に無効化
+            btn.disabled = true;
+
+            if (isLiked) {
+                // いいね解除 (-1)
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                // いいね！ (+1)
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        // ページ読み込み時にデータベースから現在の総いいね数を取得して表示
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+                // DBから現在のカウントを取得
+                const { data, error } = await supabaseClient
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    // まだ誰もいいねしていない（行がない）場合
+                    count = 0;
+                }
+
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+
+</html>
