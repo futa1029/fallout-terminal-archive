@@ -42,5 +42,13 @@ node generate_notes_html.js
 ```
 ※ `generate_notes_html.js` を実行することで、作成した新しい記事のタイトルが辞書に登録され、別記事の本文中にある同名キーワードが `<a href="新しい記事.html" class="auto-link">` に自動で置換されます。
 
-## Step 5: 完了報告
+## Step 5: 「下書き (Drafts) 投稿機能」の処理方法
+ユーザーから「_draftsの中にある記事を投稿して」と依頼された場合、以下の手順で作業を自動化します：
+1. `f:\Fallout\_drafts` 内にあるすべての `.md` 形式の下書きファイルを読み込みます（`TEMPLATE.md` は除外）。
+2. そのMarkdownファイルのFrontmatter（Title, Category, Appearance, Date）と本文を解析し、HTML形式で新しい記事ファイル（`[英語のslug].html`）を生成してください。本ターミナルの共通CSS、ヘッダ、SupabaseのLikeボタン、構造（`.note-figure` や `<main class="content">` など）を必ず完全に踏襲すること。
+3. `lore.html` および `note_articles_data.json` を更新し、インデックスに追加します。
+4. Step 4（`remove_duplicates.js` と `generate_notes_html.js` の実行）を行い、相互リンクを反映します。
+5. 処理が完了した `.md` ファイルは `f:\Fallout\_drafts\published\` フォルダに移動して退避させてください。
+
+## Step 6: 完了報告
 作業完了後は、ユーザーに作成した記事（や相互リンク反映の完了）について必ず報告し、ブラウザで確認をしてもらいます。

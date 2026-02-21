@@ -16,7 +16,8 @@ const manualEntries = [
     { name: "タンディ", yomi: "たんでぃ", url: "tandi.html", category: "人物", appearance: ["Fallout", "Fallout 2"], date: "2026-02-20" },
     { name: "ミスター・プライズボット", yomi: "みすたー・ぷらいずぼっと", url: "prize_bot.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-20" },
     { name: "新カリフォルニア共和国 (NCR)", yomi: "しんかりふぉるにあきょうわこく", url: "ncr.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-20" },
-    { name: "バッファロー・ゴードの種", yomi: "ばっふぁろー・ごーどのたね", url: "buffalo-gourd-seed.html", category: "植物", appearance: ["Fallout: New Vegas"], date: "2026-02-21" }
+    { name: "バッファロー・ゴードの種", yomi: "ばっふぁろー・ごーどのたね", url: "buffalo-gourd-seed.html", category: "植物", appearance: ["Fallout: New Vegas"], date: "2026-02-21" },
+    { name: "アーマー・エース", yomi: "あーまー・えーす", url: "armor-ace.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-22" }
 ];
 
 // 重複判定に用いるベースキーワード

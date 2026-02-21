@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>アーマー・エース (Armor Ace) | Overseer Mohi's Terminal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #ffcc00;
+            /* Vault-Tec Gold */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #ffff88;
+            background: rgba(255, 204, 0, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+        }
+
+        .note-figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .note-figure img {
+            max-width: 100%;
+            border: 1px solid #444;
+        }
+
+        .note-figcaption {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: 6px;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* Auto Cross-Links */
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Armor Ace<br>(アーマー・エース)</h3>
+            <img src="./images/note/235/1.webp" alt="アーマー・エース">
+
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間（架空）</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>ザ・パワーパトロール</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>主人公</span></div>
+            <div class="infobox-row"><span class="infobox-label">所有者</span><span>ダイナマイト・アニメーション・<br>カンパニー</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場</span><span>Fallout 76</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">
+                    &lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="armor-ace" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>アーマー・エース (Armor Ace)</h1>
+
+            <div class="quote-box">
+                「技術は力なり！」<br>
+                <br>
+                ―― アーマー・エース
+            </div>
+
+            <p>
+                アーマー・エースは、ダイナマイト・アニメーション・カンパニーによって作成された架空のキャラクターです。戦前のアニメシリーズ『アーマー・エースとパワーパトロール』およびその関連製品やグッズの名を冠した主人公です。
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/235/2.webp" alt="アーマー・エース">
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                アーマー・エースは、アメリカ合衆国と連携する軍事組織「ザ・パワーパトロール」のリーダーです。彼は、レッド・バイパーやユーコン・ファイブを含む、誇張されフィクション化されたアメリカの敵と戦う兵士として描かれています。
+            </p>
+            <p>
+                彼らは、T-60
+                シリーズに似たパワーアーマーのスーツを着ている姿で描かれます。スーツは主に青色で塗装されており、赤と白のアクセントがあり、胸部には黒と白のパワーパトロールのロゴがあります。ヘルメットのレンズは赤と白の間で変化します。
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/235/3.webp" alt="アーマー・エース パワーアーマー">
+            </div>
+
+            <h2>メディア</h2>
+            <ul>
+                <li>『アーマー・エースとパワーパトロール』</li>
+                <li>『自由の行進』</li>
+                <li>『コールド・スチール』</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>
+                アーマー・エースはFallout 76に登場します。彼らはシーズン2「アーマー・エース」およびシーズン4「コールド・スチール」で特集されました。
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/235/4.webp" alt="Fallout 76 シーズン">
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                アーマー・エースは、Fallout シリーズにおける戦前アメリカのプロパガンダ文化を象徴する興味深いキャラクターですね。<br>
+                <br>
+
+                <div class="note-figure" style="margin:10px 0;">
+                    <img src="./images/note/235/5.webp" alt="アーマー・エース 感想">
+                </div>
+
+                <b>愛国心の象徴:</b>
+                星条旗カラー（赤、白、青）で彩られたパワーアーマーを身にまとい、「技術は力なり」と叫ぶ姿は、戦前の政府がいかにして国民の戦意を高揚させていたかを物語っています。<br>
+                <br>
+
+                <div class="note-figure" style="margin:10px 0;">
+                    <img src="./images/note/235/6.webp" alt="レッド・バイパーとの戦闘">
+                    <div class="note-figcaption">レッド・バイパーとの激しい戦闘を描いたボードゲームのパッケージ</div>
+                </div>
+
+                <b>架空の敵との戦い:</b>
+                「レッド・バイパー」のような共産主義者を想起させる敵と戦うという設定は、当時の冷戦構造や赤狩りの風潮を子供向けアニメという形で反映しており、グロッグナックやシルバー・シュラウドとはまた違った政治色の強いヒーロー像を確立しています。
+            </div>
+
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span
+                        style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span
+                        style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Person</span>
+                </div>
+                <p name="copyright-default">This article uses material from the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.</p>
+            </div>
+        </main>
+    </div>
+
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            // ローカルには自分が「押したかどうか(true/false)」だけを記録
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+            // ボタン連打防止のため一時的に無効化
+            btn.disabled = true;
+
+            if (isLiked) {
+                // いいね解除 (-1)
+                isLiked = false;
+                const { data, error } = await supabase.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                // いいね！ (+1)
+                isLiked = true;
+                const { data, error } = await supabase.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        // ページ読み込み時にデータベースから現在の総いいね数を取得して表示
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+
+                // DBから現在のカウントを取得
+                const { data, error } = await supabase
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    // まだ誰もいいねしていない（行がない）場合
+                    count = 0;
+                }
+
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+    </script>
+</body>
+
+</html>
