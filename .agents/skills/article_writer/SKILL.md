@@ -84,7 +84,9 @@ Step 5のウェブ記事生成と同時に、X（Twitter）投稿用フォーマ
    - 絵文字で各セクションにアイキャッチを付ける
    - ハッシュタグは先頭にまとめて記載（XHashtagsフィールドを参照）
    - 画像は最大**4枚**まで（`_X/<slug>/images/`に格納）
-   - 末尾にWikiのURLを追記：`https://futa1029.github.io/fallout-terminal-archive/lore.html`
+   - **フロントマター（title/category/date等の---ブロック）は一切記載しない**
+   - **URLは記事タイトルの直下に配置する**（末尾には置かない）
+   - **下書きの内容は一切省略しない**。翻訳・校正・感想すべてのセクションを完全に盛り込むこと
 
 3. **GitHub公開時の移動先**：
    - X投稿済みの `_X/<slug>/` フォルダは `_drafts/published/X/<slug>/` に移動して件数管理します。
