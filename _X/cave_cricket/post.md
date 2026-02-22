@@ -1,8 +1,8 @@
-#Fallout #Fallout4 #Fallout76 #カマドウマ #CaveCricket #NukaWorld #クリーチャー図鑑
+#Fallout #Fallout4 #Fallout76
 
 🦗 カマドウマ（Cave Cricket）
 
-https://futa1029.github.io/fallout-terminal-archive/cave_cricket.html
+https://www.fallout-jp.com/cave_cricket.html
 
 ---
 
