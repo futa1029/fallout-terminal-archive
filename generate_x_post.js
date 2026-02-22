@@ -304,9 +304,14 @@ function main() {
         const imgOutDir = path.join(outDir, "images");
         fs.mkdirSync(imgOutDir, { recursive: true });
 
-        // 画像ファイルを検索（note_extracted にスラッグが含まれるもの）
+        // 画像ファイルを検索（note_extracted にスラッグが含まれるもの。ディレクトリは除外）
         const allImgs = fs.existsSync(IMG_SRC_DIR)
-            ? fs.readdirSync(IMG_SRC_DIR).filter((f) => f.startsWith(slug))
+            ? fs.readdirSync(IMG_SRC_DIR).filter((f) => {
+                  if (!f.startsWith(slug)) return false;
+                  return fs
+                      .statSync(path.join(IMG_SRC_DIR, f))
+                      .isFile();
+              })
             : [];
         const usedImgs = allImgs.slice(0, 4);
 
