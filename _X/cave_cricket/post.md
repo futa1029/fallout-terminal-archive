@@ -1,12 +1,10 @@
-#Fallout #Fallout4 #Fallout76
+#Fallout4 #Fallout76
 
 🦗 カマドウマ（Cave Cricket）
 
 https://www.fallout-jp.com/cave_cricket.html
 
 ---
-
-☢️ 翻訳
 
 カマドウマ（Cave Cricket）は、アパラチアおよびヌカ・ワールド周辺で見られる放射線で変異したクリーチャーです。
 彼らは戦前の祖先のいくつかの特徴、例えば長く伸びた後脚や触角を維持していますが、放射性降下物によって著しく変化しています。
@@ -23,8 +21,6 @@ https://www.fallout-jp.com/cave_cricket.html
 ベケットは軽蔑的にケム中毒者の集中力の長さをカマドウマのそれと比較しています。
 
 ---
-
-📝 校正
 
 【概要】
 カマドウマ（Cave Cricket）は、放射線の影響で大型の犬ほどのサイズにまで巨大化した突然変異の昆虫です。
@@ -59,3 +55,7 @@ Nuka-Worldの平原でこいつに急に跳びかかられてびっくりした�
 小さいのにダメージ耐性が高すぎるし、V.A.T.S.なしだと当てるのがとにかく難しい…。
 虫が苦手なプレイヤーにとっては、ヤオ・グアイなんかよりよっぽど最悪の敵かもしれない。
 グラムが「脚はいい食料になる」って言っていたし、次に狩ったときはちゃんと「カリカリカマドウマ」にして食べてみたいところ！
+
+---
+
+This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
