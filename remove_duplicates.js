@@ -19,7 +19,7 @@ const manualEntries = [
     { name: "バッファロー・ゴードの種", yomi: "ばっふぁろー・ごーどのたね", url: "buffalo-gourd-seed.html", category: "植物", appearance: ["Fallout: New Vegas"], date: "2026-02-21" },
     { name: "アーマー・エース", yomi: "あーまー・えーす", url: "armor-ace.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-22" },
     { name: "Vault-Tec Industries", yomi: "ぼるとてっく・こーぽれーしょん", url: "vault_tec.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout 3", "Fallout 4", "Fallout 76", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-23" },
-    { name: "Billings homestead (ビリングス農場)", yomi: "びりんぐすのうじょう", url: "billings-homestead.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-23" },
+    { name: "ビリングス農場", yomi: "びりんぐすのうじょう", url: "billings-homestead.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-23" },
     { name: "ペット (Fallout 76)", yomi: "ぺっと", url: "fallout-76-pets.html", category: "システム", appearance: ["Fallout 76"], date: "2026-02-23" }
 ];
 
