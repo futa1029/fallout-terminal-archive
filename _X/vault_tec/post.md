@@ -1,4 +1,4 @@
-#Fallout #Fallout3 #Fallout4 #Fallout76 #FalloutNewVegas #FalloutTV #勢力 #ボルトテック #ロア解説
+#Fallout #Fallout3 #Fallout4 #Fallout76 #FalloutNewVegas #FalloutTV #おはラチア
 
 🏛️【ボルトテック・コーポレーション】
 https://www.fallout-jp.com/vault_tec.html
