@@ -1,5 +1,6 @@
 # Fallout76
 
+Fallout 76 pets
 <https://www.fallout-jp.com/fallout-76-pets.html>
 
 概要
