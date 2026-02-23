@@ -151,12 +151,6 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
             line-height: 1.4;
         }
 
-        .date {
-            font-size: 1.1em;
-            color: #888;
-            margin-bottom: 20px;
-            font-family: 'Share Tech Mono', monospace;
-        }
 
         /* Sidebar InfoBox */
         .infobox {
@@ -363,7 +357,6 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
             </div>
 
             <h1>${safeTitle}</h1>
-            <div class="date">DATE: ${new Date(article.date).toLocaleDateString('ja-JP')}</div>
             
             ${processedBody}
 

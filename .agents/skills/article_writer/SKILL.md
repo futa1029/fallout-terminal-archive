@@ -41,6 +41,7 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 
 ## Step 2: ターミナルHTMLの生成
 新規作成するHTMLは、既存の `kimball.html` や `tandi.html`、あるいは `generate_notes_html.js` 内のテンプレートと全く同じCSS構造・配分を使用してください。
+- **DATE行は不要**: `<div class="date">DATE: ...</div>` のような日付表示は**一切使わない**こと
 - **スタイル（CSS変数）**: ベースカラー `--bg-color: #0f0f0f`、テキスト・メイン枠 `--accent-color: #00ff00`
 - **フォント**: `Share Tech Mono` および `Noto Sans JP` (`<link href="https://fonts.googleapis.com/css2?..." rel="stylesheet">`)
 - **アクションヘッダ**:
