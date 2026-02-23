@@ -1,4 +1,4 @@
-const fs = require('fs');
+﻿const fs = require('fs');
 const path = require('path');
 const https = require('https');
 const http = require('http');
@@ -392,6 +392,7 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
                     TAGS: ${tagsHtml}
                 </div>
                 ${copyrightText}
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
         </main>
     </div>

@@ -12,21 +12,25 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 「記事を作成してください」という指示を受けた場合、以下の4ステップを**必ず**実行すること：
 
 ### 原則1: 全文・全画像の完全取得
+
 - 貼られたURLの**全文**と**すべての画像**を取得し、日本語に翻訳する
 - **省略は一切しない**。すべてのセクション・サブセクションを漏れなく翻訳する
 - 画像は**一つ残らず**ダウンロードし、元のWikiと同じ箇所に配置する
 - 本文中で使わなかった画像はページ下部の**GALLERYセクション**に、元のWikiと同じカテゴリ分け（作品別等）で追加する
 
 ### 原則2: 感想の充実
+
 - 感想（quote-box）は**簡略化しない**。感じた通りに、ユーザーの口調で丁寧に書く
 - 記事の核心的テーマ、印象的なディテール、他作品との比較、ゲームプレイ体験など、多角的な視点で充実した感想を書く
 - 最低でも5〜6段落の分量を確保する
 
 ### 原則3: loreページからのリンク
+
 - ページを作成したら `lore.html` の `loreEntries` 配列にエントリーを追加する
 - `remove_duplicates.js` と `generate_notes_html.js` を実行して相互リンクを反映する
 
 ### 原則4: X投稿素材の作成
+
 - X用の文章（文字数制限なし）を `_X/<slug>/post.md` に作成する
 - 記事内から**印象的な4枚の画像**を選び `_X/<slug>/images/` フォルダに格納する
 - 画像は記事の画像アセットからコピーし、X投稿時にすぐ使える状態にする
@@ -34,13 +38,16 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 ---
 
 ## Step 1: 記事コンテンツとファイル名の決定
+
 1. 依頼された対象（キャラクター、アイテム、場所、勢力など）に関するFalloutの情報を調査します。
 2. ファイル名は「**記事タイトル.html**」とし、ファイル名に使用できない記号（`\/:*?"<>|`）が含まれる場合は `_` に置換してください。
 3. すでに同じ名前のファイルが存在する場合は、連番（`_2.html` など）を付与して回避します。
 4. **重要**: `f:\Fallout\title_to_slug.json` を開き、新しく作成する記事のタイトルと、推奨される英語のファイル名（スラッグ）のペアを追加してください。これにより、次回の自動生成時に一貫したファイル名が維持されます。
 
 ## Step 2: ターミナルHTMLの生成
+
 新規作成するHTMLは、既存の `kimball.html` や `tandi.html`、あるいは `generate_notes_html.js` 内のテンプレートと全く同じCSS構造・配分を使用してください。
+
 - **DATE行は不要**: `<div class="date">DATE: ...</div>` のような日付表示は**一切使わない**こと
 - **スタイル（CSS変数）**: ベースカラー `--bg-color: #0f0f0f`、テキスト・メイン枠 `--accent-color: #00ff00`
 - **フォント**: `Share Tech Mono` および `Noto Sans JP` (`<link href="https://fonts.googleapis.com/css2?..." rel="stylesheet">`)
@@ -48,8 +55,16 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
   - `lore.html` に戻るための `<a href="lore.html" class="back-link">< BACK TO TERMINAL</a>` をページ上部に配置します。
   - Supabase連携用の `<button class="like-button" data-article-id="..." onclick="toggleLike(this)">` を配置します（一意なキーを作成）。
 - インラインの画像がある場合は `<div class="note-figure">...</div>` などで囲んでも構いません。
+- **寄付リンク**: フッター（copyright文の後）に必ず以下を追加すること：
+
+  ```html
+  <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+  ```
+
+- **記事タイトルは英語名を使用する**: HTMLの `<title>`, `<h1>`, OGPメタタグ, サイドバーの `<h3>` では**英語のタイトル**（例: "Vault-Tec", "Aaron Kimball"）を使用すること。本文中では日本語名と英語名を併記可。
 
 ### ⚠️ 相互リンク（auto-link）の誤リンク防止ルール
+
 記事内のキーワードに `<a href="..." class="auto-link">` を手動で付ける際は、必ず以下を確認してください：
 
 1. **同名でも別エンティティには絶対にリンクしない**
@@ -62,15 +77,17 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 3. **不確かな場合はリンクしない**（プレーンテキストのままにする）
 
 ### ✍️ 感想セクションの文体ルール
+
 感想（quote-box）を書く際は、以下の表現を**使用禁止**とする：
 
 - **「マジで」** → 「本当に」「とにかく」などに置き換える
 - **「俺」** → 一人称は使わない。「みんな」「プレイヤー」など不特定多数の表現か、主語を省略する
 - **「〜するか！」「〜してみるか」** → 「〜してみたい」「〜してみたいところ」に置き換える
 
-
 ## Step 3: `lore.html` のインデックス更新
+
 - `f:\Fallout\lore.html` 内の `const loreEntries = [...]` 配列を探し、**先頭**または適切な位置に新しい記事のオブジェクトを追加してください。
+
   ```javascript
   {
       name: "新しい記事タイトル",
@@ -83,15 +100,20 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
   ```
 
 ## Step 4: 全体再構成スクリプトの実行（相互リンクの更新）
+
 新規記事を追加したことで、その単語が他のすべての記事の「相互リンク候補」になります。そのため、以下のコマンドを実行して全体を再生成してください。
+
 ```bash
 node remove_duplicates.js
 node generate_notes_html.js
 ```
+
 ※ `generate_notes_html.js` を実行することで、作成した新しい記事のタイトルが辞書に登録され、別記事の本文中にある同名キーワードが `<a href="新しい記事.html" class="auto-link">` に自動で置換されます。
 
 ## Step 5: 「下書き (Drafts) 投稿機能」の処理方法
+
 ユーザーから「_draftsの中にある記事を投稿して」と依頼された場合、以下の手順で作業を自動化します：
+
 1. `f:\Fallout\_drafts` 内にあるすべての `.md` 形式の下書きファイルを読み込みます（`TEMPLATE.md` は除外）。
 2. そのMarkdownファイルのFrontmatter（Title, Category, Appearance, Date）と本文を解析し、HTML形式で新しい記事ファイル（`[英語のslug].html`）を生成してください。本ターミナルの共通CSS、ヘッダ、SupabaseのLikeボタン、構造（`.note-figure` や `<main class="content">` など）を必ず完全に踏襲すること。
 3. `lore.html` および `note_articles_data.json` を更新し、インデックスに追加します。
@@ -99,11 +121,15 @@ node generate_notes_html.js
 5. 処理が完了した `.md` ファイルは `f:\Fallout\_drafts\published\` フォルダに移動して退避させてください。
 
 ## Step 5.1: X投稿フォーマットの生成
+
 Step 5のウェブ記事生成と同時に、X（Twitter）投稿用フォーマットも必ず生成してください：
+
 1. 以下のコマンドを実行する（または手動で同等の処理を行う）：
+
    ```bash
    node generate_x_post.js
    ```
+
    これにより `_X/<slug>/post.md` と `_X/<slug>/images/` が生成されます。
 
 2. **X投稿フォーマットのルール**：
@@ -123,6 +149,7 @@ Step 5のウェブ記事生成と同時に、X（Twitter）投稿用フォーマ
    - **内容の言い換え・要約・省略・追加は一切禁止**。HTMLページの本文と**完全に同一の文章**をそのまま転記し、X投稿フォーマット（改行・絵文字・---）だけを付加すること。セクションの省略や文章の短縮は絶対にしないこと
    - **セクション構成**：HTMLページの全セクション（概要→歴史→企業モデル→マーケティング→イデオロギー→製品→施設→感想）をすべて記載。一つも省かない
    - **末尾に必ず以下のライセンス文を `---` で区切って追記する**：
+
      ```
      This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
      ```
@@ -131,7 +158,9 @@ Step 5のウェブ記事生成と同時に、X（Twitter）投稿用フォーマ
    - X投稿済みの `_X/<slug>/` フォルダは `_drafts/published/X/<slug>/` に移動して件数管理します。
 
 ## Step 6: 完了報告
+
 作業完了後は、ユーザーに以下を必ず報告します：
+
 - 作成したHTML記事と相互リンク反映の完了
 - 生成されたX投稿ファイル (`_X/<slug>/post.md`) の場所
 - ブラウザでの確認依頼
