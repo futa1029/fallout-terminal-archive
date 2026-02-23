@@ -87,6 +87,7 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 ## Step 3: `lore.html` のインデックス更新
 
 - `f:\Fallout\lore.html` 内の `const loreEntries = [...]` 配列を探し、**先頭**または適切な位置に新しい記事のオブジェクトを追加してください。
+- **🚨【注意】作業漏れ防止🚨**: 追加操作を行った後は、確実に `loreEntries` 配列内に新しい要素が追加されたかを確認してください。ファイルの最後に追記でなく、JavaScriptの配列の中に追加する必要があります。
 
   ```javascript
   {
