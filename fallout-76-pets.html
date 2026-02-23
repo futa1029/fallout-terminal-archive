@@ -3,344 +3,297 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ペット (Fallout 76) - Fallout Terminal Archive</title>
+    <title>Fallout 76 pets | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Fallout 76 pets | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Fallout 76 pets（ペット）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/fallout-76-pets/FO76_Pets_tabby_cat_preview.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/fallout-76-pets.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fallout 76 pets | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Fallout 76 pets（ペット）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/fallout-76-pets/FO76_Pets_tabby_cat_preview.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
             --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
             --accent-color: #00ff00;
-            --text-color: #00ff00;
-            --dim-color: #008800;
-            --border-style: 2px solid var(--accent-color);
-            --scanline-color: rgba(0, 255, 0, 0.05);
-            --glow-spread: 5px;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
         }
 
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-family: 'Noto Sans JP', 'Share Tech Mono', monospace;
+            font-family: 'Noto Sans JP', sans-serif;
             margin: 0;
-            padding: 0;
             line-height: 1.8;
-            background-image:
-                linear-gradient(var(--scanline-color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--scanline-color) 1px, transparent 1px);
-            background-size: 2px 2px;
-            overflow-x: hidden;
-            text-shadow: 0 0 var(--glow-spread) var(--accent-color);
         }
 
-        .crt-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 6px 100%;
-            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.9);
-            animation: flicker 0.15s infinite;
-        }
-
-        @keyframes flicker {
-            0% {
-                opacity: 0.95;
-            }
-
-            50% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0.95;
-            }
-        }
-
-        ::-webkit-scrollbar {
-            width: 12px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-color);
-            border-left: 1px solid var(--dim-color);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--dim-color);
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-color);
-        }
-
-        /* アクションヘッダー */
-        .action-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            border-bottom: var(--border-style);
-            margin-bottom: 20px;
-            background-color: rgba(0, 255, 0, 0.05);
-        }
-
-        .back-link {
-            color: var(--text-color);
-            text-decoration: none;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.2em;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: #fff;
-            text-shadow: 0 0 10px #fff;
-        }
-
-        .back-link i {
-            font-size: 0.9em;
-        }
-
-        .like-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .like-button {
-            background: none;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 15px;
-            cursor: pointer;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .like-button:hover,
-        .like-button.liked {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--accent-color);
-        }
-
-        .like-count {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.2em;
-        }
-
-        /* 記事レイアウト */
         .container {
-            display: flex;
-            flex-direction: column;
-            padding: 0 5%;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            position: relative;
-            z-index: 10;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
         }
 
-        @media (min-width: 900px) {
-            .container {
-                flex-direction: row-reverse;
-                gap: 40px;
-            }
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
         }
 
-        /* サイドバー (Infobox等) */
-        .sidebar {
-            flex: 0 0 350px;
-            margin-bottom: 30px;
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
         }
 
+        /* Sidebar InfoBox */
         .infobox {
-            border: var(--border-style);
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
             padding: 15px;
-            background-color: rgba(0, 255, 0, 0.05);
+            height: fit-content;
         }
 
-        .infobox-title {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.5em;
-            text-align: center;
-            border-bottom: 1px dashed var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .infobox-image {
+        .infobox img {
             width: 100%;
-            height: auto;
-            border: 1px solid var(--dim-color);
+            border: 1px solid #555;
             margin-bottom: 15px;
-            display: block;
-            cursor: pointer;
+            cursor: zoom-in;
         }
 
         .infobox-row {
             display: flex;
-            padding: 8px 0;
-            border-bottom: 1px dotted var(--dim-color);
-            font-size: 0.95em;
-        }
-
-        .infobox-row:last-child {
-            border-bottom: none;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
         }
 
         .infobox-label {
-            width: 40%;
+            color: var(--accent-color);
             font-weight: bold;
-            color: var(--dim-color);
-            font-family: 'Share Tech Mono', monospace;
         }
 
-        /* メインコンテンツ */
+        /* Content Area */
         .content {
-            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
-        h1 {
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 2.5em;
-            margin-top: 0;
-            border-bottom: var(--border-style);
-            padding-bottom: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            transition: all 0.2s;
         }
 
-        h2 {
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 1.8em;
-            margin-top: 40px;
-            border-left: 5px solid var(--accent-color);
-            padding-left: 15px;
-            background: linear-gradient(90deg, rgba(0, 255, 0, 0.1) 0%, transparent 100%);
+            border-radius: 4px;
+            transition: all 0.2s;
         }
 
-        h3 {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.4em;
-            margin-top: 30px;
-            color: var(--dim-color);
-            border-bottom: 1px dashed var(--dim-color);
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
         }
 
-        p {
-            margin-bottom: 20px;
-            text-align: justify;
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
         }
 
         ul {
-            list-style-type: none;
-            padding-left: 20px;
+            list-style-type: square;
         }
 
-        ul li {
-            position: relative;
-            margin-bottom: 10px;
+        li::marker {
+            color: var(--accent-color);
         }
 
-        ul li::before {
-            content: '>';
-            position: absolute;
-            left: -20px;
-            color: var(--dim-color);
-            font-family: 'Share Tech Mono', monospace;
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
         }
 
-        /* ギャラリー */
-        .gallery {
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
         }
 
         .gallery-item {
-            border: 1px solid var(--dim-color);
-            padding: 5px;
-            background-color: rgba(0, 255, 0, 0.05);
-            text-align: center;
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
         }
 
         .gallery-item img {
             width: 100%;
-            height: 150px;
+            height: 180px;
             object-fit: cover;
             display: block;
-            margin-bottom: 5px;
-            cursor: pointer;
+            cursor: zoom-in;
         }
 
-        .gallery-caption {
-            font-size: 0.85em;
-            color: var(--dim-color);
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        /* 引用・感想ボックス */
-        .quote-box {
-            border-left: 4px solid #fff;
-            padding: 15px 20px;
-            margin: 30px 0;
-            background-color: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            font-style: italic;
-            text-shadow: 0 0 5px #fff;
-        }
-
-        .note-figure {
-            margin: 20px 0;
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
             text-align: center;
         }
 
-        .note-figure img {
-            max-width: 100%;
-            border: 1px solid var(--dim-color);
-            cursor: pointer;
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
         }
 
-        .note-figure figcaption {
-            font-size: 0.9em;
-            color: var(--dim-color);
-            margin-top: 5px;
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
         }
 
-        .auto-link {
-            color: #00ff00;
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            cursor: pointer;
-            transition: color 0.2s, text-shadow 0.2s;
-        }
-
-        .auto-link:hover {
-            color: #ffffff;
-            text-shadow: 0 0 8px #ffffff;
-            text-decoration-style: solid;
-        }
-
-        /* Lightbox CSS */
+        /* Lightbox */
         .lightbox-overlay {
             display: none;
             position: fixed;
@@ -348,149 +301,81 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 10000;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
         }
 
         .lightbox-overlay.active {
             display: flex;
         }
 
-        .lightbox-content {
-            position: relative;
-            max-width: 90%;
-            max-height: 90vh;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 20px var(--accent-color);
-            background-color: var(--bg-color);
-            padding: 5px;
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 85vh;
-            display: block;
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
             object-fit: contain;
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: -30px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            color: var(--accent-color);
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9em;
-            text-shadow: 0 0 5px var(--accent-color);
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 5px 0;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            width: 30px;
-            height: 30px;
-            background-color: var(--bg-color);
             border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            z-index: 10001;
-        }
-
-        .lightbox-close:hover {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: 0 0 10px var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
         }
     </style>
 </head>
 
 <body>
-    <div class="crt-overlay"></div>
-
-    <div class="action-header">
-        <a href="lore.html" class="back-link">
-            <i class="fa-solid fa-terminal"></i>
-            BACK TO TERMINAL
-        </a>
-        <div class="like-container">
-            <button class="like-button" id="likeBtn" data-article-id="fallout-76-pets" onclick="toggleLike(this)">
-                <i class="fa-solid fa-thumbs-up"></i>
-                <span class="like-text">LIKE</span>
-            </button>
-            <span class="like-count" id="likeCount">0</span>
-        </div>
-    </div>
-
     <div class="container">
         <!-- ===== Sidebar ===== -->
-        <aside class="sidebar">
-            <div class="infobox">
-                <div class="infobox-title">ペット</div>
-                <img src="./images/note_extracted/fallout-76-pets/FO76_Pets_tabby_cat_preview.png" class="infobox-image"
-                    alt="Pets (Fallout 76)">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Fallout 76 pets<br>(ペット)</h3>
+            <img src="images/note_extracted/fallout-76-pets/FO76_Pets_tabby_cat_preview.png" alt="Fallout 76 pets">
 
-                <div class="infobox-row">
-                    <span class="infobox-label">ゲーム</span>
-                    <span>Fallout 76</span>
-                </div>
-                <div class="infobox-row">
-                    <span class="infobox-label">タイプ</span>
-                    <span>C.A.M.P.システム</span>
-                </div>
-                <div class="infobox-row">
-                    <span class="infobox-label">導入時期</span>
-                    <span>アップデート「Gleaming Depths」</span>
-                </div>
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>C.A.M.P.システム</span></div>
+            <div class="infobox-row"><span class="infobox-label">導入時期</span><span>Gleaming Depths アップデート</span>
             </div>
-
-            <div class="note-figure">
-                <img src="./images/note_extracted/fallout-76-pets/FO76_Cardinal_bird_cage_in-game.png"
-                    alt="The cardinal">
-                <figcaption>背景のカーディナル（過去の動物インテリアの例）</figcaption>
-            </div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
         </aside>
 
         <!-- ===== Main Content ===== -->
         <main class="content">
-            <h1>ペット (Fallout 76)</h1>
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="fallout-76-pets" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Fallout 76 pets<br><span style="font-size: 0.6em; color: #888;">ペット</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
             <p>
                 <b>ペット</b>(Pets)、別名<b>C.A.M.P.ペット</b>(C.A.M.P. pets)は、『Gleaming
                 Depths』アップデートで導入された、犬や猫をC.A.M.P.で飼うことができる『Fallout
                 76』の機能です。ペットは仲間(Allies)機能と同様にプレイヤーのC.A.M.P.に住み着き、それぞれのC.A.M.P.オブジェクトは「居住者（Dwellers）」（以前の「仲間（Ally）」）セクションで作成できます。ペットには自由に名前を付けたり、服を着せたりと、様々な形でのカスタマイズやインタラクションが可能です。
             </p>
 
+            <!-- ===== Interactions ===== -->
             <h2>インタラクション</h2>
             <p>ペットとのインタラクションには3つのオプションがあります。</p>
             <ul>
-                <li><b>インタラクト (Interact)</b>：なでる(pet)、話す(speak)、座る(sit)の3つのオプションがあるホイールメニューを開きます。</li>
-                <li><b>カスタマイズ (Customize)</b>：特定のアパレルアイテム（アーマー作業台で作成可能）をペットに装備させることができます。効果は見た目のみです。</li>
-                <li><b>名前を変更 (Edit Name)</b>：プレイヤーが好きな名前をペットに付けることができます。他のプレイヤーがC.A.M.P.を訪れた際、ペットの名前は表示されません。</li>
+                <li><b>インタラクト (Interact)</b>：なでる(pet)、話す(speak)、座る(sit)の3つのオプションがあるホイールメニューを開きます。
+                </li>
+                <li><b>カスタマイズ (Customize)</b>：特定のアパレルアイテム（アーマー作業台で作成可能）をペットに装備させることができます。効果は見た目のみです。
+                </li>
+                <li><b>名前を変更 (Edit
+                        Name)</b>：プレイヤーが好きな名前をペットに付けることができます。他のプレイヤーがC.A.M.P.を訪れた際、ペットの名前は表示されません。
+                </li>
             </ul>
 
+            <!-- ===== List of available pets ===== -->
             <h2>利用可能なペットの一覧</h2>
-            <div class="note-figure">
-                <img src="./images/note_extracted/fallout-76-pets/S19_Pets_1080p.png"
-                    alt="Bombay cat and white German shepherd">
-                <figcaption>ボンベイキャットとホワイト・ジャーマンシェパード（シーズン19）</figcaption>
-            </div>
+            <img class="article-image" src="images/note_extracted/fallout-76-pets/S19_Pets_1080p.png"
+                alt="Bombay cat and white German shepherd">
+            <div class="image-caption">ボンベイキャットとホワイト・ジャーマンシェパード（シーズン19）</div>
             <p>
-                ほとんどのペットは単体で800アトム、またはバンドルの一部として1200アトムで販売されています。黒いボンベイキャットとホワイト・ジャーマンシェパードは、シーズン19「Gleaming Depths: The
-                Scientific Forge」でロック解除可能でした。
+                ほとんどのペットは単体で800アトム、またはバンドルの一部として1200アトムで販売されています。黒いボンベイキャットとホワイト・ジャーマンシェパードは、シーズン19「Gleaming
+                Depths: The Scientific Forge」でロック解除可能でした。
             </p>
 
             <h3>アトミックショップ</h3>
@@ -515,6 +400,7 @@
                 <li>リコイキャット（オブジェクト：???）</li>
             </ul>
 
+            <!-- ===== Equippable ===== -->
             <h2>装備可能なアイテム</h2>
             <ul>
                 <li>猫の赤い蝶ネクタイの首輪 (250アトム)</li>
@@ -522,11 +408,13 @@
                 <li>猫の革の首輪 (250アトム)</li>
             </ul>
 
+            <!-- ===== Pet treasures ===== -->
             <h2>ペットの宝物</h2>
             <p>
                 ペットは時々、プレイヤーにアイテムを持ってきてくれます。これは「ペットの宝物」という機能として知られています。これらのアイテムの完全なリストはまだ正式に確認されていません。
             </p>
 
+            <!-- ===== Pet furniture ===== -->
             <h2>ペット用家具</h2>
             <p>
                 ペットに付属する構築可能なC.A.M.P.オブジェクトの他に、「その他の建造物」タブで見つけることができる、ペットがインタラクトできる関連家具アイテムもあります。
@@ -539,33 +427,22 @@
                 <li>キノコの爪とぎ（シーズン報酬）</li>
             </ul>
 
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_idlefurniture_catcutsscratchingpost_c2.webp"
-                        alt="Cactus scratching post">
-                    <div class="gallery-caption">サボテンの爪とぎ</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_idlefurniture_dogleafpile_c2.webp"
-                        alt="Dog leaf pile">
-                    <div class="gallery-caption">犬用の落ち葉の山</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s22_camp_camppets_idlefurniture_mushroomsscratchingpost_l.webp"
-                        alt="Mushroom scratching post">
-                    <div class="gallery-caption">キノコの爪とぎ</div>
-                </div>
-            </div>
-
+            <!-- ===== Notes ===== -->
             <h2>メモ</h2>
+            <img class="article-image" src="images/note_extracted/fallout-76-pets/FO76_Cardinal_bird_cage_in-game.png"
+                alt="The cardinal">
+            <div class="image-caption">ゲーム内のカーディナル（鳥かご）</div>
             <ul>
-                <li>プレイヤーはC.A.M.P.にペットと仲間の両方を同時に配置できますが、それぞれ1種類（1人/1匹）しか配置できません。</li>
-                <li>C.A.M.P.ペットはワールド内でプレイヤーに付いてくることはありませんが、C.A.M.P.周辺ではプレイヤーに付いて回ります。</li>
+                <li>プレイヤーはC.A.M.P.にペットと仲間の両方を同時に配置できますが、それぞれ1種類（1人/1匹）しか配置できません。
+                </li>
+                <li>C.A.M.P.ペットはワールド内でプレイヤーに付いてくることはありませんが、C.A.M.P.周辺ではプレイヤーに付いて回ります。
+                </li>
                 <li>仲間と同様に、C.A.M.P.ペットはシェルターには配置できません。</li>
                 <li>全くインタラクトできないものの、C.A.M.P.に配置できる動物は他にも多数存在します。これには、鳥類（檻に入れられたカーディナルやフクロウを含む）、カラスの止まり木、ヒメコンドル、魚（アトランティック・シティのアクアリウム、変異した金魚、TVアクアリウムなど）、ペットのトカゲ、蝶、ウサギ小屋、巨大アリのアリの巣などがあります。モールラットジェネレーターも存在します。また、シーズン報酬として登場した、瓶詰めの「ブリンキー（Blinky）」という奇妙なクリーチャーもいます。
                 </li>
             </ul>
 
+            <!-- ===== Development ===== -->
             <h2>開発</h2>
             <p>
                 「クリーチャートーミング（テイム機能）」は『Fallout
@@ -591,38 +468,59 @@
                 C.A.M.P.ペットは最終的に、2024年12月の『Gleaming Depths』アップデートの一環として導入されました。
             </p>
 
+            <!-- ===== Behind the scenes ===== -->
             <h2>舞台裏</h2>
             <ul>
-                <li>ジョナサン・ラッシュによれば、システムおよびマネタイズデザイナーのマシュー・ドンデリンガー（Matthew Dondelinger）が、C.A.M.P.ペット機能の主任デザイナーでした。</li>
-                <li>初期バージョンのパブリックテストサーバーでは、「なでる」アクションは一人称視点でのみ機能していました。三人称視点でのアニメーションは、2024年11月1日にPTSへアップデートされました。</li>
+                <li>ジョナサン・ラッシュによれば、システムおよびマネタイズデザイナーのマシュー・ドンデリンガー（Matthew
+                    Dondelinger）が、C.A.M.P.ペット機能の主任デザイナーでした。</li>
+                <li>初期バージョンのパブリックテストサーバーでは、「なでる」アクションは一人称視点でのみ機能していました。三人称視点でのアニメーションは、2024年11月1日にPTSへアップデートされました。
+                </li>
             </ul>
 
-            <h2>ギャラリー</h2>
-            <div class="gallery" style="margin-bottom: 30px;">
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_cat_blackcat_c1.webp"
-                        alt="Bombay cat">
-                    <div class="gallery-caption">ボンベイキャット</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_dog_whitegermanshepherd_c2.webp"
-                        alt="White German Shepherd">
-                    <div class="gallery-caption">ホワイト・ジャーマンシェパード</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s22_camp_camppets_cat_vaulttec_ragdoll_c3.webp"
-                        alt="Ragdoll cat">
-                    <div class="gallery-caption">ラグドールキャット（シーズン22）</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s22_camp_camppets_dog_sablegermanshepherd_c3.webp"
-                        alt="Sable Shepherd">
-                    <div class="gallery-caption">セーブル・シェパード（シーズン22）</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="./images/note_extracted/fallout-76-pets/Score_s23_camp_camppets_lykoi_l.webp"
-                        alt="Lykoi cat">
-                    <div class="gallery-caption">リコイキャット（シーズン23）</div>
+            <!-- ===== GALLERY ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_cat_blackcat_c1.webp"
+                            alt="Bombay cat">
+                        <div class="caption">ボンベイキャット</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_dog_whitegermanshepherd_c2.webp"
+                            alt="White German Shepherd">
+                        <div class="caption">ホワイト・ジャーマンシェパード</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s22_camp_camppets_cat_vaulttec_ragdoll_c3.webp"
+                            alt="Ragdoll cat">
+                        <div class="caption">ラグドールキャット（シーズン22）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s22_camp_camppets_dog_sablegermanshepherd_c3.webp"
+                            alt="Sable Shepherd">
+                        <div class="caption">セーブル・シェパード（シーズン22）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s23_camp_camppets_lykoi_l.webp"
+                            alt="Lykoi cat">
+                        <div class="caption">リコイキャット（シーズン23）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_idlefurniture_catcutsscratchingpost_c2.webp"
+                            alt="Cactus scratching post">
+                        <div class="caption">サボテンの爪とぎ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s19_camp_camppets_idlefurniture_dogleafpile_c2.webp"
+                            alt="Dog leaf pile">
+                        <div class="caption">犬用の落ち葉の山</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/fallout-76-pets/Score_s22_camp_camppets_idlefurniture_mushroomsscratchingpost_l.webp"
+                            alt="Mushroom scratching post">
+                        <div class="caption">キノコの爪とぎ</div>
+                    </div>
                 </div>
             </div>
 
@@ -635,152 +533,89 @@
             <!-- ===== Footer ===== -->
             <div
                 style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-                This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons
-                Attribution-Share Alike License.
-            </div>
-
-            <div style="margin-top: 30px; text-align: center;">
-                <p>ターミナルアーカイブの維持費にご支援をお願いします！</p>
-                <a href="https://www.amazon.jp/hz/wishlist/ls/2E7IUXWIBFW8G?ref_=wl_share" target="_blank"
-                    style="color: var(--accent-color); text-decoration: underline;">
-                    <i class="fa-solid fa-gift"></i> Amazonほしい物リスト
-                </a>
+                <p name="copyright-default">This article uses material from the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+                </p>
             </div>
         </main>
     </div>
 
-    <!-- Lightbox HTML overlay -->
-    <div class="lightbox-overlay" id="lightboxOverlay">
-        <div class="lightbox-content">
-            <div class="lightbox-close" id="lightboxClose">&times;</div>
-            <img src="" alt="Enlarged image" class="lightbox-image" id="lightboxImage">
-            <div class="lightbox-caption" id="lightboxCaption"></div>
-        </div>
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
     </div>
 
-    <script src="./js/supabase-config.js"></script>
+    <!-- Supabase Scripts + Lightbox logic -->
     <script>
-        // Supabase Initialization
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        let currentLikes = 0;
-        let isLiking = false;
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        async function fetchLikes() {
-            const btn = document.getElementById('likeBtn');
+        async function toggleLike(btn) {
             const articleId = btn.getAttribute('data-article-id');
-            const countSpan = document.getElementById('likeCount');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
 
-            try {
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
                 const { data, error } = await supabaseClient
-                    .from('article_likes')
-                    .select('likes')
+                    .from('likes')
+                    .select('like_count')
                     .eq('article_id', articleId)
                     .single();
 
-                if (error && error.code !== 'PGRST116') {
-                    console.error('Error fetching likes:', error);
-                    return;
-                }
-
-                if (data) {
-                    currentLikes = data.likes;
-                    countSpan.textContent = currentLikes;
-                } else {
-                    // Initialize if not exists
-                    await supabaseClient
-                        .from('article_likes')
-                        .insert([{ article_id: articleId, likes: 0 }]);
-                }
-            } catch (err) {
-                console.error('Exception fetching likes:', err);
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
             }
-        }
 
-        async function toggleLike(btn) {
-            if (isLiking) return;
-            const articleId = btn.getAttribute('data-article-id');
-            const countSpan = document.getElementById('likeCount');
-            const isLiked = btn.classList.contains('liked');
+            // Lightbox logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
 
-            isLiking = true;
-            btn.style.opacity = '0.5';
-
-            try {
-                const newLikes = isLiked ? currentLikes - 1 : currentLikes + 1;
-
-                const { error } = await supabaseClient
-                    .from('article_likes')
-                    .update({ likes: newLikes })
-                    .eq('article_id', articleId);
-
-                if (error) {
-                    throw error;
-                }
-
-                currentLikes = newLikes;
-                countSpan.textContent = currentLikes;
-                btn.classList.toggle('liked');
-
-                // Add tiny animation
-                countSpan.style.transform = 'scale(1.3)';
-                countSpan.style.color = '#fff';
-                setTimeout(() => {
-                    countSpan.style.transform = 'scale(1)';
-                    countSpan.style.color = 'var(--text-color)';
-                }, 200);
-
-            } catch (err) {
-                console.error('Error updating likes:', err);
-                alert('いいねの更新に失敗しました。');
-            } finally {
-                isLiking = false;
-                btn.style.opacity = '1';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', fetchLikes);
-
-        // Lightbox functionality
-        document.addEventListener('DOMContentLoaded', () => {
-            const overlay = document.getElementById('lightboxOverlay');
-            const image = document.getElementById('lightboxImage');
-            const caption = document.getElementById('lightboxCaption');
-            const closeBtn = document.getElementById('lightboxClose');
-            const allImages = document.querySelectorAll('img:not(.lightbox-image)');
-
-            allImages.forEach(img => {
-                img.addEventListener('click', () => {
-                    image.src = img.src;
-                    const altText = img.alt || 'No description available';
-                    const figcaption = img.nextElementSibling;
-                    const galleryCaption = img.parentElement.querySelector('.gallery-caption');
-
-                    if (figcaption && figcaption.tagName.toLowerCase() === 'figcaption') {
-                        caption.textContent = figcaption.textContent;
-                    } else if (galleryCaption) {
-                        caption.textContent = galleryCaption.textContent;
-                    } else {
-                        caption.textContent = altText;
-                    }
-
-                    overlay.classList.add('active');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
                 });
-            });
-
-            const closeLightbox = () => {
-                overlay.classList.remove('active');
-            };
-
-            closeBtn.addEventListener('click', closeLightbox);
-            overlay.addEventListener('click', (e) => {
-                if (e.target === overlay) {
-                    closeLightbox();
-                }
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && overlay.classList.contains('active')) {
-                    closeLightbox();
-                }
             });
         });
     </script>

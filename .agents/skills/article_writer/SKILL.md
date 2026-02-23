@@ -46,7 +46,20 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 
 ## Step 2: ターミナルHTMLの生成
 
-新規作成するHTMLは、既存の `kimball.html` や `tandi.html`、あるいは `generate_notes_html.js` 内のテンプレートと全く同じCSS構造・配分を使用してください。
+新規作成するHTMLは、既存の `billings-homestead.html` や `kimball.html` と**完全に同一のCSS構造・レイアウト・スクリプト構成**を使用してください。
+
+> [!CAUTION]
+> **ページ構成の一貫性は絶対に崩さないこと。** 独自のCRT風オーバーレイ、スキャンライン背景、Flexbox中心のレイアウト等は絶対に使用しないこと。必ず以下のパターンに従うこと：
+>
+> - **CSSレイアウト**: `grid-template-columns: 300px 1fr` の2カラムグリッド（`.container`）
+> - **CSS変数**: `--bg-color`, `--text-color`, `--accent-color`, `--header-bg`, `--panel-bg` の5つ
+> - **フォント**: `Noto Sans JP` (本文) + `Share Tech Mono` (見出し)
+> - **Supabase初期化**: `supabase-config.js` を使わず、インラインで `supabaseUrl` / `supabaseKey` を定義し `window.supabase.createClient()` で初期化
+> - **Lightbox**: シンプルな `.lightbox-overlay` + `#lightbox` / `#lightbox-img` 構成。閉じるボタンは overlay の `onclick` で `classList.remove('active')`
+> - **いいねボタン**: `♡` / `♥` のテキスト切替方式。`increment_like` / `decrement_like` RPC + `localStorage` による状態管理
+
+> [!IMPORTANT]
+> **lore.html への戻りリンクは必須。** `<a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>` を `action-header` 内に必ず配置すること。このリンクが欠落すると、読者がインデックスに戻れなくなるため、絶対に忘れないこと。
 
 - **DATE行は不要**: `<div class="date">DATE: ...</div>` のような日付表示は**一切使わない**こと
 - **スタイル（CSS変数）**: ベースカラー `--bg-color: #0f0f0f`、テキスト・メイン枠 `--accent-color: #00ff00`
