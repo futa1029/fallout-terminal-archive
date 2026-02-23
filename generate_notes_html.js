@@ -635,6 +635,18 @@ async function processArticles() {
 
         const htmlSavePath = path.join(DIR, article.htmlFilename);
 
+        // 2段階目のパスでも保護を適用（書き出しをスキップ）
+        let sanitized = '';
+        if (titleToSlug[article.title]) {
+            sanitized = titleToSlug[article.title];
+        } else {
+            sanitized = article.title.replace(/[\\/:*?"<>|]/g, '_').trim();
+        }
+        if (protectedFiles.includes(sanitized)) {
+            console.log(`[Protected] Skipping file write for: ${article.htmlFilename}`);
+            continue;
+        }
+
         // ==== 感想セクションの quote-box 化 ====
         // <h2>感想</h2> から末尾のライセンス記述 (This article uses material...) までの内容を抽出し、変換する
         const kansoRegex = /(<h2[^>]*>感想<\/h2>\s*)([\s\S]*?)$/i;

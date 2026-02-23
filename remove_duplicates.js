@@ -97,7 +97,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};
