@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Billings homestead | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Billings homestead | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Billings homestead（ビリングス農場）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/billings-homestead/FO76_Billings_homestead.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/billings-homestead.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Billings homestead | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Billings homestead（ビリングス農場）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/billings-homestead/FO76_Billings_homestead.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
+        }
+
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Billings homestead</h3>
+            <img src="images/note_extracted/billings-homestead/FO76_Billings_homestead.png" alt="Billings homestead">
+            <img src="images/note_extracted/billings-homestead/Billings_Homestead_map.png" alt="Map Marker"
+                style="margin-top:-10px; object-fit: contain; height:100px;">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所 / ワークショップ</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯（Appalachia）</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール、モングレル</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>リベレイター、プロテクトロン</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Claim Workshop, Defend Workshop,
+                    Retake Workshop</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_billings_homestead" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Billings homestead<br><span style="font-size: 0.6em; color: #888;">ビリングス農場</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要（Overview）</h2>
+            <p>
+                ビリングス農場（Billings homestead）は、アパラチアの森林地帯に位置するロケーションです。ここはFallout
+                76における公共のワークショップであり、占拠（Claim）や防衛（Defend）といったイベントが発生します。
+            </p>
+
+            <!-- ===== Layout ===== -->
+            <h2>レイアウト（Layout）</h2>
+            <p>
+                ここには地下室のないシンプルな2階建ての農家があります。内部にはランダムな戦利品があり、2階にはロックされた金庫（Picklock
+                2）が配置されています。裏庭には2つのアッシュ・ローズと、2つのブラックベリーの茂みがあります。また、南側の畑では40本以上のレイザーグレイン（Razorgrain）が栽培されています。
+            </p>
+            <p>
+                ワークショップ自体は家の南側の外壁に面して設置されており、アーマー作業台も併設されています。アーマー作業台の横にあるスーツケースからは、プレイヤーの収納箱（Stash
+                box）にアクセスすることが可能です。ワークショップの近くにはポセイドンの電源ボックスがあり、通常は電力10を供給しますが、「Powering
+                Up」イベントでポセイドン・エネルギープラントWV-06を復旧させていた場合は、電力100を供給するようになります。資源の鉱床は作物が育っていた畑全体に散らばっているため、この電力はワークショップの建築エリア内に設置できるすべての抽出機をカバーするのに十分以上の量です。
+            </p>
+            <p>
+                このロケーションの北、そして隣接するシルヴァ農場（Silva
+                homestead）の南には、大きな半円形の小屋が隣接する1つのサイロがあります。どちらの農場からも同じくらいの距離にありますが、実際にはシルヴァ農場に属しているように見えます。小屋のドアはシルヴァ農場の方を向いており、納屋とシルヴァの農家の間の土地は耕されています。この小屋の内部では、パワーアーマーステーションでパワーアーマーを見つけられる可能性があります。
+            </p>
+
+            <!-- ===== Notable loot ===== -->
+            <h2>注目の戦利品（Notable loot）</h2>
+            <ul>
+                <li>畑にある40個以上のレイザーグレイン（Razorgrain）</li>
+                <li>放置されたトラックの近くの畑にある、16個の野生のテイトの花（wild tato blossoms）</li>
+            </ul>
+
+            <!-- ===== GALLERY ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー（Gallery）</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/billings-homestead/FO76_Agri_site_4.png"
+                            alt="Ruined shack south of the house">
+                        <div class="caption">家の南にある廃墟となった小屋</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/billings-homestead/F76_Billings_Homestead.png"
+                            alt="Billings Homestead">
+                        <div class="caption">ビリングス農場</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/billings-homestead/76_BC_Billings_homestead_stoop.png"
+                            alt="Billings homestead stoop">
+                        <div class="caption">ビリングス農場の入り口</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/billings-homestead/FO76_060921_Locations_23.png"
+                            alt="Locations 23">
+                        <div class="caption">周辺のロケーション風景</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ビリングス農場は、アパラチアの森林地帯における序盤の貴重な食糧供給源として、多くのレジデントがお世話になるロケーションだと思う。特にレイザーグレイン（Razorgrain）が40本以上も群生している畑のインパクトは大きく、これさえあれば食糧問題や各種クラフトにおけるレイザーグレイン不足が一気に解消する。<br><br>
+
+                公共のワークショップとしても機能しており、隣のシルヴァ農場とセットで探索するプレイヤーも多いはず。ワークショップを獲得して防衛イベントをこなす過程で、フェラル・グールやモングレル、時にはリベレイターの群れと戦うことになるが、それほど難易度が高くないため初心者のワークショップ入門としても適しているように感じる。<br><br>
+
+                ポセイドンの電源ボックスがすぐ近くにあるのも非常に便利。イベント「Powering
+                Up」を完了してプラントを復旧させていれば電力100を供給してくれるので、ジェネレーターを自前で大量にクラフトする必要がなく、すぐに各種抽出機を稼働させることができる。この電源のありがたみを感じるにはうってつけの場所だ。<br><br>
+
+                家の2階には金庫があり、アーマー作業台や収納箱へとアクセスできるスーツケースが外にあるなど、設備面でも気の利いたレイアウトになっている。また、隣接するサイロや半円形の小屋のあたりで、パワーアーマー・ステーションに出くわすこともある。シルヴァ農場とどちらの敷地なのか曖昧なエリア設定も、かつての隣近所としてのリアルな距離感があって面白い。<br><br>
+
+                荒廃したウェイストランドにあって、未だに多くの作物が実り続けている農場風景は、どこか物悲しくもあり、同時にアパラチアの豊かな土壌の生命力を感じさせてくれる、非常に趣深いスポットだ。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article uses material from the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <!-- Supabase Scripts + Lightbox logic -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+
+            // Lightbox logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
