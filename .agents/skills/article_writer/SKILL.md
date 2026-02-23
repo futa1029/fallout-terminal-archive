@@ -1,4 +1,4 @@
----
+﻿---
 name: Fallout Article Writer
 description: FalloutターミナルWikiの新規記事作成と、インデックス一覧や相互リンクを自動調整するためのスキル
 ---
@@ -109,6 +109,11 @@ node generate_notes_html.js
 ```
 
 ※ `generate_notes_html.js` を実行することで、作成した新しい記事のタイトルが辞書に登録され、別記事の本文中にある同名キーワードが `<a href="新しい記事.html" class="auto-link">` に自動で置換されます。
+
+> [!IMPORTANT]
+> **保護ファイル（protectedFiles）には自動リンクが適用されません。**
+> 新記事を追加した際、保護ファイル（`vault_tec.html`, `buffalo-gourd-seed.html` 等）の本文中に新記事のキーワードが含まれている場合は、**手動で `<a href='...' class='auto-link'>` を追加**してください。
+> 逆に、保護ファイルの記事名が他の自動生成記事に含まれている場合は、スクリプト再実行で自動的にリンクされます。
 
 ## Step 5: 「下書き (Drafts) 投稿機能」の処理方法
 
