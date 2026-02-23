@@ -18,7 +18,9 @@ const manualEntries = [
     { name: "新カリフォルニア共和国 (NCR)", yomi: "しんかりふぉるにあきょうわこく", url: "ncr.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-20" },
     { name: "バッファロー・ゴードの種", yomi: "ばっふぁろー・ごーどのたね", url: "buffalo-gourd-seed.html", category: "植物", appearance: ["Fallout: New Vegas"], date: "2026-02-21" },
     { name: "アーマー・エース", yomi: "あーまー・えーす", url: "armor-ace.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-22" },
-    { name: "ボルトテック・コーポレーション", yomi: "ぼるとてっく・こーぽれーしょん", url: "vault_tec.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout 3", "Fallout 4", "Fallout 76", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-23" }
+    { name: "ボルトテック・コーポレーション", yomi: "ぼるとてっく・こーぽれーしょん", url: "vault_tec.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout 3", "Fallout 4", "Fallout 76", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-23" },
+    { name: "Billings homestead (ビリングス農場)", yomi: "びりんぐすのうじょう", url: "billings-homestead.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-23" },
+    { name: "ペット (Fallout 76)", yomi: "ぺっと", url: "fallout-76-pets.html", category: "システム", appearance: ["Fallout 76"], date: "2026-02-23" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -32,7 +34,9 @@ const duplicateKeywords = [
     "タンディ",
     "プライズボット",
     "新カリフォルニア共和国",
-    "ボルトテック"
+    "ボルトテック",
+    "ビリングス農場",
+    "ペット"
 ];
 
 function isDuplicate(title) {
@@ -97,7 +101,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};

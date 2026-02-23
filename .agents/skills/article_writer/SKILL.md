@@ -29,6 +29,13 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 - ページを作成したら `lore.html` の `loreEntries` 配列にエントリーを追加する
 - `remove_duplicates.js` と `generate_notes_html.js` を実行して相互リンクを反映する
 
+> [!CAUTION]
+> **`remove_duplicates.js` への登録を絶対に忘れないこと。** `remove_duplicates.js` を実行すると `lore.html` の `loreEntries` 配列が**完全に再構築**される。lore.htmlに手動で追加したエントリは上書きされて消える。新規記事を追加する際は、`remove_duplicates.js` 内の以下3箇所に必ず登録すること：
+>
+> 1. `manualEntries` 配列 — 記事のメタデータ（name, yomi, url, category, appearance, date）
+> 2. `duplicateKeywords` 配列 — 重複を防止するための日本語キーワード
+> 3. `protectedFiles` 配列 — スクリプトによるファイル削除から保護するスラッグ名（拡張子なし）
+
 ### 原則4: X投稿素材の作成
 
 - X用の文章（文字数制限なし）を `_X/<slug>/post.md` に作成する
