@@ -17,7 +17,8 @@ const manualEntries = [
     { name: "ミスター・プライズボット", yomi: "みすたー・ぷらいずぼっと", url: "prize_bot.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-20" },
     { name: "新カリフォルニア共和国 (NCR)", yomi: "しんかりふぉるにあきょうわこく", url: "ncr.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-20" },
     { name: "バッファロー・ゴードの種", yomi: "ばっふぁろー・ごーどのたね", url: "buffalo-gourd-seed.html", category: "植物", appearance: ["Fallout: New Vegas"], date: "2026-02-21" },
-    { name: "アーマー・エース", yomi: "あーまー・えーす", url: "armor-ace.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-22" }
+    { name: "アーマー・エース", yomi: "あーまー・えーす", url: "armor-ace.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-22" },
+    { name: "ボルトテック・コーポレーション", yomi: "ぼるとてっく・こーぽれーしょん", url: "vault_tec.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout 3", "Fallout 4", "Fallout 76", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-23" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -30,7 +31,8 @@ const duplicateKeywords = [
     "ブライト",
     "タンディ",
     "プライズボット",
-    "新カリフォルニア共和国"
+    "新カリフォルニア共和国",
+    "ボルトテック"
 ];
 
 function isDuplicate(title) {
@@ -95,7 +97,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};
@@ -121,12 +123,12 @@ async function rebuildLoreHtml() {
         }
         usedFilenames.add(htmlFilename);
 
-        // 重複判定
         if (isDuplicate(article.title)) {
             removedCount++;
             console.log(`[Removed Duplicate] ${article.title}`);
             const htmlFilePath = path.join(DIR, htmlFilename);
-            if (fs.existsSync(htmlFilePath)) {
+            // 手動作成（protectedFiles）に含まれるファイルは削除しない
+            if (fs.existsSync(htmlFilePath) && !protectedFiles.includes(sanitized)) {
                 fs.unlinkSync(htmlFilePath);
             }
             return;

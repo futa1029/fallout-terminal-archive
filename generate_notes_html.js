@@ -489,7 +489,7 @@ async function processArticles() {
     }
 
     // 既に手作業で作った特定のファイル群を上書きから守るリスト（拡張子除く）
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec'];
     const usedFilenames = new Set();
     // 既存ファイル名を予約済みにする
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
@@ -506,6 +506,16 @@ async function processArticles() {
             if (!sanitized) sanitized = 'untitled';
         }
         let htmlFilename = `${sanitized}.html`;
+
+        // 既に保護リストにある場合は、その記事の生成をスキップする（手動版を優先）
+        // ただし、相互リンク辞書（articles[i].htmlFilename）には登録して、他ページからのリンクが正しく張られるようにする
+        if (protectedFiles.includes(sanitized)) {
+            console.log(`[Protected] Skipping generation for: ${htmlFilename}`);
+            articles[i].htmlFilename = htmlFilename;
+            articles[i].processedBody = article.bodyHtml; // リンク適用前の生データだが辞書登録には十分
+            continue;
+        }
+
         let counter = 2;
         while (usedFilenames.has(htmlFilename)) {
             htmlFilename = `${sanitized}_${counter}.html`;
