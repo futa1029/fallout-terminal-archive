@@ -2,9 +2,10 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">`n    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Changelog | Fallout JP Community</title>
-    <meta name="description" content="Fallout JP コミュニティの更新履歴・新着記事一覧です、E>
+    <meta name="description" content="Fallout JP コミュニティの更新履歴・新着記事一覧です。">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+JP:wght@400;700&display=swap');
 
@@ -71,7 +72,6 @@
             margin-bottom: 20px;
         }
 
-        /* タイムラインチE��イン */
         .timeline {
             position: relative;
             padding-left: 30px;
@@ -118,6 +118,7 @@
             border-left: 3px solid transparent;
             transition: all 0.2s;
             text-decoration: none;
+            color: inherit;
         }
 
         .entry:hover {
@@ -216,7 +217,7 @@
 
         <div class="stats" id="stats">LOADING...</div>
         <div class="timeline" id="timeline">
-            <div style="color: #666; font-size: 1.2rem;">LOADING ENTRIES...</div>
+            <div class="cmd-line">LOADING ENTRIES...</div>
         </div>
 
         <div class="nav-links">
@@ -233,15 +234,11 @@
     </div>
 
     <script>
-        // lore.htmlと同じloreEntries配�Eを読み込み�E�インライン埋め込み方式！E
-        // generate_changelog.jsで自動生成されるJSON
         fetch('changelog-data.json')
             .then(r => r.json())
             .then(entries => {
-                // 日付頁E��ート（新しい頁E��E
                 entries.sort((a, b) => b.date.localeCompare(a.date));
 
-                // 日付ごとにグループ化
                 const grouped = {};
                 entries.forEach(e => {
                     const d = e.date || 'Unknown';
@@ -251,23 +248,23 @@
 
                 const timeline = document.getElementById('timeline');
                 const stats = document.getElementById('stats');
-                stats.textContent = `TOTAL ENTRIES: ${entries.length} | LAST UPDATED: ${entries[0]?.date || 'N/A'}`;
+                stats.textContent = 'TOTAL ENTRIES: ' + entries.length + ' | LAST UPDATED: ' + (entries[0] ? entries[0].date : 'N/A');
 
                 let html = '';
                 for (const [date, items] of Object.entries(grouped)) {
-                    html += `<div class="timeline-date">${date}</div>`;
+                    html += '<div class="timeline-date">' + date + '</div>';
                     items.forEach(e => {
                         const apps = e.appearance ? e.appearance.join(', ') : '';
-                        html += `<a href="${e.url}" class="entry">
-                            <span class="category-badge">${e.category || ' E}</span>
-                            <span class="title">${e.name}</span>
-                            <span class="appearances">${apps}</span>
-                        </a>`;
+                        html += '<a href="' + e.url + '" class="entry">'
+                            + '<span class="category-badge">' + (e.category || '\u2014') + '</span>'
+                            + '<span class="title">' + e.name + '</span>'
+                            + '<span class="appearances">' + apps + '</span>'
+                            + '</a>';
                     });
                 }
                 timeline.innerHTML = html;
             })
-            .catch(() => {
+            .catch(function () {
                 document.getElementById('timeline').innerHTML = '<div style="color:#ff4444; font-size:1.2rem;">ERROR: Failed to load changelog data.</div>';
                 document.getElementById('stats').textContent = 'ERROR';
             });
