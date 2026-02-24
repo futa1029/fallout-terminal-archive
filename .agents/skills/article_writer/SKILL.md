@@ -88,6 +88,11 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
   ```
 
 - **記事タイトルは英語名を使用する**: HTMLの `<title>`, `<h1>`, OGPメタタグ, サイドバーの `<h3>` では**英語のタイトル**（例: "Vault-Tec", "Aaron Kimball"）を使用すること。本文中では日本語名と英語名を併記可。
+- **h1の直下に日本語名サブタイトルを必ず追加する**: `<br>`タグの後に `<span>` で日本語名を小さく表示すること。形式は以下の通り：
+
+  ```html
+  <h1>Bloodleaf<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ブラッドリーフ</span></h1>
+  ```
 
 ### ⚠️ 相互リンク（auto-link）の誤リンク防止ルール
 
