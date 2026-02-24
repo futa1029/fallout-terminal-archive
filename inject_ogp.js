@@ -11,7 +11,7 @@ const BASE_URL = 'https://www.fallout-jp.com';
 const DEFAULT_OG_IMAGE = `${BASE_URL}/images/og-default.png`;
 
 // 処理をスキップするファイル
-const SKIP_FILES = ['lore.html', 'index.html', 'f76.html', 'nw.html', 'buds_full.html'];
+const SKIP_FILES = ['lore.html', 'index.html', 'f76.html', 'nw.html', 'buds_full.html', 'about.html', 'rules.html', 'resources.html', 'changelog.html', 'donate.html'];
 
 /**
  * HTML内から最初の <img src="..."> を抽出する
@@ -43,27 +43,28 @@ function extractTitle(html) {
 
 /**
  * 記事名（記事ファイル名の英語部分を除いたもの）を抽出する
- * 「アーマー・エース (Armor Ace) | Overseer Mohi's Terminal」
- * → 「アーマー・エース (Armor Ace) のFalloutロア記事。Overseer Mohi's Terminalで読む。」
  */
 function buildDescription(fullTitle) {
     // "|" より前の記事名を取得
     const articleName = fullTitle.split('|')[0].trim();
-    return `${articleName}のFalloutロア記事。Overseer Mohi's Terminalで読む。`;
+    return `${articleName}のFalloutロア記事。日本語で読めるFallout情報サイト。`;
 }
 
 /**
  * OGPタグのHTML文字列を生成する
  */
 function buildOgpBlock(ogTitle, ogDesc, ogImage, ogUrl) {
-    return `    <!-- Open Graph / Discord Embed -->
+    return `    <link rel="canonical" href="${ogUrl}">
+    <!-- Open Graph / Discord Embed -->
     <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:site_name" content="Fallout JP Community">
+    <meta property="og:locale" content="ja_JP">
     <meta property="og:title" content="${ogTitle}">
     <meta property="og:description" content="${ogDesc}">
     <meta property="og:image" content="${ogImage}">
     <meta property="og:url" content="${ogUrl}">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
     <meta name="twitter:title" content="${ogTitle}">
     <meta name="twitter:description" content="${ogDesc}">
     <meta name="twitter:image" content="${ogImage}">`;
