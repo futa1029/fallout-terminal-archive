@@ -27,6 +27,34 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 
 - 感想（quote-box）は**簡略化・要約を行わない**。文字数制限は設けず、記事（翻訳内容や背景）から得たインスピレーションや感情をすべて吐き出すように「ツラツラと」語ること。
 - **感想（quote-box）はHTMLの本文末尾（全セクション終了後、フッター・ライセンス表記の直前）に配置すること。h1タイトル直後には絶対に置かない。**
+- **感想のCSS・HTML構造は以下に厳格に従うこと：**
+
+  CSS:
+
+  ```css
+  .quote-box {
+      border-left: 4px solid var(--accent-color);
+      margin: 40px 0 20px 0;
+      background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+      padding: 15px 15px 15px 20px;
+      border-radius: 0 5px 5px 0;
+      line-height: 1.6;
+  }
+  .quote-box b {
+      color: var(--accent-color);
+      font-size: 1.05em;
+  }
+  ```
+
+  HTML（必ず `<b>感想</b><br><br>` で開始すること）:
+
+  ```html
+  <div class="quote-box">
+      <b>感想</b><br><br>
+      感想本文...<br>
+  </div>
+  ```
+
 - ユーザーのX（@IwamotoFuta）での口調を模倣し、親しみやすく、かつ熱量のあるプレイヤー目線の「丁寧語ベースの語りかけスタイル（w や ！、〜などを自然に交える）」で記述する。
 - **箇条書きや小見出しによる分割は禁止**。一つのまとまった文章として、頭に浮かんだ想いや、ゲームプレイ体験と結びつくワクワク感、ロケーションの魅力などを流れるように連続的に記述すること。
 
