@@ -62,6 +62,7 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 ### 原則3: loreページからのリンク
 
 - ページを作成したら `lore.html` の `loreEntries` 配列にエントリーを追加する
+- **`changelog-data.json` にも新規記事のエントリを追加すること**。changelog-data.jsonは `changelog.html` が読み込む更新履歴データであり、ここにエントリを追加しないとchangelogページに新記事が反映されない。エントリのフォーマットは `{ "name", "yomi", "url", "category", "appearance", "date" }` で、配列の先頭に追加する
 - `remove_duplicates.js` と `generate_notes_html.js` を実行して相互リンクを反映する
 
 > [!CAUTION]
