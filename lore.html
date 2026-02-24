@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Overseer Mohi's Terminal</title>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <!-- フォントをpreconnectで事前接続しdisplay=swapで非ブロッキング読み込み -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -580,6 +582,21 @@
                 <span class="control-label">SEARCH:</span>
                 <input type="text" id="searchInput" class="search-input" placeholder="TYPE TO SEARCH..."
                     oninput="debouncedRender()">
+            </div>
+        </div>
+
+        <!-- 最新コメントパネル -->
+        <div id="recent-comments-panel"
+            style="margin: 10px 0 4px 0; border: 1px solid var(--term-dim); border-radius: 4px; overflow: hidden;">
+            <div id="recent-comments-header" onclick="toggleRecentComments()"
+                style="padding: 6px 12px; background: rgba(0,170,0,0.12); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Share Tech Mono', monospace; font-size: 0.82em; color: var(--term-green);">
+                <span>&gt; RECENT COMMENTS</span>
+                <span id="recent-comments-toggle">▼</span>
+            </div>
+            <div id="recent-comments-body" style="padding: 8px 12px; display: none;">
+                <div id="recent-comments-list"
+                    style="font-family: 'Noto Sans JP', sans-serif; font-size: 0.82em; color: var(--term-green);">
+                    LOADING...</div>
             </div>
         </div>
 
@@ -2743,7 +2760,59 @@
         }
 
         // DOMContentLoadedで初期化（window.onloadより早い）
-        document.addEventListener('DOMContentLoaded', renderEntries);
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEntries();
+            loadRecentComments();
+        });
+
+        // ========== 最新コメント ==========
+        const _loreSupabase = window.supabase ? window.supabase.createClient(
+            'https://qkdjufvdeisnunismgaw.supabase.co',
+            'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'
+        ) : null;
+
+        function relativeTimeLore(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+
+        function escapeHtmlLore(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        async function loadRecentComments() {
+            const el = document.getElementById('recent-comments-list');
+            if (!el || !_loreSupabase) return;
+            const { data, error } = await _loreSupabase
+                .from('comments')
+                .select('id, article_name, article_url, content, created_at')
+                .order('created_at', { ascending: false })
+                .limit(5);
+            if (error || !data || data.length === 0) {
+                el.innerHTML = '<span style="color:var(--term-dim)">コメントはまだありません</span>';
+                return;
+            }
+            el.innerHTML = data.map(c => `
+                <div style="border-bottom: 1px dashed var(--term-dim); padding: 5px 0; display: flex; flex-wrap: wrap; gap: 4px; align-items: baseline;">
+                    <a href="${escapeHtmlLore(c.article_url)}" style="color: var(--term-green); font-weight: bold; font-size: 0.85em; text-decoration: none; white-space: nowrap;">[${escapeHtmlLore(c.article_name)}]</a>
+                    <span style="flex: 1; color: #ccffcc; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtmlLore(c.content.length > 30 ? c.content.slice(0, 30) + '…' : c.content)}</span>
+                    <span style="color: var(--term-dim); font-size: 0.8em; white-space: nowrap;">${relativeTimeLore(c.created_at)}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleRecentComments() {
+            const body = document.getElementById('recent-comments-body');
+            const toggle = document.getElementById('recent-comments-toggle');
+            if (!body) return;
+            const isOpen = body.style.display !== 'none';
+            body.style.display = isOpen ? 'none' : 'block';
+            if (toggle) toggle.textContent = isOpen ? '▼' : '▲';
+        }
 
     </script>
 

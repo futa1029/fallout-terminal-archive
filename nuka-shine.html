@@ -273,6 +273,122 @@
         .content img, .infobox img, .gallery-item img {
             cursor: zoom-in;
         }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+        .comment-form {
+            margin-bottom: 20px;
+        }
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .comment-item {
+            background: rgba(255,255,255,0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
     </style>
 </head>
 <body data-article-category="アイテム" data-article-appearance="Fallout 76">
@@ -308,6 +424,22 @@
                 </div>
                 
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
             </div>
         </main>
     </div>
@@ -374,6 +506,8 @@
                 if (!error && data) count = data.like_count;
                 updateLikeButton(btn, isLiked, count);
             }
+            // コメントを読み込む
+            await loadComments();
         });
         // Lightbox: 画像クリックで元画像を表示
         document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => {
@@ -386,6 +520,162 @@
         });
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+        });
+
+        // ========== コメント機能 ==========
+        // 記事情報（HTMLから取得）
+        const _commentArticleId = (document.querySelector('[data-article-id]') || {}).getAttribute?.('data-article-id') || location.pathname.split('/').pop().replace('.html', '');
+        const _commentArticleName = document.title.split('|')[0].trim();
+        const _commentArticleUrl = location.pathname.split('/').pop();
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'change_me_admin_2026'; // ← ここに管理者パスワードを入力
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        // 文字数カウンター
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) {
+                el.textContent = len;
+                el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)';
+            }
+        }
+
+        // 相対時刻
+        function relativeTime(isoStr) {
+            const diff = (Date.now() - new Date(isoStr).getTime()) / 1000;
+            if (diff < 60) return 'たった今';
+            if (diff < 3600) return Math.floor(diff / 60) + '分前';
+            if (diff < 86400) return Math.floor(diff / 3600) + '時間前';
+            if (diff < 86400 * 7) return Math.floor(diff / 86400) + '日前';
+            return new Date(isoStr).toLocaleDateString('ja-JP');
+        }
+
+        // コメント一覧を表示
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `
+                <div class="comment-item" data-id="${c.id}">
+                    <div class="comment-meta">
+                        <span class="comment-time">${relativeTime(c.created_at)}</span>
+                        ${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">🗑️</button>` : ''}
+                    </div>
+                    <div class="comment-body">${escapeHtml(c.content)}</div>
+                </div>
+            `).join('');
+        }
+
+        // HTMLエスケープ
+        function escapeHtml(str) {
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+
+        // コメント読み込み
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient
+                .from('comments')
+                .select('id, content, created_at')
+                .eq('article_id', _commentArticleId)
+                .order('created_at', { ascending: false })
+                .limit(50);
+            if (error) {
+                list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>';
+                return;
+            }
+            renderComments(data || []);
+        }
+
+        // コメント投稿
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const msg = document.getElementById('comment-msg');
+            if (!input || !msg) return;
+            const content = input.value.trim();
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+
+            // レート制限チェック（60秒）
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                const remain = Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000);
+                showCommentMsg(`あと${remain}秒後に投稿できます。`, false);
+                return;
+            }
+
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({
+                article_id: _commentArticleId,
+                article_name: _commentArticleName,
+                article_url: _commentArticleUrl,
+                content: content
+            });
+            if (btn) btn.disabled = false;
+
+            if (error) {
+                showCommentMsg('投稿に失敗しました。', false);
+                return;
+            }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = '';
+            updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text;
+            el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+
+        // 管理者：コメント削除
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', {
+                comment_id: commentId,
+                admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || ''
+            });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+
+        // 管理者モード切替（Ctrl+Shift+D）
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false;
+                    localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    renderComments([]);
+                    loadComments();
+                    alert('管理者モードを終了しました。');
+                    return;
+                }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true;
+                    localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments();
+                    alert('管理者モードに入りました。コメントの🗑️ボタンで削除できます。');
+                } else {
+                    alert('パスワードが違います。');
+                }
+            }
         });
     </script>
     <script src="article-common.js" defer></script>
