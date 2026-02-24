@@ -134,6 +134,7 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 ```bash
 node remove_duplicates.js
 node generate_notes_html.js
+node generate_thumbnails.js
 ```
 
 ※ `generate_notes_html.js` を実行することで、作成した新しい記事のタイトルが辞書に登録され、別記事の本文中にある同名キーワードが `<a href="新しい記事.html" class="auto-link">` に自動で置換されます。
