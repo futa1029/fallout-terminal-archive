@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">`n    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changelog | Fallout JP Community</title>
+    <meta name="description" content="Fallout JP 繧ｳ繝溘Η繝九ユ繧｣縺ｮ譖ｴ譁ｰ螻･豁ｴ繝ｻ譁ｰ逹險倅ｺ倶ｸ隕ｧ縺ｧ縺吶・>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        :root {
+            --fallout-green: #00ff00;
+            --fallout-bg: #111111;
+            --fallout-dark-green: #003300;
+            --fallout-amber: #ffce07;
+        }
+
+        body {
+            background-color: var(--fallout-bg);
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'VT323', 'Noto Sans JP', monospace;
+            color: var(--fallout-green);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .terminal-header {
+            text-align: center;
+            border-bottom: 2px solid var(--fallout-green);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 0 0 15px var(--fallout-green);
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--fallout-green);
+            text-decoration: none;
+            font-size: 1.1rem;
+            border: 1px solid var(--fallout-green);
+            padding: 4px 12px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        .cmd-line {
+            color: var(--fallout-amber);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            color: var(--fallout-amber);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* 繧ｿ繧､繝繝ｩ繧､繝ｳ繝・じ繧､繝ｳ */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--fallout-green);
+            opacity: 0.3;
+        }
+
+        .timeline-date {
+            color: var(--fallout-amber);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .timeline-date::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--fallout-amber);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--fallout-amber);
+        }
+
+        .entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .entry:hover {
+            border-left-color: var(--fallout-green);
+            background: rgba(0, 255, 0, 0.06);
+        }
+
+        .entry .category-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 0.85rem;
+            color: var(--fallout-bg);
+            background: var(--fallout-green);
+            white-space: nowrap;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .entry .title {
+            font-size: 1.3rem;
+            color: var(--fallout-green);
+        }
+
+        .entry:hover .title {
+            text-shadow: 0 0 8px var(--fallout-green);
+        }
+
+        .entry .appearances {
+            font-size: 0.9rem;
+            color: #66aa66;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--fallout-green);
+        }
+
+        .nav-links a {
+            border: 1px solid var(--fallout-green);
+            padding: 6px 14px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            color: var(--fallout-green);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        .footer-terminal {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid var(--fallout-green);
+            font-size: 0.9rem;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .entry {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .entry .appearances {
+                margin-left: 0;
+            }
+
+            .entry .title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&lt; BACK TO TERMINAL</a>
+
+        <div class="terminal-header">
+            <h1>CHANGELOG</h1>
+            <div class="cmd-line">> RUN UPDATE_LOG.EXE</div>
+        </div>
+
+        <div class="stats" id="stats">LOADING...</div>
+        <div class="timeline" id="timeline">
+            <div style="color: #666; font-size: 1.2rem;">LOADING ENTRIES...</div>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">&gt; HOME</a>
+            <a href="lore.html">&gt; LORE ARCHIVE</a>
+            <a href="about.html">&gt; ABOUT</a>
+            <a href="rules.html">&gt; RULES</a>
+            <a href="resources.html">&gt; RESOURCES</a>
+        </div>
+
+        <div class="footer-terminal">
+            &gt; OVERSEER MOHI | FALLOUT JP COMMUNITY
+        </div>
+    </div>
+
+    <script>
+        // lore.html縺ｨ蜷後§loreEntries驟榊・繧定ｪｭ縺ｿ霎ｼ縺ｿ・医う繝ｳ繝ｩ繧､繝ｳ蝓九ａ霎ｼ縺ｿ譁ｹ蠑擾ｼ・
+        // generate_changelog.js縺ｧ閾ｪ蜍慕函謌舌＆繧後ｋJSON
+        fetch('changelog-data.json')
+            .then(r => r.json())
+            .then(entries => {
+                // 譌･莉倬・た繝ｼ繝茨ｼ域眠縺励＞鬆・ｼ・
+                entries.sort((a, b) => b.date.localeCompare(a.date));
+
+                // 譌･莉倥＃縺ｨ縺ｫ繧ｰ繝ｫ繝ｼ繝怜喧
+                const grouped = {};
+                entries.forEach(e => {
+                    const d = e.date || 'Unknown';
+                    if (!grouped[d]) grouped[d] = [];
+                    grouped[d].push(e);
+                });
+
+                const timeline = document.getElementById('timeline');
+                const stats = document.getElementById('stats');
+                stats.textContent = `TOTAL ENTRIES: ${entries.length} | LAST UPDATED: ${entries[0]?.date || 'N/A'}`;
+
+                let html = '';
+                for (const [date, items] of Object.entries(grouped)) {
+                    html += `<div class="timeline-date">${date}</div>`;
+                    items.forEach(e => {
+                        const apps = e.appearance ? e.appearance.join(', ') : '';
+                        html += `<a href="${e.url}" class="entry">
+                            <span class="category-badge">${e.category || '窶・}</span>
+                            <span class="title">${e.name}</span>
+                            <span class="appearances">${apps}</span>
+                        </a>`;
+                    });
+                }
+                timeline.innerHTML = html;
+            })
+            .catch(() => {
+                document.getElementById('timeline').innerHTML = '<div style="color:#ff4444; font-size:1.2rem;">ERROR: Failed to load changelog data.</div>';
+                document.getElementById('stats').textContent = 'ERROR';
+            });
+    </script>
+</body>
+
+</html>

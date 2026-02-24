@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">`n    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | Fallout JP Community</title>
+    <meta name="description" content="Fallout繝励Ξ繧､繝､繝ｼ蜷代￠縺ｮ螟夜Κ繝ｪ繧ｽ繝ｼ繧ｹ繝ｻ繝・・繝ｫ繝ｻ繝ｪ繝ｳ繧ｯ髮・〒縺吶・>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        :root {
+            --fallout-green: #00ff00;
+            --fallout-bg: #111111;
+            --fallout-dark-green: #003300;
+            --fallout-amber: #ffce07;
+        }
+
+        body {
+            background-color: var(--fallout-bg);
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'VT323', 'Noto Sans JP', monospace;
+            color: var(--fallout-green);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .terminal-header {
+            text-align: center;
+            border-bottom: 2px solid var(--fallout-green);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 0 0 15px var(--fallout-green);
+            letter-spacing: 2px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--fallout-green);
+            text-decoration: none;
+            font-size: 1.1rem;
+            border: 1px solid var(--fallout-green);
+            padding: 4px 12px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        .section {
+            border: 1px solid var(--fallout-green);
+            padding: 25px;
+            margin-bottom: 30px;
+            background: rgba(0, 51, 0, 0.15);
+            position: relative;
+        }
+
+        .section-title {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+            padding: 4px 15px;
+            display: inline-block;
+            position: absolute;
+            top: -16px;
+            left: 20px;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        p,
+        li {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin: 12px 0;
+            color: #e0ffe0;
+        }
+
+        .cmd-line {
+            color: var(--fallout-amber);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--fallout-green);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-shadow: 0 0 10px var(--fallout-green);
+        }
+
+        .highlight {
+            color: var(--fallout-amber);
+            font-weight: bold;
+        }
+
+        .resource-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            border-left: 3px solid var(--fallout-green);
+            background: rgba(0, 51, 0, 0.25);
+            transition: 0.2s;
+        }
+
+        .resource-item:hover {
+            background: rgba(0, 255, 0, 0.08);
+            border-left-color: var(--fallout-amber);
+        }
+
+        .resource-item .emoji {
+            font-size: 1.5rem;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .resource-item .info {
+            flex: 1;
+        }
+
+        .resource-item .name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--fallout-green);
+        }
+
+        .resource-item .desc {
+            font-size: 1rem;
+            color: #aaffaa;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--fallout-green);
+        }
+
+        .nav-links a {
+            border: 1px solid var(--fallout-green);
+            padding: 6px 14px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        .footer-terminal {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid var(--fallout-green);
+            font-size: 0.9rem;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            p,
+            li {
+                font-size: 1.1rem;
+            }
+
+            .resource-item .name {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&lt; BACK TO TERMINAL</a>
+
+        <div class="terminal-header">
+            <h1>EXTERNAL RESOURCES</h1>
+            <div class="cmd-line">> RUN RESOURCE_INDEX.EXE</div>
+        </div>
+
+        <div class="section">
+            <span class="section-title">OFFICIAL SITES</span>
+            <div class="resource-grid">
+                <a href="https://fallout.bethesda.net/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">召</span>
+                    <div class="info">
+                        <div class="name">Bethesda.net 窶・Fallout</div>
+                        <div class="desc">Bethesda蜈ｬ蠑上・Fallout繝昴・繧ｿ繝ｫ</div>
+                    </div>
+                </a>
+                <a href="https://www.xbox.com/ja-JP/games/store/fallout-76/c1z1dbrchf7j" target="_blank" rel="noopener"
+                    class="resource-item">
+                    <span class="emoji">式</span>
+                    <div class="info">
+                        <div class="name">Fallout 76 窶・Xbox / Microsoft Store</div>
+                        <div class="desc">Fallout 76蜈ｬ蠑上せ繝医い繝壹・繧ｸ</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="section-title">WIKI / DATABASE</span>
+            <div class="resource-grid">
+                <a href="https://fallout.fandom.com/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">答</span>
+                    <div class="info">
+                        <div class="name">Fallout Wiki (Fandom / Nukapedia)</div>
+                        <div class="desc">闍ｱ隱槫恟譛螟ｧ縺ｮFallout逋ｾ遘台ｺ句・縲ょｽ薙し繧､繝医・諠・ｱ貅舌・/div>
+                    </div>
+                </a>
+                <a href="https://fo76.wiki.fextralife.com/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">当</span>
+                    <div class="info">
+                        <div class="name">Fextralife 窶・Fallout 76 Wiki</div>
+                        <div class="desc">繝薙Ν繝峨・繧ｯ繧ｨ繧ｹ繝医・陬・ｙ縺ｮ謾ｻ逡･諠・ｱ</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="section-title">BUILD / TOOLS</span>
+            <div class="resource-grid">
+                <a href="https://nukesdragons.com/fallout-76/character" target="_blank" rel="noopener"
+                    class="resource-item">
+                    <span class="emoji">肌</span>
+                    <div class="info">
+                        <div class="name">Nukes & Dragons 窶・Perk Planner</div>
+                        <div class="desc">Fallout 76縺ｮPerk繝ｻ繝ｬ繧ｸ繧ｧ繝ｳ繝繝ｪ繝ｼ讒区・繧ｷ繝溘Η繝ｬ繝ｼ繧ｿ繝ｼ</div>
+                    </div>
+                </a>
+                <a href="https://fed76.info/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">腸</span>
+                    <div class="info">
+                        <div class="name">FED76 窶・Price Check</div>
+                        <div class="desc">繝ｬ繧ｸ繧ｧ繝ｳ繝繝ｪ繝ｼ陬・ｙ縺ｮ萓｡譬ｼ逶ｸ蝣ｴ繝√ぉ繝・け繝・・繝ｫ</div>
+                    </div>
+                </a>
+                <a href="https://www.falloutbuilds.com/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">笞｡</span>
+                    <div class="info">
+                        <div class="name">Fallout Builds</div>
+                        <div class="desc">繧ｳ繝溘Η繝九ユ繧｣蜈ｱ譛峨・繝薙Ν繝蛾寔</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="section-title">MAPS / GUIDES</span>
+            <div class="resource-grid">
+                <a href="https://mappalachia.com/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">亮・・/span>
+                    <div class="info">
+                        <div class="name">Mappalachia</div>
+                        <div class="desc">繧｢繝代Λ繝√い縺ｮ繝ｪ繧ｽ繝ｼ繧ｹ繝槭ャ繝励・繝・・繧ｿ繝槭う繝九Φ繧ｰ繝・・繝ｫ</div>
+                    </div>
+                </a>
+                <a href="https://map76.com/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">桃</span>
+                    <div class="info">
+                        <div class="name">Map76</div>
+                        <div class="desc">Fallout 76縺ｮ繧､繝ｳ繧ｿ繝ｩ繧ｯ繝・ぅ繝悶・繝・・</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="section">
+            <span class="section-title">COMMUNITY</span>
+            <div class="resource-grid">
+                <a href="https://www.reddit.com/r/fo76/" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">町</span>
+                    <div class="info">
+                        <div class="name">Reddit 窶・r/fo76</div>
+                        <div class="desc">闍ｱ隱槫恟譛螟ｧ縺ｮFallout 76繧ｳ繝溘Η繝九ユ繧｣</div>
+                    </div>
+                </a>
+                <a href="https://x.com/i/communities/1964594941424013396" target="_blank" rel="noopener"
+                    class="resource-item">
+                    <span class="emoji">凄</span>
+                    <div class="info">
+                        <div class="name">Fallout JP 窶・X Community</div>
+                        <div class="desc">譌･譛ｬ隱曦allout繧ｳ繝溘Η繝九ユ繧｣・・,700蜷堺ｻ･荳奇ｼ・/div>
+                    </div>
+                </a>
+                <a href="https://discord.gg/falloutjp" target="_blank" rel="noopener" class="resource-item">
+                    <span class="emoji">児・・/span>
+                    <div class="info">
+                        <div class="name">Vault Discord Japan</div>
+                        <div class="desc">譌･譛ｬ隱曠iscord繧ｵ繝ｼ繝舌・・・00蜷堺ｻ･荳奇ｼ・/div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">&gt; HOME</a>
+            <a href="lore.html">&gt; LORE ARCHIVE</a>
+            <a href="about.html">&gt; ABOUT</a>
+            <a href="rules.html">&gt; RULES</a>
+            <a href="changelog.html">&gt; CHANGELOG</a>
+        </div>
+
+        <div class="footer-terminal">
+            &gt; 繝ｪ繝ｳ繧ｯ蛻・ｌ遲峨′縺ゅｊ縺ｾ縺励◆繧・<a href="https://x.com/IwamotoFuta" target="_blank" rel="noopener">@IwamotoFuta</a>
+            縺ｾ縺ｧ縺顔衍繧峨○縺上□縺輔＞縲・
+        </div>
+    </div>
+</body>
+
+</html>

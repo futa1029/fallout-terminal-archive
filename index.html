@@ -236,6 +236,31 @@
             padding-top: 10px;
         }
 
+        .site-nav {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--fallout-green);
+        }
+
+        .site-nav a {
+            color: var(--fallout-green);
+            text-decoration: none;
+            border: 1px solid var(--fallout-green);
+            padding: 6px 14px;
+            font-size: 1.1rem;
+            font-family: 'VT323', monospace;
+            transition: 0.3s;
+        }
+
+        .site-nav a:hover {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
         .footer-sig {
             text-align: right;
             font-size: 1.4rem;
@@ -367,6 +392,13 @@
                     SUPPORT THE ARCHIVES (運営支援)
                 </a>
             </div>
+        </div>
+
+        <div class="site-nav">
+            <a href="about.html">&gt; ABOUT</a>
+            <a href="rules.html">&gt; RULES</a>
+            <a href="changelog.html">&gt; CHANGELOG</a>
+            <a href="resources.html">&gt; RESOURCES</a>
         </div>
 
         <div class="footer-terminal">
