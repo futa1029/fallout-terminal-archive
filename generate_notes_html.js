@@ -74,7 +74,7 @@ function getThemeColor(category) {
 
 // 共通レイアウト用HTMLジェネレータ
 // firstImageUrl: 本文中の一番最初の画像（もしあれば抽出用）
-function generateHtml(article, processedBody, firstImageUrl, categoryName, themeColor, infoboxItems = [], tags = [], copyrightText = "") {
+function generateHtml(article, processedBody, firstImageUrl, categoryName, themeColor, infoboxItems = [], tags = [], copyrightText = "", appearances = []) {
     const safeTitle = article.title.replace(/"/g, '&quot;');
     const articleId = `note_${article.key}`; // supabaseのlike用キー
 
@@ -365,7 +365,7 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
         }
     </style>
 </head>
-<body>
+<body data-article-category="${categoryName}" data-article-appearance="${appearances.join(',')}">
     <div class="container">
         <!-- Sidebar -->
         <aside class="infobox">
@@ -473,6 +473,7 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
             if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
         });
     </script>
+    <script src="article-common.js" defer></script>
 </body>
 </html>`;
 }
@@ -818,7 +819,12 @@ async function processArticles() {
 
         finalBody = $.html();
 
-        const finalHtml = generateHtml(article, finalBody, firstImageUrl, category, themeColor, infoboxItems, tags, copyrightText);
+        // tags から登場作品リストを生成
+        const tagToAppearance = { '#Fallout76': 'Fallout 76', '#Fallout4': 'Fallout 4', '#Fallout3': 'Fallout 3', '#FalloutNV': 'Fallout: New Vegas', '#ClassicFallout': 'Fallout' };
+        const appearances = tags.filter(t => tagToAppearance[t]).map(t => tagToAppearance[t]);
+        if (appearances.length === 0) appearances.push('Fallout 76'); // デフォルト
+
+        const finalHtml = generateHtml(article, finalBody, firstImageUrl, category, themeColor, infoboxItems, tags, copyrightText, appearances);
         fs.writeFileSync(htmlSavePath, finalHtml, 'utf8');
         console.log(`[${i + 1}/${articles.length}] Processing HTML: ${article.htmlFilename}`);
     }
