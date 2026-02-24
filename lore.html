@@ -407,6 +407,87 @@
             white-space: nowrap;
         }
 
+        /* ===== カテゴリ別カラーボーダー ===== */
+        :root {
+            --cat-person: #00aaff;
+            --cat-creature: #ff8800;
+            --cat-faction: #00ccff;
+            --cat-location: #ffce07;
+            --cat-weapon: #ff4444;
+            --cat-item: #ff66cc;
+            --cat-plant: #aaff00;
+            --cat-system: #aa88ff;
+            --cat-default: #006600;
+        }
+
+        .menu-item[data-cat="人物"] {
+            border-left: 4px solid var(--cat-person);
+        }
+
+        .menu-item[data-cat="クリーチャー"] {
+            border-left: 4px solid var(--cat-creature);
+        }
+
+        .menu-item[data-cat="勢力"] {
+            border-left: 4px solid var(--cat-faction);
+        }
+
+        .menu-item[data-cat="場所"] {
+            border-left: 4px solid var(--cat-location);
+        }
+
+        .menu-item[data-cat="武器"] {
+            border-left: 4px solid var(--cat-weapon);
+        }
+
+        .menu-item[data-cat="アイテム"] {
+            border-left: 4px solid var(--cat-item);
+        }
+
+        .menu-item[data-cat="植物"] {
+            border-left: 4px solid var(--cat-plant);
+        }
+
+        .menu-item[data-cat="システム"] {
+            border-left: 4px solid var(--cat-system);
+        }
+
+        .menu-item[data-cat] {
+            padding-left: 10px;
+        }
+
+        .card-item[data-cat="人物"] {
+            border-top: 3px solid var(--cat-person);
+        }
+
+        .card-item[data-cat="クリーチャー"] {
+            border-top: 3px solid var(--cat-creature);
+        }
+
+        .card-item[data-cat="勢力"] {
+            border-top: 3px solid var(--cat-faction);
+        }
+
+        .card-item[data-cat="場所"] {
+            border-top: 3px solid var(--cat-location);
+        }
+
+        .card-item[data-cat="武器"] {
+            border-top: 3px solid var(--cat-weapon);
+        }
+
+        .card-item[data-cat="アイテム"] {
+            border-top: 3px solid var(--cat-item);
+        }
+
+        .card-item[data-cat="植物"] {
+            border-top: 3px solid var(--cat-plant);
+        }
+
+        .card-item[data-cat="システム"] {
+            border-top: 3px solid var(--cat-system);
+        }
+
         @media (max-width: 768px) {
             .card-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -2515,13 +2596,106 @@
             }
         }
 
+        // ===== 仮想スクロール =====
+        // フィルタ・ソート後の全件をキャッシュし、スクロール位置に応じて
+        // WINDOW_SIZE 件だけDOMに描画する。
+        const WINDOW_SIZE = 60;  // 一度に描画する最大件数
+        let _filteredCache = []; // 現在の表示対象全件
+        let _winStart = 0;       // 描画ウィンドウの先頭インデックス
+        const scrollEl = document.querySelector('.terminal-screen');
+
+        // ビルドした要素をDOMに反映（ウィンドウ分だけ）
+        function renderWindow() {
+            const total = _filteredCache.length;
+            const winEnd = Math.min(_winStart + WINDOW_SIZE, total);
+            const slice = _filteredCache.slice(_winStart, winEnd);
+
+            container.innerHTML = '';
+            container.className = currentView === 'card' ? 'card-grid' : '';
+
+            if (total === 0) {
+                container.innerHTML = '<div class="line" style="color:red">> NO MATCHING ARCHIVES FOUND.</div>';
+                return;
+            }
+
+            // 上部スペーサー（仮想行の高さを確保）
+            const ITEM_H = currentView === 'card' ? 180 : 62;
+            if (_winStart > 0) {
+                const top = document.createElement('div');
+                top.style.height = (_winStart * ITEM_H) + 'px';
+                container.appendChild(top);
+            }
+
+            const fragment = document.createDocumentFragment();
+
+            if (currentView === 'card') {
+                slice.forEach(entry => {
+                    const el = document.createElement('a');
+                    el.href = entry.url;
+                    el.className = 'card-item';
+                    if (entry.category) el.dataset.cat = entry.category;
+
+                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
+                    const newBadge = isNew ? '<span class="new-badge" style="position:absolute;top:6px;right:6px;z-index:1">NEW!</span>' : '';
+                    let badgesHtml = entry.category && entry.category !== 'その他'
+                        ? `<span class="badge">${entry.category}</span>` : '';
+
+                    el.innerHTML = `
+                        <div style="position:relative">${newBadge}${thumbHtml(entry.url, true)}</div>
+                        <div class="card-body">
+                            <div class="card-title">${entry.name}</div>
+                            <div class="card-meta">${badgesHtml}</div>
+                        </div>`;
+                    fragment.appendChild(el);
+                });
+            } else {
+                slice.forEach(entry => {
+                    const el = document.createElement('a');
+                    el.href = entry.url;
+                    el.className = 'menu-item';
+                    if (entry.category) el.dataset.cat = entry.category;
+
+                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
+                    const newBadgeHtml = isNew ? '<span class="new-badge">NEW!</span>' : '';
+                    let badgesHtml = entry.category && entry.category !== 'その他'
+                        ? `<span class="badge">${entry.category}</span>` : '';
+                    entry.appearance.forEach(a => { badgesHtml += ` <span class="badge">${a}</span>`; });
+
+                    el.innerHTML = `<div class="item-left">${thumbHtml(entry.url, false)}<span class="item-name">> ${newBadgeHtml}${entry.name}</span></div><div class="item-meta">${badgesHtml}</div>`;
+                    fragment.appendChild(el);
+                });
+            }
+
+            container.appendChild(fragment);
+
+            // 下部スペーサー
+            const remaining = total - winEnd;
+            if (remaining > 0) {
+                const bottom = document.createElement('div');
+                bottom.style.height = (remaining * ITEM_H) + 'px';
+                container.appendChild(bottom);
+            }
+        }
+
+        // スクロール時にウィンドウをずらす
+        scrollEl.addEventListener('scroll', () => {
+            const total = _filteredCache.length;
+            if (total === 0) return;
+            const ITEM_H = currentView === 'card' ? 180 : 62;
+            const newStart = Math.max(0, Math.floor(scrollEl.scrollTop / ITEM_H) - 10);
+            if (newStart !== _winStart) {
+                _winStart = newStart;
+                renderWindow();
+            }
+        }, { passive: true });
+
         function renderEntries() {
             const searchTerm = searchInput.value.toLowerCase().trim();
             const cat = currentFilters.category;
             const app = currentFilters.appearance;
 
-            // フィルタ（事前キャッシュ済み値を使用）
-            let filtered = loreEntries.filter(entry => {
+            // フィルタ
+            _filteredCache = loreEntries.filter(entry => {
                 if (cat !== 'all' && entry.category !== cat) return false;
                 if (app !== 'all' && !entry.appearance.includes(app)) return false;
                 if (searchTerm) {
@@ -2531,73 +2705,16 @@
                 return true;
             });
 
-            // ソート（キャッシュ済みタイムスタンプで高速化）
-            filtered.sort((a, b) => {
+            // ソート
+            _filteredCache.sort((a, b) => {
                 if (currentSort === 'date') return b._dateMs - a._dateMs;
                 return a.yomi.localeCompare(b.yomi);
             });
 
-            // DocumentFragmentでDOMへの挿入を1回にまとめる
-            countDisplay.innerText = filtered.length;
-            container.innerHTML = '';
-            container.className = currentView === 'card' ? 'card-grid' : '';
-            const fragment = document.createDocumentFragment();
-
-            if (currentView === 'card') {
-                // ===== カードビュー =====
-                filtered.forEach(entry => {
-                    const el = document.createElement('a');
-                    el.href = entry.url;
-                    el.className = 'card-item';
-
-                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
-                    const newBadge = isNew ? '<span class="new-badge" style="position:absolute;top:6px;right:6px;z-index:1">NEW!</span>' : '';
-
-                    let badgesHtml = '';
-                    if (entry.category && entry.category !== 'その他') {
-                        badgesHtml += `<span class="badge">${entry.category}</span>`;
-                    }
-
-                    el.innerHTML = `
-                        <div style="position:relative">
-                            ${newBadge}
-                            ${thumbHtml(entry.url, true)}
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">${entry.name}</div>
-                            <div class="card-meta">${badgesHtml}</div>
-                        </div>
-                    `;
-                    fragment.appendChild(el);
-                });
-            } else {
-                // ===== リストビュー =====
-                filtered.forEach(entry => {
-                    const el = document.createElement('a');
-                    el.href = entry.url;
-                    el.className = 'menu-item';
-
-                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
-                    const newBadgeHtml = isNew ? '<span class="new-badge">NEW!</span>' : '';
-
-                    let badgesHtml = '';
-                    if (entry.category && entry.category !== 'その他') {
-                        badgesHtml += `<span class="badge">${entry.category}</span>`;
-                    }
-                    entry.appearance.forEach(app => {
-                        badgesHtml += ` <span class="badge">${app}</span>`;
-                    });
-
-                    el.innerHTML = `<div class="item-left">${thumbHtml(entry.url, false)}<span class="item-name">> ${newBadgeHtml}${entry.name}</span></div><div class="item-meta">${badgesHtml}</div>`;
-                    fragment.appendChild(el);
-                });
-            }
-
-            container.appendChild(fragment);
-
-            if (filtered.length === 0) {
-                container.innerHTML = '<div class="line" style="color:red">> NO MATCHING ARCHIVES FOUND.</div>';
-            }
+            countDisplay.innerText = _filteredCache.length;
+            _winStart = 0;  // フィルタ変更時は先頭にリセット
+            scrollEl.scrollTop = 0;
+            renderWindow();
         }
 
         function setSort(type) {

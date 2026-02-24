@@ -131,22 +131,30 @@
         const appearanceAttr = document.body.getAttribute('data-article-appearance') || '';
         const appearances = appearanceAttr ? appearanceAttr.split(',').map(s => s.trim()) : [];
 
-        // サムネイルJSONを読み込み
+        // ===== sessionStorage キャッシュを使った fetch ヘルパー =====
+        async function cachedFetch(url) {
+            const cacheKey = 'ac_cache_' + url;
+            const cached = sessionStorage.getItem(cacheKey);
+            if (cached) return cached;
+            const res = await fetch(url);
+            const text = await res.text();
+            try { sessionStorage.setItem(cacheKey, text); } catch (e) { /* ストレージが満杯でも続行 */ }
+            return text;
+        }
+
+        // サムネイルJSONを読み込み（キャッシュ付き）
         let thumbnails = {};
         try {
-            const res = await fetch(THUMBNAILS_JSON);
-            thumbnails = await res.json();
+            const text = await cachedFetch(THUMBNAILS_JSON);
+            thumbnails = JSON.parse(text);
         } catch (e) {
             return; // JSON取得失敗時は関連記事を表示しない
         }
 
-        // lore.htmlのloreEntriesを取得するために、スクリプト内のデータを使用
-        // → lore-thumbnails.jsonにはURLしかないので、別途記事一覧が必要
-        // → lore.htmlを取得してloreEntriesを解析する
+        // lore.html のエントリを解析（キャッシュ付き）
         let loreEntries = [];
         try {
-            const res = await fetch(LORE_URL);
-            const html = await res.text();
+            const html = await cachedFetch(LORE_URL);
             const match = html.match(/const loreEntries = \[([\s\S]*?)\];/);
             if (match) {
                 // JSONとして解析可能にする

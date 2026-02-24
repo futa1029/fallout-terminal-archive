@@ -158,6 +158,9 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
             border: 2px solid var(--accent-color);
             padding: 15px;
             height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
         }
 
         .infobox img {
@@ -184,7 +187,8 @@ function generateHtml(article, processedBody, firstImageUrl, categoryName, theme
             background: rgba(255, 255, 255, 0.05);
             padding: 30px;
             border-radius: 5px;
-            font-size: 1.1em;
+            font-size: 1em;
+            line-height: 1.9;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 

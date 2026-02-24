@@ -44,6 +44,21 @@ for (const [file, meta] of Object.entries(protectedMeta)) {
         changed = true;
     }
 
+    // 3. infobox に sticky を追加（デスクトップでサイドバーが追従するように）
+    html = html.replace(
+        /\.infobox\s*\{([^}]*?)height:\s*fit-content;([^}]*?)\}/s,
+        (m, before, after) => {
+            if (m.includes('position: sticky')) return m; // 既にある場合はスキップ
+            return `.infobox {${before}height: fit-content;\n            position: sticky;\n            top: 20px;\n            align-self: start;${after}}`;
+        }
+    );
+    changed = true;
+
+    // 4. .content のフォントサイズを最適化（1.1em→1em、line-height追加）
+    html = html.replace(/\.content\s*\{([^}]*?)font-size:\s*1\.1em;/s, (m, before) => {
+        return `.content {${before}font-size: 1em;\n            line-height: 1.9;`;
+    });
+
     if (changed) {
         fs.writeFileSync(fp, html, 'utf8');
         console.log('Updated: ' + file);
@@ -53,3 +68,4 @@ for (const [file, meta] of Object.entries(protectedMeta)) {
     }
 }
 console.log(`Done: ${count} files updated`);
+
