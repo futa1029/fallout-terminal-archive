@@ -1,4 +1,4 @@
-/**
+﻿/**
  * add_common_script.js
  * 保護ファイルに data属性と article-common.js のscriptタグを一括追加するスクリプト
  * コメントセクションの挿入も行う
@@ -8,7 +8,7 @@ const path = require('path');
 const DIR = 'f:\\Fallout';
 const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
 const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
-const ADMIN_PASSWORD = 'change_me_admin_2026'; // ← 管理者パスワード
+const ADMIN_PASSWORD = 'tq7jtq7j'; // ← 管理者パスワード
 
 const protectedMeta = {
     'kimball.html': { cat: '人物', app: 'Fallout: New Vegas' },
