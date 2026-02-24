@@ -1,7 +1,7 @@
-#Fallout76
+# Fallout76
 
-Bloodleaf
-https://futa1029.github.io/fallout-terminal-archive/bloodleaf.html
+ブラッドリーフ
+<https://www.fallout-jp.com/bloodleaf.html>
 
 概要
 
