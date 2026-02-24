@@ -21,7 +21,8 @@ const manualEntries = [
     { name: "Vault-Tec Industries", yomi: "ぼるとてっく・こーぽれーしょん", url: "vault_tec.html", category: "勢力", appearance: ["Fallout", "Fallout 2", "Fallout 3", "Fallout 4", "Fallout 76", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-23" },
     { name: "ビリングス農場", yomi: "びりんぐすのうじょう", url: "billings-homestead.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-23" },
     { name: "ペット (Fallout 76)", yomi: "ぺっと", url: "fallout-76-pets.html", category: "システム", appearance: ["Fallout 76"], date: "2026-02-24" },
-    { name: "ブラッドリーフ", yomi: "ぶらっどりーふ", url: "bloodleaf.html", category: "植物", appearance: ["Fallout 76"], date: "2026-02-24" }
+    { name: "ブラッドリーフ", yomi: "ぶらっどりーふ", url: "bloodleaf.html", category: "植物", appearance: ["Fallout 76"], date: "2026-02-24" },
+    { name: "シングルアクション・リボルバー", yomi: "しんぐるあくしょん・りぼるばー", url: "single-action-revolver.html", category: "武器", appearance: ["Fallout 76", "Fallout TV"], date: "2026-02-25" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -38,7 +39,8 @@ const duplicateKeywords = [
     "ボルトテック",
     "ビリングス農場",
     "ペット",
-    "ブラッドリーフ"
+    "ブラッドリーフ",
+    "シングルアクション・リボルバー"
 ];
 
 function isDuplicate(title) {
@@ -103,7 +105,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};

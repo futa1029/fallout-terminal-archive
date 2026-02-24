@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Single action revolver | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/single-action-revolver.html">
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Single action revolver | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Single action revolver（シングルアクション・リボルバー）のFalloutロア記事。<br>
+                Overseer Mohi's Terminalで読む。<br>
+                ">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/single-action-revolver/FO76_Single_action_revolver.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/single-action-revolver.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Single action revolver | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Single action revolver（シングルアクション・リボルバー）のFalloutロア記事。<br>
+                Overseer Mohi's Terminalで読む。<br>
+                ">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/single-action-revolver/FO76_Single_action_revolver.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+
+        /* Stats Table */
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 8px 12px;
+            border: 1px solid #444;
+            text-align: center;
+        }
+
+        .stats-table th {
+            background: var(--header-bg);
+            color: var(--accent-color);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .stats-table td {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mods Table */
+        .mods-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9em;
+        }
+
+        .mods-table th,
+        .mods-table td {
+            padding: 6px 10px;
+            border: 1px solid #444;
+            text-align: left;
+        }
+
+        .mods-table th {
+            background: var(--header-bg);
+            color: var(--accent-color);
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .mods-table td {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
+        }
+
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body data-article-category="武器" data-article-appearance="Fallout 76, Fallout TV series">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Single action revolver</h3>
+            <img src="images/note_extracted/single-action-revolver/FO76_Single_action_revolver.png"
+                alt="Single action revolver">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>武器 / ピストル</span></div>
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>非自動式ピストル</span></div>
+            <div class="infobox-row"><span class="infobox-label">弾薬</span><span>.44口径弾</span></div>
+            <div class="infobox-row"><span class="infobox-label">マガジン</span><span>6</span></div>
+            <div class="infobox-row"><span class="infobox-label">発射速度</span><span>6</span></div>
+            <div class="infobox-row"><span class="infobox-label">射程</span><span>232</span></div>
+            <div class="infobox-row"><span class="infobox-label">精度</span><span>71</span></div>
+            <div class="infobox-row"><span class="infobox-label">AP消費</span><span>29</span></div>
+            <div class="infobox-row"><span class="infobox-label">重量</span><span>4.0</span></div>
+            <div class="infobox-row"><span class="infobox-label">リロード</span><span>3.00秒</span></div>
+            <div class="infobox-row"><span class="infobox-label">スタガー</span><span>小</span></div>
+            <div class="infobox-row"><span class="infobox-label">音量</span><span>大</span></div>
+            <div class="infobox-row"><span class="infobox-label">Editor ID</span><span>SingleActionRevolver</span></div>
+            <div class="infobox-row"><span class="infobox-label">Form ID</span><span>001C7A69</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76, TVシリーズ</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_single_action_revolver" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Single action revolver<br><span
+                    style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">シングルアクション・リボルバー</span>
+            </h1>
+
+            <!-- ===== 概要 ===== -->
+            <h2>概要</h2>
+            <p>
+                シングルアクション・リボルバー（別名：コルト・シングルアクションアーミー）は、Fallout 76に登場する非自動式ピストルです。<br>
+                アメリカ製と推定されるこの銃は、.44口径弾を使用します。<br>
+            </p>
+
+            <!-- ===== 特徴 ===== -->
+            <h2>特徴</h2>
+            <p>
+                シリンダーには一発ずつ弾を込め、新しいカートリッジを装填する前にシリンダーを回転させるという、クラシックなリロード方式を採用しています。<br>
+                リロードプロセスは中断可能なため、急いで射撃に戻ることもできます。<br>
+            </p>
+            <p>
+                標準の.44ピストルと比較すると、ダメージがやや高く、精度も良好ですが、発射速度が低いのが難点です。<br>
+                改造の種類が非常に限られており、ゲーム内モデルにはファイアリングピン（撃針）が欠けているように見えます。<br>
+            </p>
+
+            <!-- ===== ステータス ===== -->
+            <h2>ステータス</h2>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>レベル</th>
+                        <th>ダメージ</th>
+                        <th>価値</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10</td>
+                        <td>83</td>
+                        <td>31</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>105</td>
+                        <td>42</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>134</td>
+                        <td>55</td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td>171</td>
+                        <td>70</td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td>218</td>
+                        <td>85</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ===== クラフト ===== -->
+            <h2>クラフト</h2>
+            <p>
+                武器作業台で製作可能です。<br>
+                設計図「Plan: Single-action revolver」が必要です。<br>
+                設計図はレスポンダーのベンダーボットから購入できます。<br>
+            </p>
+            <table class="stats-table">
+                <thead>
+                    <tr>
+                        <th>レベル</th>
+                        <th>接着剤</th>
+                        <th>オイル</th>
+                        <th>ネジ</th>
+                        <th>鉄鋼</th>
+                        <th>木材</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10</td>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>6</td>
+                        <td>19</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>20</td>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>8</td>
+                        <td>21</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>30</td>
+                        <td>5</td>
+                        <td>5</td>
+                        <td>10</td>
+                        <td>23</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>40</td>
+                        <td>6</td>
+                        <td>6</td>
+                        <td>12</td>
+                        <td>25</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <td>50</td>
+                        <td>8</td>
+                        <td>8</td>
+                        <td>14</td>
+                        <td>28</td>
+                        <td>15</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- ===== 武器改造 ===== -->
+            <h2>武器改造</h2>
+
+            <h3>レシーバー</h3>
+            <table class="mods-table">
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <th>効果</th>
+                        <th>入手方法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>スタンダード</td>
+                        <td>デフォルト</td>
+                        <td>初期習得</td>
+                    </tr>
+                    <tr>
+                        <td>プライム</td>
+                        <td>ダメージ増加、スコーチドとスコーチビーストに対して高ダメージ。ウルトラサイト.44弾を使用</td>
+                        <td>設計図</td>
+                    </tr>
+                    <tr>
+                        <td>プライム（ガンサー限定）</td>
+                        <td>ガンサーズ・ビッグアイアン専用</td>
+                        <td>専用</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>バレル</h3>
+            <table class="mods-table">
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <th>効果</th>
+                        <th>入手方法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ロング</td>
+                        <td>デフォルト</td>
+                        <td>初期習得</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>グリップ</h3>
+            <table class="mods-table">
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <th>効果</th>
+                        <th>入手方法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>スタンダード</td>
+                        <td>デフォルト</td>
+                        <td>初期習得</td>
+                    </tr>
+                    <tr>
+                        <td>アイボリー</td>
+                        <td>反動 -12%、精度 +1、AP -12%、射程 -5%、重量 +0.2、価値 +20%</td>
+                        <td>Plan: Single-action revolver ivory grip</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>外観</h3>
+            <table class="mods-table">
+                <thead>
+                    <tr>
+                        <th>名前</th>
+                        <th>効果</th>
+                        <th>入手方法</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>アメリカンペイント</td>
+                        <td>外観変更</td>
+                        <td>アトミックショップ</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <img src="images/note_extracted/single-action-revolver/Atx_skin_weaponskin_singleactionarmy_4th_july_l.webp"
+                alt="アメリカンペイントスキン" class="article-image">
+            <p class="image-caption">アメリカンペイントスキン</p>
+
+            <!-- ===== バリアント ===== -->
+            <h2>バリアント</h2>
+            <ul>
+                <li><strong>ファンシー・シングルアクション・リボルバー</strong> — プレザントバレーの引換券から入手できる珍しいバリアントです。<br>
+                    通常の改造を一切受け付けませんが、独特のビジュアルが特徴です。</li>
+                <li><strong>ガンサーズ・ビッグアイアン</strong> — Nuka-World on Tourの「Most Wanted」イベントから入手できるユニークなレジェンダリーバリアントです。<br>
+                    発射速度とリロード速度が向上しています。</li>
+            </ul>
+
+            <!-- ===== 入手場所 ===== -->
+            <h2>入手場所</h2>
+            <ul>
+                <li><strong>設計図</strong> — レスポンダーのベンダーボットから購入可能です。</li>
+                <li><strong>Back on the Beat</strong> — モーガンタウンの銀行にあるスタッシュM-3で発見できます。</li>
+                <li><strong>放棄されたコンボイ</strong> — 破壊されたバンの上にある金庫の上に配置されています。</li>
+                <li><strong>ドロップ</strong> — アメリカ政府の補給クレート、レジェンダリードロップ、デイリークエスト報酬から入手できます。</li>
+            </ul>
+
+            <!-- ===== TVシリーズ ===== -->
+            <h2>Fallout TVシリーズ</h2>
+            <p>
+                シングルアクション・リボルバーは、Fallout TVシリーズにも登場しています。<br>
+                実物のコルト・シングルアクションアーミー・リボルバー（.45コルト口径）がプロップとして使用されました。<br>
+            </p>
+            <ul>
+                <li><strong>「The End」</strong> — クーパー・ハワードがロイ・スペンサーの誕生日パーティーでのパフォーマンス中にこのリボルバーを携帯しています。</li>
+                <li><strong>「The Head」</strong> — 戦前の映画『The Man from Deadhorse』でクーパーのキャラクターがこのリボルバーを使用しています。</li>
+                <li><strong>「The Ghouls」</strong> — クーパーが映画の市販コピーを見つけ、自分のキャラクターがリボルバーを使用する場面を視聴します。</li>
+            </ul>
+
+            <img src="images/note_extracted/single-action-revolver/FoTV_Single_Action_army_The_Head.jpg"
+                alt="映画『The Man from Deadhorse』の撮影セットで使用されたリボルバー" class="article-image">
+            <p class="image-caption">映画『The Man from Deadhorse』の撮影セットで使用されたリボルバー</p>
+
+            <img src="images/note_extracted/single-action-revolver/FoTV_Single_Action_army_The_End.jpg"
+                alt="ロイ・スペンサーの誕生日パーティーでクーパーが携帯するリボルバー" class="article-image">
+            <p class="image-caption">ロイ・スペンサーの誕生日パーティーでクーパーが携帯するリボルバー</p>
+
+            <!-- ===== 備考 ===== -->
+            <h2>備考</h2>
+            <ul>
+                <li>ゲーム内モデルのシリンダーには、実際には1発の弾しか入っていません。</li>
+                <li>一人称視点では、ハーフコック状態でなくてもシリンダーを回すことができます。</li>
+                <li>三人称視点では、一人称視点と異なり、リロード時に使用済みの薬莢が排出されません。</li>
+                <li>Vault Survivorの衣装にはホルスターに収められたバージョンが表示されますが、グリップとバレルの形状が異なります。</li>
+            </ul>
+
+            <!-- ===== ギャラリー ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/single-action-revolver/FO76_Single_action_revolver.png"
+                            alt="シングルアクション・リボルバー">
+                        <div class="caption">シングルアクション・リボルバー</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/single-action-revolver/FO76_iconwheel_revolver.png"
+                            alt="Pip-Boyアイコン">
+                        <div class="caption">Pip-Boyアイコン</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/single-action-revolver/Atx_skin_weaponskin_singleactionarmy_4th_july_l.webp"
+                            alt="アメリカンペイントスキン">
+                        <div class="caption">アメリカンペイントスキン</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/single-action-revolver/FoTV_Single_Action_army_The_Head.jpg"
+                            alt="TVシリーズ - The Man from Deadhorse">
+                        <div class="caption">TVシリーズ - The Man from Deadhorse</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/single-action-revolver/FoTV_Single_Action_army_The_End.jpg"
+                            alt="TVシリーズ - The End">
+                        <div class="caption">TVシリーズ - The End</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== 感想 ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                シングルアクション・リボルバー、いわゆるコルトSAAですよ！西部劇のアイコンがそのままFallout 76の世界に持ち込まれているのが、もうたまらないですよね〜。<br>
+                .44口径の重みのある一撃は序盤からかなり頼りになりますし、何よりあの一発ずつシリンダーに弾を込めていくリロードモーションが渋すぎます。<br>
+                発射速度こそ遅いものの、その分一発一発に重みがあって、まさにガンスリンガービルドのロマンを体現した武器だと思います！<br><br>
+
+                バリアントのガンサーズ・ビッグアイアンなんかは「Most Wanted」イベントの報酬だけあって、火力もリロードも強化されていて実用的なのが嬉しいですね。<br>
+                名前からして「Big Iron on his hip〜♪」のあの曲が脳内で再生されちゃいますw<br>
+                そしてファンシーバリアントは改造できない代わりに見た目が豪華で、コレクションとしてディスプレイに飾りたくなる逸品です。<br><br>
+
+                さらに驚いたのが、Fallout
+                TVシリーズでも使われていることですよね！クーパー・ハワードが携帯する姿はまさに西部のガンマンそのもので、ゲームとドラマの世界が繋がっている感覚がとにかく素晴らしいです。<br>
+                このリボルバーを手に、荒廃したアパラチアの大地を一人歩く――そんなロールプレイがしたくなる、ロマンあふれる一丁ですね！
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article uses material from the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+                </p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100"
+                        placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <!-- Supabase Scripts + Lightbox logic -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+
+            // Lightbox logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                });
+            });
+        });
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_single_action_revolver';
+        const _commentArticleName = 'Single action revolver';
+        const _commentArticleUrl = 'single-action-revolver.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    loadComments(); alert('管理者モードを終了しました。'); return;
+                }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                } else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>
