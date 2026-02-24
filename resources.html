@@ -20,7 +20,7 @@
     <meta name="twitter:description" content="Falloutプレイヤー向け外部リソースリンク集。公式サイト・Wiki・ビルドツール・マップ・コミュニティ。">
     <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-image.png">
     <title>Resources | Fallout JP Community</title>
-    <meta name="description" content="Falloutプレイヤー向けの外部リソース・ツール・リンク集です。">
+    <meta name="description" content="Falloutプレイヤー向け外部リソースリンク集。公式サイト・Wiki・ビルドツール・マップ・コミュニティ。">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+JP:wght@400;700&display=swap');
 
@@ -29,6 +29,10 @@
             --fallout-bg: #111111;
             --fallout-dark-green: #003300;
             --fallout-amber: #ffce07;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
@@ -75,6 +79,113 @@
             color: var(--fallout-bg);
         }
 
+        /* ===== 募集告知バナー ===== */
+        .recruit-notice {
+            border: 2px solid var(--fallout-amber);
+            background: rgba(255, 206, 7, 0.05);
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .recruit-notice-title {
+            background: var(--fallout-amber);
+            color: var(--fallout-bg);
+            padding: 5px 18px;
+            display: inline-block;
+            position: absolute;
+            top: -18px;
+            left: 20px;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .recruit-notice p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: #ffe88a;
+            margin: 0 0 15px 0;
+        }
+
+        .recruit-notice .notice-main {
+            color: #e0ffe0;
+            font-size: 1.25rem;
+            border-left: 3px solid var(--fallout-amber);
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+
+        /* ===== 募集セクション ===== */
+        .recruit-section {
+            border: 1px solid var(--fallout-green);
+            padding: 25px;
+            margin-bottom: 30px;
+            background: rgba(0, 51, 0, 0.15);
+            position: relative;
+        }
+
+        .recruit-section-title {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+            padding: 4px 15px;
+            display: inline-block;
+            position: absolute;
+            top: -16px;
+            left: 20px;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .recruit-banner {
+            width: 100%;
+            max-width: 700px;
+            display: block;
+            margin: 10px auto 20px;
+            border: 1px solid var(--fallout-green);
+            opacity: 0.95;
+        }
+
+        .recruit-details {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .recruit-details li {
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: #e0ffe0;
+            margin: 8px 0;
+        }
+
+        .recruit-details li::before {
+            content: "> ";
+            color: var(--fallout-amber);
+        }
+
+        .recruit-cta {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+        .recruit-cta a {
+            display: inline-block;
+            color: var(--fallout-bg);
+            background: var(--fallout-amber);
+            text-decoration: none;
+            padding: 10px 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: 2px solid var(--fallout-amber);
+            transition: 0.3s;
+        }
+
+        .recruit-cta a:hover {
+            background: transparent;
+            color: var(--fallout-amber);
+        }
+
+        /* ===== 公式リソースセクション ===== */
         .section {
             border: 1px solid var(--fallout-green);
             padding: 25px;
@@ -93,29 +204,6 @@
             left: 20px;
             font-weight: bold;
             font-size: 1.3rem;
-        }
-
-        p,
-        li {
-            font-size: 1.3rem;
-            line-height: 1.6;
-            margin: 12px 0;
-            color: #e0ffe0;
-        }
-
-        .cmd-line {
-            color: var(--fallout-amber);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        a {
-            color: var(--fallout-green);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-shadow: 0 0 10px var(--fallout-green);
         }
 
         .resource-grid {
@@ -177,6 +265,8 @@
             padding: 6px 14px;
             font-size: 1.1rem;
             transition: 0.3s;
+            color: var(--fallout-green);
+            text-decoration: none;
         }
 
         .nav-links a:hover {
@@ -198,9 +288,9 @@
                 font-size: 1.6rem;
             }
 
-            p,
-            li {
-                font-size: 1.1rem;
+            .recruit-notice p,
+            .recruit-details li {
+                font-size: 1rem;
             }
 
             .resource-item .name {
@@ -215,12 +305,65 @@
         <a href="index.html" class="back-link">&lt; BACK TO TERMINAL</a>
 
         <div class="terminal-header">
-            <h1>EXTERNAL RESOURCES</h1>
-            <div class="cmd-line">> RUN RESOURCE_INDEX.EXE</div>
+            <h1>RESOURCES</h1>
+            <div style="color: var(--fallout-amber); font-size: 1.1rem; margin-top: 8px;">> RUN RESOURCE_INDEX.EXE</div>
         </div>
 
+        <!-- ===== 募集告知 ===== -->
+        <div class="recruit-notice">
+            <span class="recruit-notice-title">【 RECRUITMENT 】Fallout活動者の皆様へ</span>
+            <br><br>
+            <p>
+                当コミュニティが果たすべき役割は、各地に分散している情報網や、素晴らしい活動をされている皆様を繋ぐ<strong
+                    style="color: var(--fallout-amber);">「架け橋」</strong>になることです。
+            </p>
+            <div class="notice-main">
+                当サイトにて紹介・掲載を希望される<strong>YouTuber / Vtuber</strong>の方、および<strong>攻略サイト運営者</strong>様を募集しております！<br>
+                「Fallout界隈をもっと盛り上げたい」「情報を必要としている居住者に届けたい」という想いをお持ちの方、ぜひお力添えをお願いします。
+            </div>
+            <p style="text-align: center; margin-top: 20px;">
+                【応募方法】詳細を添えて、<a href="https://x.com/IwamotoFuta" target="_blank" rel="noopener"
+                    style="color: var(--fallout-amber);">@IwamotoFuta</a> のDMまでお気軽にご連絡ください！
+            </p>
+        </div>
+
+        <!-- ===== YouTuber / Vtuber ===== -->
+        <div class="recruit-section">
+            <span class="recruit-section-title">📽️ YouTuber / Vtuber</span>
+            <img src="images/youtuber-banner.png" alt="YouTuber / Vtuber 掲載者 募集中" class="recruit-banner" loading="lazy">
+            <p style="font-size: 1.2rem; color: #e0ffe0; margin: 10px 0;">
+                活動内容を紹介する専用スペースを作成します。皆様の個性をぜひ当サイトでアピールしてください！
+            </p>
+            <ul class="recruit-details">
+                <li>紹介画像</li>
+                <li>チャンネルURL</li>
+                <li>紹介文</li>
+            </ul>
+            <div class="recruit-cta">
+                <a href="https://x.com/IwamotoFuta" target="_blank" rel="noopener">&gt; DMで応募する</a>
+            </div>
+        </div>
+
+        <!-- ===== 攻略サイト ===== -->
+        <div class="recruit-section">
+            <span class="recruit-section-title">📝 攻略サイト運営者様</span>
+            <img src="images/guide-banner.png" alt="攻略サイト 掲載者 募集中" class="recruit-banner" loading="lazy">
+            <p style="font-size: 1.2rem; color: #e0ffe0; margin: 10px 0;">
+                「ここではこんな情報を発信している」という紹介と共に、リンクを掲載させていただきます。
+            </p>
+            <ul class="recruit-details">
+                <li>サイト画像（あれば）</li>
+                <li>サイトURL</li>
+                <li>紹介文</li>
+            </ul>
+            <div class="recruit-cta">
+                <a href="https://x.com/IwamotoFuta" target="_blank" rel="noopener">&gt; DMで応募する</a>
+            </div>
+        </div>
+
+        <!-- ===== 公式リソース ===== -->
         <div class="section">
-            <span class="section-title">OFFICIAL SITES</span>
+            <span class="section-title">OFFICIAL RESOURCES</span>
             <div class="resource-grid">
                 <a href="https://fallout.bethesda.net/" target="_blank" rel="noopener" class="resource-item">
                     <span class="emoji">🏢</span>
@@ -229,108 +372,11 @@
                         <div class="desc">Bethesda公式のFalloutポータル</div>
                     </div>
                 </a>
-                <a href="https://www.xbox.com/ja-JP/games/store/fallout-76/c1z1dbrchf7j" target="_blank" rel="noopener"
-                    class="resource-item">
-                    <span class="emoji">🎮</span>
-                    <div class="info">
-                        <div class="name">Fallout 76 — Xbox / Microsoft Store</div>
-                        <div class="desc">Fallout 76公式ストアページ</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="section">
-            <span class="section-title">WIKI / DATABASE</span>
-            <div class="resource-grid">
                 <a href="https://fallout.fandom.com/" target="_blank" rel="noopener" class="resource-item">
                     <span class="emoji">📚</span>
                     <div class="info">
                         <div class="name">Fallout Wiki (Fandom / Nukapedia)</div>
                         <div class="desc">英語圏最大のFallout百科事典。当サイトの情報源。</div>
-                    </div>
-                </a>
-                <a href="https://fo76.wiki.fextralife.com/" target="_blank" rel="noopener" class="resource-item">
-                    <span class="emoji">📖</span>
-                    <div class="info">
-                        <div class="name">Fextralife — Fallout 76 Wiki</div>
-                        <div class="desc">ビルド・クエスト・装備の攻略情報</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="section">
-            <span class="section-title">BUILD / TOOLS</span>
-            <div class="resource-grid">
-                <a href="https://nukesdragons.com/fallout-76/character" target="_blank" rel="noopener"
-                    class="resource-item">
-                    <span class="emoji">🔧</span>
-                    <div class="info">
-                        <div class="name">Nukes &amp; Dragons — Perk Planner</div>
-                        <div class="desc">Fallout 76のPerk・レジェンダリー構成シミュレーター</div>
-                    </div>
-                </a>
-                <a href="https://fed76.info/" target="_blank" rel="noopener" class="resource-item">
-                    <span class="emoji">💰</span>
-                    <div class="info">
-                        <div class="name">FED76 — Price Check</div>
-                        <div class="desc">レジェンダリー装備の価格相場チェックツール</div>
-                    </div>
-                </a>
-                <a href="https://www.falloutbuilds.com/" target="_blank" rel="noopener" class="resource-item">
-                    <span class="emoji">⚡</span>
-                    <div class="info">
-                        <div class="name">Fallout Builds</div>
-                        <div class="desc">コミュニティ共有のビルド集</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="section">
-            <span class="section-title">MAPS / GUIDES</span>
-            <div class="resource-grid">
-                <a href="https://mappalachia.com/" target="_blank" rel="noopener" class="resource-item">
-                    <span class="emoji">🗺️</span>
-                    <div class="info">
-                        <div class="name">Mappalachia</div>
-                        <div class="desc">アパラチアのリソースマップ・データマイニングツール</div>
-                    </div>
-                </a>
-                <a href="https://map76.com/" target="_blank" rel="noopener" class="resource-item">
-                    <span class="emoji">📍</span>
-                    <div class="info">
-                        <div class="name">Map76</div>
-                        <div class="desc">Fallout 76のインタラクティブマップ</div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="section">
-            <span class="section-title">COMMUNITY</span>
-            <div class="resource-grid">
-                <a href="https://www.reddit.com/r/fo76/" target="_blank" rel="noopener" class="resource-item">
-                    <span class="emoji">💬</span>
-                    <div class="info">
-                        <div class="name">Reddit — r/fo76</div>
-                        <div class="desc">英語圏最大のFallout 76コミュニティ</div>
-                    </div>
-                </a>
-                <a href="https://x.com/i/communities/1964594941424013396" target="_blank" rel="noopener"
-                    class="resource-item">
-                    <span class="emoji">🐦</span>
-                    <div class="info">
-                        <div class="name">Fallout JP — X Community</div>
-                        <div class="desc">日本語Falloutコミュニティ（1,700名以上）</div>
-                    </div>
-                </a>
-                <a href="https://discord.gg/falloutjp" target="_blank" rel="noopener" class="resource-item">
-                    <span class="emoji">🎙️</span>
-                    <div class="info">
-                        <div class="name">Vault Discord Japan</div>
-                        <div class="desc">日本語Discordサーバー（700名以上）</div>
                     </div>
                 </a>
             </div>
@@ -345,8 +391,7 @@
         </div>
 
         <div class="footer-terminal">
-            &gt; リンク切れ等がありましたら <a href="https://x.com/IwamotoFuta" target="_blank" rel="noopener">@IwamotoFuta</a>
-            までお知らせください。
+            &gt; リンク掲載希望は <a href="https://x.com/IwamotoFuta" target="_blank" rel="noopener">@IwamotoFuta</a> までDMください。
         </div>
     </div>
 </body>
