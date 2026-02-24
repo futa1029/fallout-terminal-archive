@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -438,6 +438,8 @@
                 <h3 class="comments-title">&gt; COMMENTS</h3>
                 <div class="comment-form">
                     <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <!-- ハニーポット：ボット対策（人間には見えない） -->
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
                         <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
@@ -572,7 +574,7 @@
                 <div class="comment-item" data-id="${c.id}">
                     <div class="comment-meta">
                         <span class="comment-time">${relativeTime(c.created_at)}</span>
-                        ${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">🗑️</button>` : ''}
+                        ${_isAdminMode ? `<button class="comment-delete-btn" title="完全削除" onclick="deleteComment('${c.id}')">&#128465;</button><button class="comment-delete-btn" title="非表示(サイレント)" onclick="hideComment('${c.id}')">&#128064;</button>` : ''}
                     </div>
                     <div class="comment-body">${escapeHtml(c.content)}</div>
                 </div>
@@ -606,9 +608,25 @@
             const input = document.getElementById('comment-input');
             const msg = document.getElementById('comment-msg');
             if (!input || !msg) return;
+
+            // ① ハニーポットチェック（ボット検出）
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value !== '') return; // サイレント拒否
+
             const content = input.value.trim();
             if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
             if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+
+            // ② NGワードチェック（クライアント側）
+            const NG_WORDS = [
+                '広啄', 'http://', 'https://', 'LINE', 'DMして', '難民', 'ビッチ', '死ね',
+                'クソ', 'アホ', 'ウザイ', 'メルマガ', 'discord.gg', 't.me', 'clickして'
+            ];
+            const lc = content.toLowerCase();
+            if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) {
+                showCommentMsg('不適切な表現が含まれていルため投稿できません。', false);
+                return;
+            }
 
             // レート制限チェック（60秒）
             const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
@@ -648,15 +666,27 @@
             setTimeout(() => { el.textContent = ''; }, 3000);
         }
 
-        // 管理者：コメント削除
+        // 管理者：コメント完全削除
         async function deleteComment(commentId) {
             if (!_isAdminMode) return;
-            if (!confirm('このコメントを削除しますか？')) return;
+            if (!confirm('このコメントを完全に削除しますか？(非表示にするならビルボードボタンを使ってください)')) return;
             const { error } = await supabaseClient.rpc('delete_comment_admin', {
                 comment_id: commentId,
                 admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || ''
             });
             if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+
+        // 管理者：コメントサイレント非表示（④ is_hidden フラグ）
+        async function hideComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを非表示(サイレント)にしますか？投稿者には通知されません。')) return;
+            const { error } = await supabaseClient.rpc('hide_comment_admin', {
+                comment_id: commentId,
+                admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || ''
+            });
+            if (error) { alert('非表示失敗: ' + error.message); return; }
             await loadComments();
         }
 
@@ -678,7 +708,8 @@
                     _isAdminMode = true;
                     localStorage.setItem(ADMIN_TOKEN_KEY, pw);
                     loadComments();
-                    alert('管理者モードに入りました。コメントの🗑️ボタンで削除できます。');
+                    alert('管理者モードに入りました。
+🗑 = 完全削除 / 👁 = サイレント非表示');
                 } else {
                     alert('パスワードが違います。');
                 }

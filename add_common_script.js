@@ -129,6 +129,8 @@ const COMMENT_HTML = `
                 <h3 class="comments-title">&gt; COMMENTS</h3>
                 <div class="comment-form">
                     <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <!-- ハニーポット：ボット対策（人間には見えない） -->
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
                         <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
@@ -152,6 +154,8 @@ function buildCommentScript(articleId, articleName, articleUrl) {
         const RATE_LIMIT_KEY = 'comment_last_posted';
         const RATE_LIMIT_SEC = 60;
         let _isAdminMode = false;
+        // NGワードリスト
+        const NG_WORDS = ['広告','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];
 
         function updateCharCount() {
             const len = document.getElementById('comment-input').value.length;
@@ -176,7 +180,7 @@ function buildCommentScript(articleId, articleName, articleUrl) {
                 list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
                 return;
             }
-            list.innerHTML = comments.map(c => \`<div class="comment-item" data-id="\${c.id}"><div class="comment-meta"><span class="comment-time">\${relativeTime(c.created_at)}</span>\${_isAdminMode ? \`<button class="comment-delete-btn" onclick="deleteComment('\${c.id}')">&#128465;</button>\` : ''}</div><div class="comment-body">\${escapeHtml(c.content)}</div></div>\`).join('');
+            list.innerHTML = comments.map(c => \`<div class="comment-item" data-id="\${c.id}"><div class="comment-meta"><span class="comment-time">\${relativeTime(c.created_at)}</span>\${_isAdminMode ? \`<button class="comment-delete-btn" title="完全削除" onclick="deleteComment('\${c.id}')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment('\${c.id}')">&#128064;</button>\` : ''}</div><div class="comment-body">\${escapeHtml(c.content)}</div></div>\`).join('');
         }
         async function loadComments() {
             const list = document.getElementById('comments-list');
@@ -187,9 +191,17 @@ function buildCommentScript(articleId, articleName, articleUrl) {
         }
         async function submitComment() {
             const input = document.getElementById('comment-input');
+            // ① ハニーポットチェック
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value !== '') return;
             const content = input ? input.value.trim() : '';
             if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
             if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            // ② NGワードチェック
+            const lc = content.toLowerCase();
+            if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) {
+                showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return;
+            }
             const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
             const now = Date.now();
             if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
@@ -213,9 +225,17 @@ function buildCommentScript(articleId, articleName, articleUrl) {
         }
         async function deleteComment(commentId) {
             if (!_isAdminMode) return;
-            if (!confirm('このコメントを削除しますか？')) return;
+            if (!confirm('完全に削除しますか？(非表示にするなら👁ボタンを使ってください)')) return;
             const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
             if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        // ④ サイレント非表示
+        async function hideComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('非表示（サイレント）にしますか？投稿者には通知されません。')) return;
+            const { error } = await supabaseClient.rpc('hide_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('非表示失敗: ' + error.message); return; }
             await loadComments();
         }
         document.addEventListener('keydown', (e) => {
@@ -229,7 +249,7 @@ function buildCommentScript(articleId, articleName, articleUrl) {
                 if (!pw) return;
                 if (pw === ADMIN_PASSWORD) {
                     _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
-                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                    loadComments(); alert('管理者モードに入りました。\n🗑 = 完全削除 / 👁 = サイレント非表示');
                 } else { alert('パスワードが違います。'); }
             }
         });
@@ -245,7 +265,7 @@ for (const [file, meta] of Object.entries(protectedMeta)) {
 
     // 1. body タグに data 属性を追加
     if (!html.includes('data-article-category')) {
-        html = html.replace(/<body>/i, `<body data-article-category="${meta.cat}" data-article-appearance="${meta.app}">`);
+        html = html.replace(/<body>/i, `< body data - article - category="${meta.cat}" data - article - appearance="${meta.app}" > `);
         changed = true;
     }
 
@@ -260,14 +280,14 @@ for (const [file, meta] of Object.entries(protectedMeta)) {
         /\.infobox\s*\{([^}]*?)height:\s*fit-content;([^}]*?)\}/s,
         (m, before, after) => {
             if (m.includes('position: sticky')) return m;
-            return `.infobox {${before}height: fit-content;\n            position: sticky;\n            top: 20px;\n            align-self: start;${after}}`;
+            return `.infobox {${before} height: fit - content; \n            position: sticky; \n            top: 20px; \n            align - self: start;${after} } `;
         }
     );
     changed = true;
 
     // 4. .content のフォントサイズを最適化
     html = html.replace(/\.content\s*\{([^}]*?)font-size:\s*1\.1em;/s, (m, before) => {
-        return `.content {${before}font-size: 1em;\n            line-height: 1.9;`;
+        return `.content {${before} font - size: 1em; \n            line - height: 1.9; `;
     });
 
     // 5. コメントセクションCSSを追加（まだない場合）
@@ -293,7 +313,7 @@ for (const [file, meta] of Object.entries(protectedMeta)) {
 
         // </script>の直前（最後のscriptブロックの終わりに）に挿入
         const commentJs = buildCommentScript(articleId, articleName, articleUrl);
-        html = html.replace(/(\s*<\/script>\s*\n\s*<script src="article-common\.js")/, `${commentJs}\n    </script>\n    <script src="article-common.js"`);
+        html = html.replace(/(\s*<\/script>\s*\n\s*<script src="article-common\.js")/, `${commentJs} \n    </script >\n < script src = "article-common.js"`);
         changed = true;
     }
 
