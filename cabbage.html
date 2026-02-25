@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabbage | Fallout ロア・アーカイブ</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/cabbage.html">
+    <meta name="description" content="キャベツ（Cabbage）— Fallout 2に登場する食料品。ニュー・カリフォルニアの温暖な気候の中で育つ葉野菜で、キャベツスープとして食されていた。">
+    <meta property="og:title" content="Cabbage | Fallout ロア・アーカイブ">
+    <meta property="og:description" content="キャベツ（Cabbage）— Fallout 2に登場する食料品の詳細情報。">
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- フォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #c8c8a9;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #111;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 1em;
+            line-height: 1.8;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+            gap: 30px;
+        }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 1px solid var(--accent-color);
+            padding: 15px;
+            border-radius: 4px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 1em;
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 8px;
+        }
+
+        .infobox img {
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            cursor: zoom-in;
+        }
+
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85em;
+        }
+
+        .infobox table tr {
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+
+        .infobox table th {
+            color: var(--accent-color);
+            font-family: 'Share Tech Mono', monospace;
+            padding: 4px 6px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .infobox table td {
+            padding: 4px 6px;
+        }
+
+        .content {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            padding: 30px;
+            border-radius: 4px;
+            font-size: 1em;
+            line-height: 1.9;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .back-link {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9em;
+            border: 1px solid var(--accent-color);
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        h1 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.2em;
+            margin: 30px 0 12px;
+            border-left: 3px solid var(--accent-color);
+            padding-left: 10px;
+        }
+
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: #88ff88;
+            font-size: 1em;
+            margin: 20px 0 8px;
+        }
+
+        p {
+            margin-bottom: 1em;
+        }
+
+        ul,
+        ol {
+            margin: 0 0 1em 1.5em;
+        }
+
+        li {
+            margin-bottom: 4px;
+        }
+
+        a {
+            color: var(--accent-color);
+        }
+
+        a.auto-link {
+            color: #88ff88;
+        }
+
+        .note-figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .note-figure img {
+            max-width: 100%;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            cursor: zoom-in;
+        }
+
+        .note-figure figcaption {
+            font-size: 0.82em;
+            color: #888;
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .content img,
+        .infobox img {
+            cursor: zoom-in;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+
+<body data-article-category="植物" data-article-appearance="Fallout 2">
+    <div class="container">
+        <!-- サイドバー -->
+        <aside class="infobox">
+            <h3>Cabbage</h3>
+            <img src="images/note_extracted/cabbage/Fo2_Cabbage.png" alt="キャベツ — 変異したキャベツのように見える。温暖な気候の中で育っているようだ">
+            <table>
+                <tr>
+                    <th>タイプ</th>
+                    <td>言及のみの食料品</td>
+                </tr>
+                <tr>
+                    <th>登場作品</th>
+                    <td>Fallout 2</td>
+                </tr>
+            </table>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_cabbage_fo2" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Cabbage<br><span
+                    style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">キャベツ</span>
+            </h1>
+
+            <h2>概要</h2>
+            <p>
+                キャベツは、Fallout 2に登場する食料品です。<br>
+                ゲーム内では直接入手・消費できる通常アイテムとしては登場せず、NPCのセリフやデザイン文書の中で「言及のみ」される形で存在します。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                ニュー・カリフォルニアの乾燥した温暖な気候のもと、緑豊かなキャベツ畑が広がっています。<br>
+                質素な食事と思われるかもしれませんが、キャベツスープは栄養価が高く、作るのも簡単です。<br>
+                核戦争後の荒廃した世界においても、人々の食卓を支える野菜として生き続けています。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/cabbage/Fo2_Cabbage.png" alt="変異したキャベツのように見える。温暖な気候の中で育っているようだ">
+                <figcaption>変異したキャベツ — 温暖な気候の中で育つ様子が見て取れる</figcaption>
+            </div>
+
+            <h2>登場箇所</h2>
+            <p>キャベツは以下のNPCのセリフや設定文書の中で言及されています：</p>
+
+            <h3>モムのセリフ</h3>
+            <p>
+                モムは選ばれし者に対し、「今はキャベツスープしかないんだけどね」と語りかけます。<br>
+                核戦争後の物資不足の中でも、キャベツは比較的入手しやすい食材として機能しており、庶民の食卓に根付いていたことがうかがえます。
+            </p>
+
+            <h3>フィールド説明文</h3>
+            <p>
+                ゲーム内のオブジェクト説明では「変異したキャベツのように見える。温暖な気候の中で育っているようだ」と説明されています。<br>
+                ニュー・カリフォルニアの気候が、このキャベツの栽培に適していることが示唆されています。
+            </p>
+
+            <h3>ジュールズのセリフ</h3>
+            <p>
+                ニュー・レノのNPCであるジュールズは、選ばれし者について「あの子はウサギみたいで、いつも新しいキャベツ畑を探している」と語ります。<br>
+                選ばれし者は「なんと詩的な。"キャベツ畑"という言葉使い、実に印象的なイメージを浮かばせますね。ありがとう」と皮肉を込めて返答します。<br>
+                このやり取りは、キャベツが当時の文化的なスラングや比喩表現にも用いられていたことを示す興味深い一場面です。
+            </p>
+
+            <h3>メサ・ベルデ 設計文書</h3>
+            <p>
+                サイファーズのコミュニティに関する設計文書には、以下のような記述があります。<br>
+                「ガラスへのアクセスがないため、サイファーズは透明なプラスチックをシンプルな木枠に被せて、一対の温室を作りました。大豆、スカッシュ、キャベツ、ニンジンなどの作物が浅い水耕栽培の槽で育てられています」<br>
+                核戦争後の世界でも、工夫を凝らした農業技術によってキャベツが栽培・維持されていたことがわかります。
+            </p>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                キャベツというと、「え、それだけ？」と思う方もいるかもしれませんが、これがFalloutの世界の奥深さを感じさせる素材なんですよね！<br><br>
+                Fallout
+                2に登場するこのキャベツ、実際にアイテムとして手に取れるわけではなく、あくまで「言及のみ」の存在なんですが、モムが「今はキャベツスープしかないんだけどね」と言うセリフに、核戦争後の食料事情の厳しさがしみじみと伝わってきます。<br>
+                キャベツスープって、日本でも洋の東西問わず「貧しいけれど温かい食事」の代名詞みたいなものじゃないですか。核の炎が世界を変えても、人間が「あるものでなんとか食べる」という知恵は変わらないんだなぁと、じんわり感じます。<br><br>
+                そしてジュールズのセリフがまた面白くて！「あの子はウサギみたいで、いつも新しいキャベツ畑を探している」って、選ばれし者のことをキャベツ好きのウサギに例えるとは…。選ばれし者の返しも「詩的ですねえ」と皮肉たっぷりで、Fallout
+                2のNPCたちのセリフの豊かさを改めて実感しますw<br><br>
+                さらに設計文書に残るメサ・ベルデのサイファーズたちの温室の話が印象的です。ガラスがないから透明なプラスチックで代用して水耕栽培をする——まさに「終末後サバイバル農業」の姿ですよね。大豆・スカッシュ・ニンジンと並んでキャベツも育てているというのが、この野菜の「地味だけど頼れる存在感」を物語っていると思います。<br><br>
+                ゲーム内で名前だけ登場するキャベツひとつをとっても、これだけ豊かな世界観が見えてくる——それがFalloutシリーズの脚本の丁寧さですよね！
+            </div>
+
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="color: var(--accent-color);">#Fallout2</span> <span
+                        style="color: var(--accent-color);">#Plant</span>
+                </div>
+                <p>This article uses material from the <a href="https://fallout.fandom.com/wiki/Cabbage" target="_blank"
+                        rel="noopener">Fallout Wiki at Fandom</a> and is licensed under the Creative
+                    Commons Attribution-Share Alike License.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100"
+                        placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <!-- ハニーポット：ボット対策（人間には見えない） -->
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px"
+                        tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            await loadComments();
+        });
+
+        // Lightbox
+        document.querySelectorAll('.content img, .infobox img').forEach(img => {
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.getElementById('lightbox-img').src = img.src;
+                document.getElementById('lightbox').classList.add('active');
+            });
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+        });
+
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_cabbage_fo2';
+        const _commentArticleName = 'キャベツ';
+        const _commentArticleUrl = 'cabbage.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+        const NG_WORDS = ['広告', 'http://', 'https://', 'LINE', 'DMして', '難民', 'ビッチ', '死ね', 'クソ', 'アホ', 'ウザイ', 'メルマガ', 'discord.gg', 't.me', 'clickして'];
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" title="完全削除" onclick="deleteComment('${c.id}')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment('${c.id}')">&#128064;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value !== '') return;
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lc = content.toLowerCase();
+            if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('完全に削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        async function hideComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('非表示にしますか？')) return;
+            const { error } = await supabaseClient.rpc('hide_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('非表示失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。\n🗑 = 完全削除 / 👁 = サイレント非表示'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>
