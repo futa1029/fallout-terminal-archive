@@ -364,6 +364,58 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ===== ライトボックス ===== */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            cursor: zoom-out;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            font-size: 2.5rem;
+            color: var(--fallout-green);
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10000;
+            text-shadow: 0 0 10px var(--fallout-green);
+        }
+
+        .lightbox-hint {
+            font-size: 0.8rem;
+            color: #66aa66;
+            margin-top: 4px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        .zoomable {
+            cursor: zoom-in;
+            transition: opacity 0.2s;
+        }
+
+        .zoomable:hover {
+            opacity: 0.85;
+        }
     </style>
 </head>
 
@@ -414,7 +466,8 @@
             <!-- コミュニティカレンダー -->
             <h3>コミュニティカレンダー</h3>
             <img src="images/season/Season23.png" alt="Fallout 76 Season 23 コミュニティカレンダー日本語版 (Dec 2025 - Mar 2026)"
-                style="width:100%; display:block; margin-top:8px;">
+                class="zoomable" style="width:100%; display:block; margin-top:8px;">
+            <div class="lightbox-hint">🔍 クリックで拡大表示</div>
         </div>
 
         <!-- ===== 次のシーズン ===== -->
@@ -437,8 +490,9 @@
             <p style="font-family: 'Noto Sans JP', sans-serif; font-size: 0.9rem; color: #aaa; margin-top: 12px;">
                 ビッグフット（サスクワッチ）をテーマにした新シーズン。クリプティッズ生物とコスミックホラーが融合した世界観が展開される予定です。
             </p>
-            <img src="images/season/Season24.png" alt="Fallout 76 Season 24 コミュニティカレンダー日本語版"
+            <img src="images/season/Season24.png" alt="Fallout 76 Season 24 コミュニティカレンダー日本語版" class="zoomable"
                 style="width:100%; display:block; margin-top:12px;">
+            <div class="lightbox-hint">🔍 クリックで拡大表示</div>
         </div>
 
         <!-- ===== 季節イベントカレンダー ===== -->
@@ -524,6 +578,12 @@
         </div>
     </div>
 
+    <!-- ===== ライトボックス ===== -->
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
     <script>
         // シーズン23終了までのカウントダウン
         function updateCountdown() {
@@ -546,6 +606,29 @@
 
         updateCountdown();
         setInterval(updateCountdown, 60000);
+
+        // ===== ライトボックス =====
+        const overlay = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+
+        // .zoomable クラスの画像すべてにクリックイベントを付与
+        document.querySelectorAll('.zoomable').forEach(function (img) {
+            img.addEventListener('click', function () {
+                lbImg.src = img.src;
+                lbImg.alt = img.alt;
+                overlay.classList.add('active');
+            });
+        });
+
+        // オーバーレイまたは閉じるボタンでライトボックスを閉じる
+        overlay.addEventListener('click', function () {
+            overlay.classList.remove('active');
+        });
+
+        // Escキーでも閉じる
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') overlay.classList.remove('active');
+        });
     </script>
 </body>
 
