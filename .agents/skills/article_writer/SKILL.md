@@ -77,6 +77,22 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 - X用の文章（文字数制限なし）を `_X/<slug>/post.md` に作成する
 - **ハッシュタグは `#` の直後にスペースを入れない**（例: `#Fallout76 #FalloutTV`）。`# Fallout76` のように `#` の後にスペースを入れるとMarkdownの見出し記法として解釈されてしまうため、必ず `#タグ名` と詰めて書くこと
 - **URLは `<>` で囲まない**。`https://www.fallout-jp.com/...` とプレーンテキストのまま記載すること。`<https://...>` とするとXで正しくリンクにならない
+
+> [!CAUTION]
+> **post.md生成時に最も間違えやすい2つのミス：**
+>
+> **ミス1: ハッシュタグの `#` の後にスペースを入れる**
+>
+> - ❌ NG: `# Fallout #Fallout76` → Markdownの見出しになってしまう
+> - ✅ OK: `#Fallout #Fallout76`
+> - 特に**1行目の先頭ハッシュタグ**は `#` + スペースで見出し化しやすいので最も注意すること
+>
+> **ミス2: URLを `<>` で囲む**
+>
+> - ❌ NG: `<https://www.fallout-jp.com/vault.html>`
+> - ✅ OK: `https://www.fallout-jp.com/vault.html`
+> - Markdownのオートリンク記法 `<URL>` は使わず、URLをそのまま書くこと
+>
 - 記事内から**印象的な4枚の画像**を選び `_X/<slug>/images/` フォルダに格納する
 - 画像は記事の画像アセットからコピーし、X投稿時にすぐ使える状態にする
 
@@ -146,6 +162,57 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 - **「マジで」** → 「本当に」「とにかく」などに置き換える
 - **「俺」** → 一人称は使わない。「みんな」「プレイヤー」など不特定多数の表現か、主語を省略する
 - **「〜するか！」「〜してみるか」** → 「〜してみたい」「〜してみたいところ」に置き換える
+
+### 🎬 YouTubeリンクの埋め込みルール
+
+Wikiページや参考資料にYouTubeリンク（`youtube.com/watch?v=...` または `youtu.be/...`）が含まれる場合は、以下のルールに従ってiframeで埋め込むこと：
+
+1. **埋め込みURLへの変換**：
+   - `https://www.youtube.com/watch?v=VIDEO_ID` → `https://www.youtube.com/embed/VIDEO_ID`
+   - `https://youtu.be/VIDEO_ID` → `https://www.youtube.com/embed/VIDEO_ID`
+
+2. **HTML構造**（必ずこの形式を使用すること）：
+
+   ```html
+   <div class="video-container">
+       <iframe
+           src="https://www.youtube.com/embed/VIDEO_ID"
+           title="動画タイトル（日本語）"
+           frameborder="0"
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+           allowfullscreen>
+       </iframe>
+   </div>
+   ```
+
+3. **CSS**（`<style>` タグ内に追加）：
+
+   ```css
+   .video-container {
+       position: relative;
+       padding-bottom: 56.25%; /* 16:9 アスペクト比 */
+       height: 0;
+       overflow: hidden;
+       margin: 30px 0;
+       border: 1px solid var(--accent-color);
+   }
+   .video-container iframe {
+       position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+   }
+   ```
+
+4. **配置場所**：動画に関連するセクションの説明文の直後に配置する。複数ある場合はギャラリーセクションの前にまとめて配置してもよい。
+
+5. **キャプション**：埋め込みの直下に `<div class="image-caption">` で動画タイトルを日本語で記載すること。
+
+> [!NOTE]
+> YouTubeの埋め込みは必ずiframeで行い、プレーンテキストのURLや `<a>` タグのみのリンクで代替しないこと。ページを開いた状態で動画が再生できる状態にすること。
+
+---
 
 ## Step 3: `lore.html` のインデックス更新
 
