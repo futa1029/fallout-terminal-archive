@@ -25,7 +25,8 @@ const manualEntries = [
     { name: "シングルアクション・リボルバー", yomi: "しんぐるあくしょん・りぼるばー", url: "single-action-revolver.html", category: "武器", appearance: ["Fallout 76", "Fallout TV"], date: "2026-02-25" },
     { name: "キャベツ", yomi: "きゃべつ", url: "cabbage.html", category: "植物", appearance: ["Fallout 2"], date: "2026-02-25" },
     { name: "Vault", yomi: "ぼると", url: "vault.html", category: "ロケーション", appearance: ["Fallout", "Fallout 2", "Fallout 3", "Fallout 4", "Fallout 76", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-26" },
-    { name: "カタラックス", yomi: "かたらっくす", url: "catarax.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-26" }
+    { name: "カタラックス", yomi: "かたらっくす", url: "catarax.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-26" },
+    { name: "ルーシー・マクレーン", yomi: "るーしー・まくりーん", url: "lucy-maclean.html", category: "人物", appearance: ["Fallout TV"], date: "2026-02-26" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -45,7 +46,8 @@ const duplicateKeywords = [
     "ブラッドリーフ",
     "シングルアクション・リボルバー",
     "キャベツ",
-    "カタラックス"
+    "カタラックス",
+    "ルーシー・マクレーン"
 ];
 
 function isDuplicate(title) {
@@ -110,7 +112,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax', 'lucy-maclean'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};
