@@ -3,18 +3,31 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catarax - Fallout JP Community</title>
-    <meta name="description"
-        content="Fallout 76に登場するキャラクター「カタラックス」のロアと詳細情報をまとめたアーカイブです。ハブリス・コミックの悪役グループ「ディアボリカルズ」のメンバーについて解説します。">
-    <meta property="og:title" content="Catarax - Fallout JP Community">
-    <meta property="og:description"
-        content="Fallout 76に登場するキャラクター「カタラックス」のロアと詳細情報。ハブリス・コミックの悪役グループ「ディアボリカルズ」のメンバーについて解説します。">
+    <title>Catarax | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/catarax.html">
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Catarax | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Catarax（カタラックス）のFalloutロア記事。<br>
+                Overseer Mohi's Terminalで読む。<br>
+                ">
     <meta property="og:image"
         content="https://www.fallout-jp.com/images/note_extracted/catarax/FO76_season06_toon03.png">
     <meta property="og:url" content="https://www.fallout-jp.com/catarax.html">
-    <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Catarax | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Catarax（カタラックス）のFalloutロア記事。<br>
+                Overseer Mohi's Terminalで読む。<br>
+                ">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/catarax/FO76_season06_toon03.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
         rel="stylesheet">
     <style>
@@ -26,186 +39,95 @@
             --panel-bg: #222;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: 'Noto Sans JP', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
         }
 
         .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
             display: grid;
             grid-template-columns: 300px 1fr;
-            max-width: 1200px;
-            margin: 0 auto;
-            min-height: 100vh;
+            gap: 30px;
         }
 
         h1,
         h2,
-        h3,
-        h4 {
-            font-family: 'Share Tech Mono', monospace;
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
             color: var(--accent-color);
             border-bottom: 1px solid var(--accent-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            margin-top: 30px;
-            text-transform: uppercase;
+            padding-bottom: 5px;
         }
 
         h1 {
-            font-size: 2.5em;
-            border-bottom: 2px solid var(--accent-color);
+            font-size: 2.2em;
             margin-top: 0;
+            line-height: 1.4;
         }
 
-        h2 {
-            font-size: 1.8em;
-        }
-
-        h3 {
-            font-size: 1.4em;
-            border-bottom: none;
-        }
-
-        .sidebar {
-            background-color: var(--header-bg);
-            padding: 30px;
-            border-right: 2px solid var(--accent-color);
-        }
-
+        /* Sidebar InfoBox */
         .infobox {
-            background-color: var(--panel-bg);
-            border: 1px solid var(--accent-color);
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 5px;
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
         }
 
-        .infobox-image {
+        .infobox img {
             width: 100%;
-            display: block;
+            border: 1px solid #555;
             margin-bottom: 15px;
-            border: 1px solid var(--accent-color);
-            border-radius: 3px;
+            cursor: zoom-in;
         }
 
-        .infobox-item {
-            margin-bottom: 15px;
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
             border-bottom: 1px dashed #444;
-            padding-bottom: 10px;
-        }
-
-        .infobox-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
         }
 
         .infobox-label {
-            font-family: 'Share Tech Mono', monospace;
             color: var(--accent-color);
-            font-size: 0.9em;
-            margin-bottom: 5px;
-            display: block;
+            font-weight: bold;
         }
 
+        /* Content Area */
         .content {
-            padding: 40px;
-            background: linear-gradient(to bottom, transparent 0%, rgba(0, 255, 0, 0.05) 100%);
-        }
-
-        p {
-            margin-bottom: 20px;
-            font-size: 1.05em;
-        }
-
-        .action-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #444;
-        }
-
-        .back-link {
-            display: inline-block;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            color: #fff;
-            text-shadow: 0 0 10px var(--accent-color);
-        }
-
-        .like-button {
-            background: none;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 15px;
-            font-family: 'Share Tech Mono', monospace;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .like-button:hover {
-            background-color: rgba(0, 255, 0, 0.1);
-        }
-
-        .like-button.liked {
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .gallery-item {
-            border: 1px solid #444;
-            padding: 10px;
-            background-color: var(--panel-bg);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
             border-radius: 5px;
-            transition: border-color 0.3s ease;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
-        .gallery-item:hover {
-            border-color: var(--accent-color);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: contain;
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
             display: block;
-            margin-bottom: 10px;
-            background: #000;
+            margin: 30px auto;
+            cursor: zoom-in;
         }
 
-        .caption {
-            font-size: 0.9em;
-            color: #aaa;
+        .image-caption {
             text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
         }
 
         .quote-box {
@@ -222,17 +144,156 @@
             font-size: 1.05em;
         }
 
-        footer {
-            margin-top: 50px;
-            border-top: 1px solid #444;
-            padding-top: 20px;
-            font-size: 0.9em;
-            color: #888;
-            text-align: center;
-            font-family: 'Share Tech Mono', monospace;
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
         }
 
-        /* Lightbox styles */
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
+        }
+
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            background-color: #111;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        /* Lightbox */
         .lightbox-overlay {
             display: none;
             position: fixed;
@@ -240,270 +301,430 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(5px);
         }
 
         .lightbox-overlay.active {
             display: flex;
         }
 
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90vh;
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
             border: 2px solid var(--accent-color);
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
-            position: relative;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
         }
 
-        #lightbox-img {
-            max-width: 100%;
-            max-height: 90vh;
-            display: block;
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
         }
 
-        .gallery-item img,
-        .infobox-image {
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
             cursor: pointer;
-            transition: opacity 0.3s ease;
+            border-radius: 4px;
+            transition: all 0.2s;
         }
 
-        .gallery-item img:hover,
-        .infobox-image:hover {
-            opacity: 0.8;
-            border-color: var(--accent-color);
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
         }
 
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
-            .sidebar {
-                border-right: none;
-                border-bottom: 2px solid var(--accent-color);
-            }
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
         }
     </style>
 </head>
 
-<body>
+<body data-article-category="人物" data-article-appearance="Fallout 76">
     <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h3>Record Index</h3>
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Catarax</h3>
+            <img src="images/note_extracted/catarax/FO76_season06_toon03.png" alt="Catarax">
 
-            <div class="infobox">
-                <img src="images/note_extracted/catarax/FO76_season06_toon03.png" alt="カタラックス" class="infobox-image">
-                <div class="infobox-item">
-                    <span class="infobox-label">Role</span>
-                    敵役 / 悪役
-                </div>
-                <div class="infobox-item">
-                    <span class="infobox-label">Race</span>
-                    人間
-                </div>
-                <div class="infobox-item">
-                    <span class="infobox-label">Affiliation</span>
-                    ディアボリカルズ
-                </div>
-                <div class="infobox-item">
-                    <span class="infobox-label">Owned by</span>
-                    ハブリス・コミック出版
-                </div>
-                <div class="infobox-item">
-                    <span class="infobox-label">Appearances</span>
-                    Fallout 76
-                </div>
-            </div>
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>ディアボリカルズ</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>敵役</span></div>
+            <div class="infobox-row"><span class="infobox-label">メディア</span><span>アンストッパブルズ！ アンストッパブルズ vs
+                    ディアボリカルズ</span></div>
+            <div class="infobox-row"><span class="infobox-label">所有者</span><span>ヒューブリス・コミック・パブリッシング</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
         </aside>
 
-        <!-- Main Content -->
+        <!-- ===== Main Content ===== -->
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="catarax" onclick="toggleLike(this)">
-                    <span class="like-icon">♡</span> <span class="like-count">0</span> LIKES
+                <button class="like-button" data-article-id="note_catarax" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
                 </button>
             </div>
 
-            <h1>Catarax<br><span
-                    style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">カタラックス</span>
-            </h1>
+            <h1>Catarax<br><span style="font-size: 0.6em; color: #888;">カタラックス</span></h1>
 
-            <p
-                style="font-style: italic; color: #888; border-left: 2px solid #888; padding-left: 10px; margin-bottom: 20px;">
-                「あなたの世界を暗くしてやるわ！」<br>
-                — シーズン6のボード
-            </p>
-
-            <p>
-                「カタラックス」とはハブリス・コミック出版によって作られた架空のキャラクターである。<br>
-                戦前のボードゲーム「アンストッパブルズ！ アンストッパブルズ vs ディアボリカルズ」およびその関連製品やグッズにおいて、「ディアボリカルズ」のメンバーとして登場する。
-            </p>
-
+            <!-- ===== Overview ===== -->
             <h2>概要</h2>
             <p>
-                カタラックスは、「アンストッパブルズ」と敵対するギャング「ディアボリカルズ」の3人のメンバーのうちの1人である。
+                カタラックスは、「アンストッパブルズ」と敵対するギャング「ディアボリカルズ」の3人のメンバーのうちの1人である。<br>
             </p>
 
+            <!-- ===== Appearances ===== -->
             <h2>登場作品</h2>
             <p>
                 カタラックスは公式ボードゲーム「アンストッパブルズ！ アンストッパブルズ vs ディアボリカルズ」に登場する。<br>
-                このゲームは、Fallout Worldsアップデートに合わせて開催されたFallout 76のシーズン6のプレイエリアとして機能した。
+                このゲームは、Fallout Worldsアップデートに合わせて開催されたFallout 76のシーズン6のプレイエリアとして機能した。<br>
             </p>
 
+            <!-- ===== Behind the scenes ===== -->
             <h2>舞台裏</h2>
             <p>
-                カタラックスの名前と外見は、白内障（cataracts）の症状に由来している。
+                カタラックスの名前と外見は、白内障（cataracts）の症状に由来している。<br>
             </p>
 
-            <h2>GALLERY</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/note_extracted/catarax/FO76_season06_logo03.png"
-                        alt="アンストッパブルズ！ vs ディアボリカルズのスコアボードにおけるカタラックスのロゴ">
-                    <div class="caption">「アンストッパブルズ！ vs ディアボリカルズ」のスコアボードにおけるカタラックスのロゴ</div>
+            <!-- ===== GALLERY ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/catarax/FO76_season06_logo03.png"
+                            alt="Catarax logo from The Unstoppables! vs The Diabolicals score board">
+                        <div class="caption">「アンストッパブルズ！ アンストッパブルズ vs ディアボリカルズ」のスコアボードにおけるカタラックスのロゴ</div>
+                    </div>
                 </div>
             </div>
 
+            <!-- ===== Kanso ===== -->
             <div class="quote-box">
                 <b>感想</b><br><br>
                 シーズン6のスコアボードに登場する悪役、カタラックスに関する記事です。<br>
                 白内障（cataracts）がモチーフになっているという設定が、いかにもFalloutらしくて面白いですね。<br>
                 アメコミのヴィランらしい強烈なビジュアルと、「あなたの世界を暗くしてやるわ！」という決め台詞が印象に残るキャラクターです。<br>
-                アンストッパブルズの宿敵として、ディアボリカルズの他メンバーとともに世界観を広げる良いスパイスになっていますね。<br>
+                アンストッパブルズの宿敵として、ディアボリカルズの他メンバーとともに世界観を広げる良いスパイスになっていますね。
             </div>
 
-            <footer>
-                <p>This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons
-                    Attribution-Share Alike License.</p>
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article uses material from the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
                         rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
-            </footer>
+                </p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100"
+                        placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
         </main>
     </div>
 
-    <!-- Lightbox Element -->
+    <!-- Lightbox Overlay -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <img id="lightbox-img" src="" alt="Enlarged view">
-        </div>
+        <img id="lightbox-img" src="" alt="拡大画像">
     </div>
 
-    <!-- Supabase and Like button functionality via CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Supabase Scripts + Lightbox logic -->
     <script>
-        // Use generic project URL and public anon key 
-        // NOTE: You must replace these with your actual Supabase URL and Key
-        // Currently falling back to localStorage if not configured properly
-        const supabaseUrl = 'YOUR_SUPABASE_URL';
-        const supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        let supabaseClient = null;
-        try {
-            if (supabaseUrl !== 'YOUR_SUPABASE_URL') {
-                supabaseClient = supabase.createClient(supabaseUrl, supabaseAnonKey);
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
             }
-        } catch (e) {
-            console.log('Supabase client failed to initialize', e);
+            btn.disabled = false;
         }
 
-        // Initialize likes on page load
-        document.addEventListener('DOMContentLoaded', async () => {
-            const likeBtn = document.querySelector('.like-button');
-            const articleId = likeBtn.getAttribute('data-article-id');
-            const countSpan = likeBtn.querySelector('.like-count');
-            const iconSpan = likeBtn.querySelector('.like-icon');
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
 
-            // Setup Lightbox functionality
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+
+            // Lightbox logic
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightbox-img');
-            const images = document.querySelectorAll('.gallery-item img, .infobox-image');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
 
             images.forEach(img => {
-                img.addEventListener('click', () => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     lightboxImg.src = img.src;
                     lightbox.classList.add('active');
                 });
             });
+        });
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_catarax';
+        const _commentArticleName = 'Catarax';
+        const _commentArticleUrl = 'catarax.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
 
-            // Check if user already liked
-            const hasLiked = localStorage.getItem(`liked_${articleId}`) === 'true';
-            if (hasLiked) {
-                likeBtn.classList.add('liked');
-                iconSpan.textContent = '♥';
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
             }
-
-            // Fetch initial count
-            try {
-                if (supabaseClient) {
-                    const { data, error } = await supabaseClient
-                        .from('article_likes')
-                        .select('likes')
-                        .eq('article_id', articleId)
-                        .single();
-
-                    if (data) {
-                        countSpan.textContent = data.likes;
-                    } else if (error && error.code === 'PGRST116') {
-                        // First insertion will happen on click
-                        countSpan.textContent = '0';
-                    }
-                } else {
-                    countSpan.textContent = localStorage.getItem(`count_${articleId}`) || '0';
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    loadComments(); alert('管理者モードを終了しました。'); return;
                 }
-            } catch (err) {
-                console.log('Error fetching likes:', err);
-                countSpan.textContent = localStorage.getItem(`count_${articleId}`) || '0';
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                } else { alert('パスワードが違います。'); }
             }
         });
-
-        async function toggleLike(btn) {
-            const articleId = btn.getAttribute('data-article-id');
-            const countSpan = btn.querySelector('.like-count');
-            const iconSpan = btn.querySelector('.like-icon');
-            const isLiked = btn.classList.contains('liked');
-
-            let currentCount = parseInt(countSpan.textContent) || 0;
-
-            if (isLiked) {
-                // Unlike
-                currentCount = Math.max(0, currentCount - 1);
-                btn.classList.remove('liked');
-                iconSpan.textContent = '♡';
-                localStorage.setItem(`liked_${articleId}`, 'false');
-
-                if (supabaseClient) {
-                    await supabaseClient.rpc('decrement_like', { a_id: articleId });
-                }
-            } else {
-                // Like
-                currentCount++;
-                btn.classList.add('liked');
-                iconSpan.textContent = '♥';
-                localStorage.setItem(`liked_${articleId}`, 'true');
-
-                if (supabaseClient) {
-                    await supabaseClient.rpc('increment_like', { a_id: articleId });
-                }
-            }
-
-            countSpan.textContent = currentCount;
-            if (!supabaseClient) {
-                localStorage.setItem(`count_${articleId}`, currentCount);
-            }
-
-            // Quick visual feedback
-            btn.style.transform = 'scale(1.1)';
-            setTimeout(() => {
-                btn.style.transform = 'scale(1)';
-            }, 200);
-        }
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
+    <script src="article-common.js" defer></script>
 </body>
 
 </html>
