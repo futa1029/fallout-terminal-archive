@@ -899,6 +899,83 @@
             border-radius: 3px;
             margin-left: 5px;
         }
+
+        /* 人間/グール切替トグル */
+        .race-toggle-container {
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .race-toggle-label {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .race-toggle {
+            display: flex;
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .race-toggle-btn {
+            flex: 1;
+            padding: 8px 12px;
+            background: transparent;
+            border: none;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .race-toggle-btn:first-child {
+            border-right: 1px solid var(--panel-border);
+        }
+
+        .race-toggle-btn.active {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            font-weight: bold;
+            text-shadow: none;
+        }
+
+        .race-toggle-btn:hover:not(.active) {
+            background: rgba(0, 255, 0, 0.1);
+            color: var(--accent-color);
+        }
+
+        .race-toggle-btn.ghoul-active {
+            background: #8b4513;
+            border-color: #cd853f;
+            color: #ffd700;
+        }
+
+        .race-indicator {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75em;
+            text-align: center;
+            margin-top: 6px;
+            padding: 3px 8px;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .race-indicator.human {
+            color: var(--accent-color);
+            background: rgba(0, 255, 0, 0.08);
+        }
+
+        .race-indicator.ghoul {
+            color: #ffd700;
+            background: rgba(139, 69, 19, 0.2);
+        }
     </style>
 </head>
 
@@ -917,6 +994,14 @@
         <!-- 左: SPECIAL配分 -->
         <aside class="special-panel">
             <h2>> S.P.E.C.I.A.L.</h2>
+            <div class="race-toggle-container">
+                <span class="race-toggle-label">> CHARACTER TYPE</span>
+                <div class="race-toggle" id="race-toggle">
+                    <button class="race-toggle-btn active" id="race-human-btn" onclick="setRace('human')">HUMAN</button>
+                    <button class="race-toggle-btn" id="race-ghoul-btn" onclick="setRace('ghoul')">GHOUL</button>
+                </div>
+                <div class="race-indicator human" id="race-indicator">● HUMAN MODE</div>
+            </div>
             <div class="points-remaining">
                 残りポイント: <span class="count" id="points-left">56</span> / 56
             </div>
@@ -993,6 +1078,9 @@
         /* 現在表示しているタブ */
         let currentTab = 'Strength';
 
+        /* 現在のキャラクタータイプ（human / ghoul） */
+        let currentRace = 'human';
+
         /* ===== 初期化 ===== */
         function init() {
             // URL共有データの読み込み
@@ -1002,6 +1090,38 @@
             renderPerkList();
             renderBuildSummary();
             updateCostSummary();
+            updateRaceUI();
+        }
+
+        /* ===== 人間/グール切替 ===== */
+        function setRace(race) {
+            if (currentRace === race) return;
+            currentRace = race;
+            // モード切替時に装備中のPerkをリセット（race制限のため）
+            SPECIAL_ORDER.forEach(s => equippedPerks[s] = []);
+            equippedLegendary = [];
+            updateRaceUI();
+            renderPerkList();
+            renderBuildSummary();
+            updateCostSummary();
+        }
+
+        function updateRaceUI() {
+            const humanBtn = document.getElementById('race-human-btn');
+            const ghoulBtn = document.getElementById('race-ghoul-btn');
+            const indicator = document.getElementById('race-indicator');
+
+            humanBtn.classList.toggle('active', currentRace === 'human');
+            ghoulBtn.classList.toggle('active', currentRace === 'ghoul');
+            ghoulBtn.classList.toggle('ghoul-active', currentRace === 'ghoul');
+
+            if (currentRace === 'ghoul') {
+                indicator.className = 'race-indicator ghoul';
+                indicator.innerHTML = '☢ GHOUL MODE';
+            } else {
+                indicator.className = 'race-indicator human';
+                indicator.innerHTML = '● HUMAN MODE';
+            }
         }
 
         /* ===== SPECIAL ===== */
@@ -1087,7 +1207,17 @@
             title.textContent = `${currentTab} Perks`;
             title.style.color = SPECIAL_COLORS[currentTab];
 
-            const perks = PERK_DATA[currentTab] || [];
+            // 人間/グールに応じてPerkリストを統合
+            let perks = (PERK_DATA[currentTab] || []).filter(p => {
+                if (!p.race) return true; // race未指定は共通
+                return p.race === currentRace || p.race === 'both';
+            });
+
+            // グールモードの場合、グール専用データを追加
+            if (currentRace === 'ghoul' && GHOUL_PERK_DATA[currentTab]) {
+                perks = [...perks, ...GHOUL_PERK_DATA[currentTab]];
+            }
+
             const search = document.getElementById('perk-search').value.toLowerCase();
 
             perks.forEach((perk, idx) => {
@@ -1102,13 +1232,12 @@
                 // 現在のランクの説明を表示（安全参照）
                 const descIdx = currentRank > 0 ? currentRank - 1 : 0;
                 const displayDesc = perk.desc[Math.min(descIdx, perk.desc.length - 1)] || '';
-                const imgRank = currentRank > 0 ? currentRank : 1;
-                const imgUrl = getPerkImageUrl(perk.name, imgRank);
+                const imgUrl = getPerkImageUrl(perk.name, 1);
                 const costIdx = currentRank > 0 ? currentRank - 1 : 0;
                 const displayCost = perk.cost[Math.min(costIdx, perk.cost.length - 1)] || perk.cost[0];
 
                 card.innerHTML = `
-                    <img class="perk-card-img" src="${imgUrl}" alt="${perk.name}" onerror="this.classList.add('error')" loading="lazy">
+                    <img class="perk-card-img" src="${imgUrl}" alt="${perk.name}" onerror="handlePerkImageError(this,'${perk.name.replace(/'/g, "\\\\'")}')" loading="lazy">
                     <div class="perk-card-body">
                         <div class="perk-card-header">
                             <span class="perk-card-name">${perk.name}</span>
@@ -1152,22 +1281,30 @@
 
         function renderLegendaryPerks(grid) {
             const search = document.getElementById('perk-search').value.toLowerCase();
-            LEGENDARY_PERKS.forEach((perk, idx) => {
+            // 人間/グールに応じてレジェンダリーPerkをフィルタリング
+            let legendaryList = LEGENDARY_PERKS.filter(p => {
+                if (!p.race) return true;
+                return p.race === currentRace || p.race === 'both';
+            });
+            // グールモードの場合、グール専用レジェンダリーPerkを追加
+            if (currentRace === 'ghoul') {
+                legendaryList = [...legendaryList, ...GHOUL_LEGENDARY_PERKS];
+            }
+            legendaryList.forEach((perk, idx) => {
                 if (search && !perk.name.toLowerCase().includes(search)) return;
                 const equipped = equippedLegendary.find(e => e.perkIndex === idx);
                 const currentRank = equipped ? equipped.rank : 0;
                 const descIdx = currentRank > 0 ? currentRank - 1 : 0;
                 const displayDesc = perk.desc[Math.min(descIdx, perk.desc.length - 1)] || '';
 
-                const imgRank = currentRank > 0 ? currentRank : 1;
-                const imgUrl = getPerkImageUrl(perk.name, imgRank);
+                const imgUrl = getPerkImageUrl(perk.name, 1);
                 const card = document.createElement('div');
                 card.className = 'legendary-card' + (currentRank > 0 ? ' equipped' : '');
                 card.style.display = 'flex';
                 card.style.gap = '12px';
                 card.style.alignItems = 'flex-start';
                 card.innerHTML = `
-                    <img class="perk-card-img" src="${imgUrl}" alt="${perk.name}" onerror="this.classList.add('error')" loading="lazy">
+                    <img class="perk-card-img" src="${imgUrl}" alt="${perk.name}" onerror="handlePerkImageError(this,'${perk.name.replace(/'/g, "\\\\'")}')" loading="lazy">
                     <div class="perk-card-body">
                         <div class="perk-card-header">
                             <span class="perk-card-name">${perk.name}</span>

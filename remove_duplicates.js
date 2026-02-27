@@ -27,7 +27,8 @@ const manualEntries = [
     { name: "Vault", yomi: "ぼると", url: "vault.html", category: "ロケーション", appearance: ["Fallout", "Fallout 2", "Fallout 3", "Fallout 4", "Fallout 76", "Fallout: New Vegas", "Fallout TV"], date: "2026-02-26" },
     { name: "カタラックス", yomi: "かたらっくす", url: "catarax.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-26" },
     { name: "ルーシー・マクレーン", yomi: "るーしー・まくりーん", url: "lucy-maclean.html", category: "人物", appearance: ["Fallout TV"], date: "2026-02-26" },
-    { name: "複葉機の墜落現場（アンカー農場）", yomi: "ふくようきのついらくげんば", url: "biplane-crash-anchor-farm.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" }
+    { name: "複葉機の墜落現場（アンカー農場）", yomi: "ふくようきのついらくげんば", url: "biplane-crash-anchor-farm.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" },
+    { name: "バードハウス・リッジ", yomi: "ばーどはうす・りっじ", url: "birdhouse-ridge.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -49,7 +50,8 @@ const duplicateKeywords = [
     "キャベツ",
     "カタラックス",
     "ルーシー・マクレーン",
-    "複葉機の墜落現場"
+    "複葉機の墜落現場",
+    "バードハウス・リッジ"
 ];
 
 function isDuplicate(title) {
@@ -114,7 +116,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax', 'lucy-maclean', 'biplane-crash-anchor-farm'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax', 'lucy-maclean', 'biplane-crash-anchor-farm', 'birdhouse-ridge'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};
