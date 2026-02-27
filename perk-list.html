@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallout 76 Perk一覧 | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/perk-list.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Fallout 76 Perk一覧">
+    <meta property="og:description" content="Fallout 76の全Perkカードを一覧表示。S.P.E.C.I.A.L.別フィルタ、詳細表示、人間/グール切り替え対応。">
+    <meta name="description" content="Fallout 76の全Perkカードを一覧表示。S.P.E.C.I.A.L.別フィルタ、詳細表示、人間/グール切り替え対応。">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --accent-dim: #00aa00;
+            --panel-bg: #151515;
+            --panel-border: #333;
+            --str-color: #ff6b6b;
+            --per-color: #ffd93d;
+            --end-color: #6bcb77;
+            --chr-color: #ff8c42;
+            --int-color: #4ecdc4;
+            --agi-color: #9b59b6;
+            --lck-color: #3498db;
+            --legendary-color: #ffd700;
+            --ghoul-color: #c0ff3e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ヘッダー */
+        .page-header {
+            background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+            border-bottom: 2px solid var(--accent-color);
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .page-header h1 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-size: 1.6em;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .page-header h1 span {
+            font-size: 0.55em;
+            color: #888;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: normal;
+            display: block;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .header-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .header-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+
+        /* メインコンテナ */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* コントロールバー */
+        .controls-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+        }
+
+        /* レース切り替え */
+        .race-toggle {
+            display: flex;
+            border: 1px solid var(--panel-border);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .race-btn {
+            padding: 6px 14px;
+            background: transparent;
+            border: none;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .race-btn.active {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .race-btn.ghoul-active {
+            background: var(--ghoul-color);
+            color: var(--bg-color);
+        }
+
+        /* 検索ボックス */
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--panel-border);
+            color: var(--text-color);
+            padding: 8px 14px;
+            border-radius: 4px;
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.9em;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-color);
+        }
+
+        .search-box::placeholder {
+            color: #666;
+        }
+
+        /* 統計情報 */
+        .stats-info {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8em;
+            color: #888;
+        }
+
+        .stats-info .count {
+            color: var(--accent-color);
+        }
+
+        /* SPECIALタブ */
+        .special-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .special-tab {
+            padding: 10px 18px;
+            background: var(--panel-bg);
+            border: 2px solid var(--panel-border);
+            color: #aaa;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .special-tab:hover {
+            border-color: #666;
+            color: var(--text-color);
+            transform: translateY(-1px);
+        }
+
+        .special-tab.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+            background: rgba(0, 255, 0, 0.05);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
+        }
+
+        .special-tab .tab-letter {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .special-tab .tab-count {
+            font-size: 0.75em;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1px 6px;
+            border-radius: 10px;
+        }
+
+        .special-tab.active .tab-count {
+            background: rgba(0, 255, 0, 0.15);
+        }
+
+        .special-tab[data-special="Legendary"] {
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .special-tab[data-special="Legendary"].active {
+            border-color: var(--legendary-color);
+            color: var(--legendary-color);
+            background: rgba(255, 215, 0, 0.05);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.1);
+        }
+
+        /* SPECIALタブのカラー */
+        .special-tab[data-special="Strength"].active {
+            border-color: var(--str-color);
+            color: var(--str-color);
+            background: rgba(255, 107, 107, 0.05);
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.1);
+        }
+
+        .special-tab[data-special="Perception"].active {
+            border-color: var(--per-color);
+            color: var(--per-color);
+            background: rgba(255, 217, 61, 0.05);
+            box-shadow: 0 0 15px rgba(255, 217, 61, 0.1);
+        }
+
+        .special-tab[data-special="Endurance"].active {
+            border-color: var(--end-color);
+            color: var(--end-color);
+            background: rgba(107, 203, 119, 0.05);
+            box-shadow: 0 0 15px rgba(107, 203, 119, 0.1);
+        }
+
+        .special-tab[data-special="Charisma"].active {
+            border-color: var(--chr-color);
+            color: var(--chr-color);
+            background: rgba(255, 140, 66, 0.05);
+            box-shadow: 0 0 15px rgba(255, 140, 66, 0.1);
+        }
+
+        .special-tab[data-special="Intelligence"].active {
+            border-color: var(--int-color);
+            color: var(--int-color);
+            background: rgba(78, 205, 196, 0.05);
+            box-shadow: 0 0 15px rgba(78, 205, 196, 0.1);
+        }
+
+        .special-tab[data-special="Agility"].active {
+            border-color: var(--agi-color);
+            color: var(--agi-color);
+            background: rgba(155, 89, 182, 0.05);
+            box-shadow: 0 0 15px rgba(155, 89, 182, 0.1);
+        }
+
+        .special-tab[data-special="Luck"].active {
+            border-color: var(--lck-color);
+            color: var(--lck-color);
+            background: rgba(52, 152, 219, 0.05);
+            box-shadow: 0 0 15px rgba(52, 152, 219, 0.1);
+        }
+
+        .special-tab .tab-count {
+            transition: all 0.2s;
+        }
+
+        .special-tab[data-special="Strength"].active .tab-count {
+            background: rgba(255, 107, 107, 0.2);
+        }
+
+        .special-tab[data-special="Perception"].active .tab-count {
+            background: rgba(255, 217, 61, 0.2);
+        }
+
+        .special-tab[data-special="Endurance"].active .tab-count {
+            background: rgba(107, 203, 119, 0.2);
+        }
+
+        .special-tab[data-special="Charisma"].active .tab-count {
+            background: rgba(255, 140, 66, 0.2);
+        }
+
+        .special-tab[data-special="Intelligence"].active .tab-count {
+            background: rgba(78, 205, 196, 0.2);
+        }
+
+        .special-tab[data-special="Agility"].active .tab-count {
+            background: rgba(155, 89, 182, 0.2);
+        }
+
+        .special-tab[data-special="Luck"].active .tab-count {
+            background: rgba(52, 152, 219, 0.2);
+        }
+
+        /* Perkリスト */
+        .perk-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* Perkアイテム */
+        .perk-item {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .perk-item:hover {
+            border-color: #555;
+        }
+
+        .perk-item-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .perk-item-header:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .perk-item-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid #333;
+            flex-shrink: 0;
+        }
+
+        .perk-item-img.error {
+            display: none;
+        }
+
+        .perk-item-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .perk-item-name {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.95em;
+            font-weight: bold;
+        }
+
+        .perk-item-meta {
+            font-size: 0.78em;
+            color: #888;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 2px;
+        }
+
+        .perk-item-meta .meta-label {
+            color: #666;
+        }
+
+        .perk-item-desc-preview {
+            font-size: 0.82em;
+            color: #999;
+            flex: 2;
+            min-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .perk-item-ranks {
+            display: flex;
+            gap: 3px;
+            flex-shrink: 0;
+        }
+
+        .rank-pip {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid #555;
+            background: var(--accent-color);
+            box-shadow: 0 0 4px rgba(0, 255, 0, 0.3);
+        }
+
+        .perk-item-expand {
+            font-family: 'Share Tech Mono', monospace;
+            color: #666;
+            font-size: 1.2em;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .perk-item.expanded .perk-item-expand {
+            transform: rotate(90deg);
+            color: var(--accent-color);
+        }
+
+        /* 展開詳細エリア */
+        .perk-item-detail {
+            display: none;
+            padding: 0 16px 16px 16px;
+            animation: slideDown 0.3s ease;
+        }
+
+        .perk-item.expanded .perk-item-detail {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--panel-border), transparent);
+            margin-bottom: 14px;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .detail-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 6px;
+            object-fit: contain;
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #444;
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-ranks-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+        }
+
+        .detail-ranks-table th {
+            text-align: left;
+            padding: 6px 10px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8em;
+            color: #888;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        .detail-ranks-table td {
+            padding: 8px 10px;
+            font-size: 0.85em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .detail-ranks-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank-num {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .rank-cost {
+            font-family: 'Share Tech Mono', monospace;
+            color: #aaa;
+        }
+
+        .rank-desc {
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .perk-race-badge {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7em;
+            padding: 1px 6px;
+            border-radius: 3px;
+            margin-left: 6px;
+        }
+
+        .perk-race-badge.ghoul {
+            background: rgba(192, 255, 62, 0.15);
+            color: var(--ghoul-color);
+            border: 1px solid rgba(192, 255, 62, 0.3);
+        }
+
+        /* 空状態 */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+
+        .empty-state .icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        /* フッター */
+        .page-footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--panel-border);
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.8em;
+        }
+
+        .page-footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 1.2em;
+            }
+
+            .main-container {
+                padding: 10px;
+            }
+
+            .special-tabs {
+                gap: 4px;
+            }
+
+            .special-tab {
+                padding: 8px 10px;
+                font-size: 0.8em;
+            }
+
+            .special-tab .tab-letter {
+                font-size: 1em;
+            }
+
+            .perk-item-header {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .perk-item-desc-preview {
+                display: none;
+            }
+
+            .detail-grid {
+                grid-template-columns: 60px 1fr;
+                gap: 8px;
+            }
+
+            .detail-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .controls-bar {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヘッダー -->
+    <header class="page-header">
+        <h1>PERK DATABASE<span>Fallout 76 全Perk一覧</span></h1>
+        <div class="header-actions">
+            <a href="perk-simulator.html" class="header-btn">📊 Perk Simulator</a>
+            <a href="index.html" class="header-btn">🏠 ホーム</a>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- コントロールバー -->
+        <div class="controls-bar">
+            <div class="race-toggle">
+                <button class="race-btn active" data-race="all" onclick="setRace('all')">ALL</button>
+                <button class="race-btn" data-race="human" onclick="setRace('human')">👤 人間</button>
+                <button class="race-btn" data-race="ghoul" onclick="setRace('ghoul')">☢️ グール</button>
+            </div>
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Perkを検索...（名前 or 効果）"
+                oninput="filterPerks()">
+            <div class="stats-info">
+                表示中: <span class="count" id="perkCount">0</span> / <span id="perkTotal">0</span>
+            </div>
+        </div>
+
+        <!-- SPECIALタブ -->
+        <div class="special-tabs" id="specialTabs"></div>
+
+        <!-- Perkリスト -->
+        <div class="perk-list" id="perkList"></div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="page-footer">
+        <p><a href="index.html">Overseer Mohi's Terminal</a> — Fallout 76 Perk Database</p>
+        <p style="margin-top:5px;">Data based on Update 64+ (Milepost Zero)</p>
+    </footer>
+
+    <!-- Perkデータを読み込む -->
+    <script src="perk-data.js"></script>
+    <script>
+        // --- 状態管理 ---
+        let currentSpecial = 'All';
+        let currentRace = 'all';
+        let expandedPerk = null;
+
+        // SPECIALカラーマッピング
+        const SPECIAL_COLORS = {
+            Strength: '#ff6b6b',
+            Perception: '#ffd93d',
+            Endurance: '#6bcb77',
+            Charisma: '#ff8c42',
+            Intelligence: '#4ecdc4',
+            Agility: '#9b59b6',
+            Luck: '#3498db',
+            Legendary: '#ffd700'
+        };
+
+        const SPECIAL_LABELS = {
+            Strength: 'S',
+            Perception: 'P',
+            Endurance: 'E',
+            Charisma: 'C',
+            Intelligence: 'I',
+            Agility: 'A',
+            Luck: 'L',
+            Legendary: '★'
+        };
+
+        // --- 全Perkデータを統合 ---
+        function getAllPerks() {
+            const perks = [];
+
+            // 通常Perk（人間）
+            for (const [special, perkList] of Object.entries(PERK_DATA)) {
+                for (const p of perkList) {
+                    perks.push({ ...p, special, source: 'normal', raceType: p.race || 'both' });
+                }
+            }
+
+            // グール専用Perk
+            if (typeof GHOUL_PERK_DATA !== 'undefined') {
+                for (const [special, perkList] of Object.entries(GHOUL_PERK_DATA)) {
+                    for (const p of perkList) {
+                        perks.push({ ...p, special, source: 'ghoul', raceType: 'ghoul' });
+                    }
+                }
+            }
+
+            // レジェンダリーPerk
+            if (typeof LEGENDARY_PERKS !== 'undefined') {
+                for (const p of LEGENDARY_PERKS) {
+                    perks.push({ ...p, special: 'Legendary', source: 'legendary', raceType: p.race || 'both', level: 50 });
+                }
+            }
+
+            // グール用レジェンダリーPerk
+            if (typeof GHOUL_LEGENDARY_PERKS !== 'undefined') {
+                for (const p of GHOUL_LEGENDARY_PERKS) {
+                    perks.push({ ...p, special: 'Legendary', source: 'ghoul_legendary', raceType: 'ghoul', level: 50 });
+                }
+            }
+
+            return perks;
+        }
+
+        const allPerks = getAllPerks();
+
+        // --- タブ生成 ---
+        function renderTabs() {
+            const tabs = document.getElementById('specialTabs');
+            const specialOrder = ['All', 'Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck', 'Legendary'];
+
+            tabs.innerHTML = specialOrder.map(s => {
+                const count = s === 'All'
+                    ? getFilteredPerks().length
+                    : getFilteredPerks().filter(p => p.special === s).length;
+                const letter = s === 'All' ? '全' : (SPECIAL_LABELS[s] || s[0]);
+                const label = s === 'All' ? '全て' : s;
+                return `<button class="special-tab ${currentSpecial === s ? 'active' : ''}" 
+                    data-special="${s}" onclick="setSpecial('${s}')">
+                    <span class="tab-letter">${letter}</span>
+                    <span>${label}</span>
+                    <span class="tab-count">${count}</span>
+                </button>`;
+            }).join('');
+        }
+
+        // --- フィルタリング ---
+        function getFilteredPerks() {
+            let filtered = allPerks;
+
+            // レース
+            if (currentRace === 'human') {
+                filtered = filtered.filter(p => p.raceType !== 'ghoul');
+            } else if (currentRace === 'ghoul') {
+                filtered = filtered.filter(p => p.raceType !== 'human');
+            }
+
+            // 検索
+            const query = document.getElementById('searchBox').value.toLowerCase().trim();
+            if (query) {
+                filtered = filtered.filter(p => {
+                    const nameMatch = p.name.toLowerCase().includes(query);
+                    const descMatch = p.desc.some(d => d.toLowerCase().includes(query));
+                    return nameMatch || descMatch;
+                });
+            }
+
+            return filtered;
+        }
+
+        // --- Perkリスト描画 ---
+        function renderPerks() {
+            const list = document.getElementById('perkList');
+            let filtered = getFilteredPerks();
+
+            // SPECIALフィルタ
+            if (currentSpecial !== 'All') {
+                filtered = filtered.filter(p => p.special === currentSpecial);
+            }
+
+            // レベル順ソート
+            filtered.sort((a, b) => (a.level || 0) - (b.level || 0) || a.name.localeCompare(b.name));
+
+            // 統計更新
+            document.getElementById('perkCount').textContent = filtered.length;
+            document.getElementById('perkTotal').textContent = allPerks.length;
+
+            if (filtered.length === 0) {
+                list.innerHTML = `<div class="empty-state">
+                    <div class="icon">🔍</div>
+                    <p>条件に一致するPerkが見つかりません</p>
+                </div>`;
+                return;
+            }
+
+            list.innerHTML = filtered.map(p => {
+                const color = SPECIAL_COLORS[p.special] || '#00ff00';
+                const isExpanded = expandedPerk === p.name + p.source;
+                const imgSlug = getPerkImageSlug(p.name);
+                const imgSrc = `images/perks/${imgSlug}_1.png`;
+                const isGhoul = p.raceType === 'ghoul';
+                const maxDesc = p.desc[p.desc.length - 1];
+                const costStr = p.cost ? p.cost.join('/') : '-';
+                const levelStr = p.source === 'legendary' ? 'Lv.50+' : `Lv.${p.level}`;
+
+                return `<div class="perk-item ${isExpanded ? 'expanded' : ''}" data-perk="${p.name}" data-source="${p.source}">
+                    <div class="perk-item-header" onclick="togglePerk('${p.name}','${p.source}')">
+                        <img class="perk-item-img" src="${imgSrc}" alt="${p.name}" onerror="this.classList.add('error')">
+                        <div class="perk-item-info">
+                            <div class="perk-item-name" style="color:${color}">
+                                ${p.name}${isGhoul ? '<span class="perk-race-badge ghoul">GHOUL</span>' : ''}
+                            </div>
+                            <div class="perk-item-meta">
+                                <span><span class="meta-label">${SPECIAL_LABELS[p.special] || '★'}</span> ${p.special}</span>
+                                <span>${levelStr}</span>
+                                <span>コスト: ${costStr}</span>
+                            </div>
+                        </div>
+                        <div class="perk-item-desc-preview">${maxDesc}</div>
+                        <div class="perk-item-ranks">
+                            ${Array(p.maxRank).fill('').map(() => `<div class="rank-pip" style="background:${color};box-shadow:0 0 4px ${color}40;border-color:${color}"></div>`).join('')}
+                        </div>
+                        <div class="perk-item-expand">▶</div>
+                    </div>
+                    <div class="perk-item-detail">
+                        <div class="detail-divider"></div>
+                        <div class="detail-grid">
+                            <img class="detail-img" src="${imgSrc}" alt="${p.name}" onerror="this.style.display='none'" style="border-color:${color}">
+                            <div class="detail-content">
+                                <table class="detail-ranks-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:60px">ランク</th>
+                                            <th style="width:60px">コスト</th>
+                                            <th>効果</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${p.desc.map((d, i) => `<tr>
+                                            <td><span class="rank-num" style="color:${color}">★${i + 1}</span></td>
+                                            <td><span class="rank-cost">${p.cost ? p.cost[i] : '-'}</span></td>
+                                            <td><span class="rank-desc">${d}</span></td>
+                                        </tr>`).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+
+            renderTabs();
+        }
+
+        // --- Perk画像スラッグ取得 ---
+        function getPerkImageSlug(name) {
+            if (typeof PERK_IMAGE_OVERRIDES !== 'undefined' && PERK_IMAGE_OVERRIDES[name]) {
+                return PERK_IMAGE_OVERRIDES[name];
+            }
+            return name.replace(/[^a-zA-Z0-9]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
+        }
+
+        // --- イベントハンドラ ---
+        function setSpecial(special) {
+            currentSpecial = special;
+            expandedPerk = null;
+            renderPerks();
+        }
+
+        function setRace(race) {
+            currentRace = race;
+            document.querySelectorAll('.race-btn').forEach(btn => {
+                btn.classList.remove('active', 'ghoul-active');
+                if (btn.dataset.race === race) {
+                    btn.classList.add(race === 'ghoul' ? 'ghoul-active' : 'active');
+                }
+            });
+            expandedPerk = null;
+            renderPerks();
+        }
+
+        function togglePerk(name, source) {
+            const key = name + source;
+            expandedPerk = expandedPerk === key ? null : key;
+            renderPerks();
+
+            // 展開した要素にスクロール
+            if (expandedPerk) {
+                setTimeout(() => {
+                    const el = document.querySelector('.perk-item.expanded');
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 50);
+            }
+        }
+
+        function filterPerks() {
+            expandedPerk = null;
+            renderPerks();
+        }
+
+        // --- 初期化 ---
+        renderTabs();
+        renderPerks();
+    </script>
+</body>
+
+</html>
