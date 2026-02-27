@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Black Mountain Ordnance Works | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/black-mountain-ordnance-works.html">
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Black Mountain Ordnance Works | Overseer Mohi's Terminal">
+    <meta property="og:description"
+        content="Black Mountain Ordnance Works（ブラックマウンテン兵器工場）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/black-mountain-ordnance-works/exterior.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/black-mountain-ordnance-works.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Black Mountain Ordnance Works | Overseer Mohi's Terminal">
+    <meta name="twitter:description"
+        content="Black Mountain Ordnance Works（ブラックマウンテン兵器工場）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/black-mountain-ordnance-works/exterior.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノートブロック（ターミナルエントリ・メモ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- サイドバー（インフォボックス） -->
+        <aside class="infobox">
+            <h3
+                style="font-family: 'Share Tech Mono', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; margin-top: 0;">
+                Black Mountain Ordnance Works</h3>
+            <img src="images/black-mountain-ordnance-works/exterior.png" alt="Black Mountain Ordnance Works 外観"
+                onclick="openLightbox(this.src)">
+            <div class="infobox-row">
+                <span class="infobox-label">カテゴリ</span>
+                <span>ロケーション</span>
+            </div>
+            <div class="infobox-row">
+                <span class="infobox-label">地域</span>
+                <span>森林地帯（アパラチア）</span>
+            </div>
+            <div class="infobox-row">
+                <span class="infobox-label">敵対勢力</span>
+                <span>ブラッドイーグルズ</span>
+            </div>
+            <div class="infobox-row">
+                <span class="infobox-label">ロボット</span>
+                <span>アイボット、プロテクトロン</span>
+            </div>
+            <div class="infobox-row">
+                <span class="infobox-label">設備</span>
+                <span>武器/アーマー作業台、PA台</span>
+            </div>
+            <div class="infobox-row">
+                <span class="infobox-label">ターミナル</span>
+                <span>1（セキュリティ小屋内）</span>
+            </div>
+            <div class="infobox-row">
+                <span class="infobox-label">マップマーカー</span>
+                <span>あり</span>
+            </div>
+            <div class="infobox-row">
+                <span class="infobox-label">登場作品</span>
+                <span>Fallout 76</span>
+            </div>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="black-mountain-ordnance-works" onclick="toggleLike(this)">
+                    <span class="like-icon">♡</span>
+                    <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Black Mountain Ordnance Works<br><span
+                    style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ブラックマウンテン兵器工場</span>
+            </h1>
+
+            <h2>概要</h2>
+            <p>
+                ブラックマウンテン兵器工場は、アパラチアの森林地帯に位置する施設で、Cole & Parker Holdings Ltd.によって運営されていた遠隔貯蔵および廃棄物処理施設である。<br>
+                戦前はGreene Custom Defense Systemsやヌカ・コーラ社にTNTドームを貸し出しており、各ドームには機密性の高い物資が保管されていた。<br>
+                施設は国防省の回収・改修部門の指揮下にも置かれ、軍用高性能爆薬の製造も行っていたが、酸のタンクが爆発するという惨事が発生し、戦前にはすでに閉鎖状態に陥っていた。<br>
+                現在はブラッドイーグルズが周辺に陣取っており、探索には注意が必要である。
+            </p>
+
+            <img src="images/black-mountain-ordnance-works/dod-sign.png" alt="国防省の看板" class="article-image"
+                onclick="openLightbox(this.src)">
+            <div class="image-caption">国防省の看板 — 施設が軍の管理下にあったことを示す</div>
+
+            <h2>レイアウト</h2>
+            <p>
+                施設はフェンスで囲まれたエリアに建物が点在しており、東側には工業地区が広がっている。<br>
+                メインの建物内にはデスクやファイルキャビネットのほか、Picklock 3が必要な金庫が設置されている。<br>
+                施設全体に散在するTNTドームが最大の特徴であり、それぞれ異なるテナントが使用していた貯蔵庫として機能している。
+            </p>
+
+            <img src="images/black-mountain-ordnance-works/dome-map.png" alt="TNTドーム配置図" class="article-image"
+                onclick="openLightbox(this.src)">
+            <div class="image-caption">施設に点在するTNTドームの配置図</div>
+
+            <h3>TNTドーム #2</h3>
+            <p>
+                丘の上に位置するドームで、Greene Custom Defense Systems所有のドームである。<br>
+                内部にはエイリアンブラスターに関連するアイテムが保管されている。<br>
+                アクセスするには、まず「錆びた鍵」を見つけ、そこからM. Greeneのアクセスコードを辿る必要がある。<br>
+                アクセスコードはShadowbreeze Apartmentsのターミナルから入手可能。
+            </p>
+
+            <img src="images/black-mountain-ordnance-works/initial-analysis.jpg" alt="Initial analysis メモ"
+                class="article-image" onclick="openLightbox(this.src)">
+            <div class="image-caption">ドーム #2 内部 — エイリアン由来の技術分析メモ</div>
+
+            <h3>TNTドーム #3</h3>
+            <p>
+                道路East 88沿いに位置し、ヌカ・コーラ社が12年契約で借り受けていたドームである。<br>
+                内部にはT-51パワーアーマー用のヌカ・コーラ塗装の設計図のほか、Bottle and Cappyジャケットなどヌカ・ワールド関連の衣装が収められている。<br>
+                盗まれたターミナルパスコードがFreddy Fear's House of Scaresの屋上にある鍵のかかった部屋に落ちている。
+            </p>
+
+            <img src="images/black-mountain-ordnance-works/dome-3.png" alt="TNTドーム #3 内部" class="article-image"
+                onclick="openLightbox(this.src)">
+            <div class="image-caption">ドーム #3 内部 — ヌカ・コーラ社のコレクション</div>
+
+            <h3>TNTドーム #7</h3>
+            <p>
+                所有者が非公開のドームで、多額の頭金により早期アクセスと匿名性が認められていた。<br>
+                戦後、このドームにアクセスするには鍵カードやアクセスコードを用いた複雑な謎解きが必要となり、Kanawha Nuka-Cola plantやIngram Mansionなどの各地を巡る必要がある。<br>
+                内部にはX-01パワーアーマー用のヌカ・コーラ・クアンタム塗装の設計図が保管されている。
+            </p>
+
+            <img src="images/black-mountain-ordnance-works/dome-7.png" alt="TNTドーム #7 内部" class="article-image"
+                onclick="openLightbox(this.src)">
+            <div class="image-caption">ドーム #7 内部 — X-01クアンタム塗装の設計図</div>
+
+            <h3>TNTドーム #8</h3>
+            <p>
+                「Invaders from Beyond」イベント中に出現する「The Emissary」から入手できる「Mysterious key」でアクセス可能なドーム。<br>
+                内部にはHomer Sapersteinという人物がいる。
+            </p>
+
+            <h2>注目すべき戦利品</h2>
+            <ul>
+                <li><strong>ドーム #2:</strong> エイリアンブラスター弾、設計図：エイリアンブラスター・フュージョンマガジン、防護服×3、メモ「Initial analysis」</li>
+                <li><strong>ドーム #3:</strong> 設計図：T-51パワーアーマー・ヌカコーラ塗装、Bottle and Cappyジャケットなどヌカ・ワールド関連衣装</li>
+                <li><strong>ドーム #7:</strong> 設計図：X-01パワーアーマー・ヌカコーラ・クアンタム塗装、ヌカ・グレープ、ミニ・ニューク</li>
+            </ul>
+
+            <h2>発見できるノート</h2>
+
+            <div class="note-block">
+                <div class="note-title">📄 Initial analysis</div>
+                <p>
+                    「初期テストの結果、これらがエイリアン由来である可能性が高いことが示された。<br>
+                    長い間での最も重要な発見かもしれない。<br>
+                    内部の物質は極めて複雑かつ破壊的であるため、サンプルの取り扱いには細心の注意を払うこと。」
+                </p>
+            </div>
+
+            <h2>ターミナルエントリ — レンタル・リース記録</h2>
+            <p>セキュリティ小屋内のターミナルには、各ドームのレンタル記録が残されている。</p>
+
+            <div class="note-block">
+                <div class="note-title">📋 ドーム 01</div>
+                <p>読み取りエラー。データが破損している。</p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 ドーム 02</div>
+                <p>
+                    <strong>所有者:</strong> Greene Custom Defense Systems<br>
+                    <strong>状態:</strong> 支払い済み
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 ドーム 03</div>
+                <p>
+                    <strong>所有者:</strong> ヌカ・コーラ社<br>
+                    <strong>契約:</strong> 12年契約<br>
+                    <strong>状態:</strong> 支払い済み
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 ドーム 07</div>
+                <p>
+                    <strong>所有者:</strong> 非公開<br>
+                    <strong>備考:</strong> 多額の頭金により早期アクセスと匿名性が認められている
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 ドーム 08</div>
+                <p>読み取りエラー。データが破損している。</p>
+            </div>
+
+            <img src="images/black-mountain-ordnance-works/map.png" alt="マップ上の位置" class="article-image"
+                onclick="openLightbox(this.src)">
+            <div class="image-caption">アパラチアのマップ上におけるBlack Mountain Ordnance Worksの位置</div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ここ、本当に好きなロケーションの一つなんですよね〜！<br>
+                一見すると森林地帯の片隅にある地味な施設なんですが、TNTドームの中身がとにかく豪華！<br>
+                エイリアンブラスターにヌカ・コーラ塗装のPA設計図、しかもX-01のクアンタム塗装まであるという、宝の山すぎる場所です。<br>
+                特にドーム #2の「Initial analysis」メモには思わず興奮してしまいます。<br>
+                エイリアン由来の技術…ってことは、Fallout世界において宇宙人の存在が公式に確認されていたってことですからね。<br>
+                ドーム #7に至っては、各地を巡る謎解きが必要で、まるでウエイストランド版の宝探しみたいなクエストになっています。<br>
+                Kanawha Nuka-Cola plantやIngram Mansionを巡りながら「次はどこに行けばいいんだ…？」と頭を悩ませる感じが最高に楽しい。<br>
+                そしてドーム #3のヌカ・ワールド関連グッズ…！Bottle and Cappyジャケットとか、ヌカ好きにはたまらないアイテムが詰まっています。<br>
+                ドーム #8はInvaders from Beyondイベント限定なのがちょっと惜しいところですが、Homer Sapersteinに会えるのは中々レアな体験。<br>
+                施設のバックストーリーも興味深くて、Cole & Parker Holdings
+                Ltd.という民間企業が国防省の管理下で軍用爆薬を作っていたのに、酸タンクの爆発で閉鎖っていうのが、いかにもFallout世界らしい杜撰さを感じますw<br>
+                ブラッドイーグルズが屯している現在の状況も含めて、探索のしがいがある素晴らしいロケーションだと思います！
+            </div>
+
+            <div class="copyright">
+                <p>This article uses material from the <a
+                        href="https://fallout.fandom.com/wiki/Black_Mountain_Ordnance_Works" target="_blank"
+                        rel="noopener">Fallout wiki at Fandom</a> and is licensed under the <a
+                        href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative
+                        Commons Attribution-Share Alike License</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        // Lightbox
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        // Supabase いいね機能
+        const supabaseUrl = 'https://vzmvurwbfuzmfbxqjqas.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ6bXZ1cndiZnV6bWZieHFqcWFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mzc3MzA3NjYsImV4cCI6MjA1MzMwNjc2Nn0.I7SNAvMiiURzmQ2FJDqDqvVSRDMJB-GAibFq-VDkVHs';
+        const supaClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.dataset.articleId;
+            const storageKey = `liked_${articleId}`;
+            const liked = localStorage.getItem(storageKey);
+
+            if (liked) {
+                await supaClient.rpc('decrement_like', { page_slug: articleId });
+                localStorage.removeItem(storageKey);
+                btn.classList.remove('liked');
+                btn.querySelector('.like-icon').textContent = '♡';
+            } else {
+                await supaClient.rpc('increment_like', { page_slug: articleId });
+                localStorage.setItem(storageKey, 'true');
+                btn.classList.add('liked');
+                btn.querySelector('.like-icon').textContent = '♥';
+            }
+            await loadLikes(btn);
+        }
+
+        async function loadLikes(btn) {
+            const articleId = btn.dataset.articleId;
+            const { data } = await supaClient
+                .from('page_likes')
+                .select('like_count')
+                .eq('page_slug', articleId)
+                .single();
+            btn.querySelector('.like-count').textContent = data?.like_count || 0;
+            if (localStorage.getItem(`liked_${articleId}`)) {
+                btn.classList.add('liked');
+                btn.querySelector('.like-icon').textContent = '♥';
+            }
+        }
+
+        document.querySelectorAll('.like-button').forEach(loadLikes);
+    </script>
+</body>
+
+</html>
