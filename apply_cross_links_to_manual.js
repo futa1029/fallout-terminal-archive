@@ -9,7 +9,7 @@ const articles = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
 const titleToSlug = fs.existsSync(slugPath) ? JSON.parse(fs.readFileSync(slugPath, 'utf8')) : {};
 
 const manualFiles = [
-    { name: "アーロン・キンボール", url: "kimball.html" },
+    { name: "アーロン・キンバル", url: "kimball.html" },
     { name: "レイダー (Fallout 76)", url: "raiders_76.html" },
     { name: "リー・モルデイヴァー", url: "lee_moldaver.html" },
     { name: "Vaultの居住者", url: "vault_dweller_lore.html" },

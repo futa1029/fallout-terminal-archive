@@ -7,7 +7,7 @@ const LORE_HTML = path.join(DIR, 'lore.html');
 
 // 既存の9件の手動定義データ
 const manualEntries = [
-    { name: "アーロン・キンボール", yomi: "あーろん・きんぼーる", url: "kimball.html", category: "人物", appearance: ["Fallout: New Vegas"], date: "2026-02-19" },
+    { name: "アーロン・キンバル", yomi: "あーろん・きんばる", url: "kimball.html", category: "人物", appearance: ["Fallout: New Vegas"], date: "2026-02-19" },
     { name: "レイダー (Fallout 76)", yomi: "れいだー", url: "raiders_76.html", category: "勢力", appearance: ["Fallout 76"], date: "2026-02-19" },
     { name: "リー・モルデイヴァー", yomi: "りー・もるでいゔぁー", url: "lee_moldaver.html", category: "人物", appearance: ["Fallout TV"], date: "2026-02-19" },
     { name: "Vaultの居住者", yomi: "ぼるとのきょじゅうしゃ", url: "vault_dweller_lore.html", category: "人物", appearance: ["Fallout"], date: "2026-02-18" },
@@ -29,7 +29,7 @@ function guessCategoryAndAppearance(title, bodyText) {
     if (/(駅|小屋|邸宅|集会所|タワー|農場|工場|キャンプ|・リッジ|ロッジ|会社|製造所|橋|灯台|研究所|パビリオン|酒場|教会|Vault|廃品集積場)/.test(t)) cat = "場所";
     if (/(ピストル|ガン|ライフル|アサルト|ブランダーバス|剣|弓|頭部|フレア)/.test(t)) cat = "武器";
     if (/(レイダー|エンクレイヴ|入植者|フリーラジカルズ|レスポンダー|ブラザーフッド|BOS|カルト)/.test(t)) cat = "勢力";
-    if (/(おばあちゃん|ダッチェス|モート|ソール|ポリー|キンボール|タンディ|モルデイヴァー|デル・ローソン|モルデカイ|居住者|フランク|ジョン・ハンコック|マジソン・リー|チェイス|サパースタイン)/.test(t)) cat = "人物";
+    if (/(おばあちゃん|ダッチェス|モート|ソール|ポリー|キンバル|タンディ|モルデイヴァー|デル・ローソン|モルデカイ|居住者|フランク|ジョン・ハンコック|マジソン・リー|チェイス|サパースタイン)/.test(t)) cat = "人物";
     if (/(アングラー|スコーチ|ウェンディゴ|ブロートフライ|アサルトロン|ハンディ|プロテクトロン|モールラット|アリ|デスクロー|ビーバー|犬|ラット|ゼータ|モスマン)/.test(t)) cat = "クリーチャー";
     if (/(花|ハルシジェン|ブライト|ユッカ|キノコ|茸|カボチャ|スーザン|マリーゴールド)/.test(t)) cat = "植物";
     if (/(メンタス|スティムパック|rad-x|radaway|サイコ|アディクトール|ヌカシャイン|コーラ|サルサパリラ|フード|シュガーボム)/.test(t)) cat = "アイテム";
