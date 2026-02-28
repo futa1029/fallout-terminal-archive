@@ -3,3 +3,8 @@ package-lock.json
 *.log
 .DS_Store
 Thumbs.db
+
+# Perkデータ更新作業中 - 完了後に削除すること
+perk-list.html
+perk-simulator.html
+perk-data.js
