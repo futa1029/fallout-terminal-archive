@@ -30,7 +30,8 @@ const manualEntries = [
     { name: "複葉機の墜落現場（アンカー農場）", yomi: "ふくようきのついらくげんば", url: "biplane-crash-anchor-farm.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" },
     { name: "バードハウス・リッジ", yomi: "ばーどはうす・りっじ", url: "birdhouse-ridge.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" },
     { name: "野鳥観察者のプラットフォーム", yomi: "やちょうかんさつしゃのぷらっとふぉーむ", url: "birdwatchers-platform.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" },
-    { name: "ブラックマウンテン兵器工場", yomi: "ぶらっくまうんてんへいきこうじょう", url: "black-mountain-ordnance-works.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-28" }
+    { name: "ブラックマウンテン兵器工場", yomi: "ぶらっくまうんてんへいきこうじょう", url: "black-mountain-ordnance-works.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-28" },
+    { name: "ダフネ", yomi: "だふね", url: "daphne.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-28" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -55,7 +56,8 @@ const duplicateKeywords = [
     "複葉機の墜落現場",
     "バードハウス・リッジ",
     "野鳥観察者のプラットフォーム",
-    "ブラックマウンテン兵器工場"
+    "ブラックマウンテン兵器工場",
+    "ダフネ"
 ];
 
 function isDuplicate(title) {
@@ -120,7 +122,7 @@ async function rebuildLoreHtml() {
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax', 'lucy-maclean', 'biplane-crash-anchor-farm', 'birdhouse-ridge', 'birdwatchers-platform', 'black-mountain-ordnance-works'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax', 'lucy-maclean', 'biplane-crash-anchor-farm', 'birdhouse-ridge', 'birdwatchers-platform', 'black-mountain-ordnance-works', 'daphne'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};

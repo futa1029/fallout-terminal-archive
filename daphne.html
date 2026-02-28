@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Daphne | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/daphne.html">
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Daphne (ダフネ) | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Daphne (ダフネ)のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/daphne/daphne_portrait.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/daphne.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Daphne (ダフネ) | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Daphne (ダフネ)のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/daphne/daphne_portrait.png">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .dialogue-box {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #aaffaa;
+            background: rgba(0, 255, 0, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+            cursor: pointer;
+        }
+
+        .image-caption {
+            font-size: 0.85em;
+            color: #888;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #444;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.75);
+            color: #ddd;
+            font-size: 0.78em;
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        /* Back Link */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+                position: static;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-link {
+                padding: 12px 20px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Action Header */
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link {
+            margin-bottom: 0;
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        @media (max-width: 768px) {
+            .like-button {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        /* Auto Cross-Links */
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body data-article-category="人物" data-article-appearance="Fallout 76">
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Daphne<br><span
+                    style="font-size:0.7em; color:#888; font-weight:normal;">ダフネ</span></h3>
+            <img src="./images/daphne/daphne_portrait.png" alt="Daphne">
+
+            <div class="infobox-row"><span class="infobox-label">別名</span><span>The Inspector</span></div>
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>味方 / 商人</span></div>
+            <div class="infobox-row"><span class="infobox-label">居場所</span><span>C.A.M.P.</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>Reese Warren</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場</span><span>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">Form ID</span><span>006273A8</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">
+                    &lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="daphne" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Daphne<br><span
+                    style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ダフネ</span>
+            </h1>
+
+            <div class="dialogue-box">
+                「あなたは本物？それとも空想？」<br>
+                <br>
+                ―― ダフネ
+            </div>
+
+            <p>
+                ダフネは『Fallout 76』に登場するC.A.M.P.の味方キャラクターです。<br>
+                シーズン6「ザ・アンストッパブルズ・シャイン」のスコアボード報酬として入手できるアイテム「ダフネのおもちゃ箱」を設置することで、プレイヤーのC.A.M.P.に招待することができます。<br>
+                彼女は「インスペクター」と名乗る謎めいた少女で、昼と夜で異なる顔を持っています。<br>
+            </p>
+
+            <img src="./images/daphne/daphne_full.webp" class="article-image" alt="ダフネ全身" onclick="openLightbox(this)">
+            <div class="image-caption">ダフネの全身ビジュアル</div>
+
+            <h2>背景</h2>
+            <p>
+                ダフネは重度の記憶喪失を患っている少女です。<br>
+                両親についての記憶はなく、自分がどこから来たのかもわかりません。<br>
+                森の中を何かから逃げている最中に、大切なテディベアの「フランクリン」を失くしてしまったことを覚えています。<br>
+                ある日、頭痛とともに目が覚めたら一人ぼっちだったと語ります。<br>
+            </p>
+            <p>
+                彼女は大人のサイズのバックパックを見つけました。<br>
+                中には虫眼鏡、食料、そして「アンストッパブル！」のボードゲームが入っていました。<br>
+                そのバックパックの持ち主と一緒に遊んでいたような感覚を持っており、失われた過去との繋がりを示唆しています。<br>
+            </p>
+            <p>
+                かつて「シャーマン」というイギリス訛りの空想上の友人がいました。<br>
+                しかし、本物の友達――つまりプレイヤー――が必要だと感じた時に、シャーマンは消えてしまったと語ります。<br>
+            </p>
+
+            <h2>ゲームプレイ</h2>
+            <h3>味方としての機能</h3>
+            <p>
+                ワークショップアイテム「ダフネのおもちゃ箱」を設置することで、自分のC.A.M.P.にダフネを招待することができます。<br>
+                ダフネは商人としての役割も持ち、キャップでの取引が可能です。<br>
+            </p>
+            <p>
+                <b>販売品：</b>スポーツ・玩具関連の武器やジャンク、「アンストッパブル！」マガジン、コミックテーマのジャンクアイテムなど。<br>
+            </p>
+
+            <h3>デイリーバフ</h3>
+            <p>
+                ダフネは時間帯に応じて異なるバフを付与してくれます（30分間有効）。<br>
+            </p>
+            <p>
+                <b>昼間：</b><br>
+                ・Luck +2<br>
+                ・「Pannapictagraphist」パーク効果（近くの雑誌を探知）<br>
+            </p>
+            <p>
+                <b>夜間：</b><br>
+                ・Perception +1<br>
+                ・「Can Do!」パーク効果（コンテナから追加の食料）<br>
+                ・「Cap Collector」パーク効果（キャップ箱から追加キャップ）<br>
+            </p>
+
+            <img src="./images/daphne/daphne_toybox.webp" class="article-image" alt="おもちゃ箱に座るダフネ"
+                onclick="openLightbox(this)">
+            <div class="image-caption">おもちゃ箱に座るダフネ</div>
+
+            <h2>インベントリ</h2>
+            <ul>
+                <li>子供のボロ服</li>
+                <li>インスペクターのシルクハット</li>
+                <li>仕込み杖</li>
+                <li>煙幕</li>
+            </ul>
+            <p>
+                他の味方キャラクターとは異なり、カスタマイズメニューで彼女の衣装を変更することはできません。<br>
+            </p>
+
+            <h2>名言</h2>
+            <div class="dialogue-box">
+                「わあ、本当に！……もちろん！孤児の女の子が宇宙で一番強くて、賢くて、魔法のような人だってことはみんな知ってるわ！」
+            </div>
+            <div class="dialogue-box">
+                「昼間はダフネ、あなたのキャンプを手伝うおとなしい助手。<br>
+                でも夜は別人！ウェイストランドの魔法使い！真実と正義の探求者！インスペクターよ！」
+            </div>
+
+            <h2>メモ</h2>
+            <ul>
+                <li>ダフネから購入した雑誌は、ウィークリーの雑誌収集チャレンジ（Atom報酬）にカウントされます。</li>
+            </ul>
+
+            <img src="./images/daphne/daphne_maul.png" class="article-image" alt="ダフネとモール" onclick="openLightbox(this)">
+            <div class="image-caption">シーズン6の味方キャラクター、ダフネとモール</div>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="./images/daphne/daphne_icon.webp" alt="ダフネのアイコン">
+                    <div class="caption">ダフネのアイコン</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="./images/daphne/daphne_full.webp" alt="ダフネ全身">
+                    <div class="caption">ダフネ全身ビジュアル</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="./images/daphne/daphne_toybox.webp" alt="おもちゃ箱に座るダフネ">
+                    <div class="caption">おもちゃ箱に座るダフネ</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="./images/daphne/daphne_maul.png" alt="ダフネとモール">
+                    <div class="caption">ダフネとモール</div>
+                </div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ダフネ、本当に不思議な魅力を持った子ですよね〜。<br>
+                ウェイストランドという過酷な世界の中に、こんな純粋で夢見がちな女の子がいるっていうギャップがたまらないです。<br>
+                昼間は控えめな助手として振る舞いつつ、夜になると「インスペクター」として正義のヒーローごっこを始めるっていう設定が、もう本当に愛おしくて…。<br>
+                しかも記憶喪失で、テディベアの「フランクリン」を失くしたこと、空想の友達「シャーマン」がいたことなど、断片的な記憶の中に何か切ない物語が隠されているんですよね。<br>
+                プレイヤーと出会ったことでシャーマンが消えたっていうのも、「本物の友達ができたから」っていう理由で、なんだかグッとくるものがあります。<br><br>
+                ゲームプレイ的にも、昼と夜で異なるバフをくれるのが特徴的で、特に夜間の「Can Do!」と「Cap Collector」の組み合わせは探索プレイヤーにはありがたい！<br>
+                雑誌を販売してくれるのもユニークで、ウィークリーチャレンジの消化に使えるのは嬉しいポイントです。<br>
+                衣装変更ができないのはちょっと残念ですが、あのボロ服とシルクハットのスタイルこそがダフネらしさなので、それはそれでアリかなと思います。<br><br>
+                シーズン6のスコアボード報酬としてモールと一緒に登場した時のビジュアルも良くて、この二人の組み合わせが好きな方は多いんじゃないでしょうか。<br>
+                荒廃した世界で子供が一人で生き延びているという設定は重いものがありますが、ダフネはそれをユーモアと想像力で乗り越えようとしている。<br>
+                そんな彼女のC.A.M.P.に遊びに行くと、なんだかほっとする気持ちになれますよね〜。<br>
+            </div>
+
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span
+                        style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span
+                        style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Person</span>
+                </div>
+                <p name="copyright-default">This article uses material from the Fallout wiki at Fandom and is licensed
+                    under the Creative Commons Attribution-Share Alike License.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100"
+                        placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Lightbox
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+        });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error decrementing:', error);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                } else {
+                    console.error('Error incrementing:', error);
+                }
+            }
+
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) {
+                    count = data.like_count;
+                } else if (error && error.code === 'PGRST116') {
+                    count = 0;
+                }
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'daphne';
+        const _commentArticleName = 'Daphne (ダフネ)';
+        const _commentArticleUrl = 'daphne.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    loadComments(); alert('管理者モードを終了しました。'); return;
+                }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                } else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

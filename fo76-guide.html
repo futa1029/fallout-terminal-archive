@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallout 76 攻略ガイド | Fallout JP Community</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/fo76-guide.html">
+    <meta name="description" content="Fallout 76の攻略情報まとめ。Perk一覧、Perkビルドシミュレーター、シーズン＆イベント情報など、プレイに役立つツールを集約。">
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.fallout-jp.com/fo76-guide.html">
+    <meta property="og:title" content="Fallout 76 攻略ガイド | Fallout JP Community">
+    <meta property="og:description" content="Fallout 76の攻略情報まとめ。Perk一覧、ビルドシミュレーター、シーズン＆イベント情報など。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/og-image.png">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="Fallout JP Community">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Fallout 76 攻略ガイド | Fallout JP Community">
+    <meta name="twitter:description" content="Fallout 76の攻略情報まとめ。Perk一覧、ビルドシミュレーター、シーズン＆イベント情報など。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-image.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&family=Noto+Sans+JP:wght@400;700&display=swap');
+
+        :root {
+            --fallout-green: #00ff00;
+            --fallout-bg: #111111;
+            --fallout-dark-green: #003300;
+            --fallout-amber: #ffce07;
+            --fallout-blue: #44aaff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--fallout-bg);
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'VT323', 'Noto Sans JP', monospace;
+            color: var(--fallout-green);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: auto;
+        }
+
+        /* ヘッダー */
+        .terminal-header {
+            text-align: center;
+            border-bottom: 2px solid var(--fallout-green);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 0 0 15px var(--fallout-green);
+            letter-spacing: 2px;
+        }
+
+        .cmd-line {
+            color: var(--fallout-amber);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* 戻るリンク */
+        .back-link {
+            display: inline-block;
+            color: var(--fallout-green);
+            text-decoration: none;
+            font-size: 1.1rem;
+            border: 1px solid var(--fallout-green);
+            padding: 4px 12px;
+            margin-bottom: 20px;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        /* イントロ */
+        .intro-block {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            background: rgba(0, 51, 0, 0.3);
+            padding: 20px;
+            border: 1px dashed var(--fallout-green);
+            color: #e0ffe0;
+            margin-bottom: 30px;
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+
+        /* ガイドカード */
+        .guide-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .guide-card {
+            border: 2px solid var(--fallout-green);
+            padding: 25px;
+            position: relative;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            background: rgba(0, 51, 0, 0.1);
+        }
+
+        .guide-card:hover {
+            background: rgba(0, 255, 0, 0.06);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .guide-card-badge {
+            display: inline-block;
+            padding: 3px 12px;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .guide-card-badge.season {
+            background: var(--fallout-amber);
+        }
+
+        .guide-card-badge.tool {
+            background: var(--fallout-blue);
+        }
+
+        .guide-card-title {
+            font-size: 1.8rem;
+            color: var(--fallout-green);
+            margin: 0 0 8px 0;
+            font-family: 'VT323', monospace;
+            letter-spacing: 1px;
+        }
+
+        .guide-card.season-card .guide-card-title {
+            color: var(--fallout-amber);
+        }
+
+        .guide-card.tool-card .guide-card-title {
+            color: var(--fallout-blue);
+        }
+
+        .guide-card-desc {
+            font-size: 1rem;
+            color: #aaa;
+            font-family: 'Noto Sans JP', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .guide-card-arrow {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            font-size: 1.8rem;
+            color: var(--fallout-green);
+            opacity: 0.4;
+            transition: all 0.3s;
+        }
+
+        .guide-card:hover .guide-card-arrow {
+            opacity: 1;
+            right: 15px;
+        }
+
+        .guide-card.season-card .guide-card-arrow {
+            color: var(--fallout-amber);
+        }
+
+        .guide-card.season-card {
+            border-color: var(--fallout-amber);
+        }
+
+        .guide-card.season-card:hover {
+            box-shadow: 0 0 25px rgba(255, 206, 7, 0.15);
+        }
+
+        .guide-card.tool-card {
+            border-color: var(--fallout-blue);
+        }
+
+        .guide-card.tool-card .guide-card-arrow {
+            color: var(--fallout-blue);
+        }
+
+        .guide-card.tool-card:hover {
+            box-shadow: 0 0 25px rgba(68, 170, 255, 0.15);
+        }
+
+        /* タグリスト */
+        .guide-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .guide-card-tags span {
+            font-size: 0.85rem;
+            padding: 2px 8px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            color: var(--fallout-green);
+            font-family: 'VT323', monospace;
+            background: rgba(0, 255, 0, 0.05);
+        }
+
+        .guide-card.season-card .guide-card-tags span {
+            border-color: rgba(255, 206, 7, 0.3);
+            color: var(--fallout-amber);
+            background: rgba(255, 206, 7, 0.05);
+        }
+
+        .guide-card.tool-card .guide-card-tags span {
+            border-color: rgba(68, 170, 255, 0.3);
+            color: var(--fallout-blue);
+            background: rgba(68, 170, 255, 0.05);
+        }
+
+        /* ナビ */
+        .nav-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--fallout-green);
+        }
+
+        .nav-links a {
+            border: 1px solid var(--fallout-green);
+            padding: 6px 14px;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            color: var(--fallout-green);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            background: var(--fallout-green);
+            color: var(--fallout-bg);
+        }
+
+        .footer-terminal {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 2px solid var(--fallout-green);
+            font-size: 0.9rem;
+            opacity: 0.6;
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .guide-card {
+                padding: 18px 15px;
+            }
+
+            .guide-card-title {
+                font-size: 1.4rem;
+                padding-right: 30px;
+            }
+
+            .guide-card-arrow {
+                font-size: 1.3rem;
+                right: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">&lt; BACK TO TERMINAL</a>
+
+        <div class="terminal-header">
+            <h1>FALLOUT 76 攻略</h1>
+            <div class="cmd-line">&gt; RUN FO76_GUIDE.EXE</div>
+        </div>
+
+        <div class="intro-block">
+            Fallout 76に関する攻略情報・便利ツールをまとめたページです。<br>
+            ビルドの参考やシーズン情報のチェックにご活用ください。
+        </div>
+
+        <div class="guide-grid">
+            <!-- シーズン＆イベント -->
+            <a href="season.html" class="guide-card season-card">
+                <span class="guide-card-badge season">SCHEDULE</span>
+                <div class="guide-card-title">📅 SEASON & EVENTS</div>
+                <p class="guide-card-desc">
+                    現在のシーズン情報・次のシーズン情報・開催中イベントのカウントダウン・コミュニティカレンダーをまとめて確認。
+                </p>
+                <div class="guide-card-tags">
+                    <span>シーズン情報</span>
+                    <span>カウントダウン</span>
+                    <span>イベント一覧</span>
+                    <span>カレンダー</span>
+                </div>
+                <span class="guide-card-arrow">▶</span>
+            </a>
+
+            <!-- Perk一覧 -->
+            <a href="perk-list.html" class="guide-card">
+                <span class="guide-card-badge">DATABASE</span>
+                <div class="guide-card-title">📋 PERK DATABASE</div>
+                <p class="guide-card-desc">
+                    Fallout 76の全Perkカードを一覧表示。S.P.E.C.I.A.L.別フィルタリング、人間/グール切り替え、詳細表示に対応。
+                </p>
+                <div class="guide-card-tags">
+                    <span>全Perk収録</span>
+                    <span>検索・フィルタ</span>
+                    <span>人間 / グール対応</span>
+                    <span>レジェンダリーPerk</span>
+                </div>
+                <span class="guide-card-arrow">▶</span>
+            </a>
+
+            <!-- Perkシミュレーター -->
+            <a href="perk-simulator.html" class="guide-card tool-card">
+                <span class="guide-card-badge tool">TOOL</span>
+                <div class="guide-card-title">📊 PERK SIMULATOR</div>
+                <p class="guide-card-desc">
+                    SPECIAL配分・Perkカード選択・レジェンダリーPerk・変異を自由にカスタマイズできるビルドシミュレーター。
+                </p>
+                <div class="guide-card-tags">
+                    <span>SPECIAL配分</span>
+                    <span>ビルド作成</span>
+                    <span>変異</span>
+                    <span>レジェンダリーPerk</span>
+                </div>
+                <span class="guide-card-arrow">▶</span>
+            </a>
+        </div>
+
+        <!-- ナビ -->
+        <div class="nav-links">
+            <a href="index.html">&gt; HOME</a>
+            <a href="lore.html">&gt; LORE ARCHIVE</a>
+            <a href="changelog.html">&gt; CHANGELOG</a>
+            <a href="about.html">&gt; ABOUT</a>
+            <a href="resources.html">&gt; RESOURCES</a>
+        </div>
+
+        <div class="footer-terminal">
+            &gt; OVERSEER MOHI | FALLOUT JP COMMUNITY
+        </div>
+    </div>
+</body>
+
+</html>

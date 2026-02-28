@@ -566,6 +566,47 @@
             text-decoration: none;
         }
 
+        /* ライトボックス */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            cursor: zoom-out;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            cursor: zoom-out;
+            image-rendering: pixelated;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            cursor: pointer;
+            line-height: 1;
+            z-index: 10000;
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .detail-img {
+            cursor: zoom-in;
+        }
+
         /* レスポンシブ */
         @media (max-width: 768px) {
             .page-header {
@@ -656,6 +697,12 @@
         <p><a href="index.html">Overseer Mohi's Terminal</a> — Fallout 76 Perk Database</p>
         <p style="margin-top:5px;">Data based on Update 64+ (Milepost Zero)</p>
     </footer>
+
+    <!-- ライトボックス -->
+    <div class="lightbox-overlay" id="lightbox">
+        <span class="lightbox-close" id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
 
     <!-- Perkデータを読み込む -->
     <script src="perk-data.js"></script>
@@ -814,7 +861,7 @@
                                 ${p.name}${isGhoul ? '<span class="perk-race-badge ghoul">GHOUL</span>' : ''}
                             </div>
                             <div class="perk-item-meta">
-                                <span><span class="meta-label">${SPECIAL_LABELS[p.special] || '★'}</span> ${p.special}</span>
+                                <span><span class="meta-label">${SPECIAL_LABELS[p.special] || '★'}</span>${p.special === 'Legendary' ? ' Legendary' : p.special.substring(1)}</span>
                                 <span>${levelStr}</span>
                                 <span>コスト: ${costStr}</span>
                             </div>
@@ -900,6 +947,29 @@
             expandedPerk = null;
             renderPerks();
         }
+
+        // --- ライトボックス ---
+        const lbOverlay = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightbox-img');
+
+        // 詳細画像クリックでライトボックスを開く
+        document.getElementById('perkList').addEventListener('click', function (e) {
+            const img = e.target.closest('.detail-img');
+            if (img && img.src) {
+                lbImg.src = img.src;
+                lbImg.alt = img.alt;
+                lbOverlay.classList.add('active');
+            }
+        });
+
+        // ライトボックスを閉じる
+        lbOverlay.addEventListener('click', function () {
+            lbOverlay.classList.remove('active');
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') lbOverlay.classList.remove('active');
+        });
 
         // --- 初期化 ---
         renderTabs();
