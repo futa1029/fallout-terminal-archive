@@ -131,11 +131,11 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
   - `lore.html` に戻るための `<a href="lore.html" class="back-link">< BACK TO TERMINAL</a>` をページ上部に配置します。
   - Supabase連携用の `<button class="like-button" data-article-id="..." onclick="toggleLike(this)">` を配置します（一意なキーを作成）。
 - インラインの画像がある場合は `<div class="note-figure">...</div>` などで囲んでも構いません。
-- **著作権表示（ライセンスクレジット）**: 記事末尾の著作権表示は、CC BY-SA 3.0 準拠の**日本語フォーマット**で記載すること。英語のプレーンテキスト表記は**絶対に禁止**：
+- **著作権表示（ライセンスクレジット）**: 記事末尾の著作権表示は、CC BY-SA 3.0 準拠の**英語フォーマット**で記載すること。以下の3要件を必ず満たすこと：
 
   ```html
   <div class="copyright">
-      <p>この記事は、<a href="https://fallout.fandom.com/wiki/元記事のWikiスラッグ" target="_blank" rel="noopener">元記事の英語タイトル</a>（<a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Fallout Wiki at Fandom</a>）を翻訳・編集して作成しています。<br><a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">クリエイティブ・コモンズ 表示-継承ライセンス (CC BY-SA 3.0)</a> の下で提供されています。</p>
+      <p>This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/元記事のWikiスラッグ" target="_blank" rel="noopener">元記事の英語タイトル</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
       <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
       <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
   </div>
@@ -143,8 +143,8 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 
   > [!CAUTION]
   > **CC BY-SA 3.0 に準拠するため、以下の3点を必ず満たすこと：**
-  > 1. **元記事への個別リンク** — `https://fallout.fandom.com/wiki/記事スラッグ` への `<a>` タグ
-  > 2. **翻訳・編集した旨の明示** — 「翻訳・編集して作成しています」の文言
+  > 1. **元記事への個別リンク** — `https://fallout.fandom.com/wiki/記事スラッグ` への `<a>` タグ。出典名は「Nukapedia: The Fallout Wiki」を使用
+  > 2. **翻訳・編集した旨の明示** — 「translating and editing」の文言
   > 3. **ライセンスへのリンク** — CC BY-SA 3.0 ページへの `<a>` タグ
   >
   > 元記事のWikiスラッグが不明な場合は、h1タイトルのスペースをアンダースコアに置換して使用する。
