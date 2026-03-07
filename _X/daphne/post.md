@@ -1,4 +1,4 @@
-# Fallout76
+#Fallout76
 
 ダフネ
 <https://www.fallout-jp.com/daphne.html>

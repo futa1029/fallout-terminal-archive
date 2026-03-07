@@ -1,7 +1,7 @@
-# Fallout76
+#Fallout76
 
 ブラックマウンテン兵器工場
-<https://www.fallout-jp.com/black-mountain-ordnance-works.html>
+https://www.fallout-jp.com/black-mountain-ordnance-works.html
 
 概要
 

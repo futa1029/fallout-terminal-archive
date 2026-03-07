@@ -131,6 +131,21 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
   - `lore.html` に戻るための `<a href="lore.html" class="back-link">< BACK TO TERMINAL</a>` をページ上部に配置します。
   - Supabase連携用の `<button class="like-button" data-article-id="..." onclick="toggleLike(this)">` を配置します（一意なキーを作成）。
 - インラインの画像がある場合は `<div class="note-figure">...</div>` などで囲んでも構いません。
+- **著作権表示（ライセンスクレジット）**: 記事末尾の著作権表示は、必ず以下のフォーマットでハイパーリンクを含めること。プレーンテキストのみの表記は**絶対に禁止**：
+
+  ```html
+  <div class="copyright">
+      <p>This article uses material from the <a href="https://fallout.fandom.com/wiki/記事のWikiスラッグ" target="_blank" rel="noopener">Fallout wiki at Fandom</a> and is licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License</a>.</p>
+      <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+      <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+  </div>
+  ```
+
+  > [!CAUTION]
+  > **以下の旧フォーマットは使用禁止：**
+  > `This article uses material from the "Endor" article on Nukapedia: The Fallout Wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.`
+  > 必ず「Fallout wiki at Fandom」と「Creative Commons Attribution-Share Alike License」にそれぞれハイパーリンクを付けること。
+
 - **寄付リンク**: フッター（copyright文の後）に必ず以下を追加すること：
 
   ```html
