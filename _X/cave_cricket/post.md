@@ -18,7 +18,7 @@ https://www.fallout-jp.com/cave_cricket.html
 
 アパラチアの居住者であるグラムやソフィア・ダゲールなどは、彼らの脚が「かなり良い食い物になる」と言及していますが、ソフィアは依然として懐疑的です。
 アパラチアの地元の噂によれば、カマドウマは共食い能力があり、ある報告では卵の塊を食べているカマドウマが含まれていました。
-ベケットは軽蔑的にケム中毒者の集中力の長さをカマドウマのそれと比較しています。
+ベケットは軽蔑的に薬中毒者の集中力の長さをカマドウマのそれと比較しています。
 
 ---
 
@@ -45,7 +45,7 @@ https://www.fallout-jp.com/cave_cricket.html
 
 アパラチアの住人であるグラムやソフィア・ダゲールは、彼らの脚が「かなり良い食料になる」と語っています（ただしソフィアはやや懐疑的です）。
 また、彼らには共食いをするという噂もあり、卵の塊を食べていたという目撃報告すら存在します。
-ベケットは、ケム中・ジャンキーたちの集中力のなさを「カマドウマ並みだ」と軽蔑を込めて例えています。
+ベケットは、薬中・ジャンキーたちの集中力のなさを「カマドウマ並みだ」と軽蔑を込めて例えています。
 
 ---
 
@@ -58,4 +58,5 @@ Nuka-Worldの平原でこいつに急に跳びかかられてびっくりした�
 
 ---
 
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
+This article was created by translating and editing content from Nukapedia: The Fallout Wiki.
+Licensed under the Creative Commons Attribution-Share Alike License (CC BY-SA 3.0).

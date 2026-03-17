@@ -55,4 +55,5 @@ Fallout 2に登場するこのキャベツ、実際にアイテムとして手�
 
 ---
 
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
+This article was created by translating and editing content from Nukapedia: The Fallout Wiki.
+Licensed under the Creative Commons Attribution-Share Alike License (CC BY-SA 3.0).

@@ -251,7 +251,9 @@
     <script>
         fetch('changelog-data.json')
             .then(r => r.json())
-            .then(entries => {
+            .then(allEntries => {
+                // draft記事を除外（statusが未設定の既存記事はpublished扱い）
+                const entries = allEntries.filter(e => e.status !== 'draft');
                 entries.sort((a, b) => b.date.localeCompare(a.date));
 
                 const grouped = {};

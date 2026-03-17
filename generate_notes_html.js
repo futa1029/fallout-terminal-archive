@@ -937,6 +937,7 @@ async function processArticles() {
     // 文字列の長さ順にソート（部分一致を防ぐため：例えば「Fallout 76」より先に「Fallout」を置換させない）
     const linkDict = articles
         .filter(a => a.htmlFilename)
+        .filter(a => fs.existsSync(path.join(DIR, a.htmlFilename))) // リンク先HTMLが実在する場合のみ
         .map(a => ({ title: a.title, url: a.htmlFilename }))
         .sort((a, b) => b.title.length - a.title.length);
 

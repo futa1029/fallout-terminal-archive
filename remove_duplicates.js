@@ -31,7 +31,20 @@ const manualEntries = [
     { name: "バードハウス・リッジ", yomi: "ばーどはうす・りっじ", url: "birdhouse-ridge.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" },
     { name: "野鳥観察者のプラットフォーム", yomi: "やちょうかんさつしゃのぷらっとふぉーむ", url: "birdwatchers-platform.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-27" },
     { name: "ブラックマウンテン兵器工場", yomi: "ぶらっくまうんてんへいきこうじょう", url: "black-mountain-ordnance-works.html", category: "場所", appearance: ["Fallout 76"], date: "2026-02-28" },
-    { name: "ダフネ", yomi: "だふね", url: "daphne.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-28" }
+    { name: "ダフネ", yomi: "だふね", url: "daphne.html", category: "人物", appearance: ["Fallout 76"], date: "2026-02-28" },
+    { name: "チャールストン駅", yomi: "ちゃーるすとんえき", url: "charleston-station.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "チャールストン操車場", yomi: "ちゃーるすとんそうしゃじょう", url: "charleston-trainyard.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "ファースト・フレンズ教会", yomi: "ふぁーすとふれんずきょうかい", url: "first-friends-church.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "ホーンライト・インダストリアル本社", yomi: "ほーんらいと・いんだすとりあるほんしゃ", url: "hornwright-industrial-headquarters.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "自由の鐘", yomi: "じゆうのかね", url: "liberty-bell.html", category: "アイテム", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "スロッカムズ・ジョー（チャールストン店）", yomi: "すろっかむず・じょー", url: "slocums-joe-charleston.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "サウスサイド・ブリッジ", yomi: "さうすさいど・ぶりっじ", url: "south-side-bridge.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "タトゥーパーラー", yomi: "たとぅーぱーらー", url: "tattoo-parlor.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "ウェスト・チャールストン・ブリッジ", yomi: "うぇすと・ちゃーるすとん・ぶりっじ", url: "west-charleston-bridge.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "クランシー邸宅", yomi: "くらんしーていたく", url: "clancy-manor.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "屋根付き橋", yomi: "やねつきはし", url: "covered-bridge.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "教団のトーテム", yomi: "きょうだんのとーてむ", url: "cultist-totem.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" },
+    { name: "カウスポット乳製品製造所", yomi: "かうすぽっとにゅうせいひんせいぞうしょ", url: "cow-spots-creamery.html", category: "場所", appearance: ["Fallout 76"], date: "2026-03-16", status: "draft" }
 ];
 
 // 重複判定に用いるベースキーワード
@@ -108,21 +121,25 @@ async function rebuildLoreHtml() {
     const regex = /const loreEntries = \[[\s\S]*?\];/;
     let finalEntriesObjStr = `const loreEntries = [\n`;
 
-    // 1. まず手作業で作った完全版を配列へ追加
+    // 1. まず手作業で作った完全版を配列へ追加（draftはisDraft:trueフラグ付き）
     manualEntries.forEach(e => {
+        const isDraft = e.status === 'draft';
+        if (isDraft) {
+            console.log(`[Draft] ${e.name} - isDraft:trueで出力`);
+        }
         finalEntriesObjStr += `            {
                 name: "${e.name}",
                 yomi: "${e.yomi}",
                 url: "${e.url}",
                 category: "${e.category}",
                 appearance: ${JSON.stringify(e.appearance)},
-                date: "${e.date}"
+                date: "${e.date}"${isDraft ? ',\n                isDraft: true' : ''}
             },\n`;
     });
 
     let removedCount = 0;
     const usedFilenames = new Set();
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax', 'lucy-maclean', 'biplane-crash-anchor-farm', 'birdhouse-ridge', 'birdwatchers-platform', 'black-mountain-ordnance-works', 'daphne'];
+    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax', 'lucy-maclean', 'biplane-crash-anchor-farm', 'birdhouse-ridge', 'birdwatchers-platform', 'black-mountain-ordnance-works', 'daphne', 'charleston-station', 'charleston-trainyard', 'first-friends-church', 'hornwright-industrial-headquarters', 'liberty-bell', 'slocums-joe-charleston', 'south-side-bridge', 'tattoo-parlor', 'west-charleston-bridge', 'clancy-manor', 'covered-bridge', 'cultist-totem', 'cow-spots-creamery'];
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));
 
     let titleToSlug = {};

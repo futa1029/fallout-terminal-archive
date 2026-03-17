@@ -43,4 +43,5 @@ PT-00Dという型番の複葉機が真っ二つに割れて草むらに横た�
 
 ---
 
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
+This article was created by translating and editing content from Nukapedia: The Fallout Wiki.
+Licensed under the Creative Commons Attribution-Share Alike License (CC BY-SA 3.0).

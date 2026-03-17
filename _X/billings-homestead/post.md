@@ -37,4 +37,5 @@
 それに、2階の金庫とか外のスタッシュに繋がるスーツケースとか、探索しててワクワクする配置もたまりません。お隣のシルヴァ農場との境界線あたりのサイロ周辺の、昔の「ご近所付き合い」のリアルな距離感も面白いですよね。荒廃したアパラチアの片隅で、今も作物がスクスク育ってる風景はどこか物悲しさもあって、なんとも趣深い大好きなスポットです！
 
 ---
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
+This article was created by translating and editing content from Nukapedia: The Fallout Wiki.
+Licensed under the Creative Commons Attribution-Share Alike License (CC BY-SA 3.0).
