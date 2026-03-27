@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>North Road Bridge | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/north-road-bridge.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="North Road Bridge | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ノースロードブリッジ。1967年に崩落したシルバーブリッジの跡地に建設された橋。カルティストの西方拡大の入口。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/north-road-bridge/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/north-road-bridge.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="North Road Bridge | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="シルバーブリッジの悲劇を受けて建設された代替橋。ポイント・プレザントとバーニング・スプリングスを結ぶ。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/north-road-bridge/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .loot-list li { margin-bottom: 8px; }
+        .loot-list .loot-location { color: #888; font-size: 0.9em; }
+        .note-box { border: 1px solid #888; background: rgba(255,255,255,0.03); padding: 20px; margin: 20px 0; border-radius: 5px; }
+        .note-box h3 { margin-top: 0; border-bottom: 1px dashed #888; }
+        .note-box .note-content { white-space: pre-line; font-size: 0.95em; line-height: 1.7; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="ロケーション" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">North Road Bridge</h3>
+            <img src="images/note_extracted/north-road-bridge/img_main.png" alt="ノースロードブリッジ" onclick="openLightbox(this)">
+            <img src="images/note_extracted/north-road-bridge/img_map.png" alt="マップ上の位置" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>非マーク地点</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在地</span><span>森林地帯、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">最寄り</span><span>ポイント・プレザント</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_north_road_bridge" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>North Road Bridge<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ノースロードブリッジ（シルバーブリッジ）</span></h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>ノースロードブリッジ</strong>は、『Fallout 76』に登場する<strong>非マーク地点</strong>のロケーションです。<br>
+                戦前にオハイオ川を渡るための交通橋として使われていた橋で、1967年に崩落した歴史的な<strong>シルバーブリッジ</strong>の跡地に建設されました。<br>
+                <em>Burning Springs</em>アップデートで完全に再建・拡張され、同名の<strong>バーニング・スプリングス</strong>地域への入口として機能します。
+            </p>
+
+            <h2>背景</h2>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/north-road-bridge/img_sign.png" alt="シルバーブリッジ記念碑" onclick="openLightbox(this)">
+                <div class="note-figcaption">ポイント・プレザントに設置されたシルバーブリッジ崩落の記念碑</div>
+            </div>
+
+            <p>
+                元々の<strong>シルバーブリッジ</strong>は<strong>1928年</strong>に建設されたアイバー式吊り橋で、オハイオ川を渡ってガリポリス（オハイオ州）とポイント・プレザント（ウェストバージニア州）を結んでいました。<br>
+                アメリカ初のアイバー式吊り橋であり、両町のコミュニティに奉仕していました。
+            </p>
+            <p>
+                <strong>1967年12月15日</strong>、ラッシュアワーの最中にシルバーブリッジは崩落。<br>
+                <strong>31台の車両</strong>がオハイオ川に転落し、<strong>46人</strong>が命を落としました。<br>
+                この惨事を受け、翌年には連邦議会が<strong>全米橋梁検査基準（National Bridge Inspection Standards）</strong>を採択し、同様の悲劇を防ぐための法整備が進みました。
+            </p>
+            <p>
+                ノースロードブリッジはシルバーブリッジの代替として建設され、崩落の犠牲者を記念する銘板が設置されました。<br>
+                しかし<strong>2102年</strong>までに、この代替橋自体も崩壊してしまいます。
+            </p>
+            <p>
+                <strong>2103年</strong>、帰還した<strong>翼ある者の信者たち（Cult of the Mothman）</strong>がポイント・プレザント側の橋の入口を大きな祭壇に改造しました。<br>
+                <strong>2105年</strong>には、カルティストたちが橋の通路を開放し、崩壊した橋の端に木製のプラットフォームを追加して拡張しました。<br>
+                橋の再建が完了すると、<strong>ファーザー・ルーカス</strong>の指揮のもとカルティストたちは西方への拡大を目指しましたが、<strong>ラスト・キングの軍団</strong>と<strong>チェックポイント・キャニオン</strong>の存在によってすぐに阻まれることになります。
+            </p>
+
+            <h2>注目アイテム</h2>
+            <ul class="loot-list">
+                <li><strong>Cultist announcement</strong>（ノート）<span style="color: var(--accent-color); font-size: 0.8em; margin-left: 5px;">Burning Springs</span><br><span class="loot-location">橋の中央の祭壇、スケルトンの手の中</span></li>
+                <li><strong>Vault-Tec ボブルヘッド</strong>（確率出現）<span style="color: var(--accent-color); font-size: 0.8em; margin-left: 5px;">Burning Springs</span><br><span class="loot-location">橋の北側のベンチの上</span></li>
+            </ul>
+
+            <h2>ノート</h2>
+
+            <div class="note-box">
+                <h3><span class="note-icon">📄</span> Cultist announcement（カルティストの告知）</h3>
+                <p style="font-size: 0.85em; color: #888;">橋の中央の祭壇、スケルトンの手の中で入手可能（Burning Springs）</p>
+                <div class="note-content">兄弟姉妹たちよ、
+
+橋の修復が完了した今、西方への拡大を始める時が来ました。
+
+我々は聖なる大地を拡げるため、未知なる領域へと足を踏み入れます。しかし翼ある者が我々を見守る限り、我々は勝利するでしょう。
+
+もし我々の仲間が倒れたなら、賢く聖なるモスマンが彼らを聖なる光へと導いてくださることに安らぎを見出してください。</div>
+            </div>
+
+            <h2>現実世界のシルバーメモリアルブリッジ</h2>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/north-road-bridge/img_bridge1.png" alt="ゲーム内のシルバーブリッジ（リリース時）" onclick="openLightbox(this)">
+                <div class="note-figcaption">ゲーム内のシルバーブリッジ（リリース時の姿）</div>
+            </div>
+
+            <p>
+                ゲーム内のノースロードブリッジは、現実世界の<strong>シルバーメモリアルブリッジ</strong>をモデルにしています。<br>
+                シルバーメモリアルブリッジは、1967年に崩落したシルバーブリッジの代替として建設された<strong>カンチレバー橋</strong>です。
+            </p>
+            <p>
+                <strong>1968年</strong>に建設が開始され、崩落からちょうど2年後の<strong>1969年12月15日</strong>に開通しました。<br>
+                全長<strong>2,800フィート（約850m）</strong>で、<strong>USルート35号線</strong>を通してオハイオ川を横断し、ウェストバージニア州ヘンダーソンとオハイオ州ガリポリスを結んでいます。<br>
+                通行料は無料で、制限速度は55mph（約88km/h）です。
+            </p>
+            <p>
+                元々のシルバーブリッジが崩落した原因は、<strong>アイバーチェーン</strong>の設計にありました。<br>
+                各チェーンリンクがわずか<strong>2本のアイバー</strong>で構成されており、冗長性がほぼゼロでした。<br>
+                1本のアイバーに橋を分解しなければ検出できない微小な欠陥があり、当初の設計よりも重い交通荷重と不十分なメンテナンスが重なって崩壊に至りました。<br>
+                この教訓から、代替のシルバーメモリアルブリッジはより安全なカンチレバー設計が採用されています。
+            </p>
+            <p>
+                <strong>2024年</strong>現在もシルバーメモリアルブリッジは現役で使用されており、チャールストン（WV）と南部・中部オハイオを結ぶ重要な交通路となっています。
+            </p>
+
+            <h2>備考</h2>
+            <ul>
+                <li>橋の名前は『Fallout 76 Vault Dweller's Survival Guide』およびゲームファイルのレイヤーレコードで「ノースロードブリッジ」と呼ばれています。「シルバーブリッジ」の名は記念碑上で1967年に崩落した歴史的な橋を指しており、現在の橋の名前としては使われていません。ただし、『Welcoming Committee』クエストでは「シルバーブリッジを渡れ」という目標テキストが使用されています。</li>
+                <li>元々、崩壊した橋の下の川底に直立したクリスマスツリーが見られましたが、現在は撤去されています。</li>
+                <li>オハイオ川沿いに見えない壁があり、バーニング・スプリングスと森林地帯を分断しています。現在、ファストトラベルを使わずに2つの地域間を移動するには、ポイント・プレザントのシルバーブリッジを使用するか迂回する必要があります。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>ノースロードブリッジ（旧シルバーブリッジ）は『<strong>Fallout 76</strong>』にのみ登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <h3 style="font-size: 0.9em; border: none; padding: 0; margin: 10px 0 5px;">リリース時</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_bridge1.png" alt="シルバーブリッジ 1" onclick="openLightbox(this)"><div class="caption">リリース時の橋</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_bridge2.png" alt="シルバーブリッジ 2" onclick="openLightbox(this)"><div class="caption">オハイオ州との境界</div></div>
+            </div>
+            <h3 style="font-size: 0.9em; border: none; padding: 0; margin: 10px 0 5px;">Wastelanders</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_wl1.png" alt="Wastelanders 1" onclick="openLightbox(this)"><div class="caption">カルティストの祭壇</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_wl2.png" alt="Wastelanders 2" onclick="openLightbox(this)"><div class="caption">橋の入口</div></div>
+            </div>
+            <h3 style="font-size: 0.9em; border: none; padding: 0; margin: 10px 0 5px;">Burning Springs</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_bs_west.png" alt="BS 西端" onclick="openLightbox(this)"><div class="caption">西端</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_bs_east.png" alt="BS 東端" onclick="openLightbox(this)"><div class="caption">東端</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_note.png" alt="カルティストの告知" onclick="openLightbox(this)"><div class="caption">Cultist announcement</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/north-road-bridge/img_bobblehead.png" alt="ボブルヘッド" onclick="openLightbox(this)"><div class="caption">ボブルヘッド出現位置</div></div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ノースロードブリッジは、現実と虚構が最も深く重なり合うFallout 76のロケーションの一つです。<br><br>
+                1967年のシルバーブリッジ崩落は、46人の命を奪った実際の悲劇であり、アメリカの橋梁安全基準を根本から変えた事件でした。<br>
+                そしてこのポイント・プレザントは、崩落前に目撃されたとされる「モスマン」の伝説の地でもあります。<br><br>
+                ゲーム内では、その跡地に建てられた代替橋がまた崩壊し、さらにモスマンを崇拝するカルティストたちの拠点となっている——現実の悲劇、都市伝説、そしてFallout世界の終末後のストーリーが、この一本の橋の上で交差しています。<br><br>
+                Burning Springsアップデートで橋が再建され、新地域への「門」となったことで、この場所は単なる記念碑から、アパラチアの未来を切り開く象徴へと変わりました。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#UnmarkedLocation</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Bridge</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#BurningSprings</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#SilverBridge</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/North_Road_Bridge" target="_blank" rel="noopener">North Road Bridge</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = img.src;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡';
+            btn.querySelector('.like-count').textContent = count;
+            btn.classList.toggle('liked', isLiked);
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                updateLikeButton(btn, isLiked, data ? data.like_count : 0);
+            }
+        });
+
+        const _commentArticleId = 'north-road-bridge';
+        const _commentArticleName = 'North Road Bridge (ノースロードブリッジ)';
+        const _commentArticleUrl = 'north-road-bridge.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list'); if (!list) return;
+            if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50);
+            if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');
+            const now = Date.now();
+            if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

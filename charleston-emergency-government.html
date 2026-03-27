@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Charleston Emergency Government | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/charleston-emergency-government.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Charleston Emergency Government | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Charleston Emergency Government（チャールストン緊急政府）のFalloutロア記事。大戦後のアパラチア暫定政府。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston-emergency-government/FO76_Charleston_Office_Seal.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/charleston-emergency-government.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Charleston Emergency Government | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Charleston Emergency Government（チャールストン緊急政府）のFalloutロア記事。大戦後のアパラチア暫定政府。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston-emergency-government/FO76_Charleston_Office_Seal.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .terminal-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 20px 0;
+            background: rgba(0, 255, 0, 0.05);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .terminal-box b { color: var(--accent-color); font-size: 1.05em; font-family: 'Share Tech Mono', monospace; }
+
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block; color: var(--accent-color); text-decoration: none;
+            border: 1px solid var(--accent-color); padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace; transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center;
+            gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s;
+        }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item {
+            background: var(--panel-bg); border: 1px solid #444; border-radius: 4px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .lightbox-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out;
+            justify-content: center; align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw; max-height: 95vh; object-fit: contain;
+            border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px;
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color);
+            color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em;
+            padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em;
+            cursor: pointer; border-radius: 4px; transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="勢力" data-article-appearance="Fallout 76">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Charleston Emergency Government</h3>
+            <img src="images/note_extracted/charleston-emergency-government/FO76_Charleston_Office_Seal.png" alt="チャールストン緊急政府のシール">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>勢力 / 戦後組織</span></div>
+            <div class="infobox-row"><span class="infobox-label">活動目的</span><span>市民政府の運営</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>アビゲイル・プール（下院議長）</span></div>
+            <div class="infobox-row"><span class="infobox-label">主要メンバー</span><span>タナー・ホルブルック、メイフィールド</span></div>
+            <div class="infobox-row"><span class="infobox-label">本拠地</span><span>チャールストン議事堂ビル</span></div>
+            <div class="infobox-row"><span class="infobox-label">壊滅</span><span>2082年 クリスマス洪水</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76（言及のみ）</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_charleston_emergency_government" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Charleston Emergency Government<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">チャールストン緊急政府</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                チャールストン緊急政府は、大戦後にウェストバージニア州政府の生存者たちによって設立された暫定政府です。<br>
+                チャールストン議事堂ビルを拠点に、下院議長アビゲイル・プール率いる暫定評議会の下で運営されました。<br>
+                レスポンダーとの同盟、他勢力との交渉、内部の政治的対立を経て、2082年のクリスマス洪水でチャールストンとともに壊滅しました。
+            </p>
+
+            <!-- ===== Background ===== -->
+            <h2>背景</h2>
+            <h3>設立</h3>
+            <p>
+                大戦から数日のうちに、エヴァンス知事や多数党院内総務フォートレイをはじめ、ウェストバージニアの州政府高官多数が行方不明になりました。<br>
+                彼らの不在の中、下院議長アビゲイル・プールが危機に際して指揮を執り、多数党院内幹事タナー・ホルブルックや警察署長メイフィールドら生存者とともにチャールストン緊急政府を樹立しました。<br>
+                選挙が実施されるまでの間、新政府を運営する<b>暫定評議会</b>（Provisional Council）が設置されました。
+            </p>
+
+            <h3>活動</h3>
+            <p>
+                緊急政府はアパラチア全域に偵察隊を派遣し、生存者の捜索、連邦政府と中国との戦争の状況把握、レイダーやブラザーフッド・オブ・スティールなどの新興勢力との接触を行いました。<br>
+                レスポンダーはプールに協力を申し出て市民秩序の回復を支援し、メロディ・ラーキンを連絡員として派遣しましたが、メイフィールド署長の強硬な略奪取り締まりが同盟に亀裂を生む脅威となりました。
+            </p>
+
+            <h3>プール対ホルブルック — 権力闘争</h3>
+            <p>
+                ホルブルックとプールの間の不和が暫定評議会に緊張をもたらしました。<br>
+                ホルブルックはプールが評議会で行政的な役割を担うことに異議を唱えました。フォートレイ多数党院内総務が不在のため、多数党院内幹事である自分が総務に昇格し、さらにエヴァンス知事も不在のため、知事職は自分に継承されるべきだと主張したのです。
+            </p>
+            <p>
+                ホルブルックはまた、プールが生存者と物資を共有する姿勢にも不満でした。彼はそれらが中国に対する最終的な反撃のために連邦政府によって必要とされるはずだと信じていたのです。<br>
+                ワシントンD.C.との連絡が途絶えた後も、ホルブルックは「いつ反攻の命令が来るか分からない」と頑なでした。
+            </p>
+            <p>
+                2082年にプールがクリスマスの祝賀と慈善活動を企画すると、ホルブルックは裏で支持者たちに食料配給を買い占めさせ、翌春の選挙で票を確保しようと画策しました。<br>
+                しかしプールは帳簿を調べて彼の計画を知り、公に暴露すると脅して形勢を逆転させました。
+            </p>
+
+            <h3>壊滅</h3>
+            <p>
+                チャールストン緊急政府は、2082年のクリスマスの日にサマーズヴィル・ダムの破壊によって引き起こされた<b>クリスマス洪水</b>でチャールストンとともに壊滅したと推定されています。<br>
+                この事実は、後に議事堂ビルを占拠したカットスロートによって嘲笑されました。
+            </p>
+
+            <!-- ===== Terminal Entries ===== -->
+            <h2>ターミナルエントリ</h2>
+
+            <h3>ホルブルックのターミナル</h3>
+
+            <div class="terminal-box">
+                <b>📧 D.C.に連絡が取れない</b><br>
+                <em>2077年10月28日 / 送信者：T.ホルブルック → エヴァンス知事</em><br><br>
+                知事、一体どこにいるんですか？ 爆弾が落ちて、街はパニックで、あなたのスタッフは誰もあなたがチャールストンにいるかどうかすら知りません。政府はボロボロです。あのまぬけのプールが暫定評議会の責任者気取りで走り回っていて、ファースト・レスポンダーは我々の命令に従うフリすらしていません。<br><br>
+                こっそり戻ってくるなら、せめて逃げ出す前に行政権を引き渡す礼儀くらい見せてください。<br><br>
+                —ホルブルック
+            </div>
+
+            <div class="terminal-box">
+                <b>📧 これは終わっていない</b><br>
+                <em>2077年10月29日 / 送信者：T.ホルブルック → A.プール</em><br><br>
+                分かっているだろう。多数党院内総務フォートレイが行方不明のため、多数党院内幹事である私が総務に昇格し、さらにエヴァンス知事も行方不明である以上、知事職は私に継承される。<br><br>
+                下院議長としてのあなたの主張では多数党を覆すことはできない。統一が必要であり、州で多数を占める政党が、戦争が終わって選挙が再開された暁には行政府を掌握する。この「暫定評議会」は茶番だ。<br><br>
+                —ホルブルック
+            </div>
+
+            <div class="terminal-box">
+                <b>📝 あいつらは何なんだ？</b><br>
+                <em>ホルブルックの個人ログ</em><br><br>
+                偵察隊が見つけたミュータントの頭を持ち帰ってきた。グールとは違うと言っている。<br><br>
+                より大きく、より頑丈で、話すことができ、銃を使う。<br>
+                スーパーミュータントとでも呼ぶべきもの。しかも一体だけではない。<br><br>
+                レイダーと変異した熊だけでは足りないとばかりに。
+            </div>
+
+            <div class="terminal-box">
+                <b>📝 ワシントンはどこだ？</b><br>
+                <em>ホルブルックの個人ログ</em><br><br>
+                なぜワシントンが指示を出してこないのか理解できない。反攻の態勢を整えているのか、そうでないのか？<br><br>
+                まず知事が行方不明、次にこれか…。連邦政府との連絡すらなしに、どうやって共産主義者と戦うための部隊に補給を続ければいいんだ？<br><br>
+                今日ウェイド飛行場に行ったが、滑走路全体がめちゃくちゃだ！ 整備に人を送りたいが、あの「レスポンダー」はプールの言うことすらほとんど聞かない。ましてや評議会の残りのメンバーの言うことなど。
+            </div>
+
+            <h3>プールのターミナル</h3>
+
+            <div class="terminal-box">
+                <b>📧 モーガンタウン</b><br>
+                <em>2078年3月29日 / 送信者：M.ラーキン → A.プール</em><br><br>
+                モーガンタウンの状況を評議会に持ち込んでほしい。メイフィールド署長が学生たちに発砲し、外出禁止令を出した。略奪がなかったとは言わないけど、あの子たちはまだ子供よ、アビゲイル。話し合おうとしたけど聞く耳を持たない。私が彼に対して動けば、法執行機関出身のレスポンダーたちが離反するリスクがある。大半はいい人たちだけど、鶏小屋には必ず何匹かキツネがいるものだわ。<br><br>
+                またホルブルックと対立することになるのは分かっているけど、事態を鎮めるために何か必要よ。急いで。<br><br>
+                —メロディ
+            </div>
+
+            <div class="terminal-box">
+                <b>📝 あいつは自分が賢いと思っている</b><br>
+                <em>プールの個人ログ</em><br><br>
+                あのタナーの蛇め。自分がすごーく賢いと思い込んでいる。<br><br>
+                あの企みを私が見破れないとでも？ 一緒に働く人間のことを知ろうとしていたら、トムが私の従兄弟と結婚していることくらい知っていたはずよ。トムは彼らの小さな密約のことをすぐに私に教えてくれた。<br><br>
+                何か悪質なことが始まったら知らせるようにトムに言っておいた。<br><br>
+                闇でやることは光の下に出される覚悟でおやりなさい、ホルブルック。
+            </div>
+
+            <h3>知事のターミナル</h3>
+
+            <div class="terminal-box">
+                <b>📧 グラフトン・スチール</b><br>
+                <em>2077年6月12日 / 送信者：A.プール → エヴァンス知事</em><br><br>
+                何を考えているの？！ あの製鉄所を操業し続けさせるなんて、あそこからどんなものが出ているか見たの？ あの煤煙で北部渓谷の観光業のチャンスを完全に潰すつもり？<br><br>
+                製造業も失い、観光業も失ったら？ 労働者暴動が前より酷くなるわよ。犬についたノミみたいに群がってくるわ。<br><br>
+                これを何とかしなさい。<br><br>
+                —プール
+            </div>
+
+            <!-- ===== Notes ===== -->
+            <h2>関連するノート 📝</h2>
+
+            <div class="note-box">
+                <b>📄 Special notice（特別休日通知）</b><br>
+                <em>場所：議事堂ビル内の各所に8枚掲示（取得不可）</em><br><br>
+                <div style="text-align:center;"><b>特別休日通知</b></div><br>
+                2082年12月12日<br><br>
+                暫定評議会の投票メンバーによる審議の結果、クリスマスの祝賀を開催する運びとなりましたことを、喜んでお知らせいたします！<br><br>
+                <div style="text-align:center;"><u>祝日の催しには以下が含まれます</u><br>
+                1. 議事堂ビルでのホリデーライト点灯<br>
+                2. 12歳以下の子供たちへの無料ギフト配布<br>
+                3. 家族でお祝いしたい方への追加食料配給<br>
+                4. 議事堂フードコートでの祝日朝食会</div><br>
+                この困難な時代に、我々の伝統と価値観を忘れないことが大切だと考えます。寄付はバーサーのオフィスへ、配達のお手伝いはレスポンダーのラーキン士官までお問い合わせください。<br><br>
+                <b>アビゲイル・プール</b><br>
+                下院議長<br>
+                チャールストン緊急政府
+            </div>
+
+            <div class="note-box">
+                <b>📄 Cutthroat warning（カットスロートの警告）</b><br>
+                <em>場所：議事堂裁判所内の法廷のデスク上（コンバットナイフで刺さっている）</em><br><br>
+                残った者たちへの警告 ——<br><br>
+                見回してみろ。いわゆる「チャールストン緊急政府」の成れの果てを。カットスロートは許さない、そして忘れない。<br><br>
+                77年にチャールストンとレスポンダーが俺たちを助けるのを拒んだことを忘れていない。何度も俺たちの縄張りに侵入してきたことを忘れていない。俺たちの兄弟姉妹を冷血に殺したことを忘れていない。<br><br>
+                これを全員への戒めとする。俺たちに逆らった者にはこうなる。忘れるな、さもなければ次はお前だ。
+            </div>
+
+            <!-- ===== Behind the scenes ===== -->
+            <h2>舞台裏</h2>
+            <p>
+                プールとホルブルックの知事職を巡る争いにより、ウェストバージニア州政府の正確な権力構造はやや不明確です。
+            </p>
+            <ul>
+                <li>現実のウェストバージニアでは、知事の継承順位は上院議長（副知事に相当）が最優先、次に下院議長となります。</li>
+                <li>ゲーム内では上院議長に相当する人物が一切登場しません。ホルブルックは、フォートレイ多数党院内総務が不在のため多数党院内幹事の自分が総務に昇格し、その後エヴァンス知事の不在により知事職を継承すべきだと主張しています。</li>
+                <li>ホルブルックはプールが少数党出身であることを暗示しており（「多数党から指導者を出すべき」）、プールの暫定評議会を「茶番」と断じています。</li>
+                <li>この矛盾は、Divergence（歴史の分岐）により上院多数党院内総務が副知事に代わって継承順位第2位になった可能性や、フォートレイが上院議長を兼任していた可能性で説明可能です。</li>
+            </ul>
+
+            <!-- ===== Appearances ===== -->
+            <h2>登場作品</h2>
+            <p>チャールストン緊急政府は『Fallout 76』で言及のみの登場です。</p>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                チャールストン緊急政府の物語は、Falloutの世界で最も「リアル」な政治ドラマの一つです。<br>
+                終末後の世界でも、権力闘争、党派対立、選挙工作が止まらないのがFalloutらしい。<br><br>
+                ホルブルックのターミナルが特に味わい深い。「ワシントンはどこだ？」と叫びながら反攻命令を待ち続ける彼は、旧世界にしがみつく象徴的存在です。<br>
+                一方のプールは、帳簿を調べてホルブルックの不正を見破り、「闇でやることは光の下に…」と切り返す。この女傑の鋭さが最高です。<br><br>
+                そしてカットスロートの警告文。コンバットナイフでデスクに刺された紙切れ一枚が、緊急政府の末路を冷酷に物語る。<br>
+                「許さない、忘れない」——レイダーにとってチャールストンは素通りできない因縁の地だったのです。<br><br>
+                舞台裏の知事継承順位の考察も面白い。Fallout世界の「小さな矛盾」が、かえって終末後の混乱のリアリティを高めています。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Charleston_Emergency_Government" target="_blank" rel="noopener">Charleston Emergency Government</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        const _commentArticleId = 'note_charleston_emergency_government';
+        const _commentArticleName = 'Charleston Emergency Government';
+        const _commentArticleUrl = 'charleston-emergency-government.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

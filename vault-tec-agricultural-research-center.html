@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vault-Tec Agricultural Research Center | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/vault-tec-agricultural-research-center.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Vault-Tec Agricultural Research Center | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Vault-Tec農業研究センター ── フラットウッズ南部に位置するVault-Tec社のR&D施設。戦前はMr. Farmhandロボットによる大規模農業自動化を研究していた。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/vault-tec-agricultural-research-center/img_main.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/vault-tec-agricultural-research-center.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Vault-Tec Agricultural Research Center | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Vault-Tec農業研究センター ── Mr. Farmhandロボットが暴走した自動農場。フラットウッズの森林地帯。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/vault-tec-agricultural-research-center/img_main.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノートブロック（ターミナルエントリ・メモ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Vault-Tec Agricultural Research Center</h3>
+            <img src="images/note_extracted/vault-tec-agricultural-research-center/img_main.jpg" alt="Vault-Tec農業研究センター">
+            <img src="images/note_extracted/vault-tec-agricultural-research-center/img_map_marker.png" alt="マップ上の位置" style="margin-top: -10px;">
+            <div style="text-align: center; font-size: 0.8em; color: #888; margin-bottom: 10px; font-style: italic;">マップ上の位置</div>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>農業研究施設</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯<br>（アパラチア）</span></div>
+            <div class="infobox-row"><span class="infobox-label">所有者</span><span>Vault-Tec社（戦前）</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>スーパーバイザー・チャッティンガム<br>スーパーバイザー・ダンフォース<br>スーパーバイザー・ウェリントン<br>Mr. Farmhand</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>Fertile Soil<br>Personal Matters</span></div>
+            <div class="infobox-row"><span class="infobox-label">設備</span><span>ケミストリーステーション</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_vault-tec-agricultural-research-center" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Vault-Tec Agricultural Research Center<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">Vault-Tec農業研究センター</span></h1>
+
+            <p>
+                <strong>Vault-Tec農業研究センター</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<strong>森林地帯</strong>に位置する、<a href="vault_tec.html" class="auto-link">Vault-Tec</a>社が運営していた企業R&Dセンターです。<br>
+                大戦前、大規模農業の自動化実験を行っていた施設で、<strong>フラットウッズ</strong>の南郊外にあります。
+            </p>
+
+            <h2>背景</h2>
+
+            <img class="article-image" src="images/note_extracted/vault-tec-agricultural-research-center/img_signage.png" alt="研究センターの看板">
+            <div class="image-caption">Vault-Tec農業研究センターの看板</div>
+
+            <p>
+                戦前に作物の自動化と肥料開発を実験するために設立された施設で、小さな町フラットウッズの主要なランドマークの一つでした。<br>
+                カスタマイズされたMr. Handyロボットの一種である<strong>Mr. Farmhand</strong>の艦隊が自動的に作物の世話をしていました。<br>
+                肥料の散布、種まき、収穫までをほとんど人間の監視なしで行えるように設計されたシステムです。
+            </p>
+            <p>
+                大戦で施設はオフラインになりましたが、<strong>マクファデン</strong>という人物が飢えに苦しむ生存者を助けるために施設を再稼働させました。<br>
+                しかしマクファデンには技術的な専門知識がなく、<a href="responders.html" class="auto-link">レスポンダー</a>の助けを借りてロボットを再起動することがやっとでした。<br>
+                彼はそれでも作業を続けましたが、スキル不足が災いし、最終的にFarmhandたちは暴走。<br>
+                プロテクトロン・ハンディの監督官たちがロボットを解き放ち、施設の境界に侵入した者すべてを攻撃するようになってしまいました。
+            </p>
+
+            <h2>レイアウト</h2>
+
+            <img class="article-image" src="images/note_extracted/vault-tec-agricultural-research-center/img_overview.png" alt="フラットウッズからの概観">
+            <div class="image-caption">フラットウッズから見た農業研究センター一帯</div>
+
+            <p>
+                Vault-Tec農業研究センターは、メインビルと周囲の小屋や温室で構成されています。<br>
+                温室にはもはや植物は育っていません。
+            </p>
+            <p>
+                メインビルには、建物裏の温室のドア、正面玄関、あるいは屋上のドア（外部の非常階段からアクセス可能）から入ることができます。<br>
+                地下室を含めて3階建てです。
+            </p>
+
+            <h3>1階</h3>
+            <p>
+                ロッカールーム、バスルーム、いくつかの水耕栽培ラボ（1つには<strong>ケミストリーステーション</strong>あり）、そしてレセプションエリアがあります。<br>
+                レセプションデスクの上に<strong>監督官のジャーナル・エントリ1</strong>のホロテープが見つかります。
+            </p>
+
+            <h3>2階</h3>
+
+            <img class="article-image" src="images/note_extracted/vault-tec-agricultural-research-center/img_note_marge.jpg" alt="マクファデンのターミナルとマージへのメモ">
+            <div class="image-caption">マクファデンのターミナルとマージへのメモ</div>
+
+            <p>
+                複数のオフィスがあり、その1つには<strong>マクファデンのターミナル</strong>とロックされた（ピックロック 0）ウォールセーフがあります。<br>
+                このフロアのオフィスの1つはロック（ピックロック 0）されており、中にはベッドロールとレーザーガンがあります。<br>
+                メインアトリウムからは会議室に出ることもできます。
+            </p>
+
+            <h3>地下</h3>
+
+            <img class="article-image" src="images/note_extracted/vault-tec-agricultural-research-center/img_note_mac.jpg" alt="地下のメインフレームとマックへのメモ">
+            <div class="image-caption">農業センターのメインフレームとマックへのメモ</div>
+
+            <p>
+                地下への階段の下には、白衣を着てネズミ駆除剤の箱を持った骸骨があります。<br>
+                <strong>メインフレームターミナル</strong>はここで見つかります。<br>
+                地下室の1つは部分的に浸水しており、ケミストリーステーションとプランターがあります。<br>
+                一部のプランターにはまだ植物が育っています。<br>
+                この部屋にはターミナル経由でアクセスできるロックされた肥料保管コンテナもあり、中には<strong>未精製の肥料</strong>が入っています。
+            </p>
+
+            <h3>温室</h3>
+            <p>
+                施設の裏にある3つの温室はほぼ同一の構造です。<br>
+                すべてにガーデンノーム、植木鉢、肥料の袋などの農業資材と、ロックされた（ピックロック 0）肥料保管コンテナがあります。<br>
+                温室近くの汚水の水たまりには<strong>ターベリー</strong>が数本生えています。
+            </p>
+
+            <h2>主な戦利品</h2>
+            <ul>
+                <li><strong>監督官のジャーナル・エントリ1</strong> ── ホロテープ。研究センター1階のフロントカウンター上</li>
+                <li><strong>ジャイアント・ティーポットの広告</strong> ── メモ。2階への階段を上がった最初の部屋</li>
+                <li><strong>マックへのメモ</strong> ── メモ。地下のデスクの上（取得不可）</li>
+                <li><strong>マージへのメモ</strong> ── メモ。2階のターミナル横のデスク上</li>
+                <li><strong>収穫指示書</strong> ── メモ。Fertile Soilイベント時のMr. Farmhandとリーパーボットから取得</li>
+                <li><strong>Vault-Tecボブルヘッド</strong>（4箇所）── 1階男子トイレ、水耕栽培室の冷蔵庫内、2階オフィスのファイリングキャビネット、地下の金属デスク上</li>
+                <li><strong>雑誌</strong>（4箇所）── 2階マクファデンのターミナル部屋、2階オフィス、2階小部屋の棚、地下のプランターテーブル上</li>
+            </ul>
+
+            <h2>関連クエスト</h2>
+            <ul>
+                <li><strong>イベント: Fertile Soil</strong> ── 暴走したFarmhandロボットへの対処</li>
+                <li><strong>Personal Matters</strong> ── メインクエスト</li>
+            </ul>
+
+            <h2>発見できるホロテープ</h2>
+
+            <div class="holotape-box" style="border-left: 3px solid #ff9900; background: rgba(255, 153, 0, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #ff9900; font-weight: bold; margin-bottom: 8px;">🎙️ 監督官のジャーナル・エントリ1（Overseer's journal, entry 1）</div>
+                <strong>監督官</strong>: 監督官の……これは個人的なジャーナルと呼ぶことにしましょう。公式のログじゃなくて。ただの……自分のための記録。<br><br>
+                農業センター。Vault-Tecでの私の最初の配属先の一つ。とても興奮したわ、だって子どもの頃にこの同じ農場に来ていたから。<br>
+                ある年のことを思い出すの……秋祭り。トウモロコシの迷路を駆け抜ける私。あっちこっち走り回って。お父さんとお母さんが「もっとゆっくり！」って叫んでた。ハッ！　そんなの無理だったわ。<br><br>
+                思えば私はいつも全力だった。パイオニアスカウトになるだけじゃ足りなくて、班長にならなきゃ気が済まなかった。いい生徒なだけじゃダメで、オールAを取らないと。<br><br>
+                ああ、あの頃が懐かしい。ただの……子どもでいた時代。3人家族。シンプルな暮らし。シンプルな家。<br>
+                あの家、まだ建ってるかしら……。
+            </div>
+
+            <h2>発見できるメモ</h2>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 マックへのメモ（Note to Mac）</div>
+                マック、<br>
+                あなたが必要よ。<br>
+                スコーチがティリーの農場の近くで目撃されたの。<br>
+                みんな今は私たちと一緒にいるわ。<br>
+                でもここにいるのは私たちと子どもたちだけ。<br>
+                男たちはみんなモーガンタウンに行ったまま。<br>
+                何週間も連絡がないの。<br>
+                あなたはあのロボットの作業ばかりで、もうずっと離れてる。<br>
+                お願いだから帰ってきて！<br><br>
+                愛を込めて、<br>
+                マージェリー
+            </div>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 マージへのメモ（Note to Marge）</div>
+                マージ、<br>
+                君と子どもたちのことが何より恋しい。<br>
+                俺を臆病者だとは思わないでくれ。<br>
+                神様から授かった才能を使って、俺にできる唯一の方法で人を助けてるんだ。<br>
+                この農業センターがあれば、みんなに食料を届けられる。<br>
+                きっとやり遂げてみせる。もう少しだ。手応えはあるんだ。<br><br>
+                ── マクファデン
+            </div>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 ジャイアント・ティーポットの広告（Giant Teapot advertisement）</div>
+                <div style="text-align: center;">
+                    1938年創業<br>
+                    <strong>ジャイアント・ティーポット</strong><br>
+                    最高の栄誉を受賞！
+                </div><br>
+                <strong>スウィートウォーター・スペシャル・ブレンド・ティー</strong>は、格調高い夜の宴にも、午後のひとときにもぴったりの、繊細な風味と上品な香りを備えたお茶です。<br><br>
+                <div style="text-align: center;">
+                    アパラチアが誇る逸品！<br>
+                    ジャイアント・ティーポットを今すぐ訪問しましょう！
+                </div>
+            </div>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 収穫指示書（Harvesting directive）<span style="color:#ff6b6b; font-size:0.8em;"> [カットコンテンツ]</span></div>
+                ユニット001-VT-AG-RCからの第一指令：<br><br>
+                すべての生体物質を収穫せよ<br>
+                収穫物はセントラル・コンポスト・デポに返送して処理すること<br><br>
+                第二指令：<br><br>
+                武器および有用な物資を捜索せよ<br>
+                セントラル・デポに搬入し分類すること<br><br>
+                <strong>作物は育たねばならない</strong><br><br>
+                ======================================<br>
+                Vault-Tec農業センター提供<br>
+                「明日の農業技術を、今日あなたに！」<br>
+                ======================================
+            </div>
+
+            <h2>ターミナルエントリ</h2>
+
+            <h3>マクファデンのターミナル</h3>
+            <p>マクファデンの個人ログ。農業センター再稼働の試みが時系列で記録されています。</p>
+
+            <div class="note-block">
+                <div class="note-title">4-3-93</div>
+                施設は全部ぶっ壊れてる。<br>
+                発電機の再起動を試みたが、核融合コアが切れてた。<br>
+                動ける人間はみんな戦闘に出ていて、作物を育てる余裕がない。<br>
+                でもみんなにはこれが必要なんだ。
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">7-19-93</div>
+                レスポンダーが核融合コアを持ってきてくれた。<br>
+                接続したら施設全体に電気が戻った。すごい光景だった。<br>
+                でもMr. Farmhandは全部ガラクタの塊だ。
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">1-1-94</div>
+                グラフトン付近で戦闘に敗れたらしい。<br>
+                手遅れになる前に農業を軌道に乗せないと。<br>
+                外では人が飢えている。<br>
+                Farmhand1体をオンラインにした。<br>
+                Vault-Tecのターミナルは全部焼けてた。自力で何とかするしかない。
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">6-12-94</div>
+                成功だ。Mr. Farmhandの全機体が起動してアイドリング状態に。<br>
+                でも動かない。やっと音声回路だけ復旧した。<br>
+                ずっと「肥料」がどうとか文句を言ってる。<br>
+                いいから種を植えてくれ。何でもいいから少しでも収穫できたほうがマシだ。
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">11-11-94</div>
+                Farmhandのセントラルメモリにアクセスした。<br>
+                もう手段がなくなってきた。<br>
+                俺はロボット技師じゃないから、できる限りのことをやるしかない。<br>
+                誰からも連絡がない……マージからも……。<br>
+                でもまだ誰かが生きているなら、食料が必要なはずだ。<br>
+                やっとコア設定にアクセスできた。<br>
+                肥料の設定をいじってみよう。0にすれば植え始めるかもしれない。
+            </div>
+
+            <h3>農業センター・メインフレーム</h3>
+            <p>Vault-Tec AgCenterターミナル。マクファデンが設定を変更した痕跡が残されています。</p>
+
+            <div class="note-block">
+                <div class="note-title">管理者オーバーライド: コアFarmhand設定</div>
+                *** 設定ロック中: 読み取り専用 ***<br><br>
+                作物拡張:　　　　　 75%<br>
+                作物メンテナンス:　 100%<br>
+                肥料プロトコル:　　 110%<br>
+                内部診断:　　　　　  0%<br>
+                自己保存:　　　　　 25%
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">Farmhandターゲティングパラメータの変更</div>
+                ==========<br>
+                管理者ロック<br>
+                ==========<br><br>
+                ターゲティングパラメータは自動スーパーバイザーによってハードロックされています。<br><br>
+                エラーログ:<br>
+                管理者ロックダウンは、すべてのVault-Tec自動スーパーバイザーが一時的にオフラインモードに入った場合のみ上書き可能です。
+            </div>
+
+            <h3>コンポスト・デポ・ターミナル</h3>
+            <p>セントラル・コンポスト・デポの管理ターミナル。Farmhandの「収穫」ログが記録されています。</p>
+
+            <div class="note-block">
+                <div class="note-title">前回の収穫サイクルログ</div>
+                ==================<br>
+                生体物質の収穫<br>
+                ==================<br><br>
+                011　モールラット<br>
+                001　ラッドスコルピオン<br>
+                003　ラッドスタッグ<br><br>
+                サイクル収穫合計:<br>
+                14.32kgの使用可能なコンポスト<br><br>
+                =====================<br>
+                補充物資<br>
+                =====================<br><br>
+                031　9mm弾薬<br>
+                003　ボビーピン<br>
+                001　フラグメンテーション・グレネード<br><br>
+                注記: ユニット017.3がオフラインになった。<br>
+                17.3の代替部品としてアルミニウム、電子部品、銅を含む捜索プロトコルに調整中。<br><br>
+                <strong>作物は育たねばならない</strong>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">スーパーバイザー割り当て</div>
+                スーパーバイザー 1.13f<br>
+                * 座標0.0.0の外部でFarmhandを統括<br>
+                * 関連する検知データを001-VT-AG-RCにエスカレート<br><br>
+                スーパーバイザー 2.02b<br>
+                * 座標13.1.14でFarmhandの回収プロトコルを統括<br><br>
+                スーパーバイザー 3.11j<br>
+                * 座標-19.3.104でFarmhandの回収プロトコルを統括<br>
+                * 通信サイトを監視し、VTからの新しいファームウェアアップデートを確認<br><br>
+                <strong>作物は育たねばならない</strong>
+            </div>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-agricultural-research-center/img_exterior1.png" alt="外観1"><div class="caption">研究センター外観</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-agricultural-research-center/img_exterior2.png" alt="外観2"><div class="caption">研究センター外観（別角度）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-agricultural-research-center/img_exterior3.png" alt="外観3"><div class="caption">研究センター外観（温室側）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-agricultural-research-center/img_teapot_ad.png" alt="ティーポットの広告"><div class="caption">ジャイアント・ティーポットの広告</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-agricultural-research-center/img_note_mac.jpg" alt="マックへのメモ"><div class="caption">メインフレームとマックへのメモ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-agricultural-research-center/img_note_marge.jpg" alt="マージへのメモ"><div class="caption">マクファデンのターミナルとマージへのメモ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-agricultural-research-center/img_basement.png" alt="地下"><div class="caption">地下室</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                フラットウッズの南にあるこの施設、序盤に通りかかることが多いんですが、中に入ると意外と構造が複雑で驚きます。<br>
+                3階建てで地下まであるし、屋上から入れるルートもある。<br><br>
+                Vault-Tecが戦前にMr. Farmhandという農業特化型のMr. Handyを開発して、完全自動の農場を運営していたというのがまず面白い。<br>
+                そして戦後、マクファデンという善意の人間が飢える人々のためにこのシステムを再起動しようとした。<br>
+                レスポンダーに手伝ってもらいながら頑張ったものの、技術的な知識が足りなくて、最終的にロボットが暴走。<br>
+                善意が裏目に出るという、Falloutらしい展開です。<br><br>
+                地下の階段下にいる骸骨——白衣を着てネズミ駆除剤の箱を持っている——も気になるポイント。<br>
+                この研究者は何をしようとしていたのか、ちょっと考えてしまいます。<br><br>
+                Fertile Soilイベントで実際に暴走したFarmhandと戦うことになるので、この場所の背景を知ってから参加すると、また一味違った体験になりますよ。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Vault-Tec_Agricultural_Research_Center" target="_blank" rel="noopener">Vault-Tec Agricultural Research Center</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Location</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#VaultTec</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#TheForest</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_vault-tec-agricultural-research-center'; const _commentArticleName = 'Vault-Tec Agricultural Research Center'; const _commentArticleUrl = 'covered-bridge.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

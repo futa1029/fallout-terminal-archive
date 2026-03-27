@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vertibird | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/vertibird.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Vertibird | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ベルチバードのFalloutロア記事。シリーズ全作品を網羅。VTOL航空機の開発史から各派閥での運用まで。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/vertibird/comparison.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/vertibird.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Vertibird | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ベルチバードのFalloutロア記事。全作品統合。米軍VTOL航空機の開発から各派閥の運用まで。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/vertibird/comparison.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ホロテープボックス */
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            background: rgba(255, 152, 0, 0.08);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .holotape-box .holotape-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ff9800;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ノートブロック（メモ・ターミナルエントリ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="乗り物" data-article-appearance="Fallout 2, Fallout 3, Fallout: New Vegas, Fallout 4, Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Vertibird</h3>
+            <img src="images/note_extracted/vertibird/fo4_vertibird.png" alt="ベルチバード（Fallout 4）">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>乗り物 / VTOL航空機</span></div>
+            <div class="infobox-row"><span class="infobox-label">型式</span><span>XVB02</span></div>
+            <div class="infobox-row"><span class="infobox-label">開発</span><span>アメリカ合衆国国防総省</span></div>
+            <div class="infobox-row"><span class="infobox-label">開発開始</span><span>2072年</span></div>
+            <div class="infobox-row"><span class="infobox-label">正式配備予定</span><span>2085年</span></div>
+            <div class="infobox-row"><span class="infobox-label">運用勢力</span><span>アメリカ合衆国軍<br>エンクレイヴ<br>B.O.S.<br>NCR</span></div>
+            <div class="infobox-row"><span class="infobox-label">武装</span><span>ガトリングレーザー<br>ミサイルランチャー<br>ミニガン<br>ミニ・ニューク</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 2<br>Fallout 3<br>Fallout: NV<br>Fallout 4<br>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_vertibird" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Vertibird<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ベルチバード</span></h1>
+
+            <div class="quote-box">
+                <b>テクノロジー博物館の銘板</b><br><br>
+                XVB02「ベルチバード」は、極めて耐久性の高い装甲胴体を持つVTOL（垂直離着陸）機であり、多種多様な攻撃兵装と防御対抗手段を装備可能です。これはこの種の航空機としては史上最も先進的なものであり、軍は2085年までの実戦配備を目指しています。
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>ベルチバード</strong>（Vertibird）は、垂直離着陸（VTOL）航空機シリーズの総称です。<br>
+                <a href="https://www.fallout-jp.com/fallout76.html" class="auto-link">Falloutシリーズ</a>の世界において最も象徴的な航空機であり、アメリカ合衆国軍が開発した多目的ティルトローター機です。<br>
+                大戦前はプロトタイプ段階でしたが、エンクレイヴによって完成され、その後B.O.S.やNCRなど複数の勢力によって運用されてきました。
+            </p>
+
+            <h2>開発史</h2>
+            <p>
+                ベルチバードの開発は<strong>2072年</strong>、国防総省（Department of Defense）によって開始されました。<br>
+                初代モデルは多目的ティルトローター型VTOL航空機として設計されました。
+            </p>
+            <p>
+                初代モデルの成功を受け、軍はほぼ全ての面で改良した上位モデル<strong>XVB02</strong>の開発に着手。<br>
+                より強固な装甲、より強力な兵装、より高い速度と積載能力を目指しました。<br>
+                しかし<strong>2077年</strong>の大戦勃発時、XVB02はまだプロトタイプ段階であり、正式な軍用配備は2085年に予定されていました。
+            </p>
+            <p>
+                限定的な試験運用は行われていたとみられ、<strong>アンカレッジ奪還作戦</strong>の最終段階では冬季仕様のベルチバードが実戦投入されています。
+            </p>
+            <p>
+                大戦後、<strong>エンクレイヴ</strong>がコントロール・ステーション・エンクレイヴ（石油リグ）でXVB02のプロトタイプを完成させ、<a href="power-armor.html" class="auto-link">X-01パワーアーマー</a>と共に量産を開始しました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/vertibird/comparison.png" alt="ベルチバードの世代比較">
+            <div class="image-caption">ベルチバードの世代比較 — 輸送型・ガンシップ型・FO4型</div>
+
+            <h2>デザインとバリアント</h2>
+
+            <h3>エンクレイヴの第二世代モデル</h3>
+            <p>エンクレイヴが量産した第二世代ベルチバードには、2つの明確なバリアントが存在します。</p>
+
+            <p><strong>🚁 輸送型</strong></p>
+            <ul>
+                <li>大型ガラスキャノピー</li>
+                <li>6本の非格納式着陸脚</li>
+                <li>広い貨物室</li>
+                <li>7枚羽根ローター（追加揚力用）</li>
+                <li>コントロール・ステーション・エンクレイヴ崩壊前に使用されていたバリアント</li>
+            </ul>
+
+            <p><strong>🔫 ガンシップ型</strong></p>
+            <ul>
+                <li>重装甲の船体</li>
+                <li>4枚羽根ローター × 2基</li>
+                <li>4本の格納式着陸脚</li>
+                <li>強化された武装と機動性</li>
+                <li>エンクレイヴ残党および首都ウェイストランドのエンクレイヴが使用</li>
+            </ul>
+
+            <h3>大戦前の米軍モデル / B.O.S.モデル</h3>
+            <ul>
+                <li>より大型の輸送型</li>
+                <li>透明コクピット</li>
+                <li>スライド式サイドドア</li>
+                <li>折りたたみ翼とティルトナセル</li>
+                <li>メインキャビン後方に2基のジェットエンジン追加</li>
+                <li>プリドゥエンとのドッキングフック</li>
+            </ul>
+
+            <h3>武装</h3>
+            <table style="width:100%; border-collapse:collapse; margin:15px 0;">
+                <tr style="border-bottom:1px solid #333;"><th style="text-align:left; padding:8px; color:var(--accent-color);">兵装</th><th style="text-align:left; padding:8px; color:var(--accent-color);">説明</th></tr>
+                <tr style="border-bottom:1px solid #222;"><td style="padding:6px;">ガトリングレーザー</td><td>機首搭載。遠距離から大ダメージ</td></tr>
+                <tr style="border-bottom:1px solid #222;"><td style="padding:6px;">ミサイルランチャー</td><td>左右一対。重ダメージ+ノックバック</td></tr>
+                <tr style="border-bottom:1px solid #222;"><td style="padding:6px;">ミニガン</td><td>機体左側ドアマウント。歩兵掃射用</td></tr>
+                <tr style="border-bottom:1px solid #222;"><td style="padding:6px;">ミニ・ニューク爆弾架</td><td>爆撃用。重目標と陣地に対する一撃必殺</td></tr>
+                <tr style="border-bottom:1px solid #222;"><td style="padding:6px;">固定式機関銃 ×2</td><td>FO4モデルの機首搭載（5mm弾）</td></tr>
+            </table>
+
+            <h2>飛行特性</h2>
+            <p>
+                ベルチバードのVTOL飛行メカニクスにより、固定翼機並みの速度で着陸地点に接近し、ナセルを垂直に90度傾けることでホバリングモードに移行できます。<br>
+                この極めて高い機動性により、ベルチバードはFallout世界における最も恐るべき空中戦力と見なされています。
+            </p>
+            <p>
+                しかし、双発ローターは飛行上の危険要素でもあります。<br>
+                もし高度のある状態で片方のローターが機能不全に陥れば、機体はバランスを崩して横倒しになり、致命的な墜落を引き起こします。<br>
+                Fallout 4ではローターを破壊すると、機体がY軸方向に回転しながら墜落する様子を見ることができます。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/vertibird/fo2_intro.jpg" alt="エンクレイヴ兵とベルチバード（Fallout 2）">
+            <div class="image-caption">エンクレイヴ兵とベルチバード — Fallout 2 イントロ</div>
+
+            <h2>Fallout 2</h2>
+            <p>
+                西海岸では、エンクレイヴが本土と石油リグの間の人員・物資輸送にベルチバードを使用していました。<br>
+                航続距離は少なくとも175マイル（石油リグ〜カリフォルニア間）。<br>
+                クラマス、ニューレノ、Vault 13など広範囲に到達していたことが確認されています。
+            </p>
+            <p>
+                <strong>2241年</strong>、デイジー・ウィットマンのベルチバードがローター不良によりクラマス渓谷に墜落。<br>
+                これが選ばれし者がエンクレイヴの存在を初めて知るきっかけとなりました。<br>
+                <strong>2242年</strong>、選ばれし者がナバロ基地からベルチバードの設計図を盗み出し、この技術が荒れ地の各勢力に渡る可能性が開かれました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/vertibird/fo3_vertibird.jpg" alt="ベルチバード（Fallout 3）">
+            <div class="image-caption">XVB02 ガンシップ型ベルチバード — Fallout 3、アーリントン図書館前</div>
+
+            <h2>Fallout 3</h2>
+            <p>
+                <strong>2277年</strong>、首都ウェイストランドでエンクレイヴが隠密状態を解除し、プロジェクト・ピュリティの確保に乗り出した際、大規模なベルチバード艦隊が展開されました。<br>
+                これらのガンシップは純粋な軍事的能力——火力支援、爆撃、兵員輸送——に使用されました。
+            </p>
+            <p>
+                B.O.S.は鹵獲したベルチバード「<strong>プライド・ワン</strong>」を研究・改修し、プロジェクト・ピュリティ奪還からWho Dares Winsクエストの間に運用しました。<br>
+                機体の両側にB.O.S.のロゴが追加されています。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/vertibird/bos_vertibird.jpg" alt="B.O.S.ベルチバード（Broken Steel）">
+            <div class="image-caption">B.O.S.のベルチバード「プライド・ワン」 — Broken Steel</div>
+
+            <h2>Fallout: New Vegas</h2>
+            <p>
+                モハビ・ウェイストランドでは、墜落したベルチバードが南部で発見でき、周囲には強化型セントリーボットとミスター・ガッツィーが配置されています。
+            </p>
+            <p>
+                NAVARROの軍事基地がNCRに征服された後、基地に配備されていたベルチバードは全てNCRの軍用に転用されました。<br>
+                そのうち1機は<strong>ベア・フォース・ワン</strong>として大統領専用輸送機に指定され、特別な緑・白・金の塗装が施されました。<br>
+                キンボール大統領のフーバーダム訪問時に使用されます。
+            </p>
+            <p>
+                エンクレイヴ残党のバンカーにもベルチバード1機が保管されており、クーリエが残党を説得すればダムの戦いで運用されます。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/vertibird/bear_force_one.png" alt="ベア・フォース・ワン">
+            <div class="image-caption">ベア・フォース・ワン — NCR大統領キンボール専用機</div>
+
+            <h2>Fallout 4</h2>
+            <p>
+                <strong>2287年</strong>の連邦では、アーサー・マクソン率いるB.O.S.遠征軍がプリドゥエンと共に到着し、大量のベルチバードが配備されました。<br>
+                B.O.S.は重武装ガンシップと標準輸送型の2種を保有していますが、ガンシップは重要任務にのみ投入されます。
+            </p>
+            <p>
+                連邦で見られるベルチバードは、以前のモデルと大きく異なります。<br>
+                より大型で、透明コクピット、スライドドア、5mmミニガン（左側ドアマウント）、機首固定式機関銃×2、折りたたみ翼とティルトナセルを備えています。<br>
+                プリドゥエンの飛行甲板とドッキングするためのフックも搭載されています。
+            </p>
+            <p>
+                ガンナーズはB.O.S.のベルチバードを奪おうとしますが、操縦技術がなく墜落させてしまいます。<br>
+                ミニッツメンやレールロードもB.O.S.壊滅作戦の過程で1機を鹵獲できる場合があります。
+            </p>
+            <p>
+                プレイヤーは<strong>ベルチバード信号グレネード</strong>を投げて輸送機を呼び出し、高速移動の手段として利用できます。<br>
+                搭乗中はドアマウントのミニガンを使用して戦闘することも可能です。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/vertibird/fo4_e3.png" alt="ベルチバード（Fallout 4 E3）">
+            <div class="image-caption">Fallout 4 E3ショーケースより</div>
+
+            <h2>Fallout 76</h2>
+            <p>
+                <a href="appalachia.html" class="auto-link">アパラチア</a>では、連邦で見られるモデルと類似したベルチバードが多数確認されています。<br>
+                その大半は墜落した状態で発見されますが、ワトガ市民センター上の機体は無傷で残っている数少ない例の一つです。
+            </p>
+            <p>
+                大戦直後、アメリカ軍はバークレー・スプリングスへの物資輸送にベルチバードを使用しました。<br>
+                <a href="hornwright-industrial-headquarters.html" class="auto-link">ホーンライト・インダストリアル</a>はベルチバードの能力を調査し、自社の利用計画を立てていました。<br>
+                アパラチアB.O.S.のヴァルデス技術員がフォート・アトラスでベルチバードの研究を行っています。
+            </p>
+            <p>
+                <strong>2104年</strong>、パイロットのレノックスが、ホワイトスプリング・リゾートからVault居住者をピッツバーグ（ザ・ピット）へ輸送するベルチバード便を開始しました。
+            </p>
+            <p>
+                自動操縦のベルチバード「<strong>バーティボット</strong>」も、特定の軍事施設やワークショップ（<a href="wade-airport.html" class="auto-link">ウェイド空港</a>など）の上空を巡回しています。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/vertibird/fo76_vertibird.png" alt="ベルチバード（Fallout 76）">
+            <div class="image-caption">ベルチバード 3Dモデル — Fallout 76</div>
+
+            <h2>名前の付いたベルチバード</h2>
+            <ul>
+                <li>🛩️ <strong>プライド・ワン</strong>（Pride One） — B.O.S.が鹵獲・改修（Broken Steel）</li>
+                <li>🛩️ <strong>ベア・フォース・ワン</strong>（Bear Force One） — NCR大統領専用機（New Vegas）</li>
+                <li>🛩️ <strong>クレイモア</strong>（Claymore） — B.O.S.所属（Fallout 4）</li>
+                <li>🛩️ <strong>シミター</strong>（Scimitar） — B.O.S.所属（Fallout 4）</li>
+                <li>🛩️ <strong>スパサ</strong>（Spatha） — B.O.S.所属（Fallout 4）</li>
+                <li>🛩️ <strong>ヴォーパル</strong>（Vorpal） — B.O.S.所属（Fallout 4）</li>
+            </ul>
+
+            <h2>舞台裏</h2>
+            <p>
+                「ベルチバード」の名称は、1971年から1980年代初頭にかけてアメリカで販売されていたおもちゃのヘリコプタープレイセットの商標に由来しています。
+            </p>
+            <p>
+                Fallout 4のベルチバードについて、『The Art of Fallout 4』では「<strong>金魚とハインドヘリが出会った結果</strong>」と表現されています。<br>
+                パワーアーマーを着た部隊がキャビン内で動き回れるよう、大型化する必要がありました。
+            </p>
+            <p>
+                Skyrimのドラゴンと同様に、Fallout 4のベルチバードはプレイヤーに向かって墜落するようプログラムされています。
+            </p>
+
+            <h2>登場作品</h2>
+            <p>ベルチバードはFallout 2, Fallout 3, Fallout: New Vegas, Fallout 4, Fallout 76のすべてに登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/fo2_intro.jpg" alt="Fallout 2"><div class="caption">Fallout 2 イントロ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/fo3_vertibird.jpg" alt="Fallout 3"><div class="caption">Fallout 3</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/bos_vertibird.jpg" alt="Broken Steel"><div class="caption">Broken Steel</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/crashed_fnv.jpg" alt="New Vegas"><div class="caption">New Vegas 墜落機</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/bear_force_one.png" alt="Bear Force One"><div class="caption">ベア・フォース・ワン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/fo4_vertibird.png" alt="Fallout 4"><div class="caption">Fallout 4 モデル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/fo4_e3.png" alt="Fallout 4 E3"><div class="caption">Fallout 4 E3</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/fo76_vertibird.png" alt="Fallout 76"><div class="caption">Fallout 76</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/fo76_intro.png" alt="Fallout 76 イントロ"><div class="caption">Fallout 76 イントロ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vertibird/comparison.png" alt="世代比較"><div class="caption">世代比較図</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ベルチバードは、Falloutシリーズの世界観を空から支える存在です。<br><br>
+                Fallout 2で初めて墜落機として出会い、エンクレイヴの恐怖を知る。<br>
+                Fallout 3で空を埋め尽くすガンシップの編隊に圧倒される。<br>
+                New Vegasでは大統領専用機「ベア・フォース・ワン」として歴史の転換点に立ち会う。<br>
+                Fallout 4では自分で呼び出して乗り込み、ミニガンを撃ちまくる。<br>
+                Fallout 76では荒廃したアパラチアの至る所で墜落した残骸を見つけ、かつての文明の残滓を感じる。<br><br>
+                シリーズを通じて「ベルチバードとの関係」が変化し続けるのが面白いです。<br>
+                恐怖の対象 → 敵の力の象徴 → 自分の移動手段 → 過去の遺物。<br>
+                Falloutの世界観の成熟そのものが、この一機の航空機に凝縮されています。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Vertibird" target="_blank" rel="noopener">Vertibird</a>, <a href="https://fallout.fandom.com/wiki/Vertibird_(Fallout_2)" target="_blank" rel="noopener">Vertibird (Fallout 2)</a>, <a href="https://fallout.fandom.com/wiki/Vertibird_(Fallout_3)" target="_blank" rel="noopener">Vertibird (Fallout 3)</a>, <a href="https://fallout.fandom.com/wiki/Vertibird_(Fallout:_New_Vegas)" target="_blank" rel="noopener">Vertibird (Fallout: New Vegas)</a>, <a href="https://fallout.fandom.com/wiki/Vertibird_(Fallout_4)" target="_blank" rel="noopener">Vertibird (Fallout 4)</a>, and <a href="https://fallout.fandom.com/wiki/Vertibird_(Fallout_76)" target="_blank" rel="noopener">Vertibird (Fallout 76)</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#乗り物</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#エンクレイヴ</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#B.O.S.</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_vertibird'; const _commentArticleName = 'Vertibird'; const _commentArticleUrl = 'vertibird.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

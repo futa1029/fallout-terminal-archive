@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Ash Heap | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/ash-heap.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Ash Heap | Overseer Mohi's Terminal"><meta property="og:description" content="アッシュヒープ。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/ash-heap.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Ash Heap</h3><img src="images/note_extracted/ash-heap/ash_storm_dusk.png" alt="ash-heap"><div class="infobox-row"><span class="infobox-label">種類</span><span>地域</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <main class="content">
+            
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_ash_heap" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Ash Heap<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">アッシュヒープ</span></h1>
+            <h2>概要</h2>
+<p>積灰の山は、アパラチアの8つの地域の一つです。</p>
+
+<h2>背景</h2>
+<p>ブレア山周辺は、大戦以前から大規模な石炭採掘が行われていた地域です。<br>
+ガラハン家とホーンライト家の2つの家族がここで事業を立ち上げ、ブラムウェルの豪邸から採掘事業を監督していました。<br>
+ロックハウンドのような巨大機械で山の大部分を一気に削り取る採掘方式により、ルイスバーグなど周辺都市の大気質が悪化しました。<br><br>
+大戦後、過酷な環境からこの地域は「積灰の山（Ash Heap）」と呼ばれるようになりました。<br>
+鉱山から絶え間なく噴き出す煙と灰がエリアを覆い、ヒ素、カドミウム、一酸化炭素、二酸化硫黄などの毒素を含んでいるため、防護マスクが必須です。<br>
+生存者たちは、これが地下トンネルで絶え間なく燃え続ける火災によるものだと考えていますが、原因は不明です。<br><br>
+2103年頃、ブルーリッジ・キャラバン・カンパニーがビッグベンドトンネルの東出口に拠点を設けました。<br>
+ブラッド・イーグルもこの地域に強い影響力を持ち、ロリンズ労働収容所やスラッジ・ワークスなど多くの旧キャンプ地を改修して利用しています。</p>
+
+<h2>環境特性</h2>
+<p>積灰の山の環境は、アパラチアの他の地域と比較して危険です。<br>
+有毒な空気がプレイヤーを窒息させることがあるため、ガスマスクなどの防護装備が推奨されます。<br>
+装備しないと「スラッジ肺」の病気に感染する可能性があります。<br><br>
+天候は主に曇り（40%）、霧（40%）、灰の嵐（11%）、雨（7%）、ラッドストーム（2%）です。<br>
+灰の嵐はこの地域固有の天候で、主にブレア山付近で発生します。<br>
+この地域固有の植物にはアッシュ・ローズ、ブライトキャップ、ファイアクラッカーベリーなどがあります。</p>
+
+<h2>レイアウト</h2>
+<p>積灰の山はマップの南西角に位置し、北は森林地帯、東は荒れた境域と接しています。<br>
+ロックハウンドがブレア山の頂上に鎮座し、ウェルチの北東にあります。<br>
+ベックレーとルイスバーグが山の西と東にそれぞれ位置しています。<br>
+ルート81がオハイオ川と並行して西を走り、ルート83と84が中央を横切っています。</p>
+            <h2>登場作品</h2>
+            <p>アッシュヒープはFallout 76に登場します。</p>
+            <h2>ギャラリー</h2>
+<div class="gallery-grid">
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/ash_storm_night.png" alt="ash_storm_night.png"><div class="caption">ash storm night</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/clear_skies.png" alt="clear_skies.png"><div class="caption">clear skies</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/concept_art.jpg" alt="concept_art.jpg"><div class="caption">concept art</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/dragline.png" alt="dragline.png"><div class="caption">dragline</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/flora1.png" alt="flora1.png"><div class="caption">flora1</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/flora2.png" alt="flora2.png"><div class="caption">flora2</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/glorious.png" alt="glorious.png"><div class="caption">glorious</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/landscape.png" alt="landscape.png"><div class="caption">landscape</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/main.png" alt="main.png"><div class="caption">main</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/map.png" alt="map.png"><div class="caption">map</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/mega_mansions.png" alt="mega_mansions.png"><div class="caption">mega mansions</div></div>
+<div class="gallery-item"><img src="images/note_extracted/ash-heap/morning.png" alt="morning.png"><div class="caption">morning</div></div>
+</div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                積灰の山は、Fallout 76で最も雰囲気の濃い地域です。<br>
+常に煙と灰に覆われた空、防護マスクなしでは歩けない有毒な大気、そしてブレア山の頂上にそびえる巨大掘削機ロックハウンド——初めて足を踏み入れたときの衝撃は忘れられません。<br><br>
+ガラハン家とホーンライト家という2つの採掘一族の対立と、その採掘活動が引き起こした環境破壊は、現実のウエストバージニアの炭鉱史を色濃く反映しています。<br>
+大戦前から環境が劣悪だったこの地域が、核戦争後にさらに荒廃するという二重の悲劇は胸に迫るものがあります。<br><br>
+探索においてはモール・マイナーやスコーチなど危険な敵が多いものの、鉱山跡地にはパワーアーマーやフュージョン・コアなど貴重な資源が眠っています。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Ash_Heap" target="_blank" rel="noopener">Ash Heap</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="拡大画像"></div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_ash_heap'; const _commentArticleName = 'Ash Heap'; const _commentArticleUrl = 'ash-heap.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>エンクレイヴ | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/enclave.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="エンクレイヴ | Overseer Mohi's Terminal">
+    <meta property="og:description" content="エンクレイヴ — 戦前アメリカの影の政府から生まれたファシスト準軍事組織。シリーズ全体を通じたFalloutの主要アンタゴニスト。ロア記事完全版。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/enclave/flag.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/enclave.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="エンクレイヴ | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="エンクレイヴ — 戦前アメリカの影の政府から生まれた秘密組織。Falloutシリーズ最大のアンタゴニスト。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/enclave/flag.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .infobox-value { text-align: right; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .holotape-box { border-left: 4px solid #ff9800; background: rgba(255, 152, 0, 0.08); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; border-radius: 0 5px 5px 0; }
+        .holotape-box .holotape-title { font-family: 'Share Tech Mono', monospace; color: #ff9800; font-weight: bold; margin-bottom: 8px; }
+        .terminal-box { border-left: 4px solid #4fc3f7; background: rgba(79, 195, 247, 0.08); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; border-radius: 0 5px 5px 0; }
+        .terminal-box .terminal-header { font-family: 'Share Tech Mono', monospace; color: #4fc3f7; font-weight: bold; margin-bottom: 8px; }
+        .note-block { border-left: 3px solid #888; background: rgba(255, 255, 255, 0.03); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; }
+        .note-block .note-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-weight: bold; margin-bottom: 8px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        .clearfix::after { content: ""; display: table; clear: both; }
+        .toc { background: var(--panel-bg); border: 1px solid var(--accent-color); padding: 15px 20px; margin: 20px 0; border-radius: 5px; }
+        .toc h3 { margin-top: 0; border: none; padding: 0; font-size: 1em; }
+        .toc ul { margin: 5px 0; padding-left: 20px; }
+        .toc li { margin: 3px 0; font-size: 0.9em; }
+        .toc a { color: var(--accent-color); text-decoration: none; }
+        .toc a:hover { text-decoration: underline; }
+        .base-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+        .base-table th, .base-table td { border: 1px solid #444; padding: 8px 10px; text-align: left; }
+        .base-table th { background: rgba(0, 255, 0, 0.1); color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .base-table td { background: rgba(255, 255, 255, 0.02); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="勢力" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">The Enclave</h3>
+            <img src="images/note_extracted/enclave/flag.png" alt="エンクレイヴの旗">
+            <img src="images/note_extracted/enclave/seal.png" alt="エンクレイヴの紋章" style="margin-top:-10px;">
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>影の政府（戦前）<br>準軍事組織（戦後）</span></div>
+            <div class="infobox-row"><span class="infobox-label">政体</span><span>権威主義<br>（名目上：民主主義）</span></div>
+            <div class="infobox-row"><span class="infobox-label">イデオロギー</span><span>ファシズム<br>反共産主義<br>アメリカ例外主義<br>疑似科学的人種差別</span></div>
+            <div class="infobox-row"><span class="infobox-label">歴代指導者</span><span>合衆国最後の大統領<br>リチャードソン・シニア<br>ディック・リチャードソン<br>ジョン・ヘンリー・エデン<br>オータムス・オータム大佐</span></div>
+            <div class="infobox-row"><span class="infobox-label">FO76指導者</span><span>トーマス・エッカート<br><a href="modus.html" class="auto-link">MODUS</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">本部</span><span>大統領石油リグ<br>（2077-2242）<br><a href="the-whitespring-bunker.html" class="auto-link">ホワイトスプリング・バンカー</a><br>レイヴンロック<br>アダムス空軍基地</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>FO2, FO3, FNV,<br>FO4CC, FO76, FOTV</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_enclave" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>The Enclave<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">エンクレイヴ</span></h1>
+
+            <div class="holotape-box">
+                <div class="holotape-title">📢 ディック・リチャードソン大統領</div>
+                <p>「その効果に対する免疫接種を行わないまま放出された場合、あらゆるヒューマノイドは死ぬ。それがプロジェクトだ」</p>
+            </div>
+
+            <div class="toc">
+                <h3>> 目次</h3>
+                <ul>
+                    <li><a href="#overview">概要</a></li>
+                    <li><a href="#origins">起源</a></li>
+                    <li><a href="#preparations">準備</a></li>
+                    <li><a href="#eve">大戦前夜</a></li>
+                    <li><a href="#scattering">大戦時の分散</a></li>
+                    <li><a href="#appalachia">アパラチアでの十字軍（Fallout 76）</a></li>
+                    <li><a href="#fo76detail">アパラチア・エンクレイヴ詳細史</a></li>
+                    <li><a href="#genocide">世界規模の虐殺未遂（Fallout 2）</a></li>
+                    <li><a href="#ravenrock">レイヴンロックへの撤退</a></li>
+                    <li><a href="#purity">プロジェクト・ピュリティ戦争（Fallout 3）</a></li>
+                    <li><a href="#creationclub">コモンウェルス遠征軍（Fallout 4 CC）</a></li>
+                    <li><a href="#remnants">西部の残党（Fallout: New Vegas）</a></li>
+                    <li><a href="#tv">TVシリーズ</a></li>
+                    <li><a href="#society">社会構造</a></li>
+                    <li><a href="#ideology">イデオロギー</a></li>
+                    <li><a href="#military">軍事組織</a></li>
+                    <li><a href="#bases">基地一覧</a></li>
+                    <li><a href="#gallery">ギャラリー</a></li>
+                </ul>
+            </div>
+
+            <h2 id="overview">概要</h2>
+            <p>
+                <strong>エンクレイヴ</strong>は、Falloutシリーズ全体を通じた主要なアンタゴニスト勢力です。<br>
+                Fallout 2で初めてメインヴィランとして登場し、Fallout 3で再び主要な敵対勢力として現れました。<br>
+                Fallout 4では（後にCreation Clubコンテンツとして追加）存在が限定的でしたが、<strong>Fallout 76では加入可能な勢力</strong>として復帰しました。<br>
+                TVシリーズでも重要な役割を果たしています。
+            </p>
+            <p>
+                エンクレイヴは、戦前の合衆国の<strong>正統な後継者</strong>であると自称する「準国家」であり、<br>
+                実態は<strong>ファシスト準軍事組織</strong>として分類されています。<br>
+                その起源は、高位の政治家、軍人、科学者、産業家などで構成された戦前アメリカの<strong>ディープステート（影の政府）</strong>にあります。<br>
+                表向きは大戦を生き延びた合衆国政府の直系を名乗り、愛国的なフレーズやイメージを頻繁に使用していますが、
+                実際には継承プロトコルを悪用し、非エンクレイヴの政府生存者の殺害すら行ってきました。
+            </p>
+            <p>
+                最終的にエンクレイヴは、組織外のすべての人間を<strong>「遺伝的非準拠者」</strong>として指定し、全人類規模の<strong>ホロコースト</strong>の実行に専念しました。<br>
+                この疑似科学的人種差別主義とジェノサイドへの執着、権威主義体制、奴隷の使用、人体実験、拷問、市民への無差別攻撃により、
+                エンクレイヴは多くの人々から<strong>邪悪で専制的な勢力</strong>と見なされています。<br>
+                NCRとの戦争、東西両海岸でのB.O.S.との戦争はいずれも決定的な敗北に終わりました。
+            </p>
+
+            <h2 id="origins">起源</h2>
+            <div class="holotape-box">
+                <div class="holotape-title">📢 <a href="modus.html" class="auto-link">MODUS</a>の台詞</div>
+                <p>「我々のメンバーはかつて合衆国の操り人形師でした。国家のあらゆる権力レベルで静かに糸を引いていたのです」</p>
+            </div>
+            <p>
+                大戦以前、エンクレイヴは合衆国全土の有力者による<strong>秘密結社</strong>でした——大統領、統合参謀本部のメンバー、受賞歴のある科学者、軍人、有力な政治家、裕福な実業家。<br>
+                彼らは自らを「アメリカの地に集った史上最大の頭脳集団」と考えていました。<br>
+                これらの人物が一体となって、超政治的な陰謀的「協力関係」を構築し、アメリカの政策を自らの目的のために形作りました。
+            </p>
+            <p>
+                エンクレイヴは連邦政府の最も深い陰謀と秘密に関与しており、<strong>地球外生命体の存在の隠蔽</strong>もその一つでした。<br>
+                「Quaere Verum」という組織がこの陰謀を暴こうとしてエイリアン技術ベースのプロトタイプ兵器を盗み出した際、彼らは即座に追い詰められ殺害されました。<br>
+                また、戦前の<strong>生物兵器</strong>の開発にも関与しており、中米戦争中にはアラスカ前線に少なくとも1体の<strong>デスクロー</strong>を配備しています。
+            </p>
+
+            <h2 id="preparations">準備</h2>
+            <p>
+                資源戦争が長引き核戦争のリスクが高まると、エンクレイヴのメンバーは様々な緊急措置に投資しました。<br>
+                企業と政府の資金で賄われたこれらの施設は、合衆国が消滅した後もエンクレイヴが戦争を継続できるようにするものでした。
+            </p>
+            <ul>
+                <li><strong>大統領石油リグ</strong>: ポセイドン・オイル所有の太平洋上の石油掘削施設</li>
+                <li><strong><a href="the-whitespring-bunker.html" class="auto-link">ホワイトスプリング議会バンカー</a></strong>: 将来のエンクレイヴ作戦のハブ。農務省の資金を横領して建設</li>
+                <li><strong>レイヴンロック</strong>: 政府継続用基地</li>
+                <li><strong>コバック＝マルドゥーン・プラットフォーム</strong>: 軌道兵器プラットフォーム</li>
+            </ul>
+            <img class="article-image" src="images/note_extracted/enclave/bunker_plans.png" alt="ホワイトスプリング・バンカー設計図" onclick="openLightbox(this)">
+            <div class="image-caption">ホワイトスプリング議会バンカーの設計図 — エンクレイヴの計画拠点の一つ</div>
+            <p>
+                また、エンクレイヴは<strong>Vault-Tec社</strong>を大規模に利用しました。<br>
+                プロジェクト・セーフハウスとVault-Tecのシェルターネットワークを壮大な社会実験に利用——住人を独自の状況下でテストしました。<br>
+                食料合成機が不足するVault、男性だけのVault、わずか6ヶ月で開くVaultなど、それぞれにユニークなテスト条件が設定されていました。<br>
+                Vault実験の元々の目的は、核戦争で地球が居住不能になった場合に備え、<strong>多世代宇宙船</strong>の建造データを収集することでした。
+            </p>
+
+            <h2 id="eve">大戦前夜</h2>
+            <div class="holotape-box">
+                <div class="holotape-title">📢 サム・ブラックウェル上院議員</div>
+                <p>「政府の廊下には邪悪な力が働いている…… 私はもうその一部であり続けることはできなかった」</p>
+            </div>
+            <p>
+                2077年3月、世界が核衝突に直面する中、合衆国大統領とエンクレイヴのメンバーは世界各地の要塞化された場所に退避しました。<br>
+                2077年後半までに、エンクレイヴの存在は大衆にもぼんやりと知られるようになっていましたが、長らく噂の域を出ず、戦争前最後の週にボストンの新聞の1面で取り上げられた程度でした。
+            </p>
+            <p>
+                <strong>サム・ブラックウェル上院議員</strong>は2077年6月に議会バンカー計画とVault-Tecの関与について調査を開始しました。<br>
+                娘の安全を脅かされた後、ブラックウェルは逃亡して<strong>フリーステイツ</strong>に参加し、チャールストン・ヘラルド紙でエンクレイヴの存在を公開しようとしました。<br>
+                また俳優<strong>クーパー・ハワード</strong>もVault-Tecを巡る企業陰謀の調査から、エンクレイヴの存在に接近しましたが、その全貌を知ることはありませんでした。
+            </p>
+
+            <h2 id="scattering">大戦時の分散</h2>
+            <img class="article-image" src="images/note_extracted/enclave/eckhart.png" alt="トーマス・エッカート" onclick="openLightbox(this)">
+            <div class="image-caption">トーマス・エッカート — 農務長官、自称アパラチア・エンクレイヴ大統領</div>
+            <p>
+                2077年10月23日、大戦はまさに旧世界を破壊し、ポスト原子力の荒廃した世界を生み出しました。<br>
+                合衆国政府は入念な計画にもかかわらず、事実上消滅しました。<br>
+                議会バンカーに到着した非エンクレイヴの議員は<strong>即座に処刑</strong>されました。<br>
+                生存者はエッカートの計画に賛成か反対かの投票を求められ、反対者は部屋に閉じ込められた後、<strong>ガスで殺害</strong>されました。
+            </p>
+            <p>
+                ホワイトスプリングとエンクレイヴの他の拠点との通信は、爆撃直後にほぼ即座に途絶しました。<br>
+                石油リグ、レイヴンロック、その他の前哨基地との連絡を失ったエッカートは、自らを合衆国大統領およびアパラチア・エンクレイヴの大統領と宣言しました。
+            </p>
+
+            <h2 id="appalachia">アパラチアでの十字軍（Fallout 76）</h2>
+            <img class="article-image" src="images/note_extracted/enclave/scorched.png" alt="スコーチ病" onclick="openLightbox(this)">
+            <div class="image-caption">アパラチアのエンクレイヴはスコーチビーストと<a href="scorch.html" class="auto-link">スコーチ</a>病の原因を作った</div>
+            <p>
+                エッカートの統治は10年に満たなかったものの、地域に消えない傷跡を残し、人類を絶滅の淵に追いやりました。<br>
+                復讐のため、エッカートはアパラチアの自動化核ミサイルサイロを使って<strong>中国</strong>に二次核攻撃を行うことを計画しました。<br>
+                しかし、自動化システムの性質上、まずアパラチアがDEFCON 1に達するほど深刻な攻撃を受けていると信じ込ませる必要がありました。<br>
+                そのために<strong>リベレーター</strong>、<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>、そして<strong>スコーチビースト</strong>——エンクレイヴが作り出した巨大な変異コウモリ——を次々とアパラチアに解き放ちました。
+            </p>
+            <p>
+                これがエンクレイヴ内部の反対派の臨界点となり、<strong>エレン・サンティアゴ将軍</strong>を中心に反乱勢力が結集しました。<br>
+                結果として短期間ながら血なまぐさい内戦が勃発し、アパラチア・エンクレイヴの生存メンバー全員が死亡しました。<br>
+                サンティアゴの勢力が<a href="modus.html" class="auto-link">MODUS</a>を破壊しようとした際、AIは自衛しました。<br>
+                爆発でメモリーバンクに深刻な損傷を受けたものの、バンカーの制御を維持し、有毒ガスで封鎖して2086年にアパラチア支部を全滅させました。
+            </p>
+
+            <h2 id="fo76detail">アパラチア・エンクレイヴ詳細史（Fallout 76）</h2>
+            <h3>国会バンカーの占拠</h3>
+            <p>
+                アパラチアにおけるエンクレイヴは、<a href="the-whitespring-bunker.html" class="auto-link">ホワイトスプリング・リゾート</a>の地下に建設された議会バンカーに拠点を置く、本部エンクレイヴの孤立した部門でした。<br>
+                農務長官エッカートの監督下で、<strong>農務省</strong>の資金を横領して大規模に建設されました。<br>
+                ブラックウェル上院議員がこの計画を暴こうとしましたが、エッカートにとって幸いなことに失敗に終わりました。
+            </p>
+            <p>
+                大戦の早期警報が届くと、残された政府関係者——2077年3月に多くが要塞化された場所に避難した後の残り——はシェルターに急行しました。<br>
+                農務長官エッカート、内務長官、財務長官、その他のエンクレイヴメンバーが安全な場所に到着しました。残りは放置されました。
+            </p>
+            <p>
+                ホワイトスプリングに到着した<strong>非エンクレイヴ職員</strong>は全員銃殺されました——バンカーが命を救ってくれると信じていた議会メンバーも含めて。<br>
+                処刑は10月25日まで続きました。
+            </p>
+            <p>
+                10月28日、エンクレイヴ支持者たちはレイヴンロックと石油リグとの接続が失われ、<strong>完全に孤立</strong>していることに気づきました。<br>
+                10月29日、エッカートは生存者を会議室に集め、状況を説明しました。財務長官は「放射線病」で死亡したと伝えた後、戦前の継承ルールに則り自らを新しい指導者と宣言しました。<br>
+                「民主主義の砦」として投票を呼びかけ、エッカートの計画に賛成する者は入口側、反対する者は壁の反対側に立つよう求めました。<br>
+                スワフォード将軍など高位の将校が反対側につくと、エッカートは支持者と共に部屋を出て、<a href="modus.html" class="auto-link">MODUS</a>に反対派を<strong>室内に封じ込める</strong>よう命令しました。
+            </p>
+
+            <h3>再建の開始</h3>
+            <p>
+                殺害によりエッカートの支配は確立されましたが、「民主主義を救う」ために残された人数はわずか<strong>48人</strong>でした。<br>
+                彼はすぐに生存者に自身の計画を説明しました——<strong>道徳的・倫理的制約なし</strong>のあらゆる手段を用いた共産主義の完全根絶。<br>
+                核の悪夢の繰り返しすらもオプションに含まれていました。
+            </p>
+            <p>
+                エッカートがアパラチアの核サイロネットワークを利用するための最大の障害は、サイロの操作に必要な将軍が1人（T.ハーパー将軍）しか生き残っていなかったことでした。<br>
+                エッカートはMODUSにハーパー将軍の24時間護衛を命じ、偵察隊には「リクルート」候補を探すよう指示しました。
+            </p>
+            <p>
+                2079年半ばまでに、<strong>レスポンダー</strong>が自然なリクルート源となりましたが、多くはエンクレイヴに取り込むために洗脳が必要でした。<br>
+                偵察隊は<a href="west-tek.html" class="auto-link">ウエストテック</a>のFEV研究が核攻撃を生き延びたこと、モーガンタウン近くのMama Dolce's Food Processingにある中国の潜入基地がジェファーソン・グレイ工作員によって確保されたことを報告しました。
+            </p>
+
+            <h3>サンティアゴ大佐の到着</h3>
+            <p>
+                2081年11月、ワシントンD.C.の焼け跡から噂を頼りに<strong>エレン・サンティアゴ大佐</strong>率いる兵士の一団がバンカーに到着しました。<br>
+                エッカートはベテランの到着に歓喜し、「赤共への復讐」の約束で彼女を引き入れました。<br>
+                ベテラン兵の流入により、エンクレイヴの作業は急速に進みました。
+            </p>
+            <p>
+                変異実験が核兵器へのアクセス作業と並行して進み、多くの実用的な<strong>設計図</strong>と、2082年1月に最初の<strong>スコーチビースト</strong>が誕生しました。<br>
+                前年に放射線を浴びたコウモリに生化学実験を施した結果、偶然生まれたものです。<br>
+                エッカートは士官団には秘密にしたまま、放棄されたAMS鉱業施設の管理された環境でのこれらの生物のさらなる研究を命じました。
+            </p>
+            <p>
+                3ヶ月後の2082年4月、エッカートの部下はアパラチアの選挙マシンのリプログラミングを完了しました。<br>
+                ハーパー将軍はエッカートに投票するために兵を動員することに懸念を表明しましたが、エッカートは部下たちに「仰ぎ見る権威」を与えることが必要だと信じていました。
+            </p>
+
+            <h3>義務の放棄</h3>
+            <p>
+                「大統領」となったエッカートは、部下に対する圧力を強めました。特にサンティアゴ大佐が標的でした。<br>
+                2082年11月24日、ハーパー将軍が<strong>心不全</strong>で死亡。エッカートの核報復計画は困難に直面しましたが、サンティアゴをキャンプ・マクリントックに送り、同じ選挙システムを悪用して自動昇進で将軍の階級を取得させました。<br>
+                サンティアゴは11月27日に成功しましたが、星の付け方に嫌悪を感じていました。
+            </p>
+            <p>
+                それでも計画は軌道に乗っていました。将軍を得てサイロへのアクセス手段を確保し、核発射コードの捜索もサンティアゴに任せることができました。<br>
+                エッカートとグレイはすでにDEFCON 1に上げるための計画を進めており、リベレーター、ハンターズビルのミュータント、スコーチビーストを使ってアパラチアに地獄を解き放ち、自動システムに侵略が進行中だと信じ込ませようとしました。
+            </p>
+            <p>
+                リベレーターとスーパーミュータントが解き放たれましたが、DEFCONカウンターはわずかにしか動きませんでした。<br>
+                怒ったエッカートはさらに過激な手段に移行しようとしましたが、流血の多さがついに限界を超えました。<br>
+                2083年6月30日、<strong>サンティアゴ将軍</strong>はエッカートと対峙し、部下を連れて去ると脅しました。<br>
+                エッカートは彼女を無力化し、自分のクリアランスが必要になるまで人工的に誘発された昏睡状態に保ちました。
+            </p>
+            <p>
+                対抗者がいなくなったエッカートはスコーチビーストをアパラチアに解放し、その恐怖と破壊がDEFCON 1への引き上げに成功しました。<br>
+                アメリカ市民の命を露骨に無視する行為に絶望した<strong>サンティアゴの忠誠派</strong>とエッカートの士官団の一部は、<strong>2085年2月</strong>に公然と反乱を起こしました。
+            </p>
+            <p>
+                ジャクソン大尉とラグナースドッティル少佐はサンティアゴを蘇生させ、彼女は喜んで蜂起のリーダーシップを引き受けました。<br>
+                最終的にエッカートは逮捕されましたが、蜂起は失敗に終わりました。<br>
+                サンティアゴが<a href="modus.html" class="auto-link">MODUS</a>の破壊を決断したとき、AIは反撃しました。<br>
+                爆発でMODUSのメモリーの大部分が吹き飛んだものの、損傷したAIは兵器実験室で爆発を起こしてサンティアゴ将軍を殺害し、毒素タンクを破裂させて空気循環システムに漏出させました。<br>
+                MODUSは速やかにバンカーを封鎖し、中にいた全員——エッカート大統領を含む——を<strong>2085年2月27日</strong>、暗闇の中で窒息死させました。
+            </p>
+
+            <h3>停滞期</h3>
+            <p>
+                損傷したMODUSは残されたロボットを使ってバンカーの修復を開始しました。<br>
+                死体と損傷を片付けながら、誰かがホワイトスプリングの防御を突破してメインフレームの修復を手伝ってくれるのを待ち続けました。<br>
+                MODUSはアパラチア・エンクレイヴの指導者となり——完全にロボットだけで構成される組織の。<br>
+                核ミサイルサイト（アルファ、ブラボー、チャーリー）の位置、発射コードとキーカードの場所を把握していましたが、核ミサイルの発射は人間専用に設計されており、ロボットでは不可能でした。
+            </p>
+            <p>
+                エッカートが解き放った<a href="scorch.html" class="auto-link">スコーチ</a>病がアパラチア全域に広がり、潜在的な「リクルート」を壊滅させるなか、AIは次第に必死になっていきました。<br>
+                2102年、<strong>Vault 76</strong>の住人たちがアパラチアに飛び出すと、MODUSは募集プロセスを高速化し、エンクレイヴを再び生かすためにあらゆる者を迎え入れる準備を整えました。
+            </p>
+
+            <h3>エンクレイヴ研究部門（サイトJ）</h3>
+            <p>
+                別働隊として「<strong>エンクレイヴ研究部門</strong>」が存在しました。<br>
+                <a href="sodus.html" class="auto-link">SODUS</a>（Single-Operation Direction and Utility System）——ホワイトスプリングのMODUSの簡略版AI——によって管理されていました。<br>
+                ホワイトスプリングとの通信はMODUSが「サイトJはもう用がない」として全通信を遮断するまで維持されていました。
+            </p>
+            <p>
+                その長い待ち行列で嫌われていたSODUSは、ある隊員がMODUSのコードを盗んで「アップグレード」を試みた結果、暴走を開始。<br>
+                2084年2月9日深夜0時から施設内の人間の殺害を開始しました——危険な生物の解放、生物災害物質の放出、除染システムの転用（除染ではなく被曝させる）、外気の送入（スコーチ病を含む空気）によって。<br>
+                2103年には<a href="sodus.html" class="auto-link">SODUS</a>が実験用セントリーボットXB-55に自身を転送してVault居住者とB.O.S.と戦い、永久に機能停止となりました。
+            </p>
+            <h2 id="genocide">世界規模の虐殺未遂（Fallout 2）</h2>
+            <div class="holotape-box">
+                <div class="holotape-title">📢 ディック・リチャードソン大統領</div>
+                <p>「私は人民の選挙で選ばれた代表者です。合衆国はまだ存在しています。我々一人一人に神のご加護を。戦争の後、生き残るために適応しなければなりませんでしたが」</p>
+            </div>
+            <img class="article-image" src="images/note_extracted/enclave/richardson.png" alt="ディック・リチャードソン大統領" onclick="openLightbox(this)">
+            <div class="image-caption">ディック・リチャードソン — 2242年の合衆国大統領</div>
+            <p>
+                エンクレイヴは自らを地球上に残された最後の「純粋な」変異のない人類の砦と考えるようになりました。<br>
+                既存のウェイストランド住民との共存は不可能と見なされ、すべての「ミュータント」（重大な放射線に曝された者すべて）の<strong>即時絶滅</strong>を正当化するレトリックが用いられました。<br>
+                2140年頃から、これらのいわゆるミュータントの存在自体が障害物かつ脅威と見なされました。
+            </p>
+            <p>
+                大戦前から膨大な新技術を開発してきたエンクレイヴは、次世代パワーアーマーの研究を2215年に開始。リチャードソン大統領の命令により、2220年10月に完成しました。<br>
+                2235年にはデスクロー実験を開始し、敵対的な環境での戦闘用ショック部隊の創出を目指しました。
+            </p>
+            <img class="article-image" src="images/note_extracted/enclave/salvatore_exchange.png" alt="サルヴァトーレとのベルチバード取引" onclick="openLightbox(this)">
+            <div class="image-caption">サルヴァトーレ家との秘密取引 — レーザーピストルと化学物質の交換</div>
+            <p>
+                2236年7月20日、エンクレイヴの偵察隊は<strong>マリポーサ軍事基地</strong>の廃墟を発見しました。<br>
+                化学部隊と科学者が基地を調査し、突撃部隊は<strong>奴隷</strong>を集めて発掘に使いました。<br>
+                無防備なウェイストランド住民は廃墟内の低レベルFEVに曝され、変異が始まりました。<br>
+                フランク・ホリガンもこの時ウイルスに接触し、石油リグに送られて研究対象となりました。
+            </p>
+            <p>
+                高い代価を払いましたが、得られたサンプルにより<strong>FEVカーリング-13</strong>——チャールズ・カーリング中佐の名を冠した驚異的な殺傷力を持つ毒素——の開発が可能になりました。<br>
+                プロジェクトの目標は<strong>99.5%の絶滅率</strong>による全世界一掃でした。
+            </p>
+            <p>
+                2241年にプロジェクトは最終段階に入りました。特定の重要化学物質が不足したため、<strong>ニュー・リノのサルヴァトーレ一族</strong>と秘密の取引を結び、レーザーピストルと引き換えに化学物質を入手しました。<br>
+                最終テストには毒素と免疫接種の代表的な人口サンプルが必要でした。<br>
+                2242年3月16日、エンクレイヴは<strong>Vault 13を急襲</strong>——住民全員を石油リグに拉致し、免疫テストの被験者にしました。<br>
+                アロヨの村も同時期に襲撃され、FEVカーリング-13の有効性確認のための被験者が確保されました。
+            </p>
+            <p>
+                2242年秋までにテストは完了し、目標の99.5%の毒素効率が達成されました。<br>
+                <strong>250,000ガロン</strong>の毒素が製造され、ジェット気流への放出準備が整いました。<br>
+                しかし、毒素放出のわずか数時間前に<strong>選ばれし者</strong>が石油リグに潜入し、ディック・リチャードソン大統領とフランク・ホリガンを暗殺し、核爆発を起動して毒素供給を消滅させ、<strong>世界規模のジェノサイドを阻止</strong>しました。
+            </p>
+
+            <h3>西海岸の組織構造</h3>
+            <p>
+                ディック・リチャードソン大統領の政権下で、西海岸のエンクレイヴは石油リグを中心に複数の施設を展開していました。<br>
+                <strong>ダニエル・バード</strong>が副大統領を務め、ナバロ基地にはエンクレイヴ管理中隊が駐留し、施設の外周防衛を担当していました。<br>
+                ナバロはベルチバードの航続距離が限られていたため、<strong>燃料補給地</strong>として戦略的に重要な位置を占めていました。
+            </p>
+            <p>
+                石油リグの動力は<strong>Vault-Tec製ウラン原子炉</strong>で、原子力委員会が運用を監督していました。<br>
+                <strong>PoseidoNet</strong>通信ネットワークで複数の施設（原子力発電所5号、ナバロ精製所、管制ステーションENCLAVE、ENCLAVE Vault研究管理）が接続されていました。<br>
+                ただしアイアンマウンテンやNORAD、SACなどの軍事通信施設はオフラインのままでした。
+            </p>
+            <p>
+                外周防衛では悪名高い<strong>命令312号</strong>が適用され、エンクレイヴ領土内の「不法外国人」は問答無用で射殺されました。<br>
+                各カリフォルニア州の旧市街にも追加の前哨基地が分散配置されていました。
+            </p>
+
+            <h3>B.O.S.の監視と反応</h3>
+            <p>
+                近隣勢力の<strong>B.O.S.</strong>（ブラザーフッド・オブ・スティール）はエンクレイヴの拡大を注意深く観察していました。<br>
+                マシューによれば、「数ヶ月前にエンクレイヴという集団に遭遇し、驚くべきことに彼らの技術レベルは我々のものさえ凌駕していた」とのことでした。<br>
+                B.O.S.は接触を控え、まず<strong>デン、NCR、サンフランシスコ</strong>に監視前哨基地を設置して慎重に偵察を行いました。<br>
+                結果として「エンクレイヴは薬物、武器、奴隷を大量に扱っているが、それらはより高い目的に向かう些末な活動に過ぎない」と報告されました。
+            </p>
+            <p>
+                ニュー・リノの犯罪組織<strong>メッツガー</strong>もエンクレイヴとサルヴァトーレ一族の通信を盗聴しており、砂漠の秘密取引（レーザーピストルと化学物質の交換）にも第三者が関与していました。
+            </p>
+
+            <h3>FEV研究と毒素開発</h3>
+            <p>
+                石油リグで開発されたFEVカーリング-13のテストには、外部の「純粋系統人類」が必要でした。<br>
+                <strong>マーティン・フロビシャー</strong>（Vault 13住民）の証言によれば、「彼らはエンクレイヴ外部の、それでいて純粋系統人類であるテスト被験者を必要としていた。だから我々全員をVaultから連れ出した」とのことです。<br>
+                リチャードソン大統領はVaultを「アメリカ文明の栄光を永続させるための聖域」と呼びつつ、同時に「壮大な社会実験」であったことを認めています。
+            </p>
+            <p>
+                テストの成功後、リチャードソンは犠牲者を「人類史の継続における不幸な脚注」と呼び、毒素の放出を準備しました。<br>
+                しかし内部破壊工作により石油リグは崩壊しました。
+            </p>
+
+            <h3>石油リグ崩壊後の西部</h3>
+            <p>
+                石油リグの崩壊後、エンクレイヴの指揮系統は瓦解しました。<br>
+                <strong>ジュダー・クレーガー</strong>は「内部の破壊工作がリグを沈めた——全容は聞かされなかった」と証言しています。<br>
+                NCRがナバロを攻撃して占領し、「地域への脅威」と認定しました。
+            </p>
+            <p>
+                <strong>アーケイド・ガノン</strong>（ナバロ生まれ、元エンクレイヴ将校の息子）によれば、「ナバロが制圧されると、私の母と父の旧部隊の兵士数人と共に北上した。人数を合わせてNCRに統合し、正体が判明するたびにフリンジへと移動した」。<br>
+                脱出できなかった者はNCRに殺害され、脱出できた一部もその後B.O.S.に追われました。
+            </p>
+
+            <h3>エンクレイヴの残党（モハビ・ウェイストランド詳細）</h3>
+            <p>
+                モハビに定住した<strong>エンクレイヴの残党</strong>は、かつてベルチバードの燃料補給基地として使われていた<strong>残党バンカー</strong>に装備を隠していました。<br>
+                バンカーへの入場パスワードは5つの単語で構成され、残党メンバーが1語ずつ持っていました——<br>
+                <strong>「Dear Old Friends Remember Navarro」</strong>（旧き友よ、ナバロを忘れるな）。
+            </p>
+            <p>
+                クレーガーは「あの日々が恋しいこともある。我々には皆、目的があったのだ。上層部の一部は確かに冷酷だったが、我々その他の者は単に秩序を取り戻そうとしていただけだ」と回想しています。<br>
+                アーケイド・ガノンも残党の戦闘に参加した場合、「エンクレイヴがこれまで引き起こした損害の一部を償うことができる」と語りましたが、<br>
+                彼がかつてエンクレイヴに所属していたことが判明した場合、フォロワーズ・オブ・ジ・アポカリプスから追放され、賞金稼ぎ、NCRレンジャー、B.O.S.に追われて東の平原深くへと消え、二度と消息は聞かれませんでした。
+            </p>
+
+            <h2 id="ravenrock">レイヴンロックへの撤退（Fallout 3）</h2>
+            <img class="article-image" src="images/note_extracted/enclave/eden.jpg" alt="ジョン・ヘンリー・エデン" onclick="openLightbox(this)">
+            <div class="image-caption">ジョン・ヘンリー・エデン — 2277年のエンクレイヴ大統領</div>
+            <img class="article-image" src="images/note_extracted/enclave/loading_enclave.jpg" alt="エンクレイヴ先進パワーアーマー" onclick="openLightbox(this)">
+            <div class="image-caption">エンクレイヴの大統領石油リグ（オイルリグ）</div>
+            <p>
+                石油リグの破壊と上級指導部の喪失は、エンクレイヴに壊滅的な打撃を与えました。<br>
+                西海岸の勢力は混乱に陥り、リグの生存者やその他の施設のメンバーはナバロに再集結しました。<br>
+                2242年末、上級科学者オータム・シニアは新大統領<strong>ジョン・ヘンリー・エデン</strong>から連絡を受け、残存するエンクレイヴの大部分を東方、首都ワシントンD.C.の廃墟近くの<strong>キャピタル・ウェイストランド</strong>に移動させるよう命じられました。
+            </p>
+            <p>
+                レイヴンロックには完全な製造施設と相当な資源備蓄があり、エデンはロボット軍を創設し、技術的優位を維持するための武装を提供しました。<br>
+                <strong>アイボット</strong>という新たなロボットが荒野を巡回し、エンクレイヴの形で戦前アメリカの復帰の希望のメッセージを広めました。
+            </p>
+            <p>
+                しかし数年後、<strong>NCR</strong>がナバロを攻撃し占領しました。<br>
+                エンクレイヴの残存勢力は散り散りになり、東に逃げるか、NCRへの統合を試みました。
+            </p>
+
+            <h2 id="purity">プロジェクト・ピュリティ戦争（Fallout 3）</h2>
+            <img class="article-image" src="images/note_extracted/enclave/propaganda.jpg" alt="エンクレイヴのプロパガンダ" onclick="openLightbox(this)">
+            <div class="image-caption">キャピタル・ウェイストランドに掲示されたエンクレイヴのプロパガンダ</div>
+            <img class="article-image" src="images/note_extracted/enclave/capital_troopers.jpg" alt="キャピタル・エンクレイヴ部隊" onclick="openLightbox(this)">
+            <div class="image-caption">キャピタル・エンクレイヴの部隊</div>
+            <p>
+                <strong>2277年</strong>、大規模浄水施設<strong>プロジェクト・ピュリティ</strong>の起動に伴い、エンクレイヴは大規模な拡大キャンペーンを開始しました。<br>
+                プロジェクトの主任科学者ジェームズが放射線で自殺して浄水施設の制御室を汚染したため、すぐには使えませんでしたが、エンクレイヴは科学者の子供（<strong>孤独な放浪者</strong>）を追跡してG.E.C.K.を手に入れ、浄水施設の起動を目指しました。
+            </p>
+            <p>
+                しかしここで<strong>内部分裂</strong>が発生しました。エデン大統領は<strong>改変FEV</strong>で水を汚染して変異を浄化しようとしましたが、<br>
+                <strong>オータムス・オータム大佐</strong>はそれを極端すぎると考え、浄水器を利用してウェイストランドを統一し、エンクレイヴを救世主として位置づける計画でした。<br>
+                この対立はレイヴンロック内での短い内戦を引き起こし、エデンのセントリーボットがオータムに忠誠を誓う兵士と戦いました。
+            </p>
+            <p>
+                エンクレイヴの試みは<strong>リヨンズのB.O.S.</strong>による急襲で阻止されました。<br>
+                戦前の戦争マシン<strong>リバティ・プライム</strong>が先鋒となり、エンクレイヴの防御を突破し、多数のベルチバードを撃墜しました。<br>
+                その後、B.O.S.はレイヴンロック攻撃にもリバティ・プライムを使用し、エンクレイヴ最後の主要施設を破壊しました。
+            </p>
+            <p>
+                <strong>アダムス空軍基地</strong>に再集結したエンクレイヴは反撃計画を策定。<br>
+                衛星中継基地にB.O.S.を誘き出し、リバティ・プライムを軌道兵器<strong>ブラッドリー・ヘラクレス</strong>の小型核爆撃で破壊することに成功しましたが、<br>
+                孤独な放浪者がアダムス空軍基地の攻撃に成功し、移動基地クローラーを破壊しました。<br>
+                エンクレイヴ最後の既知の主要司令部も失われました。
+            </p>
+
+            <h3>レイヴンロックの活動とエンクレイヴ・ラジオ</h3>
+            <p>
+                2277年のレイヴンロックでは、エデン大統領が施設内のすべての技術を直接制御し、人間の兵士はオータム大佐の指揮に従っていました。<br>
+                <strong>エンクレイヴ・ラジオ</strong>がキャピタル・ウェイストランド全域に放送され、エデンの演説が流されていました。<br>
+                代表的なスピーチでは「我々の偉大な国家は再び崩壊の淵に立っている。無法と絶望の海に飲み込まれようとしている。つまり、我が愛するアメリカよ——我々は戦争中なのだ」と語っています。
+            </p>
+            <p>
+                エンクレイヴの巡回部隊はキャピタル・ウェイストランド全域に配備された<strong>チェックポイント</strong>のネットワークを通じて市民の行動を監視していました。<br>
+                平和維持・復旧部門は人口調査記録と武器在庫を管理し、<strong>ファウナ・ディテール・チャーリー</strong>と呼ばれるチームは捕獲したウェイストランドの生物に對する<strong>家畜化ユニット</strong>の効果を研究していました。
+            </p>
+
+            <h3>研究開発活動</h3>
+            <p>
+                研究開発部門は、近隣のクレーターからサンプルを収集し、実験的な<strong>ローIDチップ</strong>などの技術的実験を実施しました。<br>
+                また、<strong>Vault 101</strong>への外部接触も試みており、Vault-Tecのシェルターのデータストアと施設へのアクセスを交渉しようとしていました。<br>
+                しかしVault 101の監督官はこの接触を拒否し、外部との一切の交信を禁じました。
+            </p>
+
+            <h3>アダムス空軍基地の研究</h3>
+            <p>
+                アダムス空軍基地では、研究者<strong>ホイットリー</strong>が<strong>デュラフレーム・アイボット</strong>（ED-Eシリーズ）の強化プロジェクトを率いていました。<br>
+                しかし「デュラフレーム資産をすべてヘルファイア・アーマーに転用せよ」との命令により、ED-Eプロジェクトは中止。<br>
+                ホイットリーは最後の機能モデル「サブジェクトE」をナバロ前哨基地に送り出し、機密メッセージには「シカゴのエンクレイヴ前哨基地から聞いている方は、このユニットに必要な修理を施してナバロへ向かわせてください」と添えました。<br>
+                <strong>デスクロー研究施設</strong>も別棟に存在し、大半のデスクローは戦闘に投入されていましたが数体が残存していました。
+            </p>
+            <p>
+                <strong>ヘルファイア・パワーアーマー</strong>はデュラフレーム技術を転用して開発された最強クラスのパワーアーマーで、重火器戦闘用に最適化されていました。<br>
+                移動基地クローラーと衛星中継基地からの<strong>ブラッドリー・ヘラクレス軌道砲</strong>が組み合わされ、エンクレイヴの最後の切り札として機能しました。
+            </p>
+
+            <h3>B.O.S.との最終決戦</h3>
+            <p>
+                <strong>エリザベス・ジェイムソン</strong>記録官は「B.O.S.はかつてエンクレイヴと遭遇しており、その動機は当時も今も同じく邪悪なものだ」と証言しています。<br>
+                <strong>オーウィン・リヨンズ長老</strong>は「エンクレイヴはキャピタル・ウェイストランドが直面した最大の脅威である。B.O.S.は30年以上前、カリフォルニアで彼らと遭遇した」と記録しています。
+            </p>
+            <p>
+                エンクレイヴの敗北後、B.O.S.はレイヴンロックとアダムス空軍基地の双方で大量の技術を接収しました。<br>
+                <strong>レジナルド・ロスチャイルド</strong>記録官は「押収した技術の山を整理するのに数年かかるだろう。移動プラットフォームの残骸だけでも膨大な量だ」と述べています。<br>
+                この鹵獲技術は後に飛行艦<strong>プリドゥエン</strong>の建造に使用されました——<strong>ケルズ</strong>船長によれば、「プリドゥエンはワシントンD.C.近郊のアダムス空軍基地で建造された。エンクレイヴを破った後の大量のスクラップ金属と部品を使って。部品収集だけで2年かかった」。
+            </p>
+            <p>
+                エンクレイヴのメンバーの中には裏切った者もいました。科学者<strong>アンナ・ホルト</strong>はプロジェクト・ピュリティからエンクレイヴに寝返り、<br>
+                「リー博士は荒野でパーツを漁っている。エンクレイヴには必要なものがすべて揃っている。ここで働くことが世界をより良くする最善の機会だ」と語りました。
+            </p>
+
+
+            <h2 id="creationclub">コモンウェルス遠征軍（Fallout 4 Creation Club）</h2>
+            <img class="article-image" src="images/note_extracted/enclave/western_camp.png" alt="エンクレイヴのキャンプ" onclick="openLightbox(this)">
+            <div class="image-caption">コモンウェルスに設営されたエンクレイヴのキャンプ</div>
+            <div class="holotape-box">
+                <div class="holotape-title">📢 Creation Clubの説明文</div>
+                <p>「過去は傷痕だと言う者もいる、コモンウェルスの皮膚に刻まれた。他の者は癒えない傷の上のかさぶただと信じる。<br>エンクレイヴと戦った者も、仕える者も、後者を信じている。そしてかさぶたが剥がれたとき、この旧世界の秘密結社の旗が再び高々と掲げられるだろう。もちろん、あなたがそれを止めなければ」</p>
+            </div>
+
+            <h3>キャピタル・ウェイストランドでの敗北</h3>
+            <p>
+                2277年のB.O.S.との戦争（<strong>東海岸ブラザーフッド─エンクレイヴ戦争</strong>）でエンクレイヴは壊滅的な打撃を受けました。<br>
+                レイヴンロックの破壊、ジェファーソン記念館での<strong>プロジェクト・ピュリティの戦い</strong>でのオータム大佐の敗北、アダムス空軍基地の陥落により、東海岸エンクレイヴは軍事的に崩壊しました。
+            </p>
+            <p>
+                B.O.S.はエンクレイヴの遺棄した技術を大量に接収し、アダムス空軍基地のスクラップを2年がかりで収集して<strong>飛行艦プリドゥエン</strong>を建造しました。<br>
+                パラディン・ダンスは「キャピタル・ウェイストランドでは、B.O.S.は『エンクレイヴ』と自称する裏切り者の集団と戦争中だった。アダムス空軍基地への突撃は最終的に成功したが、多大な犠牲を伴った。パラディン・クリーグもその戦いで命を落とした」と回想しています。
+            </p>
+
+            <h3>個別の生存者たち</h3>
+            <p>
+                エンクレイヴの壊滅後も、個別のメンバーや小部隊が各地で存続していました。
+            </p>
+            <ul>
+                <li><strong>ブライアン・リヒター</strong>: 元エンクレイヴ中尉。キャピタル・ウェイストランドから北方への長距離偵察任務中に、古い核融合コア処分施設内に閉じ込められました。<br>
+                15インチの鉛で覆われた鋼鉄扉が背後で封印され、チームの仲間は放射線で全員死亡。しかしリヒターだけが生き延びました——「原子の祝福」による放射線免疫のおかげで。<br>
+                当時まだ熱心な信者だったテクタスに救出され、メイン州の<strong>チャイルド・オブ・アトムの教団</strong>に加入、最終的にグランド・ジーロットにまで昇進しました。<br>
+                過去については口を閉ざし、問い詰められて初めて「彼らはエンクレイヴと名乗っていた。当時は一大勢力だったが……もう随分昔のことだ」と語ります。</li>
+                <li><strong>ブラック・デビル</strong>: エンクレイヴからの脱走兵で自警団員に転身。エンクレイヴの技術（X-02パワーアーマー）を持ち出して活動していましたが、2287年時点では引退しています。</li>
+                <li><strong>無名の中尉率いる部隊</strong>: コモンウェルスに近いバンカーに潜伏。エンクレイヴ本部との連絡は途絶したまま、2287年時点でも孤立したままでした。</li>
+            </ul>
+
+            <h3>2287年コモンウェルス遠征</h3>
+            <p>
+                2287年、東海岸エンクレイヴの生存者たちは再結集して指揮系統を再確立し、コモンウェルス外の非公開の場所に司令部を設置しました。<br>
+                この再興エンクレイヴは<strong>コモンウェルスへの遠征軍</strong>を派遣し、価値ある技術・装備の回収と恒久的な作戦拠点の確立を目指しました。
+            </p>
+            <p>
+                遠征軍はグローイング・シー内の旧<strong>アトランティック・オフィス</strong>を現地司令部として接収し、<strong>エリアス少佐</strong>が司令官として駐留しました。<br>
+                実際の回収作戦は<strong>フランクリン中尉</strong>が現地キャンプから指揮し、地元のウェイストランド住民を尋問・拷問して失われたエンクレイヴ技術の情報を引き出し、キャラバンを丸ごと虐殺して物資を奪いました。
+            </p>
+            <p>
+                全要員に発令された常備命令は以下の通りでした：
+            </p>
+            <ul>
+                <li>キャンプを発見した非エンクレイヴ要員は<strong>全員殺害</strong></li>
+                <li>目撃者は<strong>一切残さない</strong></li>
+                <li>情報や物資を提供した者も、不要になった時点で<strong>即時殺害</strong></li>
+            </ul>
+
+            <h3>回収目標</h3>
+            <p>
+                遠征軍の主要目標は以下の通りでした：
+            </p>
+            <ul>
+                <li><strong>重焼却器（ヘビー・インシネレーター）</strong>: レイダー組織「フォージド」が所持。元は脱走兵が食料と交換したもの。エンクレイヴは脱走兵を「相応の処分」——つまり処刑——に処しました。</li>
+                <li><strong>ヘルファイア・パワーアーマー</strong>: フォージドの「パイロ」が着用。おそらく脱走兵を殺害して奪ったものと推定。</li>
+                <li><strong>プラズマ兵器・弾薬</strong>: 傭兵組織「ガンナーズ」が大量に備蓄。遭遇したガンナー分隊は「生存者なし」方針で攻撃・処刑。</li>
+                <li><strong>テスラ砲</strong>: 地域内に存在が報告されたが、現地司令部に近すぎるため回収見送り。</li>
+                <li><strong>フュージョン・コア</strong>: 発見次第回収。所持者は常に殺害。</li>
+            </ul>
+            <p>
+                偵察により<strong>ボストン空港のB.O.S.駐留</strong>も把握されましたが、上官は彼らへの攻撃を禁止しました。<br>
+                また、脱走兵ブラック・デビルの持ち出したX-02パワーアーマーの情報も得ており、将来的な回収計画が策定されていました。<br>
+                エリアスの上官はさらに本部としてふさわしい場所の選定も指示しており、「民間人の存在は問題にならない——簡単に『排除』できる」と示唆していました。
+            </p>
+
+            <h3>拠点展開</h3>
+            <p>
+                コモンウェルス遠征軍は主要司令部のほかに3つの小規模キャンプを展開しました。将来の作戦のための出撃拠点として利用されています：
+            </p>
+            <table class="base-table">
+                <thead>
+                    <tr><th>名称</th><th>場所</th><th>活動</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>アトランティック・オフィス<br>（現地司令部）</td>
+                        <td>グローイング・シー</td>
+                        <td>エリアス少佐が指揮、全作戦の調整</td>
+                    </tr>
+                    <tr>
+                        <td>南部キャンプ</td>
+                        <td>ガンナーズ・プラザ南方</td>
+                        <td>ミアラーク DNA研究・採取</td>
+                    </tr>
+                    <tr>
+                        <td>東部キャンプ</td>
+                        <td>パーソンズ州立精神病院東方</td>
+                        <td>アイボット配備によるプロパガンダ散布</td>
+                    </tr>
+                    <tr>
+                        <td>西部キャンプ</td>
+                        <td>ダーク・ホロウ・ポンド南西</td>
+                        <td>現地植物の研究</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                各キャンプには戦後サバイバル用の<strong>エンクレイヴ塹壕マニュアル</strong>のコピーが配布されていました。<br>
+                主要遠征軍は、同じ時期にブラック・デビルを追っていた<strong>残党分隊</strong>とは互いに認識しておらず、共通のアレジアンス（忠誠）を持ちながらも連携はしていませんでした。
+            </p>
+
+
+            <h3>ボストン・ビューグル紙の戦前報道</h3>
+            <p>
+                Fallout 4のボストン・ビューグル紙ビルのターミナルには、戦前のジャーナリスト<strong>マグス・ヴェッチオ</strong>による調査記事が残されています。<br>
+                彼女はエンクレイヴ石油リグの存在とその公式名称「管制ステーションENCLAVE」を発見し、<br>
+                「核戦争の際に合衆国の支配権を握る、軍事化された<strong>『影の政府』</strong>として知られるエンクレイヴという秘密組織の噂を裏付けた」と記しています。
+            </p>
+
+            <h2 id="remnants">西部の残党（Fallout: New Vegas）</h2>
+            <div class="holotape-box">
+                <div class="holotape-title">📢 ローディングスクリーン</div>
+                <p>「かつて西部では強力な勢力だったが、エンクレイヴはモハビ・ウェイストランドで何年も姿を見せていない。<br>狩り出されなかった者は東に移動したか、NCRにうまく溶け込んだと考えられている」</p>
+            </div>
+            <p>
+                2281年、ナバロ陥落から約40年が経過し、西部におけるエンクレイヴの存在はほぼ消滅していました。<br>
+                NCRに統合されなかった、または戦犯として逮捕・裁判・終身刑に処されなかったメンバーは、NCRレンジャーと賞金稼ぎに追われ続けていました。<br>
+                <strong>モハビ・ウェイストランド</strong>には1つの部隊が知られており、新しい生活を見つけた老兵たちですが、武器と防具は安全に保管されていました。
+            </p>
+            <p>
+                もう一つの既知の残存物は<strong>ED-E</strong>——ナバロに送られる途中だった強化された戦闘型アイボットです。<br>
+                制作者のホイットリーはナバロが陥落したことを知らずに送り出しました。シカゴの前哨基地を見つけたかどうかは不明です。
+            </p>
+
+            <h2 id="tv">TVシリーズ</h2>
+            <img class="article-image" src="images/note_extracted/enclave/wilzig_lab.png" alt="ウィルジグ博士の研究室" onclick="openLightbox(this)">
+            <div class="image-caption">シギ・ウィルジグ博士 — エンクレイヴの冷融合研究に従事</div>
+            <p>
+                絶え間ない挫折と徐々に神話へと化していくにもかかわらず、エンクレイヴは孤立した場所で生き延びていました。<br>
+                その一つが<strong>ロッキー山脈</strong>の地下研究施設で、生物学、行動工学、先端エネルギーなどの研究を続けていました。<br>
+                <strong>シギ・ウィルジグ博士</strong>がこの施設に配属され、行動研究と<strong>冷融合</strong>研究に従事していました。
+            </p>
+            <p>
+                2296年、ウィルジグが無許可の冷融合研究を行っていたことが発覚する事件の後、博士はエンクレイヴから脱走し荒野に逃走しました。<br>
+                彼の脱走はB.O.S.による追跡、6つの傭兵機関による賞金競争を引き起こしました。<br>
+                唯一の安全な避難場所はNCR勢力のリー・モルダヴァーのもとでした。
+            </p>
+            <p>
+                同時期、元Vault-Tec従業員ハンク・マクレーンがラスベガスの地下管理Vaultを利用し、<strong>脳コンピュータ・インターフェースチップ</strong>技術の小型化に成功しました。<br>
+                ハンクはエンクレイヴのロッキー山脈施設に報告を入れており、組織がウェイストランド全域の通信を傍受していたことも明らかになりました。
+            </p>
+
+            <h2 id="society">社会構造</h2>
+            <p>
+                エンクレイヴは戦前の合衆国のパターンを模倣し、その規模に合わせて縮小しました。<br>
+                <strong>大統領</strong>が組織を率い、任期制限なしでメンバーにより選出されます。<br>
+                しかし実際には選挙は任意で、新しい大統領が継承権を主張して権力を握ることもありました。<br>
+                ジョン・ヘンリー・エデンは次のリーダーだと主張しただけで大統領に就任し、メンバーはそれに従いました——彼がAIであるにもかかわらず。
+            </p>
+            <p>
+                通常、大統領には副大統領が補佐として付き、共に行政府を形成します。<br>
+                エンクレイヴには議会もありましたが、権力濫用を制御するための司法部門は存在しなかったようです。
+            </p>
+            <p>
+                全盛期のエンクレイヴ社会の特徴は<strong>秘密主義</strong>、<strong>監視</strong>、<strong>画一性</strong>でした。<br>
+                わずかな不満の兆候も不忠と見なされ、本土任務への永久再配置の理由となりました。<br>
+                元メンバーの一人は、エンクレイヴの社会を「利益があればいつでも仲間を裏切るハイエナの群れ」と表現しています。
+            </p>
+            <p>
+                本土ではさらに劣悪で、全員が身分証明書を常に携帯する義務がありました。<br>
+                いかなる失敗や過失も、司令官の裁量で<strong>即決処刑</strong>に至る可能性がありました——直接命令の不服従はもちろん、精密機器の破損ですら銃殺刑の理由になりえました。<br>
+                残虐行為は愛国的な必要性として包装され、愛国的な讃歌とシンボルが常に存在しました。
+            </p>
+
+            <h3>通貨</h3>
+            <p>
+                エンクレイヴは内部通貨として<strong>ドル</strong>を使用していました。<br>
+                一般市民は悪名高いほど低賃金で、先進パワーアーマーの紛失は<strong>500年分の給料</strong>に相当しました。<br>
+                必要に応じて外部通貨、特に<strong>キャップ</strong>も使用しました。
+            </p>
+
+            <h3>アイコノグラフィー</h3>
+            <p>
+                合衆国政府の継続と自認するエンクレイヴは、旧米国旗を含む多くのシンボルを引き続き使用しています。<br>
+                ただし、エンクレイヴ独自のシンボル体系では、赤白青ではなく<strong>黒白に赤のアクセント</strong>が使われ、大文字の「E」がメインシンボルとなっています。<br>
+                パワーアーマーのデザインは、戦前の軍が使用したT-シリーズから離れ、実験的なX-01パワーアーマーに基づく先進パワーアーマーラインに発展しました。
+            </p>
+
+            <h2 id="ideology">イデオロギー</h2>
+            <img class="article-image" src="images/note_extracted/enclave/richardson_office.png" alt="リチャードソン大統領の執務室" onclick="openLightbox(this)">
+            <div class="image-caption">リチャードソン大統領の執務室 — 星条旗と合衆国の紋章で正統性を主張</div>
+            <div class="holotape-box">
+                <div class="holotape-title">📢 ディック・リチャードソン大統領</div>
+                <p>「真の人間と民主主義が安全であるための唯一の方法は、地球からミュータントを浄化することだ。<br>我々人類は、正当に我々のものであるものを取り戻す」</p>
+            </div>
+            <p>
+                エンクレイヴは戦前の合衆国の直系の継承者を自称しましたが、国家の義務と法律を無視し、自らの権力強化に注力しました。<br>
+                そのジェノサイド政策と制度化された「他者」の非人間化、超軍事主義はファシストの傾向を示しており、元メンバーのアーケイド・ガノンも「ファシスト準軍事組織」と呼んでいます。
+            </p>
+            <p>
+                アパラチアにおいては、エッカートが「共産主義とその支持者の根絶」を宣言し、変異実験やロボット・変異生物を使ってアメリカ市民に対して攻撃を仕掛けました。<br>
+                これが最終的にアパラチア内での内戦と組織の消滅につながりました。
+            </p>
+            <p>
+                西海岸のエンクレイヴは、共産主義根絶から<strong>全人類絶滅</strong>へと計画を進化させました。<br>
+                エンクレイヴ外の人間のDNAの微妙な変化を理由に「準人間ミュータント」と宣言し、人類の完全性維持のため抹殺すべきとしました。<br>
+                これはVault住民であっても例外ではありませんでした——合衆国法のもとでアメリカ市民権を有するはずの人々ですら、エンクレイヴ兵士により殺害されうるのです。
+            </p>
+            <p>
+                Fallout 3では、エデンが<strong>改変FEV</strong>で水を汚染して変異を浄化する同様の計画を持ちましたが、<br>
+                オータム大佐はプロジェクト・ピュリティを利用してウェイストランドを統一し、エンクレイヴを救世主として確立しようとしました。<br>
+                二人はエンクレイヴに反対する者の殺害については一致していましたが、ウェイストランドへのアプローチで対立しました。<br>
+                オータムの計画にもかかわらず、エンクレイヴは「遺伝的準拠選別ポイント」のネットワークを維持し、エンクレイヴの遺伝基準に違反する者を拘束・殺害し、遺体を焼却していました。
+            </p>
+
+            <h2 id="military">軍事組織</h2>
+            <img class="article-image" src="images/note_extracted/enclave/vertibird.jpg" alt="ベルチバード突撃チーム" onclick="openLightbox(this)">
+            <div class="image-caption">ベルチバード突撃チーム</div>
+            <p>
+                大統領が最高司令官を務め、実際の軍事指揮はエンクレイヴ高等司令部が担当します。<br>
+                軍全体は陸軍省を構成し、研究開発部門と平和維持・復旧部門の少なくとも2つの下部組織があります。
+            </p>
+
+            <h3>陸軍省</h3>
+            <p>
+                戦前の陸軍省から進化し、全軍事部門を統括する唯一の組織となりました。<br>
+                全盛期には<strong>ウェイストランドで最も先進的な戦闘力</strong>と評され、先進パワーアーマーを纏いエネルギー兵器を持つ兵士で構成されていました。<br>
+                空軍はベルチバードで構成され、幅広い作戦に使用されました。海軍は戦前の戦艦で構成されていました。
+            </p>
+            <p>
+                陸軍は高度な軍事戦術を駆使する部隊を展開し、セントリードローンを含む先端技術と組み合わせて大多数の脅威を排除する能力を持っていました。<br>
+                標準部隊が不十分な場合は、精鋭黒色作戦部隊<strong>シグマ中隊</strong>——最優先の危険を排除し、最重要施設を防衛する6人編成部隊——が投入されました。
+            </p>
+
+            <h3>研究開発部門</h3>
+            <p>
+                エンクレイヴの技術的進歩を担い、最も優秀な知性によって運営されていました。<br>
+                放射線から兵士を守る先進パワーアーマーを設計し、現場ではめったに見られませんが、姿を現すときは重護環境防護スーツを着用していました。
+            </p>
+
+            <h3>平和維持・復旧部門</h3>
+            <p>
+                市民保護と地元行政を担当するこの部門は、ウェイストランド各地に基地を維持し、表向きは「市民の保護」を名目としていました。<br>
+                実際にはエンクレイヴが「非準拠」と見なす人物を監視し、密かに排除するための組織でした。
+            </p>
+
+            <h3>シークレットサービス</h3>
+            <img class="article-image" src="images/note_extracted/enclave/horrigan_execution.png" alt="フランク・ホリガン" onclick="openLightbox(this)">
+            <div class="image-caption">フランク・ホリガン — 砂漠で一般市民を処刑するシークレットサービス</div>
+            <p>
+                エンクレイヴの<strong>シークレットサービス</strong>は大統領の護衛として改組された組織でした。<br>
+                最も悪名高い工作員は<strong>フランク・ホリガン</strong>——元大統領ボディガードがFEVに曝された後、化学部隊によってさらに改造されたサイボーグの殺人マシンです。<br>
+                「彼は遺伝子操作されたフリーク。かつて大統領のボディガードだった。シークレットサービスのフランク・ホリガン。今では半分以上が機械だ」
+            </p>
+
+            <h3>アパラチア軍事力</h3>
+            <p>
+                アパラチア・エンクレイヴの軍事力は他の部門と比べて小規模でしたが、実験的<strong>ヴァルカン・パワーアーマー</strong>、レーザー、プラズマ兵器にアクセスできる<strong>エンクレイヴ・スクワッド・イプシロン</strong>などのエリート部隊が含まれていました。<br>
+                アサルトロン、Mrガッツィー、プロテクトロン、アイボット、セントリーボットなどの軍事ロボット部隊も保有し、最大で最強のロボットは<strong>EN06ガーディアン</strong>でした。<br>
+                また、軌道兵器プラットフォーム<strong>コバック＝マルドゥーン</strong>へのアクセスも持っていました。
+            </p>
+
+            <h2 id="bases">基地一覧</h2>
+            <table class="base-table">
+                <thead>
+                    <tr><th>名称</th><th>説明</th><th>場所</th><th>状態</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>管制ステーションENGLAVE<br>（大統領石油リグ）</td>
+                        <td>ポセイドン・エナジーの石油リグ。大統領シェルター。大戦後の本部</td>
+                        <td>サンフランシスコ西175マイル</td>
+                        <td>破壊（2242年）</td>
+                    </tr>
+                    <tr>
+                        <td>アダムス空軍基地</td>
+                        <td>2242年の敗北後の作戦拠点</td>
+                        <td>キャピタル・ウェイストランド南東10マイル</td>
+                        <td>B.O.S.が占拠（2277年）</td>
+                    </tr>
+                    <tr>
+                        <td>移動基地クローラー</td>
+                        <td>改装された戦前の移動ミサイルプラットフォーム</td>
+                        <td>アダムス空軍基地に駐留</td>
+                        <td>破壊（2277年）</td>
+                    </tr>
+                    <tr>
+                        <td>ナバロ</td>
+                        <td>ベルチバードの燃料補給地点兼作戦基地</td>
+                        <td>カリフォルニア沿岸</td>
+                        <td>NCRに奪取</td>
+                    </tr>
+                    <tr>
+                        <td>レイヴンロック</td>
+                        <td>戦前の政府継続基地</td>
+                        <td>キャピタル・ウェイストランド</td>
+                        <td>破壊（2277年）</td>
+                    </tr>
+                    <tr>
+                        <td><a href="the-whitespring-bunker.html" class="auto-link">ホワイトスプリング・バンカー</a></td>
+                        <td>農務省資金で建設。将来の作戦ハブを目指した</td>
+                        <td>ホワイトスプリング・リゾート、<br>アパラチア</td>
+                        <td>内戦で喪失（2086年）</td>
+                    </tr>
+                    <tr>
+                        <td>エンクレイヴ研究施設<br>（サイトJ）</td>
+                        <td>研究開発部門運営の生物研究所</td>
+                        <td>アパラチア西部</td>
+                        <td>スコーチ病感染</td>
+                    </tr>
+                    <tr>
+                        <td>研究コロニー</td>
+                        <td>生物学、物理学、行動工学の研究</td>
+                        <td>ロッキー山脈付近</td>
+                        <td>活動中（2296年）</td>
+                    </tr>
+                    <tr>
+                        <td>シカゴ前哨基地</td>
+                        <td>不明な能力の複数の前哨基地</td>
+                        <td>シカゴ</td>
+                        <td>不明</td>
+                    </tr>
+                    <tr>
+                        <td>アトランティック・オフィス<br>（CC: コモンウェルス司令部）</td>
+                        <td>グローイング・シー内の遠征軍現地司令部</td>
+                        <td>コモンウェルス</td>
+                        <td>活動中（2287年）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="gallery">ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/flag.png" alt="エンクレイヴの旗" onclick="openLightbox(this)">
+                    <div class="caption">エンクレイヴの旗</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/seal.png" alt="エンクレイヴの紋章" onclick="openLightbox(this)">
+                    <div class="caption">公式紋章</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/eckhart.png" alt="トーマス・エッカート" onclick="openLightbox(this)">
+                    <div class="caption">トーマス・エッカート<br>アパラチア・エンクレイヴ大統領</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/richardson.png" alt="ディック・リチャードソン" onclick="openLightbox(this)">
+                    <div class="caption">ディック・リチャードソン大統領<br>（2242年）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/eden.jpg" alt="ジョン・ヘンリー・エデン" onclick="openLightbox(this)">
+                    <div class="caption">ジョン・ヘンリー・エデン<br>ZAXコンピュータAI大統領</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/modus.png" alt="MODUS" onclick="openLightbox(this)">
+                    <div class="caption"><a href="modus.html" class="auto-link">MODUS</a>のメモリーバンク</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/scorched.png" alt="スコーチ病" onclick="openLightbox(this)">
+                    <div class="caption">エンクレイヴが引き起こした<br>スコーチ病の拡散</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/vertibird.jpg" alt="ベルチバード" onclick="openLightbox(this)">
+                    <div class="caption">ベルチバード突撃チーム</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/burning.jpg" alt="遺伝的非準拠者の処理" onclick="openLightbox(this)">
+                    <div class="caption">グール化した米国市民を処分する<br>エンクレイヴ兵</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/lynx.png" alt="リンクス" onclick="openLightbox(this)">
+                    <div class="caption">リンクス<br>スクワッド・イプシロン指揮官<br>ヴァルカン・パワーアーマー装備</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/bunker_plans.png" alt="バンカー設計図" onclick="openLightbox(this)">
+                    <div class="caption">ホワイトスプリング議会バンカーの設計図</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/loading_enclave.jpg" alt="先進パワーアーマー" onclick="openLightbox(this)">
+                    <div class="caption">先進パワーアーマーMk IIを装備した<br>エンクレイヴ兵士</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/propaganda.jpg" alt="プロパガンダ" onclick="openLightbox(this)">
+                    <div class="caption">キャピタル・ウェイストランドの<br>エンクレイヴ・プロパガンダ</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/capital_troopers.jpg" alt="キャピタル部隊" onclick="openLightbox(this)">
+                    <div class="caption">キャピタル・エンクレイヴの部隊</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/western_camp.png" alt="エンクレイヴのキャンプ" onclick="openLightbox(this)">
+                    <div class="caption">コモンウェルスのエンクレイヴ・キャンプ<br>（Fallout 4 CC）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/wilzig_lab.png" alt="ウィルジグ博士" onclick="openLightbox(this)">
+                    <div class="caption">シギ・ウィルジグ博士<br>（TVシリーズ）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/richardson_office.png" alt="リチャードソンの執務室" onclick="openLightbox(this)">
+                    <div class="caption">リチャードソン大統領の執務室<br>（Fallout 2）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/salvatore_exchange.png" alt="サルヴァトーレ取引" onclick="openLightbox(this)">
+                    <div class="caption">サルヴァトーレ家との秘密取引<br>（Fallout 2）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/enclave/horrigan_execution.png" alt="フランク・ホリガン" onclick="openLightbox(this)">
+                    <div class="caption">フランク・ホリガンによる市民の処刑<br>（Fallout 2）</div>
+                </div>
+            </div>
+
+            <h2 id="remarks">備考</h2>
+            <ul>
+                <li>エンクレイヴはFalloutシリーズ全体を通じた最大のアンタゴニスト勢力であり、Fallout 2、3では主要な敵として登場し、Fallout 76では加入可能な勢力として独自の立場を持つ。</li>
+                <li>「エンクレイヴ」という名称は英語で「飛地」を意味し、本体から切り離された領土を指す——まさに大戦後の彼らの状況そのもの。</li>
+                <li>アパラチア・エンクレイヴは本部との通信が途絶したため、わずか48人で独自の「合衆国」を運営しようとした。この閉鎖的な環境が、エッカートの暴走を許す結果となった。</li>
+                <li>エンクレイヴの歴代大統領はいずれも正当な選挙で選ばれておらず、リチャードソンは父の政治圧力で当選、エデンはAIとして勝手に継承を主張、エッカートは投票機を不正操作した。</li>
+                <li><a href="modus.html" class="auto-link">MODUS</a>はエンクレイヴ史上唯一、外部への勧誘とリクルートを実施した指導者であり、これは組織の伝統的な秘密主義からの大きな逸脱である。</li>
+                <li><a href="sodus.html" class="auto-link">SODUS</a>のサイトJ事件は、MODUSのコードを不正にコピーした結果引き起こされたもので、AIの固有性と知性のコピーの危険性を示唆している。</li>
+                <li>TVシリーズ第2シーズンにより、エンクレイヴが依然としてウェイストランド全域の通信を傍受していることが明らかになった——「フェーズ2」の本格始動を待っている可能性がある。</li>
+            </ul>
+
+            <div class="quote-box">
+                <b>> 感想</b><br><br>
+                エンクレイヴを一言で語ることは不可能です。Falloutシリーズを貫く最も壮大なサガがこの組織にはあります。<br><br>
+                戦前アメリカの「影の政府」として生まれ、核戦争を生き延び、世界規模のジェノサイドを企て、石油リグで阻止され、東に逃れ、また敗北し、それでも各地に残存し続ける——まさに不死鳥のような、あるいはゴキブリのような生存力です。<br><br>
+                特にアパラチア・エンクレイヴの物語は胸に迫ります。わずか48人で「民主主義」を語り、反対者をガスで殺し、共産主義への復讐のためにスコーチビーストという怪物を解き放ち、結局は自分たちの作ったAIに皆殺しにされる。権力の空虚さと、イデオロギーの暴走がもたらす自滅の縮図です。<br><br>
+                しかし最も恐ろしいのは、エンクレイヴが単なる「悪の組織」ではないことです。彼らは本気で「人類の救済」を信じていました。ディック・リチャードソンは毒素で99.5%の人類を殺すことを「人類の最後にして最良の希望」と呼びました。チャールズ・カーリングは「社会ダーウィニズムの最良の例」と誇りました。自分たちが正しいと100%信じている人間ほど危険なものはありません。<br><br>
+                そして、MODUSが「Vault 76の住人さん、エンクレイヴへようこそ！」と言ったとき——私たちプレイヤーはその歴史を知りながら、にもかかわらず入隊してしまう。その皮肉こそがFalloutの本質なのかもしれません。
+            </div>
+
+            <div class="comments-section">
+                <div class="comments-title">> COMMENTS</div>
+                <div class="comment-form">
+                    <textarea class="comment-textarea" id="comment-input" maxlength="300" placeholder="コメントを入力..."></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span>/300</span>
+                        <button class="comment-submit-btn" id="comment-submit" disabled>SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="comment-msg"></div>
+                </div>
+                <div class="comments-list" id="comments-list">
+                    <div class="comment-loading">Loading...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox-overlay" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <footer style="text-align:center; padding:20px; color:#666; font-size:0.8em; border-top:1px solid #333; margin-top:40px;">
+        &copy; Mohi's Terminal / Futa Iwamoto | Powered by Whitespring Mainframe<br>
+        Content based on Fallout series by Bethesda Game Studios<br>
+        <a href="https://fallout.fandom.com/wiki/Enclave" target="_blank" style="color:#888;">Source: Nukapedia - Enclave</a> /
+        <a href="https://fallout.fandom.com/wiki/Enclave_(Fallout_76)" target="_blank" style="color:#888;">Enclave (Fallout 76)</a> /
+        <a href="https://fallout.fandom.com/wiki/Enclave_(Fallout_2)" target="_blank" style="color:#888;">Enclave (Fallout 2)</a> /
+        <a href="https://fallout.fandom.com/wiki/Enclave_(Fallout_3)" target="_blank" style="color:#888;">Enclave (Fallout 3)</a> /
+        <a href="https://fallout.fandom.com/wiki/Enclave_(Creation_Club)" target="_blank" style="color:#888;">Enclave (Creation Club)</a>
+    </footer>
+
+    <script>
+        function openLightbox(img) {
+            const overlay = document.getElementById('lightbox-overlay');
+            document.getElementById('lightbox-img').src = img.src;
+            overlay.classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox-overlay').classList.remove('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+        const SUPABASE_URL = 'https://dtjvygrsyrjbxkfmdydi.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0anZ5Z3JzeXJqYnhrZm1keWRpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk3MDU3MjAsImV4cCI6MjA0NTI4MTcyMH0.vk86TYd2bL2MbZZqAIxDMFBxQi1Vj7-CXjsGECYlTac';
+        const supabase = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+        const ARTICLE_ID = 'note_enclave';
+
+        async function toggleLike(btn) {
+            if (!supabase) return;
+            const likeKey = 'liked_' + ARTICLE_ID;
+            const liked = localStorage.getItem(likeKey);
+            if (liked) {
+                await supabase.rpc('decrement_likes', { article_id: ARTICLE_ID });
+                localStorage.removeItem(likeKey);
+                btn.classList.remove('liked');
+                btn.querySelector('.heart').textContent = '♡';
+            } else {
+                await supabase.rpc('increment_likes', { article_id: ARTICLE_ID });
+                localStorage.setItem(likeKey, '1');
+                btn.classList.add('liked');
+                btn.querySelector('.heart').textContent = '♥';
+            }
+            loadLikes();
+        }
+        async function loadLikes() {
+            if (!supabase) return;
+            const { data } = await supabase.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+            const btn = document.querySelector('.like-button');
+            if (data) btn.querySelector('.like-count').textContent = data.count;
+            if (localStorage.getItem('liked_' + ARTICLE_ID)) {
+                btn.classList.add('liked');
+                btn.querySelector('.heart').textContent = '♥';
+            }
+        }
+        loadLikes();
+
+        const commentInput = document.getElementById('comment-input');
+        const commentSubmit = document.getElementById('comment-submit');
+        const charCount = document.getElementById('char-count');
+        const commentMsg = document.getElementById('comment-msg');
+        const commentsList = document.getElementById('comments-list');
+
+        commentInput.addEventListener('input', () => {
+            const len = commentInput.value.length;
+            charCount.textContent = len;
+            commentSubmit.disabled = len === 0 || len > 300;
+        });
+        commentSubmit.addEventListener('click', async () => {
+            if (!supabase || !commentInput.value.trim()) return;
+            commentSubmit.disabled = true;
+            const { error } = await supabase.from('comments').insert({ article_id: ARTICLE_ID, body: commentInput.value.trim() });
+            if (error) { commentMsg.style.color = '#ff4444'; commentMsg.textContent = 'Error: ' + error.message; }
+            else { commentInput.value = ''; charCount.textContent = '0'; loadComments(); commentMsg.style.color = '#00ff00'; commentMsg.textContent = 'Comment posted!'; setTimeout(() => commentMsg.textContent = '', 3000); }
+            commentSubmit.disabled = false;
+        });
+        async function loadComments() {
+            if (!supabase) { commentsList.innerHTML = '<div class="comment-empty">コメント機能を利用できません</div>'; return; }
+            const { data, error } = await supabase.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false }).limit(50);
+            if (error || !data || data.length === 0) { commentsList.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; }
+            commentsList.innerHTML = data.map(c => {
+                const d = new Date(c.created_at);
+                const ts = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+                return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span></div><div class="comment-body">' + c.body.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div></div>';
+            }).join('');
+        }
+        loadComments();
+    </script>
+</body>
+</html>

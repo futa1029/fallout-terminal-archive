@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>PoseidoNet | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/poseidonet.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="PoseidoNet | Overseer Mohi's Terminal">
+    <meta property="og:description" content="PoseidoNet — ポセイドン・エネルギーが運営する戦前の大陸横断ネットワーク。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/poseidon-energy/logo_fnv.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/poseidonet.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="PoseidoNet | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="PoseidoNet — ポセイドン・エネルギーの大陸横断ネットワーク。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/poseidon-energy/logo_fnv.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .terminal-output { background: #0a0a0a; border: 1px solid #333; padding: 15px 20px; font-family: 'Share Tech Mono', monospace; font-size: 0.85em; color: var(--accent-color); line-height: 1.5; margin: 20px 0; border-radius: 4px; white-space: pre-wrap; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="テクノロジー" data-article-appearance="Fallout 2, Fallout: New Vegas, Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">PoseidoNet</h3>
+            <img src="images/note_extracted/poseidon-energy/logo_fnv.png" alt="ポセイドン・エネルギー・ロゴ" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>大陸横断ネットワーク</span></div>
+            <div class="infobox-row"><span class="infobox-label">運営</span><span><a href="poseidon-energy.html" class="auto-link">ポセイドン・エネルギー</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">範囲</span><span>太平洋〜大西洋</span></div>
+            <div class="infobox-row"><span class="infobox-label">戦後利用</span><span><a href="enclave.html" class="auto-link">エンクレイヴ</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>FO2, FNV, FO76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_poseidonet" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>PoseidoNet<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ポセイドネット</span></h1>
+
+            <h2>概要</h2>
+            <p><strong>PoseidoNet</strong>は、<a href="poseidon-energy.html" class="auto-link">ポセイドン・エネルギー</a>が運営する戦前の大陸横断ネットワークであり、太平洋から大西洋まで広がっていた。</p>
+
+            <h2>背景</h2>
+            <p>PoseidoNetは軍産複合体のネットワーク基盤であり、企業の支社だけでなく、政府および軍事施設をも接続し、リアルタイム通信を可能にしていた。</p>
+            <p>ネットワークが提供する帯域幅は、以下の機能を支えるのに十分であった：</p>
+            <ul>
+                <li><strong>ロボットルーティンのダウンロード</strong> — PoseidoNetの検索でネットワーク上にルーティンが見つかる限り対応可能</li>
+                <li><strong>リアルタイムビデオ会議</strong> — エンクレイヴの通信将校が映像リンクのテストを行っていた</li>
+                <li><strong>セキュリティトレース</strong> — 不正ユーザーの位置特定が可能</li>
+            </ul>
+
+            <div class="quote-box">
+                <b>「おい、お利口さんだな？ いいか、今お前をトレースしてるぞ。内部セキュリティがお前の尻にべったり張り付いたらどんな気分か、見てやろうじゃないか。このクソ野郎！」</b>
+                <br>— エンクレイヴ通信将校（Fallout 2）
+            </div>
+
+            <h3>セキュリティ</h3>
+            <p>セキュリティは、正しいセキュリティ・アクセスコード・シーケンスを入力しない限り、中央PoseidoNetへのアップリンクを防止することで維持されていた。
+            ユーザーが正しいコードの入力に3回失敗すると、PoseidoNetは直ちに内部セキュリティ手順を発動し、ターミナルをロックダウンした。</p>
+            <p>PoseidoNetのネットワーク管理者はロックアウトを解除できたが、一部のターミナルはローカルリセットで単純にアクセスを復元することが可能であった。</p>
+
+            <div class="terminal-output">Uplink with central PoseidoNet initiated.
+Enter Primary Security Access Code Sequence:
+70Y644, 008Z21, 9X7299, A46123.
+
+Security Access Code Sequence Accepted.
+Welcome to PoseidoNet:
+
+Searching Comlinks... Searching...
+Iron Mountain... Offline
+NORAD... Offline
+SAC... Offline
+
+Searching PoseidoNet... --More?--
+Active PoseidoNet Stations:
+  Atomic Powerplant #5
+  Navarro Refinery
+  Control Station ENCLAVE
+  ENCLAVE Vault-Research Control... Access Denied</div>
+
+            <h3>商用版</h3>
+            <p>PoseidoNetの商用版も市場で入手可能であり、<strong>ポセイドン電力管理システム</strong>のような他のソフトウェアとバンドルされることもあった。これはトライアルウェア（試用版）として提供されていた。</p>
+            <p>試用期間が終了すると、PoseidoNetはヘルプシステムのアップデートを含む一切のアップデートをインストールしなくなった。
+            皮肉なことに、<a href="enclave-oil-rig.html" class="auto-link">ポセイドン・オイル・リグ上のPR_002大統領シェルター</a>では、大戦から数年後に試用期間が切れたこの商用版が使用されていた。
+            石油リグが破壊されるまでの約1世紀半にわたり、代替品なしで使い続けられていた。</p>
+
+            <div class="terminal-output">Welcome to PoseidoNet Help system.
+We regret that your Help files are currently
+out of date, and unavailable.
+
+Seek Help file update? (Y/N)
+
+User Help file update not available with trial
+PoseidoNet software.
+Please purchase full version for full access
+to all further updates.
+
+Your trial period for PoseidoNet access is
+59,439 days overdue.</div>
+
+            <h3>戦後</h3>
+            <p>大戦後、<a href="enclave.html" class="auto-link">エンクレイヴ</a>はPoseidoNetを使用して、アメリカの荒野に散らばる各施設間の通信を行った。
+            このシステムはその堅牢性を証明し、2281年の時点でも稼動を続け、軌道上の資産への接続さえも可能であった。</p>
+
+            <h2>既知のPoseidoNetノード</h2>
+            <h3>企業</h3>
+            <ul>
+                <li><a href="enclave-oil-rig.html" class="auto-link">ポセイドン・オイル掘削装置</a>（コントロールステーション ENCLAVE / PR_002）</li>
+                <li>ナバロ精製所</li>
+                <li>原子力発電所第5号（ゲッコー）</li>
+                <li>PMVバルディーズ（タンカー）</li>
+                <li>HELIOS One</li>
+                <li><a href="poseidon-energy-plant-wv-06.html" class="auto-link">ポセイドン・エネルギー発電所WV-06</a></li>
+                <li>サンダーマウンテン発電所</li>
+            </ul>
+            <h3>政府・軍事</h3>
+            <ul>
+                <li>エンクレイヴ Vault研究管制（アクセス拒否）</li>
+                <li>アイアン・マウンテン（オフライン）</li>
+                <li>NORAD（オフライン）</li>
+                <li>戦略航空軍団 / SAC（オフライン）</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>PoseidoNetは<em>Fallout 2</em>、<em>Fallout: New Vegas</em>、<em>Fallout 76</em>で言及されている。</p>
+
+            <div class="quote-box">
+                <b>感想</b><br>
+                戦前の軍産複合体が構築したインターネットのような存在。<br>
+                企業ネットワークでありながら、NORAD（北米航空宇宙防衛司令部）やSAC（戦略航空軍団）まで接続していたという設定が、ポセイドン・エネルギーと政府の癒着を如実に表しています。<br>
+                試用版ソフトウェアが150年以上も「59,439日間の期限超過」のまま放置されているという描写は、Falloutらしい秀逸なブラックユーモアですね。<br>
+                ゲッコーのターミナルで何度もエンクレイヴのシステムにアクセスしようとすると、最終的にキーボードから電気ショックを受けるという仕掛けも印象的です。
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 15px; border-top: 1px solid #333; font-size: 0.8em; color: #666; line-height: 1.6;">
+                <p>この記事は <a href="https://fallout.fandom.com/wiki/PoseidoNet" target="_blank" rel="noopener noreferrer" style="color: #888;">Nukapedia (Fallout Wiki)</a>の「PoseidoNet」の記事を日本語に翻訳し再構成したものです。<br>
+                原文は <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color: #888;">Creative Commons Attribution-ShareAlike (CC BY-SA)</a> ライセンスのもとで利用しています。</p>
+                <p>© Bethesda Softworks LLC. Fallout およびすべての関連ロゴ・名称は Bethesda Softworks LLC の登録商標です。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = el.src;
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_poseidonet';
+        const COOLDOWN_MS = 60000;
+        let lastCommentTime = 0;
+
+        async function loadLikes() {
+            if (!sb) return;
+            try {
+                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                const btn = document.querySelector('.like-button');
+                if (data) btn.querySelector('.like-count').textContent = data.count;
+                if (localStorage.getItem('liked_' + ARTICLE_ID)) {
+                    btn.classList.add('liked');
+                    btn.querySelector('.heart').textContent = '♥';
+                }
+            } catch(e) { console.log('likes load error', e); }
+        }
+
+        async function toggleLike(btn) {
+            if (!sb) return;
+            const liked = localStorage.getItem('liked_' + ARTICLE_ID);
+            const delta = liked ? -1 : 1;
+            try {
+                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                if (data) {
+                    await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID);
+                } else {
+                    await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 });
+                }
+                if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; }
+                else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; }
+                const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                if (d2) btn.querySelector('.like-count').textContent = d2.count;
+            } catch(e) { console.log('like error', e); }
+        }
+
+        function updateCharCount() {
+            const ta = document.getElementById('commentInput');
+            document.getElementById('charCount').textContent = ta.value.length + ' / 500';
+        }
+
+        async function loadComments() {
+            if (!sb) return;
+            const list = document.getElementById('commentsList');
+            try {
+                const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false });
+                if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; }
+                list.innerHTML = data.map(c => {
+                    const d = new Date(c.created_at);
+                    const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+                    const myId = localStorage.getItem('comment_id_' + c.id);
+                    return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (myId ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>';
+                }).join('');
+            } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; }
+        }
+
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+        async function submitComment() {
+            if (!sb) return;
+            const ta = document.getElementById('commentInput');
+            const body = ta.value.trim();
+            const msg = document.getElementById('commentMsg');
+            if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; }
+            if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; }
+            const now = Date.now();
+            if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; }
+            const btn = document.getElementById('commentSubmitBtn');
+            btn.disabled = true;
+            try {
+                const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single();
+                if (error) throw error;
+                if (data) localStorage.setItem('comment_id_' + data.id, '1');
+                ta.value = '';
+                updateCharCount();
+                lastCommentTime = now;
+                msg.textContent = '投稿しました';
+                msg.style.color = 'var(--accent-color)';
+                loadComments();
+            } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; }
+            btn.disabled = false;
+        }
+
+        async function deleteComment(id) {
+            if (!sb || !confirm('このコメントを削除しますか?')) return;
+            try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) { console.log('delete error', e); }
+        }
+
+        loadLikes();
+        loadComments();
+    </script>
+</body>
+</html>

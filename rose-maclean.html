@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rose MacLean | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/rose-maclean.html">
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Rose MacLean | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Rose MacLean（ローズ・マクレーン）のFalloutロア記事。<br>
+                Overseer Mohi's Terminalで読む。<br>
+                ">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/rose-maclean/Rose_MacLean.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/rose-maclean.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Rose MacLean | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Rose MacLean（ローズ・マクレーン）のFalloutロア記事。<br>
+                Overseer Mohi's Terminalで読む。<br>
+                ">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/rose-maclean/Rose_MacLean.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+
+        /* ===== Note Figure ===== */
+        .note-figure {
+            float: right;
+            margin: 0 0 15px 20px;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .note-figure img {
+            max-width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .note-figure .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .note-figure-left {
+            float: left;
+            margin: 0 20px 15px 0;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .note-figure-left img {
+            max-width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .note-figure-left .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
+        }
+
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+                position: static;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            .note-figure, .note-figure-left {
+                float: none;
+                margin: 15px auto;
+                max-width: 60%;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item {
+            background: rgba(255,255,255,0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn {
+            background: none; border: none; cursor: pointer;
+            font-size: 1em; padding: 2px 6px; border-radius: 3px;
+            opacity: 0.7; transition: opacity 0.2s;
+        }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading {
+            color: #666; font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace; padding: 10px 0;
+        }
+    </style>
+</head>
+
+<body data-article-category="人物" data-article-appearance="Fallout TV series">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Rose MacLean</h3>
+            <img src="images/note_extracted/rose-maclean/Rose_MacLean.png" alt="Rose MacLean（人間）">
+            <img src="images/note_extracted/rose-maclean/FOTV_Rose_ghoul.png" alt="Rose MacLean（グール）">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間（かつて）→ グール</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
+            <div class="infobox-row"><span class="infobox-label">状態</span><span>死亡（2296年）</span></div>
+            <div class="infobox-row"><span class="infobox-label">家族</span><span><a href="hank-maclean.html" class="auto-link">ハンク・マクレーン</a>（夫）、<a href="lucy-maclean.html" class="auto-link">ルーシー・マクレーン</a>（娘）、ノーム・マクレーン（息子）</span></div>
+            <div class="infobox-row"><span class="infobox-label">俳優</span><span>チェルシー・ロイター（グール）、エル・ヴェルテス（若い頃）</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout TVシリーズ</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_rose_maclean" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Rose MacLean<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ローズ・マクレーン</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                ローズ・マクレーンは、<a href="hank-maclean.html" class="auto-link">ハンク・マクレーン</a>の妻であり、<a href="lucy-maclean.html" class="auto-link">ルーシー</a>とノーム・マクレーンの母親です。<br>
+                2296年までに、彼女はグールとなり、<a href="lee_moldaver.html" class="auto-link">リー・モルデイヴァー</a>のもとに囚われていました。<br>
+                Fallout TVシリーズに登場します。
+            </p>
+
+            <!-- ===== Background ===== -->
+            <h2>背景</h2>
+            <p>
+                23世紀にVault 33で生まれ育ったローズは、20代前半の頃、2271年頃にハンクと結婚し、マクレーンの姓を名乗るようになりました。<br>
+                ハンクはVault 33の次の監督官に就任しました。<br>
+                当時ローズは、ハンクが実は大戦前の<a href="vault_tec.html" class="auto-link">Vault-Tec</a>社の社員であり、「スーパー・マネージャー」を選択的交配によって生み出す「バッドのバディーズ」プログラムの一環として、Vault 31の人工冬眠から解放されたことを知らなかったようです。<br>
+                結婚後、ローズは1人目の子供として2272年に娘のルーシーを授かり、その数年後に息子のノームが生まれました。
+            </p>
+
+            <h3>Vault 33からの脱出</h3>
+            <div class="note-figure-left">
+                <img src="images/note_extracted/rose-maclean/FOTV_Rose_Moldaver_Lucy.png" alt="シェイディ・サンズでのローズ、ルーシー、モルデイヴァー">
+                <div class="caption">シェイディ・サンズでのローズ、ルーシー、モルデイヴァー</div>
+            </div>
+            <p>
+                2277年頃、ローズはVaultの水源から何者かが水を吸い上げていることを発見し、地表にまだ文明が存在する証拠としてハンクに提示しました。<br>
+                しかし、ハンクはこの追及を断固として禁じましたが、これはローズの夫への疑念をさらに深めるだけでした。<br>
+                ある時点で、ローズはハンクに反旗を翻し、子供たちを連れてVaultを出て地表へと向かいました。<br>
+                ハンクは、ローズが子供たちを危険な世界に連れ出そうとしていると考え、激怒しました。
+            </p>
+            <p>
+                Vaultを出てからしばらくして、ローズと子供たちは<a href="ncr.html" class="auto-link">新カリフォルニア共和国</a>の首都シェイディ・サンズにたどり着きました。<br>
+                ただし、ノームとルーシーは当時幼すぎたため、地表の世界についての記憶を形成することはできませんでした。<br>
+                地表での生活の中で、ローズは<a href="lee_moldaver.html" class="auto-link">リー・モルデイヴァー</a>と親密な友情を築きました。<br>
+                ただし、ローズがモルデイヴァーもまた夫と同じく大戦前の時代の人物であることを知っていたかは不明です。
+            </p>
+            <div style="clear:both;"></div>
+
+            <h3>グール化</h3>
+            <div class="note-figure">
+                <img src="images/note_extracted/rose-maclean/FOTV_Rose_ghoul.png" alt="フェラル化したグールとしてのローズ">
+                <div class="caption">フェラル・グールとなったローズ</div>
+            </div>
+            <p>
+                その同じ年、ハンクとVault 31の「経営陣」（おそらくベティ・ピアソンを含む）がシェイディ・サンズでローズと対峙しました。<br>
+                モルデイヴァーによれば、ハンクの要求に対してローズは帰宅を拒否しました。<br>
+                ローズは地表に残されましたが、ハンクは子供たちを連れ戻しました。<br>
+                その後監督官は、Vault 33の住人たち（成長していく子供たちを含む）に嘘をつき、母親は「2277年の疫病」の際に「全員が隔離されなければならなかった」時に亡くなり、Vaultの農場は飢饉の中に枯れたと告げました。
+            </p>
+            <p>
+                2283年頃、ハンクはウエイストランドにおけるVault-Tecの覇権を確保するという使命と、自分を拒絶したローズへの怒りの両方から、シェイディ・サンズに核兵器を発射し、街と住民を壊滅させました。<br>
+                ローズはこの攻撃で命を落とすことはありませんでしたが、その最中か直後のいずれかの時点で、放射線により重度に変形したグールへと変貌しました。<br>
+                最終的に、まだ存命だったモルデイヴァーに発見され、モルデイヴァーは感傷から彼女を生かし続け、ロサンゼルスのグリフィス天文台にあるモルデイヴァーの本拠地に囚われていました。<br>
+                その地では、NCR軍の残存部隊がモルデイヴァーのもとに結集し、彼女を「フレイム・マザー」と称していました。<br>
+                モルデイヴァーは、Vault-Tecの常温核融合装置を入手して、荒廃した街に電力と生命を取り戻す計画を進めていました。
+            </p>
+            <div style="clear:both;"></div>
+
+            <!-- ===== TV Series ===== -->
+            <h2>Fallout TVシリーズ</h2>
+            <p>
+                2296年以前のある時点で、ローズのPip-Boyはモルデイヴァーとその雇ったレイダーたちによって使用され、Vault 32に侵入してその住人に成りすましてVault 33にアクセスするために利用されました。<br>
+                このアクセスはシステムに記録されていました。
+            </p>
+            <p>
+                人間だった頃のローズは、ルーシーが母親との子供時代を回想する複数のフラッシュバックシーンで登場します。
+            </p>
+
+            <h3>はじまり</h3>
+            <p>
+                ルーシーがシギ・ウィルジグの頭部を持ってグリフィス天文台に到着すると、そこにはモルデイヴァーがダイニングテーブルに座っており、その隣にはローズの変わり果てたグールの姿がありました。<br>
+                モルデイヴァーは最終的にそのグールの正体を明かし、ルーシーは母親のトレードマークのペンダントがグールの首に食い込んでいるのを見て、それが母であると確認しました。
+            </p>
+            <p>
+                グリフィス天文台の戦いの最中、ロスト・ヒルズ支部のブラザーフッド・オブ・スティールがNCR軍を攻撃する中、ルーシーは父親の所業の全容を知った後、慈悲の行為として10mmピストルで母親の頭を撃ち抜き、安楽死させることを選びました。<br>
+                ローズの遺体はそのまま座っていた場所に残され、瀕死のモルデイヴァーが元のパートナーの傍らに腰を下ろし、その手を握りながら常温核融合装置がボーンヤードに電力を回復させる光景を見届け、やがて自身も傷に屈して息を引き取りました。
+            </p>
+
+            <!-- ===== Personality ===== -->
+            <h2>人柄</h2>
+            <p>
+                モルデイヴァーによれば、ルーシーは母親にとてもよく似ており、優しく、愛情深く、好奇心旺盛な人物だったとされています。
+            </p>
+
+            <!-- ===== Appearances ===== -->
+            <h2>登場作品</h2>
+            <p>
+                ローズ・マクレーンはFallout TVシリーズにのみ登場します。<br>
+                エピソード1「終わり」、エピソード4、エピソード5、エピソード8「はじまり」に登場します。<br>
+                フラッシュバックでのローズはエル・ヴェルテスが演じ、「はじまり」でのフェラル・グール姿のローズは特殊メイクを施したチェルシー・ロイターが演じています。
+            </p>
+
+            <!-- ===== Behind the Scenes ===== -->
+            <h2>舞台裏</h2>
+            <p>
+                インタビューで、ローズとモルデイヴァーが過去に恋人同士だったかどうかを尋ねられた際、モルデイヴァー役の女優サリタ・チョウドリーは次のように答えています。<br>
+                「私にはバックストーリーがあるのですが、多くは語れません。<br>
+                でも、ファンの皆さんがこのすべてに気づいて、色々と想像を膨らませてくれていることを嬉しく思います。<br>
+                あの二人には深い親密さがあって、もし…シーズン2があれば分かるかもしれませんね。」
+            </p>
+
+            <!-- ===== GALLERY ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/rose-maclean/FOTV_Happy_Star-Crossed_Couple.png" alt="微笑み合うローズとモルデイヴァー">
+                        <div class="caption">微笑み合うローズとモルデイヴァー</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/rose-maclean/FOTV_Moldaver_dies_beside_Rose.png" alt="ローズの傍らで息を引き取るモルデイヴァー">
+                        <div class="caption">ローズの傍らで息を引き取るモルデイヴァー</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/rose-maclean/FOTV_Rose_Moldaver_Lucy.png" alt="シェイディ・サンズでのローズ、ルーシー、モルデイヴァー">
+                        <div class="caption">シェイディ・サンズでのローズ、ルーシー、モルデイヴァー</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ローズ・マクレーンの物語は、TVシリーズの中でも特にグッとくるエピソードですよね〜。<br>
+                Vault 33で何不自由なく暮らしていたはずの母親が、「外の世界にまだ文明がある」っていう真実を掴んで、自分の目で確かめたいっていう好奇心に突き動かされてVaultを出る決断をする…この流れがルーシーと本当にそっくりで、親子なんだなぁと感じますね。<br><br>
+                で、その好奇心と勇気の結果がシェイディ・サンズでの出会いと別れ、そしてグール化っていうのが、Falloutらしい容赦のない展開ですw<br>
+                ハンクが子供たちに「2277年の疫病で母は亡くなった」って嘘をつき続けてたのも、ルーシーがあの真実を知った時のショックを考えると…胸が痛いです。<br><br>
+                モルデイヴァーとの関係が特に印象的で、モルデイヴァーが変わり果てたローズをそれでも生かし続けて、自分の本拠地に置いてたっていうのは、友情なのかそれ以上なのか…サリタ・チョウドリーのインタビューでの含みのある回答がまた想像力を掻き立てますよね〜。<br><br>
+                最終話でルーシーが母を撃つシーンは、TVシリーズ全体の中でも最も重いシーンの一つだと思います。<br>
+                そしてその直後にモルデイヴァーがローズの手を握りながら、常温核融合でボーンヤードに灯りが戻る瞬間を見届けて逝くっていう…あの画がすごく美しくて切なかった。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+</p>
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Rose_MacLean" target="_blank" rel="noopener">Rose MacLean</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+        
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <!-- Supabase Scripts + Lightbox logic -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+
+            // Lightbox logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                });
+            });
+        });
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_rose_maclean';
+        const _commentArticleName = 'Rose MacLean';
+        const _commentArticleUrl = 'rose-maclean.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    loadComments(); alert('管理者モードを終了しました。'); return;
+                }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                } else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

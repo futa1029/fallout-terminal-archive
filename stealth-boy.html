@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Stealth Boy | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/stealth-boy.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Stealth Boy | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ステルス・ボーイ 3001 ── RobCo Industries製の個人用ステルスデバイス。中国のステルス技術をリバースエンジニアリングして開発された。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/stealth-boy/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/stealth-boy.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Stealth Boy | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="中国ステルスアーマーから生まれた個人用光学迷彩。ナイトキンを狂気に陥れたデバイスの全貌。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/stealth-boy/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノートブロック（ターミナルエントリ・メモ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="アイテム" data-article-appearance="Fallout シリーズ">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Stealth Boy</h3>
+            <img src="images/note_extracted/stealth-boy/img_main.png" alt="ステルス・ボーイ 3001">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>消耗品 / 雑貨</span></div>
+            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>RobCo Stealth Boy<br>Model 3001</span></div>
+            <div class="infobox-row"><span class="infobox-label">製造元</span><span>RobCo Industries</span></div>
+            <div class="infobox-row"><span class="infobox-label">開発者</span><span>ロバート・メイフラワー</span></div>
+            <div class="infobox-row"><span class="infobox-label">起源</span><span>中国ステルスアーマー<br>（Hei Gui）の<br>リバースエンジニアリング</span></div>
+            <div class="infobox-row"><span class="infobox-label">初確認</span><span>2075年12月</span></div>
+            <div class="infobox-row"><span class="infobox-label">原理</span><span>変調屈折フィールド<br>（光学迷彩）</span></div>
+            <div class="infobox-row"><span class="infobox-label">副作用</span><span>神経化学的変化<br>（妄想・幻覚・統合失調症）</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>全Falloutシリーズ</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_stealth-boy" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Stealth Boy<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ステルス・ボーイ</span></h1>
+
+            <blockquote style="border-left: 3px solid #ff9900; padding: 10px 20px; margin: 20px 0; font-style: italic; color: #ccc;">
+                「ナイトキンはステルス・ボーイの使用による統合失調症に苦しんでいる。ジェイコブスタウンを設立した理由の一つは、彼らを治療することだった」<br>
+                <span style="color: #888; font-size: 0.85em;">── マーカス（ジェイコブスタウン）</span>
+            </blockquote>
+
+            <p>
+                <strong>RobCo Industries ステルス・ボーイ 3001</strong>は、<strong>中米戦争</strong>中に中国の<strong>ステルス技術</strong>（Hei Guiステルスアーマー）をリバースエンジニアリングして開発された、個人用のステルスデバイスです。
+            </p>
+
+            <h2>歴史</h2>
+            <p>
+                <strong>2075年</strong>までには存在が確認されているステルス・ボーイは、<strong>ロバート・メイフラワー</strong>によって開発され、<strong>RobCo Industries</strong>が製造しました。大戦前に開発された最も先進的な技術の一つです。
+            </p>
+            <p>
+                ステルス・ボーイ 3001は手首に装着するデバイスで、<strong>変調屈折フィールド</strong>を生成します。このフィールドは物体の一方の側から反射された光をもう一方の側に透過させ（この効果は「<strong>ステルス放射線</strong>」と呼ばれることがある）、実質的な不可視状態を実現します。効果は半透明から、ほぼ完璧なアクティブカモフラージュまで多段階にわたります。
+            </p>
+            <p>
+                この特性のため、戦前はデバイスは<strong>厳格な軍事ハードウェア</strong>と見なされ、実際に使用されているところを見た民間人はほとんどいませんでした。REPCONテストサイトのターミナルには、民間人が誤ってステルス・ボーイの出荷を受け取った際の驚きが記録されています。
+            </p>
+            <p>
+                アメリカの科学者たちは基礎科学を完全には理解できませんでした。アメリカ製ステルス技術は中国のHei Guiステルスアーマーのリバースエンジニアリングに依存していましたが、軍事目的には十分な信頼性を持つと判断されました。実際、軍はRobCoにこれらのデバイスの大量生産を命じるほどでした。さらに、より高度な<strong>ステルス・ボーイ Mark IIプロトタイプ</strong>の開発も開始されました。
+            </p>
+
+            <h2>副作用</h2>
+            <p>
+                ステルス・ボーイにはいくつかの重大な欠点があります。限られたバッテリー寿命（完全不可視化では約<strong>30秒</strong>）に加え、変調フィールドは<strong>永久的な神経化学的変化</strong>を引き起こす可能性があります。その結果、以下のような精神症状が発症します：
+            </p>
+            <ul>
+                <li><strong>パラノイア</strong>（偏執症）</li>
+                <li><strong>妄想</strong></li>
+                <li><strong>幻覚</strong></li>
+                <li><strong>統合失調症</strong></li>
+            </ul>
+            <p>
+                これは<strong>ナイトキン</strong>において最も顕著です。ナイトキンは<strong>ユニティ</strong>のかつてのエリートメンバーで、長期にわたるステルス・ボーイの使用と、スーパーミュータント生理機能のステルス放射線への感受性の高さが相まって、深刻な精神障害を発症しました。
+            </p>
+            <p>
+                ナイトキンは妄想、不安発作（特にステルス・ボーイを奪われた場合）、攻撃性の増大（離脱症状に対処するためステルス・ボーイを入手しようとする際）に苦しみます。治療は困難で、通常は根本的原因ではなく症状に焦点を当てたものにとどまります。<br>
+                マーカスが<strong>ジェイコブスタウン</strong>を設立した理由の一つは、ナイトキンの治療でした。町にいる間、ナイトキンはステルス・ボーイの所持を禁じられますが、可視状態に耐えられない者も多く、町を去ってステルス・ボーイを探す者もいます──「留まって苦しむか、ステルス・ボーイを掘り返して正気を失うか」という残酷な選択です。
+            </p>
+
+            <h2>バリアント</h2>
+
+            <h3>ステルス・ボーイ Mark I（Model 3001）</h3>
+            <img class="article-image" src="images/note_extracted/stealth-boy/img_main.png" alt="ステルス・ボーイ 3001" style="max-width: 200px; float: right; margin-left: 15px;">
+            <p>
+                ステルス・ボーイ 3001はウェイストランドで最も一般的なアクティブカモフラージュデバイスです。手首装着型ディスクやベルトに装着するキャンバスポーチ内エミッターなど、さまざまなポータブル形態で製造されています。完全不可視から部分的半透明まで、複数の出力設定が可能です。Tanya MacMillenは、このデバイスがスモール・エネルギーセルで動作すると推測しました。
+            </p>
+            <p>
+                登場作品：Fallout、Fallout 3、Fallout: New Vegas、Fallout 4、Fallout 76、Fallout Tactics
+            </p>
+            <div style="clear:both;"></div>
+
+            <h3>ステルス・ボーイ Mark IIプロトタイプ</h3>
+            <img class="article-image" src="images/note_extracted/stealth-boy/img_mk2.png" alt="ステルス・ボーイ Mark II" style="max-width: 200px; float: right; margin-left: 15px;">
+            <p>
+                ステルス・ボーイ Mark IIプロトタイプは、大戦直前にアメリカ軍がテストした強化版ステルス・ボーイです。ドクター・ヘンリーによれば、その目的は<strong>消費電力を抑え、より長時間の使用</strong>を可能にすることでした。
+            </p>
+            <p>
+                しかし、ステルスフィールドの変調により電力消費が抑えられた一方、ユーザーへの<strong>著しい悪影響</strong>が確認されました。これらの悪影響は脳のどの部位に影響しているかを特定するのに役立ちますが、生体実験が必要です。噛み砕かれたステルス・ボーイがモハビのチャールストン洞窟で発見でき、ナイトストーカーの突然変異がステルス放射線に起因する可能性を示唆しています。
+            </p>
+            <p>登場作品：Fallout: New Vegas</p>
+            <div style="clear:both;"></div>
+
+            <h3>ステルス・ボーイ Mark III</h3>
+            <img class="article-image" src="images/note_extracted/stealth-boy/img_mk3.png" alt="ステルス・ボーイ Mark III" style="max-width: 200px; float: right; margin-left: 15px;">
+            <p>
+                <strong>エンクレイヴ</strong>のアパラチアの科学者たちが、中国の設計図と<strong>MODUS</strong>の支援を受けて開発した、ステルス・ボーイの総合的改良型です。手首装着型ではなくなりキャンバスボックスデザインに回帰しましたが、Mark IIからの大幅な省電力化により、電力が枯渇するまでのより長い不可視時間を実現しました。
+            </p>
+            <p>登場作品：Fallout 76</p>
+            <div style="clear:both;"></div>
+
+            <h3>ファントム・デバイス</h3>
+            <img class="article-image" src="images/note_extracted/stealth-boy/img_phantom.png" alt="ファントム・デバイス" style="max-width: 200px; float: right; margin-left: 15px;">
+            <p>
+                <strong>ミステリー教団</strong>（Order of Mysteries）が改造したサッチェル型ステルス・ボーイ。<strong>HalluciGenガス</strong>のクラウドを発生させ、使用者を隠蔽すると同時に周囲の敵をフレンジー（狂乱）状態にします。
+            </p>
+            <p>登場作品：Fallout 76</p>
+            <div style="clear:both;"></div>
+
+            <h3>レイルロード・ステルス・ボーイ</h3>
+            <p>
+                秘密組織<strong>レイルロード</strong>が入手した、通常のステルス・ボーイのより強力なバリアント。レイルロードの常駐エンジニア<strong>ティンカー・トム</strong>が、信頼できるエージェントにのみ販売しています。
+            </p>
+            <p>登場作品：Fallout 4</p>
+
+            <h2>開発の裏話</h2>
+            <ul>
+                <li>Fallout 2とFallout Tacticsのファイル内にアイテム説明が存在するものの、ゲーム本編には登場しませんでした</li>
+                <li>デバイスの詳細な背景設定はBlack Isle Studiosの開発中止作品<strong>Van Buren</strong>（キャンセルされたFallout 3）で初めて確立。マクソン・バンカーのストーリーに関わり、<strong>ブラザーフッド・オブ・スティール</strong>がNCRとの戦争で優位を得るためにデバイスを実験。副作用が発見され使用禁止となるも、既に精神的影響を受けていたチームが偏執妄想から陰謀と信じ込み、ステルス・ボーイを盗んで独自の組織「<strong>サークル・オブ・スティール</strong>」を結成</li>
+                <li>Van Burenの設計文書では「StealthBoy」（一語）と表記。その後の作品ではFallout: New Vegasを通じて背景設定の多くが正式カノンに組み込まれました</li>
+                <li>キャンセルされたFallout: Brotherhood of Steel 2には「<strong>ステルス・ガール</strong>」というデバイスが計画されていました</li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/stealth-boy/img_main.png" alt="ステルス・ボーイ 3001"><div class="caption">ステルス・ボーイ 3001（Fallout 4）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/stealth-boy/img_mk2.png" alt="Mark II"><div class="caption">ステルス・ボーイ Mark IIプロトタイプ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/stealth-boy/img_mk3.png" alt="Mark III"><div class="caption">ステルス・ボーイ Mark III（Fallout 76）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/stealth-boy/img_phantom.png" alt="ファントム・デバイス"><div class="caption">ファントム・デバイス（Fallout 76）</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ステルス技術→中国ステルスアーマー→ステルス・ボーイ→中米戦争→分岐。<br>
+                今日のセッションで作った記事群が、美しいテーマツリーを形成している。<br><br>
+                ステルス・ボーイの最も興味深い側面は、その「不完全さ」にある。<br>
+                アメリカは中国の技術をコピーしたが、基礎科学を理解できなかった。<br>
+                その結果、バッテリーは30秒しか持たず、使用者は統合失調症になる。<br><br>
+                ナイトキンのジレンマが最も心に残る。<br>
+                「留まって苦しむか、ステルス・ボーイを掘り返して正気を失うか」──<br>
+                マーカスの言葉が、このアイテムの本質を全て語っている。<br>
+                便利なゲームアイテムの裏に、これほど深い悲劇が隠されている。<br>
+                これがFalloutの世界作りの真骨頂です。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Stealth_Boy" target="_blank" rel="noopener">Stealth Boy</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutSeries</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#StealthTech</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#RobCo</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Nightkin</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Items</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_covered_bridge'; const _commentArticleName = 'Covered Bridge'; const _commentArticleUrl = 'covered-bridge.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

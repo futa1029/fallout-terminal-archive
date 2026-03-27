@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vault-Tec大学 | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/vault-tec-university.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Vault-Tec大学 | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Vault-Tec大学（VTU） — 2031年にVault-TecがモーガンタウンのVault監督官訓練大学に改変した施設。地下にはシミュレーションVaultが眠る。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/vault-tec-university/F76_Vault-Tec_University.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/vault-tec-university.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Vault-Tec大学 | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Vault-Tec大学 — Vault-TecのVault管理者訓練施設。シミュレーションVaultの悲劇の物語。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/vault-tec-university/F76_Vault-Tec_University.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .loot-list { list-style: none; padding: 0; }
+        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
+        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
+        .blockquote-ingame { border-left: 4px solid #ffcc00; background: rgba(255,204,0,0.08); padding: 15px 15px 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0; font-style: italic; color: #ccc; }
+        .blockquote-ingame .source { display: block; text-align: right; font-style: normal; color: #888; font-size: 0.85em; margin-top: 8px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Vault-Tec University</h3>
+            <img src="images/note_extracted/vault-tec-university/F76_Vault-Tec_University.png" alt="Vault-Tec大学" onclick="openLightbox(this)">
+            <img src="images/note_extracted/vault-tec-university/img_map_marker.png" alt="マップ上の位置" style="width:100%; margin-top:5px;" onclick="openLightbox(this)">
+            <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">マップ上の位置</div>
+            <div class="infobox-row"><span class="infobox-label">ゲーム</span><span>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>Vault / 大学施設</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在</span><span><a href="morgantown.html" class="auto-link">モーガンタウン</a><br><a href="flat-woods.html" class="auto-link">森林地帯</a>、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">所有</span><span><a href="vault.html" class="auto-link">Vault-Tec</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">リーダー</span><span>Professor-bot</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール<br>モールラット</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>アサルトロン<br><a href="protectron.html" class="auto-link">プロテクトロン</a><br>ロボブレイン<br><a href="mr-handy.html" class="auto-link">Mr.ハンディ</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Personal Matters<br>Heart of the Enemy<br>Overseer, Overseen<br>Trade Secrets</span></div>
+            <div class="infobox-row"><span class="infobox-label">クラフト</span><span>アーマー作業台<br>武器作業台</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_vault-tec-university" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Vault-Tec University<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">Vault-Tec大学（VTU）</span></h1>
+
+            <div class="blockquote-ingame">
+                「2031年、Vault-Tecはモーガンタウンの地元大学をVault-Tec大学として再ブランド化し、同社のトップエグゼクティブや科学者の一部がここで教鞭を取ったり、卒業したりした。ファイティング・ウェンディゴズ、行け！」
+                <span class="source">— Fallout 76 ロード画面</span>
+            </div>
+
+            <h2>概要</h2>
+            <p><strong>Vault-Tec大学</strong>（VTU）は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<a href="flat-woods.html" class="auto-link">森林地帯</a>、<a href="morgantown.html" class="auto-link">モーガンタウン</a>にあるロケーションである。<br>
+            その主な目的は、<a href="vault.html" class="auto-link">Vault</a>の監督官候補生やVault-Tec社員の訓練と教育だった。</p>
+
+            <h2>背景</h2>
+
+            <h3>大学の歴史</h3>
+            <p>VTUとなった大学はかつてモーガンタウンの地元大学だった。<strong>2031年</strong>、<a href="vault.html" class="auto-link">Vault-Tec</a>が大学を買収し「Vault-Tec大学」として再ブランド化した。<br>
+            以降、Vault-Tecの多くのトップエグゼクティブや研究者が教授陣や卒業生に名を連ねた。<br>
+            Vault-Tecの支援とVaultプログラムへの一般の関心増大により、大学はモーガンタウンの経済復興に貢献した。</p>
+
+            <p>しかし次の46年間で、同社はクラシックな教育に関連する授業や科目を段階的に廃止し、Vault-Tec従業員のための<strong>職業訓練校</strong>へと変貌させた。<br>
+            大多数の教授が解雇され、同社のプロフィールに関連する科目を教える者だけが給与リストに残された。<br>
+            それにもかかわらず、Vault-Tecは依然として全米のどの大学よりも優秀な学生がいると大学を宣伝していた。</p>
+
+            <img src="images/note_extracted/vault-tec-university/FO76_VTU_sign.png" alt="Vault-Tec大学の看板" class="article-image" onclick="openLightbox(this)">
+            <div class="image-caption">Vault-Tec大学の外観と看板</div>
+
+            <p>同社はVTUを<strong>決定版のVault訓練施設</strong>にするために費用を惜しまなかった。<br>
+            医学訓練（Vault-TecのSpeedTeach方法論で10年の課程を3ヶ月に短縮）、心理学、リーダーシップなどの詳細な授業に加え、大学のミッションステートメントによれば、多様な学生たちがVaultでの生存に関するあらゆる教育に没頭できるユニークな環境を提供していた。</p>
+
+            <p>大学の基盤には<strong>シミュレーション・シェルター</strong>が組み込まれ、高度なメインフレーム、軍用グレードのロボティクス、コンパクトな核融合パワーシステムなど、通常制限されている技術が民間・政府部門から提供されていた。</p>
+
+            <p>VTUの教授陣の少なくとも一部は、Vault-Tecのより暗い活動を認識していた。<br>
+            大学のデータベースには、<a href="vault.html" class="auto-link">Vault 76</a>を含むアパラチア全てのVaultの登録簿と、それぞれの実験目的が含まれていた。<br>
+            Vault-Tecを通じて大学は連邦政府や米軍と直接のつながりを持ち、大学幹部は制限区域でそうした人物と頻繁に会合していた。</p>
+
+            <h3>シミュレーションVault</h3>
+
+            <img src="images/note_extracted/vault-tec-university/F76_VTU_Vault_Atrium.png" alt="シミュレーションVaultのアトリウム" class="article-image" onclick="openLightbox(this)">
+            <div class="image-caption">シミュレーションVaultのアトリウム</div>
+
+            <p>シミュレーションVaultは本物のVaultの感覚と居住体験を忠実に再現していた。<br>
+            監督官候補生は論文と実験提案を提出し、シミュレーションVaultがロックダウンされた際の試験運用で実施することが求められた。<br>
+            学生たちは本当にVaultに封印されたかのように任務を遂行した。<br>
+            もちろん、学生たち自身も監視されており、Vault-Tecに有用なデータを提供していた。</p>
+
+            <h3>最後の実験と悲劇</h3>
+
+            <p>最後の試験運用は<strong>ドリュー・コリングスワース</strong>の提案に基づいていた — 通常の食料をオリジナルの食品ペーストで代替するという実験だった。</p>
+
+            <p>しかし、ハーランド・エリオット学部長はコリングスワースを、より「興味深い」実験へと誘導した。<br>
+            学部長は密かに、動脈硬化を引き起こす物質を食品ペーストに添加させ、急速な循環器系の衰弱を観察する実験に変えた。<br>
+            コリングスワースにはこれが秘密にされていた。学部長にとっては、Vault内の秩序が急速に崩壊する様を観察するだけの実験だった。</p>
+
+            <p>試験運用は<strong>2077年10月15日</strong>に開始された。Vaultは4週間封鎖され、食品ペーストが供給された。</p>
+
+            <ul>
+                <li><strong>10月23日</strong> — 大戦が勃発。しかしシミュレーションVaultは無傷で、実験は通常通り続行された。</li>
+                <li><strong>10月26日</strong> — メンテナンススタッフの一人が、動脈硬化物質による心臓発作で死亡。</li>
+                <li><strong>10月27日</strong> — 検死で監督官の懸念が確認された。</li>
+                <li><strong>10月31日</strong> — 通常配給への切り替えを試みるも、闇市場と追加需要で備蓄が枯渇。住人がコリングスワースに対して公然と反乱。</li>
+                <li><strong>11月1日</strong> — コリングスワースが外部に必死の救援要請をするも、モーガンタウンはそれどころではなく、回答なし。</li>
+                <li><strong>11月2日</strong> — 住人が監督官のオフィスを包囲し、突破。コリングスワースは寝室に閉じこもった。</li>
+            </ul>
+
+            <p>最終的にVault内の全員が死亡した — 餓死するか、自ら命を絶った。</p>
+
+            <img src="images/note_extracted/vault-tec-university/F76_VTU_Vault_Overseer_Corpse.png" alt="ドリュー・コリングスワースの遺骨" class="article-image" onclick="openLightbox(this)">
+            <div class="image-caption">ドリュー・コリングスワースの遺骨</div>
+
+            <h3>戦後の出来事</h3>
+            <p><a href="appalachia.html" class="auto-link">B.O.S.（ブラザーフッド・オブ・スティール）</a>がフォート・ディファイアンスへ移転した後、施設の自動研究ターミナルを使用してスコーチドのDNAサンプルを分析するため、2名の隊員を派遣した。<br>
+            しかしダニーとモンゴメリー見習いの両名は、施設内のフェラル・グールによって殺害された。</p>
+
+            <p><strong>2103年</strong>までに、ギルバート・ホプソンがアメリカのすべての偉大な学術機関を訪問する旅の一環として、メインの大学ビルの外に一時的に居住していた。<br>
+            また、大学の執行権限は名目上<strong>Professor-bot</strong>（自動教育ロボット）に移され、卒業生を輩出するという指令を続行していた。</p>
+
+            <p>同年、Vault 76の監督官とVault 76の住人たちが大学を訪れ、Vault 79の噂を調査するために制限区域へのアクセスを試みた。<br>
+            Professor-botはVaultシミュレーション試験に合格してVTUの「卒業生」になることを条件にこれを許可した。<br>
+            卒業後、制限区域でVault 79の目的が判明した — 米国の<strong>金塊</strong>の保管庫だったのだ。</p>
+
+            <h2>レイアウト</h2>
+
+            <img src="images/note_extracted/vault-tec-university/F76_VTU_Main_Hall.png" alt="メインホール" class="article-image" onclick="openLightbox(this)">
+            <div class="image-caption">中央棟のメインホール</div>
+
+            <p>大学は3つの地上建物と、それらを地下で結ぶ大規模なシミュレーションVaultで構成される広大なキャンパスである。</p>
+
+            <p><strong>メインビル（東棟）</strong>は、レプリカのVaultドアが展示された大きなロビーに通じる。<br>
+            1階には施設管理事務所（アーマー作業台あり）、睡眠・住居ラボ、体力活動ラボがある。<br>
+            2階にはユージン・デイビッドソン講堂（スチーマートランク付き）、倉庫、食品調理ラボがある。</p>
+
+            <img src="images/note_extracted/vault-tec-university/FO76_VTU_Vault_Door.png" alt="展示されたVaultドア" class="article-image" onclick="openLightbox(this)">
+            <div class="image-caption">展示されたVaultドア</div>
+
+            <p><strong>北棟</strong>はVault-Tecによって保存され、管理棟に転用された。<br>
+            1階にはシミュレーションVault入口（Room 101, 監督官オフィスへ接続）、医療緊急室（102）、施設訓練室（103）、若手住人育成室（104）がある。<br>
+            2階にはコンピューターラボ（201）、入学部長オフィス（202）、監督官訓練学部長オフィス（203）、ラウンジ（204）がある。</p>
+
+            <p><strong>南棟</strong>は完全に改装され、赤レンガの外観の下に住人や学生のための主要入口が隠されている。</p>
+
+            <img src="images/note_extracted/vault-tec-university/F76_VTU_Vault_Overseer_Office.png" alt="監督官のオフィス" class="article-image" onclick="openLightbox(this)">
+            <div class="image-caption">シミュレーションVaultの監督官オフィス</div>
+
+            <h2>住人</h2>
+            <ul class="loot-list">
+                <li>Brass — ロボット</li>
+                <li>Estella — ロボット</li>
+                <li>Gilbert Hopson — 外部に居住</li>
+                <li>Kelemen</li>
+                <li>Loris — ロボット</li>
+                <li>Professor-bot — 自動教育ロボット（事実上の大学リーダー）</li>
+                <li>Robinson — ロボット</li>
+            </ul>
+
+            <h2>注目のアイテム</h2>
+            <h3>外部</h3>
+            <ul class="loot-list">
+                <li>The Battle of Morgantown（ホロテープ） — 大学北東、スケルトンの横の簡易トイレ内。</li>
+                <li>Postcard from Elizabeth（メモ） — 大学北のアパートメントビル内。</li>
+            </ul>
+            <h3>内部</h3>
+            <ul class="loot-list">
+                <li>Overseer's journal, entry 4（ホロテープ） — 中央棟3階の教室の机上。</li>
+                <li>First day of school（ホロテープ） — Room A2のテーブル上。</li>
+                <li>Last day of school（ホロテープ） — Room 204のテーブル上。</li>
+                <li>Vault-Tecボブルヘッド×3（ランダム出現）</li>
+                <li>マガジン×3（ランダム出現）</li>
+                <li>Plan: Chemistry workbench — Room 102、ベッド足元の棚上。</li>
+                <li>レシピ×5（各所配置）</li>
+            </ul>
+
+            <h2>著名な関係者</h2>
+            <h3>教職員</h3>
+            <ul class="loot-list">
+                <li>マイケル・ブレイク — 言語学教授</li>
+                <li>エリック・デマルコス — コンピューターサイエンス上級教授、元学部長</li>
+                <li>ハーランド・エリオット — 監督官訓練学部長</li>
+                <li>Professor-bot — 教授ロボット</li>
+            </ul>
+            <h3>有名な学生・卒業生</h3>
+            <ul class="loot-list">
+                <li>ジュディス・ブラックウェル — サム・ブラックウェル上院議員の娘</li>
+                <li>ドリュー・コリングスワース — 食品代替実験の開発者、シミュレーションVaultの監督官</li>
+                <li>ペネロピ・ホーンライト — ホーンライト・インダストリアル一族、2070年卒</li>
+                <li>Vault 76の監督官 — 核融合で学位取得</li>
+                <li>アリシャ・パーカー — 「モーガンタウンの歴史」シリーズの著者</li>
+                <li>カルビン・ヴァンロウ（Aries） — 2072年卒</li>
+            </ul>
+
+            <h2>発見できるホロテープ・メモ</h2>
+
+            <h3>The Battle of Morgantown（ホロテープ）</h3>
+            <p>大学北東の簡易トイレ内、スケルトンの横で発見。</p>
+            <div class="holotape-box" style="border-left: 4px solid #ff8c00; background: rgba(255,140,0,0.08); padding: 15px 15px 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <strong style="color: #ff8c00;">🎙 ホロテープ: The Battle of Morgantown</strong><br><br>
+                <strong>ヴァネッサ</strong>: 今日もまた新入生のグループを失った。<br>
+                夜の闇に紛れてはしごを登り始めるよう命令したのに、罠だった。<br>
+                はしご全体に油が塗ってあって、屋根の連中が全員に火をつけた。<br>
+                もうこんなこと続けられない！<br>
+                私たちは町の出入り口の道路を制圧して兵糧攻めにしようとしているのに、あいつらはどこからか食料を見つけてくる！<br>
+                空の食料箱を嘲笑うように投げ落としてくるようにもなった。<br>
+                あそこでどうやって生き延びてるんだ？ どこから物資を手に入れてるんだ？
+            </div>
+
+            <h3>Overseer's journal, entry 4（ホロテープ）</h3>
+            <p>中央棟3階「ユージン・デイビッドソン講堂」の机上で発見。クエスト「Personal Matters」中に入手。</p>
+            <div class="holotape-box" style="border-left: 4px solid #ff8c00; background: rgba(255,140,0,0.08); padding: 15px 15px 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <strong style="color: #ff8c00;">🎙 ホロテープ: Overseer's journal, entry 4（監督官日誌 第4項）</strong><br><br>
+                <strong>監督官</strong>: 監督官の個人日誌。<br><br>
+                Vault-Tecで4年間、生き、学び、息をしてきた。<br>
+                監督官コースを優秀な成績で卒業した。<br>
+                父はとても誇りに思ってくれた。もう重い病気だったのに、わざわざ来てくれた。<br>
+                きっと然るべき人々に印象を与えたのだろう——次に空いた監督官ポストを提示された。<br>
+                卒業したばかりだった！ 本来なら何年もかかるはずのことだ。<br>
+                もしかしたら、戦争が避けられないと分かっていたのかもしれない。<br>
+                Vault 76が建設されると聞いた時、あまりの興奮で椅子から飛び跳ねて、リビングで小さなダンスをした。<br>
+                何が起きても、アパラチアは安全になるのだ。<br><br>
+                エヴァンはそのタイミングでプロポーズしてきた、あのおばかさん。<br>
+                あのニュースの後なら私がノーと言わないと分かっていたのだ。<br>
+                彼は誰よりも私のことを分かっていた……<br>
+                父はエヴァンと私が同居を始めて数ヶ月後に亡くなった。<br>
+                本当にバージンロードを一緒に歩きたがっていた。<br>
+                まあ、私だってちゃんと歩けなかったけど……<br>
+                <em>*涙をこらえながら咳き込み、ため息*</em><br>
+                そろそろ家に帰る時だと思う。エヴァンにはそれだけの恩がある。
+            </div>
+
+            <h3>First day of school（ホロテープ）</h3>
+            <p>Room A2（睡眠・住居ラボ）のテーブル上で発見。</p>
+            <div class="holotape-box" style="border-left: 4px solid #ff8c00; background: rgba(255,140,0,0.08); padding: 15px 15px 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <strong style="color: #ff8c00;">🎙 ホロテープ: First day of school（登校初日）</strong><br><br>
+                <strong>スコット・ワーナー</strong>: 期待以上だ！<br>
+                ウェルチで育った俺がこんなチャンスをもらえるなんて思ってもみなかった！<br>
+                親父は「都会にのぼせるな」と言ったけど、もう興奮で立っていられない！<br>
+                この授業リストは最高で、最高の教授陣から学べる。<br>
+                エリオット学部長は伝説だし、ブレイク教授は閉鎖環境における心理学の教科書を書いた人だ。<br><br>
+                まだ早いけど、小学生の頃から卒業論文に取り組んできた。<br>
+                エリオット学部長と相談する予約も取った。<br>
+                くだらないちっぽけなアイデアかもしれないけど、学部長の助けがあれば本当に特別なものになると思う。<br>
+                選択的育種は最も難しい課題だけど、Vaultの閉鎖環境こそ、これらのアイデアを統制された環境でテストするのに最適な場所だと思う。<br>
+                歴史を研究してきて、誰も考えたことのないアングルを持っている。
+            </div>
+
+            <h3>Last day of school（ホロテープ）</h3>
+            <p>Room 204（2階ラウンジ）のテーブル上で発見。</p>
+            <div class="holotape-box" style="border-left: 4px solid #ff8c00; background: rgba(255,140,0,0.08); padding: 15px 15px 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <strong style="color: #ff8c00;">🎙 ホロテープ: Last day of school（最後の登校日）</strong><br><br>
+                <strong>トリシャ・ミラー</strong>: また上司候補に断られた。<br>
+                ここに来たばかりの頃、統制Vaultの監督官以外になるなんて言われても信じなかっただろう。<br>
+                でも今はもう少し現実的になった。<br>
+                最も注目のポストであるVault 96の監督官は、私に見向きもしなかった。<br>
+                不採用通知がテンプレートの手紙だったんだぞ、まったく。<br>
+                このままじゃ、西海岸に飛ばされてVault 29で、うるさい金持ちのティーンエイジャーたちと一緒に清掃員をやる羽目になる。<br><br>
+                Vault-Tecが縁故主義とゴマすりの巣窟であることは、もう明らかだ。<br>
+                全講義に出席して全レポートを書かないと出世できない——情熱への敬意がない！<br>
+                ここの学生の中には、Vault-Tecが何を意味するか分かっていない奴もいる！<br>
+                一方で私は3度目の卒論に挑戦しなきゃならない。<br>
+                またエリオット学部長に却下されるのも面白いだろうさ。<br>
+                とにかく金がないから、できれば最後のシミュレーションVaultの論文プロジェクトに参加しようと思う。<br>
+                この子（ドリュー・コリングスワース）は普通そうだし、実験テーマが食料だから、少なくとも美味しいものは食べられるはず。
+            </div>
+
+            <h3>Postcard from Elizabeth（メモ）</h3>
+            <p>大学北のアパートメントビル内、モノレール入口の壁の穴から入った先の机の上で発見。</p>
+            <div class="note-box" style="border-left: 4px solid #4488ff; background: rgba(68,136,255,0.08); padding: 15px 15px 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <strong style="color: #4488ff;">📝 メモ: Postcard from Elizabeth（エリザベスからのポストカード）</strong><br><br>
+                パパへ！！<br><br>
+                ママがこのおてがみをかくのをてつだってくれました　よんでくれるといいな。<br>
+                ママがわたしのもじとスペルをおしえてくれてます<br>
+                よんでくれるとイイナ<br><br>
+                だいすき！<br>
+                あなたのむすめ<br>
+                エリザベス
+            </div>
+
+            <h2>裏話</h2>
+            <p>Vault-Tec大学は、実在するウエストバージニア州モーガンタウンの<strong>ウエストバージニア大学</strong>（WVU）をモデルにしている。<br>
+            メインビルは実在するウッドバーン・ホールと多くの類似点を共有している。</p>
+
+            <h2>登場作品</h2>
+            <p>Vault-Tec大学は<em>Fallout 76</em>に登場し、TVシリーズ「Vault Seller's Survival Guide」のエピソード「Bud's Buds!」でも言及される。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-university/FO76_VTU_sign.png" alt="外観と看板" onclick="openLightbox(this)"><div class="caption">外観と看板</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-university/F76_VTU_Main_Hall.png" alt="メインホール" onclick="openLightbox(this)"><div class="caption">メインホール</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-university/FO76_VTU_Vault_Door.png" alt="Vaultドア展示" onclick="openLightbox(this)"><div class="caption">Vaultドア展示</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-university/FO76_VTU_lecture_hall.png" alt="講堂" onclick="openLightbox(this)"><div class="caption">講堂</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-university/F76_VTU_Vault_Atrium.png" alt="Vaultアトリウム" onclick="openLightbox(this)"><div class="caption">シミュレーションVaultのアトリウム</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-university/F76_VTU_Vault_Overseer_Office.png" alt="監督官オフィス" onclick="openLightbox(this)"><div class="caption">監督官オフィス</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/vault-tec-university/F76_VTU_Vault_Overseer_Corpse.png" alt="コリングスワースの遺骨" onclick="openLightbox(this)"><div class="caption">コリングスワースの遺骨</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Fallout 76の中でも最もロアが豊かで、物語の密度が高いロケーションの一つ。<br>
+                2031年にVault-Tecが地元大学を買収し、46年かけて職業訓練校に変えていった経緯からして、企業の支配力の恐ろしさが伝わります。<br>
+                シミュレーションVaultの悲劇は、Vault実験の縮図そのもの。<br>
+                食品ペーストに密かに動脈硬化物質を混入する学部長エリオットの冷徹さ、大戦が勃発しても実験を継続する異常さ、そして備蓄の枯渇と反乱、最終的な全員死亡という結末。<br>
+                Vault 76の監督官がここで学び、卒業したという事実も、ゲームの物語全体に深みを加えています。<br>
+                2103年には「卒業試験」を受けてVTUの卒業生になれるというProfessor-botの設定も、ユーモアと悲しみが入り混じるFalloutらしい演出です。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Vault-Tec_University" target="_blank" rel="noopener">Vault-Tec University</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) { const lb = document.getElementById('lightbox'); document.getElementById('lightboxImg').src = el.src; lb.classList.add('active'); }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_vault-tec-university';
+        const COOLDOWN_MS = 60000;
+        const NG_WORDS = ['http://', 'https://', 'LINE', 'DM', 'discord.gg'];
+        let lastCommentTime = 0;
+        let _adminMode = false;
+        const _adminPass = 'tq7jtq7j';
+        document.addEventListener('keydown', function(e) { if (e.ctrlKey && e.shiftKey && e.key === 'D') { const p = prompt('Admin password:'); if (p === _adminPass) { _adminMode = true; alert('Admin mode ON'); loadComments(); } } });
+        async function loadLikes() { if (!sb) return; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); const btn = document.querySelector('.like-button'); if (data) btn.querySelector('.like-count').textContent = data.count; if (localStorage.getItem('liked_' + ARTICLE_ID)) { btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } } catch(e) {} }
+        async function toggleLike(btn) { if (!sb) return; const liked = localStorage.getItem('liked_' + ARTICLE_ID); const delta = liked ? -1 : 1; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (data) { await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID); } else { await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 }); } if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; } else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (d2) btn.querySelector('.like-count').textContent = d2.count; } catch(e) {} }
+        function updateCharCount() { const ta = document.getElementById('commentInput'); document.getElementById('charCount').textContent = ta.value.length + ' / 500'; }
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+        async function loadComments() { if (!sb) return; const list = document.getElementById('commentsList'); try { const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false }); if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; } list.innerHTML = data.map(c => { const d = new Date(c.created_at); const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0'); const myId = localStorage.getItem('comment_id_' + c.id); const canDel = myId || _adminMode; return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (canDel ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>'; }).join(''); } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; } }
+        async function submitComment() { if (!sb) return; const hp = document.getElementById('hp_field'); if (hp && hp.value) return; const ta = document.getElementById('commentInput'); const body = ta.value.trim(); const msg = document.getElementById('commentMsg'); if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; } if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; } for (const w of NG_WORDS) { if (body.includes(w)) { msg.textContent = 'この内容は投稿できません'; msg.style.color = '#ff4444'; return; } } const now = Date.now(); if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; } const btn = document.getElementById('commentSubmitBtn'); btn.disabled = true; try { const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single(); if (error) throw error; if (data) localStorage.setItem('comment_id_' + data.id, '1'); ta.value = ''; updateCharCount(); lastCommentTime = now; msg.textContent = '投稿しました'; msg.style.color = 'var(--accent-color)'; loadComments(); } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; } btn.disabled = false; }
+        async function deleteComment(id) { if (!sb || !confirm('このコメントを削除しますか?')) return; try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) {} }
+        loadLikes(); loadComments();
+    </script>
+</body>
+</html>

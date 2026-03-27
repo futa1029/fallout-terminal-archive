@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Divergence | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/divergence.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Divergence | Overseer Mohi's Terminal">
+    <meta property="og:description" content="分岐（Divergence）── 現実世界とFalloutの世界が分かれた瞬間。1950年代の「明日の世界」が永遠に続く、レトロフューチャーの起源。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/divergence/img_main.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/divergence.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Divergence | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="分岐 ── WW2後のある時点で歴史が分かれた。トランジスタは小さくならず、核は全てを動かし、1950年代は永遠に続いた。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/divergence/img_main.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノートブロック（ターミナルエントリ・メモ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="設定" data-article-appearance="Fallout シリーズ">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Divergence</h3>
+            <img src="images/note_extracted/divergence/img_main.jpg" alt="Fallout世界のセールスマン">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>世界設定</span></div>
+            <div class="infobox-row"><span class="infobox-label">分岐時期</span><span>第二次世界大戦終結後<br>（1945年以降）</span></div>
+            <div class="infobox-row"><span class="infobox-label">コンセプト</span><span>1950年代SF的<br>「明日の世界」</span></div>
+            <div class="infobox-row"><span class="infobox-label">テーマ</span><span>レトロフューチャー<br>核エネルギー<br>反共産主義</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>全Falloutシリーズ</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_divergence" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Divergence<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">分岐</span></h1>
+
+            <blockquote style="border-left: 3px solid #ff9900; padding: 10px 20px; margin: 20px 0; font-style: italic; color: #ccc;">
+                「私のアイデアは、より良いプラズマガンを作ることではなく、核戦争後の世界の倫理をもっと探求することだ」<br>
+                <span style="color: #888; font-size: 0.85em;">── ティム・ケイン（Fallout原作者）</span>
+            </blockquote>
+
+            <p>
+                <strong>分岐（Divergence）</strong>とは、<strong>現実世界</strong>とFalloutの世界の歴史が分かれた──「分岐した」──タイムライン上のポイントを指す用語です。Falloutの世界は<strong>パラレルワールド（代替宇宙）</strong>に設定されていることが公式に明言されています。分岐の正確な日時は意図的に曖昧にされていますが、シリーズ制作者の発言から、概ね<strong>第二次世界大戦の終結（1945年）前後</strong>に発生したと示唆されています。
+            </p>
+            <p>
+                Falloutシリーズは未来を舞台としていますが、現実世界の未来を反映するものではありません。その代わり、<strong>1950年代のSF的「明日の世界」</strong>のテーマとコンセプトを反映した世界です。本質的にFalloutの世界は、人間の倫理、信仰、そして「文明」と暴力・戦争への傾向の関係を探求し、分析し、時に風刺するための、折衷的な<strong>レトロフューチャー</strong>の舞台なのです。
+            </p>
+            <h2>設定</h2>
+            <h3>「明日の世界」</h3>
+            <p>
+                Falloutの世界には、ホバリングするお掃除ロボットが当たり前のように存在し、レーザーガンの使用は日常。自動車は1950年代のモートラマ・コンセプトカーのような巨大なテールフィン付きクロームの怪物──しかし核融合エンジンで動きます。
+            </p>
+            <p>
+                デスクトップコンピュータは存在しますが、1970年代後半の商用モデル程度の性能（プリミティブなグラフィックス、微小なメモリ）。大型コンピュータはいまだに<strong>リールトゥリール式テープストレージ</strong>を使用する巨大な機械群です。しかしその最高峰である<strong>ZAXシリーズ</strong>は、私たちの世界のスーパーコンピュータを凌駕する処理能力を持ちます。
+            </p>
+            <p>
+                衣服のスタイル、建築、インテリアは1950年代アメリカ文化の影響を強く受け続け、<strong>アール・デコ</strong>や<strong>フューチュリズム</strong>のスタイルが主流であり続けました。ポスターや看板もこの時代を反映しています。
+            </p>
+            <p>
+                第二次世界大戦後、Fallout世界の人類は小型化された電子機器や「グリーン」技術の開発に注力する代わりに、巨大なスーパーコンピュータ（ZAXなど）、原子力のさらなる活用、コンパクトな核融合発電機、強化・小型化された核分裂技術、そして現実世界よりも高度なロボティクス、サイバネティクス、遺伝子工学に技術投資を集中しました。その結果、<strong>パワーアーマー</strong>やレーザー兵器の製造が可能になり、多くのアメリカ家庭で<strong>ミスターハンディ</strong>のような家事ロボットが使用されました。
+            </p>
+            <p>
+                1950年代に現実世界と共通していた反共産主義的で偏執的な視点は、Fallout世界では日常生活の一部であり続けました。<strong>リバティ・プライム</strong>の「死ぬ方が共産主義よりマシだ！」は1950年代の「赤より死を選べ」のもじりです。反共産主義プロパガンダは、ビデオゲーム（『Red Menace』）やコミック（『Commie-Kazi vs. Manta Man』）など大衆文化にも広く浸透していました。
+            </p>
+
+            <h3>エンターテインメント</h3>
+            <p>
+                ラジオがテレビより一般的なマスメディアであり、食品はTVディナー時代のもの（箱入りマカロニ＆チーズ、缶詰肉、ソールズベリーステーキのTVディナーなど）が基本です。ラジオ局は主に<strong>The Ink Spots</strong>、<strong>ビング・クロスビー</strong>、<strong>The Andrews Sisters</strong>といった20世紀中盤のアメリカンクラシックを流していますが、これは40〜50年代以降のプレウォー録音がほとんど現存しないことも部分的に説明されます。
+            </p>
+            <p>
+                <strong>エルヴィス・プレスリー</strong>やエルトン・ジョンへの言及もあり、20世紀中後期の音楽やアーティストも存在しています。「Take Me Home, Country Roads」や「Ring of Fire」は別のアーティストによるカバーとして存在し、1950年代の音楽ジャンルが維持されながら代替的な音楽史をたどった可能性を示唆しています。
+            </p>
+            <p>
+                2070年代の歌手<strong>ヴェラ・キーズ</strong>や<strong>ディーン・ドミノ</strong>は、レコード盤ではなく<strong>ホロテープ</strong>に録音を始めました。彼らの音楽や、ダニー・パーカー、ポール・クルーニーといったプレウォーのアーティストのポスターは、1950年代に関連するジャンルが大戦直前まで人気であり続けたか、もしくは復興を経験したことを示唆しています。
+            </p>
+
+            <h3>歴史的分岐のタイムライン</h3>
+            <p>
+                分岐の歴史的詳細と正確な発生時期は不明です。判明しているのは、<strong>1945年の第二次世界大戦終結後</strong>のある時点で発生したということです。ボストンのフリーダム・トレイルが現実世界で1951年に建設を開始し、Fallout世界にも存在することから、1951年以前の分岐はありえないと考えられます。
+            </p>
+            <p>
+                分岐後も2つのタイムラインは完全に異なるわけではありません。メガトンの住民が「ヒッピー」という言葉を使ったり、ヒドゥンバレー・バンカーの外に反核・平和スローガンの落書きがあったり、The Divideのプレウォーターミナルに反戦抗議者への軍の弾圧記録が残されているなど、1960年代に類似したカウンターカルチャーがFallout世界にも存在したことを示唆しています。
+            </p>
+            <p>
+                TVシリーズ版Falloutの<strong>ジョナサン・ノーラン</strong>と<strong>ウォルトン・ゴギンズ</strong>は、Falloutの世界を「<strong>ベトナム戦争もウォーターゲート事件もウッドストック型カウンターカルチャーも経験しなかったアメリカ</strong>」──「<strong>自国の罪と過ちについて自問自答したことのないアメリカ</strong>」と表現。アイゼンハワー時代の「swagger」が2077年の大戦まで続いた世界だと述べています。
+            </p>
+            <p>
+                1945年以前にも現実と異なる出来事はいくつか存在しますが、いずれも人類の歴史に大きな影響を与えたものではありません：
+            </p>
+            <ul>
+                <li><strong>1918年</strong>：サンセット・サルサパリラ社設立（J.ソーヤーによれば「架空ブランドは分岐後のタイムラインにのみ存在する必要はない」）</li>
+                <li><strong>1932年</strong>：ヴィッキーとヴァンスの犯罪ツアー（ボニーとクライドの最初の銀行強盗の2日前に開始）</li>
+                <li><strong>1943年</strong>：USS Missouriの壁画に主砲塔が現実の3基ではなく4基描かれている</li>
+                <li><strong>1798年</strong>：Uisce Beathaがウイスキー製造を開始</li>
+                <li><strong>1768年以前</strong>：ボストンの銅細工師シェム・ドラウンが死亡、「悪魔の鉄」で作った剣と共に埋葬</li>
+                <li><strong>1931年</strong>：Vim! Pop Incorporated設立</li>
+                <li>現実には存在しない<strong>1890年シリーズ国庫証券</strong>が存在</li>
+                <li>古代の前駆都市<strong>ウバール</strong>がルブ・アル・ハリ砂漠に存在</li>
+                <li><strong>1603年</strong>以降：地球軌道上に異星人の宇宙船が存在し、人間の拉致と実験が行われている</li>
+            </ul>
+            <h2>政治</h2>
+
+            <h3>アメリカ合衆国の政治</h3>
+
+            <img class="article-image" src="images/note_extracted/divergence/img_nevada_flag.png" alt="ネバダ州旗">
+            <div class="image-caption">Doc Mitchellの家の外に掲げられたネバダ州旗。左側に「Southwest Commonwealth」の文字が追加されている</div>
+
+            <p>
+                分岐後のアメリカは劇的に変化しました。<strong>1969年</strong>、50州が<strong>13のコモンウェルス</strong>に統合（カリフォルニアの場合は分割）されました。ただし州自体も一定の主権や政治的自治を保持していたようです（Doc Mitchellの家のネバダ州旗や、コモンウェルス名ではなく州名が記載されたナンバープレートなど）。
+            </p>
+            <p>
+                分岐後の政治家についてはあまり知られていませんが、<strong>リチャード・ニクソン</strong>はFallout 2で言及されています（ただし1940年代にはすでに政治家として知られていた人物）。GNNニュース文書によれば（ロアとの矛盾が指摘され信頼性に疑問あり）、とある大統領が2075年2月に<strong>歩行者規則違反</strong>で弾劾されたとされています。またレーガン時代への言及もあり、ロナルド・レーガンがいつかの時点で大統領を務めた可能性があります。
+            </p>
+            <p>
+                Fallout 2のダニエル・バードとFallout 3のジャック・スミスは「共和党員」と述べていますが、Fallout: New Vegasでは「Republican」はニュー・カリフォルニア共和国の市民を指す呼称に転用されています。
+            </p>
+            <p>
+                人種差別は少なくとも軍事面では解消されたようです（トーマス・モーガン中尉など）。政治面でもサム・ブラックウェルが2070年代に上院議員に選出。女性の権利も進展し、エレン・サンティアゴ大佐のように女性が前線の戦闘任務に就いていました。
+            </p>
+            <p>
+                Fallout世界のアメリカ政府は非常に腐敗しており、冷戦時代の現実のアメリカ政府機関が秘密裏に行った実験（NASAのイルカLSDプロジェクト、CIAのMKUltra、ノースウッズ作戦、プルトニウムファイルなど）に類似した事業がVault-Tecの実験として再現されています。Fallout世界では冷戦は2051年まで続きましたが、<strong>資源戦争</strong>の間に同様の構図が繰り返されました。
+            </p>
+
+            <h3>世界政治</h3>
+            <ul>
+                <li><strong>ソビエト連邦</strong>：大戦時もまだ存続（現実では1991年解体）。しかし世界への影響力は縮小し、国際共産主義のリーダーの座は中国に奪われた。アメリカとは少なくとも中立的関係</li>
+                <li><strong>中華人民共和国</strong>：毛沢東時代の姿をとどめ、現実の1970年代のような自由化・市場開放改革は起こらなかった。しかしアメリカに最も近い競争相手となる軍事・科学大国に成長</li>
+                <li><strong>欧州連邦</strong>：統一国家として存在。2052年の資源戦争で石油確保のため中東に侵攻したが、2060年に油田枯渇で目的を失い撤退。直後に「欧州内戦」に崩壊し、大戦まで続いた</li>
+                <li><strong>国際連合</strong>：欧州中東戦争と資源戦争の緊張により2052年7月に解散</li>
+                <li><strong>脱植民地化</strong>：程度は不明だが、1950年代末までに多くの植民地が独立していたため、ある程度は進行したと推定</li>
+            </ul>
+
+            <h2>インフレーション</h2>
+            <p>大戦前のアメリカは深刻なインフレを経験しました：</p>
+            <ul>
+                <li>ガソリン：<strong>1ガロン $8,500</strong></li>
+                <li>Red Rocketの核CoolantクラスA：<strong>1ガロン $119</strong>（クラスC：$121）</li>
+                <li>コーヒーとドーナツ：<strong>$32</strong></li>
+                <li>Giddyup Buttercup（ロボット馬の玩具）：<strong>$16,000</strong>（2077年時点）</li>
+                <li>新聞（Boston Bugle、Capitol Post）：<strong>1部 $56</strong></li>
+                <li>雑誌（Guns and Bullets、Unstoppables等）：<strong>$15〜$33</strong></li>
+                <li>ボウリング1ゲーム（General Atomics Galleria）：<strong>$5,000</strong></li>
+                <li>Chryslus Corvega：<strong>「お手頃」$199,999</strong>（2077年）</li>
+                <li>Vaultプロジェクト：当初<strong>$4,000億</strong>（122基）→ 2077年には<strong>$6,450億</strong>に膨張</li>
+            </ul>
+            <p>
+                ガソリン価格は現代の基準では極端に見えますが、その他の価格は現在から大戦（2077年）までの数十年間に期待される通常のインフレと概ね一致しています。
+            </p>
+
+            <h2>石油</h2>
+            <p>
+                大戦と資源戦争の根本的な原因は、Fallout世界で<strong>2052年</strong>までに世界の石油備蓄が枯渇したことです。これは1956年に提唱された有名な<strong>ピーク・オイル理論</strong>に基づいています。
+            </p>
+            <p>
+                現実世界でも1973年のヨム・キプール戦争時にOPECが石油価格を400%引き上げた第一次石油危機など、石油をめぐる紛争がFalloutのイベントと並行しています。
+            </p>
+            <p>
+                興味深いことに、Fallout世界にはプレウォーの代替エネルギー源（プロメテウス石炭、HELIOS One太陽光、Greenway Hydroponics、ゲッコー核発電所、フーバー・ダムなど）が存在しており、石油危機がなぜそこまで深刻だったのかは完全には説明されていません。
+            </p>
+            <h2>アメリカの都市と場所</h2>
+            <p>
+                Fallout世界の都市デザインは現実とは大きく異なり、見覚えのあるランドマークが存在するものの、レイアウトは表面的にしか似ていないことが多いです。
+            </p>
+
+            <h3>13のコモンウェルス</h3>
+            <p>
+                プレウォーのアメリカは50の州に加え<strong>13のコモンウェルス</strong>を持ち、州と連邦政府の間の中間的な統治レベルとして機能しました。マサチューセッツ州庁のプレートには形成年として<strong>1969年</strong>が記されています。この変更はアメリカ国旗の変更と対応し、13のコモンウェルスを表す13の星が円形に配置されたデザイン（ベッツィー・ロス旗に類似）に中央の連邦政府を表す1つの星が加えられています。
+            </p>
+
+            <h3>ワシントンD.C.</h3>
+            <ul>
+                <li>プレウォーの建築の大半が1940〜50年代のアール・デコと1950〜60年代のモダニズム</li>
+                <li>現実世界のスミソニアン国立航空宇宙博物館は<strong>テクノロジー博物館</strong>に置き換え</li>
+                <li>国会議事堂の正面階段の構造が異なる</li>
+                <li>地下鉄は3路線（Red、White、Blue）のみ（現実は6路線）</li>
+                <li>ワシントン記念塔に鉄骨フレームが存在（現実には存在しない）</li>
+                <li>ペンタゴンの位置が異なり、ポトマック川のすぐ左岸に配置</li>
+                <li>高架モノレールが市内を走行</li>
+                <li>1950〜60年代以降に建設された多くの記念碑や建物（ベトナム戦争記念碑、第二次世界大戦記念碑、ケネディ・センター等）が存在しないか完全に忘れ去られている</li>
+            </ul>
+
+            <h3>マサチューセッツ</h3>
+            <h4>ケンブリッジ</h4>
+            <ul><li>MITは<strong>コモンウェルス工科大学</strong>に名称変更</li></ul>
+
+            <h4>ボストン</h4>
+            <ul>
+                <li>中央部を巨大な高架高速道路が縦横に走る（地上85〜100フィート）</li>
+                <li>フューチュリスティックな超高層ビルが都市景観を支配</li>
+                <li>ボストン空港のレイアウトが完全に異なり、「ボストン国際空港」と呼称（現実のローガン国際ではなく）</li>
+                <li>スコレー・スクエアが存在（現実では1962年に取り壊し）</li>
+                <li>クインシー・マーケットが存在しない</li>
+                <li>ボストンの公共交通機関の管理組織はMTA（現実では1964年にMBTAに改名）</li>
+            </ul>
+
+            <h3>ネバダ</h3>
+            <ul>
+                <li>ラスベガス（<strong>ニュー・ベガス・ストリップ</strong>）では多数の現実のカジノや建物が存在しない、または別の建物に置き換えられている</li>
+                <li><strong>マッカラン空港</strong>は要塞化され、高いコンクリート壁で囲まれている</li>
+            </ul>
+
+            <h3>ペンシルベニア（ピッツバーグ）</h3>
+            <ul>
+                <li>鉄鋼産業が成長し、市内上部に工場と鉄工所が拡大（現実では衰退し、製鋼所は市外に移転）</li>
+                <li>ピット・ブリッジは改修版（10th Streetブリッジをモデル化）</li>
+                <li>カテドラル・オブ・ラーニングがダウンタウン中心部に位置（現実ではオークランド地区に所在）</li>
+            </ul>
+
+            <h3>カリフォルニア</h3>
+            <ul>
+                <li><strong>ベーカーズフィールド</strong>（ネクロポリス）：現実には存在しない超高層ビルがそびえる大都市</li>
+                <li><strong>ロサンゼルス</strong>：超高層ビルが複数列に並ぶ大規模な開発都市。廃墟となった超高層ビル群から戦後は「<strong>ボーンヤード</strong>」と呼ばれた</li>
+                <li>ハリウッド・サインの下にヌカ・コーラのスポンサーネオンサイン</li>
+            </ul>
+
+            <h3>メリーランド（ポイント・ルックアウト）</h3>
+            <ul>
+                <li>灯台のデザインが現実と大きく異なる</li>
+                <li>1950年設立とされるポイント・ルックアウトの町は現実には存在しない</li>
+                <li>ジョン・スミスのポイント・ルックアウト到達が1612年（現実では1608年）</li>
+            </ul>
+
+            <h3>メイン州（マウント・デザート島）</h3>
+            <ul><li>ファー・ハーバー周辺の海岸線が現実よりもはるかに高い</li></ul>
+
+            <h3>ウェストバージニア</h3>
+            <ul>
+                <li>ゲームプレイの都合上、場所の地理が大幅に調整されている（スプルースノブが地図の中心に配置されているが、現実ではバージニア州境近く）</li>
+                <li><strong>ミスター・ファジー</strong>のキャラクターデザインが現実のカムデン・パークと異なる</li>
+                <li>ハンティントンとウィーリング（ウェストバージニア最大の都市の2つ）がゲームに登場しない</li>
+                <li>ウェストバージニア大学は<strong>Vault-Tec大学</strong>に名称変更</li>
+                <li>グリーンブライアー・リゾートは<strong>ホワイトスプリング・リゾート</strong>に改名。地下のバンカーは現実よりもVaultに近い外観</li>
+                <li>ニュー・リバー・ゴージ・ブリッジがフラットウッズのすぐ上に出現（現実ではもっと離れている）</li>
+                <li>グリーンバンク望遠鏡は丘の上に配置（現実では広い野原）。ゲーム内名称は<strong>ナショナル・アイソレーティド・レディオ・アレイ</strong></li>
+                <li>パンプキン・ハウスの位置が北東に大幅移動</li>
+            </ul>
+
+            <h4>ポイント・プレザント</h4>
+            <ul>
+                <li>シルバー・ブリッジの後継橋がシルバー・メモリアル・ブリッジではなく「<strong>ノース・ロード・ブリッジ</strong>」と呼称</li>
+                <li>モスマン博物館のモスマン像のデザインが現実と異なる（Fallout版は翼と腕が一体化したデザインで、目撃証言に近い）</li>
+            </ul>
+
+            <h3>オハイオ</h3>
+            <ul>
+                <li>アセンズの大学が<strong>ホッキング大学</strong>（現実のオハイオ大学ではなく）</li>
+                <li>アセンズ精神病院は2048年の嵐で修復不可能なほど損壊</li>
+                <li>フォート・スチューベンが歴史的遺跡として現存（現実ではスチューベンビル市がその跡地に建設）</li>
+                <li>バーニング・スプリングスは砂漠のような環境（「ザ・ラスト」と呼ばれる有毒化学物質による環境破壊が原因）</li>
+            </ul>
+
+            <h3>アラスカ</h3>
+            <ul><li>トランス・アラスカ・パイプラインがカナダを通過するセクションを持つ（現実では南北に貫通するのみ）</li></ul>
+            <h2>テクノロジー</h2>
+
+            <h3>小型化しなかったコンピュータ</h3>
+            <p>
+                現実世界との最大の分岐の一つは、<strong>デジタルコンピュータと電子機器の急速な小型化が優先されなかった</strong>ことです。Falloutのコンピュータは全て旧式のリールトゥリール型で広大な部屋を占拠。デスクトップの個人用コンピュータは真空管とトランジスタのハイブリッドで巨大、ディスプレイはモノクロの小さなCRT（液晶フラットパネルは存在しません）。しかし極めて堅牢に設計されており、大戦から<strong>210年後</strong>でも過酷な環境で完璧に動作する例が見つかります。
+            </p>
+            <p>
+                データはホロテープまたはホロディスクに三次元デジタルイメージとして電磁的に保存されます。処理能力は非常に高度ですが、ピップボーイやアンドロイドを除き大規模な小型化技術は開発されませんでした。ユーザーフレンドリーなGUIオペレーティングシステムも商用化されず、UIは基本的なコマンドラインのまま。SF映画的な音声インターフェースが一部のシステムで開発され、GUIを不要にしました。
+            </p>
+            <p>
+                テレビやラジオも1960年代初頭のレベルを超えず、テレビはモノクロが主流（ただし一部のRadiation King製テレビにはカラー調整ノブがあり、Fallout 76ではカラーテレビの例あり）。カメラも1950〜60年代のような大型バルブ式ですが、Codac R9000やProSnap Deluxeのように即時現像が可能なモデルも存在しました。一方、CCTV型の監視カメラは現実世界同様にコンパクトです。
+            </p>
+            <p>
+                アップロード・ダウンロード、Eメール、ネットワーク通信への言及も見られ、マイクロプロセッサ技術では遅れを取りながらも、ロボティクス、インターネットの前身であるイントラネット、軌道通信衛星などのコンピュータサイエンスは順調に発展しました。
+            </p>
+
+            <h3>原子の力</h3>
+            <p>
+                Fallout世界では核エネルギーが原子爆弾だけでなく、原子炉として電力源に活用されました。私たちの世界のような大規模核分裂炉だけでなく、都市や町の地下に設置されるより小型・一般的な発電所が多数存在しました（ニューヨークのメルトダウン寸前の原子炉やオールド・オルニー地下のOlney Powerworksなど）。
+            </p>
+            <p>
+                核融合は現実世界よりはるかに早く実用化され、内燃機関が担う役割（自動車エンジン、小型発電機）に加え、<strong>フィッションバッテリー</strong>や<strong>マイクロフュージョンセル</strong>（軍事用中エネルギー兵器の標準電源）にまで小型化。多くの戦前の電源は大戦から数百年後でも稼働しています。
+            </p>
+            <p>
+                この核への執着は、放射性同位体をヌカ・コーラ・クアンタムに添加するほど極端で、最終的に戦前社会の破壊そのものを引き起こしました。核技術の普及に伴い、放射線被曝への対策として、放射線治療・免疫技術が開発されました（現実世界では非常に初期の実験段階に留まる技術）。
+            </p>
+
+            <h3>再生可能エネルギー</h3>
+            <p>
+                プレウォーのアメリカは核エネルギーを好みましたが、風力タービン、水力ダム、太陽光発電などの再生可能エネルギー技術も開発されていました。ネバダ州にはフーバー・ダム、南ネバダ風力発電所、ポセイドンエナジーのHELIOS One太陽光発電所、ネリス空軍基地のソーラーパネルアレイが存在。太陽光ベースの兵器（ARCHIMEDES I・II）も開発されました。マウント・デザート島（メイン州）には実験的風力発電所があり、親会社GDA Fusionが資金提供した核発電よりも効率的でした。
+            </p>
+
+            <h3>軍事技術</h3>
+            <h4>核兵器</h4>
+            <p>
+                Fallout世界の核兵器開発は、メガトン級兵器が退役し、代わりに大量の小型<strong>キロトン級</strong>兵器が配備される方向に進みました。重力爆弾と大陸間弾道ミサイル（ICBM）の両方が使用されていましたが、どちらがより多く使用されたかは不明です。航空機搭載核兵器は1940〜50年代の旧式爆弾の形状を維持しました。<br>
+                ミスター・ハウスは77発の核ミサイルからニュー・ベガスを防衛したと述べており、中国は相当数の弾道ミサイル式核弾頭を保有していたことを示唆しています。
+            </p>
+
+            <h4>実弾火器</h4>
+            <p>
+                Fallout独自の設計と現実世界の武器に基づくデザインが混在。ピカティニーレールはアサルトカービンに見られますが、取り付け可能なアタッチメントは少数。ハンドガンは20世紀初頭のデザインを維持。重火器（ミサイルランチャー、ファットマン）はサイドマウントフォアグリップや空気圧弾薬装填システムなど独自設計。現実では非実用的な核カタパルトや携帯式ミニガンが前線部隊に支給されました。現実では珍しい10mm弾が広く使用される一方、.50 BMGや.45 ACPはより専門的な用途に限定。
+            </p>
+
+            <h4>エネルギー兵器</h4>
+            <p>
+                レーザーとプラズマガンが存在し、ターゲットを灰の山や液状化した水溜まりに変える能力を持ちます。AERシリーズレーザーライフル、AEPシリーズレーザーピストル、ガトリングレーザーなどが軍事配備。ほとんどのエネルギー兵器はマイクロフュージョンセルを使用。プラズマ兵器は電磁石とトロイドを使用してプラズマを射出。エイリアンのエネルギー兵器（エイリアンブラスター）の証拠も。
+            </p>
+
+            <h4>軌道兵器</h4>
+            <p>
+                Fallout世界には4つの主要な軌道兵器が存在：<br>
+                • <strong>Highwater-Trousers</strong>：軌道ミサイルプラットフォーム（Fallout 3）<br>
+                • <strong>Bradley-Hercules</strong>：高性能爆薬ミサイル型軌道プラットフォーム（Broken Steel）<br>
+                • <strong>ARCHIMEDES II</strong>：レーザー型軌道兵器（Fallout: New Vegas）<br>
+                • <strong>Kovac-Muldoon</strong>：偵察兼補給・軌道打撃衛星（Fallout 76）<br>
+                現実世界で唯一配備された軌道兵器はソ連の8K69 FOBS（部分軌道爆撃システム）のみで、1982年にSALT II条約に従い段階的に廃止されました。
+            </p>
+
+            <h4>ロボティクス</h4>
+            <p>
+                Fallout世界はロボティクス技術に秀でており、プレウォー社会にロボットが浸透していました。ペットの散歩、食料品の買い出し、子供の世話、有名人のモノマネ、軍事戦闘まで、あらゆる役割を担いました。二足歩行のプロテクトロン、履帯式やホバリング式のロボブレイン、ミスターハンディ/ガッツィー、そして巨大なリバティ・プライムまで多種多様。多くがフィッションバッテリーとエネルギーセルで動くため、2077年の核の炎を生き延びました。
+            </p>
+
+            <h4>航空学</h4>
+            <p>
+                航空機はFallout世界ではあまり見かけませんが、そのデザインは1940〜50年代の終戦直後から大きく変わっていません。ジェット推進は民間・軍事両方で開発されましたが、戦闘機のデザインは1950年代から進化しておらず、空対空ミサイルや空対地ミサイルの証拠はなく、空中戦は朝鮮戦争時代のような機銃によるドッグファイトだったと考えられます。
+            </p>
+            <p>
+                ヘリコプターは直接登場しないものの、ヘリパッドの存在からある程度普及していたことが分かります。ベルチバードは「クレイジーなヘリコプター」と表現されています。
+            </p>
+            <p>
+                有人宇宙飛行も実現されており、<strong>1961年</strong>に最初の宇宙動物は、ロシアの野良犬ライカではなく、アメリカの家猫<strong>ミスター・ペブルズ</strong>。同年5月5日にアメリカが初の有人宇宙ミッションを実施したとされ、1969年7月16日にはアメリカ人宇宙飛行士が月面に着陸。2077年までには弾道ミサイル、衛星兵器、再使用型スペースプレーンが運用されていました。
+            </p>
+
+            <h4>プラスチック</h4>
+            <p>
+                Fallout世界では、石油不足のためプラスチックが現実世界よりもはるかに普及しておらず、ガラスや金属合金が主要な素材です。注射器はガラス製で再使用可能、スティムパックは金属ケース内のガラスバイアルに入っています。ただし軍はプラスチックポリマーを広く採用しており、コンバットアーマーやT-51bパワーアーマーは先進的な防御ポリマーで作られています。Fallout 4ではプラスチック容器がやや増えていますが、それでも現実よりはるかに少ないです。
+            </p>
+            <h2>スポーツ</h2>
+
+            <h3>野球</h3>
+            <p>
+                ボストンは2077年のワールドシリーズでテキサスと対戦──<strong>1918年以来159年ぶり</strong>の優勝を目指していました。現実世界では2004年、2007年、2013年、2018年に優勝しています。Fallout世界では「バンビーノの呪い」がまだ解けていなかったことになります。
+            </p>
+            <p>
+                ダイヤモンド・シティ（フェンウェイ・パーク内に建設された城塞都市）のレフトフィールドスタンドには退役番号が掲げられており、1、4、6は現実でも退役していますが、現実で退役している8、9、14、27、45は存在せず、現実では退役していない11、13、21、33が退役しています。
+            </p>
+            <p>
+                そして10月23日──ワールドシリーズ第4戦が予定されていたまさにその日に、核の炎が全てを終わらせました。
+            </p>
+
+            <h3>フットボール</h3>
+            <ul>
+                <li><strong>モーターサイクル・フットボール</strong>が存在し、初期のレザーアーマーはこのスポーツ用に設計された</li>
+                <li>アパラチアの高校のフットボール装備は1930年代の現実のデザインに類似、一方シーザーズ・レギオンの装備はより現代的</li>
+                <li>GNNトランスクリプト（信頼性に疑問あり）によれば、スーパーボウルCXII（112回）がリトルロック・セインツ vs アナハイム・ジェッツで2075年に開催。リトルロック・セインツは現実のニューオリンズ・セインツに相当</li>
+            </ul>
+
+            <h3>オリンピック</h3>
+            <p>
+                オリンピックはFallout世界でも継続して開催されました。唯一の直接言及は<strong>2060年オリンピック</strong>で、将来のVault 76居住者A.ヴィンスが十種競技で銅メダルを獲得。パイオニアスカウトのアスリート試験にはオリンピックに関する質問が現在形で記述されており、2076年のプレザント・バレー・スキーリゾートのターミナルにも「オリンピック級ではない」というスキー場への言及があり、大戦直前までオリンピックが開催されていた可能性を示唆しています。
+            </p>
+
+            <h2>その他</h2>
+            <ul>
+                <li><strong>アメリカ合衆国宇宙管理局</strong>（USSA）がNASAに代わる宇宙機関</li>
+                <li><strong>カール・ベル</strong>が初の宇宙飛行士</li>
+                <li>放射線の測定単位としてグレイではなく<strong>ラド（rad）</strong>が採用されている</li>
+            </ul>
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/divergence/img_main.jpg" alt="セールスマン"><div class="caption">Fallout 4コンセプトアート：レトロフューチャーの世界</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/divergence/img_nevada_flag.png" alt="ネバダ州旗"><div class="caption">「Southwest Commonwealth」が追加されたネバダ州旗</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Falloutシリーズの「なぜこうなっているのか」を全て解き明かすメタ記事。<br><br>
+                この世界が面白いのは、単なる「1950年代風未来」ではないこと。<br>
+                トランジスタが小さくならなかった──たったこれだけの分岐が、<br>
+                スマートフォンのない世界、液晶のない世界、しかしパワーアーマーとレーザーガンがある世界を生み出した。<br><br>
+                ジョナサン・ノーランの見解が最も核心を突いている：<br>
+                「自国の罪について自問自答したことのないアメリカ」。<br>
+                ベトナム戦争もウォーターゲートも経験せず、<br>
+                1950年代のアメリカン・ドリームが2077年まで続いた世界。<br><br>
+                都市の細部一つ一つに分岐の痕跡がある。<br>
+                ワシントン記念塔の鉄骨フレーム、存在しないベトナム戦争記念碑、<br>
+                3路線しかない地下鉄、モノクロのままのテレビ。<br>
+                そしてワールドシリーズ第4戦の日──10月23日──に核が落ちる。<br>
+                159年ぶりの優勝が叶うはずだった日に、全てが灰になった。<br>
+                これほど残酷で、これほどFalloutらしいディテールはありません。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Divergence" target="_blank" rel="noopener">Divergence</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutSeries</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#RetroFuturism</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#WorldBuilding</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Technology</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Politics</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_covered_bridge'; const _commentArticleName = 'Covered Bridge'; const _commentArticleUrl = 'covered-bridge.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

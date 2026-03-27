@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Hornwright Industrial Headquarters | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/hornwright-industrial-headquarters.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Hornwright Industrial Headquarters | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ホーンライト・インダストリアル本社のFallout 76ロア記事。自動化に取り憑かれたCEOと崩壊する企業の物語。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_HQ_Exterior.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/hornwright-industrial-headquarters.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Hornwright Industrial Headquarters | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ホーンライト・インダストリアル本社のFallout 76ロア記事。自動化に取り憑かれたCEOと崩壊する企業の物語。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_HQ_Exterior.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .note-box { border-left: 4px solid #8b9dc3; margin: 30px 0; background: rgba(139, 157, 195, 0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #8b9dc3; font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; } li::marker { color: var(--accent-color); }
+        .note-figure { float: right; margin: 0 0 15px 20px; max-width: 200px; text-align: center; }
+        .note-figure img { max-width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .note-figure .caption { font-size: 0.8em; color: #888; margin-top: 5px; font-style: italic; }
+        .note-figure-left { float: left; margin: 0 20px 15px 0; max-width: 200px; text-align: center; }
+        .note-figure-left img { max-width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .note-figure-left .caption { font-size: 0.8em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery-section { margin-top: 50px; } .gallery-section h2 { margin-bottom: 20px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .gallery { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } .note-figure, .note-figure-left { float: none; margin: 15px auto; max-width: 60%; } }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    
+        /* ターミナルエントリ用 */
+        .terminal-entry {
+            border-left: 4px solid #00ff00;
+            margin: 20px 0;
+            background: rgba(0, 255, 0, 0.05);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.7;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            color: #00ff00;
+        }
+        .terminal-entry b { color: #00ff00; font-size: 1.05em; }
+        .holotape-box { border-left: 4px solid #e89b3e; margin: 30px 0; background: rgba(232,155,62,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #e89b3e; font-size: 1.05em; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Hornwright Industrial HQ</h3>
+            <img src="images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_HQ_Exterior.png" alt="ホーンライト・インダストリアル本社">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>ロケーション</span></div>
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>ハイテクビル</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span><a href="charleston.html" class="auto-link">チャールストン</a>、<a href="appalachia.html" class="auto-link">アパラチア</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">戦前所有</span><span>ホーンライト・インダストリアル</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール<br>スーパーミュータント<br>スコーチ<br>ラッドローチ</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>The Motherlode<br>Trade Secrets<br>Division of Wealth</span></div>
+            <div class="infobox-row"><span class="infobox-label">クラフト</span><span>武器作業台・ケミストリー<br>調理台・ティンカーズ</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76<br>Wastelanders</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_hornwright_industrial_hq" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Hornwright Industrial Headquarters<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ホーンライト・インダストリアル本社</span></h1>
+
+            <h2>背景</h2>
+            <p>
+                <strong>ホーンライト・インダストリアル本社</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<a href="charleston.html" class="auto-link">チャールストン</a>中心部にある超高層ビルで、大戦前の鉱業会社ホーンライト・インダストリアルの企業本部です。<br>
+                CEO<strong>ダニエル・ホーンライト</strong>が推進した完全自動化路線の中枢であり、極秘プロジェクト「マザーロード」が開発されていました。
+            </p>
+
+            <h2>レイアウト</h2>
+            <p>
+                ビルは地下2階、地上1階、フロア1〜5、最上階のエグゼクティブスイート（6階）の計9フロアで構成されています。<br>
+                フロア2〜5は中央の吹き抜けを見下ろす構造で、階段で接続されています。
+            </p>
+            <h3>1階（グラウンドフロア）</h3>
+            <p>エントランスホールはメザニン付きのロビーで、オートマイナーが展示されています。受付デスクとターミナル、ヌカ・コーラ自販機があり、南東の角に階段があります。受付デスクの裏に6階へのエレベーターがあります。</p>
+            <h3>2階</h3>
+            <p>テクノロジーサポート部門。ジェフリー・ヴァッカーロのターミナルと、机の中に上級幹部試験の解答用紙があります。隣室にケミストリーステーション。</p>
+            <h3>3階</h3>
+            <p>人事部門と上級幹部採用試験の受験室。反対側にはロックハウンドと同じイグニッション・コア・リアクターを持つ研究エリアがあります。</p>
+            <h3>4階</h3>
+            <p>会議室とペネロペ・ホーンライトの上級執行役オフィス。ティンカーズ・ワークベンチがあり、デスクターミナルに自動採用システムのパスワードが含まれています。</p>
+            <h3>5階</h3>
+            <p>R.ヴァルガスのオフィスなど2つのオフィス。金庫の鍵は机の棚の右下にあります。破壊されたビルの一部から隣接する住居ビルの最上階に出ることもできます。</p>
+            <h3>6階（エグゼクティブフロア）</h3>
+            <p>クエスト「The Motherlode」で上級幹部キーカードを取得後にエレベーターでアクセス可能。CEO・ダニエル・ホーンライトのオフィスと開発ラボがあります。ラボにはマザーロード・プロジェクトの外部接続システムがあり、マザーロード自律採掘ロボットとの通信が可能です。</p>
+            <h3>地下（サブベースメント）</h3>
+            <p>エグゼクティフフロアのエレベーターからアクセス。マザーロード部門があり、武器作業台とパワーアーマーフレームが配置されています。</p>
+            <h3>洞窟（ケイブ）</h3>
+            <p>最深部。マザーロードの環境テストに使用された区画で、クエスト「Division of Wealth」の舞台です。受付にハイジャックがおり、迷路を通ってマザーロードの再調整を行います。</p>
+
+            <img class="article-image" src="images/note_extracted/hornwright-industrial-headquarters/FO76_Charleston_Topdown_Hornwright_HQ.png" alt="ホーンライト本社の俯瞰マップ">
+            <div class="image-caption">ホーンライト・インダストリアル本社の俯瞰マップ</div>
+
+            <h2>主なアイテム</h2>
+            <ul>
+                <li><strong>Senior executive exam updates</strong> — ホロテープ。3階人事部オフィス</li>
+                <li><strong>Senior executive exam answer key</strong> — メモ。2階ジェフリーの机</li>
+                <li><strong>Filing status</strong> — メモ。3階人事部オフィス</li>
+                <li><strong>Sam Blackwell: "No" on Measure 6</strong> — メモ。エグゼクティブフロア</li>
+                <li><strong>"Excavator suit" - Final steps</strong> — メモ。地下レベルのダートピット付近</li>
+                <li><strong>Algorithm reset test</strong> — ホロテープ。洞窟のブルーコンソール上</li>
+                <li><strong>Participant survey</strong> — メモ。洞窟の受付横の部屋</li>
+                <li><strong>Hornwright Estate access keycard</strong> — CEOの机の上</li>
+                <li><strong>パワーアーマーフレーム</strong> — 地下、マザーロード集合地点付近</li>
+                <li><strong>フュージョン・コア</strong> — 最上階のフュージョンジェネレーター内</li>
+                <li><strong>Vault-Tecボブルヘッド</strong>（最大3個） / <strong>雑誌</strong>（最大3冊）</li>
+            </ul>
+
+            <h2>関連クエスト</h2>
+            <ul>
+                <li><strong>The Motherlode</strong>：マザーロード・プロジェクトの調査</li>
+                <li><strong>Trade Secrets</strong>（Wastelanders）</li>
+                <li><strong>Division of Wealth</strong>（Wastelanders）</li>
+            </ul>
+
+            <h2>ターミナルエントリ（抜粋）</h2>
+            <p>本社には7台のターミナルが設置されています。以下はCEOと主要なターミナルの翻訳です。</p>
+
+            <h3>CEOターミナル — ダニエル・ホーンライト</h3>
+
+            <div class="terminal-entry">
+                <b>個人日記 01</b><br><br>
+                Vault-Tecには「未来に備えよ！」というスローガンがある。まったく同感だ。<br>
+                ホーンライトの経営を引き継いで以来、私はこのマントラに従ってきた。<br>
+                父は常に会社の未来は従業員次第だと考えていた。「製品は作る人間の質で決まる」が口癖だった。<br>
+                父には驚くべき先見の明があったが、その従業員を強く信頼できるものにするテクノロジーがなかった。<br><br>
+                だからこそ、私はあらゆる自動労働者プログラムを全力で推進する。<br>
+                もう病欠も、休暇も、産休も、家族の突然の死もない。<br>
+                会社の運営に必要な人数を減らしつつ、同じ生産量と品質管理を維持する。<br>
+                オートマイナー・プログラムはほんの始まりに過ぎない——<br>
+                私の究極の目標は2100年までにホーンライトを完全自動化することだ。
+            </div>
+
+            <div class="terminal-entry">
+                <b>個人日記 05</b><br><br>
+                ターミナルの前に座り、言葉を失っている。<br>
+                長年愛した人にどうやって別れを告げればいいのか。<br>
+                妻の死からまだ2日しか経っていないが、まだ現実に感じられない。<br>
+                あれだけの金を使い、あれだけの医者にかかった。すべて無駄だった。<br>
+                エヴリンを救えなかった。そして今、失うことができない唯一のものが永遠に去ってしまった。<br><br>
+                娘のペニーは大丈夫だと言う、もう受け入れたと。<br>
+                しかし内心ではこたえているのではないかと思う。<br>
+                本心を打ち明けてほしいが、あの子の意志はあまりに強い。<br>
+                これに負けるわけにはいかない。マザーロード・プロジェクトを完成させなくては。<br>
+                自分のためでなく、正気のためでもなく——エヴリンのためにやり遂げる。
+            </div>
+
+            <div class="terminal-entry">
+                <b>個人日記 06 — 記者射殺事件</b><br><br>
+                セキュリティからの報告では、ビル・ブレイヤーという間抜けな記者がフェンスを乗り越えてマザーロード・プロジェクトを覗き見にきたそうだ。<br>
+                レコーダーを武器のように持って突っ込んできた馬鹿だ。<br>
+                部下たちに他に何ができた？少なくとも一発でクリーンに仕留めた。<br><br>
+                PR部門のハンソンが「事実を正す公式声明を出すべきだ」と言ったので即座にクビにした。<br>
+                この件はすべてのマネージャーに「事故」とだけ呼ぶよう指示を出した。<br>
+                振り返ってみれば、これが起きてよかったとさえ思う。<br>
+                もう誰もフェンスを越えてうちのプロジェクトを覗こうとは思わないだろう。
+            </div>
+
+            <div class="terminal-entry">
+                <b>アーカイブメッセージ — 宛先：不明（ブラックウェル工作）</b><br><br>
+                ダニエルだ。<br><br>
+                処理してほしい問題がある——サミュエル・ブラックウェル上院議員だ。<br>
+                投票法案6号の採決が終わるまで、あいつの声を……静かにさせてほしい。<br>
+                あいつを……脅すんだ。誰も傷つけてはいけない。<br>
+                ただしばらく姿を消す理由を与えてやれ。<br>
+                言うまでもないが、うちに辿れないようにしろ。
+            </div>
+
+            <h3>研究ターミナル — ホセ・ブリガダ博士</h3>
+
+            <div class="terminal-entry">
+                <b>AMS採用者</b><br><br>
+                ホーンライトが最新のチームメンバーを紹介してくれた——AMSの「電子知能」部門からの引き抜きだ。<br>
+                「我々の知る採掘の未来だ」というのがホーンライトの紹介時の言葉だった。<br><br>
+                この小娘は博士号がひとつ。州立大学の。結論を急がないでほしい、ダニエル。<br><br>
+                だが猫の手も借りたい。このジャクソンさんにはコーヒーでも淹れてもらおうか。
+            </div>
+
+            <div class="terminal-entry">
+                <b>好奇心をそそるジャクソンさん</b><br><br>
+                来てから4週間で、若きジャクソンさんはマザーロード・プロジェクトの未解決研究課題を3つ完了させた。3つだ！<br><br>
+                鉱物間通信——解決。<br>
+                地殻下ナビゲーション——子供の遊び。<br>
+                自動音声応答システム——なぜやらない？<br><br>
+                彼女は現場修理システムまで設計した。<br>
+                私のオリジナルのマザーロード設計に基づいているが、作業中断なしにシステムと接続できる。<br><br>
+                この子は天才か泥棒だ。AMS時代にたまたまメモしていたものを持ち込んだだけなのかもしれない。<br>
+                ホーンライトにクビにしてくれと懇願すべきなのか、ノーベル賞に推薦すべきなのか分からない。<br><br>
+                そしてまったく——あの子のコーヒーは絶品だ。
+            </div>
+
+            <div class="terminal-entry">
+                <b>ジャクソンさんへ</b><br><br>
+                ジャクソンさん、<br><br>
+                これを読んでいるなら、プロジェクトリーダーへの昇進おめでとう。<br>
+                あなた以上にふさわしい人はいない。<br><br>
+                そしてこれは心の底から言う——今すぐここを出なさい。<br><br>
+                ホーンライト氏は正常ではない。彼の被害妄想と孤立はここ数ヶ月で悪化の一途だ。<br>
+                私の解雇は、「彼の」マザーロード・プロジェクト以外のすべてに対する彼の敵意が増す中で、驚くことではなかった。<br><br>
+                お願いだから、あの男がキレる前に辞めてくれ。<br>
+                あなたの才能は、こんな状況で無駄にされるべきではない。
+            </div>
+
+            <h3>受付ターミナル — イヴェット・ウィーズマン</h3>
+
+            <div class="terminal-entry">
+                <b>アーカイブメッセージ 9.27.77 — アネットからの手紙</b><br><br>
+                あなた次第よ、ダーリン。<br>
+                私と一緒に来るか、毎週わずかな銀貨と引き換えに魂を削り続けるか。<br><br>
+                ただ私が知っているのは、ホーンライトたちがあのロボットのスキャブ（スト破り）で蹴り出した鉱夫たちには家族がいたということ。<br>
+                彼らを飢えさせることの片棒は担ぎたくない。<br><br>
+                &emsp;——アニー
+            </div>
+
+            <h2>ホロテープ</h2>
+
+            <div class="holotape-box">
+                <b>🎙️ Senior executive exam updates（上級幹部試験の更新）</b><br><br>
+                <strong>ダニエル・ホーンライト</strong>：<br>
+                ハノーバー。ダニエル・ホーンライトだ。<br>
+                テクノロジーサポート部門が上級幹部試験に私の<em>修正された</em>解答を反映させたと聞いておくが、確認は取ったのか。<br><br>
+                私はもう……うんざりしている。骨なし……の「幹部」候補をお前が寄越し続けることに。<br>
+                ここで生き残れるだけの根性のある候補を見つけてこい。さもなくば、できる人間を別に見つけるぞ。<br><br>
+                <span style="font-size: 0.85em; color: #888;">📍 3階 人事部オフィス、デスクの右側</span>
+            </div>
+
+            <div class="holotape-box">
+                <b>🎙️ Algorithm reset test（アルゴリズムリセットテスト）</b><br><br>
+                <strong>エンジニア</strong>：<br>
+                ……アルゴリズム構成リセット手順を開始……<br>
+                ……一次土壌格納チャンバーを充填中……<br>
+                ……補助土壌格納チャンバーへのアクセスを要求……<br>
+                ……補助土壌格納チャンバーを充填中……<br>
+                ……自動バリア再配置を開始……<br>
+                ……バリア油圧システムを起動……<br>
+                ……発掘を開始……エラーコードが画面を埋め尽くしている、ちょっと待って……<br>
+                ……何かが掘削パイプに詰まっている……エンジニアに確認させてくれ……<br>
+                ……換気シャフトF…R…9…2…みたいだ……<br>
+                ……ん？ 数ヶ月前にも同じエリアでこれ起きなかったか？……<br><br>
+                ……報告：コードレッドだ……<br>
+                ……換気シャフトF-R-9-2から遺体が掘り出されている……<br>
+                ……どうやらインターンに何が起きたかがようやく分かったらしい……<br><br>
+                ……ははははは……<br>
+                ……アルゴリズム構成リセット手順を終了……<br><br>
+                <span style="font-size: 0.85em; color: #888;">📍 洞窟エリア、フェンスとセキュリティゲートの奥の部屋、ブルーコンソール上<br>
+                🎤 声優：アレックス・ル</span>
+            </div>
+
+            <h2>発見されるメモ</h2>
+
+            <div class="note-box">
+                <b>📄 Senior executive exam answer key（上級幹部試験 解答用紙）</b><br><br>
+                <u>上級幹部試験<br>解答</u><br><br>
+                Q1: 2 — 事故の責任を地元の労働組合の扇動者になすりつける<br>
+                Q2: 2または3 — 彼らを脅して情報を引き出す OR メディアにリークし株を空売りする<br>
+                Q3: 1 — 政治家の弱みを握って値段を下げさせる<br>
+                Q4: 2 — 高報酬の仕事を提示して正体を明かさせる<br>
+                Q5: 1 — 詳細をホーンライトの一流企業諜報チームに引き渡す<br><br>
+                <span style="font-size: 0.85em; color: #888;">📍 2階 IT部門、ターミナル下の机の棚の中</span>
+            </div>
+
+            <div class="note-box">
+                <b>📄 Filing status（ファイリング状況）</b><br><br>
+                ハノーバーさんへ<br><br>
+                人事部のファイルのほぼ全てを地下のアーカイブシステムに登録しましたが、ラジオで言っていることを聞くと、これ以上ここにはいられません。<br><br>
+                早退して申し訳ありません。評価に影響しないことを祈りますが、お母さんとお父さんが無事か確認しなくてはなりません。<br><br>
+                すみません、ハノーバーさん。<br><br>
+                ——グレッグ<br><br>
+                <span style="font-size: 0.85em; color: #888;">📍 3階 人事部オフィス、採用テスト端末の隣のデスク左側<br>
+                ※ 大戦直前に書かれたと推測される、若い社員の最後の手紙</span>
+            </div>
+
+            <div class="note-box">
+                <b>📄 Sam Blackwell: "No" on Measure 6（サム・ブラックウェル議員：法案6号に「反対」）</b><br><br>
+                クイン・カーター記<br><br>
+                「アパラチア地域の人々は、自分たちの生活が金属の手によって奪い取られるのを傍観していてはならない」<br><br>
+                これはサミュエル・ブラックウェル上院議員の言葉で、チャールストン・ヘラルド紙のインタビューにおいて、物議を醸す投票法案6号への権威ある反対の声として発せられたものである。<br><br>
+                法案6号は今年11月の投票にかけられる予定で、26億ドルの公債を発行し、アパラチア政府の全人的労働者を自動化システムに置き換えるプロセスを開始するというものだ。目標は2087年までの完全自動化である。しかし地域の多くの人々にとって、これはホーンライト・インダストリアルやAMSのような大企業と地元労働者との間の代理戦争と見なされるようになっている。<br><br>
+                インタビューでブラックウェル議員は、法案6号がアパラチアの市民に及ぼすと考える影響について率直に語った：<br>
+                「……緩やかな災害だ。政府の一員として我々の仕事は有権者のために声を上げることだ。法案6号でアパラチアの人々が得るものは、解雇通知と空腹以外に何がある？」<br><br>
+                コメントを求められたホーンライト・インダストリアルCEOのダニエル・ホーンライトは次のように述べた：<br>
+                「ブラックウェル議員のアパラチアの福祉への関心とやらは、彼が『フリー・ステイターズ』のような分離主義者と付き合い始めた時点で窓から消え去っている。追加のコメントはない。」<br><br>
+                <span style="font-size: 0.85em; color: #888;">📍 6階 エグゼクティブフロア、CEOの机の上</span>
+            </div>
+
+            <div class="note-box">
+                <b>📄 "Excavator suit" - Final steps（「エクスカベーター・スーツ」——最終段階）</b><br><br>
+                ホーンライト氏へ<br><br>
+                ガラハン・マイニングの「エクスカベーター・スーツ」計画を潰す我々の取り組みはほぼ完了しています。<br>
+                私のチームが「人間vs機械」コンテストに「介入」したおかげで、我々のオートマイナーが地域の話題を独占し、ガラハンの株価は暴落中です。<br><br>
+                さて——最終段階です。<br><br>
+                私の顧問たち全員が言うには、エクスカベーター・スーツの技術は確かなものです。<br>
+                彼らの鉱物探知テクノロジーは革命的と言っていいレベルで、あの壁の中には膨大な独自技術があります。<br>
+                ガラハン・マイニングの敵対的買収こそ、今の賢明な一手です。<br><br>
+                自動化され、ほぼ破壊不能なオートマイナーの艦隊に、独自に鉱物資源を探し出す能力を備えさせる——<br>
+                それが未来です、ダニエル。<br>
+                それがAMSを彼ら自身のゲームで打ち負かす方法です。<br><br>
+                ただ、それをやり遂げる大胆さが必要です。<br><br>
+                迅速に行動されることをお勧めします。あなたの「マザーロード」プロジェクトは、我々がロッキー山脈以東で最大の産業コンツェルンとしての地位を確立した後でもそこにあります。<br>
+                ひと言いただければ、24時間以内に取締役会を招集して戦略会議を始めます。<br><br>
+                また、この文書を読み終えたら即座に焼却することを強くお勧めします。<br><br>
+                ダッチ・ウォートン<br>
+                上級副社長——企業渉外<br>
+                ホーンライト・インダストリアル<br><br>
+                <span style="font-size: 0.85em; color: #888;">📍 地下レベル、ダートピットの上のキャビネット</span>
+            </div>
+
+            <div class="note-box">
+                <b>📄 Penelope Hornwright's resume（ペネロペ・ホーンライトの履歴書）</b><br><br>
+                <u>上級幹部候補</u><br><br>
+                <strong>目標</strong><br>
+                現代的でコスト効率の高いテクノロジーの導入を先導し、鉱業を22世紀へ導くための重要な一翼を担うこと。<br><br>
+                <strong>職歴</strong><br>
+                インターン（2068年夏）：ホーンライト・インダストリアル、オペレーション部門<br>
+                インターン（2069年夏）：AMS（Atomic Mining Services）、自動化部門<br><br>
+                <strong>学歴</strong><br>
+                Vault-Tec大学 2070年卒業、最優秀<br>
+                ダブルメジャー：経営学、地質科学<br><br>
+                <strong>リファレンス</strong><br>
+                アンジェラ・ホワイト博士：VTU経営学部<br>
+                ハーヴェイ・ブロック：AMS 研究開発フェロー<br><br>
+                <span style="font-size: 0.85em; color: #888;">📍 地下 カンパニー・アーカイブ・ターミナル</span>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>ホーンライト・インダストリアル本社はFallout 76にのみ登場し、Wastelandersアップデートで拡張されました。</p>
+
+            <h2>ギャラリー</h2>
+                <h3>メインビル</h3>
+                <div class="gallery">
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76_Misc_lox_12.png" alt="外観"><div class="caption">外観</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_Industrial_Int_1.png" alt="ロビー"><div class="caption">ロビー</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_Industrial_Int_2.png" alt="2階"><div class="caption">2階</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_Industrial_Int_3.png" alt="生産エリア"><div class="caption">生産エリア</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_Industrial_Int_5.png" alt="最上階"><div class="caption">最上階</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/PowerArmor_Hornwright_HQ.png" alt="パワーアーマー"><div class="caption">パワーアーマー</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76_Hornwright_Industrial_headquarters_(Filing_status).jpg" alt="Filing status"><div class="caption">Filing status</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/Sam_Blackwell_No_on_Measure_6.png" alt="法案6号反対"><div class="caption">Sam Blackwell: No on Measure 6</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76_Hornwright_Industrial_headquarters_(Senior_executive_exam_answer_key).png" alt="試験解答用紙"><div class="caption">試験解答用紙</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76_Hornwright_Industrial_headquarters_(Human_Resources_office).jpg" alt="人事部オフィス"><div class="caption">人事部オフィス</div></div>
+                </div>
+                <h3>地下レベル</h3>
+                <div class="gallery">
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_Industrial_Int_4.png" alt="地下"><div class="caption">地下</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/F76_Hornwright_Industrial_Int_6.png" alt="マザーロード"><div class="caption">マザーロード</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76_Hornwright_Industrial_headquarters_(Excavator_suit_-_Final_steps).png" alt="Excavator suit"><div class="caption">"Excavator suit" - Final steps</div></div>
+                </div>
+                <h3>洞窟（ケイブ）</h3>
+                <div class="gallery">
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76WL_Hornwright_Industrial_Cave_01.png" alt="受付"><div class="caption">受付エリア</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76WL_Hornwright_Industrial_Cave_02.png" alt="迷路入口"><div class="caption">迷路入口</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76WL_Hornwright_Industrial_Cave_(Algorithm_reset_test).png" alt="Algorithm reset test"><div class="caption">Algorithm reset test</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/hornwright-industrial-headquarters/FO76WL_Hornwright_Industrial_Cave_(Participant_survey).png" alt="Participant survey"><div class="caption">Participant survey</div></div>
+                </div>
+            
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ホーンライト・インダストリアル本社は、Fallout 76の世界で最も物語が濃密なロケーションのひとつです。<br>
+                9フロアの超高層ビルに詰め込まれたターミナルエントリが、一人の男の傲慢と崩壊の物語を語ります。<br><br>
+                ダニエル・ホーンライトの日記を読み進めると、彼が単なる悪役ではないことが分かります。<br>
+                「2100年までに完全自動化」という壮大なビジョンを持つCEOが、妻エヴリンの死で精神的に追い詰められ、マザーロード・プロジェクトに執着することで自分を保とうとする——その過程で記者を射殺し、上院議員を脅迫し、有能な研究者を使い潰す。<br><br>
+                ホセ・ブリガダ博士のログが特に秀逸です。<br>
+                「州立大学のPhDひとつ」と見下していたジャクソンさんが次々と研究課題を解決し、「天才か泥棒か分からない」「コーヒーは絶品だ」と認めざるを得なくなる展開に、皮肉なユーモアが光ります。<br>
+                そして最後の「今すぐここを出なさい」というメッセージ——解雇された博士が後任に残す、切実な警告。<br><br>
+                受付のイヴェットとアニーのやり取りも見逃せません。<br>
+                「ロボットのスト破り」という表現は大戦前の自動化問題をシンプルかつ的確に言い当てています。<br>
+                結局アニーはこの倫理的ジレンマに答えを出して去り、イヴェットは「もう少し考えさせて」と言ったまま、大戦前夜のオフィスに残されたのでしょう。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Hornwright_Industrial_headquarters" target="_blank" rel="noopener">Hornwright Industrial headquarters</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#チャールストン</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#ホーンライト</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#マザーロード</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_hornwright_industrial_hq'; const _commentArticleName = 'Hornwright Industrial HQ'; const _commentArticleUrl = 'hornwright-industrial-headquarters.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

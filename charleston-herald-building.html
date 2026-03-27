@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Charleston Herald building | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/charleston-herald-building.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Charleston Herald building | Overseer Mohi's Terminal">
+    <meta property="og:description" content="チャールストン・ヘラルド新聞社ビルのFalloutロア記事。ファイア・ブリーザーの体力試験の出発点であり、記者クイン・カーターがサム・ブラックウェルへのインタビューを行った場所。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/charleston-herald-building/FO76_Charleston_Herald.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/charleston-herald-building.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Charleston Herald building | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="チャールストン・ヘラルド新聞社ビル — ファイア・ブリーザー体力試験の出発点">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/charleston-herald-building/FO76_Charleston_Herald.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block; color: var(--accent-color); text-decoration: none;
+            border: 1px solid var(--accent-color); padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace; transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center;
+            gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s;
+        }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item {
+            background: var(--panel-bg); border: 1px solid #444; border-radius: 4px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .lightbox-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out;
+            justify-content: center; align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw; max-height: 95vh; object-fit: contain;
+            border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px;
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color);
+            color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em;
+            padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em;
+            cursor: pointer; border-radius: 4px; transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Charleston Herald building</h3>
+            <img src="images/charleston-herald-building/FO76_Charleston_Herald.png" alt="チャールストン・ヘラルド新聞社ビル">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>ハイテクビル</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属地域</span><span><a href="charleston.html" class="auto-link">チャールストン</a><br>森林地帯、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">戦前組織</span><span>チャールストン・ヘラルド</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>オーバビー（戦前）</span></div>
+            <div class="infobox-row"><span class="infobox-label">勢力</span><span>レスポンダー<br>ファイア・ブリーザー</span></div>
+            <div class="infobox-row"><span class="infobox-label">生物</span><span>フェラル・グール<br>スーパーミュータント<br>スコーチ</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Into the Fire<br>Runner's High<br>Uncle Sam</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+
+            <img src="images/charleston-herald-building/Charleston_Herald_map.png" alt="マップマーカー" style="margin-top:15px;">
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_charleston_herald_building" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Charleston Herald building<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">チャールストン・ヘラルド新聞社ビル</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                チャールストン・ヘラルド新聞社ビルは、アパラチアの<a href="charleston.html" class="auto-link">チャールストン</a>市にあるロケーションです。<br>
+                ダウンタウンの目立つ建物で、大戦後の数年で荒廃が進んでいます。<br>
+                1階には入れますがエレベーターは動いておらず、即席の足場や階段を使って上の階へアクセスします。
+            </p>
+
+            <img class="article-image" src="images/charleston-herald-building/FO76_Charleston_Herald.png" alt="チャールストン・ヘラルド新聞社ビル外観">
+            <div class="image-caption">チャールストン・ヘラルド新聞社ビル外観</div>
+
+            <!-- ===== Layout ===== -->
+            <h2>レイアウト</h2>
+            <p>
+                このビルはレスポンダーの体力試験の出発地点として使用されています。<br>
+                2階にはファイア・ブリーザー体力試験ターミナルがあり、試験コースのスタート地点となっています。<br>
+                ターミナルの近くには冷蔵庫、薪、調理ステーションが置かれています。<br>
+                冷蔵庫には煮沸水が複数保管されています。
+            </p>
+            <p>
+                3階にはクイン・カーターとウィリアム・ブレイヤーの記者オフィスがあります。<br>
+                カーターのオフィスにはホロテープが3本と、施錠された壁の金庫（ピックロック2）があります。<br>
+                ブレイヤーのオフィスのドアは施錠されており（ピックロック0）、中にはダンボール箱に入ったタイプライターと施錠された壁の金庫（ピックロック1）があります。<br>
+                この階の非常口から外に出ると、デッキチェアに座ったスケルトンがいます。<br>
+                ここにはレーザートリップワイヤーが仕掛けてあり、触れると爆発します。
+            </p>
+            <p>
+                4階には編集長オーバビーのオフィスがあります。<br>
+                編集長のデスクにはホロテープとパンフレットがターミナルと共に置かれています。<br>
+                この階の非常口からバルコニーに出ると、隣のビルに接続された仮設の木製の橋があります。<br>
+                その上の階への階段は崩壊した天井で塞がれています。
+            </p>
+
+            <img class="article-image" src="images/charleston-herald-building/FO76_Charleston_Topdown_Charleston_Herald.png" alt="チャールストン・ヘラルド新聞社ビルの俯瞰マップ">
+            <div class="image-caption">チャールストン・ヘラルド新聞社ビルの俯瞰マップ</div>
+
+            <!-- ===== Notable Loot ===== -->
+            <h2>主なアイテム</h2>
+            <ul>
+                <li><b>Speaker Poole interview</b> — ホロテープ。クイン・カーターのオフィスの机上。</li>
+                <li><b>Sam Blackwell Interview, Pt. One</b> — ホロテープ。クイン・カーターのオフィスの床の壊れたダンボール箱の中。</li>
+                <li><b>Sam Blackwell Interview, Pt. Two</b> — ホロテープ。同じ箱の中にPt. Oneと一緒に。</li>
+                <li><b>AMS: Corporate Bully</b> — メモ。オーバビーのオフィスの外、コーヒーポットとマグカップのある大テーブル上。</li>
+                <li><b>Carter and Blackwell - Traitors!</b> — メモ。編集長オーバビーのオフィス内。</li>
+                <li><b>Charleston Herald Exclusive: The Motherlode</b> — ホロテープ。編集長オーバビーのオフィス内。</li>
+                <li><b>Course instructions</b> — ホロテープ。ビル2階、ファイア・ブリーザー体力試験ターミナルの左側の縁。</li>
+                <li><b>Sam Blackwell interview notes</b> — メモ。クイン・カーターのオフィス内、オレンジ色のファイルキャビネットの上の小箱の中。</li>
+                <li><b>The Herald supports Quinn Carter</b> — メモ。ビル2階、半円形のデスク上、壊れたターミナルの右側。</li>
+                <li><b>Package for Quinn Carter</b> — フォルダ。編集長のオフィスのデスク上。中には「Vigilant citizen's note to Carter」と「weigh station logs」が入っている。</li>
+                <li>武器の設計図（ランダム） — オーバビーのオフィス奥の額縁横のキャビネット上。</li>
+            </ul>
+
+            <!-- ===== Holotapes & Notes ===== -->
+            <h2>発見できるホロテープ・メモ</h2>
+
+            <div class="holotape-box">
+                <b>🎙️ Speaker Poole interview（プール議長インタビュー）</b><br>
+                <em>場所：クイン・カーターのオフィスの机上</em><br><br>
+                <b>クイン・カーター：</b>プール議長！お待ちください！少しだけお時間を！<br><br>
+                <b>アビゲイル・プール：</b>ちょうどいいわね……申し訳ありませんが、今は時間がないんです、カーターさん。<br><br>
+                <b>クイン・カーター：</b>エヴァンス知事はまだ捜索中ですか？ホルブルックが代行知事だというのは本当ですか？<br><br>
+                <b>アビゲイル・プール：</b>いいえ。継承順位の規定では、議長は多数党院内幹事よりも上位に位置します。あのね、今は時間が——<br><br>
+                <b>クイン・カーター：</b>南西のチェックポイントがゾンビの群れに襲われたというのは本当ですか？<br><br>
+                <b>アビゲイル・プール：</b>何ですって？そんな馬鹿な——いいえ。放射線の影響を受けた人々です。医療センターにたくさんいます。かわいそうな人たち……<br><br>
+                <b>クイン・カーター：</b>ワシントンからの連絡はまだありませんか？まだ戦争中なのですか？突然変異の報告は？モスマンの目撃情報は？<br><br>
+                <b>アビゲイル・プール：</b>もう十分です。ヘラルドはかつてまともな新聞だったのに、あなたたちはそれをゴシップ紙にしようとしている。今回は非公開会議です。マーシャル、このお友達を出口まで案内して。モスマン……冗談でしょう。<br><br>
+                <b>マーシャル・バーバー：</b>聞いたろう。非公開会議だ。記者お断り。<br><br>
+                <b>クイン・カーター：</b>くそ。分かりました。でもモスマンの目撃報告は実際にあるんです。<br><br>
+                <b>マーシャル・バーバー：</b>ふーん。記者証を取り上げられる前にここから出な。<br><br>
+                <b>クイン・カーター：</b>はい……はい！行きますよ、押さなくても……
+            </div>
+
+            <img class="article-image" src="images/charleston-herald-building/FO76_Charleston_Herald_building_desk_in_C_Quinns_office.png" alt="クイン・カーターのオフィスの机">
+            <div class="image-caption">クイン・カーターのオフィスの机 — ホロテープとメモが置かれている</div>
+
+            <div class="holotape-box">
+                <b>🎙️ Sam Blackwell Interview, Pt. One（サム・ブラックウェル インタビュー Part 1）</b><br>
+                <em>場所：クイン・カーターのオフィスの床、壊れたダンボール箱の中</em><br><br>
+                <b>クイン・カーター：</b>はい、録音中です。ご連絡いただきありがとうございます。あなたの手紙が本物だと分かった時はどれほど驚いたか。<br><br>
+                <b>サム・ブラックウェル：</b>もちろんです、カーターさん。道のりが大変でなかったことを願います。<br><br>
+                <b>クイン・カーター：</b>まあ……ある意味、貴重な経験でした。頭に袋をかぶせられるところからインタビューが始まることはそうそうありませんから。いたずらじゃなくてよかったです。<br><br>
+                <b>サム・ブラックウェル：</b>それについてはお詫びします。目立たないようにすることが、今の私たちにとって必要なのです。<br><br>
+                <b>クイン・カーター：</b>それはなぜですか、上院議員？なぜあなたは突然地位を去ったのですか？<br><br>
+                <b>サム・ブラックウェル：</b>去ることが家族を守る唯一の方法だと思ったからです、カーターさん。しかし、その後で私が大切に思っている多くの人々を重大な危険にさらしたままにしてしまったことに気づきました。それを正すためにご協力いただきたいのです。<br><br>
+                <b>クイン・カーター：</b>どういう意味ですか、上院議員？<br><br>
+                <b>サム・ブラックウェル：</b>政府の殿堂には邪悪な力が蠢いています。私とフリー・ステイツの仲間たちは、もはやこの国の腐りゆく屍に縛りつけられるつもりはありません。命を大切にする者なら誰でもそうすべきです。アメリカの人々に残された選択肢はただ一つ——独力で切り拓くことです。持てるだけのものを持ち、社会の網から離れ、急いでください。終わりが来ます、カーターさん。そしてその時、あなたの政府にはあなたを守る気など毛頭ないのです。
+            </div>
+
+            <div class="holotape-box">
+                <b>🎙️ Sam Blackwell Interview, Pt. Two（サム・ブラックウェル インタビュー Part 2）</b><br>
+                <em>場所：クイン・カーターのオフィスの床、同じダンボール箱の中</em><br><br>
+                <b>クイン・カーター：</b>邪悪な力？終わりが来る？上院議員、かなり大きな主張をされていますが、それを裏付ける証拠はお持ちですか？<br><br>
+                <b>サム・ブラックウェル：</b>これは終末論の妄想ではありませんよ。そういう意味で聞いているなら。信頼できる情報源から受け取った情報です。<br><br>
+                <b>クイン・カーター：</b>あなたの言葉をそのまま信じろと？<br><br>
+                <b>サム・ブラックウェル：</b>信じていただくしかありません、カーターさん。私は命を救おうとしているのであって、情報源を暴くことでさらに多くの命を危険にさらすつもりはないのです。<br><br>
+                <b>クイン・カーター：</b>上院議員、失礼なことを言うつもりはありませんが、あなたはパニックを引き起こそうとしているように聞こえます。証拠なしにそれに加担するわけには——それと、極秘情報ですが、あなたがチャールストンのある神経科医を何度も訪問しているのを——<br><br>
+                <b>サム・ブラックウェル：</b>私の健康はここでは問題ではありません、カーターさん！人々の命がかかっているのです！行政府、産業界の大物、農務省！私は彼らの世界を覗き見てしまい、命を脅されたのです！娘の命まで！私たちは彼らにとって駒に過ぎない。そして唯一の生き残る道は……盤上から降りることです。私が求めているのは、そのメッセージを伝えてくださることだけです。<br><br>
+                <b>クイン・カーター：</b>……悪意があって言ったわけではありません。ただ、私の側からこれがどう見えるかはご理解いただかないと。<br><br>
+                <b>サム・ブラックウェル：</b>分かっています。ただ……繊細な話題なもので。<br><br>
+                <b>クイン・カーター：</b>最後にもう一つだけ質問してもよろしいですか？<br><br>
+                <b>サム・ブラックウェル：</b>それで情報を広めてくれるなら、どうぞ。<br><br>
+                <b>クイン・カーター：</b>あなたは上院議員を正式に辞職されていません。辞職するおつもりですか？<br><br>
+                <b>サム・ブラックウェル：</b>辞職します。このインタビューをもって正式な辞表とお考えください。情報を広めてください、カーターさん。お願いするのは、私の警告を一緒に伝えてくださること……それだけです。では失礼します。娘と私にはやるべきことがたくさんあるので。何しろ、もう頼れるのは自分たちだけですから。
+            </div>
+
+            <div class="holotape-box">
+                <b>🎙️ Charleston Herald Exclusive: The Motherlode（チャールストン・ヘラルド独占：マザーロード）</b><br>
+                <em>場所：編集長オーバビーのオフィス、ターミナル左側の机上</em><br><br>
+                <b>ビル・ブレイヤー：</b>ウィリアム・ブレイヤー、チャールストン・ヘラルドの調査記者です。現在、最近この周辺に出現した複数のホーンライト・インダストリアルの施設のうちの一つのセキュリティフェンスのすぐ外に立っています。今夜、ある界隈で「マザーロード・プロジェクト」と呼ばれているものの真相を探りに来ました。<br><br>
+                これは地元の鉱山家族が求めてきた希望なのか？地域経済を活性化させる新たな鉱山プロジェクト？それとも環境団体が警告するように、足元の地面を汚染する新たな有毒廃棄物処理場なのか？<br><br>
+                少なくとも、地元の専門家によれば、この地域で最近増加した地震活動はほぼ確実にこれらの施設と関連があるとのことです。そして今、私は自分の目で確かめに来ました。<br><br>
+                フェンスの最初の隙間から入り込みました。ここのセキュリティは凄まじい。有刺鉄線。武装した警備員。まるで戦場です。小さな丘を越えて——なんだ……地面が揺れて——おい、あれは何だ？<br><br>
+                <b>ホーンライト社員：</b>おい！お前！ここは私有地——くそ、あの記者だ。マズい！あいつ銃を持ってるぞ！<br><br>
+                <b>ビル・ブレイヤー：</b>銃？待ってくれ、これは銃じゃ——あっ！あぁ……
+            </div>
+
+            <img class="article-image" src="images/charleston-herald-building/Fo76_Charleston_Herald_building_Quinn_Carter_office.jpg" alt="オーバビーのオフィス">
+            <div class="image-caption">編集長オーバビーのオフィス — ホロテープ、パンフレット、パッケージが置かれている</div>
+
+            <div class="holotape-box">
+                <b>🎙️ Course instructions（コース説明）</b><br>
+                <em>場所：ビル2階、ファイア・ブリーザー体力試験ターミナルの左側</em><br><br>
+                <b>メロディ・ラーキン：</b>よし、静かに、新兵諸君。難しそうに見えるかもしれないが、準備さえできていれば大したことはない。矢印に従って、頭を回転させ続けろ。先の方に行くと議事堂が見える。あのボタンを叩いて、コースを辿ってここに戻ってこい。<br><br>
+                <b>ファイア・ブリーザー訓練生：</b>（ぶつぶつ）……せっかくブーツを磨いたのに……<br><br>
+                <b>メロディ・ラーキン：</b>今何と言った？言いたいことがあるなら吐き出せ。<br><br>
+                <b>訓練生：</b>あの泥の中を走り回る意味が分からないんですが。<br><br>
+                <b>メロディ・ラーキン：</b>いいか、ぶん殴って両目を一つにする前に聞け。「あの泥」の中にはうちの旦那がいるんだ。お前の父親も。彼女のばあちゃんも。あいつらの姉妹も。私たちは何週間もあの泥の中を這いずり回って、人を引きずり出した。クリスマスの大洪水で何千人が死んだ。さらに多くが見つからなかった。溺れたか、生き埋めになったか。丸一年、人々を引き出し続けた。だから敬意を払え。<br><br>
+                他に何か言うことは？<br><br>
+                <b>訓練生たち：</b>いいえ、隊長。<br><br>
+                <b>メロディ・ラーキン：</b>何だって？！<br><br>
+                <b>訓練生たち：</b>いいえ、隊長！<br><br>
+                <b>メロディ・ラーキン：</b>よし！よし、ファイア・ブリーザーたち、コースに出ろ。仲間の命がお前たちの走りにかかっているつもりで走れ。
+            </div>
+
+            <img class="article-image" src="images/charleston-herald-building/FO76_CH_course_instructions.png" alt="体力試験ターミナル">
+            <div class="image-caption">ファイア・ブリーザー体力試験ターミナル</div>
+
+            <div class="note-box">
+                <b>📄 AMS: Corporate Bully（AMS：企業の横暴）</b><br>
+                <em>場所：オーバビーのオフィス外の大テーブル上</em><br><br>
+                <b style="text-align:center;display:block;">AMS：企業の横暴</b><br>
+                アトミック・マイニング・サービスはアパラチアでは比較的新しい企業ですが、そのやり方はウェストバージニアの歴史を少しでも知る人間には馴染み深いものです。<br>
+                武装した「警備要員」チームが暴動や労働争議を「鎮圧」するために使われているという報告は、本紙がほぼ毎日報じてきました。<br>
+                残念ながら、さらに低い水準に達したことをお伝えしなければなりません。<br><br>
+                AMSがウェストバージニアに初めて来た時、彼らは地域の救世主として称賛されました。古い鉱山をさらに深く掘るための新しい方法をもたらしたのです。<br>
+                その方法に核爆薬の使用が含まれていても、炭鉱地帯のリスクに慣れた強靭な鉱山コミュニティは動じませんでした。<br><br>
+                しかしAMSは到着してすぐに「技術的な問題」を理由にプロジェクトを放棄しました。<br>
+                雇用は再び枯渇し、地域はさらに深い貧困に沈みました。<br>
+                それだけで十分な損害のはずですが、AMSは終わっていませんでした。<br><br>
+                夜盗のように、AMSは突然ウェルチの街に現れ、住民が暮らしている土地を含む資源権を主張しました。<br>
+                当然、街はこの住居の強奪に抵抗しました。そしてAMSの悪名高い「警備要員」が投入されたのです。<br><br>
+                AMSはなぜウェルチを欲しがるのでしょうか？AMSはコメントを出していません。<br>
+                本紙の記者はAMSのロゴ入りの服を着た武装した男たちに街から追い出されました。
+            </div>
+
+            <img class="article-image" src="images/charleston-herald-building/FO76_Charleston_Herald_building_AMS_Corporate_Bully.png" alt="AMS: Corporate Bully メモ">
+            <div class="image-caption">AMS: Corporate Bully のメモ</div>
+
+            <div class="note-box">
+                <b>📄 Carter and Blackwell - Traitors!（カーターとブラックウェル — 裏切り者！）</b><br>
+                <em>場所：編集長オーバビーのオフィスの机上</em><br><br>
+                <b>サム・ブラックウェルとクイン・カーター — 裏切り者！</b><br><br>
+                もし私やあなたが部屋に座って強盗を録音し、犯人に関する情報の提供を拒否したら、刑務所行きです！<br><br>
+                しかしクイン・カーターは、はるかに大きな犯罪の罪を負った男をインタビューしておきながら、自由の身で歩き回っています！<br><br>
+                正義を支持し、クイン・カーターが反逆の共謀罪で起訴されるか、裏切り者サム・ブラックウェルとその「フリー・ステイツ」分離主義者の仲間の居場所を明かすまで、チャールストン・ヘラルドを一部たりとも買うな！<br><br>
+                —— チャールストン市民反腐敗委員会
+            </div>
+
+            <div class="note-box">
+                <b>📄 Sam Blackwell interview notes（サム・ブラックウェル インタビューメモ）</b><br>
+                <em>場所：クイン・カーターのオフィス、オレンジ色のファイルキャビネット上の小箱の中</em><br><br>
+                <u>インタビューメモ</u><br>
+                全体的な印象：ブラックウェルが狂っているとは思わないが、何かがおかしかった。<br><br>
+                地位を去ることで得られるものはほとんどない。<br><br>
+                邪悪な力が働いていると本気で信じている。彼は狂いかけていて、ただ他の人よりうまく隠しているだけなのか？<br><br>
+                次のステップ：上院議員を山に逃げ込ませた「邪悪な力」の正体を突き止める。<br><br>
+                <u>一般メモ</u><br>
+                ・インタビューの申し出は手作りの封筒で届いた。チャールストン市警の伝手で指紋照合してもらった。上院議員のものだった。信じられない。<br>
+                ・待ち合わせ場所：バークレー・スプリングス駅<br>
+                ・夜明けにマスクをした若い女性——明らかにジュディス・ブラックウェル（知事舞踏会で会ったことを忘れたらしい）——とマスクをした年配の男性、明らかに上院議員本人に迎えられた<br>
+                ・ほぼ真東に約30分のハイキング（袋越しに日の出が見えた。気が利いてるね）<br>
+                ・小川、ハイウェイ、湿地らしきもの、洞窟を通り、エレベーターで地下へ<br>
+                ・残りはテープの通り。ブラックウェルは完全に政治家モード：一貫したメッセージ、毅然とした態度で、私が夜中に現れるという彼の警告を真剣に受け止めるよう全力で仕向けてきた
+            </div>
+
+            <div class="note-box">
+                <b>📄 The Herald supports Quinn Carter（ヘラルドはクイン・カーターを支持する）</b><br>
+                <em>場所：ビル2階、半円形のデスク上</em><br><br>
+                <b>チャールストン・ヘラルド</b><br><br>
+                <b>クイン・カーターを支持する</b><br><br>
+                チャールストン・ヘラルド編集委員会<br><br>
+                チャールストン・ヘラルド編集委員会の我々は、ヘラルドの記者クイン・カーターへの支持と、彼女の本紙での継続雇用を公に表明いたします。<br><br>
+                サム・ブラックウェル元上院議員へのインタビューを受けて、カーター氏の辞任を求める世論は、報道の自由と国民に重要なニュースを報道する我々の義務という我が国の価値観に真っ向から反するものです。<br><br>
+                カーター氏のインタビューは我が偉大な州の法律により完全に保護されており、ブラックウェル上院議員がインタビュー中に行った発言の性質に関わらず、上院議員の所在を明かす義務はありません。<br><br>
+                したがって、カーター氏への全面的な支持以外のいかなる対応も必要ないと我々は考えます。
+            </div>
+
+            <img class="article-image" src="images/charleston-herald-building/FO76_Charleston_Herald_building_The_Herald_supports_Quinn_Carter.png" alt="The Herald supports Quinn Carter メモ">
+            <div class="image-caption">The Herald supports Quinn Carter のメモ</div>
+
+            <div class="note-box">
+                <b>📄 Vigilant citizen's note to Carter（目覚めた市民からカーターへの手紙）</b><br>
+                <em>場所：編集長のオフィスのデスク上（Package for Quinn Carter内）</em><br><br>
+                親愛なるクイン・カーターへ<br><br>
+                この言葉は慎重に選びました。アパラチアであなたほど粘り強く真実に献身している人がいるとすれば、私は彼女を知りません。<br>
+                私はおそらく、あなたの最も熱心なファンの一人でした。<br><br>
+                あなたがこれを読んでいるなら、私は死んでいます。<br>
+                陰謀を秘密にしておこうとするアメリカ政府のエージェントに殺されたのです。<br>
+                信じがたいことかもしれませんが、「アパラチアの財宝」はデマではありません。<br>
+                実在するのです。そしてそのために人が殺されてきました。<br><br>
+                同封したのは私の調査結果の一部です。<br>
+                どうか、放送し、出版し、配布してください。<br>
+                他の証拠もまた共有されていれば、あなたか、あるいは他の誰かが全てのピースをつなぎ合わせ、最終的な真実に辿り着けるかもしれません。<br><br>
+                敬具<br>
+                目覚めた市民より<br><br>
+                <span style="color:#ff4444;">追伸：時間がありません。今はあなただけを信頼しています。クラークスバーグの郵便局に行って、私書箱999番を受け取ってください。</span>
+            </div>
+
+            <div class="note-box">
+                <b>📄 Weigh station logs（計量所ログ）</b><br>
+                <em>場所：編集長のオフィスのデスク上（Package for Quinn Carter内）</em><br><br>
+                <b>モーガンタウン計量所</b><br>
+                I-68 eb EXIT LL-Aa<br><br>
+                <u><b>日次自動チケットログ</b></u><br><br>
+                001: 0217 | 超過: 29,120 lb | 罰金: $31,000 — ステータス: 管理者オーバーライド<br>
+                002: 0226 | 超過: 28,830 lb | 罰金: $30,000 — ステータス: 管理者オーバーライド<br>
+                003: 0303 | 超過: 35,110 lb | 罰金: $42,000 — ステータス: 管理者オーバーライド<br>
+                004: 1101 | 超過: 01,010 lb | 罰金: $10,000 — ステータス: 全額支払済<br>
+                005: 1401 | 超過: 00,003 lb | 罰金: $10,000 — ステータス: 回収業者に送付<br>
+                006: 1908 | 超過: 00,831 lb | 罰金: $10,000 — ステータス: 登録口座から引落<br>
+                007: 2113 | 超過: 00,303 lb | 罰金: $10,000 — ステータス: 警察呼出、全額支払済<br><br>
+                深夜に莫大な量の物資を輸送？免除された罰金？計量所の唯一の係員にインタビューしたところ、「管理者」の存在すら知らなかった。<br>
+                権力のある誰かがこれをもみ消そうとしている。
+            </div>
+
+            <!-- ===== Terminal Entries ===== -->
+            <h2>ターミナルエントリ</h2>
+            <p>ビル内には編集長のターミナルとファイア・ブリーザー体力試験ターミナルの2台が設置されています。</p>
+
+            <h3>編集長のターミナル</h3>
+            <p><em>4階、編集長オーバビーのオフィスの赤い金属デスク上に設置。</em></p>
+
+            <div class="note-box">
+                <b>📟 自動投票システム</b><br><br>
+                この新しい自動投票システムを鷹のように監視する必要がある。開発に携わったと言われている全エンジニアの名前を出してくれ。国籍も一緒にだ。アメリカの選挙技術に外国人が一人でも関わっていたら、記事のネタだ。
+            </div>
+
+            <div class="note-box">
+                <b>📟 投票法案6号</b><br><br>
+                投票法案6号に本気の資金力を持った誰かが大きなバックアップをしている。この地域の行政全体を自動化する？ホーンライトの指紋がべったりだ。確実な証拠を持ってこい。
+            </div>
+
+            <div class="note-box">
+                <b>📟 サム・ブラックウェルの記事について</b><br><br>
+                クイン、お前の味方であることは分かっているだろうが、このサム・ブラックウェルのインタビュー記事で受けている非難が「皮を焼き剥がす」レベルに上がっている。怒った地元住民や政治家と戦うことはできるが、連邦政府から電話が来ているんだ、クイン。しかも遠回しじゃない。逮捕するだけじゃすまないと脅されている、分かるか？<br><br>
+                ヘラルドは一度も情報源を裏切ったことはないし、今始めるつもりもない。だがお前の背中にはパープル・マウンテンほどの標的が貼り付いている。銃を買え。本気で言っている。それとホテルの部屋をいくつか用意する。同じ部屋に二度泊まるな。夜はドアの鍵をかけて、誰が来ても開けるな。
+            </div>
+
+            <h3>ファイア・ブリーザー体力試験ターミナル</h3>
+            <p><em>2階に設置。</em></p>
+
+            <div class="note-box">
+                <b>📟 ファイア・ブリーザー訓練システム</b><br><br>
+                <b>ファイア・ブリーザー志願者へ</b><br>
+                試験が始まったら、ボタンを順番に押してください（A → B）。その後、スタート地点に戻ってタイムを確定させてください（B → A）。<br><br>
+                まだ試験に登録していない方は、<a href="charleston-fire-department.html" class="auto-link">チャールストン消防署</a>に向かい、当直の隊長（おそらく私がまだ息をしていれば私です）に報告してください。<br><br>
+                &emsp;|| メロディ・ラーキン ||<br><br>
+                <b>目標タイム：</b>3分00秒以内
+            </div>
+
+            <!-- ===== Appearances ===== -->
+            <h2>登場作品</h2>
+            <p>チャールストン・ヘラルド新聞社ビルは『Fallout 76』にのみ登場します。</p>
+
+            <!-- ===== Gallery ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/F76_Charleston_Herald_1.png" alt="ビル外観1">
+                        <div class="caption">ビル外観</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/F76_Charleston_Herald_2.png" alt="ビル外観2">
+                        <div class="caption">ビル外観</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/F76_Charleston_Herald_3.png" alt="ビル外観3">
+                        <div class="caption">ビル外観</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/F76_Charleston_Herald_4.png" alt="ビル外観4">
+                        <div class="caption">ビル外観</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/Fo76_Charleston_Herald_building_Quinn_Carter_office.jpg" alt="オーバビーのオフィス">
+                        <div class="caption">The Motherlode, Carter and Blackwell - Traitors!, Package for Quinn Carter</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/FO76_Charleston_Herald_building_desk_in_C_Quinns_office.png" alt="クイン・カーターのオフィスの机">
+                        <div class="caption">Speaker Poole interview, Sam Blackwell Interview, インタビューメモ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/FO76_CH_course_instructions.png" alt="コース説明ターミナル">
+                        <div class="caption">Course instructions ターミナル</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/FO76_Charleston_Herald_building_AMS_Corporate_Bully.png" alt="AMS: Corporate Bully">
+                        <div class="caption">AMS: Corporate Bully</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/FO76_Charleston_Herald_building_The_Herald_supports_Quinn_Carter.png" alt="The Herald supports Quinn Carter">
+                        <div class="caption">The Herald supports Quinn Carter</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/FO76_Charleston_Herald_building_sign_8.png" alt="看板">
+                        <div class="caption">看板</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/Sign_charlestonherald_d.png" alt="看板レンダー">
+                        <div class="caption">看板レンダー</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/charleston-herald-building/Sign_charlestonheraldinterior_d.png" alt="CHロゴ">
+                        <div class="caption">CHロゴ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                チャールストン・ヘラルド新聞社ビルは、見た目は荒廃したオフィスビルですが、中に入ると大戦前のアパラチアで何が起きていたかがびっしり詰まっています。<br><br>
+                特にクイン・カーターのオフィスに散らばるホロテープとメモがすごい。サム・ブラックウェルのインタビューを2パートに分けて聞くと、エンクレイヴの陰謀を知って逃亡した上院議員と、それを追いかける地方記者のやり取りがリアルに浮かんできます。ブラックウェルが「盤上から降りろ」と叫ぶ場面は、フリー・ステイツの結成動機がストレートに伝わってきて、このゲームのロアの深さを改めて感じます。<br><br>
+                一方で、プール議長へのインタビューは全然違うトーンで、モスマンの目撃報告をぶつけたら「モスマン……冗談でしょう」と呆れられて追い出されるカーターの姿はちょっと笑えます。でもこのインタビューからは、大戦直後のチャールストン議会がどれだけ混乱していたかも見えてきて、単なるギャグでは終わりません。<br><br>
+                そしてビル・ブレイヤーのマザーロード取材ホロテープ。テープレコーダーを銃と間違えられて撃たれるという結末は、ホーンライト社がどれだけ秘密を守ろうとしていたかを物語っています。記者二人がそれぞれ命を懸けて取材していた新聞社——そう考えると、このビルは単なるファイア・ブリーザーの体力試験スタート地点ではなく、戦前アパラチアのジャーナリズムの最前線だったんですね。<br><br>
+                編集長オーバビーがカーターに「銃を買え」「同じホテルに二度泊まるな」と指示するターミナルエントリも印象的です。連邦政府から直接脅迫されていた中で、それでも情報源を守り通そうとした新聞社の矜持が見えます。荒廃したビルの中に、こういうドラマが何層にも重なっているのがFallout 76の醍醐味だと改めて思います。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Charleston_Herald_building" target="_blank" rel="noopener">Charleston Herald building</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+                        <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        const _commentArticleId = 'note_charleston_herald_building';
+        const _commentArticleName = 'Charleston Herald building';
+        const _commentArticleUrl = 'charleston-herald-building.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Mama Dolce's Food Processing | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/mama-dolces-food-processing.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Mama Dolce's Food Processing | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ママ・ドルスの食品加工場 ── 中国人民解放軍のスパイ基地を隠した食品加工工場。Feed the Peopleイベントの舞台。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/mama-dolces-food-processing/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/mama-dolces-food-processing.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Mama Dolce's Food Processing | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ママ・ドルスの食品加工場 ── モーガンタウンにある「全米一のアメリカ企業」の裏の顔とは。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/mama-dolces-food-processing/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノートブロック（ターミナルエントリ・メモ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Mama Dolce's Food Processing</h3>
+            <img src="images/note_extracted/mama-dolces-food-processing/img_main.png" alt="ママ・ドルスの食品加工場">
+            <img src="images/note_extracted/mama-dolces-food-processing/img_map_marker.png" alt="マップ上の位置" style="margin-top: -10px;">
+            <div style="text-align: center; font-size: 0.8em; color: #888; margin-bottom: 10px; font-style: italic;">マップ上の位置</div>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+            <div class="infobox-row"><span class="infobox-label">タイプ</span><span>工場</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>モーガンタウン<br>森林地帯（アパラチア）</span></div>
+            <div class="infobox-row"><span class="infobox-label">セクション</span><span>藤仁屋情報基地</span></div>
+            <div class="infobox-row"><span class="infobox-label">所有者</span><span>ママ・ドルス社<br>人民解放軍<br>エンクレイヴ</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>リベレイター<br>プロテクトロン</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>Feed the People<br>I Am Become Death</span></div>
+            <div class="infobox-row"><span class="infobox-label">作業台</span><span>武器作業台<br>パワーアーマーステーション</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_mama-dolces-food-processing" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Mama Dolce's Food Processing<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ママ・ドルスの食品加工場</span></h1>
+
+            <div class="quote-box" style="margin-top: 20px; margin-bottom: 30px;">
+                <b>「長時間労働で気が滅入ってる？ アメリカンドリームを生きていることを忘れないで！」</b><br>
+                <span style="color: #888; font-size: 0.9em;">── 工場PAシステム</span>
+            </div>
+
+            <p>
+                <strong>ママ・ドルスの食品加工場</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<strong>モーガンタウン</strong>内に位置する工場です。
+            </p>
+
+            <h2>背景</h2>
+
+            <p>
+                表向きは「全米最高の食品加工プラントチェーン」を名乗る<strong>ママ・ドルス</strong>社ですが、その実態は中国の情報機関による<strong>スパイ・研究活動の拠点</strong>でした。<br>
+                「完全なるアメリカ企業」を自称し、偉大なるアメリカ社会の価値観と伝統を守ると謳いながら、モーガンタウンの施設の地下には<strong>藤仁屋（ふじにや）情報基地</strong>が隠されていました。
+            </p>
+            <p>
+                この基地は<strong>オペレーション・トリニタイト</strong>の一環として設立されました。ウェストバージニアにあるとされるアメリカの秘密工場都市への潜入・破壊が目的でしたが、当初の目標は達成できず、施設は情報収集、ステルス研究、さらにはロボット工学へと活動を移しました。
+            </p>
+            <p>
+                カモフラージュはほぼ完璧でしたが、<strong>シュガー・グローヴ</strong>のアナリストが同社による海外への送金を偶然発見。ワシントンD.C.のアナリストの協力で、ペーパーカンパニーを経由した資金の流れを中国まで追跡しました。完全監視作戦の要請が<strong>2077年8月9日</strong>に提出されましたが、大戦前に完了することはありませんでした。
+            </p>
+
+            <h3>大戦後</h3>
+            <p>
+                大戦後、ここに駐留していた中国の工作員たちは団結して持ちこたえようとしました。工場は<strong>リベレイター</strong>の発射ベイ（煙突に偽装）を中心に建てられており、入口はアクセスパイプの中に隠されていて、自動防衛システムも備わっていました。
+            </p>
+            <p>
+                しかし、<strong>エンクレイヴ</strong>のエージェント・グレイの洞察力には敵わず、工作員たちはエンクレイヴによって排除されました。<br>
+                エンクレイヴは工場を自身の目的のために利用しようとし、最初はサバイバリストを装って食品加工機の稼働を試みましたが、絶え間ない停電と機械の故障で断念。<br>
+                次に周辺住民を脅して追い払う作戦に切り替え、地元の生存者を殺害し、ステルスボーイを使った「見えない幽霊」に殺されたように見せかけました。この作戦は成功し、やがて人々は川を渡って工場に近づくことさえ怖がるようになりました。
+            </p>
+            <p>
+                それでも結局、ステルス研究やリベレイターの設計図という戦利品があるにもかかわらず、絶え間ない停電と壁から文字通り湧いてくるロボットの攻撃のため、施設の利用は不可能でした。司令官は任務全体の撤収を推奨し、特にトイレ中にリベレイターに襲われた後は、工場を朽ちるに任せることを提案しました。
+            </p>
+            <p>
+                エンクレイヴが撤退した数年後、今度は<strong><a href="responders.html" class="auto-link">レスポンダー</a></strong>がこの場所に目をつけました。<br>
+                <strong>サンジェイ・クマール</strong>の偵察により、工場で生の食材を食用に加工できることが判明。機械の復旧と自動化にも成功しました。<br>
+                しかし、地下施設から次々と湧いてくるプロテクトロンとリベレイターの攻撃のため、常駐は不可能でした。レスポンダーは、機械が冷えて使えるようになるたびに、断続的に施設に入って機械を起動・修理するという運用に落ち着きました。
+            </p>
+
+            <h2>レイアウト</h2>
+
+            <img class="article-image" src="images/note_extracted/mama-dolces-food-processing/img_interior.png" alt="工場内部">
+            <div class="image-caption">ママ・ドルス食品加工場の内部</div>
+
+            <p>
+                ママ・ドルスの食品加工場は、モーガンタウン郊外の川沿いに位置します。<br>
+                工場周辺のパイプは建物の地下にある<strong>藤仁屋情報基地</strong>へ通じており、上階のオフィスにある<strong>ママ・ドルス・マネージャーIDカード</strong>でアクセスできます。
+            </p>
+            <p>
+                <strong>工場は2階建て</strong>です。1階にはメインの工場エリアと<strong>マネージャー・スミスのオフィス</strong>があり、オフィスにはロックされたターミナル（ハッカー0）と小部屋があります。<br>
+                工場フロアでは、<strong>食品加工制御ターミナル</strong>がフードホッパーの対面に設置されており、食材を投入して美味しい<strong>缶詰シチュー</strong>を作ることができます。<br>
+                工場フロアの角にはロックされたセキュリティゲート（ピックロック0）の向こうに物資があります。荷降ろしドックにはロックされたトラック（ピックロック1）があり、中には兵士の骸骨と弾薬が入っています。
+            </p>
+            <p>
+                工場の南にはいくつかの小屋があり、丘を下った大きな小屋には<strong>武器作業台</strong>と<strong>パワーアーマーステーション</strong>がありますが、地雷やグレネードブーケで重度にトラップされています。<br>
+                この小屋の上階にはスナイパーの巣があり、工場を一望できます。兵士の骸骨、ハンティングライフル、ロックされた弾薬箱（ピックロック0）が見つかります。
+            </p>
+
+            <h2>主な戦利品</h2>
+            <ul>
+                <li><strong>現地報告書: ママ・ドルスの食品加工場</strong> ── ホロテープ。食品加工制御ターミナルのデスク上（Final Departureクエスト中のみ）</li>
+                <li><strong>ママ・ドルス・マネージャーIDカード</strong> ── 工場上階のテーブル上</li>
+                <li><strong>パワーアーマーシャシー</strong>（T-シリーズ装甲パーツ付き）── 南西の罠だらけの倉庫内</li>
+                <li><strong>フュージョン・コア</strong> ── 工場南西の小さな倉庫のフュージョンジェネレーター内</li>
+                <li><strong>アーマーMODプラン/武器MODプラン</strong>（ランダム）── 3階マネージャーオフィスのファイルキャビネット内</li>
+                <li><strong>マガジン</strong>（ランダム）── 入口右の部屋、ロックされたターミナル横のデスク上</li>
+            </ul>
+
+            <h2>関連クエスト</h2>
+            <ul>
+                <li><strong>Feed the People</strong> ── 工場で繰り返し発生するイベント</li>
+                <li><strong>I Am Become Death</strong> ── 核ミサイル発射準備に関わるクエスト</li>
+            </ul>
+
+            <h2>発見できるホロテープ</h2>
+
+            <div class="holotape-box" style="border-left: 3px solid #ff9900; background: rgba(255, 153, 0, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #ff9900; font-weight: bold; margin-bottom: 8px;">🎙️ 現地報告書: ママ・ドルスの食品加工場（Field report: Mama Dolce's Food Processing）</div>
+                <strong>サンジェイ・クマール</strong>: レスポンダー現地報告、サンジェイ・クマールです。ママ・ドルスの食品加工場への偵察任務がほぼ完了しました。<br><br>
+                <strong>デイブ・ストラウス</strong>: しーっ！ そんな大きな声出さないで、ミスター・サンジェイ！ 近くで赤い星のついた小さなロボットがうろうろしてるのが聞こえる……<br><br>
+                <strong>サンジェイ</strong>: ロボットが心配なら行って対処してくれ。君は僕のセキュリティ護衛だろう？<br>
+                ……話を戻すと、偵察はこれで終了です。ここで見つけたものは非常に有望です。これらの機械を稼働させられる可能性は十分にあります。<br><br>
+                <strong>デイブ</strong>: そもそもこのロボットはどこから来てるんだ？ ここで何してるんだ？ もう出た方がいいんじゃ……<br><br>
+                <strong>サンジェイ</strong>: しっかりしろ！ まったく、今まで会った中で一番臆病なセキュリティ・ボランティアだよ。<br>
+                どこまで話したっけ。ああ。機械チームを連れて戻り、この施設を完全稼働状態に復旧する可能性を調査することを推奨します。以上、報告終わり。<br>
+                <span style="color: #888; font-size: 0.85em;">（近くで戦闘の叫び声。ストラウスには不利な展開。ポンプショットガンのコッキング音が響く）</span>
+            </div>
+
+            <h2>ターミナルエントリ</h2>
+
+            <h3>食品加工制御ターミナル</h3>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 これを最初にお読みください（Read this first）</div>
+                関係各位へ、<br><br>
+                この食品加工機に時間を費やすのはお勧めしません。私は機械工学の修士号を持っていますが、この機械を数分以上稼働させることができませんでした。オーバーヒートしてシャットダウンしてしまうのです。<br><br>
+                もしここを稼働させることに成功したら、おそらく1マイル四方のすべてのミュータントとモンスターを起こすことになるでしょう。覚悟しておいてください。<br><br>
+                ── サンジェイ
+            </div>
+
+            <h3>マネージャー・スミスのターミナル</h3>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 新入社員オリエンテーション（New Employee Orientation）</div>
+                新入社員の皆さん、ようこそ！<br><br>
+                全米最高の食品加工プラントの最新の家族として、皆さんを歓迎します。以下の簡単なルールに従ってください。<br><br>
+                1) ここママ・ドルスでは「完全なるアメリカ企業」を標榜しています。偉大なるアメリカ社会の価値観と伝統をあらゆる代償を払ってでも守ります。<br>
+                2) 生産性は成功と個人の富への鍵です。このアメリカ資本主義社会では、会社の繁栄のために残業代なしで長時間働きます。会社の成功はあなたと家族の偉大な個人的富を意味します！<br>
+                3) 厳格な階層組織があります。自分の持ち場を守り、上司の判断に疑問を持たないことを強くお勧めします。<br>
+                4) <strong>最も重要なこと：施設外部の機器を検査・修理しようとしないでください。</strong>法的責任を最小限にするため、外部機器の検査は資格を持った修理技術者のみに許可されています。このルールに違反した場合は即時解雇です。<br><br>
+                ── 工場長 ジョン・スミス
+            </div>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 四半期フォーカステスト結果（Quarterly Focus Test Results）</div>
+                2077年第3四半期 製品フォーカステスト結果<br><br>
+                製品: 新しいスイート＆サワー・ストロガノフ。従来のストロガノフに100%増しの甘さを加えた製品。<br><br>
+                結果: サンプルグループは製品の風味と食感に不満。24時間以内に多くの被験者が体調不良に。78%のテスターが「もっと甘くする必要性」に疑問を呈した。<br><br>
+                推奨: 消費者の受容性が克服不可能な障壁となるかどうか、ハイレベルのコンセプトをさらに分析する必要がある。
+            </div>
+
+            <div class="note-box" style="border-left: 3px solid #5599ff; background: rgba(85, 153, 255, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #5599ff; font-weight: bold; margin-bottom: 8px;">📄 人事部メモ（Human Resources Memo）</div>
+                人事部メモ<br>
+                HR マネージャー メアリー・ベイカー<br><br>
+                ママ・ドルス全正社員の皆様へ：<br><br>
+                工場長のジョン・スミスと私から、最新の新入社員グループをママ・ドルスの家族に歓迎いたします。全員がモーガンタウンの食品加工場のチームに加わります。見かけたらアパラチアの大歓迎をお願いします！<br><br>
+                リンカーン・ジョーンズ ── 製造衛生技術者<br>
+                ジャック・ホワイト ── 上級メンテナンス技術者<br>
+                ジョン・ジョンソン ── 正規セキュリティオフィサー<br>
+                ウィル・ハリス ── 加工機オペレーター（夜勤）
+            </div>
+
+            <h2>舞台裏</h2>
+            <p>
+                この場所にはFeed the Peopleイベントに連動した「ママ・ドルス工場アナウンス」を放送するPAシステムが設定されていますが、これらのアナウンスがゲーム内で再生されることは確認されておらず、カットコンテンツのようです。音声は<strong>Adam Croasdell</strong>によるものです。
+            </p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/mama-dolces-food-processing/img_main.png" alt="外観"><div class="caption">ママ・ドルス食品加工場の外観</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mama-dolces-food-processing/img_interior.png" alt="内部"><div class="caption">工場内部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mama-dolces-food-processing/img_fujiniya.png" alt="藤仁屋入口"><div class="caption">藤仁屋バンカーへの入口（工場裏の取水パイプ内）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mama-dolces-food-processing/img_sign.png" alt="看板"><div class="caption">ママ・ドルスの看板</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Fallout 76で最も重層的なストーリーを持つ場所の一つ。<br>
+                表向きは「全米一のアメリカ企業」を自称する食品加工場ですが、地下には中国人民解放軍のスパイ基地。<br><br>
+                大戦後、中国の工作員→エンクレイヴ→レスポンダーと所有者が移り変わり、それぞれが施設を活用しようとして、それぞれの理由で失敗しているのが面白い。<br>
+                エンクレイヴの司令官がトイレ中にリベレイターに襲われて撤退を決めたエピソードは、Falloutらしいブラックユーモアの真骨頂です。<br><br>
+                新入社員オリエンテーションの文面がまた秀逸。「残業代なしで長時間働くことがアメリカンドリームだ」と書きながら、外部設備の検査を禁じる。<br>
+                まさに煙突に偽装したリベレイター発射ベイを隠すための措置。細部まで作り込まれた設定に脱帽です。<br><br>
+                Feed the Peopleイベントで缶詰シチューを作るときは、この壮大な裏ストーリーを思い出してみてください。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Mama_Dolce%27s_Food_Processing" target="_blank" rel="noopener">Mama Dolce's Food Processing</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Location</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Morgantown</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#MamaDolces</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Espionage</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_covered_bridge'; const _commentArticleName = 'Covered Bridge'; const _commentArticleUrl = 'covered-bridge.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

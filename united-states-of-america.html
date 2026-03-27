@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>United States of America | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/united-states-of-america.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="United States of America | Overseer Mohi's Terminal">
+    <meta property="og:description" content="アメリカ合衆国 — Falloutシリーズの舞台となる戦前の連邦共和国。資源戦争、中国との戦争、カナダ併合を経て、2077年の大戦で崩壊した超大国の全貌。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/united-states-of-america/Greater_coat_of_arms_of_the_United_States.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/united-states-of-america.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="United States of America | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="アメリカ合衆国 — 資源戦争と中国との全面戦争を経て2077年に崩壊した超大国の全貌">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/united-states-of-america/Greater_coat_of_arms_of_the_United_States.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block; color: var(--accent-color); text-decoration: none;
+            border: 1px solid var(--accent-color); padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace; transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center;
+            gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s;
+        }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item {
+            background: var(--panel-bg); border: 1px solid #444; border-radius: 4px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .lightbox-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out;
+            justify-content: center; align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw; max-height: 95vh; object-fit: contain;
+            border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px;
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color);
+            color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em;
+            padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em;
+            cursor: pointer; border-radius: 4px; transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="勢力" data-article-appearance="Fallout 4, Fallout TV">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">United States of America</h3>
+            <img src="images/united-states-of-america/Greater_coat_of_arms_of_the_United_States.png" alt="アメリカ合衆国の大紋章">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>勢力</span></div>
+            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>アメリカ合衆国</span></div>
+            <div class="infobox-row"><span class="infobox-label">略称</span><span>U.S.A. / U.S.</span></div>
+            <div class="infobox-row"><span class="infobox-label">政体</span><span>連邦共和国<br>寡頭制（エンクレイヴ）</span></div>
+            <div class="infobox-row"><span class="infobox-label">建国</span><span>1776年7月4日</span></div>
+            <div class="infobox-row"><span class="infobox-label">崩壊</span><span>2077年10月23日</span></div>
+            <div class="infobox-row"><span class="infobox-label">首都</span><span>ワシントンD.C.</span></div>
+            <div class="infobox-row"><span class="infobox-label">通貨</span><span>合衆国ドル</span></div>
+            <div class="infobox-row"><span class="infobox-label">イデオロギー</span><span>資本主義<br>反共産主義<br>権威主義<br>超国家主義<br>帝国主義</span></div>
+            <div class="infobox-row"><span class="infobox-label">領土</span><span>13コモンウェルス（50州）<br>1連邦直轄区<br>併合領土（カナダ含む）</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連組織</span><span>エンクレイヴ</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 4, Fallout TV<br>（他全作品で言及）</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_usa" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>United States of America<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">アメリカ合衆国</span></h1>
+
+            <div class="quote-box">
+                <b>Fallout 4 ローディングスクリーン</b><br><br>
+                「2077年のアメリカは、先進的な技術的成果と……恐るべき市民の対立の地でした。どの時代であれ、ほとんどの一般市民が望んだのはただ一つ——幸福で平和な生活。彼らが得たのは、完全な核の絶滅でした。」
+            </div>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                アメリカ合衆国（U.S.A.）は、大戦前に北アメリカに位置していた連邦共和国です。<br>
+                21世紀を通じて中国と並ぶ世界の二大超大国として君臨し、核融合・核分裂を中心とした先端技術——軌道研究ステーションから民生用ロボティクスまで——を開発しました。同時に大量破壊兵器、特に核兵器の膨大な備蓄も行っていました。
+            </p>
+            <p>
+                2077年までに合衆国は、軍産複合体と深いつながりを持つ寡頭制的な「影の政府」——エンクレイヴ——によって実質的に支配されていました。かつて栄えた民主主義は事実上の軍事独裁制となり、企業利益と軍指導者によって統治されていました。<br>
+                大戦中のこの組織による政府継続プロトコルへの介入が、指揮系統の全面的な崩壊を招き、社会の完全な崩壊と合衆国の解体・消滅へとつながりました。
+            </p>
+            <p>
+                核の大虐殺の後も事実上消滅したにもかかわらず、ウェイストランドの多くの組織が合衆国の理念を受け継ぎ、その制度を模倣あるいは復活させようとしています。
+            </p>
+
+            <img class="article-image" src="images/united-states-of-america/Greater_coat_of_arms_of_the_United_States.png" alt="アメリカ合衆国の大紋章">
+            <div class="image-caption">アメリカ合衆国の大紋章</div>
+
+            <!-- ===== History ===== -->
+            <h2>歴史</h2>
+
+            <h3>独立戦争と西部開拓</h3>
+            <img class="article-image" src="images/united-states-of-america/US_flag_variant_1.png" alt="自由博物館の壁画に描かれた独立革命">
+            <div class="image-caption">自由博物館の壁画に描かれた独立革命</div>
+            <p>
+                1776年7月4日、建国の父たちによって独立が宣言されました。独立後、国はフランス、スペイン、メキシコからの土地獲得やテキサス共和国の併合を通じて急速に拡大し、大西洋岸から太平洋岸まで広がりました。<br>
+                西部への入植者たちはマニフェスト・デスティニー（明白なる運命）の理念——合衆国は北米大陸全体に広がる運命にあるという思想——を掲げました。先住民族の土地への侵食は衝突を生み、やがて先住民は居留地と呼ばれる法的に指定された土地に追いやられました。
+            </p>
+
+            <h3>南北戦争と世界大国への台頭</h3>
+            <p>
+                1860年代の南北戦争は国の恒久的分裂を防ぎ、奴隷制を終結させました。<br>
+                戦後、ロシアからアラスカを獲得し、ハワイ王国を併合。米西戦争と第一次世界大戦で国際的影響力を拡大しましたが、真の超大国となったのは第二次世界大戦後でした。<br>
+                日本の真珠湾攻撃を受けて連合国に参戦し、広島・長崎に原爆を投下して戦争を終結させました。核戦争の導入はソ連との軍拡競争を引き起こし、冷戦が始まりました。<br>
+                1969年、合衆国は13のコモンウェルスに再編され、新しい国旗が採用されました。
+            </p>
+
+            <h3>宇宙開発</h3>
+            <p>
+                1961年5月5日、USSA（合衆国宇宙局）の支援のもと、カール・ベル大尉がデファイアンス7号で既知の人類初の宇宙飛行を達成しました（ソ連と中国は異議を唱えました）。<br>
+                1969年7月16日、ヴァーゴII月面着陸船「ヴァリアント11」が月面に着陸。リチャード・ウェイド大尉、マーク・ガリス大尉、マイケル・ヘイゲン大尉が地球以外の天体を歩いた初の人類となりました。<br>
+                2020年にはデルタIXロケットが就役し、月への最後の有人飛行となりました。約15年間運用された後、軍事用に転換されました。
+            </p>
+
+            <img class="article-image" src="images/united-states-of-america/Fo4_Intro_Still_5.png" alt="アラスカを進軍する陸軍パトロール">
+            <div class="image-caption">アラスカを進軍する陸軍パトロール</div>
+
+            <!-- ===== Resource Wars ===== -->
+            <h2>資源戦争</h2>
+            <img class="article-image" src="images/united-states-of-america/FO4NW_Hub_parking_lot.jpg" alt="核冷却液の価格表示">
+            <div class="image-caption">核冷却液の価格 — 当時ガソリンより安価な代替燃料</div>
+            <p>
+                合衆国は2052年に始まった資源戦争——石油やウランといった有限資源に過度に依存した持続不可能な世界経済がもたらした一連の紛争——の主要当事国でした。<br>
+                世界最後の残存資源をめぐる対立は、2052年7月に国連の解散を引き起こしました。
+            </p>
+            <p>
+                2053年には感染力の強い「新型ペスト」が出現し、数万人を殺害。防衛請負業者のウエスト・テックが対抗施設を設立し、軍の管理下に置かれました。治療法は見つかりませんでしたが、この研究が後のFEV（強制進化ウイルス）研究の礎を築きました。<br>
+                中東での核交換やヨーロッパ・中東戦争の壊滅を受け、2054年には連邦政府がプロジェクト・セーフハウスを開始。ボルト・テック社が契約を獲得し、核戦争や致死的疫病から人口の一部を守るための巨大な地下シェルター「Vault」の建設が急ピッチで進められました。
+            </p>
+            <p>
+                2059年までに、世界情勢の悪化に備えて軍備を増強。アラスカにアンカレッジ前線が設置され、石油資源を外国の侵略者から守る態勢が整えられました。また最初の人工知能がアメリカの研究所で誕生しましたが、メモリの制約により拡張はすぐに停止されました。
+            </p>
+
+            <!-- ===== Sino-American War ===== -->
+            <h2>中米戦争</h2>
+            <p>
+                2060年、世界中で燃料が枯渇し始めました。ガソリンは自動車に使うには貴重すぎるものとなり、街の交通は止まりました。電気自動車や初期の核融合車は生産量が限られ、社会のニーズには間に合いませんでした。
+            </p>
+            <p>
+                2066年、合衆国は石油の中国への輸出を拒否し、アメリカの科学者がマイクロフュージョン・セルを発明。これが苦境の中国をさらに追い詰めました。<br>
+                追い詰められた中国は軍事的な暴挙に出ます。人民解放軍がアラスカに侵攻し、石油資源を奪取しようとしました。アンカレッジの戦いが中米戦争の幕開けとなりました——これが合衆国が戦う最後の戦争でした。<br>
+                T-45パワーアーマーの投入が中国の戦車や歩兵の突破を防ぎましたが、事態はすぐに膠着状態に陥りました。
+            </p>
+            <p>
+                2074年、防衛戦争を主張しながらも、合衆国は中国本土の汕頭に侵攻。カナダ、アラスカ、中国本土の三正面作戦で経済は限界まで引き延ばされました。<br>
+                2076年までに戦争は10年間続き、両国とも崩壊寸前でしたが、撤退するには賭け金が大きすぎました。
+            </p>
+
+            <h3>赤の恐怖</h3>
+            <p>
+                連邦政府は高まる国内パニックを利用し、反共産主義感情を煽り、集会を抑制し、「疑わしい分子」の通報を奨励しました。<br>
+                「模範的市民ホットライン」が設立され、ヒステリックな市民が共産主義を支持するとみなされる行動について隣人を政府に密告できるようになりました。
+            </p>
+            <p>
+                さらに陰惨なことに、大統領令99066号のもと、中国系アメリカ人の市民・住民は裁判なしで自宅から連行され、強制収容所に送られました——第二次世界大戦中の日系アメリカ人の強制収容を不気味に想起させるものです。<br>
+                メリーランド州のタートルダブ拘留キャンプはそのような収容所の一つで、不衛生な環境に収容者を押し込め、虐待・拷問・過酷な尋問が行われました。多くの収容者が合衆国中の様々な研究施設に「消えて」いきました。
+            </p>
+
+            <img class="article-image" src="images/united-states-of-america/Fo3_Red_Menace.jpg" alt="反共プロパガンダの一例">
+            <div class="image-caption">反共プロパガンダの一例 — 赤の脅威</div>
+
+            <h3>カナダの併合</h3>
+            <p>
+                中米戦争は膨大な資源・資材・人員を消費し、既に疲弊していたアメリカ経済をさらに圧迫しました。<br>
+                合衆国軍はアンカレッジでの戦闘中にカナダの資源を大胆に搾取し、領空を侵犯しました。暴動・抗議・対立関係の末、2072年にパイプラインの破壊工作未遂事件が発生。合衆国軍はこれを口実にカナダへの本格的侵攻と併合を開始しました。<br>
+                2077年までに併合は完了し、カナダは国家として消滅しました。占領された州はアメリカの「領土」となりましたが、州やコモンウェルスとしての地位は与えられませんでした。軍は戦闘服を装備した警備部隊を派遣し、カナダの住民と抵抗運動を鎮圧しました。
+            </p>
+
+            <img class="article-image" src="images/united-states-of-america/Fo1_Intro_Canadian_Freedom_Fighter.png" alt="カナダのレジスタンスを処刑するアメリカ兵">
+            <div class="image-caption">カナダのレジスタンスを処刑するアメリカ兵</div>
+
+            <!-- ===== End of America ===== -->
+            <h2>アメリカの終焉と大戦</h2>
+            <p>
+                2077年、コンスタンティン・チェイス将軍率いる冬季仕様T-51パワーアーマー部隊がアンカレッジを奪還。10年間の戦争の末、アンカレッジ奪還作戦は終結しました。<br>
+                アラスカの勝利とT-51の投入は中国本土での攻勢を活性化させましたが、効果は長続きせず、中国の抵抗が強まりました。10月までに状況は再び膠着しました。
+            </p>
+            <p>
+                戦争はなおも終わりが見えませんでした。数十億ドルと数千の犠牲が無駄に費やされました。10年に及ぶ総力戦は国庫を空にしました。<br>
+                ボルト・テック（2076年時点でアメリカ最大の企業、推定1兆ドルの評価額）をはじめとするメガコーポレーションへの際限なき外部委託と権限譲渡の結果、合衆国は億万長者が支配する寡頭制国家と化していました。
+            </p>
+            <p>
+                2077年初頭、寡頭制支配者たちは中国からの最後の核攻撃をいつ受けてもおかしくないと見て、世界各地の遠隔地に退避しました。大統領と側近はカリフォルニア沖の石油リグを占拠し、ここがエンクレイヴの本部となりました。合衆国は事実上、指導者を失ったまま放置されました。<br>
+                ボルト・テックの幹部たちは合衆国を「失敗した国家」と見なし、国を救うという当初の目標を放棄。代わりに自社を存続させることを選びました。
+            </p>
+            <p>
+                そして2077年10月23日、事態は不可逆的な局面を迎えました。アメリカ軍が北京を包囲し始めた中、中国が先制核攻撃を実施。2時間の黙示録的な破壊の後、戦争は終わり、世界は灰燼に帰しました。<br>
+                放射性降下物は社会全体を壊滅させ、アメリカ合衆国は——かつて知られていたその姿で——消滅しました。地下深くのバンカーに隠れた指導者たちに見捨てられた生存者たちは、自力で再建を始めました。
+            </p>
+
+            <!-- ===== Society ===== -->
+            <h2>社会</h2>
+            <p>
+                合衆国は自由と全ての人への正義の原則の上に建国されましたが、21世紀の資源危機とトラウマ体験がこれらの原則をほぼ完全に放棄させました。<br>
+                一般市民が望んだのはただ幸福で平和な生活でしたが、共産主義と経済崩壊への恐怖は、市民権の段階的な剥奪への自発的な同意をもたらしました——自由と引き換えに安全を得る取引です。
+            </p>
+            <p>
+                労働組合は政府と企業の双方から激しい攻撃を受け、しばしば敵のために働いていると非難されました。アパラチアでは弾圧が特に過酷で、ホーンライト・インダストリアル、アトミック・マイニング・サービス、ロブコ・インダストリーズがエヴァンス知事の支持を得て人間の労働力をロボットに置き換え、何千人もの労働者を失業させました。<br>
+                合衆国海軍のシュガー・グローブ施設は、市民の秘密監視、労働活動家の特定、裁判なしの拉致・殺害を行い、生き残った子供は養子に出されました。
+            </p>
+
+            <!-- ===== Government ===== -->
+            <h2>政治体制</h2>
+            <p>
+                合衆国政府は公式には立法・行政・司法の三権分立に基づく連邦共和国でした。市民は下院議員と上院議員を選出し、戦時中も選挙が行われました——<a href="sam-blackwell.html" class="auto-link">サム・ブラックウェル</a>上院議員がアパラチアで「暴走」した際の緊急補欠選挙がその一例です。
+            </p>
+            <p>
+                しかし現実には、権力の分立は名目的なものでした。行政府、軍部、メガコーポレーションが全て結託し、影の陰謀——エンクレイヴ——を形成。国民を自分たちのゲームの駒として利用していました。<br>
+                この事実を覆い隠すため、狂信的なナショナリズム、反共産主義、そして「プロジェクト・ブレインストアム——誘導的愛国主義イニシアチブ」のような全体主義的施策が用いられました。<br>
+                その結果、国民は「愛国的愛国者のためのアメリカ純正愛国法」——致死的な武力行使を含む、事実上あらゆる目的で市民を徴用できる法律——のような国家の暴走すら容認するに至りました。
+            </p>
+
+            <img class="article-image" src="images/united-states-of-america/FO4_Old_Glory_above_Lexington.jpg" alt="レキシントン上空にはためくアメリカ国旗">
+            <div class="image-caption">荒廃したレキシントン上空にはためく星条旗</div>
+
+            <!-- ===== Military ===== -->
+            <h2>軍事</h2>
+            <img class="article-image" src="images/united-states-of-america/Flagnarmor.gif" alt="星条旗の前でポーズをとる機械化騎兵">
+            <div class="image-caption">星条旗の前でプロパガンダ写真に写る機械化騎兵</div>
+            <p>
+                合衆国軍は陸軍、海軍、海兵隊、空軍、沿岸警備隊で構成される統合軍でした。<br>
+                軍国主義を強める超大国として、軍は法執行と公共問題への支配を強めていきました。国防総省が管理する軍は、国防情報局や各軍の秘密作戦による広範な国内スパイ活動を通じて、アメリカ体制の柱の一つとなっていました。<br>
+                前線で戦う歴戦の部隊以外は訓練が不十分で、特に州兵の補助部隊の状況は深刻でした。<br>
+                最終的には民間人への軍用レーザー兵器の発行が承認され、共産主義者の侵攻や反乱に備えた地域防衛が図られました。
+            </p>
+
+            <!-- ===== Economy ===== -->
+            <h2>経済</h2>
+            <img class="article-image" src="images/united-states-of-america/F76_Hornwright_HQ_Exterior.png" alt="ホーンライト・インダストリアル本社">
+            <div class="image-caption">ホーンライト・インダストリアル本社 — アパラチアの自動化推進と労働者弾圧の象徴</div>
+            <p>
+                自由市場と公正競争の原則に基づいていた経済は、21世紀半ばの資源不足で一握りのメガコーポレーションに支配されることになりました。<br>
+                これらの企業は国家インフラに深く統合され、企業が終わり国家が始まる境界線を引くことは学術的議論にしかなりませんでした。
+            </p>
+            <p>
+                ボルト・テック社は2分15秒（135秒）のトイレ休憩を厳格に取り締まる搾取的な労働慣行で知られ、2077年には核安全ソリューション提供会社として「アメリカで最も輝かしい未来を持つ企業」に選ばれていました。<br>
+                ポセイドン・エナジーはエネルギー市場でほぼ独占的地位を占め、原子力発電所、残存油田の開発、さらにHELIOS Oneのような持続可能エネルギーまで支配。軌道ビーム兵器の開発も行っていました。<br>
+                ロブコ・インダストリーズは政府にミスター・ガッツィー軍用ロボットを供給する傍ら、専用の拷問オートマトン「ミスター・トーチャラーズ」まで開発し、監督なく人間の脳を中央処理装置とするロボブレインの開発にも参加しました。
+            </p>
+
+            <!-- ===== Technology ===== -->
+            <h2>技術</h2>
+            <p>
+                合衆国は技術革新の世界的リーダーであり、その過剰は大戦後もウェイストランドに影を落とし続けています。主な技術分野：
+            </p>
+            <ul>
+                <li><b>核技術</b> — 核エンジンと核電池の小型化に成功し、石油供給の減少を核融合車で補った。中国など他国に対する最大の優位性。</li>
+                <li><b>ロボティクス</b> — ロブコとジェネラル・アトミックスの二大企業。プロテクトロン、ミスター・ハンディからアサルトロン、セントリーボットまで。大戦後もロボットの多くが稼働を続けたが、プログラムが暴走して敵対的に。</li>
+                <li><b>宇宙開発</b> — USSA運営。人類初の宇宙飛行を主張し、月面での軍事行動まで実施。後に多くの宇宙産業が軍事転用。軌道爆撃兵器プラットフォームを運用。</li>
+                <li><b>兵器</b> — 通常火器からレーザーライフル、プラズマ兵器、ガウス兵器まで。パワーアーマーの開発は歩兵を戦車に匹敵する存在に変え、中国は模倣品の製造で大きく遅れた。</li>
+                <li><b>生物兵器</b> — 人工疾病への対抗手段として開始されたFEV研究が偶然の成功を収め、スーパーミュータントの基盤に。実験対象は捕虜、政治犯、収容された中国系市民、脱走兵、小さな町のコミュニティまで。</li>
+                <li><b>気象操作</b> — ATLAS天文台は夏に吹雪を引き起こし、ビッグMTのホープヴィルでの実験はディバイドの永続的な暴風を生んだ。Vault 63ではATLASの技術でシェナンドー国立公園に巨大な嵐を発生させた。</li>
+            </ul>
+
+            <!-- ===== Appearances ===== -->
+            <h2>シリーズでの登場</h2>
+            <p>全てのFalloutゲームは旧合衆国領内で展開されます：</p>
+            <ul>
+                <li><b>Fallout / Fallout 2</b> — カリフォルニア州</li>
+                <li><b>Fallout 3</b> — キャピタル・ウェイストランド（ワシントンD.C.周辺）</li>
+                <li><b>Fallout: New Vegas</b> — モハビ砂漠（ネバダ州）</li>
+                <li><b>Fallout 4</b> — コモンウェルス（マサチューセッツ州ボストン周辺）</li>
+                <li><b>Fallout 76</b> — <a href="appalachia.html" class="auto-link">アパラチア</a>（ウェストバージニア州）</li>
+                <li><b>Fallout TV</b> — ロサンゼルス周辺</li>
+            </ul>
+
+            <!-- ===== Gallery ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Greater_coat_of_arms_of_the_United_States.png" alt="大紋章">
+                        <div class="caption">アメリカ合衆国の大紋章</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Fo4_Intro_Still_5.png" alt="アラスカの陸軍パトロール">
+                        <div class="caption">アラスカの陸軍パトロール</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Fo3_Red_Menace.jpg" alt="反共プロパガンダ">
+                        <div class="caption">反共プロパガンダ — 赤の脅威</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Fo1_Intro_Canadian_Freedom_Fighter.png" alt="カナダ併合">
+                        <div class="caption">カナダ人レジスタンスの処刑</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/FO4_Old_Glory_above_Lexington.jpg" alt="星条旗">
+                        <div class="caption">レキシントン上空の星条旗</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Histdoc4.png" alt="独立宣言">
+                        <div class="caption">独立宣言</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Histdoc2.png" alt="合衆国憲法">
+                        <div class="caption">合衆国憲法</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Histdoc1.png" alt="権利章典">
+                        <div class="caption">権利章典</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/US_flag_variant_1.png" alt="独立革命の壁画">
+                        <div class="caption">独立革命の壁画</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/FO4NW_Hub_parking_lot.jpg" alt="核冷却液の価格">
+                        <div class="caption">核冷却液の価格表示</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/Flagnarmor.gif" alt="機械化騎兵">
+                        <div class="caption">機械化騎兵のプロパガンダ写真</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/F76_Hornwright_HQ_Exterior.png" alt="ホーンライト本社">
+                        <div class="caption">ホーンライト・インダストリアル本社</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/united-states-of-america/FTV_S2E5_Still_038.png" alt="Fallout TVシリーズ">
+                        <div class="caption">Fallout TVシリーズ S2E5</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Falloutにおけるアメリカ合衆国は、すべてのロアの出発点であり、シリーズ全体を貫く最大の国家です。<br><br>
+                「自由と正義の国」として建国されながら、21世紀には反共感情を燃料に市民権を削り取り、中国系住民を強制収容し、カナダを丸ごと飲み込み、愛国法で市民を徴用し、最終的には億万長者の寡頭制に乗っ取られる——この転落の過程が、Falloutの世界を単なるポストアプカリプスから政治風刺にまで昇華させています。<br><br>
+                特に印象的なのはボルト・テックの位置づけです。核戦争から市民を守るはずの企業が「失敗した国家を生かしておくのは馬鹿げている」と判断し、国ではなく自社の存続を選ぶ。バドの「人類の未来はたった一つの言葉に集約される——マネジメントだ」というセリフは、Falloutの全テーマを一行で要約しています。<br><br>
+                そして2077年10月23日。中国が先制核攻撃を放った時、大統領はとっくに石油リグに逃げていた。市民は地下深くのバンカーに見捨てられ——あるいは見捨てられたことすら知らないまま——消えていった。合衆国は誰にも看取られないまま、2時間で消滅しました。<br><br>
+                それでも200年後のウェイストランドで、NCRがその理念を復活させようとし、エンクレイヴがその影を引きずり、BOS（ブラザーフッド・オブ・スティール）がその軍事遺産を受け継いでいる。死んだはずの国が、まだ生きている。それがFalloutの最大の皮肉であり、最大の魅力です。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/United_States_of_America" target="_blank" rel="noopener">United States of America</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '\u2665'; }
+            else { btn.classList.remove('liked'); heart.textContent = '\u2661'; }
+            countSpan.textContent = count;
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        const _commentArticleId = 'note_usa';
+        const _commentArticleName = 'United States of America';
+        const _commentArticleUrl = 'united-states-of-america.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

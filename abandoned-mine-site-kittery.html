@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>放棄された鉱山サイト・キタリー | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/abandoned-mine-site-kittery.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="放棄された鉱山サイト・キタリー | Overseer Mohi's Terminal">
+    <meta property="og:description" content="放棄された鉱山サイト・キタリー — 大戦直前にLuannとGeorgeが閉じ込められた、ホーンライト・インダストリアルの鉱山跡地。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/abandoned-mine-site-kittery/FO76_Abandoned_mine_site_Kittery.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/abandoned-mine-site-kittery.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="放棄された鉱山サイト・キタリー | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="放棄された鉱山サイト・キタリー — 核攻撃直後の二人の物語。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/abandoned-mine-site-kittery/FO76_Abandoned_mine_site_Kittery.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .loot-list { list-style: none; padding: 0; }
+        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
+        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
+        .holotape-box { background: var(--panel-bg); border: 1px solid var(--accent-color); border-radius: 5px; padding: 20px; margin: 20px 0; }
+        .holotape-box .holotape-title { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; font-size: 1.1em; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .holotape-box .holotape-title::before { content: '📼'; }
+        .holotape-box .transcript { font-size: 0.92em; line-height: 1.8; }
+        .holotape-box .transcript .speaker { color: var(--accent-color); font-weight: bold; }
+        .holotape-box .transcript .line { margin-bottom: 10px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Abandoned Mine Site Kittery</h3>
+            <img src="images/note_extracted/abandoned-mine-site-kittery/FO76_Abandoned_mine_site_Kittery.png" alt="放棄された鉱山サイト・キタリー" onclick="openLightbox(this)">
+            <img src="images/note_extracted/abandoned-mine-site-kittery/img_map_marker.png" alt="マップ上の位置" style="width:100%; margin-top:5px;" onclick="openLightbox(this)">
+            <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">マップ上の位置</div>
+            <div class="infobox-row"><span class="infobox-label">ゲーム</span><span>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>採石場</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在</span><span><a href="ash-heap.html" class="auto-link">積灰の山</a>、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">戦前の所有</span><span><a href="hornwright-industrial-headquarters.html" class="auto-link">ホーンライト・インダストリアル</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span><a href="mole-miner.html" class="auto-link">モール・マイナー</a><br>スコーチド</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>Auto-Miner DU-K3<br>Auto-Miner J-0ULE<br>Auto-Miner L4R-E</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Lode Baring<br>Lost and Found</span></div>
+            <div class="infobox-row"><span class="infobox-label">ターミナル</span><span>鉱山システムターミナル</span></div>
+            <div class="infobox-row"><span class="infobox-label">マップマーカー</span><span>Abandoned Mine Site Kittery</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_abandoned-mine-site-kittery" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Abandoned Mine Site Kittery<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">放棄された鉱山サイト・キタリー</span></h1>
+
+            <h2>概要</h2>
+            <p><strong>放棄された鉱山サイト・キタリー</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<a href="ash-heap.html" class="auto-link">積灰の山</a>地域にあるロケーションである。</p>
+
+            <h2>背景</h2>
+            <p>この鉱山は<a href="hornwright-industrial-headquarters.html" class="auto-link">ホーンライト・インダストリアル</a>が大戦前に所有しており、<strong>オートマイナー</strong>（自動採掘ロボット）を使用して資源を採集していた。</p>
+
+            <p>爆弾が落ちる直前、二人の人物がこの鉱山の中にいた — <strong>ルアン</strong>と<strong>ジョージ</strong>である。<br>
+            彼らは鉱山内の自動システムが核攻撃の警告を発するのを聞いた。<br>
+            ルアンは鉱山に留まることを望んだが、ジョージは脱出を望んだ。<br>
+            彼らがその後生き延びたかどうかは不明だが、鉱山が彼らを内部に閉じ込めた可能性が高い。<br>
+            プレイヤーが到着した時もそのような状態で発見される。<br>
+            彼らのものと思われる最後の瞬間は、鉱山内の鉱山システムターミナル上に残されたホロテープに記録されている。</p>
+
+            <h2>レイアウト</h2>
+            <p>ロケーションのすぐ北側に、内部に少量の戦利品がある小さな構造物がある。<br>
+            鉱山の入り口には多数の駐車車両と、鉱山カートから鉱石を降ろすために使用されるガントリー（門型クレーン）がある。<br>
+            坑道自体は入り口で崩落しており、<strong>Lode Baring</strong>イベント中にのみ内部に入ることができる。</p>
+
+            <p>入り口の左側には高架ポッドがあり、追加の戦利品とロックされた爆発物クレートがいくつかある。<br>
+            入り口の東側には別の小屋があり、少量の戦利品がある。<br>
+            入り口の左右には2つの<strong>クレームトークン交換ターミナル</strong>が設置されており、イベント中に入手したクレームトークンを景品と交換できる。</p>
+
+            <h2>注目のアイテム</h2>
+            <ul class="loot-list">
+                <li>Mine recorder tape - 10.23.77（ホロテープ） — 鉱山システムターミナル上。</li>
+            </ul>
+
+            <h2>ホロテープ</h2>
+
+            <div class="holotape-box">
+                <div class="holotape-title">Mine recorder tape - 10.23.77<br><span style="font-size:0.8em; color:#888;">（鉱山記録テープ - 2077年10月23日）</span></div>
+                <div class="transcript">
+                    <div class="line"><span class="speaker">ルアン:</span> ジョージ。ジョージ！聞こえる？ 聞いて。</div>
+                    <div class="line"><span class="speaker">ジョージ:</span> 何も聞こえないけど。</div>
+                    <div class="line"><span class="speaker">システム音声:</span> 市民の皆さまにお知らせします。核攻撃が差し迫っています。できるだけ早くこの地域から退避してください。ご協力に感謝いたします。</div>
+                    <div class="line"><span class="speaker">ルアン:</span> 何て言ったの？</div>
+                    <div class="line"><span class="speaker">ジョージ:</span> 何か「ご都合」とか何とか。たぶんレッド・ロケットの広告だよ、俺たちいつも聞いて——</div>
+                    <div class="line" style="color:#ff6666; font-style:italic;">——（地上での核爆発の音）——</div>
+                    <div class="line"><span class="speaker">ジョージ:</span> 何だ今のは？ あれは……</div>
+                    <div class="line"><span class="speaker">ルアン:</span> 核攻撃。核攻撃って言ったのよ。</div>
+                    <div class="line"><span class="speaker">ジョージ:</span> 嘘だろ。嘘だ。嘘だ。嘘だ。なんてこった。ここから出なきゃ。</div>
+                    <div class="line"><span class="speaker">ルアン:</span> ここから出る？ 正気なの？ シェルターが必要でしょう。ここがシェルターよ。</div>
+                    <div class="line"><span class="speaker">ジョージ:</span> ここはVaultじゃないんだ、ルアン！ この場所が持つかどうかなんて分からないだろ！</div>
+                    <div class="line"><span class="speaker">ルアン:</span> あなたは上で何が起きてるか、これっぽっちも分かってないのよ！</div>
+                    <div class="line"><span class="speaker">ジョージ:</span> 放せよ、ルアン！ 俺は出る。</div>
+                    <div class="line"><span class="speaker">ルアン:</span> なんてこと、ジョージ。やめ……くそ。ジョージ！ 戻ってきて！</div>
+                    <div class="line"><span class="speaker">システム音声:</span> 市民の皆さまにお知らせします。核攻撃が差し迫っています。できるだけ早くこの地域から退避してください。ご協力に感謝いたします。</div>
+                    <div class="line"><span class="speaker">ルアン:</span> ああ。ああ、なんてことなの。</div>
+                </div>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>放棄された鉱山サイト・キタリーは<em>Fallout 76</em>にのみ登場する。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-site-kittery/F76_Abandoned_Mine_Site_Kittery.png" alt="外観" onclick="openLightbox(this)"><div class="caption">外観</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-site-kittery/FO76_Abandoned_mine_site_Kittery_terminal.png" alt="鉱山システムターミナル" onclick="openLightbox(this)"><div class="caption">鉱山システムターミナル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-site-kittery/FO76_311020_Abandoned_mine_Kit.png" alt="放棄された鉱山サイト・キタリー" onclick="openLightbox(this)"><div class="caption">放棄された鉱山サイト・キタリー</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                鉱山坑道シリーズの中で最も心に残るロケーションの一つ。<br>
+                核攻撃の瞬間をリアルに体験できるホロテープ「Mine recorder tape - 10.23.77」は、アパラチアに散らばる悲劇のかけらの中でも特に印象的です。<br>
+                ルアンとジョージ、二人の選択 — 鉱山に残るか、外に出るか。<br>
+                Vaultではない鉱山で核の嵐をしのごうとする絶望感と、それでも外の状況を知らずに飛び出すジョージの恐怖。<br>
+                たった数分の会話に、大戦の日の恐怖が凝縮されています。<br>
+                Lode Bearingイベント限定で内部に入れる仕組みも、この場所の秘められた物語を引き立てています。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Abandoned_mine_site_Kittery" target="_blank" rel="noopener">Abandoned mine site Kittery</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) { const lb = document.getElementById('lightbox'); document.getElementById('lightboxImg').src = el.src; lb.classList.add('active'); }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_abandoned-mine-site-kittery';
+        const COOLDOWN_MS = 60000;
+        const NG_WORDS = ['http://', 'https://', 'LINE', 'DM', 'discord.gg'];
+        let lastCommentTime = 0;
+        let _adminMode = false;
+        const _adminPass = 'tq7jtq7j';
+        document.addEventListener('keydown', function(e) { if (e.ctrlKey && e.shiftKey && e.key === 'D') { const p = prompt('Admin password:'); if (p === _adminPass) { _adminMode = true; alert('Admin mode ON'); loadComments(); } } });
+        async function loadLikes() { if (!sb) return; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); const btn = document.querySelector('.like-button'); if (data) btn.querySelector('.like-count').textContent = data.count; if (localStorage.getItem('liked_' + ARTICLE_ID)) { btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } } catch(e) {} }
+        async function toggleLike(btn) { if (!sb) return; const liked = localStorage.getItem('liked_' + ARTICLE_ID); const delta = liked ? -1 : 1; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (data) { await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID); } else { await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 }); } if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; } else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (d2) btn.querySelector('.like-count').textContent = d2.count; } catch(e) {} }
+        function updateCharCount() { const ta = document.getElementById('commentInput'); document.getElementById('charCount').textContent = ta.value.length + ' / 500'; }
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+        async function loadComments() { if (!sb) return; const list = document.getElementById('commentsList'); try { const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false }); if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; } list.innerHTML = data.map(c => { const d = new Date(c.created_at); const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0'); const myId = localStorage.getItem('comment_id_' + c.id); const canDel = myId || _adminMode; return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (canDel ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>'; }).join(''); } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; } }
+        async function submitComment() { if (!sb) return; const hp = document.getElementById('hp_field'); if (hp && hp.value) return; const ta = document.getElementById('commentInput'); const body = ta.value.trim(); const msg = document.getElementById('commentMsg'); if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; } if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; } for (const w of NG_WORDS) { if (body.includes(w)) { msg.textContent = 'この内容は投稿できません'; msg.style.color = '#ff4444'; return; } } const now = Date.now(); if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; } const btn = document.getElementById('commentSubmitBtn'); btn.disabled = true; try { const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single(); if (error) throw error; if (data) localStorage.setItem('comment_id_' + data.id, '1'); ta.value = ''; updateCharCount(); lastCommentTime = now; msg.textContent = '投稿しました'; msg.style.color = 'var(--accent-color)'; loadComments(); } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; } btn.disabled = false; }
+        async function deleteComment(id) { if (!sb || !confirm('このコメントを削除しますか?')) return; try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) {} }
+        loadLikes(); loadComments();
+    </script>
+</body>
+</html>

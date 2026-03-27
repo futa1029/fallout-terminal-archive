@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Vault 76 | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/vault-76.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Vault 76 | Overseer Mohi's Terminal"><meta property="og:description" content="Vault 76。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/vault-76.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Vault 76</h3><img src="images/note_extracted/vault-76/img_main.png" alt="vault-76"><img src="images/note_extracted/vault-76/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>Vault</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <main class="content">
+            
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_vault_76" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Vault 76<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">Vault 76</span></h1>
+            <h2>概要</h2>
+<p><b>Vault 76</b> is a ロケーション . これは first ロケーション discovered upon starting a new game and completing the prologue.<br>One of Vault-Tec's many Vaults across America, Vault 76 was constructed north of フラットウッズ, ウエストバージニア, in 森林地帯 before 大戦 and was designated as the "Official Vault of the Tricentennial" by the corporation, under the tagline "Vault-Tec Salutes America."</p>
+<h3>Construction</h3>
+<p>Vault 76 was one of 17 control Vaults, part of the overarching Vault experiment. Construction began in February 2065 and ended in October 2069. The maximum capacity was stated to be 500 occupants, and construction blueprints record a capacity of 88. The Vault was slated to open to 外観 world 25 years after 核 war so that the individuals within could emerge to recolonize アパラチア. This was so that Vault-Tec could study their recolonization efforts in comparison to the experiments within other Vaults. The day that the Vault reopened to 外観 would be known as Reclamation Day (distinct from a different version of Reclamation Day used internally by Vault-Tec, which was intended to occur at a much later time after 核 war).<br>Vault 76 was designed with LightLife Geo-Thermal for its primary power supply, and General Atomics 核 generator as a secondary power supply,<br>{| class="va-table va-table-shaded" style="float: right; margin:0.5em 0.5em;"<br>! colspan="2" |Vault statistics<br>|-<br>| <b>Number</b><br>| 76<br>|-<br>| <b>Construction begins</b><br>| February 2065<br>|-<br>| <b>Construction ends</b><br>| October 2069<br>|-<br>| <b>Occupants planned/actual</b><br>| 500/88<br>|-<br>| <b>Months sealed planned/actual</b><br>| 240/300<br>|-<br>| <b>Computer system</b><br>| Brainpower 4<br>|-<br>| <b>Primary power supply</b><br>| LightLife geothermal (planned)<br>|-<br>| <b>Secondary power supply</b><br>| General Atomics 核<br>|}<br>The overseer was instructed to ignore standard operating procedures, as Vault 76 was deemed a special project essential to rebuilding the United States in the wake of 核 war. The occupants were some of America's finest, including students from Vault-Tec University, military members, and a former White House Chief of Staff. Occupants were provided fully furnished apartments, including a bedroom, living room, bathroom and color television.<br>At some point, Vault-Tec Assistant Chief Executive Officer Giles Wolstencroft visited to inspect the construction site, and was abducted by the Zetan aliens and taken aboard Mothership <i>Zeta</i>.</p>
+<h3>Debut</h3>
+<p>Vault 76 debuted on July 4, 2076, seven years after its construction ended, in honor of the United States' Tercentenary/Tricentennial of its founding in 1776. An opening ceremony, which was broadcasted on television, was held at 外観 and its overseer attended. However, in order to become the overseer, she had to break off her engagement with her fiancé, Evan, or be transferred to another Vault to have him join her in it.</p>
+<h3>Great War</h3>
+<p>After 大戦 broke out, Vault 76 was successfully sealed on October 23, 2077, when the air raid sirens sounded for the last time as Chinese nukes headed for American soil. The Vault-Tec security team ensured compliance and defended the individuals as they entered the Vault, authorized to use lethal force to ensure only those authorized would enter. Everyone else was considered an enemy combatant. They succeeded in their mission, and the Vault door was sealed, to be opened only 25 years later, once the all-clear was given after outside 放射線 levels had subsided to a safe threshold.<br> leading a Vault-Tec course about Pip-Boys to Vault 76 residents]]<br>This was only the beginning of the project. The occupants were a diverse group selected from every walk of life, and apart from the Vault staff, all were highly accomplished before the war and possessed competitive personalities. As such, Vault-Tec expected the Vault dwellers to present unique challenges in maintaining order. As a last resort, the overseer was granted the ability to lock down each domicile and imprison dissenters for any duration deemed appropriate, with the note to account for the fact that enforced solitary confinement could lead to psychological issues. Furthermore, the security team was provided with less-than-lethal devices to ensure compliance. Firearms and other munitions were stowed after the amended entry period.</p>
+<h3>Ongoing operations</h3>
+<p>For the next 25 years, Vault 76 continued to operate as planned. The overseer found order easy to maintain, though the impressive pedigree of those the Vault sheltered and their competence led to the aforementioned unique challenges, most often challenging her authority. To provide them with an outlet for their competitiveness, the overseer instituted a number of awards for the Vault dwellers to obtain, as award ceremonies were a great way to placate even the most hardened egos (altercations aside; one lost a tooth fighting over the Best Dental Hygiene award). The high point of the program was the Vault 76 World Cup, even if it nearly broke the jukebox. The overseer credited the success to the "exemplary" service of her "loyal and dependable" senior staff.<br>Meanwhile, outside of Vault 76, the survivors of 大戦 were aware of the Vault's existence and wondered why it was still closed years later. In particular, the レスポンダー wanted to know if they could open the Vault somehow. The Vault's sealing led to the perception from outsiders that the residents of Vault 76 are cushy and privileged, while the rest of the world adjusted to ウエイストランド life.<br>However, Vault 76 also had another objective: the Vault's overseer was ordered to find and secure three 核 silos all on her own after its opening. If these sites were still 核-capable, she was to ensure no one except Vault-Tec could access or launch 核 ordnance. Any other authorities, government, militia or otherwise, were to be ignored, to ensure that Vault-Tec alone controlled these silos and could deny their use to any third parties, even if it meant going against any surviving United States Armed Forces personnel that would assert control of the silos themselves as part of the U.S. Department of Defense. However, Vault-Tec may have known that the task was impossible for her to accomplish on her own, especially since they purposefully picked someone young and inexperienced for an overseer.<br>As the Vault neared the end of its duration and approached Reclamation Day, the situation started to slowly deteriorate. In 2100, the Vault was over capacity, with hydroponics struggling to keep up with the demand and mandatory rationing instituted by the overseer. Six individuals had to be placed under disciplinary lockdown (up from four at the end of the previous year), with the morale officer tasked with pacifying rumors about アパラチア around the clock. Nobody wanted to emerge into アパラチア to fight cannibal mutants and brave burning rain.<br>Regardless, tensions were running high, Furthermore, the "Ressies," as the security team called them, started hacking into ターミナルs to learn more about the Reclamation and the Activation Notices. Although the security team made a token effort to curtail unauthorized access, they all knew trying to keep geniuses out of the files was a lost cause.</p>
+<h3>Preparations</h3>
+<p>As a result of these mounting concerns, 2102 and Reclamation Day was met with relief from all parties; some were so relieved they even broke into the stores to enjoy it early. The overseer mandated a Reclamation Day party the day before the Activation Notice, opening up restricted alcohol stashes and the remaining food supplies. The happiness and cheering in the atrium as the overseer counted down to midnight were second only to the time when the first Vault child was born. The party continued well into the night when the overseer called lights out and had security help stragglers into their beds. Then, she and her team went through the final checklists. Standees and supplies were placed along the exit route to the Vault door to provide a last refresher course for the Ressies, while the security team went through their duties with record speed: Wiping logs, securing non-essential gear and acquiring Reclamation Packages for themselves.<br>The Vault 76 dwellers ultimately had no other choice, as the Vault itself was claimed to be designed to cease function and be rendered inhospitable 24 hours after opening, a feature intended to force those within to leave. Studies showed that dependency on the Vault's amenities was common, so the killswitch was established and set to kick in after the All-Clear message was received after the aforementioned delay. Air circulation would shut down last, giving everyone enough time to leave the Vault, but rendering it hazardous for habitation. Only robotic stewards would remain to preserve the remains, while the former inhabitants focused on rebuilding America.</p>
+<h3>Reclamation Day</h3>
+<p> leaving Vault 76]]<br>Vault 76 successfully opened on October 23, 2102, exactly 25 years after 大戦, in a much-celebrated event known as Reclamation Day. The team feared that the Ressies could go off the rails, breaking the respectable record of 25 years without casualties. Although some argued for arming everyone before they leave the Vault, using the surplus stocks, the overseer denied the request. The dwellers received the standard survival packages and were told to run fast and far away from Vault 76 to complete their mission.</p>
+<h3>Last holdouts</h3>
+<p>Even after Reclamation Day and the claimed shutdown looming over Vault 76, a few of the dwellers still refused to leave the Vault. The Vault's claimed shutdown one day after its opening evidently did not occur, enabling these last holdout dwellers to continue living inside the Vault for months and even years, persisting off of the Vault's remaining supplies. The Mister Handy attendants kept to their duty of maintaining the Vault and manning the survival preparation stations for dwellers on their way out of the Vault; over time, they also grew tired of their roles, but could not stop with dwellers still in the Vault.<br>The Mister Handies' duties did not extend to cleaning up the Vault's atrium, which was still littered with the trash and decorations from the party for Reclamation Day, or individual dwellers' apartments. The overseer's prerecorded message announcing the arrival of Reclamation Day also continuously played on loop, set to repeat once every morning, though the system was starting to break down after months of repetitions. Even with these inconveniences, the last dwellers continued to stay in Vault 76 until its food supplies finally ran dry and they had no other option but to leave.</p>
+<h3>内部</h3>
+<p>Vault 76 is the game's starting and tutorial area, providing a direct route to the exit with few branches. The プレイヤーキャラクター awakes in their apartment and has the opportunity to explore their surroundings and collect the Nuka Tapper game ホロテープ from their personal ターミナル. They are only allowed to exit the apartment once they collect the Pip-Boy 2000 Mark VI from its storage rack next to the door.<br>Upon exiting, they enter an atrium area with detritus from the previous evening's party. The atrium is large, complete with tables, a diner and a soccer field in the middle. There はdiner on the upper level, called the love note. One of the rooms on the way to the exit features a projector showing a slideshow with tips on living outside the Vault. Side routes are inaccessible but the プレイヤーキャラクター can access the personnel files in the projector room, the survival displays, and the overseer's office.にあるnote that cannot be taken sitting on one of the tablesです<br>Several Mister Handies are positioned throughout the Vault on the route to the exit. The first one is Crutchley, who is found in the hallway on the other end of the atrium, and can be briefly spoken to. In the hallway and rooms after him, また、stations manned by other Mister Handies at which the プレイヤーキャラクター can acquire their C.A.M.P. and other basic necessities as they prepare to leave. (One of the stations, which includes a backpack of building supplies, also gives several additional consumable items, which is not mentioned in the station.)<br><section begin="somanyhandies" /><br>{| class="va-table va-table-center va-table-full "style="width: 80%;"<br>! colspan="5" | Equipment stations<br>|-<br>! style="width:5%" | Number<br>! style="width:15%" |Image<br>! style="width:30%" | Name<br>! style="width:20%" | Attendant<br>! style="width:30%" | Items<br>|-<br>|1<br>|<br>|Stay Hydrated<br>|Worthy<br>|Rad-X x1<br>Purified water x1<br>|-<br>|2<br>|<br>|Health & Medication<br>|Cavendish<br>|スティムパック x5<br>ラッドアウェイ x1<br>|-<br>|3<br>|<br>|Power is Key<br>|Higgenbottom<br>|Building supplies:<br>Excess adhesive x3<br>Raw cloth x5<br>Small Vault-Tec supply package<br>Steel scrap x5<br>Wood scraps x5<hr>Additional consumables:<br>Antibiotics x5<br>Basic repair kit x2<br>Boiled water x5<br>Purified water x4<br>ラッドアウェイ x4<br>Scrap kit x2<br>スティムパック x5<br>|-<br>|4<br>|<br>|Join a Team<br>|Merriman<br>|Party hat x1<br>|-<br>|5<br>|<br>|Camping Made Easy<br>|Crowley<br>|C.A.M.P.<br>|-<br>|6<br>|<br>|Get a Job<br>|Poole<br>|Black-rim glasses x1<br>Pen x1<br>|}<section end="somanyhandies" /><br>The overseer's office はthe end of the hallway between Merriman's and Crowley's stations, past the wooden barricade. Inside the office, the overseer's ターミナル can be read and has 監督官's log - Vault 76 ホロテープ.付近で見つけることができます<br>In the room with Poole's station, there is another ターミナル for the Vault's personnel manager, which includes entries mentioning a few of the Vault's former dwellers. Past this, it is a linear route to the Vault's entrance, though the security room is open off to the side and can optionally be explored; it only has a security ターミナル which can be hacked (level 0).<br>The Vault door will automatically open upon approaching it. Alderton is nearby and will offer some final floating dialogue. After leaving, no one can return to 内部, but newly-created characters will always start in the Vault.</p>
+<h3>外観</h3>
+<p>Outside, the Vault entrance terminates in a large terrace still decorated to mark the tricentennial celebrations. Heading south from there will lead down to another set of two successively lower terraces; from there, a marked dirt trail heads down towards the overseer's camp. Heading west instead leads down to a passenger drop-off road loop overlooking a parking lot; following the road out of the parking lot will eventually lead to the Tyler County Fairgrounds. There are also unmarked dirt paths leading off north and east into the woods.<br>As of the <i>バーニング・スプリングス</i> update, the most prominent feature just outside the Vault is the Ghoul, who 入手できます standing on a raider corpse; speaking to him will give an objective to meet him later in Highway Town. また、sign advertising the Wayward found just opposite the stairs down to the middle terrace.<br>The Mister Handy Pennington is found on the terrace below, and he is spoken to as part of Wayward Souls. Across from him, また、donations box where veteran players can leave items for new arrivals to collect, which has the note Welcome to the ウエイストランド pinned to it. Next to the box is a barrel with the note Anglers wanted attached; reading the note will start Casting Off and mark Fisherman's Rest on the map.<br>Heading down the stairs from Pennington leads to the lowest terrace. Lacey Drummond and Isela Mejia are standing here at the foot of the stairs, and speaking to them will point the プレイヤーキャラクター to the Wayward. The duo's campsite 入手できます just nearby, consisting of a campfire, two sleeping bags, and some assorted junk items. From there, the aforementioned dirt trail leads down その方向にはwest. The trail is occupied by フェラル・グール; not far down the way is a dead レスポンダー protectron, while また、unmarked lookout tower a little further down.<br>Heading west from the Vault entrance or any of the terraces leads to the parking lot or the passenger drop-off overlooking it. These sections are also infested with フェラル・グール. On the top terrace (the Vault entrance area), また、Responder corpse on the stairs leading down to the passenger drop-off. The road from there down to the parking lot contains a wrecked military jeep with an explosives crate. At the bottom, また、APC with an ammo box and a duffle bag inside. A campaign hat is on the ground outside the carrier.<br>The parking lot itself also has a few more loot containers scattered around the various ruined vehicles, which include a グラフトン Steel van. The road west is blocked by a military barricade, though it can be easily jumped over. There is another sign advertising the Wayward found here.</p>
+<h3>外観</h3>
+<p>* Isela Mejia <br>* Lacey Drummond<br>* Pennington<br>* The Ghoul</p>
+<h2>主なアイテム</h2>
+<p>* Orders from Maria Chavez - A note that can sometimes spawn on a Responder corpse down the stairs from the Vault. <br>* 監督官's log - Vault 76 - ホロテープ, inserted into the overseer's ターミナル in her office, or obtained from Pennington outside the Vault.<br>* ''Scouts' Life'' - issue #01<br>* Nuka Tapper - ホロテープ game, inserted into the ターミナル in the プレイヤーキャラクター's room (fixed spawn and is otherwise not obtainable outside of randomized magazine spawns).<br>* CAMP - The player's C.A.M.P. is obtainable here. <br>* Pip-Boy 2000 Mark VI - Next to the player's door.<br>* Welcome to the ウエイストランド - A note, nailed to the rookie donation box near Pennington.<br>* Anglers wanted - Note, outside pinned to a barrel.</p>
+<h2>補足</h2>
+<p>;Clarifications<br>*  In <i>Fallout 3</i>, the Citadel's Vault-Tec ターミナル includes a listing of Vault 76 which says the Vault is intended to open 20 years after its sealing.<br>* Vault 76 cannot be nuked in the quest I Am Become Death.<br>* The door and surrounding decoration of Vault 76's entrance are designed to resemble the Vault-Tec logo.<br>* Many objects inside the Vault are interactable (mainly either playing a sound effect or showing a visual effect). This includes props inside the プレイヤーキャラクター's apartment, such as the sink, toilet, washer, dryer, alarm clock, and more; as well as items outside, including the mailboxes and garden gnomes outside the apartments, and the coffee machine and stoves in the cafeteria.<br>;Update history<br>* Prior to update 1.0.85.0, the enemies outside the Vault were Liberators rather than フェラル・グール, and they were only in the parking lot area. This patch was the same one that added the donations box outside the Vault.<br>;Cut content<br>* Welcoming Committee is a quest cut from the ロケーション.<br>* With the <i>Expeditions: Atlantic City</i> part one update <i>Boardwalk Paradise</i>, content was added to the game files involving a cut, updated version of the opening quest for <i>Fallout 76</i>. This quest would have updated the explanation for why a new プレイヤーキャラクター was still in Vault 76 even years after Reclamation Day; rather than simply being a holdout who refused to leave, the プレイヤーキャラクター would be a dweller who was unable to leave because of a medical issue and was subsequently being attended to by Professor Dayton, a previously mentioned-only dweller who would have made a full, in-person appearance in the quest. </p>
+<h2>舞台裏</h2>
+<p>* In the quarters that the プレイヤーキャラクター wakes up in at the start of the game, there はthat bathroom, bearing the message "Don't put TP on backwards!" This is a reference to viral debates about toilet paper orientation. The debate extended to <i>Fallout 4</i> after its release, as players argued about the "under" orientation of the toilet paper in the Sole Survivor's house. In 2025, the twentieth in-game season for <i>Fallout 76</i>, <i>Glow of the Ghoul</i>, included two CAMP items that further reference this debate: the toilet paper holder ("under" orientation) and the "correct" toilet paper holder ("over" orientation). The bathroom in Vault 76 uses the "over" orientation.にあるsticky note on the mirrorです<br>* When reaching the first checkpoint, the "celebration" music from <i>Fallout Shelter</i> plays.<br>* In the Japanese version of <i>Fallout 76</i>, Reclamation Day is known as "Saisei no hi" (再生の日). "Saisei" (再生) has the theme of "life" and "biology" in its name, thus the term could be translated as Rebirth Day, Revival Day, Regeneration Day or Regrowth Day. "Seisei" also has the meaning of coming back from either death or severe injury, which would be 大戦 in this case.<br>* Vault 76 was featured in an official Bethesda livestream for the Fallout 76 5th Anniversary event, in which the Vault's exterior was decorated and the Vault 76 overseer delivered a three minute speech to begin the parade.<br>* A trailer for <i>Fallout 76</i> erroneously claims Vault 76 was the first to be opened after the Earth was 破壊された by 大戦. For more information, see here.</p>
+<h2>登場作品</h2>
+<p>Vault 76はFallout 76に登場します。</p>
+
+            
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Vault 76には、核戦争以前の生活の痕跡が色濃く残っています。<br>レスポンダーの活動拠点として使われていたこの場所には、彼らの献身的な活動の記録が残されています。<br>核戦争後の混乱の中で人々を助けようとした彼らの姿勢には、胸を打たれるものがあります。<br><br><br>ターミナルやメモに残された記録を読み解いていくと、このロケーションに関わった人々の生々しい物語が浮かび上がってきます。<br>こうした細部のロアを追いかけるのが、Fallout 76の探索の醍醐味ですね。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Vault_76" target="_blank" rel="noopener">Vault 76</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="拡大画像"></div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_vault_76'; const _commentArticleName = 'Vault 76'; const _commentArticleUrl = 'vault-76.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

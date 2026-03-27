@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Morgantown | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/morgantown.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Morgantown | Overseer Mohi's Terminal">
+    <meta property="og:description" content="モーガンタウンのFallout 76ロア記事。森林地帯の主要都市、Vault-Tec大学とレスポンダーの本拠地。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/morgantown/img_1.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/morgantown.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Morgantown | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="モーガンタウンのFallout 76ロア記事。森林地帯の主要都市、Vault-Tec大学とレスポンダーの本拠地。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/morgantown/img_1.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        .copyright { margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #777; text-align: center; }
+        .copyright a { color: var(--accent-color); }
+        .real-world-box { border: 2px solid #4488ff; background: rgba(68, 136, 255, 0.08); padding: 20px; margin: 30px 0; border-radius: 5px; }
+        .real-world-box h3 { color: #4488ff; border-bottom-color: #4488ff; }
+        .real-world-box img { max-width: 100%; border: 1px solid #4488ff; margin: 15px 0; cursor: zoom-in; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Morgantown</h3>
+            <img src="images/note_extracted/morgantown/img_1.png" alt="モーガンタウン北側入口">
+            <img src="images/note_extracted/morgantown/img_map_marker.png" alt="マップ上の位置" style="width:100%; margin-top:5px;">
+            <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">マップ上の位置</div>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>大規模集落</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span><a href="appalachia.html" class="auto-link">アパラチア</a>、森林地帯</span></div>
+            <div class="infobox-row"><span class="infobox-label">最寄り</span><span>Morgantown</span></div>
+            <div class="infobox-row"><span class="infobox-label">セクション</span><span>フラタニティ・ロウ<br>モーガンタウン・モノレール<br>モーガンタウン空港<br>モーガンタウン高校<br><a href="morgantown-station.html" class="auto-link">モーガンタウン駅</a><br>モーガンタウン操車場</span></div>
+            <div class="infobox-row"><span class="infobox-label">建物</span><span>ビッグ・アルのタトゥー・パーラー<br><a href="fujiniya-intelligence-base.html" class="auto-link">藤仁屋情報基地</a><br><a href="mama-dolces-food-processing.html" class="auto-link">ママ・ドルスの食品加工場</a><br>ポートサイド・パブ<br>レッドロケット<br>シャドウブリーズ・アパートメント<br>Vault-Tec大学</span></div>
+            <div class="infobox-row"><span class="infobox-label">勢力</span><span>レスポンダー<br>ルーフハウス<br>ストリートハウス</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール<br>スコーチ</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>Biv<br>リベレイター<br>Mr.フラッフィー<br>プロテクトロン<br>スティールハート</span></div>
+            <div class="infobox-row"><span class="infobox-label">クラフト</span><span>アーマー作業台<br>武器作業台<br>ケミストリーステーション<br>クッキングステーション<br>パワーアーマーステーション<br>ティンカーズワークベンチ<br>醸造ステーション</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_morgantown" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Morgantown<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">モーガンタウン</span></h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>モーガンタウン</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の森林地帯にある都市です。<br>
+                もともとVault-Tec大学の所在地であり、チャールストンの壊滅後はレスポンダーの主要本部として機能していました。<br>
+                しかし現在では、主にスコーチとフェラル・グールに占拠されています。<br>
+                多数のゲーム内イベントやクエストがこの街を舞台に展開されます。
+            </p>
+
+            <h2>背景</h2>
+            <h3>戦前</h3>
+            <p>
+                アパラチア北部の広い川沿いに位置するモーガンタウンは、大戦前は活気に満ちた都市でした。<br>
+                Vault-Tec大学のお膝元として、多くの学生、ハンター、炭鉱夫、軍人、そして旅行者が行き交う街でした。<br>
+                街にはモーガンタウン空港とVault-Tec大学を結ぶモノレールが走り、街の北部と南部にもそれぞれ停車駅がありました。
+            </p>
+            <p>
+                とはいえ、街で暮らし働く人々にも課題はありました。<br>
+                新しい技術や変化する時代の波によって収益が減少するビジネスもあれば、地価の上昇に伴う家賃の値上げに苦しむ住人もいました。<br>
+                それでも大部分においてモーガンタウンは活気ある街であり、大戦後もしばらくはその勢いが続きました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/morgantown/img_2.png" alt="Vault-Tec大学と街の全景">
+            <div class="image-caption">Vault-Tec大学とモーガンタウンの全景</div>
+
+            <h3>戦後</h3>
+            <p>
+                大戦後、街は暴力と混乱、そしてそれに続く死によって引き裂かれました。<br>
+                論争の的となったのは、戦争直後にモーガンタウンの警察署長メイフィールドが厳しい夜間外出禁止令を施行し、街を略奪する学生たちに発砲したことです。<br>
+                これによりレスポンダーのメンバーはチャールストン緊急政府に対し、メイフィールドへの処分を求めました。
+            </p>
+            <p>
+                一部の人々は混乱をやり過ごすことができましたが、メイフィールドもやがてモーガンタウンの統制を失いました。<br>
+                時が経つにつれ、Vault-Tec大学の学生ですら食料配給が底をつき、街を去らざるを得なくなりました。<br>
+                街はやがて部族によって支配されるようになり、Vault-Tec大学とモーガンタウン高校から出てきた学生サバイバーたちが形成した数多くのライバルギャングによって分裂しました。<br>
+                これらのギャングは、Vaultの監督官になるための訓練を受けていたVTUの学生たちが率いていました。
+            </p>
+
+            <h3>ルーフハウスとストリートハウス</h3>
+            <p>
+                最初の1年で、ギリシャ式学生寮のメンバー間の争いにより多くの学生が命を落としました。<br>
+                RadAwayの不足が恒常化し、大きな救済は訪れませんでした。<br>
+                特に記録に残った事件として、男子学生のグループがRadAwayの隠し場所を巡って争い、仲間の一人を殺害するという出来事がありました。これが同級生による最初の死亡事件でした。
+            </p>
+            <p>
+                この時代、2つの主要な学生組織として<strong>ルーフハウス</strong>と<strong>ストリートハウス</strong>がありました。<br>
+                ルーフハウスはモノレールと建物の屋上から街を支配し、ストリートハウスは路地や通りで生き延びていました。<br>
+                両者は互いの壊滅を狙っていましたが、絶え間ない放射線の脅威が両組織を蝕み、学生たちは髪や皮膚を失い、あるいはそのまま命を落としていきました。<br>
+                RadAwayの供給だけが、両組織がモーガンタウンの支配を維持できる唯一の手段でした。<br>
+                やがて放射線が手に負えなくなり、ストリートハウスとルーフハウスの間で休戦が提案されました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/morgantown/img_6.png" alt="モノレール路線（空撮）">
+            <div class="image-caption">モーガンタウンのモノレール路線（ハイライト表示）</div>
+
+            <h3>レスポンダーの到来</h3>
+            <p>
+                2082年のクリスマスの大洪水でチャールストンのレスポンダーがほぼ全滅した後、マリア・チャベスに率いられたグループがモーガンタウン空港に戻り、ここを本部として占拠しました。<br>
+                滑走路にテント村やその他の施設を設営し、周辺地域へのトリアージと支援を開始しました。
+            </p>
+            <p>
+                グループの一員であるサンジェイ・クマールは、街路をパトロールするプロテクトロン「スティールハート」を設定し、補給キャッシュがある3か所の拠点を設置しました。<br>
+                さらに、<a href="mama-dolces-food-processing.html" class="auto-link">ママ・ドルスの食品加工場</a>の機械を改造し、肉の缶詰シチューなどの缶詰食品を製造できるようにしました。<br>
+                モーガンタウンはザ・マイアに近いこともあり、ハーパーズ・フェリーとの交易が発展しました。
+            </p>
+            <p>
+                しかし2097年、あらゆる努力にもかかわらず、レスポンダーはスコーチによって全滅しました。<br>
+                2102年までに、この街の唯一の住人はフェラル・グールとスコーチだけとなりました。
+            </p>
+
+            <h2>レイアウト</h2>
+            <p>
+                街には大量の戦利品——注目アイテムからジャンクまで——が古いキャンプ場、建物、キャッシュなどに散在しています。<br>
+                いくつかの作業台が街中に隠されていますが、そのほとんどは屋上にあり、階段や非常階段を登ったり、モノレールの線路からパルクールで飛び移ったりしてアクセスします。
+            </p>
+            <p>
+                3つのイベントがここで発生します：ダウンタウンで「Back on the Beat」、空港で「Collision Course」、ママ・ドルスで「Feed the People」です。<br>
+                メインクエスト、サイドクエスト、デイリークエストの複数がモーガンタウンを舞台にしています。<br>
+                これらは主にレスポンダーの歴史の語り直し、Vault 76の監督官のVTU時代、そしてヌカシャインにまつわる出来事を中心に展開されます。
+            </p>
+
+            <h3>主なエリア</h3>
+            <p><strong>北部：</strong> レッドロケット・ガソリンスタンド、シャドウブリーズ・アパートメント、モーガンタウン空港、北モノレール駅、デリカテッセン（レスポンダー隠し場所M-1）、弁護士事務所（レスポンダー隠し場所M-2）など。</p>
+            <p><strong>西部：</strong> <a href="mama-dolces-food-processing.html" class="auto-link">ママ・ドルスの食品加工場</a>、<a href="fujiniya-intelligence-base.html" class="auto-link">藤仁屋情報基地</a>、<a href="morgantown-station.html" class="auto-link">モーガンタウン駅</a>、モーガンタウン操車場、ポートサイド・パブなど。</p>
+            <p><strong>中央部：</strong> Vault-Tec大学、銀行アパートメント＆レスポンダー隠し場所M-3、バー＆ワインセラー、ファロンズ・アパートメント、テント村と防衛壁など。</p>
+            <p><strong>東部：</strong> フラタニティ・ロウ、モーガンタウン高校、丘の中腹の廃屋群、給水塔など。</p>
+            <p><strong>南部：</strong> ビッグ・アルのタトゥー・パーラー、ヌカシャイン（地下室）、スーパー・デューパー・マート、南モノレール駅、南モーガンタウン農地など。</p>
+
+            <img class="article-image" src="images/note_extracted/morgantown/img_5.jpg" alt="モーガンタウン空撮">
+            <div class="image-caption">モーガンタウンの空撮ビュー</div>
+
+            <h2>主なアイテム</h2>
+            <h3>ホロテープ＆メモ</h3>
+            <ul>
+                <li><strong>不審なメモ</strong>（2枚） — ママ・ドルスの南西にある罠が仕掛けられた倉庫</li>
+                <li><strong>本を偲んで</strong>（ホロテープ） — モーガンタウン南西端の書店内、ロックされた金庫の中</li>
+                <li><strong>HR会議の議事録</strong>（ホロテープ） — 南端のスーパー・デューパー・マート付近の赤レンガのアパート内</li>
+                <li><strong>ジャネットへ</strong>（メモ） — 南部のバーの掲示板</li>
+                <li><strong>壊れたホロテープ</strong> — VTUモノレール駅の北東、路地裏の若い女性の遺体の上</li>
+                <li><strong>おバカな路上キッズ</strong>（ホロテープ） — VTUモノレール駅北東のビル屋上。罠が仕掛けられた通路</li>
+                <li><strong>全部壊してやれ</strong>（メモ） — VTU東の放棄キャンプ内</li>
+                <li><strong>モーガンタウンの戦い</strong>（ホロテープ） — 放棄キャンプ北の緑のポータブルトイレ内</li>
+                <li><strong>マディからのポストカード</strong>（メモ） — シャドウブリーズ・アパートメント北東の家のポーチ</li>
+                <li><strong>おばあちゃんからのポストカード</strong>（メモ） — モーガンタウン高校の給水塔北東の赤レンガの家</li>
+                <li><strong>エリザベスからのポストカード</strong>（メモ） — VTUキャンパスの真北にあるアパート内</li>
+                <li><strong>放射線の問題</strong>（メモ） — アパート屋上のキャンプ場、寝袋の隣</li>
+                <li><strong>モーガンタウンの歴史 Vol.I〜IV</strong>（ホロテープ） — モノレール沿いの各所の屋上</li>
+                <li><strong>立ち往生</strong>（ホロテープ） — Vol.IVが見つかるビルの北のビル屋上</li>
+                <li><strong>VTUからのポストカード</strong>（メモ） — 「立ち往生」と同じ屋上</li>
+                <li><strong>モーガンタウンの歴史：著者ノート</strong>（ホロテープ） — Vol.IVの反対側のビル屋上</li>
+                <li><strong>お母さんとお父さんからのポストカード</strong>（メモ） — 著者ノートのそば</li>
+                <li><strong>みんなへ</strong>（メモ） — 隠し場所M-3の銀行内、死んだレスポンダーの机</li>
+                <li><strong>故郷からのポストカード</strong>（メモ） — VTU北のバーのテーブル</li>
+                <li><strong>書きかけのポストカード</strong>（メモ） — モノレール線路上の木造構造物の南東、高台のポーチ</li>
+                <li><strong>PSY101ノートの表紙</strong>（メモ） — 北側モノレール線路上の木製タワー付近</li>
+                <li><strong>屋上登りの詩</strong>（メモ） — ストリートハウスのキャンプ北東、赤レンガのビルの最上部</li>
+                <li><strong>バースデー・トーストの下書き</strong>（メモ） — ビッグ・アル南のスローカム・ジョー内のゴミ箱の中</li>
+                <li><strong>商売は不振だ</strong>（メモ） — 南西部の理髪店の物置、ピックロックLv.1が必要</li>
+                <li><strong>AUTOMATED RECORD 0000001</strong>（ホロテープ） — ビッグ・アル南東、スーパー・デューパー・マートの駐車場の「不思議な箱」</li>
+            </ul>
+            <h3>その他のアイテム</h3>
+            <ul>
+                <li><strong>武器設計図</strong>（ランダム） — 「立ち往生」ホロテープと同じ屋上</li>
+                <li><strong>ステルス・ボーイ</strong> — 「屋上登りの詩」と同じ屋上</li>
+            </ul>
+
+            <!-- ホロテープ全文 -->
+            <h2>ホロテープの内容</h2>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ モーガンタウンの歴史 Vol.I</h3>
+                <p><em>語り手：アリーシャ・パーカー（Vault-Tec大学最後の卒業クラスの首席）</em></p>
+                <p>「私はアリーシャ・パーカー。Vault-Tec大学最後の卒業クラスの首席です。モーガンタウンの最後の日々を後世のために記録するのが私の義務だと信じています。運が良ければ、いつか76番Vaultの居住者がこれを見つけて、ここで何が起きたかを知ることでしょう。核爆弾の後、モーガンタウンは地獄でした。すべてが燃えているか死んでいました。正直、あまり覚えていません。何人かは大学の中に隠れましたが、食料配給のせいで数週間で出ざるを得なくなりました。外に出てみると、VTUで身につけた訓練をすべて実践するのに最適な現実世界のシナリオに直面していることに気づきました。ええ、ラッキーですね。」</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ モーガンタウンの歴史 Vol.II</h3>
+                <p><em>語り手：アリーシャ・パーカー</em></p>
+                <p>「監督官の訓練を受けていた何人かの子供たちがリーダーシップを取りました。そしてギリシャ式学生寮のいくつかがコミュニティを形成し始めました。名前すら覚えていません。最大の寮、カッパ何とかが、小さな寮を吸収して徐々に領土を拡大していきました。もし世界が終わっていなければ、核戦争を背景に封建制度がどう再構築されたかは面白いテーマだったかもしれません。最初の1年で多くの学生を失いました。放射線中毒の者もいれば、飢えや渇きといった普通のことで死んだ者もいます。VTUの中庭で巨大なネズミに襲われた子供がいましたが、そのネズミは見つかりませんでした。しかし、最も多くの子供を失ったのは「ハウス戦争」でした。」</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ モーガンタウンの歴史 Vol.III</h3>
+                <p><em>語り手：アリーシャ・パーカー</em></p>
+                <p>「RadAway不足は恐ろしいものでした。何人かの男の子が近くの薬局で見つけた備蓄を巡って争い、事態は加熱しました。銃を抜いて撃ち合いになったのです。仲間の手による最初の学生の死が記録されました。これが新しいモーガンタウンでした。2つの最大勢力は「ルーフハウス」と「ストリートハウス」——支配する領土にちなんだ名前です。壮大な学生戦争が繰り広げられました——しかしこれはVTUの学生たちが知っていた可愛らしいいじめの儀式ではありませんでした。これは生死を賭けた戦いでした。」</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ モーガンタウンの歴史 Vol.IV</h3>
+                <p><em>語り手：アリーシャ・パーカー</em></p>
+                <p>「RadAwayがなければ、激しい放射線の影響はすでに犠牲を出していました。子供たちがバタバタと死に、髪や皮膚が剥がれ落ちていきました。最も強力な学生の寮だけが、組織内の秩序を維持することができました。それは小さなサバイバーの集団を根絶やしにし、彼らの物資を奪うことでのみ可能でした。RadAwayの1回分の投与が、権力者たちを食物連鎖の頂点に留めていたのです。今でさえ、私は隠れています。他のほとんどの子供たちから遠く離れたどこかの屋上に。隣の屋上にいる男の子と時々話しますが、注意を引かないように普段はお互いそっとしています。確か名前はビクターだったと思います。」</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ 立ち往生（Stuck）</h3>
+                <p><em>語り手：ビクター・ヒッベ</em></p>
+                <p>「頭がおかしくなりそうだ。この屋上を離れたら死んでしまう。アリーシャはもう話しかけてこなくなった。仕事に没頭する以外にやることがない。*笑い* そんなのが少しでもまともだと思うか？ 星座をカタログにまとめているんだ——世界が終わったっていうのに。完全にイカれてしまったんだと分かっている。最近、路上に降りていきたい誘惑に抗えなくなっているからだ。殺意むき出しの子供の集団が徘徊している。かつて試験のカンニングを手伝ってやった奴らだよ、信じられるか？ レンチでポテトチップスの袋のために俺を殴り殺そうとしている。この悪夢の惑星にいたくない。どこか別の場所に、あの星の彼方のどこかにいたい。」</p>
+            </div>
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ 本を偲んで</h3>
+                <p><em>語り手：書店店主</em></p>
+                <p>「ああ、私の本たち。大きくて、美しくて、物語と知識と歴史が詰まった製本された本たち。本が大好きだ。ずっとそうだ。でも最近、本が骨董品になりつつあるように感じている。もう誰も紙で読まない。先日、大学の学生たちが店に来て、表紙だけ読んで済ませているのを見た。信じられるか？ 表紙だけで出版物の中身を完全に判断するなんて。まったく信じられない。でも今はもう、ホロテープがどうの、ターミナルがこうの、だ。ロブコ・インダストリーズさん、本の死を、正直に言えば文明全体の死をもたらしてくれてありがとよ。ああ、それと、これを聞いている盗み聞き屋がいたら言っておくが、愚痴をホロテープに録音しているこの皮肉は自分でも分かってるよ。過去に取り残されなくても、好きな趣味の死を悼む権利はあるんだ。よろしく。」</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ HR会議の議事録</h3>
+                <p><em>人事部会議記録</em></p>
+                <p style="font-family: 'Share Tech Mono', monospace; font-size: 0.9em;">
+                    ...:: 人事部 ::...<br>-- 会議議事録 --<br><br>
+                    <strong>スーザン・ゴドウィンとの会議</strong><br>
+                    出席者：スーザン・ゴドウィン（営業部）、マーガレット・ドズワース（人事部）<br>
+                    議題：苦情ID 234-Aに関する聞き取り<br>
+                    議事：紹介 → 苦情内容の説明 → 告発の受理 → 質疑応答 → 退席<br><br>
+                    <strong>アリソン・パーキンスとの会議</strong><br>
+                    出席者：アリソン・パーキンス（経理部）、マーガレット・ドズワース（人事部）<br>
+                    議題：苦情ID 234-Bに関する聞き取り<br>
+                    議事：紹介 → 苦情内容の説明 → 告発の受理 → 質疑応答 → 退席<br><br>
+                    <strong>フランクリン・G・ヘンダーソンとの会議</strong><br>
+                    出席者：フランクリン・G・ヘンダーソン（取締役）、マーガレット・ドズワース（人事部）<br>
+                    議題：苦情ID 234に関する聞き取り<br>
+                    議事：苦情内容の説明 → 苦情の受理 → 弁護の受理 → 告発の受理 → 質疑応答 → 弁護の受理 → 退席
+                </p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ おバカな路上キッズ</h3>
+                <p><em>語り手：チャールズ（ルーフハウス所属）</em></p>
+                <p>「下にいるやつらは、窓ってものが存在することにまったく気づいていない。俺たちは夜中に真っ暗な中、隣接するビルを通して偵察隊を送り込んでいる。やつらは毎回、食料やら弾薬やらをどっさり持って戻ってくる。信じられないよ。この包囲戦を何年だって耐え抜けるさ。でもでかい問題はRadAwayだ。日に日に見つかる量が減ってきて、体調を崩し始めてる奴がいる。それでも俺は確信してる。全てが終わった時に勝つのは俺たちだ。屋上とモノレールは俺たちだけの専用ハイウェイなんだからな。あのおバカな路上キッズは、自分たちが誰に喧嘩を売ってるのか分かってない。」</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ モーガンタウンの戦い</h3>
+                <p><em>語り手：ヴァネッサ（ストリートハウス所属）</em></p>
+                <p>「今日もまた新入りのグループを失った。夜になったら脱出はしごを登り始めろと命令したのに、罠だった。はしご全体に油が塗ってあって、屋上のクソ野郎どもが火を点けて全員燃やしたのよ。もうこんなの続けられない！ 道路の出入りを押さえて兵糧攻めにしようとしてるのに、あいつらはどうにか食料を見つけ続けている。空の食料箱を投げ落として嘲笑いやがって。あいつら、あの上でどうやって生き延びてるの？ 物資をどこから手に入れてるの？」</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ モーガンタウンの歴史：著者ノート</h3>
+                <p><em>語り手：アリーシャ・パーカー</em></p>
+                <p><strong>エピローグ（作業中の草稿）</strong><br>
+                「私は自分の運命と、モーガンタウンの運命を受け入れました。あなたに会えないのは残念ですが、少なくともこの恐ろしい場所の物語と、そして今、私の物語を残せました。幸運を祈ります。そして歴史を繰り返さないでください。あなたにはやり直すチャンスがある。どうか私たちのようにはならないで。」</p>
+                <p><strong>著者メモ（後で削除）</strong><br>
+                「お母さんとお父さんが恋しい。生きているか分からないけど、チャールストンが何かひどいことに遭ったって噂を聞いたから、もう希望はほぼ捨てた。モーガンタウンを離れて探しに行くこともできないし、たぶんこの屋上で死ぬんだろう。でもまあ、少なくともまだ生きてる。ビクターが合流しようって言ってきたけど、あんまり信用してない。それに、この屋上を離れるつもりは何があってもない——路上の学生ギャングが怖いからじゃなくて……髪が抜け始めてるのに気づいたんだ。手持ちの少しのRadAwayを小出しに使ってきた。痛みが消える程度の量だけ。でもそれ以上は使えない。持たせないといけなかったから。でももう効かなくなってきた。だから、モーガンタウンの歴史の4巻を録音した動機はそこにある。十分じゃないけど、毎日力を失っている。できる限りのことはした。」</p>
+                <p><strong>ブレインストーミング（旧）</strong><br>
+                1. 戦後のモーガンタウンの詳細な分析 → 更新：時間がない、病気が悪化<br>
+                2. モーガンタウンの生存者の歴史的な証言の記録 → 実現不可、人々が暴力的すぎる<br>
+                3. 望遠鏡の男と合流？ 絶対ダメ<br>
+                4. 短い録音。全体像、ハイレベルに。「モーガンタウンの歴史」？ もっと短い名前が必要、大げさすぎる</p>
+            </div>
+
+            <div class="holotape-box" style="border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03);">
+                <h3 style="margin-top: 0;">🎙️ AUTOMATED RECORD 0000001</h3>
+                <p><em>Wild Appalachiaアップデートのコンテンツ</em></p>
+                <p>＜大きな木箱の蓋が開く音、誰かが飛び出して咳き込む音、木箱が閉まる音＞<br><br>
+                [編集済み]：＜咳き込み、ゆっくりと重い呼吸＞<br>
+                [編集済み]：「なんてこった。」「ここは……一体……どこだ？」「まあいい。もう一つはどこだったか？ タワー。川。分岐点。」</p>
+            </div>
+
+            <h2>メモの内容</h2>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 放射線の問題</h3>
+                <p>「放射線の問題がかなり深刻になってきた。今朝、うちの10人がもう目を覚まさなかった。他にも髪が抜け始めている人がいる。夜中に頬から何かを払いのけた。ハエだと思ったんだけど、私は——」<br><span style="color: #888; font-size: 0.9em;">※メモはここで途切れている</span></p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 商売は不振だ</h3>
+                <p>「また今月も赤字だ。銀行のローンもやっと払えるかどうか。スタイリストたちにはまた一週間無給で働いてもらわないといけない。なんでこんなに頑固なんだか。あの自動理髪機が出てきた時点で店を畳むべきだった。モーガンタウンは好景気だ。毎日のように新しいビジネスが生まれている。どんどん人が移り住んでくる。俺はどうすりゃいいんだ？」</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 みんなへ</h3>
+                <p style="text-align: center; font-weight: bold;">私が失った人たち、一覧</p>
+                <p>メレディス、私の母、そしてパトリシア、私のママ。最後は一緒にいられたと信じたい。<br>マドリン、私の姉と、セオドア、私の義兄。どうにか助かっていてほしいけど……爆弾にとても近かった。<br>キャルビン、世界で一番の親友、それと彼の犬、ペッパーズ。あの顔ペロペロが恋しくてたまらない。<br>ジェシー、私の元恋人。間違った理由で別れてしまった。ずっと前にいなくなったのに、まだとても愛している。<br>サマラ、私の上司。誰もが望むような最高の上司だった。すべてが地獄になった日に昇給してくれてありがとう。あれが最後の良い日だった。<br>ミンディ、金曜の夜のポーカーの主催者。イカサマ師め、あの嘘つきな顔が恋しいよ！<br>ロベルト、私の隣人。あなたを止めなければならなかったけど……あなたも恋しい。あなたを止めなければならなかった前の自分も恋しい。<br><br>そして最後に、私自身。かつての自分が恋しい。もう意味がない……あなたたちなしでは。</p>
+            </div>
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 不審なメモ（2枚）</h3>
+                <p><strong>下階：</strong>「注意」</p>
+                <p><strong>上階：</strong>「俺のだ！」</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 ジャネットへ</h3>
+                <p style="text-align: right; font-size: 0.9em;">2096年5月4日</p>
+                <p>親愛なるジャネットへ、<br><br>
+                ああ、君が恋しい。いつも浮かべていたあのいたずらっぽい微笑みが恋しい。あの長いハグの温もりが恋しい。あの頃一緒に暮らしていた幸せをまだ覚えている。でも今はもう君の顔を思い出せない。<br><br>
+                本当にごめんね、ジャネット。君を信じて、手をつないであのVaultに入るべきだった。この20年余り、毎日バカなバカな間違いをしたことを悔やんでいる。ここは地獄だよ。<br><br>
+                とにかく、これは最後のお別れを言うためだ。もう君を忘れないよ、ハニー。あのVaultが開いて、君の明るい笑顔をもう一度見られるのをずっと待っていた。でも、もう待てない。先に進まないと。あの仕事をD.C.で受けるべきじゃなかった。<br><br>
+                幸運を祈る、ジャネット。さようなら。そして誕生日おめでとう、プリンセス。<br><br>
+                <span style="text-align: right; display: block;">永遠に君のもの、<br>ジェームズ</span></p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 全部壊してやれ</h3>
+                <p style="font-family: 'Share Tech Mono', monospace; text-transform: uppercase;">
+                路上の学生たちよ<br><br>
+                レンガとモルタルの玉座から俺たちを見下ろしているあのエリートどもは、今日こそ死ぬ<br><br>
+                ……やつらの壁は崩れる<br><br>
+                生きたまま焼き殺せ<br><br>
+                路上の学生たちよ、共に行進せよ<br><br>
+                屋上の豚どもは敗北した<br><br>
+                共に立て<br>
+                和平なし<br>
+                勝利　和平なし<br>
+                勝利<br>
+                全部壊してやれ
+                </p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 マディからのポストカード</h3>
+                <p>ディーディーおじちゃんへ<br>
+                おじちゃんがいなくてさみしいです。おじちゃんをほこりにおもいます（※子供のスペルミス）<br>
+                だいすき！<br>
+                マディより！！</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 おばあちゃんからのポストカード</h3>
+                <p>親愛なるシビルへ、<br><br>
+                新しい学校での活躍を聞いてとても誇りに思います。あなたは私たちの世代で大学に行った最初の女性です。いつもあなたを愛していること、あなたの将来をとても嬉しく思っていること忘れないでね。<br><br>
+                たくさんのハグとキスを、<br>デイヴィーおばあちゃんより</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 エリザベスからのポストカード</h3>
+                <p>パパへ！！<br><br>
+                ママがこのお手がみをかくのをてつだってくれたよ。きにいってくれるといいな。ママがもじとスペリングをおしえてくれてるよ。きにいってくれたらうれしいな！（※子供のスペルミス）<br><br>
+                だいすき！<br>
+                あなたのむすめ<br>
+                エリザベスより</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 VTUからのポストカード</h3>
+                <p style="text-align: center;">おめでとうございます<br>ビクター・H・ヒッベ殿</p>
+                <p>あなたはVault-Tec大学 年間学生リーダーシップ賞の正式な受賞者です！ 記念楯のお受け取りは、メインキャンパスビルの事務局までお越しください。ありがとうございます！<br><br>学生課、Vault-Tec大学</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 お母さんとお父さんからのポストカード</h3>
+                <p>親愛なるアリーシャへ、<br><br>
+                あなたのことをたくさん考えています。とても誇りに思ってるよ。Vault-Tec大学での初学期、がんばってね！ あなたは昔から頭が良かったもの！！<br><br>
+                愛を込めて、<br>
+                お母さんとお父さんより</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 故郷からのポストカード</h3>
+                <p>ビルへ、<br><br>
+                元気にしてるといいんだけど。手紙で連絡してごめんね。でも新しい学校への電話がなかなかつながらなくて。ロッキーの具合が良くないの。<br><br>
+                老衰で死にかけてて、ずっと寝てるし、目も見えなくなった。もう最期の日々だと思う。苦しみを終わらせるために安楽死させようかと考えてるの……バスの切符代は出すから、帰ってきて愛犬に最後のお別れを言ってあげて。いつでも電話してね。<br><br>
+                愛を込めて、<br>
+                お母さんより</p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 書きかけのポストカード</h3>
+                <p>お母さんとお父さんへ、<br><br>
+                VTUは今のところ素晴らしいです。学生たちはみんな私と同じくらいわくわくしていて意欲的です。先日、ケアパッケージが届いてとても嬉しかったです。あの詰め合わせは本当に楽しんで——<br>
+                <span style="color: #888; font-size: 0.9em;">※ポストカードはここで途切れている</span></p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 PSY101ノートの表紙</h3>
+                <p style="text-align: center; font-family: 'Share Tech Mono', monospace;">
+                    PSY101 ノート<br>
+                    人間心理学入門 &<br>
+                    構造的応用<br>
+                    所有者：<br>
+                    ジェームズ・ダーハム・Jr.<br>
+                    拾得した場合はVTU受付に返却ください
+                </p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 屋上登りの詩</h3>
+                <p style="font-style: italic; line-height: 2;">
+                ここへ来る　毎日<br>
+                騒音から隠れる<br>
+                ここから見てる<br>
+                ちいさな喜び<br><br>
+                のぼるだけ<br>
+                時間を盗む<br>
+                隠れる場所<br>
+                祈る暇もない<br><br>
+                風を感じる<br>
+                鳥が見える<br>
+                頭は治らない<br>
+                ただ言葉を書く<br><br>
+                飛びたくなる<br>
+                怖くなる<br>
+                毎回ただ座る<br>
+                韻を踏むのが好き
+                </p>
+            </div>
+
+            <div class="note-box" style="border: 1px solid #ccaa44; padding: 15px; margin: 20px 0; background: rgba(204,170,68,0.05);">
+                <h3 style="margin-top: 0; color: #ccaa44; border-bottom-color: #ccaa44;">📝 バースデー・トーストの下書き</h3>
+                <p>最高の弟に乾杯。クールで、チャーミングで、頭はキレキレ……って、それ俺のことだった！<br>
+                （笑いが起きるのを待つ）<br>
+                <span style="color: #888;">却下</span><br><br>
+                誕生日おめでとう、サミー！ でかい節目だ！ サーティー！ 知ってるだろ、ここからは下り坂だぞ！<br>
+                （笑いが起きるのを待つ）<br>
+                <span style="color: var(--accent-color);">これを使う</span></p>
+            </div>
+
+            <h2>ターミナルエントリ</h2>
+
+            <div style="border: 1px solid #66aaff; padding: 15px; margin: 20px 0; background: rgba(102,170,255,0.05);">
+                <h3 style="margin-top: 0; color: #66aaff; border-bottom-color: #66aaff;">💻 モーガンタウン駅</h3>
+                <p style="font-family: 'Share Tech Mono', monospace; color: #66aaff;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...:: MORGANTOWN STATION ::...<br>RED LINE<br>モーガンタウン駅へようこそ！</p>
+                <p><strong>発券：</strong><span style="color: #ff6b6b; font-family: 'Share Tech Mono', monospace;"> ERROR — 発券機の故障 — 直ちに駅員にご連絡ください</span></p>
+                <p><strong>接続：</strong> GRAFTON STATION / SUTTON STATION</p>
+                <p><strong>待ち時間：</strong><span style="color: #ff6b6b; font-family: 'Share Tech Mono', monospace;"> 次の列車到着まで…… 9999年 9999日</span></p>
+            </div>
+
+            <div style="border: 1px solid #66aaff; padding: 15px; margin: 20px 0; background: rgba(102,170,255,0.05);">
+                <h3 style="margin-top: 0; color: #66aaff; border-bottom-color: #66aaff;">💻 レスポンダーHQターミナル — スティールハート計画</h3>
+                <p><em>サンジェイ・クマール作成</em></p>
+                <p><strong>目的：</strong>レイダーが繰り返し隠し場所を襲撃。フェラル・グールも街中にはびこり定期巡回は危険すぎる。→ 法執行プロテクトロンを再プログラミングし、レスポンダーカラーに塗装。名前は「スティールハート」。</p>
+                <p><strong>1日目：</strong>ナカムラがチャールストンで古い法執行プロテクトロンを発見。ポッドの中に完璧に保存されていた。空港の工房に運搬。</p>
+                <p><strong>6日目：</strong>再プログラミングほぼ完了。ママ・ドルスの缶詰機の修理にも着手。レスポンダーカラーへの塗装を計画。</p>
+                <p><strong>12日目：</strong>ママ・ドルスの缶詰機は数分で過熱し失敗。スティールハートの塗装は完了したが、マリアの就役式でヌカ・コーラをかけられ、5分で塗装が溶けた。</p>
+                <p><strong>15日目：</strong>塗装修復完了。ヌカ・コーラの甘い匂いは取れず。モーガンタウンへ移送し巡回ルートをマッピング予定。</p>
+                <p><strong>20日目：</strong>設置ポッド付近でフェラルの奇襲。メロディの部隊が応戦する間にスティールハートを起動——レーザーでフェラルを一掃。しかし直後に充電切れ。テスト運用としては成功。</p>
+                <p><strong>24日目：</strong>充電完了時に自動ラジオ放送する送信機を設置。スコーチやレイダーへの対抗策として、ロボットへの依存を増やす必要性を認識。アイボットを早期警戒システムに使う新プロジェクトを構想中。</p>
+            </div>
+
+            <h2>メモ（備考）</h2>
+            <p>モーガンタウンは、Nuclear Winterゲームモードでマップとして利用できた2つのロケーションのうちの1つでした。</p>
+
+            <h2>登場作品</h2>
+            <p>モーガンタウンはFallout 76にのみ登場します。</p>
+
+            <h2>舞台裏</h2>
+            <ul>
+                <li>モーガンタウンは現実の<strong>ウエストバージニア州モーガンタウン</strong>をモデルにしています。両方の都市は、近くの空港、大学、そして公共交通機関のモノレールシステムなど多くの類似点を共有しています。現実のモーガンタウンには、ウエストバージニア大学（WVU）が運営する<strong>パーソナル・ラピッド・トランジット（PRT）</strong>と呼ばれるモノレールが存在します。ただし、ゲーム内のVault-Tec大学が1つのエリアに集約されているのに対し、現実のWVUは街全体に広がっています。</li>
+                <li>街の東側にあるヌカ・コーラの看板があるアパートの中には、木のブロックで「BFG」と綴られた部屋があり、これは2010年からBethesda Softworksが発売している<em>Doom</em>フランチャイズに初めて登場した同名の武器への参照です。</li>
+                <li>開発者のデヴィッド・マッケンジーがモーガンタウンのレベルデザインを担当し、「モーガンタウンの歴史」シリーズなど、街中で見つかるいくつかのホロテープを執筆しました。</li>
+            </ul>
+
+            <div class="real-world-box">
+                <h3>🌎 現実のモーガンタウン</h3>
+                <img src="images/note_extracted/morgantown/img_prt_downtown.jpg" alt="現実のモーガンタウン・ダウンタウンとPRT軌道">
+                <div style="text-align:center; font-size:0.85em; color:#4488ff; margin-bottom:15px; font-style:italic;">モーガンタウン・ダウンタウン（Beechurst Ave 付近、PRT軌道が見える）<br><small style="color:#888;">Wikimedia Commons / CC BY-SA 3.0</small></div>
+                <img src="images/note_extracted/morgantown/img_prt_station.jpg" alt="ビーチハースト駅に停車中のPRT車両" style="margin-top:10px;">
+                <div style="text-align:center; font-size:0.85em; color:#4488ff; margin-bottom:15px; font-style:italic;">ビーチハースト駅に停車中のPRT車両<br><small style="color:#888;">Wikimedia Commons / CC BY-SA 3.0</small></div>
+                <p>
+                    <strong>モーガンタウン</strong>（Morgantown）はアメリカ合衆国ウエストバージニア州モノンガリア郡に位置する都市で、同郡の郡庁所在地です。<br>
+                    人口は約3万人で、モノンガヒラ川の東岸に位置しています。
+                </p>
+                <p>
+                    <strong>🎓 ウエストバージニア大学（WVU）</strong><br>
+                    街の中核を成すのがウエストバージニア大学です。1867年設立の州立大学で、約28,000人の学生が在籍しています。<br>
+                    ゲーム内のVault-Tec大学は1つのキャンパスにまとまっていますが、現実のWVUはダウンタウン、エバンスデール、ヘルスサイエンスの3つのキャンパスに分かれ、街全体に広がっています。
+                </p>
+                <p>
+                    <strong>🚝 パーソナル・ラピッド・トランジット（PRT）</strong><br>
+                    ゲーム内のモノレールのモデルとなったのが、1975年にボーイング社設計で開通した<strong>PRT（パーソナル・ラピッド・トランジット）</strong>です。<br>
+                    アメリカ初の大規模自動運転ガイドウェイ交通システムであり、67〜71台のゴム車輪式の無人電動車両が専用のコンクリート軌道を走行します。<br>
+                    5つの駅（ウォルナット、ビーチャースト、エンジニアリング、タワーズ、ヘルスサイエンス）を結び、全区間の走行時間は約11.5分。<br>
+                    ピーク時には「デマンドモード」で運行され、乗客のリクエストに応じて中間停車なしの直通サービスを提供します。<br>
+                    学期中は1日約12,000〜15,000人が利用し、WVUの学生・教職員はIDカードで無料で乗車できます。<br>
+                    全電動式のPRTは交通渋滞を大幅に緩和し、年間約2,200トンのCO2排出削減に貢献しています。
+                </p>
+                <p style="font-size:0.85em; color:#888;">
+                    ※ Fallout 76のモーガンタウンでモノレールに沿って屋上を飛び回っている時、現実のWVUの学生たちもPRTに乗って同じような景色を眺めているかもしれないと思うと、ちょっと不思議な気持ちになりますね。
+                </p>
+            </div>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/morgantown/img_1.png" alt="モーガンタウン北側入口"><div class="caption">北側入口</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown/img_2.png" alt="VTUと街の全景"><div class="caption">VTUと街の全景</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown/img_3.jpg" alt="レッドロケット"><div class="caption">レッドロケット</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown/img_4.png" alt="ウェルカムサイン"><div class="caption">ウェルカムサイン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown/img_5.jpg" alt="空撮ビュー"><div class="caption">空撮ビュー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown/img_6.png" alt="モノレール路線"><div class="caption">モノレール路線</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown/img_7.png" alt="Welcome to Morgantown"><div class="caption">"Welcome to Morgantown — Home of Vault-Tec University"</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                モーガンタウンは、Fallout 76を始めたばかりのプレイヤーが最初にぶつかる「本格的な都市」です。<br>
+                フラットウッズを出て北上すると広がるこの街は、廃墟と化したビル群、縦横に走るモノレール、そして屋上に点在するキャンプ跡が織りなす3次元的な探索が楽しいロケーションなんですよね。<br><br>
+                ストーリー面では、Vault-Tec大学の学生たちが作り上げた「ルーフハウス」と「ストリートハウス」という2つの派閥の物語がとても印象的です。<br>
+                屋上から支配する者たちと路上で生き延びる者たち——まるでディストピア小説のような設定ですが、「モーガンタウンの歴史」ホロテープシリーズを順番に聞いていくと、学生サバイバーたちの絶望的な状況がリアルに伝わってきます。<br>
+                RadAway不足の中、仲間同士で殺し合いにまで至る過程は、核戦争後の世界の残酷さを改めて突きつけてきます。<br><br>
+                そしてこの街が面白いのは、現実のモーガンタウンとの対比です。<br>
+                ウエストバージニア大学のPRT——1975年にボーイングが設計した世界初の大規模自動運転交通システム——がゲーム内のモノレールのモデルになっているんです。<br>
+                現実のPRTは小さな無人ポッドがコンクリートの軌道を走る近未来的なシステムで、1日1万5千人の学生を運んでいます。<br>
+                ゲームでモノレールの線路の上をパルクールしながら屋上から屋上へ飛び移っている時、現実の学生たちがPRTに乗ってのんびりキャンパスを移動している姿を想像すると笑えます。<br><br>
+                ホロテープとメモの数も圧倒的で、ポストカードだけで7枚もあるのが面白い。<br>
+                一つ一つ集めていくと、この街がかつてどれだけ活気に満ちていたのかが伝わってきて、現在の廃墟っぷりとのコントラストが胸に刺さります。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Morgantown" target="_blank" rel="noopener">Morgantown</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#モーガンタウン</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#森林地帯</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#レスポンダー</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_morgantown'; const _commentArticleName = 'Morgantown'; const _commentArticleUrl = 'morgantown.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

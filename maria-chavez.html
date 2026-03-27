@@ -1,0 +1,468 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maria Chavez | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/maria-chavez.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Maria Chavez | Overseer Mohi's Terminal">
+    <meta property="og:description" content="マリア・チャベス。レスポンダーの創設者にしてリーダー。最後の瞬間まで人々を救い続けた女性の全記録。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/maria-chavez/img_1.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/maria-chavez.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Maria Chavez | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="マリア・チャベス。レスポンダーのリーダー。最後の瞬間まで人々を救い続けた女性。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/maria-chavez/img_1.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .holotape-box { border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03); }
+        .holotape-box h3 { margin-top: 0; }
+        .holotape-box .transcript { font-family: 'Share Tech Mono', monospace; font-size: 0.9em; color: var(--accent-color); white-space: pre-wrap; line-height: 1.6; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        .copyright { margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #777; text-align: center; }
+        .copyright a { color: var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="人物" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Maria Chavez</h3>
+            <img src="images/note_extracted/maria-chavez/img_1.jpg" alt="マリア・チャベスの遺体（Wastelanders以前）">
+            <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">マリアの遺体（Wastelanders以前）</div>
+            <img src="images/note_extracted/maria-chavez/img_2.png" alt="マリア・チャベスの写真">
+            <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">写真のクローズアップ</div>
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
+            <div class="infobox-row"><span class="infobox-label">状態</span><span>死亡</span></div>
+            <div class="infobox-row"><span class="infobox-label">死亡時期</span><span>2096年11月</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>レスポンダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">階級</span><span>シニア・レスポンダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>リーダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">場所</span><span>モーガンタウン空港ターミナル</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Fertile Soil</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>Rachel Butera</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_maria_chavez" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Maria Chavez<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">マリア・チャベス</span></h1>
+
+            <div class="quote-box">
+                <b>「くそっ！ 来た！ 来たわ……時間がない。ターミナルを読んで！ スコーチについて学んで！ 私たちを覚えていて！ そして……幸運を祈るわ。」</b><br>
+                <span style="color: #aaa; font-size: 0.85em;">— Maria's last words</span>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>シニア・レスポンダー マリア・E・チャベス</strong>は、大戦前の救急救命士であり、アパラチアのファーストレスポンダー（ファースト・レスポンダー）たちによって大戦後に結成された組織<strong>レスポンダー</strong>の創設者の一人にしてリーダーでした。<br>
+                元軍人、警察官、医療従事者、消防士で構成されたレスポンダーは、森林地帯の大部分を管理し、チャールストン非常事態政府と協力していました。チャールストンの壊滅後は、チャベスのリーダーシップの下で独立した組織として活動しました。<br>
+                ブラザーフッド・オブ・スティールとチャベスのレスポンダーとの間の不和は、両組織の壊滅とスコーチによるこの地域の短期間の支配につながりました。
+            </p>
+            <p>
+                レスポンダーは最終的にラッカーによって復活し、元のレスポンダーが全滅してから8年後にチャベスの後を継ぎました。<br>
+                マリアの遺体はかつてモーガンタウン空港ターミナル内のレスポンダー司令部で見つけることができましたが、Wastelanders アップデート以降、その場所はドントレル・ヘインズによるレスポンダーへの追悼の場に変わっています。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                大戦前の救急救命士であるマリア・チャベスは、チャールストンでAVRメディカルセンターにフルタイムで勤務していた女性の娘でした。戦時中の医薬品の供給不足が価格を高騰させ、幼いマリアの母は給料では薬を買えなくなりました。母は園芸の才能を活かしてハーブや花の庭を作り、手作りのハーブ療法を生み出しました。母の知恵を受け継ぎ、チャベスは自然療法に理解のある救急救命士となりました。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/maria-chavez/img_3.png" alt="レスポンダーの仲間たちとのマリア">
+                <div class="note-figcaption">AVRメディカルセンターで見つかった写真に写るマリアとレスポンダーの仲間たち</div>
+            </div>
+
+            <p>
+                大戦後、チャベスはレスポンダーの創設者の一人となりました。警察、消防、医療サービスによる復旧活動に参加し、核戦争による混乱に対処するためにアパラチア領域全体に非常事態を宣言したチャールストン非常事態政府と緩やかに協力しました。<br>
+                しかし、エヴァンス知事は大戦前の公金横領調査から逃亡して不在となり、プール議長とホルブルック副院総務との政治的競争もあり、ファーストレスポンダーたちは自らの判断で行動しつつ、非常事態政府の命令に従っているふりをしていました。<br>
+                2082年までに、レスポンダーはチャールストンの事実上の政府となっていました。
+            </p>
+            <p>
+                チャベスは医療に注力し、特に減少する大戦前の医薬品の代替品を見つけることに集中しました。母の職場であるAVRメディカルセンターへの訪問が、自然療法医学への関心を再燃させ、アパラチアの植物から代替的な治療法を求めることにつながりました。<br>
+                また、ジェフ・ナカムラとのゴーリー鉱山からのダイナマイト回収の調整や、月例の偵察活動によるVault 76の監視などの活動も行っていました。
+            </p>
+            <p>
+                すべてが変わったのは2082年のクリスマスでした。デイヴィッド・ソープによる<strong>「クリスマスの大洪水」</strong>がチャールストンを壊滅させ、何千人もの命と大半のレスポンダーを奪いました。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/maria-chavez/img_4.png" alt="モーガンタウン空港">
+                <div class="note-figcaption">マリアがレスポンダーの新本部としたモーガンタウン空港</div>
+            </div>
+
+            <p>
+                しかしレスポンダーは完全には壊滅しませんでした。すでにアレゲニー高原を北方に拡大し、新興のフリー・ステイツとの交易路を確保し、大戦直後にフラットウッズにボランティア前哨基地を設立していたからです。<br>
+                マリアは一握りの上級メンバーと共に洪水を生き延び、レスポンダーの再建を決意しました。<br>
+                彼女のリーダーシップの下、レスポンダーはモーガンタウン空港に移転し、次の10年間で、ボランティアベースの組織として治療と生存技術の教育に焦点を当てながら、ほぼゼロから再建されました。
+            </p>
+            <p>
+                チャベスは暴力や戦闘を好みませんでしたが、メロディ・ラーキンの説得により、荒廃したアッシュ・ヒープでの長距離救助作戦を目的とした特殊部隊<strong>ファイア・ブリーザー</strong>を結成するための資源を割り当てました。
+            </p>
+            <p>
+                北方のトキシック・バレーに拡大するにつれ、レスポンダーはエリザベス・タガーディのブラザーフッド・オブ・スティールやフリー・ステイツとの接触を再確立しました。チャベスとタガーディは——一方は文民の治癒者、他方は軍人の兵士として——協力に苦労しましたが、当初は深刻な問題ではありませんでした。<br>
+                2086年はチャベス、レスポンダー、そしてアパラチア全体にとって最高潮を迎えました。ハンターズビルのスーパーミュータントが持続的な脅威となり、レスポンダーとブラザーフッドの同盟が結ばれ、1986年5月のハンターズビルの戦いでスーパーミュータントを排除しました。
+            </p>
+            <p>
+                しかし同盟は複数の要因で崩壊しました。まず、エルダー・ロジャー・マクソンが命じた任務の変更——危険な技術の確保と隔離——が、外部からは恣意的な没収に見えたこと。次にスコーチビーストの脅威。2086年にはクランベリー・ボグ全域に急速に広がり、ブラザーフッドはレスポンダーに維持のための資源を求めました。これがチャベスとタガーディの間に大きな亀裂を生みました。
+            </p>
+            <p>
+                脆い同盟は急速に崩壊しました。フリー・ステイツはバンカーに戻り、ブラザーフッドは絶望的な消耗戦を続け、レスポンダーはアレゲニー山脈西側の生存者を可能な限り支えようとしました。<br>
+                チャベスはスコーチの脅威の深刻さを認識するのが遅れ、レスポンダーには管理下の人々への義務があると信じていました。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/maria-chavez/img_5.png" alt="マリアの遺体（Wastelanders以前）">
+                <div class="note-figcaption">Wastelanders以前のマリアの遺体</div>
+            </div>
+
+            <p>
+                1095年1月28日の「タッチダウン作戦」失敗後、ブラザーフッドの残存勢力はより攻撃的になりました。チャベスは環境科学者のエイミー・ケリーをブラザーフッドの没収から守ろうとし、最終的に銃口を向けられてケリーのプロジェクト情報を渡さざるを得なくなりました。<br>
+                1095年8月のブラザーフッドの暗号放送「ディファイアンスは陥落した」は、チャベスに深い不安を抱かせました。彼女はレスポンダーのタミーを荒れた境域を越えてアビゲイル・シンのバンカーに送り、何が起こったのか、そして何がレスポンダーに迫っているのかを知ろうとしました。
+            </p>
+            <p>
+                最初の波は、スコーチに追われて山から逃げてきたレイダーたちでした。2番目の波はスコーチそのもの——アパラチア全域に広がっていました。<br>
+                チャベスは脅威の深刻さを遅れて認識し、クレア・ハドソンに治療法の開発を依頼。2096年7月、AVRメディカルセンターの地下に研究チームが設置され、スコーチ疫病の秘密の解明に取り組みました。<br>
+                一方、チャベスとラーキンはファイア・ブリーザーにビッグベンドトンネルを封鎖する大胆な作戦を準備させましたが、タッチダウン作戦と同様に失敗しました。
+            </p>
+            <p>
+                スコーチビーストとスコーチは組織的な抵抗を前にすることなくモーガンタウン空港に襲来しました。2096年11月7日、空は怪物で満たされ、マリア・チャベスはAVRのハドソンへ最後の通信を送り、残りのレスポンダーと共に最後の抵抗に加わりました。<br>
+                ブラザーフッドの火力も、フリー・ステイツの回復力も、レイダーの容赦ない知恵もなく、レスポンダーは孤立して倒れました。チャベスはモーガンタウン空港ターミナル内の司令部から防衛を指揮し、最後の言葉を録音した後に倒れた者の一人となりました。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/maria-chavez/img_6.png" alt="マリアとレスポンダーへの追悼">
+                <div class="note-figcaption">ドントレル・ヘインズが設置したマリアとレスポンダーへのキャンドル付き追悼碑</div>
+            </div>
+
+            <p>
+                彼女の遺体はその後7年間ターミナルに残り、ポストアポカリプスの環境の中でミイラ化しました。2102年にVault 76の住民が現れた後、彼女の最後の嘆願がワクチンプロジェクトの完成と疫病とスコーチビーストの最終的な打倒につながりました。<br>
+                2103年に人類がアパラチアに帰還し、ドントレル・ヘインズがレスポンダー司令部を清掃してチャベスを埋葬し、小さな追悼碑を建てました。<br>
+                さらに大きな記念として、ラッカーが2104年にホワイトスプリング・リゾートでレスポンダーを再建し、チャベスの松明を暗闇の中に受け継ぎました。
+            </p>
+
+            <h2>所有アイテム</h2>
+            <ul>
+                <li><strong>レスポンダー・パラメディック・ジャンプスーツ</strong>（着用）</li>
+                <li><strong>Maria's last words</strong>（近くに配置）</li>
+            </ul>
+
+            <h2>関連ホロテープ</h2>
+
+            <div class="holotape-box">
+                <h3>🎙️ Out of time（時間切れ）</h3>
+                <div class="transcript">マリア・チャベス: 本当に？ これを録音するの？
+
+レオ・チェイス: 当たり前だ！ マディガンが戻った時にこれを聞かせたい。あんたがここで何をしようとしてるか知らせてやりたいんだ！
+
+メロディ・ラーキン: 完全に一線を越えてるわよ、チェイス！
+
+レオ・チェイス: 俺が一線を越えてる？！ 最高の男抜きでファイア・ブリーザーを自殺任務に送ることに同意してるのはお前らだろ！
+
+マリア・チャベス: もういい！ 二人とも、やめなさい！ 聞いて……レオ……報告によると、あの山の向こう側にスコーチの大群がいる。あなたも分かってるでしょう、トンネルを封鎖するのが彼らを止める最善の方法だって。たぶん唯一の方法よ。ファイア・ブリーザーが今動かなければ、全員死ぬ。いつかの問題よ。
+
+レオ・チェイス: もう少し時間があれば！ あいつは戻ってくる。絶対に来る！ ただ……時間が必要なんだ。
+
+マリア・チャベス: もう時間はないの、レオ。メロディが作戦を指揮する。彼女にはこういうことの経験がある。私なら彼女に命を預けるわ。全員の命を。さあ、その録音機を切って、義務を果たしなさい、ファイア・ブリーザー。
+
+レオ・チェイス: ……了解。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Maria's last words（マリアの最後の言葉）</h3>
+                <div class="transcript">マリア・チャベス: 私はマリア・チャベスです。もうすぐ死にます。スコーチが私たちの防衛線を突破した。彼らは全員を殺しに来ている。これを見つけたら、注意して聞いて。
+
+私たちはレスポンダーと呼ばれていた。爆弾が落ちた後、人々を助けようとした。まだあなたを助けられるかもしれない。近くにターミナルが……まだあれば、使って。ワクチン接種プロジェクトについて学んで。それがあなたの命を救うかもしれない。
+
+くそっ……来た！ 来たわ……時間がない。ターミナルを読んで！ スコーチについて学んで！ 私たちを覚えていて！ そして……幸運を祈るわ。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ The Christmas Flood（クリスマスの大洪水）</h3>
+                <div class="transcript">マリア・チャベス: 私はマリア・チャベスです。今日は2092年12月25日。かつて、戦争前の世界では、この日は愛する人たちと祝う幸せな時間でした。今では、振り返り、追悼する時間です。10年前のこの日、私たちは「クリスマスの大洪水」と呼ぶ悲劇的な出来事で、多くのものを失いました。この録音をすることで、あの洪水とその犠牲者が決して忘れられないようにしたいと思っています。
+
+話は2077年11月、戦争の翌月に遡ります。プレザントバレー・スキーリゾートの生存者たちが、チャールストンに助けと物資を求める代表団を送りました。しかし、街の指導者たちは彼らを追い返しました。当時はあまりにも多くの混乱と必要があったので、無理な要求だったのかもしれません。
+
+援助の獲得に失敗したことで、スキーリゾートの生存者たちの間でリーダーが交代しました。デイヴィッド・ソープという冷酷な男が実権を握り、あの人々を恐ろしいものに変えてしまいました。彼らは欲しいものを力で奪い、立ちはだかる者を殺しました。
+
+数年後、ソープのガールフレンドであるロザリンがチャールストンを襲撃しました。彼らは早期に発見され、戦闘が勃発しました。何人かは逃げ延びましたが、ロザリンは負傷して捕虜になりました。
+
+当時、レスポンダーは街をほぼ運営しており、かなりうまくやっていました。レイダーたちの本拠地に対峙できると考え、山岳地帯に交渉のグループを送りました。間違いでした。ソープはどうにかミニ・ニュークを手に入れ、クリスマスの朝にサマーズビル・ダムを爆破しました。
+
+私たちはほぼすべてを失いました――家、物資、そして友人や家族の大半を。その後の日々や数週間は、人生で最も辛い時間でした。しかし、どうにか持ちこたえました。ほんの一握りの仲間しか残っていなかったのに、レスポンダーの理念を生かし続けました。これがクリスマスの大洪水の物語です。子供たちに伝えてください。出会う全ての人に伝えてください。できる限り長く、この記憶を生かし続けましょう。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ The Fire Breathers（ファイア・ブリーザー）</h3>
+                <div class="transcript">マリア・チャベス: よし、録音してるわ。
+
+メロディ・ラーキン: よかった。この案がとんでもなく馬鹿げてるって記録に残せるわね。
+
+マリア: 有毒な場所に人を送り込むのは私だってうれしくないけど……でも下にはまだ連絡を取れていない町がいくつもある。ウェルチ、ベックレー、ブラムウェル。
+
+メロディ: ブラムウェル？ 冗談でしょ！ ホーンライトやガラハンの連中が空襲警報鳴った瞬間にプライベートアイランドに飛んでいかなかったとでも？
+
+マリア: おそらくそうしたでしょうね。でも今は確認のしようがないし、安全に確認する方法もない。だからメロディ、あなたの力を借りたいの。
+
+メロディ: ……分かった。チャールストン消防署から来た人が何人かいる。彼らに話して、そういう作戦の準備について意見を聞いてみるわ。
+
+マリア: ありがとう。
+
+メロディ: でもあの煙の中に送り込む人は訓練が必要よ。あの敵対的な場所で生き残るには相当頭が良くないと。呼吸装置の扱いは厄介で、メンテナンスが大変。丸ごと新しい部門の話よ。
+
+マリア: 何を頼んでいるかは分かっているつもりよ。
+
+メロディ: こうしなさい……名前を付けるべきよ。
+
+マリア: 名前？
+
+メロディ: グリーンベレー。スモークジャンパー。ネイビーシールズ。危険な任務に志願者を集めたいなら、名前に威信がないと。名前を付けて、新しい称号を与えて、追加の配給を付ければ、志願者は見つかるわ。
+
+マリア: うーん。何か案はある？
+
+メロディ: うちのじいちゃんは密造酒屋だった。普通の人が四分の一マイル以内に近づけないほど強い酒を造ってた。みんな「ファイア・ブリーザー」って呼んでたわ。打たれ強い連中だった。それはどう？
+
+マリア: ……最初に出たアイデアに決める必要はないけど。とりあえず、あの消防士たちに連絡を取って。「ファイア・ブリーザー」への参加を呼びかけて。重要で、名誉あることだと伝えて。
+
+メロディ: やだ、気に入ったんじゃないの。
+
+マリア: 訓練場所を確保しなきゃ。チャールストン消防署が自然な選択ね。
+
+メロディ: トラブルに巻き込まれるために遠くまで行く必要はないわね。
+
+マリア: よし。始めましょう。もしあそこにまだ生きている人がいるなら、十分苦しんできたと思うわ。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Field report: AVR Medical（現地報告: AVRメディカル）</h3>
+                <div class="transcript">マリア・チャベス: レスポンダー現地報告。マリア・チャベスです。AVRメディカルに来ると本当に懐かしくなる。母は何年もこの場所で看護師として働いていたから。
+
+子供の頃、戦争前、何日も病気になったことがある。供給不足で薬の値段が手の届かないほど高騰していた。幸運なことに、母は看護師であるだけでなく、生まれつきの園芸の才能の持ち主だった。ハーブや花をたくさん育てた庭があった。母は手作りのハーブ療法で私を治してくれた。
+
+今日、病気は蔓延している。数えきれないほどのウイルスや細菌感染があり、対処法が必要だ。空港にいる病気やケガの難民を治療するのに役立つものがここで見つかればと期待していた。残念ながら、もうほとんど持ち去られていて、大して残っていなかった。
+
+というわけで、この不気味な廃病院では基本的に成果がなかったので、代わりに母の知恵に頼ることにした。より一般的な病気の症状を緩和するハーブティーのレシピをいくつかまとめた。治療法ではないけど、何かにはなる。さて、このあたりでまとめよう。花を摘みに行かなきゃ。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Responders recruitment holotape（レスポンダー・リクルートメント・ホロテープ）</h3>
+                <div class="transcript">マリア・チャベス: これを聞いているなら、私たちのプロテクトロンの一台が破壊されたということ。あなたがやったのかもしれないし、たまたま運が悪かっただけかもしれない。どちらでもいい。
+
+この世界は……互いに助け合わなければ、良くはならない。人々を安全にすることを心がけて。レスポンダーはあなたを必要としている。自分がそういうタイプじゃないと思うかもしれないけど、信じて、私たちは誰も志願して入るわけじゃない。呼ばれるの。
+
+フラットウッズの教会に来て。待っているわ。</div>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>マリア・チャベスは『<strong>Fallout 76</strong>』にのみ登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_2.png" alt="マリアのクローズアップ写真" onclick="openLightbox(this)"><div class="caption">マリアのクローズアップ写真</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_3.png" alt="レスポンダーのリーダーたち" onclick="openLightbox(this)"><div class="caption">レスポンダーの仲間たちとの写真</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_4.png" alt="モーガンタウン空港" onclick="openLightbox(this)"><div class="caption">モーガンタウン空港</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_5.png" alt="マリアの遺体（Wastelanders以前）" onclick="openLightbox(this)"><div class="caption">マリアの遺体（Wastelanders以前）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_6.png" alt="レスポンダーの祭壇" onclick="openLightbox(this)"><div class="caption">レスポンダーへの追悼碑</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_logo.png" alt="レスポンダーのロゴ" onclick="openLightbox(this)"><div class="caption">レスポンダーのロゴ</div></div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                マリア・チャベスは、Fallout 76の物語の中心に位置する、最も人間らしいリーダーの一人です。<br><br>
+                彼女の物語は、暴力的な解決策を拒み、人々を癒し教えることに全てを捧げた女性の悲劇であり、同時にその精神が後世に受け継がれていく希望の物語でもあります。母から受け継いだハーブ療法の知識、チャールストンの壊滅からの再建、ファイア・ブリーザー設立の議論——どのエピソードにも、彼女の「暴力ではなく知恵で問題を解決する」という哲学が貫かれています。<br><br>
+                特に「Out of time（時間切れ）」のホロテープは、レオの感情的な怒りに対して冷静に——しかし明らかに苦しみながら——自殺任務を命じるマリアの姿が胸を打ちます。「もう時間はないの、レオ」という一言が、レスポンダーの運命を決定付けました。<br><br>
+                そして最後の言葉。銃声と叫び声の中で、最後の息を使って未来のVault住民に希望を託す。「私たちを覚えていて」——プレイヤーが彼女のホロテープを聞く瞬間、その願いは叶えられます。<br><br>
+                Wastelanders以降、遺体が撤去されて追悼碑が設置されたことは、開発者からの敬意の表れでもあるように感じます。彼女はようやく安らかに眠ることができたのです。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Character</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Responders</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Maria_Chavez" target="_blank" rel="noopener">Maria Chavez</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = img.src;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡';
+            btn.querySelector('.like-count').textContent = count;
+            btn.classList.toggle('liked', isLiked);
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                updateLikeButton(btn, isLiked, data ? data.like_count : 0);
+            }
+        });
+
+        const _commentArticleId = 'maria-chavez';
+        const _commentArticleName = 'Maria Chavez (マリア・チャベス)';
+        const _commentArticleUrl = 'maria-chavez.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list'); if (!list) return;
+            if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50);
+            if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');
+            const now = Date.now();
+            if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

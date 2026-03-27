@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スティーヴン・スカーベリー | Overseer Mohi's Terminal</title>
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="スティーヴン・スカーベリー | Overseer Mohi's Terminal">
+    <meta property="og:description" content="スティーヴン「スティーヴィー」スカーベリー — モスマンの信徒にして同居人。赤い目のモスマンを崇拝する「翼ある者の信徒」の一員。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/steven-scarberry/Main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/steven-scarberry.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="スティーヴン・スカーベリー | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="スティーヴン「スティーヴィー」スカーベリー — モスマンの信徒にして同居人。赤い目のモスマンを崇拝する「翼ある者の信徒」の一員。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/steven-scarberry/Main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/terminal-style.css">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; margin-bottom: 25px; }
+        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 8px; border-radius: 4px; }
+        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; }
+        .gallery-item .caption { font-size: 0.8em; color: #aaa; }
+        .notable-quote { border-left: 3px solid #888; background: rgba(255,255,255,0.03); padding: 10px 15px; margin: 10px 0; font-style: italic; color: #ccc; font-size: 0.95em; line-height: 1.6; border-radius: 0 4px 4px 0; }
+    </style>
+</head>
+<body data-article-category="人物" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">スティーヴン・スカーベリー</h3>
+            <img src="images/note_extracted/steven-scarberry/Main.png" alt="スティーヴン・スカーベリー">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
+            <div class="infobox-row"><span class="infobox-label">別名</span><span>スティーヴィー<br>ブラザー・スカーベリー</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>モスマン教団<br>翼ある者の信徒</span></div>
+            <div class="infobox-row"><span class="infobox-label">階級</span><span>ブラザー</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>同居人 / 行商人</span></div>
+            <div class="infobox-row"><span class="infobox-label">居場所</span><span>プレイヤーのC.A.M.P.</span></div>
+            <div class="infobox-row"><span class="infobox-label">レベル</span><span>1〜50</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>Robbie Daymond</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76: Mutation Invasion</span></div>
+        </aside>
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_steven-scarberry" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+            <h1>スティーヴン・スカーベリー<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">Brother Steven "Stevie" Scarberry — モスマン教団の巡礼者</span></h1>
+
+            <div class="notable-quote">
+                「あぁ、傲慢さの話か。俺たちには、太陽に近づきすぎて翼を焼いた蛾の物語がある。どうやらあいつも同じ結末を迎えたようだな、偽りの神と共に。」<br>
+                <span style="font-size: 0.85em; color: #888;">— スティーヴン・スカーベリー</span>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>ブラザー・スティーヴン「スティーヴィー」スカーベリー</strong>は、<a href="mothman.html" class="auto-link">モスマン</a>教団の一員であり、<a href="appalachia.html" class="auto-link">アパラチア</a>での同居人・行商人である。赤い目のモスマンを崇拝する「翼ある者の信徒」に所属し、「光明を得し者たち（The Enlightened）」とは対立関係にある。<br>
+                <a href="fallout76.html" class="auto-link">Fallout 76</a>のシーズン12「Rip Daring and the Cryptid Hunt」のランク35報酬として解放される。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                スティーヴィーは大戦前の世界に言及しないことから、2077年の核戦争後に生まれたと推測される。赤ん坊の頃、両親はモスマン自身に見出され選ばれたとされ、その後両親はモスマンに食い殺されたことが示唆されている。
+            </p>
+            <p>
+                赤ん坊のスティーヴィーはモスマンの卵の中に置かれ、そこで翼ある者の信徒たちに発見された。聖なる卵に囲まれた赤子はモスマンの祝福の印と見なされ、彼らに引き取られて育てられた。スティーヴィーは信徒たちを家族だと思っており、聖なる存在への崇拝に身を捧げている。
+            </p>
+            <p>
+                現在は青年となったスティーヴィーは、自らをモスマンに選ばれし使徒、その愛に祝福された魂の持ち主と信じている。モスマンを自分自身で見つけるため、「アパラチアの聖地」への数か月に及ぶ巡礼の途上にあり、儀式に必要なアルビノの血を探している。巡礼は、モスマンの目を直視してその偉大な真実を目にした時に終わるという。
+            </p>
+
+            <h2>プレイヤーとのインタラクション</h2>
+            <ul>
+                <li><strong>不死属性</strong>: あり</li>
+                <li><strong>同居人</strong>: スカーベリーの祭壇を設置可能</li>
+                <li><strong>行商人</strong>: 各種アイテム</li>
+                <li><strong>バフ</strong>: 真のモスマンの祝福（XPバフ）</li>
+            </ul>
+
+            <h3>プレイヤーの行動による反応</h3>
+            <ul>
+                <li>モスマン教団関連の服装を着ているとコメントする（自分の宗派の服なら好意的、光明を得し者の服なら否定的）</li>
+                <li>プレイヤーの放射線量が高いとコメントし、「あなたは完全に輝いてる。何か高いところに登ってぴょんぴょん跳ねてくれない？ モスマン様を引き寄せられるかも」と言う</li>
+                <li>Intelligence 8以上のチェックで「赤ん坊の頃にモスマンの卵の中に置かれたのは、子供に食べさせるためだ」と指摘できる（スティーヴィーは激しく否定する）</li>
+                <li>「False Gods of Appalachia」を読んでいれば、インターローパーについて尋ねることができる（スティーヴィーは口を閉ざし話題を変えるよう懇願する）</li>
+                <li>「お前が崇拝してるのはただの虫だぞ」と言うことも可能だが、スティーヴィーの信仰はむしろ強まり、プレイヤーの懐疑を巡礼の試練と解釈する</li>
+            </ul>
+
+            <h2>トリビア</h2>
+            <ul>
+                <li>アイドル台詞「この悪夢がどうしても消えない。永遠の闇の中を漂い続けて…もし、モスマン様の光を見つけられなかったら？」は、<a href="sofia-daguerre.html" class="auto-link">ソフィア・ダゲール</a>のセリフとほぼ同一。76プレイヤーの間でミームになった有名なセリフの引用</li>
+                <li>祭壇の近くに「The Man The Moth The Legend」というタイトルの本があり、表紙にモスマンの落書きがある</li>
+                <li>モスマン教団員でありながら、C.A.M.P.に現れた敵対的なカルティストには躊躇なく攻撃する</li>
+                <li>放射線を「光」として視覚的に知覚できると主張（ジェラード、デヴィン、マザー・キュリーIIIなどにも見られる現象）</li>
+                <li>「空から光が落ちてきた。モスマン様かと思ったが、あったのは金属と煙とガレキだけ。それとぼやけた、青いシャツの男の絵」— これは初代Falloutに登場するUFO墜落地点の「ファジー・ペインティング」への言及</li>
+                <li>「Mothwoman」の存在を疑問視するセリフは、同居人の<a href="sam-nguyen.html" class="auto-link">サム・グエン</a>も同様のセリフを持つ</li>
+            </ul>
+
+            <h2>名言集</h2>
+            <div class="notable-quote">
+                「あなた、モスマンのイメージを掲げておきながら、翼の羽ばたきには従わないと言うのですか？」
+            </div>
+            <div class="notable-quote">
+                「あぁ、なんて礼儀知らずだ！ 私の名前はブラザー・スティーヴン。スティーヴン・スカーベリー。格式張りたければブラザー・スカーベリー、くだけた感じならブラザー・スティーヴィーで。」
+            </div>
+            <div class="notable-quote">
+                「モスマン様の祭壇へようこそ。いや、あなたの祭壇。ていうか、あなたのC.A.M.P.の…やつ。」
+            </div>
+            <div class="notable-quote">
+                「え？ 違う！ 俺たちはクリプティッドのカルト…クラブ…的なやつじゃない。俺たちは…何て言うんだ？ ファミリー。そうだ！ 聖なるモスマンを永遠に揺るがない心で支える、ファミリーだ。」
+            </div>
+            <div class="notable-quote">
+                「えーと…まだモスマン様を見つけられていない。心の中には、魂の中にはいる。でもこの現世ではまだだ。巡礼はモスマン様の目を見て偉大な真実を理解した時に終わる。でも…もう何か月も何の兆しもない。俺はモスマン様と共にある。だけど蝋燭のように、冷たい風の中で俺の信仰が揺らいでいるんだ。」
+            </div>
+            <div class="notable-quote">
+                「モスマンがいるなら…モスウーマンもいるのだろうか？ モスマン様に聞くべきもう一つの質問だな…あるいは、モスウーマン様に。」
+            </div>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/VaultBoy.webp" alt="Vault Boy描写">
+                    <div class="caption">Vault Boy描写</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/Headshot.png" alt="ヘッドショット">
+                    <div class="caption">ヘッドショット</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/Worship1.png" alt="スティーヴィーの日課 1">
+                    <div class="caption">スティーヴィーの日課</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/Worship2.png" alt="スティーヴィーの日課 2">
+                    <div class="caption">スティーヴィーの日課</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/Worship3.png" alt="スティーヴィーの日課 3">
+                    <div class="caption">スティーヴィーの日課</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/Jacket.png" alt="ジャケット">
+                    <div class="caption">「Grafton Monsters」→「A MOTH」に刺繍し直されたジャケット</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/AttackCultist.png" alt="カルティストを攻撃">
+                    <div class="caption">敵対的なカルティストを攻撃するスティーヴン</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/Altar.png" alt="スカーベリーの祭壇">
+                    <div class="caption">スカーベリーの祭壇</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/AtAltar.png" alt="祭壇にて">
+                    <div class="caption">祭壇にて</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/steven-scarberry/Portrait.png" alt="ポートレート">
+                    <div class="caption">ポートレート</div>
+                </div>
+            </div>
+
+            <h2>制作裏話</h2>
+            <div style="display: flex; gap: 15px; align-items: flex-start; margin-bottom: 20px;">
+                <img src="images/note_extracted/steven-scarberry/HistoricMothman.webp" alt="モスマン目撃報道" style="max-width: 250px; border: 1px solid #555; border-radius: 4px;">
+                <div>
+                    <ul>
+                        <li>SkyBox LabsのRyan Whiteがスティーヴンのライターを担当。Grandma JunkoやAdelaideも同じライター</li>
+                        <li>姓の「スカーベリー」は、1966年11月に最初のモスマン目撃を報告したリンダ＆ロジャー・スカーベリー夫妻に由来</li>
+                        <li>スマイリング・マン（インドリッド・コールド）に出会ったことを示唆するセリフがあり、声優のRobbie Daymondはスマイリング・マンと兼役</li>
+                        <li>ソフィア・ダゲールの悪夢のセリフをほぼ同一の形で引用。76ファンの間でミーム化した有名なセリフ</li>
+                        <li>「Mothwoman」の存在への疑問は、同居人サム・グエンのセリフと類似</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>
+                スティーヴン・スカーベリーは<a href="fallout76.html" class="auto-link">Fallout 76</a>のMutation Invasionアップデートに登場する。
+            </p>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                スティーヴン・スカーベリーって、Fallout 76の仲間の中でもかなり異色の存在ですよね。<br>
+                赤ん坊の頃にモスマンの卵の中に置かれて、それを「祝福」と解釈して育てられたっていう出自がもう完全にホラー映画の設定。<br>
+                でも本人は恐ろしいほど純粋で、数か月も巡礼を続けながら「蝋燭のように信仰が揺らいでいる」と告白するところにグッとくる。<br>
+                「お前が崇拝してるのはただの虫だぞ」って言い放っても、それすら巡礼の試練として受け入れちゃうところが、信仰の怖さと美しさを同時に見せてて上手い。<br>
+                あと、ジャケットの「Grafton Monsters」を「A MOTH」に刺繍し直してるの、こういう細かいビジュアルの作り込みが76の良いところ。<br>
+                ソフィアの悪夢のセリフをほぼ丸パクリしてるのもファンサービスが効いてて笑えます。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Steven_Scarberry" target="_blank" rel="noopener">Steven Scarberry</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+    <script>
+        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}btn.disabled=false}function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='\u2665'}else{btn.classList.remove('liked');heart.textContent='\u2661'}countSpan.textContent=count}document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count)}await loadComments()});document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();const overlay=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.src;overlay.classList.add('active')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
+        const _commentArticleId="note_steven-scarberry";const _commentArticleName="スティーヴン・スカーベリー";const _commentArticleUrl="steven-scarberry.html";const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)'}}function relativeTime(isoStr){const diff=(Date.now()-new Date(isoStr).getTime())/1000;if(diff<60)return'たった今';if(diff<3600)return Math.floor(diff/60)+'分前';if(diff<86400)return Math.floor(diff/3600)+'時間前';if(diff<86400*7)return Math.floor(diff/86400)+'日前';return new Date(isoStr).toLocaleDateString('ja-JP')}function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return}list.innerHTML=comments.map(c=>'<div class="comment-item" data-id="'+c.id+'"><div class="comment-meta"><span class="comment-time">'+relativeTime(c.created_at)+'</span>'+(_isAdminMode?'<button class="comment-delete-btn" title="完全削除" onclick="deleteComment(\''+c.id+'\')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment(\''+c.id+'\')">&#128064;</button>':'')+'</div><div class="comment-body">'+escapeHtml(c.content)+'</div></div>').join('')}function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id, content, created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return}renderComments(data||[])}async function submitComment(){const input=document.getElementById('comment-input');const msg=document.getElementById('comment-msg');if(!input||!msg)return;const hp=document.getElementById('hp_field');if(hp&&hp.value!=='')return;const content=input.value.trim();if(!content){showCommentMsg('コメントを入力してください。',false);return}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return}const NG_WORDS=['広啄','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];const lc=content.toLowerCase();if(NG_WORDS.some(w=>lc.includes(w.toLowerCase()))){showCommentMsg('不適切な表現が含まれているため投稿できません。',false);return}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){const remain=Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000);showCommentMsg('あと'+remain+'秒後に投稿できます。',false);return}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments()}function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent=''},3000)}async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを完全に削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return}await loadComments()}async function hideComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを非表示にしますか？'))return;const{error}=await supabaseClient.rpc('hide_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('非表示失敗: '+error.message);return}await loadComments()}document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);renderComments([]);loadComments();alert('管理者モードを終了しました。');return}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。')}else{alert('パスワードが違います。')}}});
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

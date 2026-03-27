@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallout Tactics: Brotherhood of Steel | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/fallout-tactics.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Fallout Tactics: Brotherhood of Steel | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Fallout Tactics: Brotherhood of SteelのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note/fallout-tactics/Fallout_Tactics_Box.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/fallout-tactics.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Fallout Tactics: Brotherhood of Steel | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Fallout Tactics: Brotherhood of SteelのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note/fallout-tactics/Fallout_Tactics_Box.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .article-image { max-width: 100%; border: 1px solid #444; margin: 20px 0; display: block; cursor: pointer; }
+        .image-caption { font-size: 0.85em; color: #aaa; margin-top: -15px; margin-bottom: 20px; }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; border: 1px solid #444; cursor: pointer; }
+        .note-figure .image-caption { margin-top: 5px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 5px 15px; }
+        .back-link:hover { background: var(--accent-color); color: #000; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; } h1 { font-size: 1.5em; } .back-link { padding: 12px 20px; font-size: 1.1em; }
+        }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .action-header .back-link { margin-bottom: 0; }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 5px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; border-radius: 4px; }
+        .like-button:hover { box-shadow: 0 0 8px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        @media (max-width: 768px) { .like-button { padding: 10px 15px; font-size: 1em; } }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0 30px 0; }
+        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 10px; border-radius: 4px; }
+        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 10px; cursor: pointer; }
+        .gallery-item .caption { font-size: 0.85em; color: #aaa; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="ゲーム" data-article-appearance="Fallout Tactics">
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Fallout Tactics:<br>Brotherhood of Steel</h3>
+            <img src="./images/note/fallout-tactics/Fallout_Tactics_Box.jpg" alt="Fallout Tactics Box Art" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">サブタイトル</span><span>A Post Nuclear Tactical Combat Game</span></div>
+            <div class="infobox-row"><span class="infobox-label">開発</span><span>Micro Forté / 14° East</span></div>
+            <div class="infobox-row"><span class="infobox-label">パブリッシャー</span><span>Interplay Entertainment<br>Bethesda Softworks</span></div>
+            <div class="infobox-row"><span class="infobox-label">発売日</span><span>2001年3月15日</span></div>
+            <div class="infobox-row"><span class="infobox-label">ジャンル</span><span>タクティカルRPG</span></div>
+            <div class="infobox-row"><span class="infobox-label">エンジン</span><span>Phoenix Engine</span></div>
+            <div class="infobox-row"><span class="infobox-label">モード</span><span>シングルプレイヤー<br>マルチプレイヤー</span></div>
+            <div class="infobox-row"><span class="infobox-label">レーティング</span><span>ESRB: Mature<br>USK: 16+</span></div>
+            <div class="infobox-row"><span class="infobox-label">プラットフォーム</span><span>Microsoft Windows</span></div>
+            <div class="infobox-row"><span class="infobox-label">メディア</span><span>CD 3枚</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_fallout_tactics" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Fallout Tactics: Brotherhood of Steel<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">フォールアウト タクティクス：ブラザーフッド・オブ・スティール</span></h1>
+
+            <p>
+                <strong>Fallout Tactics: Brotherhood of Steel</strong>（略称：Fallout Tactics）は、Micro FortéおよびMicro Fortéの関連会社14° Eastが開発し、Interplay Entertainmentが発売したタクティカル・コンピュータRPGである。<br>
+                2001年3月15日にリリースされた本作は、<a href="fallout-1.html" class="auto-link">Fallout</a>ユニバースを舞台とする3番目のビデオゲームとなる。<br>
+            </p>
+
+            <h2>ゲームプレイ</h2>
+            <h3>全般</h3>
+            <p>
+                Fallout Tacticsは、Falloutシリーズ初のノンスタンダードなCRPGであり、シリーズ初のマルチプレイヤーモードを搭載した作品である。<br>
+                前2作のFalloutシリーズとは異なり、Fallout Tacticsではロールプレイよりもタクティカル・コンバットと戦略に重点が置かれている。<br>
+                プレイヤーはNPCに対して返答することはできないが、交易やギャンブルは可能。<br>
+                街の代わりに、ブラザーフッドのバンカーとミッションが中心となる。<br>
+                バンカーは物資管理官、整備士、人事担当、衛生兵などのサービスを利用できる拠点として機能する。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-tactics/FOT_Early_Screencap_7.jpg" alt="開発中のスクリーンショット" onclick="openLightbox(this)">
+                <div class="image-caption">開発初期のUIを示すスクリーンショット</div>
+            </div>
+
+            <h3>戦闘</h3>
+            <p>
+                Fallout Tacticsの戦闘は、前2作の個人ターンベース制とも、近年のリアルタイム制とも異なる独自のシステムを採用している。<br>
+                3つの戦闘モードが搭載されている：<br>
+            </p>
+            <ul>
+                <li><strong>CTB（Continuous Turn-Based）</strong> — 全員が同時に行動でき、APはアジリティに基づく速度で再生される</li>
+                <li><strong>ITB（Individual Turn-Based）</strong> — 初代Falloutと同じ個人ターンベース制</li>
+                <li><strong>STB（Squad Turn-Based）</strong> — 分隊単位でターンが回る変形制</li>
+            </ul>
+            <p>
+                その他、姿勢変更、高低差修正、セントリーモード（CTBで敵遭遇時に自動射撃）なども導入されている。<br>
+            </p>
+
+            <h3>キャラクター作成・成長</h3>
+            <p>
+                プレイヤーキャラクターは一次ステータス、トレイト、スキル、パークを持ち、これらの数値によってアクションの成功率が数学的に決定される。<br>
+                SPECIALキャラクターシステムが採用されている。<br>
+                スキルは初代FalloutおよびFallout 2とほぼ同じだが、唯一の違いとしてスピーチが削除され、パイロットが追加されている。<br>
+            </p>
+
+            <h3>種族</h3>
+            <p>
+                シングルプレイヤーの主人公は人間でなければならないが、リクルートやマルチプレイヤーでは以下の6種族が使用可能：<br>
+            </p>
+            <ul>
+                <li><strong>ヒューマン</strong> — 最も汎用的。幅広い能力に特化可能。パークは3レベルごと</li>
+                <li><strong>スーパーミュータント</strong> — 戦闘に優れるが知性・敏捷性に欠ける。小火器は使用不可。パークは4レベルごと</li>
+                <li><strong>グール</strong> — 人間より力は劣るが幸運と知覚に優れる。極めて長い寿命。パークは4レベルごと</li>
+                <li><strong>デスクロー</strong> — 巨大で強力だが、ほとんどのアイテムや防具を使用できない。近接武器のみ。パークは4レベルごと</li>
+                <li><strong>ヒューマノイド・ロボット</strong> — 頑丈で毒と放射線に免疫。パーク取得不可</li>
+                <li><strong>ドッグ</strong> — 知覚と敏捷性に優れるが武器使用不可。キャンペーンではリクルート不可。パークは2レベルごと</li>
+            </ul>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-tactics/FOT_Early_Screencap_1.jpg" alt="マコームでの初期戦闘" onclick="openLightbox(this)">
+                <div class="image-caption">マコームでの初期戦闘</div>
+            </div>
+
+            <h2>ストーリー</h2>
+            <p>
+                核戦争が世界を破壊した後、カリフォルニアの生き残りたちはVaultから出現し、高度な技術と軍用パワーアーマー、ハイテク兵器を手に、やがて<strong>ブラザーフッド・オブ・スティール</strong>という国地方勢力へと発展した。<br>
+            </p>
+            <p>
+                ブラザーフッドは新兵獲得の必要性を巡って内部対立が生じた。<br>
+                部外者のトライバルの入団を支持する派閥と、純血主義を維持しようとする派閥に分かれたのだ。<br>
+                結局、多数派は排他的方針を支持し、外部拡大を支持する少数派は巨大な飛行船で東方へ送り出され、崩壊したスーパーミュータント軍の残党を壊滅させることを命じられた。<br>
+                しかし、壊滅的な雷嵐が船団を襲い、多くの飛行船と遠征のリーダーたちが失われた。<br>
+                生存者たちはシカゴの廃墟の外に不時着し、本隊との連絡は不可能となった。<br>
+            </p>
+            <p>
+                逆境にもかかわらず、ブラザーフッドは地元の住民と協力関係を構築し、保護と医薬品を提供する代わりに食料と労働力を得た。<br>
+                本隊の制約的なイデオロギーから解放された<strong>中西部ブラザーフッド・オブ・スティール</strong>は、独自のアイデンティティを築き上げた。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-tactics/FOT_Concept_art_AMBUSH.png" alt="コンセプトアート：待ち伏せ" onclick="openLightbox(this)">
+                <div class="image-caption">コンセプトアート：待ち伏せ</div>
+            </div>
+
+            <p>
+                ゲームのプロットは2197年のアメリカ中西部を舞台とする。<br>
+                プレイヤーキャラクターは<strong>ウォリアー</strong>と呼ばれる新兵で、サイモン・バーナキー将軍の指揮の下、他のイニシエイトたちで構成された分隊を率いる。<br>
+            </p>
+            <p>
+                ブラザーフッドは最初にレイダーの脅威に挑み、これを排除した後、次にウエイストランドの動物を精神的に操る<strong>ビーストロード</strong>と呼ばれる超能力者たちと対峙する。<br>
+                ビーストロードを壊滅させた後、次に本来の壊滅対象であったスーパーミュータント残党（<strong>ガモーリンの軍団</strong>）と衝突する。<br>
+                セントルイス外での戦いでバーナキー将軍は捕虜となり、ミュータント軍団のリーダー「ガモーリン」の正体がかつてのブラザーフッドのパラディン、ラジアムであったことが判明する。<br>
+            </p>
+            <p>
+                スーパーミュータント軍を打ち破った後、西からの新たな脅威が姿を現す――巨大な<strong>ロボット軍団</strong>がアメリカ中西部を席巻し始めたのだ。<br>
+                テクノロジーを崇拝するカルト集団<strong>リーバー・ムーブメント</strong>はブラザーフッドとロボット軍の間に挟まれ、やがてブラザーフッドに庇護を求める。<br>
+                ロボット軍の出所は<strong>Vault 0</strong>であり、<strong>カリキュレーター</strong>と呼ばれるコンピュータと人間の脳の融合体が指揮していることが明らかになる。<br>
+                最終決戦ではシャイアン・マウンテンに攻め上り、鹵獲した核弾頭でVault 0に突入する。<br>
+            </p>
+
+            <h2>エンディング</h2>
+            <p>
+                最終的にプレイヤーには以下の選択肢が与えられる：<br>
+            </p>
+            <ul>
+                <li><strong>カリキュレーターを破壊する</strong> — Vault 0はブラザーフッドの新拠点となるが、最も貴重な資産であるカリキュレーターのデータバンクは失われる。ブラザーフッドはトライバルとの交易を深めつつ復興するが、西方への帰還は無期限に保留される。</li>
+                <li><strong>キャラクターの頭脳をカリキュレーターと融合させる</strong> — Vaultの全リソースが利用可能になり、数世紀ではなく数十年で復興が達成される。ただし、そのキャラクターのカルマがカリキュレーターの行動指針となる。
+                    <ul>
+                        <li>善カルマ → 全種族が協力する繁栄と調和の新時代</li>
+                        <li>悪カルマ → ブラザーフッドのエルダーたちが謎の失踪を遂げ、カリキュレーターが力ずくで統合。反対者は排除される</li>
+                    </ul>
+                </li>
+                <li><strong>バーナキー将軍をカリキュレーターと融合させる</strong> — 純血人類の救済を目指すが、ミュータントは強制収容所に送られ、反逆者は磔にされる。やがてミュータント解放軍が結成されるなど、過激な結末を迎える。</li>
+            </ul>
+
+            <h2>音楽</h2>
+            <p>
+                ゲームサウンドトラックはイノン・ツールが作曲した。<br>
+                本作はFalloutスタイルの背景音楽のみを収録しており、1940〜50年代のアンビエント音楽が収録されていない唯一のFalloutゲームである。<br>
+            </p>
+
+            <h2>評価</h2>
+            <p>
+                Fallout Tactics: Brotherhood of SteelはMetacriticメタスコア82/100を獲得した。<br>
+            </p>
+
+            <h2>舞台裏</h2>
+            <ul>
+                <li>2020年にエミル・パグリアルーロは、Fallout Tacticsの要素がその後の作品に組み込まれていると述べた。<br>
+                一例として、<a href="fallout-1.html" class="auto-link">Fallout</a> 3やFallout 4で言及されるシカゴのB.O.S.分遣隊の存在がある。</li>
+                <li>2007年にBethesda Softworksのトッド・ハワードは、Bethesdaの目的上、Fallout Tactics内のストーリーは「起こらなかった」と述べた。</li>
+                <li>クリス・テイラーは「Interplayがもっと時間と予算を許していれば、より良いゲームを届けられる状況だった」と述べている。<br>
+                テスティングは「悲劇的に短く」、最初の完全プレイ可能なベータを受け取った土曜日から、わずか数日後の水曜日にマスタリングに送られたという。</li>
+                <li>テイラーはまた、「TB（ターンベース）とRT（リアルタイム）の両方を実装すべきではなかった」と振り返り、QA時間と資源のかなりの部分を費やしたと述べている。</li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <h3>プリリリース・開発中</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/BOS_normal.jpg" alt="開発初期スクリーンショット" onclick="openLightbox(this)">
+                    <div class="caption">開発初期スクリーンショット（未完成UI）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/BOS_twothirds.jpg" alt="開発中スクリーンショット" onclick="openLightbox(this)">
+                    <div class="caption">開発中スクリーンショット</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Early_Screencap_7.jpg" alt="異なるUIスキーム" onclick="openLightbox(this)">
+                    <div class="caption">異なるUIスキーム</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Early_Screencap_1.jpg" alt="マコームでの初期戦闘" onclick="openLightbox(this)">
+                    <div class="caption">マコームでの初期戦闘</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Chimera_Project_01.jpg" alt="キメラ・プロジェクト" onclick="openLightbox(this)">
+                    <div class="caption">キメラ・プロジェクト</div>
+                </div>
+            </div>
+            <h3>コンセプトレンダー</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Rat_eater.jpg" alt="コンセプトレンダー" onclick="openLightbox(this)">
+                    <div class="caption">ラットイーター</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Happy_Pie.png" alt="コンセプトレンダー" onclick="openLightbox(this)">
+                    <div class="caption">Happy Pie</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_sunset.jpg" alt="サンセット" onclick="openLightbox(this)">
+                    <div class="caption">サンセット</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Concept_art_AMBUSH.png" alt="待ち伏せコンセプトアート" onclick="openLightbox(this)">
+                    <div class="caption">待ち伏せ</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Love.png" alt="Love" onclick="openLightbox(this)">
+                    <div class="caption">Love</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Tribal_and_scorpion.png" alt="トライバルとスコーピオン" onclick="openLightbox(this)">
+                    <div class="caption">トライバルとスコーピオン</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/FOT_Recruits_mutant.png" alt="新兵とミュータント" onclick="openLightbox(this)">
+                    <div class="caption">新兵とミュータント</div>
+                </div>
+            </div>
+            <h3>リリース</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/Fallout_Tactics_Steam_banner.jpg" alt="Steamバナー" onclick="openLightbox(this)">
+                    <div class="caption">Steamバナー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-tactics/Fallout_Tactics_developers.jpg" alt="開発チーム" onclick="openLightbox(this)">
+                    <div class="caption">開発チーム</div>
+                </div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Fallout Tacticsは、Falloutシリーズの中でもかなり異色な存在ですよね〜。<br>
+                初代FalloutとFallout 2がストーリー重視のRPGだったのに対して、こちらは分隊ベースのタクティカル戦闘に完全に振り切っている。<br>
+                NPCと会話できない、街がない、ロールプレイよりも戦略。そのストイックなゲームデザインが逆に独特の魅力を生んでいるのが面白いなと思います。<br><br>
+                ストーリー面では「中西部ブラザーフッド」という独自の組織が形成されていく過程がとても興味深いです。<br>
+                本隊からはみ出し者として追い出された集団が、むしろ本隊よりも進歩的な組織になっていくっていうのは皮肉が効いているし、Falloutらしい展開ですよね。<br>
+                レイダー→ビーストロード→スーパーミュータント→ロボット軍団と、段階的にスケールアップしていく敵勢力の構成も良くできています。<br><br>
+                6種族が使える点も画期的で、デスクローやロボットで部隊を編成できるっていうのは他のFalloutにはない楽しさですよね。<br>
+                3つの戦闘モード（CTB/ITB/STB）の設計も野心的。ただ、開発者自身が振り返って「TBとRTの両方を実装すべきではなかった」と言っているように、この野心がテスト不足を招いた面もあったようです。<br><br>
+                正史かどうかの議論もまた面白くて、トッド・ハワードの「起こらなかった」発言がありつつも、エミル・パグリアルーロが「要素は組み込まれている」と言っているあたり、Bethesdaとしても完全には切り捨てていない絶妙な立ち位置にいる作品だと思います〜！<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutTactics</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Game</span>
+                </div>
+    <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Fallout_Tactics:_Brotherhood_of_Steel" target="_blank" rel="noopener">Fallout Tactics: Brotherhood of Steel</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+            <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        function openLightbox(el) { const o = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = el.src; o.classList.add('active'); }
+        async function toggleLike(btn) { const a = btn.getAttribute('data-article-id'); let l = localStorage.getItem(a+'_liked')==='true'; btn.disabled=true; if(l){l=false; const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:a}); if(!error){localStorage.setItem(a+'_liked',l);updateLikeButton(btn,l,data);}} else{l=true; const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:a}); if(!error){localStorage.setItem(a+'_liked',l);updateLikeButton(btn,l,data);}} btn.disabled=false; }
+        function updateLikeButton(btn,l,c){const h=btn.querySelector('.heart'),s=btn.querySelector('.like-count'); if(l){btn.classList.add('liked');h.textContent='♥';}else{btn.classList.remove('liked');h.textContent='♡';} s.textContent=c;}
+        document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const l=localStorage.getItem(a+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();let c=0;if(!error&&data)c=data.like_count;updateLikeButton(b,l,c);}});
+        const _commentArticleId='note_fallout_tactics';const _commentArticleName='Fallout Tactics: Brotherhood of Steel';const _commentArticleUrl='fallout-tactics.html';const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;
+        function updateCharCount(){const l=document.getElementById('comment-input').value.length;const e=document.getElementById('char-count');if(e){e.textContent=l;e.style.color=l>90?'#ff6b6b':'var(--accent-color)';}}
+        function relativeTime(s){const d=(Date.now()-new Date(s).getTime())/1000;if(d<60)return'たった今';if(d<3600)return Math.floor(d/60)+'分前';if(d<86400)return Math.floor(d/3600)+'時間前';if(d<86400*7)return Math.floor(d/86400)+'日前';return new Date(s).toLocaleDateString('ja-JP');}
+        function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+        function renderComments(c){const l=document.getElementById('comments-list');if(!l)return;if(!c||c.length===0){l.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return;}l.innerHTML=c.map(i=>`<div class="comment-item" data-id="${i.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(i.created_at)}</span>${_isAdminMode?`<button class="comment-delete-btn" onclick="deleteComment('${i.id}')">&#128465;</button>`:''}</div><div class="comment-body">${escapeHtml(i.content)}</div></div>`).join('');}
+        async function loadComments(){const l=document.getElementById('comments-list');if(!l)return;const{data,error}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){l.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return;}renderComments(data||[]);}
+        async function submitComment(){const i=document.getElementById('comment-input');const c=i?i.value.trim():'';if(!c){showCommentMsg('コメントを入力してください。',false);return;}if(c.length>100){showCommentMsg('100文字以内で入力してください。',false);return;}const h=document.getElementById('hp_field');if(h&&h.value)return;const ng=['http://','https://','LINE','DM','discord.gg'];if(ng.some(w=>c.includes(w))){showCommentMsg('不正な内容が含まれています。',false);return;}const lp=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const n=Date.now();if(n-lp<RATE_LIMIT_SEC*1000){showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(n-lp))/1000)+'秒後に投稿できます。',false);return;}const b=document.querySelector('.comment-submit-btn');if(b)b.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:c});if(b)b.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return;}localStorage.setItem(RATE_LIMIT_KEY,n.toString());i.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments();}
+        function showCommentMsg(t,o){const e=document.getElementById('comment-msg');if(!e)return;e.textContent=t;e.style.color=o?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{e.textContent='';},3000);}
+        async function deleteComment(id){if(!_isAdminMode)return;if(!confirm('このコメントを削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return;}await loadComments();}
+        document.addEventListener('keydown',(e)=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);loadComments();alert('管理者モードを終了しました。');return;}const p=prompt('管理者パスワード:');if(!p)return;if(p===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,p);loadComments();alert('管理者モードに入りました。');}else{alert('パスワードが違います。');}}});
+        document.addEventListener('DOMContentLoaded',()=>{loadComments();});
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

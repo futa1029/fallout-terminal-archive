@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Riverside Manor | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/riverside-manor.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Riverside Manor | Overseer Mohi's Terminal"><meta property="og:description" content="リバーサイド・マナー。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/riverside-manor.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Riverside Manor</h3><img src="images/note_extracted/riverside-manor/img_main.png" alt="riverside-manor"><img src="images/note_extracted/riverside-manor/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>邸宅</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>荒れた境域</span></div><div class="infobox-row"><span class="infobox-label">勢力</span><span>ザ・ミステリス</span></div><div class="infobox-row"><span class="infobox-label">クエスト</span><span>Seeker of Mysteries</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <main class="content">
+            
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_riverside_manor" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Riverside Manor<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">リバーサイド・マナー</span></h1>
+
+            <h2>概要</h2>
+<p><b>リバーサイド・マナー</b>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<a href="the-forest.html" class="auto-link">森林地帯</a>にある邸宅です。</p>
+
+            <h2>背景</h2>
+<p>現在は干上がった<a href="summersville.html" class="auto-link">サマーズビル</a>湖を見下ろす<a href="west-virginia.html" class="auto-link">ウエストバージニア</a>に建設されたリバーサイド・マナーは、アパラチアの旧家の衰えゆく栄華の記念碑です。<br>
+21世紀後半の所有者はリバーズ家の一族——<b>フレデリック</b>、<b>シャノン</b>、そして娘の<b>オリビア</b>でした。</p>
+<p>一般には知られていませんが、リバーズ家の邸宅には秘密がありました。フレデリックが妻のために設計した地下の巨大なハイテク施設です。<br>
+これはシャノンが架空のスーパーヒロイン「<a href="mistress-of-mystery.html" class="auto-link">ミステリスの女主人</a>」として<i><a href="silver-shroud.html" class="auto-link">シルバー・シュラウド</a></i>TVシリアルに出演する準備を支援するためのものでした。<br>
+<a href="robco-industries.html" class="auto-link">ロブコ・インダストリーズ</a>のカスタムコンピュータメインフレーム「<b>クリプトス</b>」（元々は国防情報局のために製造）を取得し、シャノンが最高のフィジカルコンディションに達するための「試練の間」として施設を整備しました。<br>
+シャノンはこれを気に入りましたが、裏取引によって役が若い女優に渡り、当初の努力は無駄に終わったかに見えました。</p>
+
+<h3>オーダー・オブ・ミステリーの本拠地</h3>
+<p>2077年の<a href="great-war.html" class="auto-link">大戦</a>直後、地下施設はリバーズ家にとって放射線と社会崩壊から守られたシェルターとなりました。</p>
+<p>やがてシャノンは「ミステリスの女主人」という保護者の仮面の可能性に気づき、フレデリックと共に自宅を機能する作戦拠点に変えました。これが<a href="order-of-mysteries.html" class="auto-link">オーダー・オブ・ミステリー</a>の核となりました。<br>
+「試練の間」は、黙示録で孤児となった少女たちを訓練された暗殺者に育て上げ、<a href="david-thorpe.html" class="auto-link">デイビッド・ソープ</a>の<a href="raiders.html" class="auto-link">レイダー</a>や<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>などの脅威を排除してアパラチアの人々を守ることを使命としました。<br>
+高度なファブリケーターが組織の装備と武器を提供し、フレデリックが技術支援を担当しました。</p>
+<p>マナーの役割は2086年末に終わりを迎えます。組織の他のメンバーがオリビアのレイダーとの内通を発見し、追い詰められたオリビアは館内の全員を殺害しました。<br>
+この事件が組織の崩壊を招き、その後まもなくオリビアとシャノンが<a href="seneca-rocks.html" class="auto-link">セネカ・ロックス</a>で死亡し、マナーとその隠された地下施設は空き家として放棄されました。<br>
+2102年までに、マナーとその敷地は地域を制圧した<a href="scorched.html" class="auto-link">スコーチ</a>に占拠されましたが、地下施設は手つかずのまま残っていました。</p>
+
+            <h2>レイアウト</h2>
+<p><a href="charleston-capitol-building.html" class="auto-link">チャールストン議事堂</a>の南に位置するリバーサイド・マナーは、干上がったサマーズビル湖の岸辺近くに建つ大邸宅です。<br>
+西の道路沿いには3基のプロウスキー・シェルターがあり、地下施設への秘密のエレベーターを隠しています。<br>
+邸宅正面には大きな噴水があり、正面玄関の階段の両脇には石のライオン像が並んでいます。<br>
+庭にはシャクナゲとスートフラワーが咲いています。</p>
+<p>マナーのホワイエの中心には、ミステリスの女主人として演じるシャノン・リバーズの大きな肖像画があります。<br>
+階段が2階へと続き、ホワイエの東にはアップライトピアノのある談話室があり、地下への秘密の入口を隠しています。<br>
+1階にはリビングルーム、ランドリー、プールテーブルとグランドピアノのあるキッチン兼ダイニングエリアがあります。<br>
+キッチンにはロックされた（ピックロック2）パントリーがあります。</p>
+<p>2階にはいくつかの寝室と書斎があります。マスターベッドルームはメイン階段の正面にあり、ウォークインクローゼットにはロックされた（ピックロック3）金庫があります。<br>
+東の廊下の先にはオリビア・リバーズの部屋があり破壊されていますが、ロックされたターミナルが残っています。<br>
+屋上にはジャンク、ツールボックス、ロックされた（ピックロック2）金庫があります。</p>
+
+<h3>地下施設</h3>
+<p>オーダー・オブ・ミステリーの施設には談話室からアクセスします。開くには「使い古されたベール」（黒いドレスに2つの緑のシェブロンが付いた死体から入手。最も近いのは<a href="hornwright-summer-villa.html" class="auto-link">ホーンライト・サマー・ヴィラ</a>のワインセラー）が必要です。</p>
+<p>施設はクリプトスメインフレームを中心に構成され、昇進とクエスト進行に使用されます。<br>
+上階には北側の医務室（ケミストリーステーション、ターミナル、金庫付き）、南側の評議会室（ターミナル付き）、西隅の女主人のオフィスがあります。<br>
+下階には南側に生産棟（ファブリケーターターミナルとクラフティングステーション3台）、西側に試練の間（機能停止）と更衣室、北側に保管室があります。<br>
+北西の長い廊下の先にはプロウスキー・シェルターがあり、邸宅外のシェルターは地下への秘密のエレベーターです。</p>
+
+            <h2>主なアイテム</h2>
+<h3>ホロテープ</h3>
+<ul>
+<li><b>Order of Mysteries - Production log 194/209/212</b> — 下階南側の生産棟</li>
+<li><b>Order of Mysteries - Rank: Initiate/Novice/Seeker/Mistress</b> — クリプトスから支給</li>
+<li><b>Order of Mysteries - The Blade of Bastet / The Phantom Device / The Voice of Set</b> — クリプトスから支給</li>
+<li><b>Order of Mysteries - Council recording</b> — 評議会室ターミナル上</li>
+<li><b>Order of Mysteries - Infirmary log</b> — 医務室のパスワードロックされたターミナルからアクセス</li>
+</ul>
+
+<h3>コレクタブル・その他</h3>
+<ul>
+<li><b>Vault-Tecボブルヘッド</b>（ランダム×2） — 2階角の寝室、マスターベッドルーム外のビューロー</li>
+<li><b>雑誌</b>（ランダム×4） — ランドリー、図書室、2階の寝室、ゲストベッドルーム</li>
+<li><b>Veil of Secrets / Garb of Mysteries / Blade of Bastet / Voice of Set / Phantom Device</b> — ファブリケーターから製造</li>
+<li><b>フュージョンコア</b> — 地下の武器作業台付近</li>
+</ul>
+
+            <h2>登場作品</h2>
+<p>リバーサイド・マナーはFallout 76にのみ登場します。</p>
+
+            <div class="gallery-section">
+            <h2>ギャラリー</h2>
+<div class="gallery-grid">
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/F76_Riverside_Manor_1.png" alt="外観"><div class="caption">噴水越しの外観</div></div>
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/FO76_Riverside_Manor_main_hall.jpg" alt="メインホール"><div class="caption">メインホール</div></div>
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/FO76_Riverside_Manor_front_parlor.jpg" alt="談話室"><div class="caption">正面の談話室</div></div>
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/F76_Riverside_Order_Base_1.png" alt="クリプトス"><div class="caption">クリプトス</div></div>
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/F76_Riverside_Order_Base_2.png" alt="生産エリア"><div class="caption">生産エリア</div></div>
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/F76_Riverside_Order_Base_4.png" alt="地下施設"><div class="caption">地下施設の概観</div></div>
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/Riverside_Manor_Pulowski_shelters.jpg" alt="プロウスキー・シェルター"><div class="caption">秘密のエレベーター</div></div>
+<div class="gallery-item"><img src="images/note_extracted/riverside-manor/FO76_Riverside_Manor_sign.png" alt="看板"><div class="caption">入口の門</div></div>
+</div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                リバーサイド・マナーは、Fallout 76で最もドラマチックなロケーションの一つです。<br>
+表向きは優雅な旧家の邸宅、しかし地下にはスーパーヒロインの秘密基地——この二面性がたまりません。<br><br>
+フレデリックが妻のために国防情報局向けのメインフレームまで手配したという、途方もないスケールの愛情表現。<br>
+やがてそれが黙示録後の少女たちを守る組織の礎となり、最終的にはオリビアの裏切りですべてが崩壊する——<br>
+ターミナルを一つ一つ読み進める度に、リバーズ家の栄光と悲劇が胸に迫ります。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Riverside_Manor" target="_blank" rel="noopener">Riverside Manor</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="拡大画像"></div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_riverside_manor'; const _commentArticleName = 'Riverside Manor'; const _commentArticleUrl = 'riverside-manor.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Palace of the Winding Path | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/palace-of-the-winding-path.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Palace of the Winding Path | Overseer Mohi's Terminal">
+    <meta property="og:description" content="曲がりくねった道の殿堂 — ニューエイジカルトの寺院を乗っ取った詐欺師の物語。">
+    <meta property="og:url" content="https://www.fallout-jp.com/palace-of-the-winding-path.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Palace of the Winding Path | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="曲がりくねった道の殿堂 — 精神的覚醒を謳いながらドラッグで金を搾取するカルトビジネスの全記録。">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
+        }
+
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+                position: static;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+    
+        .holotape-box { border: 1px solid var(--accent-color); margin: 20px 0; padding: 15px; background: rgba(0, 255, 0, 0.03); border-radius: 5px; font-size: 0.95em; line-height: 1.7; }
+        .holotape-box b { color: var(--accent-color); }
+        .note-block { border-left: 3px solid #888; background: rgba(255, 255, 255, 0.03); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; }
+        .note-block .note-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-weight: bold; margin-bottom: 8px; }
+
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Palace of the Winding Path</h3><img src="images/note_extracted/palace-of-the-winding-path/img_main.png" alt="palace-of-the-winding-path"><img src="images/note_extracted/palace-of-the-winding-path/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div>
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>宮殿 / 寺院</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>荒れた境域、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>サイラス（旧）</span></div>
+            <div class="infobox-row"><span class="infobox-label">勢力</span><span>ブラッドイーグルズ<br>カルティスト（旧）<br>ダイハーズ（旧）</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール / ミュータントハウンド<br>スコーチ / スーパーミュータント</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Guided Meditation<br>Key to the Past</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_palace_of_the_winding_path" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Palace of the Winding Path<br><span
+                    style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">曲がりくねった道の殿堂</span>
+            </h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>曲がりくねった道の殿堂</strong>は、<a href="lore.html" class="auto-link">アパラチア</a>荒れた境域の北部山岳地帯に位置するロケーション。<br>
+                ヒンドゥー・仏教建築の影響を受けた、アパラチアでは異彩を放つ精神修養センター。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                ニューエイジカルトの指導者サイラスにより、アメリカ国民に「破壊ではなく覚醒への道」を提供する場として創設された。<br>
+                しかしカルトは怪しい詐欺師サイモン・グラッドウェルの餌食となった。<br>
+                サイラスの弟子だったサイモンは金儲けの機会を見出し、運営全体を巨大な金儲けの仕組みに変え、<br>
+                ますます複雑なニュースピーク（新語法）の層の裏にカルティストの搾取を隠した。<br>
+                マーケティングとビジネスを掌握した彼は、サイラスから実態を隠し通した。
+            </p>
+            <p>
+                大戦後、カルティストたちは孤立した立地と結束力を活かし、非常にしぶとかった。<br>
+                ダイハーズが彼らと接触し、取引を始めた。<br>
+                しかし一夜にしてカルト全体が文字通り消え去り、ダイハーズが翌日訪れた時には寺院は無人だった。
+            </p>
+
+            <h2>ホロテープ</h2>
+            <div class="holotape-box">
+                <b>🎙️ Cyrus's concern（サイラスの懸念）</b><br><br>
+                <strong>サイラス</strong>：温かいご挨拶を、友よ！<br><br>
+                <strong>サイモン・グラッドウェル</strong>：ああ、ああ、温かい挨拶と、全体性と、そういうの全部……<br>
+                えっと、呼びましたか？<br><br>
+                <strong>サイラス</strong>：ええ、確かに。弟子サイモン。<br>
+                あなたがこんなに短期間で成し遂げたことすべてを誇りに思いますが、<br>
+                我々の「新たな方向性」について懸念を持っています。<br><br>
+                <strong>サイモン</strong>：あの……「一時弟子プログラム」のことですか？<br>
+                何が問題で？ ゲストが不満を？<br><br>
+                <strong>サイラス</strong>：まったくの逆です。出発する時には、彼らは至福で覚醒した様子です。素晴らしい！<br>
+                いいえ、もっと物質的な問題です。殿堂の広告に費やしている金額が気がかりなのです。<br><br>
+                <strong>サイモン</strong>：そういうことは心配しないでください、サイラス。<br>
+                だからこそ私を殿堂のビジネスマネージャーに任命したのでしょう？<br>
+                あなたは裸で走り回ってお香を焚いたり、スイカを塗ったり、<br>
+                やるべきことをやってください。残りは私に任せて。<br><br>
+                <strong>サイラス</strong>：おやおや、弟子サイモン。あなたは初めてうちに来た時と同じような口調になり始めていますよ。<br>
+                もしかして、バランスが崩れたのかもしれません。清めのために塗油されたいですか？<br><br>
+                <strong>サイモン</strong>：いえ、いえ。大丈夫です、十分バランスが取れています。<br>
+                全部うまくいってます。もう塗油はご勘弁を。<br><br>
+                <strong>サイラス</strong>：そうですか。心配のしすぎかもしれませんね。<br>
+                結局のところ、この新たな方向性を授けてくれたのはあなたなのですから。<br><br>
+                <strong>サイモン</strong>：ええ、それは気にしないで、サイラス。心配無用ですよ。<br>
+                ところで、ついでに——この換気……いや、「スピリチュアル・コンジット」の<br>
+                設置計画を見てもらいたいんですが。
+                <p style="font-size: 0.85em; color: #888;">📍 地下室のオフィスデスク上</p>
+            </div>
+
+            <h2>発見されるメモ</h2>
+
+            <div class="note-block">
+                <div class="note-title">📄 Incense complaint（お香の苦情）</div>
+                <p>
+                    ご担当者様<br><br>
+                    ガイデッド・メディテーションに参加してみました。<br>
+                    最初はリラックスできたのですが、スピリチュアル・インセンスの匂いには耐えられませんでした！<br>
+                    私でも辛かったのに、隣に座っていた赤紫のセイウチはもっと酷くて、<br>
+                    くしゃみをするたびに鼻が大きくなっていきました。
+                </p>
+                <p style="font-size: 0.85em; color: #888;">📍 北入口近くの西の部屋、デスク上</p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📄 About the noise（ノイズについて）</div>
+                <p>
+                    殿堂のアホの一人が今朝、悪ふざけでガイデッド・メディテーション・システムを起動した。<br><br>
+                    おかげで分かったことがある——あの音はあの緑のミュータントどもを発狂させる。<br>
+                    四方八方からやって来やがった。全部追い払うのに昼過ぎまでかかった。<br>
+                    マージーに伝えてくれ。ケミカルと引き換えに殿堂を守ってやるのは構わないが、<br>
+                    あのバカどもがウェイストランド中の敵を玄関先に招くなら話は別だ。
+                </p>
+                <p style="font-size: 0.85em; color: #888;">📍 北入口近くのテレビの横、デスク上</p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📄 Unsent letter — Palace of the Winding Path版（送られなかった手紙）</div>
+                <p>
+                    キルシュへ<br><br>
+                    な？ 書くって言っただろ。<br>
+                    マジでここに来てPalace of the Winding Pathを見た方がいい。ここはお前にぴったりだ。<br>
+                    あの古いケミカルの箱を持って、レッドロケット・メガストップで待ち合わせようぜ。<br>
+                    お前の「スピリチュアル・ジャーニー」の始まりだ。<br>
+                    そこで出会った奴が、飛べるようなブツを持ってるんだ。<br><br>
+                    ただ、あそこのプロテクトロンにうろついてるところを見つかるなよ。<br>
+                    警官よりタチが悪い。<br>
+                    最悪の場合はコントロールターミナルを見つけろ。<br>
+                    まともに意識があれば、あの古い技術スキルを使ってシャットダウンできるはずだ。<br><br>
+                    ジニーより
+                </p>
+                <p style="font-size: 0.85em; color: #888;">📍 上部の部屋、バーエリア近くのナイトスタンドの下</p>
+            </div>
+
+            <h2>ターミナルエントリ</h2>
+            <h3>サイラスのターミナル</h3>
+
+            <div class="holotape-box">
+                <b>📋 10.12.75 - To: Simon Gladwell</b><br><br>
+                温かいご挨拶を、友よ！<br><br>
+                あなたの「一時修練者プログラム」の提案書を読み、非常に啓発的に感じています。<br>
+                この修養所を設立した当初は、永住の場——生涯をかけて意識の境界を広げる場所としていました。<br><br>
+                しかし、修練者を限定的な期間の「ゲスト」として迎えることは、<br>
+                活力を与えるだけでなく収益性もあるかもしれません。<br>
+                物質的なことには通常とらわれませんが、この場所を維持するための財政的安定が必要なのは承知しています。<br>
+                検討させてください。近いうちにまた話しましょう。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 12.20.75 - To: All Disciples</b><br><br>
+                温かいご挨拶を、全ての弟子たちへ！<br><br>
+                明日は冬至です。全弟子は青いリボン、青い髪のグリッター、塗装済みスイカを持参してください。<br>
+                スイカを紛失した方はハンナに連絡すれば代替品を用意してもらえます。<br>
+                これは大切な祝典の日です。修練者全員が伝統の一部であると感じられるようにしたいのです。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 03.10.76 - To: All Disciples</b><br><br>
+                温かいご挨拶を、全ての弟子たちへ！<br><br>
+                修練者から、弟子たちが庭で裸で戯れていることについて軽い苦情がありました。<br>
+                自由な精神の祝福は称賛しますが、<br>
+                修練者の中にはまだ新しく到着したばかりの方もいて、<br>
+                そのレベルの精神的覚醒に達するには時間がかかるかもしれないことをご理解ください。<br><br>
+                今後、戯れは自室で個人的に行ってください。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 08.01.76 - To: Simon Gladwell</b><br><br>
+                温かいご挨拶を、友よ！<br><br>
+                一時弟子プログラムの進捗に大変喜んでいます。<br>
+                修養所はポジティブなエネルギーで溢れ、常駐弟子たちはスピリチュアル・パワーの過剰を報告しています。<br>
+                これは設立以来ずっと目指していたことです。<br><br>
+                銀行口座の署名権限をあなた名義にするという寛大な申し出にも感激しました。<br>
+                商業主義の束縛から解放された今、最終的な内的状態——「完全歓喜の至福」の達成に集中できます。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 [日付なし] — Enlightenment Thursday</b><br><br>
+                温かいご挨拶を、全ての弟子たちへ！<br><br>
+                弟子グラッドウェルが今週の「悟りの木曜日」に素晴らしい計画を立ててくれました。<br>
+                通常の屋外集会の代わりに、全員がベッドに横になり、目を閉じ、形而上学的変容を試みてください。<br><br>
+                この移行を容易にするため、修養所全体に特別な換気装置が設置されました。<br>
+                最も甘美な香りと地上の歓びで空気を満たしてくれます。<br>
+                弟子グラッドウェルが殿堂のために尽くしてくれた全てに個人的な感謝を表します。<br>
+                アストラル界で皆さんにお会いした時に、同じく感謝をお伝えください。
+            </div>
+
+            <h3>サイモン・グラッドウェルのターミナル</h3>
+
+            <div class="holotape-box">
+                <b>📋 Journal Entry 07.18.75</b><br><br>
+                殿堂に来る前、俺はめちゃくちゃだった。<br>
+                仕事を失い、妻に去られ、一文無し。<br>
+                人生をかけて築いたものが全て目の前で崩壊した。<br><br>
+                だがサイラスが道を示してくれた！<br>
+                あれらは宇宙の規模に比べれば些細なものだと教えてくれた。<br>
+                最初は懐疑的だった。ビジネスの世界から来た人間として、金の重要性を否定するサイラスはイカれていると思った。<br>
+                数ヶ月かかったが、ようやく彼に同意できる気がする。ようやく心の平穏を感じている。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Journal Entry 09.02.75</b><br><br>
+                この質素な修養所を歩き回り、飲み込むにつれ、<br>
+                これが無駄にされた機会だと気づき始めている。<br>
+                こんなに素晴らしい場所なのに、生涯を内なる覚醒に捧げる人間しか入れない。<br><br>
+                もしゲストが一時的に立ち寄って平穏を感じられるようにすれば、<br>
+                曲がりくねった道の言葉を広めるだけでなく、施設の財政負担も軽減できるだろう。<br>
+                今夜、そういう提案書を作ってサイラスに見せるつもりだ。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Journal Entry 02.11.76</b><br><br>
+                一時弟子プログラムの4ヶ月目。バランスシートにこれ以上ないほど満足している。<br>
+                今まで手がけたビジネスの中で、最も儲かる事業だ。<br><br>
+                この計画の最高の部分は、ゲストにほとんど何も提供する必要がないこと。<br>
+                最小限のスタッフと清潔な寝床だけ。先月だけで数千ドルの純利益を叩き出した。<br><br>
+                殿堂では覚醒を求めてこの旅を始めたが、<br>
+                大金持ちになる方法を見つけたのに、覚醒なんて誰が必要だ？
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Journal Entry 08.22.76</b><br><br>
+                カップル向け拡張パッケージを練った：<br><br>
+                ・ウィークエンド覚醒パッケージ（2名）—— $400<br>
+                ・ウィークエンド・デラックス涅槃パッケージ（2名）—— $650<br>
+                ・週間・弟子のお楽しみパッケージ（2名）—— $1,000<br>
+                ・月間アストラル・サバティカル（2名）—— $3,250<br><br>
+                サイラスに通さなきゃいけないが——あのバカは森で一人で「自分探し」とかやってる。<br>
+                俺に会計を任せてくれたのは助かる。いっそ自分で押し通すか。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Journal Entry 09.10.76</b><br><br>
+                新しい換気装置に金をかけたのは大当たりだった。<br>
+                スタッフの一人に「スピリチュアル・インセンス」のキャニスターを入れ替えさせるだけで、<br>
+                ゲストは滞在中ずっとラリパッパランドにいてくれる。<br><br>
+                ガスの中身が何なのか見当もつかないが、まだ誰も病気になっていないから大丈夫だろう。<br>
+                食事代もシーツ交換費も大幅に節約できた。<br>
+                こんなにうまくいくとは信じられない。殿堂はクリスマスまで予約で一杯。<br>
+                俺は大金持ちだ。<br><br>
+                覚醒、なるほどね。
+            </div>
+
+            <h3>ガイデッド・メディテーション・ターミナル</h3>
+
+            <div class="holotape-box">
+                <b>📋 Log: 9.8.77</b><br><br>
+                お香の効果が期待を下回っているとの報告。<br>
+                鎮静効果を減らし、幻覚効果を増やすように配合を微調整中。<br>
+                サイモンによると、ゲストがガイデッド・メディテーション中に<br>
+                「スピリチュアル・ビジョン」を体験した場合、リピート率が上がるとのデータがある。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Log: 9.26.77</b><br><br>
+                バーナーの一つからのパイプのメンテナンスのためHVAC技師を呼んだ。<br>
+                地上への出力は数日間低下したが、地下では漏れのせいで通常より高い濃度のお香の煙にさらされた。<br>
+                話しかけてくるユニコーンが本物ではないと気づいた後は、おおむね作業を続けられた。<br><br>
+                ただ、しばらくの間、部屋から鋭利なものを撤去することを推奨する。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Log: 10.23.77</b><br><br>
+                昨夜、お香バーナーを通常より少し長く稼働させた。<br>
+                漏れは直ったと思っていたが、今朝、地平線に明るい光と空に火の雲を見た。<br>
+                お香は共有幻覚を引き起こす傾向があるが、それはガイデッド・メディテーション中だけで、<br>
+                今朝は稼働していなかった。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Log: 12.29.77</b><br><br>
+                大戦以降、お香の材料が入手困難に。<br>
+                数週間前から配給制を開始し、投与量を大幅に削減。<br>
+                鎮静効果を優先——パニックを防ぐため。<br><br>
+                他の材料で代用する方法を探り始め、供給を引き延ばす創造的な方法を発見した。<br>
+                少なくとも事態が比較的正常に戻るまでは。他のケミカルは潤沢にある。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Log: 6.27.78</b><br><br>
+                お香の配合の適切な代替品を発見。<br>
+                ほとんどの食品・薬品安全規制に違反するので少し心配だが、<br>
+                代替案は「供給ゼロで人々が暴力的になる」だ。<br>
+                人々を穏やかで幸せに保つ方がはるかに重要。<br><br>
+                入門書を更新しておく。
+            </div>
+
+            <div class="holotape-box">
+                <b>📋 Log: 4.16.79</b><br><br>
+                改訂版配合が一部の人に副作用を引き起こしているとの懸念あり。<br>
+                バッドトリップや攻撃性の増大が特定のバッチで頻発しており、原因を特定できていない。<br>
+                現在、放射性物質が関係しているのではないかと考えている。
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Palace of the Winding Pathは、Fallout 76で最も巧みに構成された物語の一つを持つロケーションです。<br><br>
+
+                サイラスとサイモンのターミナルを交互に読むと、善意と悪意の対比が完璧に浮かび上がります。<br>
+                サイラスの「温かいご挨拶を、友よ！」で始まる純粋なメールと、<br>
+                サイモンの「覚醒なんて誰が必要だ？ 大金持ちだ」という内なる独白。<br>
+                銀行口座の署名権を「寛大な申し出」として喜ぶサイラスと、<br>
+                バランスシートを眺めながら「あのバカは自分探しをしている」と記すサイモン。<br><br>
+
+                そしてサイラスの最後のメール——「全員ベッドで横になり、特別な換気装置が甘い香りで空気を満たします。<br>
+                アストラル界でお会いしましょう」という一見美しいメッセージは、<br>
+                サイモンの日記と照合すると、ドラッグの大量散布の指令書だったことが分かります。<br><br>
+
+                ガイデッド・メディテーション・ターミナルのLog: 10.23.77は特筆に値します。<br>
+                「地平線に明るい光と空に火の雲」——これは核爆発です。<br>
+                しかし記録者は「お香の共有幻覚」だと思い込み、メディテーションが稼働していなかったと首をかしげます。<br>
+                世界が終わったことを「お香の漏れ」で片付けるという、究極のコメディであり悲劇です。
+            </div>
+
+            <h2>舞台裏</h2>
+            <ul>
+                <li>実在のウェストバージニア州にあるプラブパーダのゴールデンパレス（ISKCON、クリシュナ意識国際協会が1979年に建設した記念寺院）がモデル</li>
+                <li>子供のメモがある塔には、テディベア3体がアニメ「ぼくらベアベアーズ」の主人公に似た配置で置かれている</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>曲がりくねった道の殿堂は<a href="lore.html" class="auto-link">Fallout 76</a>にのみ登場する。</p>
+
+            <div class="comments-section">
+                <h2 class="comments-title">&gt; COMMENTS_</h2>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力（100文字まで）..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span>/100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list"></div>
+            </div>
+
+            <footer style="text-align:center;padding:30px 20px;font-size:0.75em;color:#555;font-family:'Share Tech Mono',monospace;border-top:1px solid rgba(0,255,65,0.1);margin-top:40px;">
+                <p>Fallout Terminal Archive — Fan-made Fallout lore database</p>
+                <p><a href="https://x.com/MohiTerminal" target="_blank" rel="noopener noreferrer" style="color: #888; text-decoration: none;">𝕏 @MohiTerminal</a></p>
+                <p style="margin-top: 10px; font-size: 0.85em; color: #444; line-height: 1.6;">
+                    &copy; This article is based on content from
+                    <a href="https://fallout.fandom.com/wiki/Palace_of_the_Winding_Path" target="_blank" rel="noopener noreferrer" style="color: #666;">Nukapedia (Fallout Wiki)</a>,
+                    available under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color: #666;">CC BY-SA 4.0</a>.<br>
+                    Fallout and related marks are trademarks of Bethesda Softworks LLC.<br>
+                    This is an unofficial fan site and is not affiliated with or endorsed by Bethesda Softworks or Microsoft.
+                </p>
+            </footer>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <!-- Supabase Scripts + Lightbox logic -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) {
+                    localStorage.setItem(articleId + '_liked', isLiked);
+                    updateLikeButton(btn, isLiked, data);
+                }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient
+                    .from('likes')
+                    .select('like_count')
+                    .eq('article_id', articleId)
+                    .single();
+
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+
+            // Lightbox logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+
+            images.forEach(img => {
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                });
+            });
+        });
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_palace_of_the_winding_path';
+        const _commentArticleName = 'Palace of the Winding Path';
+        const _commentArticleUrl = 'palace-of-the-winding-path.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    loadComments(); alert('管理者モードを終了しました。'); return;
+                }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                } else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+
+</html>

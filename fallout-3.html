@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallout 3 | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/fallout-3.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Fallout 3 | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Fallout 3のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note/fallout-3/Fallout_3_cover_art.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/fallout-3.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Fallout 3 | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Fallout 3のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note/fallout-3/Fallout_3_cover_art.png">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root{--bg-color:#0f0f0f;--text-color:#e0e0e0;--accent-color:#00ff00;--header-bg:#1a1a1a;--panel-bg:#222}body{background-color:var(--bg-color);color:var(--text-color);font-family:'Noto Sans JP',sans-serif;margin:0;line-height:1.8}h1,h2,h3{font-family:'Share Tech Mono',monospace;color:var(--accent-color);border-bottom:1px solid var(--accent-color);padding-bottom:5px}.container{max-width:1000px;margin:0 auto;padding:20px;display:grid;grid-template-columns:300px 1fr;gap:30px}.infobox{background:var(--panel-bg);border:2px solid var(--accent-color);padding:15px;height:fit-content;position:sticky;top:20px;align-self:start}.infobox img{width:100%;border:1px solid #555;margin-bottom:15px}.infobox-row{display:flex;justify-content:space-between;margin-bottom:5px;font-size:.9em;border-bottom:1px dashed #444}.infobox-label{color:var(--accent-color);font-weight:700}.content{background:rgba(255,255,255,.05);padding:30px;border-radius:5px}.quote-box{border-left:4px solid var(--accent-color);margin:40px 0 20px;background:color-mix(in srgb,var(--accent-color) 10%,transparent);padding:15px 15px 15px 20px;border-radius:0 5px 5px 0;line-height:1.6}.quote-box b{color:var(--accent-color);font-size:1.05em}.quote-block{font-style:italic;border-left:4px solid var(--accent-color);padding-left:20px;margin:20px 0;color:#88ff88;background:rgba(0,255,0,.05);padding:15px}.article-image{max-width:100%;border:1px solid #444;margin:20px 0;display:block;cursor:pointer}.note-figure{margin:20px 0;text-align:center}.note-figure img{max-width:100%;border:1px solid #444;cursor:pointer}.note-figure .image-caption{margin-top:5px;font-size:.85em;color:#aaa}.back-link{display:inline-block;margin-bottom:20px;color:var(--accent-color);text-decoration:none;border:1px solid var(--accent-color);padding:5px 15px}.back-link:hover{background:var(--accent-color);color:#000}@media(max-width:768px){.container{grid-template-columns:1fr;padding:10px;gap:20px}.infobox{grid-row:1;width:100%;box-sizing:border-box;position:static}.content{padding:15px}h1{font-size:1.5em}.back-link{padding:12px 20px;font-size:1.1em}}.action-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}.action-header .back-link{margin-bottom:0}.like-button{background:0 0;border:1px solid var(--accent-color);color:var(--accent-color);padding:5px 15px;font-size:1.1em;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;transition:all .2s;border-radius:4px}.like-button:hover{box-shadow:0 0 8px var(--accent-color)}.like-button.liked{background:var(--accent-color);color:var(--bg-color)}@media(max-width:768px){.like-button{padding:10px 15px;font-size:1em}}.content a{color:var(--accent-color);text-decoration:none;border-bottom:1px solid transparent}.content a:hover{border-bottom:1px solid var(--accent-color)}.auto-link{color:var(--accent-color)!important;font-weight:700;text-decoration:none;border-bottom:1px dashed var(--accent-color)!important;transition:all .2s;padding:0 2px}.auto-link:hover{background-color:color-mix(in srgb,var(--accent-color) 20%,transparent);border-bottom:1px solid var(--accent-color)!important}.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin:20px 0 30px}.gallery-item{text-align:center;background:rgba(0,0,0,.3);border:1px solid #444;padding:10px;border-radius:4px}.gallery-item img{width:100%;height:auto;border:1px solid #333;margin-bottom:10px;cursor:pointer}.gallery-item .caption{font-size:.85em;color:#aaa}.lightbox-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:9999;justify-content:center;align-items:center;cursor:pointer}.lightbox-overlay.active{display:flex}.lightbox-overlay img{max-width:90%;max-height:90%;object-fit:contain}.comments-section{margin-top:40px;border-top:2px solid var(--accent-color);padding-top:20px}.comments-title{font-family:'Share Tech Mono',monospace;color:var(--accent-color);margin-bottom:15px;font-size:1em;border:none;padding:0}.comment-form{margin-bottom:20px}.comment-textarea{width:100%;box-sizing:border-box;background:rgba(0,0,0,.4);border:1px solid var(--accent-color);color:var(--text-color);font-family:'Noto Sans JP',sans-serif;font-size:.95em;padding:10px;border-radius:4px;resize:vertical;min-height:70px;outline:none;transition:box-shadow .2s}.comment-textarea:focus{box-shadow:0 0 8px var(--accent-color)}.comment-form-footer{display:flex;justify-content:space-between;align-items:center;margin-top:6px}.char-count{font-size:.8em;color:#888;font-family:'Share Tech Mono',monospace}.comment-submit-btn{background:0 0;border:1px solid var(--accent-color);color:var(--accent-color);padding:6px 16px;font-family:'Share Tech Mono',monospace;font-size:.9em;cursor:pointer;border-radius:4px;transition:all .2s}.comment-submit-btn:hover{background:var(--accent-color);color:var(--bg-color)}.comment-submit-btn:disabled{opacity:.5;cursor:not-allowed}.comment-msg{font-size:.85em;min-height:1.2em;margin-top:4px;font-family:'Share Tech Mono',monospace}.comments-list{display:flex;flex-direction:column;gap:10px}.comment-item{background:rgba(255,255,255,.04);border-left:3px solid var(--accent-color);padding:10px 14px;border-radius:0 4px 4px 0}.comment-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}.comment-time{font-size:.78em;color:#666;font-family:'Share Tech Mono',monospace}.comment-body{font-size:.92em;line-height:1.6;word-break:break-all}.comment-delete-btn{background:none;border:none;cursor:pointer;font-size:1em;padding:2px 6px;border-radius:3px;opacity:.7;transition:opacity .2s}.comment-delete-btn:hover{opacity:1}.comment-empty,.comment-loading{color:#666;font-size:.85em;font-family:'Share Tech Mono',monospace;padding:10px 0}
+    </style>
+</head>
+
+<body data-article-category="ゲーム" data-article-appearance="Fallout 3">
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Fallout 3</h3>
+            <img src="./images/note/fallout-3/Fallout_3_cover_art.png" alt="Fallout 3 Cover Art" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">開発</span><span>Bethesda Game Studios</span></div>
+            <div class="infobox-row"><span class="infobox-label">パブリッシャー</span><span>Bethesda Softworks</span></div>
+            <div class="infobox-row"><span class="infobox-label">発売日</span><span>2008年10月28日（US）<br>2008年12月4日（JP）</span></div>
+            <div class="infobox-row"><span class="infobox-label">ジャンル</span><span>RPG</span></div>
+            <div class="infobox-row"><span class="infobox-label">エンジン</span><span>Gamebryo</span></div>
+            <div class="infobox-row"><span class="infobox-label">モード</span><span>シングルプレイヤー</span></div>
+            <div class="infobox-row"><span class="infobox-label">レーティング</span><span>ESRB: M<br>CERO: Z<br>PEGI: 18+</span></div>
+            <div class="infobox-row"><span class="infobox-label">プラットフォーム</span><span>Windows / Xbox 360<br>PlayStation 3</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 3</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_fallout_3" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Fallout 3<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">フォールアウト 3</span></h1>
+
+            <div class="quote-block">
+                「Prepare for the Future...」<br>
+                ―― Fallout 3 キャッチコピー
+            </div>
+
+            <p>
+                <strong>Fallout 3</strong>は、Bethesda Game Studiosが開発し、Bethesda Softworksが発売したポスト・アポカリプティックRPGである。<br>
+                <a href="fallout-1.html" class="auto-link">Fallout</a>シリーズのメジャー・インストールメント第3作（通算第5作）であり、Interplay Entertainmentの初代FalloutおよびFallout 2の続編にあたる。<br>
+                2008年10月28日に北米で、12月4日に日本で発売された。<br>
+            </p>
+            <p>
+                ゲームは2277年、大戦から200年後のアメリカ東海岸、主にワシントンD.C.とその周辺（バージニア州、メリーランド州、ペンシルベニア州の一部を含む）を舞台とする。<br>
+                この地域はキャピタル・ウエイストランドとして知られている。<br>
+                プレイヤーキャラクターは<a href="vault.html" class="auto-link">Vault</a> 101の19歳の住人、<strong>ローン・ワンダラー</strong>である。<br>
+            </p>
+
+            <h2>ゲームプレイ</h2>
+            <h3>前作からの変更点</h3>
+            <p>
+                初代FalloutとFallout 2がターンベース戦闘とトップダウン・アイソメトリックビューの2Dエンジンを使用していたのに対し、Fallout 3はリアルタイム戦闘とファースト/サードパーソンビューの3Dエンジンを採用している。<br>
+                パークとトレイトは統合された。初代FalloutとFallout 2ではトレイトはキャラクター作成時に選択し、強力な利点と重大な欠点の組み合わせが一般的だったが、パークは純粋に有利なものだった。<br>
+                SPECIALシステムではスキル数が18から13に削減され、トレイトは削除、パークは3〜4レベルごとではなく毎レベル選択可能になった。<br>
+            </p>
+
+            <h3>キャラクターシステム</h3>
+            <p>
+                メインキャラクターの作成は、プレイヤーキャラクターの幼少期を体験しながら行われる。プレイヤーはジェームズが操作する「遺伝子投影」を使って外見を決定する。その後、ジェームズがマスクを外すと、プレイヤーが選んだ顔に似た顔が現れる（ジェームズの人種もプレイヤーと同じになる）。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/YoureSpecial_Strength.png" alt="You're SPECIAL!" onclick="openLightbox(this)">
+                <div class="image-caption">絵本「You're SPECIAL!」でステータスを設定</div>
+            </div>
+
+            <p>
+                SPECIALは<strong>S</strong>trength（筋力）、<strong>P</strong>erception（知覚）、<strong>E</strong>ndurance（持久力）、<strong>C</strong>harisma（魅力）、<strong>I</strong>ntelligence（知力）、<strong>A</strong>gility（敏捷性）、<strong>L</strong>uck（幸運）の頭文字である。<br>
+                Vault内の子供時代に、プレイヤーキャラクターは「You're SPECIAL!」という絵本を受け取り、7つの基本適性を設定できる。<br>
+                さらに成長過程でBBガンとPip-Boy 3000を受け取り、各種テストの成績が残りのステータスを決定する。<br>
+            </p>
+            <p>
+                スキルとパークは前作と同様の構成で、プレイヤーは13のスキルから3つのタグスキルを選択する。5つのスキルが前作から削除された（初代FalloutとFallout 2には18のスキルがあった）。<br>
+                「First Aid」と「Doctor」は「Medicine」に統合、「Throwing」と「Traps」は「Explosives」に統合、「Steal」は「Sneak」に統合され、「Outdoorsman」と「Gambling」は完全に削除された。<br>
+                最大レベルは20（Broken Steelアドオン導入後は30に引き上げ、メインストーリー完了後もゲームを継続可能）。<br>
+                前作のトレイトはFallout 3ではパークと統合され、レベルアップごとに新しいパークを1つ選択できる。<br>
+            </p>
+
+            <h3>V.A.T.S. 戦闘システム</h3>
+            <p>
+                <strong>Vault-Tec Assisted Targeting System（V.A.T.S.）</strong>はゲームに実装されたアクティブ・ポーズ戦闘システムである。<br>
+                V.A.T.S.使用中はリアルタイム戦闘が一時停止し、APを消費して特定の体の部位を狙った攻撃が可能。<br>
+                攻撃を選択すると、V.A.T.S.はリアルタイムのスローモーションで攻撃を実行し、ゲーム内のゴア表現が詳細に表示される。<br>
+                プレイヤーはこの間、敵からのダメージを90%軽減される。<br>
+                V.A.T.S.使用中のクリティカルヒット率は15%上昇するが、1発あたりの武器劣化が大幅に増加するため、弾薬の消費を増やすか武器の消耗を早めるかのトレードオフが生じる。<br>
+                このトレードオフにより、2つの非常に異なるプレイスタイルがゲーム全体を通じて可能になっている。<br>
+            </p>
+
+            <h3>アイテム</h3>
+            <p>
+                ゲームプレイの動的な要素として、銃器は使用するにつれて時間とともに消耗する。武器が劣化すると、ダメージが減少し命中精度も低下する。<br>
+                ただし、同じ種類の消耗した銃器を組み合わせることで、より信頼性が高く強力な武器を作ることができる。<br>
+                武器の設計図も発見・使用可能で、ランチボックスやぬいぐるみなど様々なアイテムを発射できる<strong>Rock-It Launcher</strong>や、Vault-Tecランチボックス・チェリーボム・センサーモジュール・ボトルキャップで作れる<strong>ボトルキャップ地雷</strong>など、様々な装置を作成できる。<br>
+            </p>
+            <p>
+                武器の装備に加え、プレイヤーは各種スキルに影響を与えるアーマーや衣服も利用できる。例えば、メカニックのカバーオールを着用するとRepairスキルが上昇する。<br>
+                アーマーと衣服は頭部と体の2つの主要パーツに分かれており、帽子とアーマーの異なる組み合わせや、帽子と一緒に着用できるマスク・フェイスウェアも存在する。<br>
+                インベントリには重量制限があり、弾薬などのストーリー関連・必須アイテムは重量ゼロに設定されている（開発者がインベントリ管理の煩雑さを避けるため）。Strengthステータスを上げることで重量制限を増やせる。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Megaton_exterior.png" alt="メガトンのゲート" onclick="openLightbox(this)">
+                <div class="image-caption">メガトンのゲート</div>
+            </div>
+
+            <h3>コンパニオンシステム</h3>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Followers.jpg" alt="コンパニオンたち" onclick="openLightbox(this)">
+                <div class="image-caption">Fallout 3の常駐コンパニオンたち</div>
+            </div>
+
+            <p>
+                プレイヤーは最大3人のパーティ（自分＋ドッグミート＋NPC1人）を編成できる。<br>
+                さらに、一時的なクエストNPCも数人加わることがあり、関連するクエストが完了するまでプレイヤーと一緒にいる。クエストを完了しなければ、殺されるまで永続的に同行する者もいる。<br>
+            </p>
+            <p>
+                ドッグミートをパーティに入れるだけでなく、武器・弾薬・放射線治療薬・スティムパックなどを探しに単独で送り出すことも可能。<br>
+                ドッグミートは誤った使い方やデスクロー・サンクチュアリのような極めて危険な状況に置くと死亡する可能性がある。Broken Steelアドオンの「Puppies!」パークがなければ代わりは得られない。<br>
+                ドッグミートとその子犬には、必要に応じてスティムパックを与えて回復させることもできる。<br>
+            </p>
+
+            <h3>カルマ</h3>
+            <p>
+                <strong>カルマ</strong>システムはFallout 3のゲームプレイにおける重要な特徴である。<br>
+                会話や戦闘での選択を含むプレイヤーの行動は、ゲーム世界での立場に影響を与える。善行を行うプレイヤーはNPCからより好意的に受け入れられ、悪行を行うプレイヤーは逆の反応を受ける。<br>
+            </p>
+            <p>
+                プレイヤーは犯罪を行うことも可能で、被害を受けた勢力やグループはほとんどの場合プレイヤーの行動を完全に把握する。<br>
+                しかし、影響を受けなかった他の勢力はそれを知らず、通常1つの町は独自の勢力であるため、ある町で犯した犯罪のニュースは別の町には広まらない。<br>
+                ただし、善行や悪行は対極の勢力から懸賞金をかけられる原因となる。<strong>タロン・カンパニー</strong>（善カルマの場合）や<strong>レギュレーター</strong>（悪カルマの場合）がプレイヤーをランダムに待ち伏せし、特定のエリアに縛られずウエイストランドのどこにでも出現する。<br>
+            </p>
+
+            <h2>舞台設定</h2>
+            <p>
+                ゲームの舞台はポスト・アポカリプティックな、レトロフューチャー的なワシントンD.C.である（キャピタル・ウエイストランド）。<br>
+                大戦は2077年10月23日に発生し、2時間足らずの短い時間にもかかわらず甚大な被害と破壊をもたらした。<br>
+                大戦以前、資源戦争が街に暴動をもたらし、その間に国際連合は解散し、カナダはアメリカに併合された。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Art_of_Fallout_3_The_Capitol.jpg" alt="キャピトル・ヒル コンセプトアート" onclick="openLightbox(this)">
+                <div class="image-caption">キャピトル・ヒル（コンセプトアート）</div>
+            </div>
+
+            <p>
+                Fallout 3のワールドマップはポトマック川によって対角線上に分断されており、南東隅にワシントンの廃墟が位置する。<br>
+                ワシントンの多くの部分は閉鎖されたエリアであり、トンネルを通じてのみアクセスできるため、大規模なメトロシステムも含まれている。<br>
+            </p>
+
+            <h2>ストーリー</h2>
+            <p>
+                2258年、ローン・ワンダラーは母キャサリンから生まれる。<br>
+                父ジェームズは医師兼科学者で、友人マディソン・リーと共に出産を手伝うが、キャサリンは出産直後に心停止で死亡する。<br>
+                ジェームズは新生児をVault 101に連れて行く。そこは住民が決して外に出ないことを目的とした実験Vaultだった。<br>
+            </p>
+            <p>
+                成長するにつれ、ジェームズはキャサリンの好きだった聖書の一節「ヨハネの黙示録21:6」――「命の泉の水」について頻繁に語る。<br>
+                2277年、ローン・ワンダラーが19歳の時、ジェームズは突然Vault 101を去り、Vaultは混乱に陥る。<br>
+                偏執的な監督官アルフォンス・アルモドバーにより追われたローン・ワンダラーもまたVaultを脱出せざるを得なくなる。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Rivet_City_panorama.jpg" alt="リベット・シティ" onclick="openLightbox(this)">
+                <div class="image-caption">リベット・シティ（退役空母を再利用した要塞都市）</div>
+            </div>
+
+            <p>
+                父を探す旅は、不発の原子爆弾を中心に建てられた街<strong>メガトン</strong>から始まる。<br>
+                ギャラクシー・ニュース・ラジオで<strong>スリー・ドッグ</strong>から「ローン・ワンダラー」の名を与えられ、退役空母を利用した都市<strong>リベット・シティ</strong>で科学者<strong>マディソン・リー</strong>と再会する。<br>
+                リーはジェームズと共に取り組んでいた<strong>プロジェクト・ピュリティ</strong>――ジェファーソン・メモリアルに建設された巨大浄水装置で、ポトマック川のすべての水を浄化する計画――について語る。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Jefferson_Memorial.jpg" alt="ジェファーソン・メモリアル" onclick="openLightbox(this)">
+                <div class="image-caption">ジェファーソン・メモリアル（プロジェクト・ピュリティの拠点）</div>
+            </div>
+
+            <p>
+                ジェファーソン・メモリアルを調査した後、ローン・ワンダラーはジェームズを<a href="vault-112.html" class="auto-link">Vault 112</a>まで追跡し、<a href="stanislaus-braun.html" class="auto-link">スタニスラウス・ブラウン</a>が運営するバーチャルリアリティ・プログラム「トランキリティ・レーン」から救出する。<br>
+                父と再会したローン・ワンダラーはリベット・シティに戻り、プロジェクト・ピュリティの再開に取りかかるが、戦前のアメリカ政府の残党である<strong>エンクレイヴ</strong>が施設を急襲。<br>
+                ジェームズはオータム大佐の支配を阻止するため制御室に放射線を充満させるが、その代償として命を落とす。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Citadel.jpg" alt="シタデル" onclick="openLightbox(this)">
+                <div class="image-caption">シタデル（ブラザーフッド・オブ・スティール本部）</div>
+            </div>
+
+            <p>
+                ローン・ワンダラーはブラザーフッド・オブ・スティールの本拠地<strong>シタデル</strong>に逃れ、Vault 87から<a href="geck.html" class="auto-link">G.E.C.K.</a>を取得するが、エンクレイヴに捕らえられる。<br>
+                エンクレイヴの指導者<strong>ジョン・ヘンリー・エデン大統領</strong>の正体はZAXシリーズのスーパーコンピュータであり、浄水器にFEVの改良株を注入し、ミュータントを含むすべての変異生命を絶滅させる計画を明かす。<br>
+                ローン・ワンダラーはレイヴン・ロックを脱出し、巨大ロボット<strong>リバティ・プライム</strong>を先頭にブラザーフッドがジェファーソン・メモリアルを強襲する最終決戦に臨む。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Take_it_Back.jpg" alt="リバティ・プライム" onclick="openLightbox(this)">
+                <div class="image-caption">リバティ・プライム VS エンクレイヴ</div>
+            </div>
+
+            <h2>エンディング</h2>
+            <p>
+                最初の重要な選択は、改変FEVで水供給を汚染することに同意するかどうかである。2番目の重要な選択は、誰がプロジェクト・ピュリティを起動するかである。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/FO3_FEV_endslide_5.jpg" alt="エンディング" onclick="openLightbox(this)">
+                <div class="image-caption">あるエンディングで、放射線により倒れるローン・ワンダラー</div>
+            </div>
+
+            <ul>
+                <li><strong>ローン・ワンダラー死亡エンド</strong> — ローン・ワンダラーは自らの命を犠牲にしてプロジェクト・ピュリティを起動する。起動前に放射線免疫のコンパニオン（RL-3軍曹、カロン、フォークス）に頼んでも、口実をつけて断られる。特にジェリコは「くそったれ。自分の汚れ仕事は自分でやれ」と言い放つ</li>
+                <li><strong>サラ・ライオンズ死亡エンド</strong> — ブラザーフッドのサラ・ライオンズが代わりにプロジェクト・ピュリティを起動し犠牲になる。このエンディングはFallout 4のターミナルで彼女が父の死後、別の時期に死亡したと記載されているため非正史</li>
+                <li><strong>誰も起動しないエンド</strong> — リアクターが爆発し全員が死亡する</li>
+                <li><strong>Broken Steelアドオン導入時</strong> — ローン・ワンダラーは起動後も生存する。放射線免疫のコンパニオン（RL-3軍曹、カロン、フォークス）も起動を引き受けてくれるようになり、犠牲者なしで起動できる。また、起動前にFEVサンプルを投入することも可能で、その場合はゲームのサイドクエストに悪影響が出る</li>
+            </ul>
+
+            <h3>モイラのエピローグ</h3>
+            <p>
+                Fallout 3の公式ゲームガイド・コレクターズエディションにはエピローグが収録されている。これは20年後の2297年9月10日に、40代半ばになったモイラ・ブラウンが書いたターミナルエントリーである。<br>
+                彼女はローン・ワンダラーが本当にウエイストランドとその社会を変えたと述べ、ローン・ワンダラーについての物語を集めて本を書き、その冒険を後世に伝えることを決意している。<br>
+            </p>
+
+            <h3>メインキャラクター</h3>
+            <p>ゲームのメインストーリーに関わるキャラクターのリスト：</p>
+            <ul>
+                <li><strong>ローン・ワンダラー</strong> — Vault 101を出た時点で19歳の主人公</li>
+                <li><strong>ジェームズ</strong> — ローン・ワンダラーの父。ある日突然姿を消し、それが主人公の動機となる</li>
+                <li><strong>ブッチ・デロリア</strong> — ローン・ワンダラーとアマタのいじめっ子。後にコンパニオンとしてリクルート可能</li>
+                <li><strong>アマタ・アルモドバー</strong> — 監督官の娘でローン・ワンダラーの友人。Vault 101が混乱に陥った後に再会可能</li>
+                <li><strong>コリン・モリアーティ</strong> — メガトンの酒場の経営者。ジェームズの情報を持っている</li>
+                <li><strong>スリー・ドッグ</strong> — ラジオアナウンサー。ローン・ワンダラーにリベット・シティの訪問を勧める</li>
+                <li><strong>マディソン・リー</strong> — リベット・シティに住む科学者。ジェームズとプロジェクト・ピュリティに取り組んでいた</li>
+                <li><strong>サラ・ライオンズ</strong> — 父オーウェン・ライオンズが率いるブラザーフッド・オブ・スティールの軍人</li>
+                <li><strong><a href="stanislaus-braun.html" class="auto-link">スタニスラウス・ブラウン</a></strong> — <a href="vault-112.html" class="auto-link">Vault 112</a>でトランキリティ・レーンと呼ばれるバーチャルシミュレーションを運営するVault-Tec社員</li>
+                <li><strong>ロバート・マクレディ</strong> — リトル・ランプライトと呼ばれる洞窟に住む子供たちの市長。Fallout 4にも再登場</li>
+                <li><strong>フォークス</strong> — Vault 87で出会うスーパーミュータント。ローン・ワンダラーのコンパニオンになれる</li>
+                <li><strong>オータム大佐</strong> — エンクレイヴの指揮官。ゲームのメインヴィラン</li>
+                <li><strong>ジョン・ヘンリー・エデン</strong> — 自らをアメリカの新大統領と名乗るコンピュータ</li>
+            </ul>
+
+            <h2>製品</h2>
+            <h3>アドオン</h3>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/WelcometothePitt.jpg" alt="The Pitt" onclick="openLightbox(this)">
+                <div class="image-caption">The Pitt（Fallout 3で登場し、Fallout 76で再訪される）</div>
+            </div>
+
+            <p>Bethesda Softworksは5つのアドオンを1つ5ドルでリリースした（GOTY版ではより安価）。</p>
+            <ul>
+                <li><strong>Operation: Anchorage</strong> — 軍事シミュレーションに入り、中国共産党からのアンカレッジ解放戦に参加</li>
+                <li><strong>The Pitt</strong> — ピッツバーグを訪れ、住民の生活と治療法を探る</li>
+                <li><strong>Broken Steel</strong> — 死を免れ、キャピタル・ウエイストランドに残るエンクレイヴを掃討。レベルキャップが20→30に引き上げ</li>
+                <li><strong>Point Lookout</strong> — フェリーでポイント・ルックアウトを訪れ、グールのデスモンド・ロックハートの窮状に巻き込まれる</li>
+                <li><strong>Mothership Zeta</strong> — 巨大マザーシップ「ゼータ」からエイリアンと戦いつつ脱出。Mothership ZetaはGOTY版以外のディスク版には収録されていない</li>
+            </ul>
+
+            <h3>Game of the Year Edition</h3>
+            <p>
+                Fallout 3: Game of the Year Editionは2009年10月13日にPC、PS3、Xbox 360向けにリリースされた。<br>
+                全5つのアドオンパック、裏面のVault Secureポスター、「Wasteland Survival Guide」カバーの著作権情報小冊子が含まれている。<br>
+            </p>
+
+            <h3>The Art of Fallout 3</h3>
+            <p>
+                「The Art of Fallout 3」は95ページのハードカバー画集で、コレクターズ・エディションに付属していた。<br>
+                Craig MullinsとAdam Adamowiczによるコンセプトアートを収録し、キャラクター、クリーチャー、ロケーション、建築物、武器・アーマー、ストーリーボードが紹介されている。<br>
+            </p>
+
+            <h2>開発史</h2>
+            <h3>Interplay時代（Van Buren）</h3>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Vbtitle.png" alt="Van Burenタイトル画面" onclick="openLightbox(this)">
+                <div class="image-caption">キャンセルされたVan Burenのメインメニュー</div>
+            </div>
+
+            <p>
+                Fallout 3は当初、Interplay Entertainment傘下のBlack Isle Studiosが「Van Buren」のコードネームで開発していた。<br>
+                しかし完成前にBlack Isle Studiosは閉鎖され、Fallout 3のライセンスは最低保証金1,175,000ドルのロイヤリティ前払いでBethesda Softworksに売却された。Bethesdaは主にThe Elder Scrollsシリーズの開発で知られるスタジオである。<br>
+                Bethesda版Fallout 3はVan Burenのコードや素材を一切使用せず、完全にゼロから開発された。<br>
+                2007年5月、キャンセルされたプロジェクトのプレイアブル技術デモが一般公開された。<br>
+            </p>
+            <h3>Bethesda時代</h3>
+            <p>
+                2004年7月にBethesdaがFallout 3の開発を発表したが、本格的な開発はThe Elder Scrolls IV: Oblivion完成後に開始された。<br>
+                Bethesdaは前2作と同様に非線形のゲームプレイ、優れたストーリー、真の「Falloutユーモア」に焦点を当てると宣言した。<br>
+                また、ゲームのレーティングはMature向けで、Falloutシリーズの特徴であるアダルトテーマと暴力を含むと述べた。<br>
+                OblivionのGamebryoエンジンのバージョンを使用し、同じチームが開発を担当した。当初BethesdaはFalloutゲーム3作のみの制作権を持ち、Interplayへのロイヤリティ支払いが必要だった。<br>
+            </p>
+            <p>
+                2006年にBethesdaはFalloutフランチャイズの完全な権利を取得し、InterplayにはProject V13の制作権のみが残された。<br>
+                2007年5月2日から6月5日にかけて、Craig Mullinsによるコンセプトアート5点がティーザーへのカウントダウン期間中に公開された。<br>
+                Fallout 3のシネマティック・ティーザートレーラーは2007年6月5日に30日間のカウントダウン後にリリースされ、8月2日にはゲームのウェブサイトがオープンした。<br>
+            </p>
+
+            <h3>リリース時の問題</h3>
+            <ul>
+                <li>2008年7月4日、Fallout 3はオーストラリアのOFLCにより分類を拒否され、同国での販売が違法となった。ゲーム内のドラッグの「現実的な視覚表現とその配達方法」が問題とされた。最終的に薬品名の変更（モルヒネ→<strong>Med-X</strong>）により全バージョンで解決された</li>
+                <li>ドイツ版では暴力表現が軽減された</li>
+                <li>日本版では「The Power of the Atom」サイドクエストが変更され、バーク（NPC）が削除されてメガトンの原爆を爆破することが不可能になった。また、「<strong>Fat Man</strong>」核カタパルト武器は長崎に投下された爆弾への言及であるため「<strong>ヌカランチャー</strong>」に改名された</li>
+                <li>Microsoft Indiaは「文化的感受性」を理由にインドでのゲーム発売を見送った</li>
+            </ul>
+
+            <h2>プロダクション</h2>
+            <h3>開発者</h3>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/Fallout_3_devs.jpg" alt="開発チーム" onclick="openLightbox(this)">
+                <div class="image-caption">Fallout 3開発チーム</div>
+            </div>
+
+            <p>
+                プロジェクトはエグゼクティブプロデューサーのトッド・ハワードが率いた。<br>
+                他のプロデューサーにはアシュリー・チェン、ギャビン・カーター、ジェフ・ガーディナーが含まれる。<br>
+                リードデザイナーはエミル・パグリアルーロで、以前はThiefシリーズやOblivionのDark Brotherhoodクエストに携わっていた。<br>
+                リードレベルデザイナーはジョエル・バージェス。リードアーティストはイストバン・ペリー、リードプログラマーはスティーブ・マイスター。<br>
+                ゲームのPR・マーケティングはピート・ハインズが統括した。<br>
+            </p>
+
+            <h3>音楽</h3>
+            <p>
+                アンビエント・サウンドトラックはイノン・ツールが作曲した。彼はFallout Tacticsのサウンドトラックも手がけ、後にFallout: New Vegas、Fallout 4、Fallout 76の音楽も担当することになる。<br>
+                Fallout 3にはゲーム内ラジオ局で流れる楽曲やその他の音楽作品も含まれている。<br>
+            </p>
+
+            <h2>評価</h2>
+            <h3>発売時の評価</h3>
+            <p>
+                MetacriticメタスコアはPC版91/100、PS3版90/100、Xbox 360版93/100。<br>
+                発売初週で過去の全Falloutゲーム（スピンオフ含む）の売上を上回った。<br>
+                E3 2007ではIGN Game of E3、GameSpot Best RPGなど複数の賞を受賞。<br>
+                E3 2008でもIGN Best Overall RPG、Best Console Game、Game of the Showを獲得。<br>
+                Game Critics Awardsも2008年のBest Role-Playing GameとBest of Showを授与した。<br>
+            </p>
+            <p>
+                IGNのErik BrudvigはFallout 3に9.6/10を与え、「会話には素晴らしい脚本があり、わくわくする一級品のメインストーリーがある。すべてが壮大なクライマックスに集約され、ただただ最高だ」と賞賛した。<br>
+                一方でバグなどの技術的問題を指摘しつつも、「信じられない雰囲気を持つ素晴らしいゲームで、多くの異なる方法で楽しさを提供してくれるため、ほぼ確実にハマるだろう」と評価した。<br>
+            </p>
+
+            <h3>発売後の評価</h3>
+            <p>
+                Fallout 3のエンディングに対する発売後の批判に応じて、エミル・パグリアルーロはエンディングの強制的な犠牲は「犠牲のアイデアが重要だと感じた」ライティングチームの信念によるものだったが、ゲームの終わり方をもっと多く用意しないことはFalloutの精神に反すると気づいたため、Broken Steelで変更したと語った。<br>
+            </p>
+            <p>
+                トッド・ハワードは2023年のインタビューで、Fallout 3の開発中にハードコアなFalloutファンの反発を懸念していたと述べた。Bethesdaがオリジナルの制作者ではなく、Fallout 3が異なるスタイルであることから、厳しい監視の目に晒されるだろうと感じていたという。しかし、このシリーズがFalloutコミュニティ内で独自のオーディエンスを見つけたことを喜んでいると述べ、Vault 101のプロローグがお気に入りだと語った。ローン・ワンダラーがウエイストランドを探索できる瞬間がより感情的なインパクトを持つと感じたからだという。<br>
+            </p>
+            <p>
+                2026年2月のGame Informer特集「Falloutのオーラルヒストリー Part III」で、トッド・ハワードは初代FalloutやFallout 2と同様に、ストーリーを完了するとゲームが終了するという方針で開発を進めていたことを明かした。しかし発売後のプレイヤーからの大きな反発がBethesda内部での議論を促し、アドオンコンテンツの計画段階で検討が始まった。これが最終的にBroken Steelアドオンの開発につながり、メインストーリーの結末から続くストーリーラインでプレイヤーがキャピタル・ウエイストランドに戻り、最終ミッションでの選択の結果を見届けることを可能にした。<br>
+            </p>
+
+            <h2>舞台裏</h2>
+
+            <div class="note-figure">
+                <img src="./images/note/fallout-3/F3worldMapExpansionDiagram.jpg" alt="ワールドマップ拡張ダイアグラム" onclick="openLightbox(this)">
+                <div class="image-caption">オリジナルのサイズ比較</div>
+            </div>
+
+            <ul>
+                <li>ダウンタウンD.C.エリアはある時点では2倍の広さだったが、大きすぎて混乱を招くとして半分に削減。逆にキャピタル・ウエイストランドは当初の半分の大きさで、小さすぎるとして2倍に拡大された</li>
+                <li>Bethesda Game Studiosの Fallout 3は「Fallout 3」の名称を持つ4番目のプロジェクトとなった。最初はBlack Isle Studiosがfallout 2の続編としてNumerical Design Limitedエンジンで開発しようとしたもの、2番目がはるかに有名な「Van Buren」、3番目はTroika GamesがInterplayからFalloutライセンスを購入しようとした際に開発したプロトタイプ（Bethesdaに競り負け、キャンセルされた「Epic」となった）</li>
+                <li>Fallout 3の開発中、初代Falloutと2のファンから開発者に殺害予告が届き、Bethesdaは初の警備員を雇用することになった</li>
+                <li>フレッド・ゼレニーによると、ゲームの台詞の約30%がディスクに収まるように一時削除された。これにはプレイヤーの性別による台詞の違いの大部分が含まれていた</li>
+                <li>キャピタル・ウエイストランドはFallout Shelter Onlineにも登場する（Shengqu Games開発のアジア限定タイトル）。Fallout 3のキャラクターやロケーションがゲーム全体に登場するが、メインの連続性における位置づけは確立されていない</li>
+            </ul>
+            <p>
+                2026年のGame Informer特集「Falloutのオーラルヒストリー Part II: ベセスダ時代の始まり」で、トッド・ハワード、リードアーティストのイストバン・ペリー、リードデザイナー兼ライターのエミル・パグリアルーロが、Fallout 3の開発がThe Elder Scrolls IV: Oblivionの成功にどう影響されたかを語った：<br>
+            </p>
+            <div class="quote-block">
+                「Fallout 3のOblivionぽさは、多くの面でOblivionの後継作だからだと思う。まったく新しい方法で人々が久しく見ていなかったFalloutを再起動しているが、非常に人気があったOblivionの直後に作っているので、両方を期待するオーディエンスが来ることになる」<br>
+                ―― トッド・ハワード
+            </div>
+            <div class="quote-block">
+                「Oblivionのような非常に彩度が高く明るい作品の後で、Falloutは非常に暗く荒涼とした世界にしなければならないと強く意識していた。色を抜き、暗くし、グランジを加えた。それは『これを真剣に受け止め、Falloutに正義を果たすという声明を出す必要がある』という過剰修正に近かった。結果としてFallout 3には非常にハードコアなビジュアルアイデンティティが生まれた」<br>
+                ―― イストバン・ペリー
+            </div>
+            <div class="quote-block">
+                「Fallout 3の開発を振り返ると、我々にとって非常に賢明なプロジェクトだった。他のゲームに比べてかなり小規模で、メインクエストと雑多なクエストがある。ファクションはない。ファクションに参加できないのだ。ブラザーフッド・オブ・スティールに参加するが、それはメインクエストだ。ある時、当時のリードアニメーターのヒュー・ライリーが会議で『我々にはフィーチャー・クリープの逆がある。フィーチャー・シープだ』と言った。つまりものを削っていたのだ。我々はできないことを知っていたから、削ることに非常に賢明だった。スケールに取り組んでいたのだ。開発中、私たちは本当に良い気分だった」<br>
+                ―― エミル・パグリアルーロ
+            </div>
+            <p>
+                2026年3月のインタビューで、パグリアルーロはDeus Exシリーズでのお気に入りの体験に基づいて、Fallout 3にステルスゲームプレイの仕組みを取り入れるインスピレーションを得たことを明かした：<br>
+            </p>
+            <div class="quote-block">
+                「空き家だと思って侵入したら、メイドが角を曲がってきたのを覚えている。殺したくなかったからショックプロッドを取り出し、パニックしながら彼女が意識を取り戻す前に急いで行動した。Oblivionを作ったが、Fallout 3ではそれをさらに進められると分かっていた。ステルスを良くしようとするのはその一部に過ぎない。Dishonored やThiefのようなゲームでは単一のキャラクターとしてプレイし、ゲームプレイの焦点は本当に狭い。我々はどんなタイプのキャラクターとしてもプレイさせ、あらゆるシステムがある。撃ちまくるにせよ忍び込むにせよ、すべてをサポートしなければならない」<br>
+                ―― エミル・パグリアルーロ
+            </div>
+
+            <h2>ギャラリー</h2>
+            <h3>カバーアート</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout3_Cover_Art_PC.jpg" alt="PC版ボックスアート" onclick="openLightbox(this)">
+                    <div class="caption">PC版ボックスアート</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout_3_PlayStation_3.jpg" alt="PS3版ボックスアート" onclick="openLightbox(this)">
+                    <div class="caption">PS3版ボックスアート</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout3XBox360RetailBoxArt.jpg" alt="Xbox 360版ボックスアート" onclick="openLightbox(this)">
+                    <div class="caption">Xbox 360版ボックスアート</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout_3_GOY_edition.jpg" alt="GOTY版ボックスアート（Xbox 360）" onclick="openLightbox(this)">
+                    <div class="caption">GOTY版（Xbox 360）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout-3-GOTY-Front-Cover.jpg" alt="GOTY版フロントカバー" onclick="openLightbox(this)">
+                    <div class="caption">GOTY版フロントカバー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout_3_GOTY_box_art.jpg" alt="GOTY版ボックスアート（PC）" onclick="openLightbox(this)">
+                    <div class="caption">GOTY版（PC）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/FO3_GOTY_Ps3.jpg" alt="GOTY版ボックスアート（PS3）" onclick="openLightbox(this)">
+                    <div class="caption">GOTY版（PS3）</div>
+                </div>
+            </div>
+            <h3>スクリーンショット</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Growing_Up_Fast.jpeg" alt="幼少期：Vault 101での成長" onclick="openLightbox(this)">
+                    <div class="caption">幼少期：Vault 101での成長</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/YoureSpecial_Strength.png" alt="SPECIAL本：You're SPECIAL!" onclick="openLightbox(this)">
+                    <div class="caption">You're SPECIAL!</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Amata2.jpg" alt="アマタ" onclick="openLightbox(this)">
+                    <div class="caption">アマタ</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Megaton_exterior.png" alt="メガトンのゲート" onclick="openLightbox(this)">
+                    <div class="caption">メガトンのゲート</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Megaton_interior.jpg" alt="メガトン内部" onclick="openLightbox(this)">
+                    <div class="caption">メガトン内部</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/FO3_Megaton_bomb_4.jpg" alt="メガトンの原子爆弾" onclick="openLightbox(this)">
+                    <div class="caption">メガトンの原子爆弾</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/FO3_Moira_Brown.jpg" alt="モイラ・ブラウン" onclick="openLightbox(this)">
+                    <div class="caption">モイラ・ブラウン</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/SuperDuperMarketAA.png" alt="スーパーデューパー・マート" onclick="openLightbox(this)">
+                    <div class="caption">スーパーデューパー・マート</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/FO3_Super-Duper_Mart.jpg" alt="スーパーデューパー・マート内部" onclick="openLightbox(this)">
+                    <div class="caption">スーパーデューパー・マート内部</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout3_1_lg.jpg" alt="キャピタル・ウエイストランド" onclick="openLightbox(this)">
+                    <div class="caption">キャピタル・ウエイストランド</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Lone_Wanderer-SMG.jpg" alt="ローン・ワンダラー" onclick="openLightbox(this)">
+                    <div class="caption">ローン・ワンダラー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Karma_choice.png" alt="カルマ選択" onclick="openLightbox(this)">
+                    <div class="caption">カルマ選択</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/FO3_LCS_Meresti.jpg" alt="メレスティ地下鉄駅" onclick="openLightbox(this)">
+                    <div class="caption">メレスティ地下鉄駅</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Old_Lady_Palmer.jpg" alt="オールドレディ・パーマー" onclick="openLightbox(this)">
+                    <div class="caption">オールドレディ・パーマー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Carol.jpg" alt="キャロル" onclick="openLightbox(this)">
+                    <div class="caption">キャロル</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Harold.jpg" alt="ハロルド" onclick="openLightbox(this)">
+                    <div class="caption">ハロルド</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Centaurs_Seward_Square.jpg" alt="セントーア（スワード・スクエア）" onclick="openLightbox(this)">
+                    <div class="caption">セントーア（スワード・スクエア）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Followers.jpg" alt="コンパニオンたち" onclick="openLightbox(this)">
+                    <div class="caption">コンパニオンたち</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Rivet_City_panorama.jpg" alt="リベット・シティ" onclick="openLightbox(this)">
+                    <div class="caption">リベット・シティ</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Young_Madison_Li.jpg" alt="若きマディソン・リー" onclick="openLightbox(this)">
+                    <div class="caption">若きマディソン・リー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Madison_Li.jpg" alt="マディソン・リー" onclick="openLightbox(this)">
+                    <div class="caption">マディソン・リー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Jefferson_Memorial.jpg" alt="ジェファーソン・メモリアル" onclick="openLightbox(this)">
+                    <div class="caption">ジェファーソン・メモリアル</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/TL_aerial_view.jpg" alt="トランキリティ・レーン" onclick="openLightbox(this)">
+                    <div class="caption">トランキリティ・レーン</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Betty_TL.jpg" alt="ベティ" onclick="openLightbox(this)">
+                    <div class="caption">ベティ（トランキリティ・レーン）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/WoLConfrontation.png" alt="浄水器をめぐる対峙" onclick="openLightbox(this)">
+                    <div class="caption">浄水器をめぐる対峙</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/ZAX-JohnHenryEden.jpg" alt="ジョン・ヘンリー・エデン大統領" onclick="openLightbox(this)">
+                    <div class="caption">ジョン・ヘンリー・エデン大統領（ZAX）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Citadel.jpg" alt="シタデル" onclick="openLightbox(this)">
+                    <div class="caption">シタデル</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Take_it_Back.jpg" alt="リバティ・プライム" onclick="openLightbox(this)">
+                    <div class="caption">リバティ・プライム</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/FO3_FEV_endslide_5.jpg" alt="エンディングスライド" onclick="openLightbox(this)">
+                    <div class="caption">エンディングスライド</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/WelcometothePitt.jpg" alt="The Pitt" onclick="openLightbox(this)">
+                    <div class="caption">The Pitt</div>
+                </div>
+            </div>
+            <h3>開発</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Vbtitle.png" alt="Van Burenタイトル画面" onclick="openLightbox(this)">
+                    <div class="caption">Van Burenタイトル画面</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/F3worldMapExpansionDiagram.jpg" alt="ワールドマップ拡張ダイアグラム" onclick="openLightbox(this)">
+                    <div class="caption">ワールドマップ拡張ダイアグラム</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Fallout_3_devs.jpg" alt="開発チーム" onclick="openLightbox(this)">
+                    <div class="caption">開発チーム</div>
+                </div>
+            </div>
+            <h3>コンセプトアート</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Wasteland.jpg" alt="キャピタル・ウエイストランド" onclick="openLightbox(this)">
+                    <div class="caption">キャピタル・ウエイストランド</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Art_of_Fallout_3_The_Capitol.jpg" alt="キャピトル・ヒル" onclick="openLightbox(this)">
+                    <div class="caption">キャピトル・ヒル</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Memorial_m.jpg" alt="ジェファーソン・メモリアル" onclick="openLightbox(this)">
+                    <div class="caption">ジェファーソン・メモリアル</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Carrier_m.jpg" alt="空母（リベット・シティ）" onclick="openLightbox(this)">
+                    <div class="caption">空母（リベット・シティ）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/FO3_capitol_concept2.jpg" alt="国会議事堂" onclick="openLightbox(this)">
+                    <div class="caption">国会議事堂</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Art_of_Fallout_3_creatures_CA1.jpg" alt="クリーチャー デザイン" onclick="openLightbox(this)">
+                    <div class="caption">クリーチャー デザイン</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/fallout-3/Ghoul_concept.jpg" alt="グール コンセプトアート" onclick="openLightbox(this)">
+                    <div class="caption">グール</div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Fallout 3は、シリーズをアイソメトリックRPGから3DオープンワールドRPGへと大転換させた記念碑的な作品ですよね〜。<br>
+                Vault 101の扉が開いて荒野の光に目がくらむあの瞬間は、ゲーム史に残る名シーンだと思います。<br>
+                幼少期からキャラクターを育てるプロローグのデザインがとにかく秀逸で、トッド・ハワード自身が「あの瞬間のために」と語っているのも頷けます。<br><br>
+                ストーリーの核である「父の行方を追う旅」がメインクエストを個人的なものにしている一方で、メガトンの原爆を爆破するか否か、<a href="vault-112.html" class="auto-link">Vault 112</a>のトランキリティ・レーンで<a href="stanislaus-braun.html" class="auto-link">ブラウン</a>の残虐な命令に従うか否か、といった選択がプレイヤーに重くのしかかるのがFalloutらしい。<br>
+                V.A.T.S.の導入も革新的で、ターンベース戦闘の精神を3Dリアルタイムの中に見事に落とし込んでいます。<br><br>
+                開発史も面白くて、Black Isle StudioのVan Burenが頓挫した後にBethesdaがゼロから作り直したこと、Oblivion完成直後のチームが「息抜き」として楽しみながら開発したこと、発売初週で過去全Falloutの売上を超えたことなど、エピソードが豊富です。<br>
+                日本版ではメガトンの爆破クエストが変更され、「Fat Man」が「ヌカランチャー」に改名された話も、ローカライズの奥深さを感じさせますね。<br>
+                5つのDLCも質が高く、特にBroken SteelがエンディングへのファンFBを受けて開発された経緯は、開発者とコミュニティの対話として興味深いエピソードです〜！<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FO3</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Game</span>
+                </div>
+    <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Fallout_3" target="_blank" rel="noopener">Fallout 3</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+            <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
+        function openLightbox(el){const o=document.getElementById('lightbox');document.getElementById('lightbox-img').src=el.src;o.classList.add('active');}
+        async function toggleLike(btn){const a=btn.getAttribute('data-article-id');let l=localStorage.getItem(a+'_liked')==='true';btn.disabled=true;if(l){l=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:a});if(!error){localStorage.setItem(a+'_liked',l);updateLikeButton(btn,l,data);}}else{l=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:a});if(!error){localStorage.setItem(a+'_liked',l);updateLikeButton(btn,l,data);}}btn.disabled=false;}
+        function updateLikeButton(btn,l,c){const h=btn.querySelector('.heart'),s=btn.querySelector('.like-count');if(l){btn.classList.add('liked');h.textContent='♥';}else{btn.classList.remove('liked');h.textContent='♡';}s.textContent=c;}
+        document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const l=localStorage.getItem(a+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();let c=0;if(!error&&data)c=data.like_count;updateLikeButton(b,l,c);}});
+        const _commentArticleId='note_fallout_3';const _commentArticleName='Fallout 3';const _commentArticleUrl='fallout-3.html';const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;
+        function updateCharCount(){const l=document.getElementById('comment-input').value.length;const e=document.getElementById('char-count');if(e){e.textContent=l;e.style.color=l>90?'#ff6b6b':'var(--accent-color)';}}
+        function relativeTime(s){const d=(Date.now()-new Date(s).getTime())/1000;if(d<60)return'たった今';if(d<3600)return Math.floor(d/60)+'分前';if(d<86400)return Math.floor(d/3600)+'時間前';if(d<86400*7)return Math.floor(d/86400)+'日前';return new Date(s).toLocaleDateString('ja-JP');}
+        function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+        function renderComments(c){const l=document.getElementById('comments-list');if(!l)return;if(!c||c.length===0){l.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return;}l.innerHTML=c.map(i=>`<div class="comment-item" data-id="${i.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(i.created_at)}</span>${_isAdminMode?`<button class="comment-delete-btn" onclick="deleteComment('${i.id}')">&#128465;</button>`:''}</div><div class="comment-body">${escapeHtml(i.content)}</div></div>`).join('');}
+        async function loadComments(){const l=document.getElementById('comments-list');if(!l)return;const{data,error}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){l.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return;}renderComments(data||[]);}
+        async function submitComment(){const i=document.getElementById('comment-input');const c=i?i.value.trim():'';if(!c){showCommentMsg('コメントを入力してください。',false);return;}if(c.length>100){showCommentMsg('100文字以内で入力してください。',false);return;}const h=document.getElementById('hp_field');if(h&&h.value)return;const ng=['http://','https://','LINE','DM','discord.gg'];if(ng.some(w=>c.includes(w))){showCommentMsg('不正な内容が含まれています。',false);return;}const lp=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const n=Date.now();if(n-lp<RATE_LIMIT_SEC*1000){showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(n-lp))/1000)+'秒後に投稿できます。',false);return;}const b=document.querySelector('.comment-submit-btn');if(b)b.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:c});if(b)b.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return;}localStorage.setItem(RATE_LIMIT_KEY,n.toString());i.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments();}
+        function showCommentMsg(t,o){const e=document.getElementById('comment-msg');if(!e)return;e.textContent=t;e.style.color=o?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{e.textContent='';},3000);}
+        async function deleteComment(id){if(!_isAdminMode)return;if(!confirm('このコメントを削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return;}await loadComments();}
+        document.addEventListener('keydown',(e)=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);loadComments();alert('管理者モードを終了しました。');return;}const p=prompt('管理者パスワード:');if(!p)return;if(p===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,p);loadComments();alert('管理者モードに入りました。');}else{alert('パスワードが違います。');}}});
+        document.addEventListener('DOMContentLoaded',()=>{loadComments();});
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

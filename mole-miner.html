@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>モール・マイナー | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/mole-miner.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="モール・マイナー | Overseer Mohi's Terminal">
+    <meta property="og:description" content="モール・マイナー — アパラチアの鉱山に潜む、変異した元人間のクリーチャー。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/mole-miner/Mole_miner_render.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/mole-miner.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="モール・マイナー | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="モール・マイナー — 変異した元人間のクリーチャー。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/mole-miner/Mole_miner_render.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .loot-list { list-style: none; padding: 0; }
+        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
+        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
+        .holotape-box { background: var(--panel-bg); border: 2px solid #ff9800; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .holotape-box h3 { color: #ff9800; border-bottom: 1px solid #ff9800; margin-top: 0; font-size: 1.1em; }
+        .holotape-box .holotape-icon::before { content: '🎙 '; }
+        .holotape-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; font-style: italic; }
+        .note-box { background: var(--panel-bg); border: 2px solid #8bc34a; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .note-box h3 { color: #8bc34a; border-bottom: 1px solid #8bc34a; margin-top: 0; font-size: 1.1em; }
+        .note-box .note-icon::before { content: '📝 '; }
+        .note-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; }
+        .note-box .transcript .date-entry { color: var(--accent-color); font-weight: bold; margin-top: 12px; display: block; }
+        .variant-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85em; }
+        .variant-table th { background: var(--header-bg); color: var(--accent-color); padding: 8px; text-align: left; border: 1px solid #444; font-family: 'Share Tech Mono', monospace; }
+        .variant-table td { padding: 8px; border: 1px solid #333; }
+        .variant-table tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        .script-notes { background: var(--panel-bg); border: 1px solid #555; border-radius: 5px; padding: 20px; margin: 20px 0; }
+        .script-notes summary { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1em; }
+        .script-notes .note-category { color: var(--accent-color); font-weight: bold; margin-top: 15px; display: block; }
+        .script-notes ul { margin: 5px 0 10px 20px; }
+        .script-notes li { font-size: 0.9em; line-height: 1.6; font-style: italic; }
+    </style>
+</head>
+<body data-article-category="クリーチャー" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Mole Miner</h3>
+            <img src="images/note_extracted/mole-miner/Mole_miner_render.png" alt="モール・マイナー" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">ゲーム</span><span>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>クリーチャー</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>モールラット</span></div>
+            <div class="infobox-row"><span class="infobox-label">生息地</span><span>アパラチア各地</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Lost and Found</span></div>
+            <div class="infobox-row"><span class="infobox-label">イベント</span><span>Bots on Parade<br>Breach and Clear<br>Seismic Activity<br>Tunnel of Love<br>Uranium Fever</span></div>
+            <div class="infobox-row"><span class="infobox-label">バリアント</span><span>モール・マイナー<br>スクレイパー<br>ディガー<br>ロックブレイカー<br>フォアマン<br>スーパーバイザー<br>グローイング<br>サッパー<br>ドレッジャー<br>スカルクラッシャー<br>デッドリー<br>スコーチ<br>ジャガーノート<br>トレジャーハンター</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_mole-miner" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Mole Miner<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">モール・マイナー</span></h1>
+
+            <h2>概要</h2>
+            <p><strong>モール・マイナー</strong>は、<em>Fallout 76</em>に登場する<a href="appalachia.html" class="auto-link">アパラチア</a>のクリーチャーである。</p>
+
+            <h2>背景</h2>
+            <p>アパラチアの歴史ある過去の暗い残滓——モール・マイナーは、この地域の多くの洞窟、鉱山、および地上の採掘施設を住処とする、<strong>変異した人間</strong>の一種である。<br>
+            彼らはかつて採掘に使用していた劣化したスーツの中に閉じ込められ、脅威と見なすものすべてを攻撃する。</p>
+
+            <p>苦しみにもかかわらず、彼らの認知能力と人間的な行動はほぼ全て残っている。<br>
+            モール・マイナーは、古い採掘ロッカーの鍵など、以前の生活で大切にしていた物を頻繁に持ち歩いている。<br>
+            <strong>パーヴェイヤー・マームル</strong>という名のユニークなモール・マイナーは、自販機を組み立て、バークレー・スプリングス駅に交易所を開設し（のちにラスティ・ピックに移転）、レジェンダリー・スクリップと引き換えに商品を販売している。</p>
+
+            <p>モール・マイナーが最初に遭遇されたのはウェルチであり、アパラチアのエンクレイヴとその研究部門が2086年の崩壊前にこれを実験対象としていた。<br>
+            その後、1095年3月にファイア・ブリーザーがモール・マイナーと銃撃戦を交えるまで、別の遭遇に関する記録は知られていない。</p>
+
+            <p>彼らの著しい退化の具体的な原因は不明である。<br>
+            放射線が原因なのか、<a href="ash-heap.html" class="auto-link">積灰の山</a>の地下住居の有毒な大気によるものなのか、あるいはその両方の組み合わせなのか。<br>
+            しかし、その退化はFilter-O-Maticの呼吸装置と呼吸器なしでは正常に呼吸できないほど重大である。<br>
+            モール・マイナーは高度に社会的であり、組織化されたグループ以外で遭遇されることはまずない。<br>
+            彼らの階層構造は、大戦前の採掘作業の組織構造に従っており、実際の採掘員（スクレイパー、ディガー、ロックブレイカーを含む）がフォアマンとスーパーバイザーに率いられている——これは彼らが炭鉱作業員であった過去の証である。</p>
+
+            <p>ある時点で、<a href="overseer-of-vault-76.html" class="auto-link">Vault 76の監督官</a>がマウンテンサイド・ベッド＆ブレックファストでモール・マイナーに重傷を負わされ、その体験を詳述するホロテープログを残している。</p>
+
+            <p>ほぼすべての者に対して敵対的だが（唯一の知られた例外はパーヴェイヤー・マームル）、モール・マイナーは極めて攻撃的で武装しており、<a href="mall-rat.html" class="auto-link">モールラット</a>を飼い慣らすことにすら成功している。<br>
+            彼らはショットガン、アサルトライフル、ミサイルランチャー、さらにはモール・マイナー・ガントレットなどの即席武器を使用して敵を攻撃する一方、モールラットを通常の攻撃用動物から移動式地雷まで様々に活用している。</p>
+
+            <img src="images/note_extracted/mole-miner/76_BC_The_Welch_lookout.jpg" alt="ウェルチのモール・マイナー" class="article-image" style="max-width: 80%;" onclick="openLightbox(this)">
+            <div class="image-caption">ウェルチに住むモール・マイナー</div>
+
+            <h3>2102年以降の動向</h3>
+            <p>2102年、モール・マイナーはラッキー・ホール鉱山の上層トンネルで採集を行っているのが目撃された。<br>
+            <em>Wastelanders</em>の出来事では、2103年に帰還した翼ある者の信徒たちによって追い出された。</p>
+
+            <p>2104年、モール・マイナーは積灰の山の地下に生息する巨大モールラット——<strong>ウルトラサイト・タイタン</strong>に仕えていることが判明した。<br>
+            また、ヌカ・ワールド・オン・ツアーの<strong>トンネル・オブ・ラブ</strong>も襲撃した。</p>
+
+            <p>2105年、モール・マイナーはザ・クロスヘアの廃鉱山でブラッド・イーグルと衝突した。<br>
+            最終的に、ブラッド・イーグルがトンネルの自分たちの区画をバリケードで封鎖したことで、両グループは戦闘を停止した。</p>
+
+            <h2>特徴</h2>
+            <h3>身体的特徴</h3>
+            <p>かつて人間であったモール・マイナーは、ずんぐりとしてたくましい人型に変異し、部外者に対して縄張り意識の強い敵意を示す。<br>
+            四肢は極端に短く太く、爪を持っている。<br>
+            永久的に前かがみの姿勢で、四肢を体に密着させている。<br>
+            厚い層の衣服を着ているが、フードの下を注意深く見ると顔の一部が確認できる。<br>
+            眼が不自然に飛び出し、顔は膨らんで輪郭が不明瞭である。</p>
+
+            <p>モール・マイナーは呼吸器と呼吸装置がなければ生存できず、それを除去するとほぼ即座に窒息してしまう。<br>
+            人間には聞き取れない言葉を話す。</p>
+
+            <p>彼らの変異は強力な筋力を与え、重火器を難なく扱うことができる。<br>
+            その攻撃性と耐久性により、よろめきに耐える能力を持ち、決然としたシャッフルで敵との距離を素早く詰めることができる。</p>
+
+            <h3>ゲームプレイ属性</h3>
+            <p>モール・マイナーは組織化されたグループで生活し、通常はフォアマンまたはスーパーバイザーに率いられている。<br>
+            モールラットを除く全てに対して即座に敵対的で、モールラットは味方として共に戦う。</p>
+
+            <p>ショットガンやミサイルランチャーなど大ダメージの武器で標的に向かっていく。<br>
+            低レベルのプレイヤーキャラクターを容易かつ迅速に倒すことができる。<br>
+            主に鉱山エリア付近にグループで配置されているが、アパラチア各地でも見かけることがある。</p>
+
+            <h2>バリアント一覧</h2>
+            <table class="variant-table">
+                <thead>
+                    <tr><th>名前</th><th>レベル</th><th>特記事項</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>モール・マイナー</td><td>2</td><td>基本バリアント</td></tr>
+                    <tr><td>モール・マイナー・スクレイパー</td><td>4</td><td>—</td></tr>
+                    <tr><td>モール・マイナー・ディガー</td><td>8</td><td>コンバットショットガンを追加装備</td></tr>
+                    <tr><td>モール・マイナー・ロックブレイカー</td><td>14</td><td>—</td></tr>
+                    <tr><td>モール・マイナー・フォアマン</td><td>22</td><td>モール・マイナー・ガントレットを装備</td></tr>
+                    <tr><td>モール・マイナー・スーパーバイザー</td><td>30</td><td>ミサイルランチャーを装備</td></tr>
+                    <tr><td>グローイング・モール・マイナー</td><td>40</td><td>グローイングブラッド、核廃棄物をドロップ</td></tr>
+                    <tr><td>モール・マイナー・サッパー</td><td>50</td><td>ミサイルランチャー装備</td></tr>
+                    <tr><td>モール・マイナー・ドレッジャー</td><td>65</td><td>ミサイルランチャー装備</td></tr>
+                    <tr><td>モール・マイナー・スカルクラッシャー</td><td>80</td><td>ミサイルランチャー装備</td></tr>
+                    <tr><td>デッドリー・モール・マイナー</td><td>95</td><td>最上位バリアント</td></tr>
+                </tbody>
+            </table>
+
+            <h3>スコーチ・モール・マイナー</h3>
+            <img src="images/note_extracted/mole-miner/Scorched_Mole_Miner.png" alt="スコーチ・モール・マイナー" class="article-image" style="max-width: 50%;" onclick="openLightbox(this)">
+            <div class="image-caption">スコーチ・モール・マイナー</div>
+            <p><a href="scorch.html" class="auto-link">スコーチ</a>病に感染したモール・マイナーの焦げた肉質のバリアント。<br>
+            通常のモール・マイナーのすべてのバリアントには、同じステータス、能力、アイテムを持つ対応するスコーチバリアントが存在する。<br>
+            スコーチビーストやスコーチビースト・クイーンに攻撃されるとスコーチ化し、他のスコーチクリーチャーの味方になることがある。</p>
+
+            <h3>モール・マイナー・ジャガーノート</h3>
+            <img src="images/note_extracted/mole-miner/FO76LL_Mole_Miner_Juggernaut.png" alt="モール・マイナー・ジャガーノート" class="article-image" style="max-width: 50%;" onclick="openLightbox(this)">
+            <div class="image-caption">モール・マイナー・ジャガーノート</div>
+            <p>水色のマントと重い鉱石のバックパックを身につけた、非常に強力なモール・マイナー。<br>
+            デイリーオプスの敵勢力がモール・マイナーの場合にボスとして登場する。</p>
+
+            <h3>トレジャーハンター</h3>
+            <img src="images/note_extracted/mole-miner/FO76WL_Treasure_hunter_mole_miner.png" alt="トレジャーハンター" class="article-image" style="max-width: 30%;" onclick="openLightbox(this)">
+            <div class="image-caption">トレジャーハンター・モール・マイナー</div>
+            <p>「Hunt for the Treasure Hunter」コミュニティイベント中に遭遇するユニークなモール・マイナーバリアント。<br>
+            背中にハンドカートを大型バックパックとして括りつけ、ロープで様々な袋やその他の物を固定している。<br>
+            バックパックにはウォーキートーキーが取り付けられており、無線の静電音とモールス信号を発している。<br>
+            プレイヤーが近づくほど音量とパルス速度が上がり、スコーチやフェラル・グールの将校がアパラチアの核発射コードを持っているのと同様の仕組みである。<br>
+            トレジャーハンターは常にレジェンダリーの敵として出現する。</p>
+            <ul>
+                <li>常に戦闘から逃走する</li>
+                <li>他のNPCと戦闘を行わない</li>
+                <li>Wasteland WhispererのPerkで鎮静化できない</li>
+            </ul>
+
+            <h3>ウルトラジェネティック・モール・マイナー・ストーカー</h3>
+            <img src="images/note_extracted/mole-miner/Ultragenetic_Stalker.png" alt="ウルトラジェネティック・ストーカー" class="article-image" style="max-width: 50%;" onclick="openLightbox(this)">
+            <div class="image-caption">ウルトラジェネティック・モール・マイナー・ストーカー</div>
+            <p><em>Gleaming Depths</em>アップデートで他のウルトラジェネティッククリーチャーとともに追加された。<br>
+            頭部にウルトラサイトの破片が突き出ている外見上の特徴を持つ。<br>
+            レイド「Gleaming Depths」がアクティブな間のみ、フェーズ2と4に出現する。</p>
+            <p>このモール・マイナーの攻撃は、HP、耐性、その他のダメージ軽減に関係なく、<strong>一撃で即死</strong>させていた。</p>
+
+            <h2>出現場所</h2>
+            <ul>
+                <li>ビッグ・ベンド・トンネル</li>
+                <li>ビッグ・メドウズ・ガスウェル（Skyline Valley）</li>
+                <li>ブラックウォーター鉱山</li>
+                <li>ブリム採石場</li>
+                <li><a href="hornwright-industrial-headquarters.html" class="auto-link">ホーンライト・インダストリアル本社</a> 地下</li>
+                <li>ホーンライト試験場 2・3・4</li>
+                <li>カーウッド鉱山</li>
+                <li>モノンガー発電所</li>
+                <li>モノンガー</li>
+                <li>マウント・ブレア操車場</li>
+                <li>マウント・ブレア</li>
+                <li>ザ・バーニング・マイン</li>
+                <li>ザ・ラスティ・ピック</li>
+                <li>アンキャニー・キャバーンズ</li>
+                <li>ウェルチ</li>
+            </ul>
+
+            <h2>著名なモール・マイナー</h2>
+            <ul>
+                <li><strong>パーヴェイヤー・マームル</strong> — ザ・ラスティ・ピックで見つかるベンダー（Wild Appalachiaで追加）</li>
+            </ul>
+
+            <h2>発見できるホロテープ・メモ</h2>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">監督官のログ — マウンテンサイド</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">マウンテンサイド・ベッド＆ブレックファストのポーチにある即席テーブルの上で入手。</p>
+                <div class="transcript">
+                    ＊咳き込む＊ 監督官のログ。山のどこかにて。<br><br>
+                    ＊苦しい呼吸＊ ああ……まずい、まずい、まずい。<br>
+                    集中しようとしているのですが、この痛みが尋常じゃない。<br>
+                    意識を失うかもしれないので、まだできるうちにこれを録音しておきたかった。<br>
+                    ある種の……ガスマスクを被って……厚いコートを着ていたけど、人間じゃない、人間じゃないものに襲われた。<br>
+                    スティムパックはもうない……自分が言っていたことを実践できてないっていう面白い冗談がここにあるわね……<br><br>
+                    こちらは監督官。できれば最後にならないことを祈りつつ、通信終了。
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h3><span class="note-icon">トーマス中尉の行動報告</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">ブリム採石場の南西にある塔の建物内、テーブルの上で入手。</p>
+                <div class="transcript">
+                    トーマス中尉 — 行動報告<br><br>
+                    <span class="date-entry">2140時、3/10/95　任務No. 23　目標：ブリム採石場</span>
+                    ヤス、ギャレット、ダスティン、オマール、そして私の5名で、本日日没の約1915時にブリム採石場への攻撃を開始した。<br>
+                    偵察報告では、我々の安全圏に近すぎる数の敵がいることが示されていた。<br><br>
+                    中程度の数の、まあ何と呼べばいいか分からないものと遭遇した。<br>
+                    古い重装鉱山スーツを着た二足歩行の何かに見える。<br>
+                    モンスターのように唸り、金切り声を上げるが、財布、鍵、時計が見つかる……<br>
+                    この新しい世界のすべての恐怖を理解できるようになるかどうか分からない。<br><br>
+                    結果：採石場頂上のキャンプを確保。全敵を排除。<br>
+                    戦死者1名：ギャレット。ダスティンは私たちを慰めようとした——おそらく苦しまなかっただろうと。<br>
+                    倒れる前に逝ったと。まだ20歳になったばかりだった。<br>
+                    この地獄のような世界しか知らなかった。それが彼を強くした。<br>
+                    まだ子供だったが、他者を助けるために戦い死ぬ覚悟があった。彼にはもっと良い運命が相応しかった。<br><br>
+                    採石場の頂上で火を焚けば残りの敵が来ると予想したが、何も来なかった。<br>
+                    他の報告と同様に、彼らは何も感じないし何も気にしないようだ。<br>
+                    人間ではありえない。少なくとも、もはや人間ではない。<br><br>
+                    出荷場近くの木箱のそばにギャレットを埋葬した。<br>
+                    彼にできるせめてもの事だった。<br>
+                    日の出とともに、丘の上の敵を攻撃する。チームはあそこに何が待っているか知っている。<br><br>
+                    以前、チャールストンで消防副官だった頃、新人に最初に教えたのは恐れずに炎の中に入ることだった。<br>
+                    <a href="charleston-fire-department.html" class="auto-link">ファイア・ブリーザー</a>と部隊にも同じことを叩き込んできた。<br>
+                    この採石場の頂上にどんな炎が待っていようと、我々は準備ができている。
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h3><span class="note-icon">モール・マイナー（研究ノート）</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">エンクレイヴ研究施設の実験室内、セルブロックBを過ぎた部屋のテーブルの上。Steel Dawnで追加。</p>
+                <div class="transcript">
+                    <strong style="display:block; text-align:center;">エンクレイヴ研究部門</strong><br>
+                    <u>被験体 B-06：</u><br><br>
+                    この被験体にはほとんど同情を覚える。<br>
+                    偵察隊がウェルチから2体を回収した。かつての住民だったと思われる。<br><br>
+                    中程度の知能を有しているように見える。<br>
+                    しかし、一方の被験体から呼吸装置を取り外したところ、ほぼ即座に窒息した。<br><br>
+                    さらなる研究の価値があるかもしれない。
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h3><span class="note-icon">不気味な生物</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">ザ・クロスヘアの廃鉱山にて、鉱山内の玉座近くにあるアイスクリームカートの上。</p>
+                <div class="transcript">
+                    あのブツブツ呟く連中が使っている、もっと大きなトンネル網の一部に過ぎないんじゃないかと考え始めている。<br><br>
+                    一掃するたびにもっと現れた。<br>
+                    ここにあったガラクタでトンネルをバリケードで塞いだら、ようやく出現しなくなった。
+                </div>
+            </div>
+
+            <h2>備考</h2>
+            <ul>
+                <li>死亡したモール・マイナーの死体から<strong>マイナーのキー</strong>が見つかることがあり、反復可能な雑務クエスト「Lost and Found」がアンロックされる。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>モール・マイナーは<em>Fallout 76</em>にのみ登場する。</p>
+
+            <h2>舞台裏</h2>
+            <p>モール・マイナーのセリフの多くは字幕では「くぐもった声」とされているが、ゲームファイル内のスクリプトノートには完全なセリフが含まれている。<br>
+            対話は意味不明に聞こえるかもしれないが、元のスクリプトノートはモール・マイナーのボイスラインを注意深く聞けば聞き取れる。<br>
+            デザイナーのフェレット・ボドワンは、これらのスクリプトノートが「直接的なカノンではない」とし、「あまり深読みしないでほしい」と述べている。</p>
+            <p>ゲーム内では直接明言されていないが、モール・マイナーはある程度<strong>ウルトラサイト・タイタン</strong>を崇拝しているようである。<br>
+            開発者たちはNuka-World on Tourアップデートの開発中にこのつながりを決定したが、崇拝の具体的な内容や、それに必要な知性のレベルについては「より未解決の問題」であるとしている。</p>
+
+            <details class="script-notes">
+                <summary>▶ モール・マイナーのスクリプトノート（クリックで展開）</summary>
+                <span class="note-category">待機時のセリフ：</span>
+                <ul>
+                    <li>掘り続けなきゃ……見つかるさ……もうすぐ……</li>
+                    <li>また地上のヤツが来ないかな……</li>
+                    <li>あの緑のヤツら……トンネルの中じゃ他と同じで何も見えねぇ……</li>
+                    <li>爪を研いでおかねぇと……</li>
+                    <li>あの青いスーツのヤツら……ズタズタに引き裂いてやりたい……</li>
+                </ul>
+                <span class="note-category">被弾時：</span>
+                <ul>
+                    <li>ウグッ！ それだけか？</li>
+                    <li>ウグッ！ ぶっ殺してやる！</li>
+                    <li>アグッ！ 殺してやる！</li>
+                    <li>ウッ！ 背骨を引きずり出してやる！</li>
+                    <li>やりやがったな！ お前は死んだ！</li>
+                    <li>来いよ！ それだけかよ？</li>
+                    <li>アグッ！ どうってことねぇ！</li>
+                    <li>アグッ！ 痛ぇじゃねぇか！</li>
+                </ul>
+                <span class="note-category">戦闘開始時：</span>
+                <ul>
+                    <li>今だ！</li>
+                    <li>あそこだ！</li>
+                    <li>殺せ！ 殺せ！</li>
+                    <li>全員バラバラに引き裂いてやる！</li>
+                    <li>全員ぶっ殺してやる！</li>
+                    <li>死ね！</li>
+                    <li>皮を剥いでやる！</li>
+                    <li>全身の骨をへし折ってやる！</li>
+                </ul>
+                <span class="note-category">通常行動に戻る時：</span>
+                <ul>
+                    <li>何もなかった……</li>
+                    <li>終わりだ……</li>
+                    <li>仕事に戻れ……</li>
+                    <li>忘れろ……</li>
+                    <li>クソ。逃げられた。</li>
+                    <li>次こそは……</li>
+                </ul>
+                <span class="note-category">警戒時：</span>
+                <ul>
+                    <li>何だ？</li>
+                    <li>ん？</li>
+                    <li>ふーん。</li>
+                    <li>誰だ？</li>
+                    <li>何か……</li>
+                    <li>あっちだ……</li>
+                </ul>
+                <span class="note-category">見失った時：</span>
+                <ul>
+                    <li>こっちか？</li>
+                    <li>ふーむ……</li>
+                    <li>もうすぐ……</li>
+                    <li>時間の問題だ……</li>
+                    <li>ここか？</li>
+                </ul>
+                <span class="note-category">戦闘終了時：</span>
+                <ul>
+                    <li>ああ。そうだ。ざまぁみろ。</li>
+                    <li>チョロいな……</li>
+                    <li>死んだままでいろ……</li>
+                    <li>それでいい。死ね。</li>
+                    <li>ハッ。それだけかよ？</li>
+                </ul>
+                <span class="note-category">警戒待機時：</span>
+                <ul>
+                    <li>見つけてやるぞ……</li>
+                    <li>いつまでも隠れてられねぇぞ……</li>
+                    <li>ここにいるのは分かってるんだ……</li>
+                    <li>出てこい……</li>
+                    <li>ウザいな……</li>
+                </ul>
+                <span class="note-category">味方が倒された時：</span>
+                <ul>
+                    <li>その報いを受けさせてやる！</li>
+                    <li>死んだな。次はお前だ！</li>
+                    <li>殺す理由がもう一つ増えたぜ！</li>
+                    <li>次はお前の番だ！</li>
+                </ul>
+                <span class="note-category">挑発時：</span>
+                <ul>
+                    <li>ぶっ殺してやる！</li>
+                    <li>お前は死んだ！</li>
+                    <li>バラバラに引き裂いてやる！</li>
+                    <li>顔を真っ二つにしてやる！</li>
+                    <li>お前の骨でトンネルを飾ってやる！</li>
+                    <li>二度と日の光を拝めなくしてやる！</li>
+                    <li>叫べよ、このクソ野郎！</li>
+                    <li>血を流せ！ もっと流せ！</li>
+                    <li>全身の骨をへし折ってやるぜ！</li>
+                    <li>お前の目に直接爪を突き立ててやる！</li>
+                    <li>歯を爪で引っこ抜いてやるぜ！</li>
+                    <li>逃げてみろよ！</li>
+                    <li>地獄まで引きずり込んでやる！</li>
+                </ul>
+                <span class="note-category">近接武器を振る時：</span>
+                <ul>
+                    <li>このクソ野郎を殺すぞ！</li>
+                    <li>接近戦は好きか？</li>
+                    <li>埋めてやるよ！</li>
+                    <li>バラバラにしてやる！ 床にはらわたを撒き散らしてやる！</li>
+                    <li>お前の骨が折れる音を聞かせてくれ！</li>
+                    <li>出血して死にやがれ、このクソ野郎！</li>
+                    <li>くらえ！</li>
+                    <li>地獄で会おうぜ！</li>
+                    <li>引き裂いてやる！</li>
+                </ul>
+            </details>
+
+            <h2>ギャラリー</h2>
+            <h3>ゲーム内</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/76_BC_The_Welch_lookout.jpg" alt="ウェルチの住人" onclick="openLightbox(this)"><div class="caption">ウェルチの住人</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76_Mole_miner.jpg" alt="モール・マイナー" onclick="openLightbox(this)"><div class="caption">モール・マイナー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/Fo76_Mole_Miner_2.png" alt="モール・マイナー" onclick="openLightbox(this)"><div class="caption">モール・マイナー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/Mole_Miner_Scrapper.png" alt="モール・マイナー・スクレイパー" onclick="openLightbox(this)"><div class="caption">スクレイパー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76_mole_miner_digger.png" alt="ディガー" onclick="openLightbox(this)"><div class="caption">ディガー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76_mole_miner_rockbreaker.png" alt="ロックブレイカー" onclick="openLightbox(this)"><div class="caption">ロックブレイカー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76_mole_miner_foreman.png" alt="フォアマン" onclick="openLightbox(this)"><div class="caption">フォアマン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76_mole_miner_supervisor.png" alt="スーパーバイザー" onclick="openLightbox(this)"><div class="caption">スーパーバイザー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76_glowing_mole_miner.png" alt="グローイング・モール・マイナー" onclick="openLightbox(this)"><div class="caption">グローイング・モール・マイナー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/Mole_Miners_Seismic_Activity.png" alt="ウルトラサイト・レーザーライフルを使用するモール・マイナー" onclick="openLightbox(this)"><div class="caption">Seismic Activity中にウルトラサイト・レーザーライフルを使用</div></div>
+            </div>
+            <h3>アート</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76_Legendary_Perk_Overcharged_Core_Art.png" alt="Overcharged Coreレジェンダリーパーク" onclick="openLightbox(this)"><div class="caption">Overcharged Coreレジェンダリーパークカード</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/FO76OW_Legend_card_surv_short.png" alt="Survival Shortcutパークカード" onclick="openLightbox(this)"><div class="caption">Survival Shortcutレジェンダリーパークカード</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/mole-miner/Ben_Carnow_Mole_miner.jpg" alt="コンセプトアート（Ben Carnow作）" onclick="openLightbox(this)"><div class="caption">コンセプトアート（Ben Carnow作）</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Fallout 76を代表するクリーチャーの一つであるモール・マイナー。<br>
+                序盤の積灰の山エリアで初めて遭遇した時の衝撃は忘れられません。<br>
+                財布や時計を持っているという設定がまた切ない——彼らはかつて普通の炭鉱夫だったんですよね。<br>
+                スーツの中に閉じ込められ、呼吸装置なしでは生きられないという設定は、Falloutらしい残酷な皮肉が効いています。<br><br>
+                ゲームプレイ的にはショットガンやミサイルランチャーを容赦なくぶっ放してくるので油断大敵です。<br>
+                特にスーパーバイザー以上のバリアントがミサイルを撃ってくると本当に危ない。<br>
+                一方で、パーヴェイヤー・マームルのように交易を行う個体もいるのが面白い。<br>
+                完全に理性を失ったわけではない——そこがフェラル・グールとの違いであり、モール・マイナーをより悲劇的な存在にしています。<br><br>
+                スクリプトノートの台詞を読むと、彼らの攻撃性の裏に「かつて人間だった」という自覚が垣間見えて、何とも言えない気持ちになります。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Mole_miner" target="_blank" rel="noopener">Mole miner</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) { const lb = document.getElementById('lightbox'); document.getElementById('lightboxImg').src = el.src; lb.classList.add('active'); }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+        document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_mole-miner';
+        const COOLDOWN_MS = 60000;
+        const NG_WORDS = ['http://', 'https://', 'LINE', 'DM', 'discord.gg'];
+        let lastCommentTime = 0;
+        let _adminMode = false;
+        const _adminPass = 'tq7jtq7j';
+        document.addEventListener('keydown', function(e) { if (e.ctrlKey && e.shiftKey && e.key === 'D') { const p = prompt('Admin password:'); if (p === _adminPass) { _adminMode = true; alert('Admin mode ON'); loadComments(); } } });
+        async function loadLikes() { if (!sb) return; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); const btn = document.querySelector('.like-button'); if (data) btn.querySelector('.like-count').textContent = data.count; if (localStorage.getItem('liked_' + ARTICLE_ID)) { btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } } catch(e) {} }
+        async function toggleLike(btn) { if (!sb) return; const liked = localStorage.getItem('liked_' + ARTICLE_ID); const delta = liked ? -1 : 1; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (data) { await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID); } else { await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 }); } if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; } else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (d2) btn.querySelector('.like-count').textContent = d2.count; } catch(e) {} }
+        function updateCharCount() { const ta = document.getElementById('commentInput'); document.getElementById('charCount').textContent = ta.value.length + ' / 500'; }
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+        async function loadComments() { if (!sb) return; const list = document.getElementById('commentsList'); try { const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false }); if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; } list.innerHTML = data.map(c => { const d = new Date(c.created_at); const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0'); const myId = localStorage.getItem('comment_id_' + c.id); const canDel = myId || _adminMode; return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (canDel ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>'; }).join(''); } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; } }
+        async function submitComment() { if (!sb) return; const hp = document.getElementById('hp_field'); if (hp && hp.value) return; const ta = document.getElementById('commentInput'); const body = ta.value.trim(); const msg = document.getElementById('commentMsg'); if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; } if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; } for (const w of NG_WORDS) { if (body.includes(w)) { msg.textContent = 'この内容は投稿できません'; msg.style.color = '#ff4444'; return; } } const now = Date.now(); if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; } const btn = document.getElementById('commentSubmitBtn'); btn.disabled = true; try { const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single(); if (error) throw error; if (data) localStorage.setItem('comment_id_' + data.id, '1'); ta.value = ''; updateCharCount(); lastCommentTime = now; msg.textContent = '投稿しました'; msg.style.color = 'var(--accent-color)'; loadComments(); } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; } btn.disabled = false; }
+        async function deleteComment(id) { if (!sb || !confirm('このコメントを削除しますか?')) return; try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) {} }
+        loadLikes(); loadComments();
+    </script>
+</body>
+</html>

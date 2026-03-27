@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Poseidon Oil | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/poseidon-oil.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Poseidon Oil | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ポセイドン・オイル — ポセイドン・エネルギーの子会社。石油採掘・精製と原子力を手がける。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/poseidon-oil/logo_fo2.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/poseidon-oil.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Poseidon Oil | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ポセイドン・オイル — ポセイドン・エネルギーの子会社。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/poseidon-oil/logo_fo2.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="勢力" data-article-appearance="Fallout 2">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Poseidon Oil</h3>
+            <img src="images/note_extracted/poseidon-oil/logo_fo2.png" alt="ポセイドン・オイル ロゴ" onclick="openLightbox(this)">
+            <img src="images/note_extracted/poseidon-oil/gecko_ending.png" alt="ゲッコー グッドエンディング" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">業種</span><span>エネルギー（主に石油）</span></div>
+            <div class="infobox-row"><span class="infobox-label">親会社</span><span><a href="poseidon-energy.html" class="auto-link">ポセイドン・エネルギー</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">主要拠点</span><span><a href="enclave-oil-rig.html" class="auto-link">石油リグ</a><br>ナバロ精製所<br>原子炉第5号（ゲッコー）<br>PMVバルディーズ</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連企業</span><span>ペトロ・チコ<br><a href="poseidon-gasoline.html" class="auto-link">ポセイドン・ガソリン</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 2</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_poseidon-oil" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Poseidon Oil<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ポセイドン・オイル</span></h1>
+
+            <h2>概要</h2>
+            <p><strong>ポセイドン・オイル</strong>は、<a href="poseidon-energy.html" class="auto-link">ポセイドン・エネルギー</a>の子会社であり、大戦前に活動していた。</p>
+            <p>ポセイドンは、市場シェアと利益率を維持するための攻撃的な戦略で知られていた。
+            子会社、関連組織、手先のネットワークはさまざまな形で運営されていた——「ポセイドン・オイル」や「<a href="poseidon-gasoline.html" class="auto-link">ポセイドン・ガソリン</a>」のような公然としたブランディング活動から、企業に数十億ドルの利益をもたらすために数百万ドルの報酬を受けるロビイストとの裏取引まで多岐にわたった。</p>
+
+            <h2>背景</h2>
+            <p>ポセイドン・カルテルの重要な一員であるポセイドン・オイルは、石油の採掘・精製、原子力、そして自動化を含む複数のエネルギー分野に多額の投資を行っていた。
+            強固なコーポレート・アイデンティティを持ち、ポジティブなパブリックイメージを維持していた。</p>
+            <p>しかし同時に、軍産複合体の一部でもあり、軍用グレードの兵器にアクセスできた。
+            これには艦艇防衛用の自動対艦砲やフレンドリーファイアを回避するためのIFF（敵味方識別）トランスポンダー、その他の高度なセキュリティ対策が含まれていた。
+            すべてのポセイドン・オイル施設は、大陸をまたぐカルテルの統合ネットワーク「<strong>PoseidoNet</strong>」に接続されていた。</p>
+
+            <div class="quote-box">
+                <b>「この船はポセイドンのタンカーだ。戦争を乗り越えた技術を装備している。ナビゲーションコンピュータ室へのアクセスを可能にするFOBがあり、ポセイドンの砲台から身を守るIFFトランスポンダーも搭載されている。」</b>
+                <br>— A・ロン・マイヤーズ（Fallout 2）
+            </div>
+
+            <p>ポセイドンは自動化に多額の投資を行い、ナビゲーションコンピュータが作動している限り完全に自律航行可能なタンカーを運用し、ゲッコーの原子力発電所を含むポセイドン施設の自律的な維持管理が可能な完全自動メンテナンス・修理ロボットを実装していた。</p>
+
+            <h2>資産</h2>
+            <p>この企業に属する主要施設は以下の通りであった：</p>
+            <ul>
+                <li><strong>原子炉第5号</strong>（ゲッコー） — ゲッコーの町にある原子力発電所。PoseidoNetに接続されていた。</li>
+                <li><a href="enclave-oil-rig.html" class="auto-link"><strong>ポセイドン・オイル・リグ</strong></a> — 大統領用核シェルター「PR_002」に転用され、大戦後は<a href="enclave.html" class="auto-link">エンクレイヴ</a>の西部における主要本部となった。選ばれし者によって破壊されるまで使用された。</li>
+                <li><strong>ナバロ精製所</strong> — カリフォルニア沿岸に位置する精製施設。PoseidoNetに接続されていた。</li>
+                <li><strong>PMVバルディーズ</strong> — 石油タンカー。航行可能な船舶であり、石油リグへのアクセスによりエンクレイヴ打倒において重要な役割を果たした。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>ポセイドン・オイルは<em>Fallout 2</em>に登場し、<em>Fallout Bible</em>および<em>Fallout: The Roleplaying Game</em>で言及されている。また、ブラック・アイル・スタジオが開発中止した<em>Fallout 3</em>である<em>Van Buren</em>でも言及される予定だった。</p>
+
+            <h2>舞台裏</h2>
+            <ul>
+                <li>ポセイドン・オイルは<em>Van Buren</em>で小さな役割を果たす予定であり、マクソン・バンカーの資金源の一つ、およびティベッツ刑務所の接収に関わるものだった。</li>
+                <li>クリス・アヴェロンは<em>Fallout Bible 8</em>でポセイドンの企業慣行について見解を述べた：
+                    <ul>
+                        <li>PMVバルディーズは核融合エネルギーに改装されていない非常に古い船であった。</li>
+                        <li>ポセイドン・オイルは（戦前の時代には）たとえ実用的であっても、自社のタンカーに核融合セルを使わせようとはしなかっただろう——それは会社のイメージに反するからである。おまけに、あれほど巨大なものがあれほど小さなもので動くという事実は、会社の自信を傷つける。</li>
+                        <li>燃料の入手がゲームプレイ上の冒険の種（シーやハボロジストとの取引）を提供し、資源戦争の切迫感を強調する役割も担っていた。</li>
+                        <li>船名は現実の<strong>エクソン・バルディーズ号</strong>原油流出事故への言及である。</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/poseidon-oil/logo_fo2.png" alt="ポセイドン・オイル ロゴ" onclick="openLightbox(this)"><div class="caption">ポセイドン・オイル ロゴ（FO2）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/poseidon-oil/logotype.png" alt="ロゴタイプ（再現）" onclick="openLightbox(this)"><div class="caption">ロゴタイプ（再現）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/poseidon-oil/gecko_ending.png" alt="ゲッコー グッドエンディング" onclick="openLightbox(this)"><div class="caption">Fallout 2 ゲッコー グッドエンディング</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br>
+                ポセイドン・エネルギーの中核をなす石油部門。<br>
+                「会社のイメージに反するから核融合セルを使わない」というアヴェロンの舞台裏解説は、Fallout世界の企業文化の矛盾を見事に表現しています。<br>
+                実用性よりもブランドイメージ——枯渇しつつある化石燃料にしがみつく企業体という構図が、まさに資源戦争の本質を象徴していますね。<br>
+                PMVバルディーズの名前がエクソン・バルディーズ号事故への皮肉な言及というのも、Falloutらしいブラックユーモアです。
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 15px; border-top: 1px solid #333; font-size: 0.8em; color: #666; line-height: 1.6;">
+                <p>この記事は <a href="https://fallout.fandom.com/wiki/Poseidon_Oil" target="_blank" rel="noopener noreferrer" style="color: #888;">Nukapedia (Fallout Wiki)</a>の「Poseidon Oil」の記事を日本語に翻訳し再構成したものです。<br>
+                原文は <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color: #888;">Creative Commons Attribution-ShareAlike (CC BY-SA)</a> ライセンスのもとで利用しています。</p>
+                <p>© Bethesda Softworks LLC. Fallout およびすべての関連ロゴ・名称は Bethesda Softworks LLC の登録商標です。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = el.src;
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_poseidon-oil';
+        const COOLDOWN_MS = 60000;
+        let lastCommentTime = 0;
+
+        async function loadLikes() {
+            if (!sb) return;
+            try {
+                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                const btn = document.querySelector('.like-button');
+                if (data) btn.querySelector('.like-count').textContent = data.count;
+                if (localStorage.getItem('liked_' + ARTICLE_ID)) {
+                    btn.classList.add('liked');
+                    btn.querySelector('.heart').textContent = '♥';
+                }
+            } catch(e) { console.log('likes load error', e); }
+        }
+
+        async function toggleLike(btn) {
+            if (!sb) return;
+            const liked = localStorage.getItem('liked_' + ARTICLE_ID);
+            const delta = liked ? -1 : 1;
+            try {
+                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                if (data) {
+                    await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID);
+                } else {
+                    await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 });
+                }
+                if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; }
+                else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; }
+                const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                if (d2) btn.querySelector('.like-count').textContent = d2.count;
+            } catch(e) { console.log('like error', e); }
+        }
+
+        function updateCharCount() {
+            const ta = document.getElementById('commentInput');
+            document.getElementById('charCount').textContent = ta.value.length + ' / 500';
+        }
+
+        async function loadComments() {
+            if (!sb) return;
+            const list = document.getElementById('commentsList');
+            try {
+                const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false });
+                if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; }
+                list.innerHTML = data.map(c => {
+                    const d = new Date(c.created_at);
+                    const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+                    const myId = localStorage.getItem('comment_id_' + c.id);
+                    return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (myId ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>';
+                }).join('');
+            } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; }
+        }
+
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+        async function submitComment() {
+            if (!sb) return;
+            const ta = document.getElementById('commentInput');
+            const body = ta.value.trim();
+            const msg = document.getElementById('commentMsg');
+            if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; }
+            if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; }
+            const now = Date.now();
+            if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; }
+            const btn = document.getElementById('commentSubmitBtn');
+            btn.disabled = true;
+            try {
+                const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single();
+                if (error) throw error;
+                if (data) localStorage.setItem('comment_id_' + data.id, '1');
+                ta.value = '';
+                updateCharCount();
+                lastCommentTime = now;
+                msg.textContent = '投稿しました';
+                msg.style.color = 'var(--accent-color)';
+                loadComments();
+            } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; }
+            btn.disabled = false;
+        }
+
+        async function deleteComment(id) {
+            if (!sb || !confirm('このコメントを削除しますか?')) return;
+            try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) { console.log('delete error', e); }
+        }
+
+        loadLikes();
+        loadComments();
+    </script>
+</body>
+</html>

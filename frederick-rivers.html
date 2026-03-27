@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frederick Rivers | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/frederick-rivers.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Frederick Rivers | Overseer Mohi's Terminal">
+    <meta property="og:description" content="フレデリック・リバーズ。リバーサイド邸の地下基地を建造した天才発明家。妻シャノンへの愛がオーダー・オブ・ミステリーの技術基盤を生んだ。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/frederick-rivers/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/frederick-rivers.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Frederick Rivers | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="シャノンの笑顔のために夢を形にし続けた男。リバーサイド邸の地下に秘密基地を建造し、オーダーの技術的支柱となった発明家の物語。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/frederick-rivers/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .holotape-box { border-left: 4px solid #ff9800; margin: 20px 0; background: rgba(255,152,0,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #ff9800; }
+        .note-box { border-left: 4px solid #42a5f5; margin: 20px 0; background: rgba(66,165,245,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #42a5f5; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="キャラクター" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Frederick Rivers</h3>
+            <img src="images/note_extracted/frederick-rivers/img_main.png" alt="リバーサイド邸の応接室にある肖像画" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>オーダー・オブ・ミステリー</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>技術担当<br>発明家（戦前）<br>建築家（戦前）</span></div>
+            <div class="infobox-row"><span class="infobox-label">家族</span><span>シャノン・リバーズ（妻・故人）<br>オリヴィア・リバーズ（娘・故人）</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>Patrick Dollaghan</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76（言及のみ）</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_frederick_rivers" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Frederick Rivers<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">フレデリック・リバーズ</span></h1>
+
+            <h2>背景</h2>
+            <p>
+                <strong>フレデリック・リバーズ</strong>は、<a href="riverside-manor.html" class="auto-link">オーダー・オブ・ミステリー</a>の創設メンバーの一人であり、<a href="great-war.html" class="auto-link">大戦</a>前のアパラチアで著名な発明家にして建築家でした。<br>
+                有名女優<strong>シャノン・リバーズ</strong>の夫であり、<a href="olivia-rivers.html" class="auto-link">オリヴィア</a>の父です。
+            </p>
+
+            <h3>シャノンとの出会い</h3>
+            <p>
+                二人はフレデリックの工学研究所のためのチャリティー・ディナーで出会いました。<br>
+                シャノンはセレブゲストとして招かれていましたが、まだキャリアが軌道に乗る前で、誰も彼女を知りませんでした。<br>
+                フレデリックは隅にいた彼女を見つけ、自分の仕事——製造アルゴリズム——について夢中で語り始めました。<br>
+                驚いたことに、彼女は本当に興味を持ち、気にかけてくれました。<br><br>
+                何気ない会話が、生涯の親密な関係へと花開きました。<br>
+                シャノンには彼の仕事を理解するだけでなく、巨大企業に搾取されることなく新しいアイデアやデザインを探求する価値を見出す才気がありました。<br>
+                二人の取り決めはこうでした——シャノンの収入とロイヤリティのおかげで、フレデリックは収益性に関係なく自由にプロジェクトを追求できる。<br>
+                彼は夢を見て、実験し、彼女の想像を超えるものを創り出す。そしてそれを共有する。<br>
+                <strong>彼女の反応と承認は、どんな利益や賞よりも彼にとって大きな意味を持っていました。</strong>
+            </p>
+
+            <h3>秘密基地の建設</h3>
+            <p>
+                ヒューブリス社がシルバー・シュラウドをテレビドラマ化することを決めた時、フレデリックは四半世紀にわたって蓄えた財産を注ぎ込み、ミステリーの女主人の装備と秘密基地を再現する1年がかりの極秘プロジェクトを始動しました。<br><br>
+                熱狂的なファンの<strong>ケント・コノリー</strong>と共に——ケントはほぼ全てのデザイン決定にアドバイスを提供しました——フレデリックは<a href="riverside-manor.html" class="auto-link">リバーサイド邸</a>の地下に広大で機能的な秘密基地を建設しました。<br>
+                その設備には、<strong>国防情報局（DIA）</strong>がプロジェクトをキャンセルした後にRobCoから購入したカスタムメインフレームも含まれていました。<br><br>
+                2077年6月6日、フレデリックはシャノンにこの施設の全貌を披露。<br>
+                テレビシリーズのプリプロダクションが終盤に差し掛かる中、彼女の自信を大いに高めました。<br>
+                一家にお金は必要ありませんでしたが、シャノンは演技を続けたかった。彼女はそれを愛していた——そしてフレデリックはそれを支えました。
+            </p>
+
+            <h3>大戦後</h3>
+            <p>
+                しかし、準備の代償は家族に及びました。<br>
+                ストレスとシャノンの不安は娘オリヴィアに悪影響を与え、彼女は不機嫌で引きこもりがちになりました。<br>
+                母がボストンと自宅を行き来し準備に追われる中、オリヴィアは大勢の家庭教師に囲まれて過ごすしかありませんでした。<br>
+                フレデリック自身も全員に追いつくのに苦労していましたが、オリヴィアはそれができました——両親はその才能を育て続けたいと考えていました。<br><br>
+                リバーズ一家は備蓄で数カ月を生き延び、2078年7月8日にチャールストンへ物資補充に赴きました。<br>
+                帰路でレイダーに襲われた時、フレデリックは真水と無価値な紙幣で交渉しようとしましたが失敗。<br>
+                レイダーがオリヴィアに手をかけた瞬間、シャノンが行動しました。<br>
+                フレデリックが雇ったトレーナーとの数カ月の訓練により、シャノンは1分以内に数名を倒しました。<br><br>
+                フレデリックの冷静な理屈——「世界は変わった。娘は自分を守れなくてはならない」——がシャノンにオリヴィアの訓練を決意させました。<br>
+                シャノンがミステリーの女主人として活動を始めると、フレデリックが製作した装備——完全な戦闘装備一式——が彼女を変装させ、訓練を活かすことを可能にしました。
+            </p>
+
+            <h3>オーダー・オブ・ミステリーの技術担当</h3>
+            <p>
+                オーダー・オブ・ミステリーが創設されると、フレデリックは姉妹団の通常の階層構造の外に位置する<strong>技術担当</strong>として活動しました。<br><br>
+                常駐のギアヘッドとして、彼はCryptosと地下施設のメンテナンス、アップグレードと情報処理に注力。<br>
+                コンピュータシステムを妻の訓練用からオーダーの支援用に再プログラムし、入会、メンター割り当て、任務割り当てを自動化しました。<br><br>
+                レイチェル・ウェストと<strong>ジャネット・タイラー</strong>がプログラミングの大部分を引き継ぎ、フレデリックは新しいプロジェクトに集中する時間を確保。<br>
+                装備の製造と修理を自動化する<strong>製造装置</strong>も作り上げました。<br><br>
+                シャノンの保護者の中から後任候補も探していました——特にオリヴィアの元イニシエイトだったレイチェル・ウェストに注目していました。
+            </p>
+
+            <h3>オリヴィアとシャノンの対立</h3>
+            <p>
+                フレデリックはオリヴィアとシャノンの対立に対して一歩引いた立場を取り、二人にスペースを与えることを選びました。<br>
+                娘の可能性を信じ、二人が話し合って解決すべきだと考えていたのです。
+            </p>
+
+            <h3>運命</h3>
+            <div class="note-box">
+                <b>⚠ 注意</b><br>
+                フレデリックの正確な運命は不明です。<br>
+                遺体はオーダー関連のどの場所にも見つかっておらず、オリヴィアの裏切りの際やその後のホロテープでも言及されていません。<br>
+                <a href="olivia-rivers.html" class="auto-link">オリヴィア</a>のWiki記事ではフレデリックが殺害されたとの記述がありますが、ゲーム内での確証はありません。
+            </div>
+
+            <h2>備考</h2>
+            <ul>
+                <li>3本のホロテープ（<strong>Order of Mysteries - Production log 194, 209, 212</strong>）でフレデリックのプロジェクトと計画が語られています。</li>
+                <li>フレデリックは料理担当から外されました——彼が作った料理が共同部屋を3日間臭くした後のことです。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>フレデリック・リバーズは『<strong>Fallout 76</strong>』でのみ言及されるキャラクターです。</p>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                フレデリック・リバーズは、オーダー・オブ・ミステリーの物語の中で最も暖かい存在です。<br><br>
+                「ゲームに直接登場しない」キャラクターでありながら、彼の存在はオーダーの全てを支えています。<br>
+                リバーサイド邸の地下基地、Cryptosメインフレーム、戦闘装備の製造装置——プレイヤーがクエストで使う技術的インフラの全てが彼の手によるものです。<br><br>
+                特に心に残るのは、シャノンとの関係です。<br>
+                チャリティー・ディナーの片隅で製造アルゴリズムについて夢中で語るエンジニアと、それに本気で興味を持った無名の女優。<br>
+                「彼女の反応と承認は、どんな利益や賞よりも大きな意味を持っていた」——この一文に、フレデリックの全てが集約されています。<br>
+                彼は利益のためではなく、愛する人の夢を形にするために発明し続けた男でした。<br><br>
+                そして料理が壊滅的にヘタだったという小ネタも、彼の人間味をよく表しています。<br>
+                天才的な発明家が料理だけはどうにもならなかった——こういうディテールがFalloutのストーリーテリングの素晴らしさだと思います。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#OrderOfMysteries</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FrederickRivers</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Character</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Frederick_Rivers" target="_blank" rel="noopener">Frederick Rivers</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co'; const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'; const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        function openLightbox(img) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; lb.classList.add('active'); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡'; btn.querySelector('.like-count').textContent = count; btn.classList.toggle('liked', isLiked); }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); updateLikeButton(btn, isLiked, data ? data.like_count : 0); } });
+        const _commentArticleId = 'frederick-rivers'; const _commentArticleName = 'Frederick Rivers - フレデリック・リバーズ'; const _commentArticleUrl = 'frederick-rivers.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50); if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const hp = document.getElementById('hp_field'); if (hp && hp.value) return; const ngWords = ['http://', 'https://', 'LINE', 'DM', 'discord.gg']; if (ngWords.some(w => content.includes(w))) { showCommentMsg('不正な内容が含まれています。', false); return; } const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0'); const now = Date.now(); if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content}); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

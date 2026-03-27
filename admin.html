@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN: 記事管理ダッシュボード | Overseer Mohi's Terminal</title>
+    <meta name="robots" content="noindex, nofollow">
+    <!-- フォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --term-green: #33ff33;
+            --term-bg: #0a0a0a;
+            --term-dim: #00aa00;
+            --term-highlight: rgba(51, 255, 51, 0.15);
+            --panel-bg: #111;
+            --border-color: #1a3a1a;
+            --draft-orange: #cc8800;
+            --publish-blue: #00ccff;
+            --danger-red: #ff4444;
+            --success-green: #33ff33;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--term-bg);
+            color: var(--term-green);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CRTスキャンラインエフェクト */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%),
+                        linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+            z-index: 9999;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* ===== ヘッダー ===== */
+        .admin-header {
+            background: linear-gradient(180deg, #0f1a0f 0%, var(--term-bg) 100%);
+            border-bottom: 2px solid var(--term-green);
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            text-shadow: 0 0 5px var(--term-dim);
+        }
+
+        .admin-header h1 { font-size: 1.1em; font-weight: normal; letter-spacing: 2px; }
+
+        .header-left { display: flex; align-items: center; gap: 15px; }
+
+        .back-btn {
+            color: var(--term-green);
+            text-decoration: none;
+            border: 1px solid var(--term-green);
+            padding: 4px 10px;
+            font-size: 0.85em;
+            font-family: inherit;
+            background: rgba(51, 255, 51, 0.05);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .back-btn:hover { background: var(--term-green); color: #000; }
+
+        .header-stats { display: flex; gap: 20px; font-size: 0.85em; opacity: 0.8; }
+
+        .stat-value { color: var(--draft-orange); font-weight: bold; }
+
+        /* ===== メインコンテンツ ===== */
+        .admin-main { flex: 1; display: flex; overflow: hidden; }
+
+        /* ===== 左パネル ===== */
+        .list-panel {
+            width: 420px;
+            min-width: 320px;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .list-controls {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--panel-bg);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .control-row { display: flex; align-items: center; gap: 8px; }
+
+        .control-label { font-size: 0.8em; color: var(--term-dim); min-width: 60px; }
+
+        .search-input {
+            flex: 1;
+            background: rgba(0, 255, 0, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--term-green);
+            font-family: inherit;
+            font-size: 0.9em;
+            padding: 6px 10px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--term-green);
+            box-shadow: 0 0 8px rgba(51, 255, 51, 0.15);
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--term-dim);
+            padding: 3px 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.8em;
+            transition: all 0.15s;
+        }
+
+        .filter-btn:hover { color: var(--term-green); }
+
+        .filter-btn.active {
+            color: var(--term-green);
+            border-color: var(--term-green);
+            background: rgba(51, 255, 51, 0.1);
+        }
+
+        /* 一括操作 */
+        .batch-bar {
+            padding: 8px 15px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(204, 136, 0, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+
+        .publish-btn {
+            background: rgba(0, 204, 255, 0.1);
+            border: 1px solid var(--publish-blue);
+            color: var(--publish-blue);
+            padding: 4px 12px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85em;
+            transition: all 0.2s;
+        }
+
+        .publish-btn:hover {
+            background: var(--publish-blue);
+            color: #000;
+            box-shadow: 0 0 12px rgba(0, 204, 255, 0.3);
+        }
+
+        .publish-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .publish-btn:disabled:hover {
+            background: rgba(0, 204, 255, 0.1);
+            color: var(--publish-blue);
+            box-shadow: none;
+        }
+
+        /* 記事リスト */
+        .article-list {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--term-dim) #111;
+        }
+
+        .article-list::-webkit-scrollbar { width: 8px; }
+        .article-list::-webkit-scrollbar-track { background: #111; }
+        .article-list::-webkit-scrollbar-thumb { background: var(--term-dim); border: 1px solid var(--term-green); }
+
+        .article-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.15s;
+            gap: 10px;
+        }
+
+        .article-item:hover { background: var(--term-highlight); }
+
+        .article-item.selected {
+            background: rgba(0, 204, 255, 0.08);
+            border-left: 3px solid var(--publish-blue);
+        }
+
+        .article-item.active {
+            background: rgba(51, 255, 51, 0.1);
+            border-left: 3px solid var(--term-green);
+        }
+
+        .article-checkbox {
+            accent-color: var(--publish-blue);
+            width: 16px; height: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .article-info { flex: 1; min-width: 0; }
+
+        .article-name {
+            font-size: 0.9em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 3px;
+        }
+
+        .article-meta {
+            font-size: 0.72em;
+            color: var(--term-dim);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .meta-badge {
+            border: 1px solid var(--border-color);
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        .meta-date { color: var(--draft-orange); }
+
+        .article-publish-btn {
+            background: transparent;
+            border: 1px solid var(--term-dim);
+            color: var(--term-dim);
+            padding: 3px 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.75em;
+            transition: all 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .article-publish-btn:hover {
+            border-color: var(--publish-blue);
+            color: var(--publish-blue);
+            background: rgba(0, 204, 255, 0.1);
+        }
+
+        /* ===== 右パネル ===== */
+        .preview-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: #080808;
+        }
+
+        .preview-header {
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--panel-bg);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+
+        .preview-title { font-size: 0.9em; opacity: 0.9; }
+
+        .preview-actions { display: flex; gap: 8px; }
+
+        .preview-frame { flex: 1; border: none; width: 100%; background: #000; }
+
+        .preview-empty {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 10px;
+            color: var(--term-dim);
+            font-size: 0.9em;
+        }
+
+        .preview-empty .icon { font-size: 3em; opacity: 0.3; }
+
+        /* ===== トースト ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--panel-bg);
+            border: 1px solid var(--term-green);
+            color: var(--term-green);
+            padding: 12px 20px;
+            font-family: inherit;
+            font-size: 0.85em;
+            z-index: 10000;
+            box-shadow: 0 0 20px rgba(51, 255, 51, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s;
+            max-width: 400px;
+        }
+
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .toast.success { border-color: var(--success-green); color: var(--success-green); }
+        .toast.error { border-color: var(--danger-red); color: var(--danger-red); }
+
+        /* ===== モーダル ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 10001;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal {
+            background: #111;
+            border: 2px solid var(--term-green);
+            padding: 25px;
+            max-width: 550px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 0 40px rgba(51, 255, 51, 0.15);
+        }
+
+        .modal h2 {
+            font-size: 1em;
+            font-weight: normal;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--term-dim);
+        }
+
+        .modal-info {
+            font-size: 0.85em;
+            color: var(--term-dim);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-targets {
+            background: #000;
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            font-size: 0.82em;
+            color: var(--publish-blue);
+            margin-bottom: 15px;
+            max-height: 180px;
+            overflow-y: auto;
+            line-height: 1.7;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+
+        .modal-btn {
+            padding: 8px 20px;
+            border: 1px solid;
+            background: transparent;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.85em;
+            transition: all 0.2s;
+        }
+
+        .modal-btn.primary {
+            border-color: var(--publish-blue);
+            color: var(--publish-blue);
+        }
+
+        .modal-btn.primary:hover {
+            background: var(--publish-blue);
+            color: #000;
+        }
+
+        .modal-btn.danger {
+            border-color: var(--success-green);
+            color: var(--success-green);
+        }
+
+        .modal-btn.danger:hover {
+            background: var(--success-green);
+            color: #000;
+        }
+
+        .modal-btn.secondary {
+            border-color: var(--term-dim);
+            color: var(--term-dim);
+        }
+
+        .modal-btn.secondary:hover {
+            border-color: var(--term-green);
+            color: var(--term-green);
+        }
+
+        .modal-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* ===== GitHub PAT設定 ===== */
+        .token-bar {
+            padding: 8px 15px;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(0, 204, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78em;
+            flex-shrink: 0;
+        }
+
+        .token-input {
+            flex: 1;
+            background: rgba(0, 255, 0, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--publish-blue);
+            font-family: inherit;
+            font-size: 1em;
+            padding: 4px 8px;
+            outline: none;
+        }
+
+        .token-input:focus {
+            border-color: var(--publish-blue);
+        }
+
+        .token-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--danger-red);
+            flex-shrink: 0;
+        }
+
+        .token-status.connected { background: var(--success-green); box-shadow: 0 0 6px var(--success-green); }
+
+        /* ===== 処理中オーバーレイ ===== */
+        .processing-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10002;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            color: var(--term-green);
+            font-family: inherit;
+        }
+
+        .processing-overlay.show { display: flex; }
+
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--term-green);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ===== フッター ===== */
+        .admin-footer {
+            padding: 8px 20px;
+            text-align: center;
+            font-size: 0.75em;
+            opacity: 0.5;
+            border-top: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        /* ===== レスポンシブ ===== */
+        @media (max-width: 900px) {
+            .admin-main { flex-direction: column; }
+
+            .list-panel {
+                width: 100%;
+                min-width: 0;
+                max-height: 50vh;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .preview-panel { min-height: 50vh; }
+            .header-stats { display: none; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== ヘッダー ===== -->
+    <div class="admin-header">
+        <div class="header-left">
+            <a href="lore.html" class="back-btn">< BACK</a>
+            <h1>> ADMIN: 記事管理ダッシュボード</h1>
+        </div>
+        <div class="header-stats">
+            <span>DRAFT: <span class="stat-value" id="draft-count">-</span></span>
+            <span>PUBLISHED: <span class="stat-value" style="color:var(--success-green)" id="published-count">-</span></span>
+            <span>TOTAL: <span class="stat-value" style="color:var(--term-green)" id="total-count">-</span></span>
+        </div>
+    </div>
+
+    <!-- ===== メインコンテンツ ===== -->
+    <div class="admin-main">
+        <!-- 左パネル -->
+        <div class="list-panel">
+            <!-- GitHub PAT -->
+            <div class="token-bar">
+                <div class="token-status" id="token-status" title="GitHub APIの接続状態"></div>
+                <span>GitHub PAT:</span>
+                <input type="password" class="token-input" id="token-input"
+                    placeholder="ghp_xxxxxxxxxxxx"
+                    oninput="saveToken()" onchange="saveToken()">
+                <button class="back-btn" onclick="testToken()" style="font-size:0.9em;padding:2px 8px">接続テスト</button>
+            </div>
+
+            <div class="list-controls">
+                <div class="control-row">
+                    <span class="control-label">SEARCH:</span>
+                    <input type="text" id="searchInput" class="search-input" placeholder="記事名を検索..." oninput="debouncedFilter()">
+                </div>
+                <div class="control-row">
+                    <span class="control-label">CATEGORY:</span>
+                    <button class="filter-btn active" data-filter="all" onclick="setCategory('all')">ALL</button>
+                    <button class="filter-btn" data-filter="人物" onclick="setCategory('人物')">人物</button>
+                    <button class="filter-btn" data-filter="場所" onclick="setCategory('場所')">場所</button>
+                    <button class="filter-btn" data-filter="勢力" onclick="setCategory('勢力')">勢力</button>
+                    <button class="filter-btn" data-filter="クリーチャー" onclick="setCategory('クリーチャー')">生物</button>
+                    <button class="filter-btn" data-filter="武器" onclick="setCategory('武器')">武器</button>
+                    <button class="filter-btn" data-filter="アイテム" onclick="setCategory('アイテム')">道具</button>
+                    <button class="filter-btn" data-filter="植物" onclick="setCategory('植物')">植物</button>
+                </div>
+            </div>
+
+            <!-- 一括操作 -->
+            <div class="batch-bar">
+                <div>
+                    <label style="cursor:pointer">
+                        <input type="checkbox" id="selectAll" class="article-checkbox" onchange="toggleSelectAll()">
+                        全選択 (<span id="selected-count">0</span> / <span id="filtered-count">0</span>)
+                    </label>
+                </div>
+                <button class="publish-btn" id="batch-publish-btn" onclick="publishSelected()" disabled>
+                    ▶ 選択を投稿
+                </button>
+            </div>
+
+            <!-- 記事リスト -->
+            <div class="article-list" id="article-list">
+                <div class="preview-empty" style="padding:40px">
+                    <div class="icon">⏳</div>
+                    <div>LOADING ENTRIES...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右パネル: プレビュー -->
+        <div class="preview-panel">
+            <div class="preview-header" id="preview-header" style="display:none">
+                <span class="preview-title" id="preview-title">> PREVIEW</span>
+                <div class="preview-actions">
+                    <a href="#" id="preview-open-btn" class="back-btn" target="_blank" style="font-size:0.8em">新しいタブで開く ↗</a>
+                    <button class="publish-btn" id="preview-publish-btn" onclick="publishCurrent()" style="font-size:0.8em">▶ この記事を投稿</button>
+                </div>
+            </div>
+            <iframe class="preview-frame" id="preview-frame" style="display:none"></iframe>
+            <div class="preview-empty" id="preview-empty">
+                <div class="icon">📄</div>
+                <div>> 左のリストから記事を選択してプレビュー</div>
+                <div style="font-size:0.8em; opacity:0.6; margin-top:5px">記事をクリックするとここにプレビューが表示されます</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <div class="admin-footer">
+        OVERSEER MOHI'S TERMINAL // ADMIN DASHBOARD // <span id="current-time"></span>
+    </div>
+
+    <!-- モーダル: 投稿確認 -->
+    <div class="modal-overlay" id="publish-modal">
+        <div class="modal">
+            <h2>> PUBLISH CONFIRMATION</h2>
+            <div class="modal-info">
+                以下の記事を公開します。<code>lore.html</code> から <code>isDraft: true</code> が除去され、GitHub に自動コミットされます。
+            </div>
+            <div class="modal-targets" id="publish-targets"></div>
+            <div class="modal-actions">
+                <button class="modal-btn secondary" onclick="closeModal()">CANCEL</button>
+                <button class="modal-btn danger" id="confirm-publish-btn" onclick="executePublish()">✓ 投稿を実行</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 処理中オーバーレイ -->
+    <div class="processing-overlay" id="processing">
+        <div class="spinner"></div>
+        <div id="processing-text">PUBLISHING...</div>
+    </div>
+
+    <!-- トースト -->
+    <div class="toast" id="toast"></div>
+
+    <script>
+    // ===== 管理者認証 =====
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('key') !== 'Tq7jtq7j') {
+            document.body.innerHTML = `
+                <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#0a0a0a;color:#4af626;font-family:'Share Tech Mono',monospace;">
+                    <div style="text-align:center;">
+                        <h1 style="font-size:2em;margin-bottom:10px;">> ACCESS DENIED</h1>
+                        <p style="color:#888;">管理者用ページです。正しいアクセスキーが必要です。</p>
+                        <a href="lore.html" style="display:inline-block;margin-top:20px;color:#4af626;border:1px solid #4af626;padding:8px 20px;text-decoration:none;">< BACK TO TERMINAL</a>
+                    </div>
+                </div>`;
+            throw new Error('Unauthorized');
+        }
+    })();
+
+    // ===== 定数 =====
+    const GITHUB_OWNER = 'futa1029';
+    const GITHUB_REPO = 'fallout-terminal-archive';
+    const GITHUB_BRANCH = 'main';
+    const LORE_FILE_PATH = 'lore.html';
+
+    // ===== 状態管理 =====
+    let allEntries = [];
+    let draftEntries = [];
+    let filteredEntries = [];
+    let selectedUrls = new Set();
+    let activeUrl = null;
+    let currentCategory = 'all';
+    let currentLoreContent = '';  // GitHub上のlore.htmlの中身
+    let currentLoreSha = '';      // GitHubのファイルSHA（更新時に必要）
+    let pendingPublishUrls = [];  // 投稿待ちURL
+
+    // ===== GitHub APIヘルパー =====
+    function getToken() {
+        return document.getElementById('token-input').value.trim();
+    }
+
+    function saveToken() {
+        localStorage.setItem('admin_github_pat', getToken());
+    }
+
+    async function githubFetch(endpoint, options = {}) {
+        const token = getToken();
+        if (!token) throw new Error('GitHub PATが設定されていません');
+
+        const res = await fetch(`https://api.github.com${endpoint}`, {
+            ...options,
+            headers: {
+                'Authorization': `token ${token}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json',
+                ...(options.headers || {})
+            }
+        });
+
+        if (!res.ok) {
+            const body = await res.json().catch(() => ({}));
+            throw new Error(`GitHub API Error ${res.status}: ${body.message || res.statusText}`);
+        }
+
+        return res.json();
+    }
+
+    async function testToken() {
+        const status = document.getElementById('token-status');
+        try {
+            const token = getToken();
+            if (!token) {
+                showToast('GitHub PATを入力してください', 'error');
+                return;
+            }
+            // リポジトリにアクセスできるか確認
+            await githubFetch(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}`);
+            status.classList.add('connected');
+            showToast('GitHub接続成功 ✓', 'success');
+        } catch (err) {
+            status.classList.remove('connected');
+            showToast(`接続失敗: ${err.message}`, 'error');
+        }
+    }
+
+    // ===== lore.htmlの取得（GitHub API経由） =====
+    async function fetchLoreFromGitHub() {
+        const data = await githubFetch(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${LORE_FILE_PATH}?ref=${GITHUB_BRANCH}`);
+        currentLoreSha = data.sha;
+        // Base64デコード（日本語対応）
+        const raw = atob(data.content.replace(/\n/g, ''));
+        currentLoreContent = new TextDecoder('utf-8').decode(
+            Uint8Array.from(raw, c => c.charCodeAt(0))
+        );
+        return currentLoreContent;
+    }
+
+    // ===== lore.htmlの更新（GitHub API経由） =====
+    async function pushLoreToGitHub(newContent, commitMessage) {
+        // UTF-8対応Base64エンコード
+        const encoder = new TextEncoder();
+        const bytes = encoder.encode(newContent);
+        let binary = '';
+        bytes.forEach(b => binary += String.fromCharCode(b));
+        const base64Content = btoa(binary);
+
+        const data = await githubFetch(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${LORE_FILE_PATH}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                message: commitMessage,
+                content: base64Content,
+                sha: currentLoreSha,
+                branch: GITHUB_BRANCH
+            })
+        });
+
+        // SHAを更新
+        currentLoreSha = data.content.sha;
+        return data;
+    }
+
+    // ===== エントリのロード =====
+    async function loadEntries() {
+        try {
+            // まずローカルfetchを試し、失敗したらGitHub APIを使う
+            let html;
+            try {
+                const res = await fetch('lore.html');
+                if (!res.ok) throw new Error('Local fetch failed');
+                html = await res.text();
+            } catch (e) {
+                // ローカルfetch失敗時はGitHub APIで取得
+                const token = getToken();
+                if (token) {
+                    html = await fetchLoreFromGitHub();
+                } else {
+                    throw new Error('lore.htmlを読み込めません。GitHub PATを設定してください。');
+                }
+            }
+
+            // loreEntries配列を抽出
+            const match = html.match(/const loreEntries = \[([\s\S]*?)\];/);
+            if (!match) throw new Error('loreEntries not found');
+
+            const fn = new Function('return [' + match[1] + '];');
+            allEntries = fn();
+
+            // ドラフトのみ抽出（古い順）
+            draftEntries = allEntries
+                .filter(e => e.isDraft === true)
+                .sort((a, b) => {
+                    const da = a.date ? new Date(a.date).getTime() : 0;
+                    const db = b.date ? new Date(b.date).getTime() : 0;
+                    return da - db;
+                });
+
+            const publishedCount = allEntries.filter(e => !e.isDraft).length;
+            document.getElementById('draft-count').textContent = draftEntries.length;
+            document.getElementById('published-count').textContent = publishedCount;
+            document.getElementById('total-count').textContent = allEntries.length;
+
+            applyFilter();
+
+        } catch (err) {
+            document.getElementById('article-list').innerHTML = `
+                <div class="preview-empty" style="padding:40px">
+                    <div class="icon" style="color:var(--danger-red)">⚠</div>
+                    <div style="color:var(--danger-red)">エントリの読み込みに失敗</div>
+                    <div style="font-size:0.8em;color:#888;margin-top:5px">${escapeHtml(err.message)}</div>
+                </div>`;
+        }
+    }
+
+    // ===== フィルタ・検索 =====
+    let _debounceTimer = null;
+    function debouncedFilter() {
+        clearTimeout(_debounceTimer);
+        _debounceTimer = setTimeout(applyFilter, 200);
+    }
+
+    function setCategory(cat) {
+        currentCategory = cat;
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === cat);
+        });
+        applyFilter();
+    }
+
+    function applyFilter() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+
+        filteredEntries = draftEntries.filter(entry => {
+            if (currentCategory !== 'all' && entry.category !== currentCategory) return false;
+            if (searchTerm) {
+                const nameMatch = entry.name.toLowerCase().includes(searchTerm);
+                const yomiMatch = entry.yomi && entry.yomi.toLowerCase().includes(searchTerm);
+                const urlMatch = entry.url.toLowerCase().includes(searchTerm);
+                if (!nameMatch && !yomiMatch && !urlMatch) return false;
+            }
+            return true;
+        });
+
+        renderList();
+    }
+
+    // ===== リスト描画 =====
+    function renderList() {
+        const container = document.getElementById('article-list');
+        document.getElementById('filtered-count').textContent = filteredEntries.length;
+
+        if (filteredEntries.length === 0) {
+            container.innerHTML = `
+                <div class="preview-empty" style="padding:40px">
+                    <div class="icon">🔍</div>
+                    <div>該当する下書き記事がありません</div>
+                </div>`;
+            return;
+        }
+
+        container.innerHTML = filteredEntries.map(entry => {
+            const isSelected = selectedUrls.has(entry.url);
+            const isActive = activeUrl === entry.url;
+            const classes = ['article-item'];
+            if (isSelected) classes.push('selected');
+            if (isActive) classes.push('active');
+
+            const badges = [];
+            if (entry.category) badges.push(`<span class="meta-badge">${escapeHtml(entry.category)}</span>`);
+            if (entry.appearance) {
+                entry.appearance.forEach(a => badges.push(`<span class="meta-badge">${escapeHtml(a)}</span>`));
+            }
+
+            return `
+                <div class="${classes.join(' ')}" data-url="${escapeHtml(entry.url)}" onclick="previewArticle('${escapeHtml(entry.url)}')">
+                    <input type="checkbox" class="article-checkbox"
+                        ${isSelected ? 'checked' : ''}
+                        onclick="event.stopPropagation(); toggleSelect('${escapeHtml(entry.url)}')"
+                    >
+                    <div class="article-info">
+                        <div class="article-name">> ${escapeHtml(entry.name)}</div>
+                        <div class="article-meta">
+                            <span class="meta-date">${entry.date || '不明'}</span>
+                            ${badges.join('')}
+                        </div>
+                    </div>
+                    <button class="article-publish-btn" onclick="event.stopPropagation(); publishSingle('${escapeHtml(entry.url)}')">
+                        PUBLISH
+                    </button>
+                </div>`;
+        }).join('');
+
+        updateBatchState();
+    }
+
+    // ===== プレビュー =====
+    function previewArticle(url) {
+        activeUrl = url;
+        const entry = draftEntries.find(e => e.url === url);
+
+        document.getElementById('preview-header').style.display = 'flex';
+        document.getElementById('preview-title').textContent = `> PREVIEW: ${entry ? entry.name : url}`;
+        document.getElementById('preview-open-btn').href = url;
+
+        const frame = document.getElementById('preview-frame');
+        frame.style.display = 'block';
+        document.getElementById('preview-empty').style.display = 'none';
+        frame.src = url;
+
+        document.querySelectorAll('.article-item').forEach(el => {
+            el.classList.toggle('active', el.dataset.url === url);
+        });
+    }
+
+    // ===== 選択管理 =====
+    function toggleSelect(url) {
+        if (selectedUrls.has(url)) { selectedUrls.delete(url); }
+        else { selectedUrls.add(url); }
+        updateBatchState();
+        renderList();
+    }
+
+    function toggleSelectAll() {
+        const allChecked = document.getElementById('selectAll').checked;
+        if (allChecked) { filteredEntries.forEach(e => selectedUrls.add(e.url)); }
+        else { filteredEntries.forEach(e => selectedUrls.delete(e.url)); }
+        updateBatchState();
+        renderList();
+    }
+
+    function updateBatchState() {
+        document.getElementById('selected-count').textContent = selectedUrls.size;
+        document.getElementById('batch-publish-btn').disabled = selectedUrls.size === 0;
+    }
+
+    // ===== 投稿フロー =====
+    function publishSingle(url) { showPublishModal([url]); }
+    function publishCurrent() { if (activeUrl) showPublishModal([activeUrl]); }
+    function publishSelected() { if (selectedUrls.size > 0) showPublishModal(Array.from(selectedUrls)); }
+
+    function showPublishModal(urls) {
+        pendingPublishUrls = urls;
+        const targetsEl = document.getElementById('publish-targets');
+
+        const entries = urls.map(url => {
+            const entry = draftEntries.find(e => e.url === url);
+            return entry ? `▶ ${entry.name} <span style="opacity:0.5">(${url})</span>` : `▶ ${url}`;
+        });
+        targetsEl.innerHTML = entries.join('<br>');
+
+        // トークンチェック
+        const hasToken = !!getToken();
+        document.getElementById('confirm-publish-btn').disabled = !hasToken;
+        if (!hasToken) {
+            targetsEl.innerHTML += '<br><br><span style="color:var(--danger-red)">⚠ GitHub PATが設定されていません。左上のPAT欄にトークンを入力してください。</span>';
+        }
+
+        document.getElementById('publish-modal').classList.add('show');
+    }
+
+    function closeModal() {
+        document.getElementById('publish-modal').classList.remove('show');
+    }
+
+    // ===== 投稿の実行（GitHub API） =====
+    async function executePublish() {
+        closeModal();
+        const processing = document.getElementById('processing');
+        const processingText = document.getElementById('processing-text');
+        processing.classList.add('show');
+
+        try {
+            // 1. GitHub からlore.htmlの最新版を取得
+            processingText.textContent = 'GitHub からlore.htmlを取得中...';
+            const loreContent = await fetchLoreFromGitHub();
+
+            // 2. isDraft: true を除去
+            processingText.textContent = `${pendingPublishUrls.length}件の記事を公開処理中...`;
+            let modifiedContent = loreContent;
+            let publishedNames = [];
+
+            for (const url of pendingPublishUrls) {
+                const entry = draftEntries.find(e => e.url === url);
+                const escapedUrl = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+                // パターン: date行の後の,\n isDraft: true を除去
+                const pattern = new RegExp(
+                    `(url:\\s*"${escapedUrl}"[\\s\\S]*?date:\\s*"[^"]*?")(,\\s*\\n\\s*isDraft:\\s*true)`,
+                    'g'
+                );
+
+                const before = modifiedContent;
+                modifiedContent = modifiedContent.replace(pattern, '$1');
+
+                if (modifiedContent !== before) {
+                    publishedNames.push(entry ? entry.name : url);
+                }
+            }
+
+            if (publishedNames.length === 0) {
+                throw new Error('一致するドラフトエントリが見つかりませんでした');
+            }
+
+            // 3. GitHub にコミット & プッシュ
+            processingText.textContent = 'GitHub にコミット中...';
+            const commitMsg = publishedNames.length === 1
+                ? `publish: ${publishedNames[0]}`
+                : `publish: ${publishedNames.length}件の記事を公開`;
+            await pushLoreToGitHub(modifiedContent, commitMsg);
+
+            processing.classList.remove('show');
+            showToast(`✓ ${publishedNames.length}件の記事を公開しました！`, 'success');
+
+            // 4. UI更新: 公開済み記事をリストから除去
+            selectedUrls.clear();
+            activeUrl = null;
+            document.getElementById('preview-header').style.display = 'none';
+            document.getElementById('preview-frame').style.display = 'none';
+            document.getElementById('preview-empty').style.display = 'flex';
+
+            // リロード
+            await loadEntries();
+
+        } catch (err) {
+            processing.classList.remove('show');
+            showToast(`エラー: ${err.message}`, 'error');
+            console.error('Publish error:', err);
+        }
+    }
+
+    // ===== ユーティリティ =====
+    function escapeHtml(str) {
+        if (!str) return '';
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function showToast(message, type = '') {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.className = 'toast ' + type;
+        setTimeout(() => toast.classList.add('show'), 10);
+        setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('current-time').textContent =
+            now.toLocaleString('ja-JP', { year:'numeric', month:'2-digit', day:'2-digit', hour:'2-digit', minute:'2-digit', second:'2-digit' });
+    }
+
+    // ===== 初期化 =====
+    document.addEventListener('DOMContentLoaded', () => {
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // 保存済みトークンの復元
+        const savedToken = localStorage.getItem('admin_github_pat');
+        if (savedToken) {
+            document.getElementById('token-input').value = savedToken;
+            // 接続状態をチェック
+            testToken();
+        }
+
+        loadEntries();
+    });
+
+    // ESCでモーダルを閉じる
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeModal();
+    });
+    </script>
+
+</body>
+
+</html>

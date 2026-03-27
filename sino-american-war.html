@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Sino-American War | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/sino-american-war.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Sino-American War | Overseer Mohi's Terminal">
+    <meta property="og:description" content="中米戦争 ── 2066年から2077年まで11年間続いた、資源をめぐる米中全面戦争。核の炎で幕を閉じた人類史最大の戦争。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/sino-american-war/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/sino-american-war.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Sino-American War | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="中米戦争 ── パワーアーマー vs ステルス技術。資源戦争の果てに待つ相互確証破壊。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/sino-american-war/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノートブロック（ターミナルエントリ・メモ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="イベント" data-article-appearance="Fallout シリーズ">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Sino-American War</h3>
+            <img src="images/note_extracted/sino-american-war/img_main.png" alt="中米戦争コラージュ">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>歴史的イベント</span></div>
+            <div class="infobox-row"><span class="infobox-label">期間</span><span>2066年冬 ─ 2077年10月23日</span></div>
+            <div class="infobox-row"><span class="infobox-label">戦場</span><span>アラスカ（アンカレッジ）<br>カナダ（ユーコン）<br>中国本土（揚子江、上海、南京）<br>ゴビ砂漠<br>マンバハオ（フィリピン）</span></div>
+            <div class="infobox-row"><span class="infobox-label">アメリカ側</span><span>アメリカ合衆国<br>カナダ（併合後）</span></div>
+            <div class="infobox-row"><span class="infobox-label">中国側</span><span>中華人民共和国</span></div>
+            <div class="infobox-row"><span class="infobox-label">アメリカ指導者</span><span>大統領<br>コンスタンティン・チェイス将軍<br>バズ・バブコック</span></div>
+            <div class="infobox-row"><span class="infobox-label">中国指導者</span><span>シン大統領<br>チェン議長<br>ジンウェイ将軍</span></div>
+            <div class="infobox-row"><span class="infobox-label">結果</span><span>大戦（核戦争）への<br>エスカレーション</span></div>
+            <div class="infobox-row"><span class="infobox-label">上位事象</span><span>資源戦争</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>全Falloutシリーズ</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_sino-american-war" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Sino-American War<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">中米戦争</span></h1>
+
+            <blockquote style="border-left: 3px solid #ff9900; padding: 10px 20px; margin: 20px 0; font-style: italic; color: #ccc;">
+                「外交はほぼ停止し、通常戦争は両国に歴史的な代償を強いている。多くの人が、この偉大なるアメリカが、ついに勝てない戦いに足を踏み入れたのではないかと思い始めている」<br>
+                <span style="color: #888; font-size: 0.85em;">── ニュースキャスター</span>
+            </blockquote>
+
+            <p>
+                <strong>中米戦争</strong>は、Falloutシリーズのタイムラインにおける<strong>最も重要な歴史的事象</strong>です。21世紀の二大超大国──<strong>中華人民共和国</strong>と<strong>アメリカ合衆国</strong>が、地球上に残された最後のエネルギー資源をめぐって衝突した全面戦争であり、資源の争いであると同時にイデオロギーの争いでした。
+            </p>
+            <p>
+                両国による外国人・自国民への残虐行為、核・生物・化学兵器を含む敵対行為の段階的エスカレーション、そして両国家が互いに区別のつかない全体主義独裁国家へと変貌していったことが、この戦争の特徴です。<br>
+                ピーク時には人類史上最も破壊的な戦争となり、熱核交換──<strong>大戦</strong>として知られる出来事──によって旧世界は終わりを告げ、<strong>ウェイストランド</strong>が生まれました。
+            </p>
+
+            <h2>前史</h2>
+
+            <img class="article-image" src="images/note_extracted/sino-american-war/img_still1.png" alt="資源不足のアメリカ">
+            <div class="image-caption">資源不足に苦しむアメリカ。核エネルギーへの依存が衝撃を和らげた</div>
+
+            <h3>メキシコ侵攻（2051年）</h3>
+            <p>
+                中米戦争に20年以上先立つ<strong>2051年</strong>、アメリカはメキシコに侵攻しました。原油供給を確保するため、まず経済制裁でメキシコを不安定化させ、政治的不安定と汚染を脅威として引用し、軍事侵攻に踏み切りました。石油精製施設とインフラを掌握し、メキシコの犠牲の上にアメリカ市場への石油流通を確保しました。
+            </p>
+
+            <h3>中東戦争（2052年）</h3>
+            <p>
+                <strong>2052年</strong>、原油価格の高騰は世界的危機を引き起こし、小国家を次々と破産させました。<strong>欧州連邦</strong>は中東の法外な価格の支払いを拒否し、軍事行動に出ました。<br>
+                7月の<strong>国連解散</strong>は資源戦争の始まりを告げました。
+            </p>
+
+            <h3>ニュー・プレイグ（2053年）</h3>
+            <p>
+                <strong>2053年</strong>、<strong>ニュー・プレイグ</strong>ウイルスが出現。アメリカ史上初の全国的検疫と国境封鎖が行われ、数万人が死亡。噂では遺伝子操作された生物兵器とされました。<br>
+                <strong>2055年</strong>、政府は<strong>ウェスト・テック</strong>に治療法の開発を委託。治療法は発見されませんでしたが、この研究がのちの<strong>FEV（強制進化ウイルス）</strong>開発への道を開きました。
+            </p>
+
+            <h3>プロジェクト・セーフハウス（2054年）</h3>
+            <p>
+                中東の核交換、ニュー・プレイグを受けて、<strong>2054年</strong>に連邦政府は<strong>プロジェクト・セーフハウス</strong>を設立。<strong>Vault-Tec</strong>がシェルター建設契約を獲得し、<strong>Vault</strong>の大規模建設が始まりました。
+            </p>
+
+            <h3>アンカレッジ前線（2059年）・ナイアガラ破壊工作（2062年）</h3>
+            <p>
+                <strong>2059年</strong>、アメリカはアラスカの石油資源を守るためアンカレッジ前線を設立。カナダに対し、アラスカ・パイプラインの防衛のため自国通過を容認するよう圧力をかけました。<br>
+                <strong>2062年</strong>、中国の主要スパイ<strong>ワン・ヤン</strong>が<strong>ナイアガラ破壊工作</strong>に関連して逮捕されました。
+            </p>
+
+            <h2>戦争の経過</h2>
+
+            <h3>侵攻（2066-2067年）</h3>
+
+            <img class="article-image" src="images/note_extracted/sino-american-war/img_still2.png" alt="中国空挺部隊のアラスカ上陸">
+            <div class="image-caption">アラスカに降下する中国空挺部隊</div>
+
+            <p>
+                <strong>2066年春</strong>、世界の石油資源が枯渇し、化石燃料に大きく依存していた中国経済は崩壊寸前に。アメリカが原油輸出を拒否したため、交渉は決裂。<br>
+                同年夏、アメリカはパワーアーマー研究から生まれた初の<strong>マイクロフュージョンセル</strong>を公開し、中米関係はさらに悪化。
+            </p>
+            <p>
+                <strong>2066年冬</strong>、<strong>ジンウェイ将軍</strong>の指揮下、中国軍がアラスカに上陸。大規模な空挺強襲を伴うこの作戦により、アラスカの石油パイプライン・油井・備蓄を掌握。<strong>中米戦争が始まりました</strong>。<br>
+                アメリカ軍は全前線で後退。補給路確保のためカナダに通過を求め、渋々の承諾が後の併合への伏線となりました。
+            </p>
+            <p>
+                <strong>2067年1月</strong>、初のパワーアーマー<strong>T-45</strong>がアラスカに配備。粗削りながらも重火器を軽々と扱える能力で、中国の戦車と歩兵を凌駕。しかし前線は安定にとどまり、<strong>膠着状態</strong>に陥りました。<br>
+                <strong>コンスタンティン・チェイス将軍</strong>と新設のパワーアーマー部隊が前線安定の要となりました。
+            </p>
+
+            <h3>安定化とエスカレーション（2068-2073年）</h3>
+            <p>
+                アラスカの戦争は増大する資源を呑み込み続けました。<strong>2069年</strong>頃からカナダの資源が限界まで搾取され、広大な森林地帯が破壊。カナダの抗議は無視され、「リトル・アメリカ」と呼ばれるようになりました。<br>
+                <strong>2072年6月3日</strong>、トランス・アラスカ・パイプラインの破壊工作をきっかけに、<strong>カナダ併合</strong>が正式に開始されました。
+            </p>
+            <p>
+                遠隔戦場での消耗戦に引き込まれた中国は、前線で<strong>生物兵器</strong>の使用を許可。これに対しアメリカは<strong>2073年9月15日</strong>、ウェスト・テックに<strong>汎免疫ウイルス</strong>（PVP）の開発を命令──のちのFEV計画の始まりでした。
+            </p>
+
+            <h3>膠着（2074-2076年）</h3>
+
+            <img class="article-image" src="images/note_extracted/sino-american-war/img_still3.png" alt="ミサイル運搬車">
+            <div class="image-caption">アメリカの町を通過するミサイル運搬車</div>
+
+            <p>
+                <strong>2074年</strong>、防衛戦争を標榜していたにもかかわらず、アメリカは<strong>中国本土への反攻</strong>を開始。カナダ、アラスカ、中国の三正面作戦で経済は限界に。8年の戦争を経ても、どちらも引く気配はなく、膠着状態に。<br>
+                <strong>汕頭</strong>、<strong>ゴビ砂漠</strong>、<strong>南京</strong>、<strong>マンバハオ</strong>（フィリピン）でも戦闘が勃発。
+            </p>
+            <p>
+                <strong>2075年</strong>、DIAの<strong>PAM</strong>が中国の<strong>ステルス潜水艦</strong>（ゴースト・フリート）の存在を91%の確率で警告。しかし上層部は「馬鹿げている」と却下しました。
+            </p>
+            <p>
+                <strong>2076年1月</strong>、<strong>カナダ併合</strong>が完了。抗議者は射殺、残虐行為の写真がアメリカに流出し、国内の不安を増大させました。<br>
+                <strong>6月</strong>、<strong>T-51パワーアーマー</strong>が完成し中国に投入。中国兵は目撃するだけで降伏し始めましたが、効果は長続きせず。<br>
+                <strong>8月</strong>、食料・エネルギー暴動がアメリカ各地の都市で発生。非常事態宣言、そして戒厳令が敷かれました。
+            </p>
+
+            <h3>相互確証破壊（2077年）</h3>
+
+            <img class="article-image" src="images/note_extracted/sino-american-war/img_still4.jpg" alt="T-60パワーアーマーの兵士">
+            <div class="image-caption">修理と補給を受けるT-60パワーアーマー装着兵</div>
+
+            <p>
+                <strong>2077年1月</strong>、消耗と補給路断絶により中国軍がアラスカで包囲。<strong>チェイス将軍</strong>率いる冬季T-51部隊がアンカレッジを解放。10年に及んだアンカレッジ奪還作戦が終了し、<strong>ジンウェイ将軍</strong>は戦死しました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/sino-american-war/img_still5.png" alt="アラスカのアメリカ軍パトロール">
+            <div class="image-caption">アラスカを進軍するアメリカ軍パトロール</div>
+
+            <p>
+                アラスカの勝利に勢いづき、中国本土の攻勢が再活性化。しかし奥地に進むほど抵抗は激化し、<strong>10月</strong>には再び膠着。上海は中国の手にあり、南京の戦いは月単位で長引きました。<br>
+                大統領とエンクレイヴ幹部は、中国からの核攻撃を予期して遠隔地に退避。石油リグが将来のエンクレイヴの拠点となりました。
+            </p>
+            <p>
+                戦争は事実上勝てないものとなり、交渉が始まりましたが、大統領の不在で進展は遅々として進まず。
+            </p>
+
+            <h2>大戦</h2>
+            <p>
+                <strong>2077年10月23日の朝</strong>、アンカレッジでの和平交渉が崩壊。<br>
+                追い詰められた中国が核攻撃を開始しました。
+            </p>
+            <div class="note-box" style="border-left: 3px solid #ff3333; background: rgba(255, 51, 51, 0.05); padding: 15px 20px; margin: 20px 0; border-radius: 0 5px 5px 0;">
+                <div style="font-family: 'Share Tech Mono', monospace; color: #ff3333; font-weight: bold; margin-bottom: 8px;">⚠️ 2077年10月23日 ── 大戦のタイムライン（EST）</div>
+                <span style="font-family: 'Share Tech Mono', monospace; font-size: 0.9em;">
+                <strong>00:03</strong> ── 太平洋艦隊がカリフォルニア沖で中国の潜水艦を初確認<br>
+                <strong>03:37</strong> ── ベーリング海峡上空で高高度爆撃機の編隊を確認<br>
+                <strong>09:13</strong> ── IONDS（統合作戦核検出システム）が最初の4発のミサイル発射を検出。DEFCON 2に移行<br>
+                <strong>09:17</strong> ── NORAD確認。世界の運命が決定<br>
+                <strong>09:26</strong> ── 大統領がシナリオMX-CN91に基づく報復攻撃を命令<br>
+                <strong>09:42</strong> ── 中国の核兵器がペンシルベニアとニューヨークに着弾<br>
+                <strong>09:47</strong> ── アメリカの施設の大半がオフラインに
+                </span>
+            </div>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/sino-american-war/img_main.png" alt="戦争コラージュ"><div class="caption">中米戦争コラージュ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/sino-american-war/img_still1.png" alt="資源不足"><div class="caption">資源不足のアメリカ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/sino-american-war/img_still2.png" alt="中国空挺"><div class="caption">アラスカに降下する中国空挺部隊</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/sino-american-war/img_still3.png" alt="ミサイル運搬車"><div class="caption">アメリカの町を通過するミサイル運搬車</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/sino-american-war/img_still4.jpg" alt="T-60兵士"><div class="caption">T-60パワーアーマー装着兵</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/sino-american-war/img_still5.png" alt="アラスカパトロール"><div class="caption">アラスカを進軍するアメリカ軍</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Fallout世界の全てはここから始まった。<br>
+                2051年のメキシコ侵攻から2077年の核の炎まで、26年間のエスカレーション。<br><br>
+                驚くべきは、両国がいかに似通っていくかということ。<br>
+                資源のために他国を侵略し、自国民を弾圧し、全体主義に陥っていく。<br>
+                「共産主義の犬」と「資本主義の豚」──結局、区別がつかなくなる。<br><br>
+                T-51パワーアーマーの中国配備で兵士が「見ただけで降伏」したのに、<br>
+                それでも戦争は終わらなかった。テクノロジーの優位は勝利を保証しない。<br>
+                同じ頃、アメリカ国内では食料暴動で戒厳令。勝利の瞬間に内部崩壊。<br><br>
+                そして10月23日、わずか44分で全てが終わった。<br>
+                09:13の検出から09:47の全施設オフラインまで──<br>
+                11年の戦争の結末が、34分の核交換に凝縮される。<br>
+                「War. War never changes.」の意味が、ここに集約されています。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Sino-American_War" target="_blank" rel="noopener">Sino-American War</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutSeries</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#History</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#War</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#GreatWar</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#ResourceWars</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_covered_bridge'; const _commentArticleName = 'Covered Bridge'; const _commentArticleUrl = 'covered-bridge.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

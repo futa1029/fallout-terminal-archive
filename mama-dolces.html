@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Mama Dolce's Food Processing | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/mama-dolces.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Mama Dolce's Food Processing | Overseer Mohi's Terminal"><meta property="og:description" content="ママ・ドルチのフードプロセッシング。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/mama-dolces.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Mama Dolce's Food Processing</h3><img src="images/note_extracted/mama-dolces/img_main.png" alt="mama-dolces"><img src="images/note_extracted/mama-dolces/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>食品工場</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>モーガンタウン</span></div><div class="infobox-row"><span class="infobox-label">勢力</span><span>中国（秘密）</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <main class="content">
+            
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_mama_dolces" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Mama Dolce's Food Processing<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">ママ・ドルチのフードプロセッシング</span></h1>
+            <h2>概要</h2>
+<p><b>ママ・ドルチのフードプロセッシング</b>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<a href="morgantown.html" class="auto-link">モーガンタウン</a>にあるロケーションです。</p>
+
+            <h2>背景</h2>
+<p>表向きにはアメリカ最大の食品加工チェーンである<b>ママ・ドルチ</b>は、実はアメリカ国内における中国の諜報・研究活動の隠れ蓑でした。「全き愛国的企業」を標榜し、アメリカ社会の価値と伝統を何としても守ると謳いながら、モーガンタウンの施設は<b>藤仁谷情報基地</b>を隠蔽していました。これは「オペレーション・トリニタイト」の一環として設立されたもので、ウエストバージニアにあるとされるアメリカの工場都市への潜入・破壊を目的としていました。</p>
+<p>作戦は当初の目的に失敗しましたが、施設は諜報収集、ステルス研究、さらにはロボティクスなど他の分野に注力して運営を継続しました。偽装はほぼ完璧でしたが、<a href="sugar-grove.html" class="auto-link">シュガーグローブ</a>のアナリストが同社の海外送金を発見し、ワシントンD.C.のアナリストの協力でダミー会社を辿り、中国に行き着きました。2077年8月9日に完全監視作戦の要請が提出されましたが、<a href="great-war.html" class="auto-link">大戦</a>前に完了することはありませんでした。</p>
+<p>大戦後、ここの中国の部隊は団結して持ちこたえようとしました。工場と自動防衛システムは十分な防御を提供しました──何しろ工場は<a href="liberator-fo76.html" class="auto-link">リベレーター</a>の発射台の周りに建設され、煙突として偽装されていたのです。しかし、彼らが計算に入れられなかったのは、エージェント・<b>ジェファーソン・グレイ</b>の洞察力と<a href="enclave.html" class="auto-link">エンクレイヴ</a>の決意でした。工作員たちは施設を急襲し、中国人を排除して、自分たちの目的のために工場を利用し始めました。</p>
+<p>当初、駐屯部隊は生存者を装い食品加工機を稼働させようとしましたが、停電と機械の故障で不可能と判明。そこで人々を追い払う作戦に切り替えました。地元の生存者を殺害して工場の周りに配置し、見えない幽霊（ステルスボーイを使った工作員）に殺されたかのように見せかけました。この作戦は成功し、やがて人々は川を渡って工場に近づくことすら恐れるようになりました。</p>
+<p>しかし、全ては徒労でした。ステルス研究やリベレーターの設計図という戦利品にもかかわらず、施設は停電やロボットの攻撃（文字通り壁から出てくるように見えた）のため使用不能でした。現地司令官はミッションの完全放棄を推奨し、特にリベレーターがトイレ中の彼を急襲した後はなおさらでした。</p>
+<p>エンクレイヴが撤退し全ての痕跡を消去した後、数年後に<a href="responders.html" class="auto-link">レスポンダーズ</a>が活動を引き継ぎました。<b>サンジェイ・クマール</b>の偵察により、工場が生の食材を食用の食品に加工でき、機械の復元・自動化にも成功したことが確認されました。しかし、地下の自動化施設から次々と出現するプロテクトロンやリベレーターの攻撃により、常駐は不可能でした。レスポンダーズは機械が十分に冷却されて使えるようになるたびに断続的に施設に入り、機械を起動・修理するに留めました。</p>
+
+            <h2>レイアウト</h2>
+<p>ママ・ドルチのフードプロセッシング工場はモーガンタウン郊外の川沿いにあります。周囲のパイプは建物の地下に隠された藤仁谷情報基地に通じており、工場上階のオフィスの机にある<b>ママ・ドルチのマネージャーIDカード</b>でアクセスできます。</p>
+<p>工場は2階建てです。1階にはメインの工場エリアとスミスマネージャーのオフィスがあります。オフィスにはロック付き（Hacker 0）<b>ターミナル</b>とバスルームがあります。工場フロアでは、食品加工制御ターミナルの向かいにホッパーがあり、食材を投入して<b>缶詰シチュー</b>を製造できます。工場フロアの角にはロック付き（Picklock 0）のセキュリティゲートの奥に物資があります。また、積み込みドックがあり、ロック（Picklock 1）されたトラックにアクセスできます。トラック内には兵士の骸骨と弾薬があります。</p>
+<p>工場南側にはいくつかの小屋があります。坂の下の大きな小屋には<b>武器作業台</b>と<b>パワーアーマーステーション</b>がありますが、地雷やグレネードブーケで重度にトラップされています。この小屋の2階には工場を見渡せるスナイパーの巣があり、別の兵士の骸骨がハンティングライフルと弾薬の横で見つかります。</p>
+
+            <h2>主なアイテム</h2>
+<ul>
+<li><b>Field report: Mama Dolce's Food Processing</b>（ホロテープ） — 赤い食品加工制御ターミナルの机部分。Final Departureクエスト中のみ入手可</li>
+<li><b>Mama Dolce's manager ID card</b> — 工場上階のテーブル上</li>
+<li><b>パワーアーマーシャーシ</b>（T-シリーズ装甲付き） — 南西のトラップ付き倉庫内</li>
+<li><b>フュージョンコア</b> — 工場南西の小型倉庫のフュージョンジェネレーター内</li>
+<li><b>アーマーmod/武器modプラン</b>（ランダム） — 3階マネージャーオフィス、空のファイルキャビネット</li>
+<li><b>雑誌</b>（ランダム） — 入口右手の部屋、ロック付きターミナル横のデスク上</li>
+</ul>
+
+            <h2>関連クエスト</h2>
+<ul>
+<li><b>Feed the People</b> — 工場で行われる繰り返しイベント</li>
+<li><b>I Am Become Death</b> — アパラチアでの核ミサイル発射準備に関するクエスト</li>
+</ul>
+
+            <h2>舞台裏</h2>
+<p>このロケーションには「ママ・ドルチ工場アナウンス」を放送するPAシステムが設置されており、イベント「Feed the People」に連動しています。しかし、これらのアナウンスがゲーム内で再生されたことは確認されておらず、カットコンテンツと見られています。音声はAdam Croasdellによって収録されており、ゲームファイル内に残っています。</p>
+
+            <h2>登場作品</h2>
+<p>ママ・ドルチのフードプロセッシングはFallout 76にのみ登場します。</p>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                食品工場の地下に中国のスパイ基地──Falloutシリーズらしい壮大な陰謀が眠る場所。<br>
+エンクレイヴがステルスボーイで「幽霊」を演出して住民を追い払ったエピソードは、彼らの冷酷さを象徴しています。<br><br>
+リベレーターにトイレ中に襲撃された司令官の逸話は、ブラックユーモアの極致。Feed the Peopleイベントで缶詰シチューを作る時間は、ここの複雑な歴史を忘れさせてくれます。
+            </div>
+
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Mama_Dolce's_Food_Processing" target="_blank" rel="noopener">Mama Dolce's Food Processing</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="拡大画像"></div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_mama_dolces'; const _commentArticleName = 'Mama Dolce's Food Processing'; const _commentArticleUrl = 'mama-dolces.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

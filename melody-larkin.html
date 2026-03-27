@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melody Larkin | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/melody-larkin.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Melody Larkin | Overseer Mohi's Terminal">
+    <meta property="og:description" content="メロディ・K・ラーキン。レスポンダーの戦闘訓練官にしてファイア・ブリーザーの創設者・リーダーの全記録。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/melody-larkin/img_portrait.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/melody-larkin.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Melody Larkin | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="レスポンダーの戦闘訓練官、ファイア・ブリーザーのリーダー。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/melody-larkin/img_portrait.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .holotape-box { border: 1px solid var(--accent-color); background: rgba(0,255,0,0.03); padding: 20px; margin: 20px 0; border-radius: 5px; }
+        .holotape-box h3 { margin-top: 0; border-bottom: 1px dashed var(--accent-color); }
+        .dialogue-box { border: 1px solid #555; background: rgba(255,255,255,0.02); padding: 15px 20px; margin: 10px 0; border-radius: 3px; }
+        .dialogue-box .speaker { color: var(--accent-color); font-weight: bold; }
+        .dialogue-box .line { margin: 8px 0; }
+        .dialogue-box .direction { color: #666; font-style: italic; font-size: 0.85em; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="人物" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Melody K. Larkin</h3>
+            <img src="images/note_extracted/melody-larkin/img_portrait.png" alt="メロディ・K・ラーキン">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>ヒューマン</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
+            <div class="infobox-row"><span class="infobox-label">家族</span><span>夫 †</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>レスポンダー<br>ファイア・ブリーザー<br>チャールストン非常事態政府</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>リーダー（ファイア・ブリーザー）<br>戦闘訓練官（レスポンダー）</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>ローリ・フレイザー</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76（言及のみ）</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_melody_larkin" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Melody K. Larkin<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">メロディ・K・ラーキン</span></h1>
+
+            <div class="quote-box">
+                <b>「ああ、それは傑作だ。ジョークのつもりか？あんたらは外で大勢の人間を殺した。そして今、その報いを受けることになる。」</b><br>
+                <span style="color: #aaa; font-size: 0.85em;">— メロディ・ラーキン、ロザリン・ジェフリーズを尋問しながら</span>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>メロディ・K・ラーキン</strong>は、レスポンダーのシニアメンバーで<strong>戦闘訓練官</strong>を務め、精鋭部隊<strong>ファイア・ブリーザー</strong>のリーダーでした。<br>
+                チャールストン消防署の署長としてレスポンダーの創設メンバーの一人であり、クリスマスの大洪水で夫を失いながらも、積灰の山の探索に特化した部隊の創設と訓練を指揮しました。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                レスポンダーの創設メンバーの一人であるメロディ・ラーキンは、チャールストン消防署の署長であり、核戦争後の救援活動で消防士たちを率いました。<br>
+                任務に伴う絶え間ないストレスと疲労から睡眠障害に悩まされるようになり、チャールストンのカナー精神科を受診しました。<br>
+                精神科医から、町の南部でまだ営業している薬剤師を訪問して睡眠薬を入手するよう勧められました。
+            </p>
+            <p>
+                2078年、メロディはレスポンダーの連絡係としてチャールストンに派遣され、チャールストン非常事態政府との調整にあたりました。<br>
+                しかし、モーガンタウンのメイフィールド警察署長が施行した厳しい略奪取締り政策に異を唱え、同盟に亀裂が入る恐れがありました。<br>
+                彼女はアビゲイル・プール議長に書簡を送り、たとえタナー・ホルブルックとの対立を再燃させることになっても、事態を沈静化するよう求めました。
+            </p>
+            <p>
+                2082年、彼女はアビゲイル・プール率いるチャールストン非常事態政府のクリスマス慈善活動の寄付品の配送手配を任されました。<br>
+                また、2082年12月24日のチャールストン襲撃失敗時に捕虜となったロザリン・ジェフリーズの尋問も担当しました。<br>
+                メロディはロザリンの脅迫に屈せず、「デイヴィッドが来て全員を殺す」という要求にも関わらず釈放を拒否しました。<br>
+                これが最終的にデイヴィッド・ソープによるサマーズビル・ダム破壊とクリスマスの大洪水を引き起こしました。<br>
+                メロディは災害を生き延びましたが、彼女の夫は生還できませんでした。
+            </p>
+            <p>
+                洪水の余波の中、メロディはマリア・チャベスからレスポンダーのファイア・ブリーザー部門の創設と訓練を任されました。<br>
+                彼女は祖父とその仲間の密造酒業者に付けられたあだ名にちなんで、部隊を「ファイア・ブリーザー」と名付けました。<br>
+                メロディは志願者の選考に厳格な基準を設け、有毒な積灰の山で戦闘し生き延びる能力を備えた者だけをリクルートしました。<br>
+                また、ファイア・ブリーザーの訓練コースの設営も調整し、タトゥーパーラーの廃墟にある住居の所有者に連絡を取り、ワシントン・ストリートにコースを設置する許可を確認しました。<br>
+                レスポンダーが壊滅した後も、自動化された訓練コースは稼働し続けました。
+            </p>
+            <p>
+                数年後、スコーチの大群が荒れた境域を突破する脅威が無視できなくなると、メロディはファイア・ブリーザーのチームを率いてビッグベンドトンネルを封鎖する最後の作戦に出撃しました。<br>
+                作戦は最終的に失敗に終わりました。
+            </p>
+
+            <h2>関連ホロテープ</h2>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">🔊</span> 尋問：ドウ、ジェーン</h3>
+                <p style="font-size: 0.85em; color: #888;">チャールストン議事堂のロックアップセクションのテーブル上で入手可能</p>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（疲弊、憤怒）</span>ジェーン・ドウ1名の尋問。<br>本日午後10時30分頃のこの場所での致命的な襲撃後、拘留中の唯一のレイダー捕虜。<br>2082年12月24日。<br>あんた、よくもまあ度胸があるもんだ！クリスマスイブにだぞ！<br>もう一度聞く、名前は？</div>
+                    <div class="line"><span class="speaker">ロザリン・ジェフリーズ：</span><span class="direction">（重傷だが反抗的に）</span>くたばれ！「く」はクリスマスの「く」、「た」は……<br><span class="direction">（殴打音、うめき声）</span></div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（疲弊、怒り）</span>そうやりたいならそうしよう。<br>ふざけるのをやめろ、さもないとまた殴るぞ。</div>
+                    <div class="line"><span class="speaker">ロザリン・ジェフリーズ：</span><span class="direction">（血を吐き出し、狂気じみた笑い）</span></div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>ああ、それは傑作だ。ジョークのつもりか？<br>あんたらは外で大勢の人間を殺した。<br>そして今、その報いを受けることになる。</div>
+                    <div class="line"><span class="speaker">ロザリン・ジェフリーズ：</span><span class="direction">（怒り、痛みで半分朦朧としながらも反抗的に）</span>デイヴィッドが私を迎えに来る。<br>奴が来たら、怒り狂ってるだろうよ。<br>必要なら最後の一人まで殺すだろうさ。<br>だからこうしよう——私をこの独房から歩いて出してもらう。<br>デイヴィッドへのクリスマスプレゼントの大きな袋を持たせてくれ。<br>そしたらこの件は全部忘れてやってもいい。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（少し笑って）</span>デイヴィッド、ねえ。<br>つまりデイヴィッド・ソープの……彼女がここにいるってわけだ？<br><span class="direction">（嫌悪しながら）</span>そいつは、はるか昔にあんたの「リゾート」に助けを申し出に行った、勇敢で献身的なレスポンダー2人を殺した男だぞ。<br><span class="direction">（策略を巡らせて）</span>おやおや、諸君。ナンバーワンのお尋ね者を穴から引きずり出す方法が分かったかもしれんぞ。</div>
+                    <div class="line"><span class="speaker">ロザリン・ジェフリーズ：</span><span class="direction">（恐怖、叫びながら引きずられていく）</span>まさか……やめてくれ！あいつはあんたらを殺す、全員殺すぞ！</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（満足して）</span>監禁しておけ。<br>あそこにメッセージを送る方法は明日考えよう。</div>
+                </div>
+            </div>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">🔊</span> ザ・ファイア・ブリーザー</h3>
+                <p style="font-size: 0.85em; color: #888;">モーガンタウン空港ターミナル最上階、西入り口近くのテーブル上で入手可能</p>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>よし、録音してるぞ。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>結構。それなら、このアイデアが正気の沙汰じゃないと思ってるってことを記録に残そう。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>現在進行形で有毒な場所に人を送り込むのは私だって気が進まないけど……でもあの下にはまだ連絡が取れていない町がまるごとあるの。<br>ウェルチ、ベックリー、ブラムウェル。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>ブラムウェル？冗談でしょ！<br>ホーンライトやガラハンが空襲警報が鳴った瞬間にプライベートアイランドに飛んでいかなかったとでも思ってるの？</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>十中八九そうだろうね。<br>でも今は確証がないし、安全に確認する手段もない。<br>だからこそあなたの助けが必要なのよ、メロディ。どうやってあそこに行けるか。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（渋々同意して）</span>……分かった。チャールストン消防署に何人かいる。<br>話を聞いてみるよ、そういう作戦をどう立ち上げるかについて。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>ありがとう。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>ただ、あの煙の中に送り込む人間には訓練が必要だ。<br>あんな敵意むき出しの場所で生き残るには、かなり頭が切れないとダメだ。<br>呼吸器具も気難しいからな。何時間も、日に至っちゃ何日もあそこにいるなら、相当な手入れとメンテナンスがいる。<br>つまり丸ごと新しい部門を作るってことだ。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>何を頼んでいるかは分かってるわ。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>一つ言わせてもらうと……名前を付けるべきだ。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>名前？</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>グリーンベレー、スモークジャンパー、ネイビーシールズ。<br>危険な任務に志願させたいなら、そこに威信がないとダメだ。<br>名前を付けて、新しい肩書きを与えて、配給を増やせば、志願者は必ず集まる。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>ふむ。何か案は？</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>うーん……じいさんは密造酒業者だった。<br>普通の人間が400メートル以内に近づけないほど強い酒を作ってた。<br>みんな、じいさんとその仲間のことを「ファイア・ブリーザー」って呼んでた。<br>打たれ強い連中だったよ。それはどうだ？</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span><span class="direction">（長い間の後）</span>……最初に出たアイデアで決める必要はないわね。<br>でもとりあえず、あの消防士たちに連絡を取って。<br>重要だと伝えて。<span class="direction">（やや渋々）</span>威信があると。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（くすくす笑い）</span>おやまあ、気に入ったみたいじゃない。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>訓練場所の確保は私がやるわ。<br>チャールストン消防署が自然な場所ね。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>まあ、トラブルに巻き込まれるのに遠くまで行く必要はないだろうね。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span>よし、始めましょう。<br>あの下にまだ生きている人がいるなら、もう十分苦しんだはずよ。</div>
+                </div>
+            </div>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">🔊</span> 訓練コース指示</h3>
+                <p style="font-size: 0.85em; color: #888;">チャールストン・ヘラルドビルの屋上、ファイア・ブリーザー体力試験端末の横で入手可能</p>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（冷静に、訓練生に向けて）</span>よし、静まれ訓練生ども。<br>見た目はきつそうだが、準備ができてる者には大したことはない。<br>矢印に従って、常に周囲を警戒しろ。<br>しばらく進むと議事堂が見える。<br>ボタンを叩いて、コースを辿ってここまで戻ってこい。</div>
+                    <div class="line"><span class="speaker">訓練生：</span><span class="direction">（小声でぶつぶつ）</span>せっかくブーツを磨いたのに……</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>何だと？言いたいことがあるならはっきり言え。</div>
+                    <div class="line"><span class="speaker">訓練生：</span><span class="direction">（ためらいながらも不満げに）</span>あんな泥沼を走り回る意味が分からないんですけど。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（威圧的に、訓練生の顔の前で）</span>よく聞け、両目をひとつにしてやる前に。<br><span class="direction">（静かに、しかし強烈に）</span>私の夫は「あの泥沼」のどこかにいる。<br>お前の父親もだ。<br>彼女のおばあちゃんも。<br>彼らの姉妹も。<br>私たちは何週間も「あの泥沼」を這い回って人を引き出した。<br>何千人がクリスマスの大洪水で死んだ。<br>さらに多くの人が見つからなかった。<br>溺死か、生き埋めか。<br><span class="direction">（ほとんど囁くように）</span>丸一年、人を掘り出し続けた。<br><span class="direction">（強さを取り戻して）</span>だから敬意を見せろ。<br>他に何か言うことは？</div>
+                    <div class="line"><span class="speaker">訓練生たち：</span><span class="direction">（恥じ入って小声で）</span>いえ、マアム。</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（教練軍曹のように）</span>何だって？！</div>
+                    <div class="line"><span class="speaker">訓練生たち：</span><span class="direction">（直立不動で）</span>いえ、マアム！</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span>よし！<br><span class="direction">（真剣だが、赦しも込めて）</span>いいかファイア・ブリーザー、外に出て、仲間の命がかかっているつもりでコースを走れ。</div>
+                </div>
+            </div>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">🔊</span> 時間切れ</h3>
+                <p style="font-size: 0.85em; color: #888;">チャールストン消防署2階、ベンダーボット・マックの前のコンソール上で入手可能（クエスト「Final Departure」進行中のみ）</p>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">マリア・チャベス：</span><span class="direction">（苛立って）</span>本当に？これを録音するの？</div>
+                    <div class="line"><span class="speaker">レオ・チェイス：</span><span class="direction">（怒りに満ちて）</span>当たり前だ！マディガンが戻ったらこれを聞かせたい。<br>あんたがここで何をしようとしてるか、分からせてやる！</div>
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（激怒して叫ぶ）</span>越権行為だぞ、チェイス！</div>
+                    <div class="line"><span class="speaker">レオ・チェイス：</span><span class="direction">（怒鳴り返して）</span>越権はそっちだろ！<br>俺たちの最強の男なしでファイア・ブリーザーを自殺任務に送り出すことに同意してるのはそっちじゃないか！</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span><span class="direction">（仲裁して）</span>もう十分！二人とも黙りなさい！<br><span class="direction">（懇願するように）</span>聞いて……レオ……報告によると、あの山の向こう側にスコーチの大群がいるの。<br>トンネルを封鎖するのが奴らを止める最善の手段だって、あなたも分かってるでしょう。<br>唯一の手段かもしれない。<br>ファイア・ブリーザーが今動かなければ、全員が死ぬ。<br>いつかの問題でしかない。</div>
+                    <div class="line"><span class="speaker">レオ・チェイス：</span><span class="direction">（怒り、しかし折れ始めて）</span>もう少し時間があれば！<br>あいつは戻ってくる。<br>絶対に来ると言ってるだろ……ただ……時間が必要なんだ。</div>
+                    <div class="line"><span class="speaker">マリア・チャベス：</span><span class="direction">（厳格に、冷ややかに）</span>時間切れよ、レオ。<br><span class="direction">（毅然として）</span>メロディが作戦を指揮する。<br>こういうことは経験がある。<br>私は彼女に命を預ける。<br>私たち全員の命を。<br>今すぐあの録音機を切って、任務を果たしなさい、ファイア・ブリーザー。</div>
+                    <div class="line"><span class="speaker">レオ・チェイス：</span><span class="direction">（長い沈黙、深い溜息の後、厳粛に）</span>……了解。</div>
+                </div>
+            </div>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">🔊</span> メロディ・ラーキン：ディスパッチ</h3>
+                <p style="font-size: 0.85em; color: #888;">モーガンタウン空港の管制塔内コンソール上で入手可能</p>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">メロディ・ラーキン：</span><span class="direction">（疲弊、敗北感）</span>とんでもない一週間だったよ、まったく。<br>またあのスコーチのクソ野郎どもと戦って、また仲間を失った。<br><span class="direction">（がっかりして）</span>今度はチャベスが新しい無線信号を拾ったと言ってきた。<br>誰かが助けを求めてるらしい。<br>私のチームを率いて、信号を辿って彼らを見つけて来いと言う。<br>遠くはないはずだ。<br>もう南の方で信号が強まってるのを追跡してる。<br><span class="direction">（失望を込めて）</span>問題は、彼らを見つけるにはレイダーの領域をまっすぐ突っ切らなきゃならんということだ。<br>そんな時間も人員も今は割けない。<br><span class="direction">（実務的に）</span>だから、言いたくはないが、今は無理だと伝えるしかない。<br>私のチームは最後の防衛線だ。<br>当てのない追跡に出かけたら、またクリスマスの大洪水みたいな事態を招く隙を作ることになる。<br><span class="direction">（怒りを込めて、洪水を思い出して）</span>あんなことを二度と繰り返させるつもりはない、たとえどこかで誰かが私たちを必要としていてもだ。<br>まったく、時代は変わったもんだ。</div>
+                </div>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>メロディ・ラーキンは『<strong>Fallout 76</strong>』で言及のみの登場です。<br>声優はローリ・フレイザーが担当しています。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/melody-larkin/img_leaders.png" alt="仲間のレスポンダーとポーズをとるメロディ" onclick="openLightbox(this)"><div class="caption">仲間のレスポンダーとポーズをとるメロディ</div></div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                メロディ・ラーキンは、Fallout 76のロア全体を通じて屈指の存在感を放つキャラクターです。<br><br>
+                消防署長として核戦争後の救援活動を率い、レスポンダーの創設メンバーとなり、レイダーの捕虜を尋問し、ファイア・ブリーザーを一から構想・命名・訓練し、そして最終的にはビッグベンドトンネル封鎖の自殺的作戦を自ら指揮する——彼女の物語は、アパラチアの崩壊史そのものと重なっています。<br><br>
+                特に心に残るのは「訓練コース指示」のホロテープです。<br>
+                泥沼を走ることに文句を言う訓練生に対して、「私の夫はあの泥沼のどこかにいる」と静かに、しかし圧倒的な重みで語りかける場面。<br>
+                教練軍曹のような厳しさの裏に、クリスマスの大洪水で全てを失った個人的な悲しみが滲んでいます。<br><br>
+                もう一つ印象深いのは、ファイア・ブリーザー命名の経緯です。<br>
+                マリアの危険な提案に「正気の沙汰じゃない」と反発しながらも、密造酒業者の祖父のあだ名から部隊名を提案する彼女の姿には、反骨心と誇りが同居しています。<br>
+                自身のルーツからこの名前を引き出したことが、ファイア・ブリーザーという部隊を単なる戦術的必要性ではなく、彼女のアイデンティティの延長にしたのだと感じます。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Character</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Responders</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FireBreathers</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Melody_Larkin" target="_blank" rel="noopener">Melody Larkin</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = img.src;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡';
+            btn.querySelector('.like-count').textContent = count;
+            btn.classList.toggle('liked', isLiked);
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                updateLikeButton(btn, isLiked, data ? data.like_count : 0);
+            }
+        });
+
+        const _commentArticleId = 'melody-larkin';
+        const _commentArticleName = 'Melody Larkin (メロディ・ラーキン)';
+        const _commentArticleUrl = 'melody-larkin.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list'); if (!list) return;
+            if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50);
+            if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');
+            const now = Date.now();
+            if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

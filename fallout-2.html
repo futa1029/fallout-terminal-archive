@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fallout 2 | Overseer Mohi's Terminal</title>
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Fallout 2 | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Fallout 2: A Post Nuclear Role Playing Game — 1998年にBlack Isle Studiosが開発した初代Falloutの正統続編。Chosen Oneの壮大な旅。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/fallout-2/img_01.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/fallout-2.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Fallout 2 | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Fallout 2: A Post Nuclear Role Playing Game — 1998年にBlack Isle Studiosが開発した初代Falloutの正統続編。Chosen Oneの壮大な旅。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/fallout-2/img_01.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/terminal-style.css">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; margin-bottom: 25px; }
+        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 8px; border-radius: 4px; }
+        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; }
+        .gallery-item .caption { font-size: 0.8em; color: #aaa; }
+        .stat-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+        .stat-table th { background: rgba(0, 255, 0, 0.15); color: var(--accent-color); padding: 8px 10px; text-align: left; border-bottom: 2px solid var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .stat-table td { padding: 6px 10px; border-bottom: 1px solid #333; }
+        .stat-table tr:hover { background: rgba(255, 255, 255, 0.03); }
+        .content-img { display: block; max-width: 300px; border: 1px solid #555; border-radius: 4px; margin: 15px 0; }
+        .content-img-caption { font-size: 0.8em; color: #aaa; margin-top: 5px; }
+        blockquote.game-quote { border-left: 3px solid var(--accent-color); margin: 20px 0; padding: 10px 15px; background: rgba(0, 255, 0, 0.05); font-style: italic; color: #ccc; }
+        blockquote.game-quote cite { display: block; margin-top: 8px; font-style: normal; font-size: 0.85em; color: var(--accent-color); }
+    </style>
+</head>
+<body data-article-category="ゲーム" data-article-appearance="Fallout 2">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Fallout 2</h3>
+            <img src="images/note_extracted/fallout-2/img_01.jpg" alt="Fallout 2 パッケージアート">
+            <div class="infobox-row"><span class="infobox-label">サブタイトル</span><span>A Post Nuclear Role Playing Game</span></div>
+            <div class="infobox-row"><span class="infobox-label">開発</span><span>Black Isle Studios</span></div>
+            <div class="infobox-row"><span class="infobox-label">発売元</span><span>Interplay Entertainment<br>Bethesda Softworks</span></div>
+            <div class="infobox-row"><span class="infobox-label">発売日</span><span>1998年9月30日</span></div>
+            <div class="infobox-row"><span class="infobox-label">ジャンル</span><span>RPG</span></div>
+            <div class="infobox-row"><span class="infobox-label">エンジン</span><span>Fallout</span></div>
+            <div class="infobox-row"><span class="infobox-label">モード</span><span>シングルプレイヤー</span></div>
+            <div class="infobox-row"><span class="infobox-label">レーティング</span><span>ESRB: Mature<br>ELSPA: 15+</span></div>
+            <div class="infobox-row"><span class="infobox-label">プラットフォーム</span><span>Windows, Mac</span></div>
+            <div class="infobox-row"><span class="infobox-label">メディア</span><span>CD 1枚</span></div>
+            <div class="infobox-row"><span class="infobox-label">前作</span><span><a href="fallout-1.html" class="auto-link">Fallout</a></span></div>
+        </aside>
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_fallout-2" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+            <h1>Fallout 2<br><span style="font-size: 0.5em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">A Post Nuclear Role Playing Game</span></h1>
+
+            <blockquote class="game-quote">
+                「そしてアロヨは建設以来、一世代にわたって平和のうちに暮らしてきた。<br>渓谷がその地を外の世界から守っていた。<br>そこはふるさと。あなたのふるさとだ。<br>しかし戦争が残した傷はまだ癒えていない。<br>そして大地は忘れてはいないのだ。」
+                <cite>— ナレーター、Fallout 2イントロより</cite>
+            </blockquote>
+
+            <h2>概要</h2>
+            <p>
+                <strong>Fallout 2: A Post Nuclear Role Playing Game</strong>は、初代<a href="fallout-1.html" class="auto-link">Fallout</a>の続編である。<br>
+                1998年秋にPC専用として発売され、Black Isle Studios（Interplay Entertainmentの開発部門）が開発した。
+            </p>
+            <p>
+                物語は初代Falloutから約80年後の<strong>2241年</strong>が舞台。<br>
+                部族の村アロヨの住人であり、初代の主人公Vault Dwellerの孫にあたる<strong>Chosen One（選ばれし者）</strong>が、村の飢餓と干ばつに対抗できるとされるデバイス「G.E.C.K.（エデンの園創造キット）」を見つける任務を課される。
+            </p>
+
+            <h2>ゲームプレイ</h2>
+            <p>
+                Fallout 2のゲームプレイは初代Falloutと同様で、ターン制の戦闘と擬似等角投影ビューを持つCRPGである。
+            </p>
+
+            <h3>キャラクター作成と成長</h3>
+            <p>
+                プレイヤーキャラクターには基本ステータス、特性、スキル、Perkが設定されている。<br>
+                初期ステータスはキャラクター作成時に選択し、アクションの成功で経験値が付与され、レベルアップ時にスキルポイントの配分とPerkの選択が行われる。
+            </p>
+
+            <h3>S.P.E.C.I.A.L.</h3>
+            <p>
+                Fallout 2も初代と同様に<a href="special.html" class="auto-link">S.P.E.C.I.A.L.</a>システムを採用。<br>
+                Strength、Perception、Endurance、Charisma、Intelligence、Agility、Luckの7つの基本属性がキャラクターのスキルとPerkを決定する。
+            </p>
+
+            <h3>スキル</h3>
+            <p>
+                ゲームには18種類のスキルが存在し、0%から<strong>300%</strong>までランク付けされている（初代は200%まで）。<br>
+                レベルアップごとにスキルポイント（5 + 知力×2）が付与される。<br>
+                プレイヤーは3つのスキルを「タグ」でき、Tag! Perkで4つ目のタグも可能。
+            </p>
+            <table class="stat-table">
+                <tr><th>分類</th><th>スキル</th></tr>
+                <tr><td>戦闘スキル（6種）</td><td>Small Guns、Big Guns、Energy Weapons、Unarmed、Melee Weapons、Throwing</td></tr>
+                <tr><td>アクティブスキル（8種）</td><td>First Aid、Doctor、Sneak、Lockpick、Steal、Traps、Science、Repair</td></tr>
+                <tr><td>パッシブスキル（4種）</td><td>Speech、Barter、Gambling、Outdoorsman</td></tr>
+            </table>
+            <p>
+                戦闘スキルは対応する武器の命中率とダメージを向上させる。<br>
+                アクティブスキルはプレイヤー・NPC・環境に対して使用でき、ダイアログにも貢献する。<br>
+                パッシブスキルはダイアログやゲーム内の各種イベントに影響するが、直接使用はできない。
+            </p>
+            <p>
+                書籍はSmall Guns、First Aid、Science、Repair、Outdoorsmanのスキルをスキル値91%まで向上させることができる。<br>
+                Vault Cityとサンフランシスコが書籍の良い入手先。<br>
+                スキルが100%を超えると、1%上げるのに必要なポイントが増加し、200%以降は1%あたり6ポイント（タグ済みなら2%）が必要になる。
+            </p>
+
+            <h3>特性とPerk</h3>
+            <p>
+                キャラクター作成時に2つのオプション特性を選択可能。<br>
+                特性は通常1つの有益な効果と1つの不利な効果を含み、一度選択すると変更不可（Mutate! Perkで1回だけ変更可）。<br>
+                Perkは3レベルごと（Skilled特性選択時は4レベルごと）に取得でき、通常のプレイでは得られない特殊効果を付与する。
+            </p>
+
+            <h2>初代Falloutからの変更点</h2>
+            <h3>アイテム・武器・敵</h3>
+            <p>
+                初代よりもはるかに多種多様なアイテム、武器、アーマーが登場。<br>
+                初代の武器には代替型やアップグレード型が追加された（例：ミニガンにAvenger、Vindicatorが追加）。<br>
+                店頭でのアイテム価格が上昇し、スカベンジングがより重要に。<br>
+                すべての戦闘分野に新武器が導入され、どの戦闘スキルでも強力になれるバランスに。
+            </p>
+
+            <h3>スキルの変化</h3>
+            <p>
+                スキルの初期値が初代より低く設定され、以前はあまり使われなかったUnarmed、Doctor、Trapsなどもすべて有用になった。<br>
+                スキル上限が200%から300%に引き上げられ、100%以降はポイントコストが増加する段階的な仕組みに。<br>
+                Unarmedスキルは属性とスキルレベルに応じて異なるパンチやキックが使えるようになり、大幅に洗練された。<br>
+                初代のFriendly Foe Perkはデフォルト機能に。
+            </p>
+
+            <h3>カルマとレピュテーション</h3>
+            <p>
+                カルマに加えて<strong>レピュテーション（評判）</strong>システムが追加。<br>
+                カルマはプレイヤー全体に影響するが、レピュテーションは各町でのプレイヤーの受け入れ方に影響する。<br>
+                行動に応じて「ジゴロ」「メイドマン」「スレイバー」などの称号を獲得でき、ゲームの展開やNPCの反応が変化する。
+            </p>
+
+            <h3>仲間NPC</h3>
+            <p>
+                初代では仲間NPCの操作は非常にシンプルだったが、Fallout 2では大幅に進化。<br>
+                NPCはレベルアップし、アーマーを装備でき、戦闘前および戦闘中に命令を出せるようになった（撤退タイミング、自己回復、武器の収納など）。<br>
+                個性的なバックストーリーを持ち、カルマが低いと加入を拒否するNPCや、特定のクエスト完了が条件のNPCも存在する。<br>
+                リクルート可能な人数にはカリスマに基づく上限があり、12名以上のNPCをリクルート可能。
+            </p>
+
+            <h3>クエスト構造</h3>
+            <p>
+                初代ではサイドクエストはほぼ各集落内で完結していたが、Fallout 2では集落同士が密接に繋がり、一つの都市での行動が他の都市に影響する。<br>
+                サイドクエストは複数のロケーション間を往復する必要があることが多い。
+            </p>
+
+            <h3>成熟したテーマ</h3>
+            <p>
+                ゲーム全体の題材はより成熟し、薬物と売春が設定の主要な要素に。<br>
+                マフィアへの加入、ポルノスター、結婚と離婚、性的なテーマが頻繁に登場。<br>
+                奴隷制も重要なサブプロットとなり、奴隷商（スレイバーズ・ギルド）側につくか、その反対勢力（ニュー・カリフォルニア・レンジャーズ）に加わるかを選択できる。
+            </p>
+
+            <h2>ストーリー</h2>
+            <img src="images/note_extracted/fallout-2/img_09.png" alt="村の長老がChosen Oneを送り出す" class="content-img">
+            <p class="content-img-caption">村の長老がChosen OneにG.E.C.K.探索の任務を与える</p>
+            <p>
+                初代Falloutの結末で、英雄Vault Dwellerは監督官によって追放された。<br>
+                ウエイストランドでの経験が彼を変えてしまい、Vault社会に再統合できないと判断されたためである。<br>
+                故郷に戻れなくなったVault Dwellerは、志を共にする仲間たちと共に北へ旅立ち、2170年代後半にニュー・カリフォルニア北部に「<strong>アロヨ</strong>」という部族の村を建設した。
+            </p>
+            <p>
+                それから数十年。<br>
+                Vault Dwellerは別の元Vault住人「パット」と結婚して子を設け、その子はやがて村の長老となった。<br>
+                Vault Dwellerは2208年に回顧録を残してアロヨを去った。
+            </p>
+            <p>
+                Vault Dwellerの追放以来、新たな政府<strong>ニュー・カリフォルニア共和国（NCR）</strong>が南部の居住地を統一し始めていた。<br>
+                <strong>エンクレイヴ</strong>という謎の組織が、ブラザーフッド・オブ・スティールをも凌ぐ最先端技術で台頭。<br>
+                遺伝的に純粋な人間で構成された孤立したハイテク居住地<strong>Vault City</strong>が交易を開始。<br>
+                犯罪ファミリーが支配する悪徳の街<strong>ニュー・リノ</strong>が、新しい強力な中毒性ドラッグ「<strong>ジェット</strong>」を流通させて政治を操り始めていた。
+            </p>
+            <p>
+                <strong>2241年</strong>、アロヨは記録上最悪の干ばつに見舞われた。<br>
+                村の長老はVault Dwellerの直系の子孫「Chosen One（選ばれし者）」に、G.E.C.K.を取得する任務を課す。<br>
+                G.E.C.K.はポストアポカリプスのウエイストランドから繁栄するコミュニティを創り出せるデバイスで、Vault 13（村人には「聖なる13のVault」として知られる）に保管されているとされていた。<br>
+                Chosen Oneは2241年7月25日、Vault Dwellerのジャンプスーツ、Pip-Boy 2000、Vault 13の水筒、槍、そしてわずかな現金だけを持って旅立つ。
+            </p>
+            <p>
+                長く困難な旅の末、Chosen OneはVault 13を発見するが、かつての住人の大部分はいなくなっていた。<br>
+                アロヨに戻ると、村はエンクレイヴに捕らえられていた。<br>
+                エンクレイヴは戦前のアメリカ合衆国政府の残党であることが判明する。<br>
+                Chosen Oneはサンフランシスコで石油タンカーとその自動操縦装置を起動し、カリフォルニア沖175マイルに位置するエンクレイヴの本部「ポセイドン石油リグ」へ向かう。
+            </p>
+            <p>
+                Vault 13の住人たちもアロヨの部族民と共にFEV（<a href="forced-evolution-virus-fev.html" class="auto-link">強制進化ウイルス</a>）の実験体として捕らえられていたことが明らかになる。<br>
+                エンクレイヴはマリポサ軍事基地株のFEVを改良し、変異DNAを持つあらゆる生物を攻撃する空気感染型の病原体「FEV カーリング-13」を開発していた。<br>
+                遺伝的不純物をすべて排除した後、放射線から保護されたエンクレイヴがアメリカ本土を支配し、戦前文明の再建を企図していたのである。<br>
+                Chosen Oneは村人とVault 13住人の双方を解放し、エンクレイヴの石油リグを破壊する。
+            </p>
+
+            <h3>エンディング</h3>
+            <p>
+                どのエンディングでも、Vault 13の住人とアロヨの住人はG.E.C.K.の力を借りて、共に新たな繁栄するコミュニティを築く。<br>
+                ただし他の人々やロケーションの運命には、プレイヤーの選択に応じたバリエーションが存在する。
+            </p>
+
+            <h2>開発</h2>
+            <p>
+                Fallout 2の開発は初代Falloutのリリース前から始まっていた。<br>
+                しかし開発初期に、初代の3人のクリエイティブリード — <strong>ティモシー・ケイン</strong>、<strong>ジェイソン・D・アンダーソン</strong>、<strong>レナード・ボヤースキー</strong> — がプロジェクトを離れた。
+            </p>
+            <p>
+                ケインはFalloutを単独の作品として意図しており、続編には乗り気ではなかった。<br>
+                「試練の寺院」をスキップ不可にするという強制的な決定、短い納期によるクランチ、初代のメモリ上書きバグの責任者を明かさなかったことによるボーナス減額など、複数の不満もあった。<br>
+                ケインの辞職後、アンダーソンとボヤースキーも続いて離脱した。
+            </p>
+            <p>
+                3人のリードが去ったことで、Fallout 2の開発者たちはより自由な創造的裁量を得た。<br>
+                ゲームは9か月の制限時間内に制作された（半年の早期開発は先行していた）。<br>
+                開発を支援するために『Planescape: Torment』の開発者もプロジェクトに参加した。<br>
+                初代より50%大きな世界を目指したため、追加のマップデザイナーが雇用された。
+            </p>
+            <p>
+                開発者スコット・エヴァーツは後にこう語っている：<br>
+                「Fallout 2は終盤でデスマッチになった。コンテンツが膨大で、すべてを完成させなければならなかった。」
+            </p>
+
+            <h2>評価</h2>
+            <p>
+                Fallout 2は好評を博し、Metacriticで<strong>86点</strong>のメタスコアを獲得（初代の89点より若干低いが、ユーザースコアはより高い）。<br>
+                GameSpotは8.8点を与え、初代より「大幅に広いゲーム世界」を賞賛した。<br>
+                メインストーリーのクリア時間は初代の約16時間に対し、Fallout 2は約30.5時間とほぼ倍増。<br>
+                NPC仲間システムの改善も評価された。
+            </p>
+            <p>
+                一方でバグの多さが批判され、GameSpotは「十分なプレイテストとデバッグの前にリリースされたようだ」と指摘。<br>
+                頻繁なポップカルチャー引用（『ターミネーター』のスカイネットなど）を安っぽく感じたり、時代を感じさせるという意見もあった。
+            </p>
+
+            <h2>裏話</h2>
+            <ul>
+                <li>Fallout 2はビデオゲームにおいて最も早い時期に同性婚を可能にした作品の一つとされ、シリーズへのLGBT+キャラクターの導入を始めた（デイヴィン、ミリア、レスリー・アン・ビショップ）</li>
+                <li>クリス・アヴェロンは「知的なデスクロー」のアイデアを嫌悪し後悔しており、Falloutにふさわしくないと感じていた</li>
+                <li>スピードランは初代よりも困難。最終エリアにアクセスするにはVault 13のコンピューター部品が必要で、Vault 13自体は特定のクエスト完了まで発見できない。最終ボス戦の回避も不可。それでもプレイヤーは10分未満でクリアしている</li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_01.jpg" alt="Fallout 2 パッケージアート">
+                    <div class="caption">パッケージアート</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_02.jpg" alt="パッケージ裏面">
+                    <div class="caption">パッケージ裏面</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_03.jpg" alt="ウクライナ版カバーアート">
+                    <div class="caption">ウクライナ版カバーアート（1C Company）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_04.jpg" alt="ポーランド版カバーアート">
+                    <div class="caption">ポーランド版カバーアート</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_05.jpg" alt="Fallout 2ベータ版ロゴ">
+                    <div class="caption">ベータ版のロゴ</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_06.jpg" alt="Fallout 2パッケージ内容物">
+                    <div class="caption">パッケージ内容物（CD、Vault-Tecラボジャーナル164ページ）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_07.png" alt="ゲーム内ヘルプ画面">
+                    <div class="caption">ゲーム内ヘルプ画面</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/fallout-2/img_08.jpg" alt="Fallout 2メニュー画面">
+                    <div class="caption">メニュー画面</div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                初代Falloutが「実験的な傑作」だとしたら、Fallout 2は「自由奔放な傑作」だ。<br>
+                ティモシー・ケインら3人のリードが離脱し、残されたチームが制約なく暴走した結果、マフィア、ポルノスター、同性婚、知的デスクロー、スカイネットという名のコンピューターまで登場する、カオスの坩堝が生まれた。<br>
+                開発者自身が「終盤はデスマッチだった」と回顧するほどの修羅場から生まれた本作が、初代を超えるユーザー評価を得ているのは皮肉であり、ゲーム開発の面白さを物語っている。<br>
+                そしてChosen Oneの旅の終着点 — エンクレイヴの石油リグ爆破とアロヨの再生 — は、祖父Vault Dwellerの「追放」という苦い結末への、世代を超えた回答のように感じられる。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Fallout_2" target="_blank" rel="noopener">Fallout 2</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+    <script>
+        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}btn.disabled=false}function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='\u2665'}else{btn.classList.remove('liked');heart.textContent='\u2661'}countSpan.textContent=count}document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count)}await loadComments()});document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();const overlay=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.src;overlay.classList.add('active')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
+        const _commentArticleId="note_fallout-2";const _commentArticleName="Fallout 2";const _commentArticleUrl="fallout-2.html";const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)'}}function relativeTime(isoStr){const diff=(Date.now()-new Date(isoStr).getTime())/1000;if(diff<60)return'たった今';if(diff<3600)return Math.floor(diff/60)+'分前';if(diff<86400)return Math.floor(diff/3600)+'時間前';if(diff<86400*7)return Math.floor(diff/86400)+'日前';return new Date(isoStr).toLocaleDateString('ja-JP')}function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return}list.innerHTML=comments.map(c=>'<div class="comment-item" data-id="'+c.id+'"><div class="comment-meta"><span class="comment-time">'+relativeTime(c.created_at)+'</span>'+(_isAdminMode?'<button class="comment-delete-btn" title="完全削除" onclick="deleteComment(\''+c.id+'\')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment(\''+c.id+'\')">&#128064;</button>':'')+'</div><div class="comment-body">'+escapeHtml(c.content)+'</div></div>').join('')}function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id, content, created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return}renderComments(data||[])}async function submitComment(){const input=document.getElementById('comment-input');const msg=document.getElementById('comment-msg');if(!input||!msg)return;const hp=document.getElementById('hp_field');if(hp&&hp.value!=='')return;const content=input.value.trim();if(!content){showCommentMsg('コメントを入力してください。',false);return}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return}const NG_WORDS=['広啄','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];const lc=content.toLowerCase();if(NG_WORDS.some(w=>lc.includes(w.toLowerCase()))){showCommentMsg('不適切な表現が含まれているため投稿できません。',false);return}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){const remain=Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000);showCommentMsg('あと'+remain+'秒後に投稿できます。',false);return}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments()}function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent=''},3000)}async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを完全に削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return}await loadComments()}async function hideComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを非表示にしますか？'))return;const{error}=await supabaseClient.rpc('hide_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('非表示失敗: '+error.message);return}await loadComments()}document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);renderComments([]);loadComments();alert('管理者モードを終了しました。');return}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。')}else{alert('パスワードが違います。')}}});
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

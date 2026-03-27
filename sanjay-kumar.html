@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjay Kumar | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/sanjay-kumar.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Sanjay Kumar | Overseer Mohi's Terminal">
+    <meta property="og:description" content="サンジェイ・クマール。レスポンダーの主任技師として機械やロボットの修理を担った技術者の記録。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/sanjay-kumar/img_portrait.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/sanjay-kumar.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Sanjay Kumar | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="レスポンダーの主任技師サンジェイ・クマールの記録。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/sanjay-kumar/img_portrait.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .holotape-box { border: 1px solid var(--accent-color); background: rgba(0,255,0,0.03); padding: 20px; margin: 20px 0; border-radius: 5px; }
+        .holotape-box h3 { margin-top: 0; border-bottom: 1px dashed var(--accent-color); }
+        .holotape-box .holotape-icon { display: inline-block; margin-right: 8px; }
+        .dialogue-box { border: 1px solid #555; background: rgba(255,255,255,0.02); padding: 15px 20px; margin: 10px 0; border-radius: 3px; }
+        .dialogue-box .speaker { color: var(--accent-color); font-weight: bold; }
+        .dialogue-box .line { margin: 8px 0; }
+        .dialogue-box .direction { color: #666; font-style: italic; font-size: 0.85em; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        .copyright { margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #777; text-align: center; }
+        .copyright a { color: var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="人物" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Sanjay Kumar</h3>
+            <img src="images/note_extracted/sanjay-kumar/img_portrait.png" alt="サンジェイ・クマール">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>ヒューマン</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>レスポンダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>主任技師</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Back on the Beat<br>Feed the People</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>ショーン・T・クリシュナン</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76（言及のみ）</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_sanjay_kumar" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Sanjay Kumar<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">サンジェイ・クマール</span></h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>サンジェイ・クマール</strong>は、レスポンダーの<strong>主任技師</strong>です。<br>
+                Fallout 76ではゲーム内に直接登場しませんが、イベントクエスト「Back on the Beat」と「Feed the People」で彼の音声を聞くことができるほか、2本のホロテープにも録音が残されています。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                サンジェイ・クマールはレスポンダーのシニアメンバーの一人であり、彼らのためにさまざまな機器の修理を担当していました。<br>
+                彼の主な仕事はモーガンタウン空港でのロボット修理で、格納庫の一つに個人用の工房を割り当てられていました。
+            </p>
+
+            <p>
+                彼はママ・ドルチェ食品加工工場の機械を再び稼働させた人物の一人でした。<br>
+                施設を警備する「赤い星のついた小さなロボット」（リベレーター）については特に気にしていませんでした。<br>
+                彼は機器を修理し、缶詰の肉を使ったシチューを生産できるようにしましたが、食品加工機は稼働中にかなりの騒音を立て、頻繁にオーバーヒートしました。
+            </p>
+
+            <p>
+                また、古い警察用プロテクトロン「スティールハート」をセットアップし、モーガンタウンのダウンタウンをパトロールさせて、周辺のレスポンダー隠れ家のアラームをチェックするように設定しました。<br>
+                ただし、バッテリーの寿命が短く、市内を徘徊するフェラル・グールによって損傷を受けることが多いという問題がありました。
+            </p>
+
+            <p>
+                ある時点で、タイガート浄水場の状態を評価する偵察任務を実施しました。<br>
+                予想をはるかに超える荒廃ぶりに「動物が運営していたのか？」と嘆き、マリア・チャベスに悪い知らせを伝えるために帰還しました。<br>
+                サンジェイの最終的な運命は明らかにされていません。
+            </p>
+
+            <h2>関連クエスト</h2>
+            <ul>
+                <li><strong>Back on the Beat</strong> — スティールハートを再起動してモーガンタウンをパトロールさせるイベントクエスト。サンジェイの録音音声が流れる</li>
+                <li><strong>Feed the People</strong> — ママ・ドルチェの食品加工機を稼働させるイベントクエスト。サンジェイの録音音声が流れる</li>
+            </ul>
+
+            <h2>関連ホロテープ</h2>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">🔊</span> フィールドレポート：ママ・ドルチェ食品加工工場</h3>
+                <p style="font-size: 0.85em; color: #888;">クエスト「Final Departure」の進行中にママ・ドルチェ食品加工工場の制御端末の机の上で入手可能</p>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">サンジェイ・クマール：</span>レスポンダー・フィールドレポート、サンジェイ・クマール報告。<br>ママ・ドルチェ食品加工工場への偵察任務がまもなく完了する。</div>
+                    <div class="line"><span class="speaker">デイヴ・ストラウス：</span><span class="direction">（怯えた声で）</span>しっ！そんな大声出さないでくれよ、サンジェイさん！<br>赤い星のついた小さなロボットがまた近くを歩き回ってるのが聞こえるんだ。</div>
+                    <div class="line"><span class="speaker">サンジェイ・クマール：</span><span class="direction">（苛立って）</span>ロボットが心配なら行って対処しろ。<br>君は俺の護衛につけられたはずだろう？<br><span class="direction">（報告に戻り）</span>話を続けるが、偵察任務は終了だ。<br>ここで発見したものは非常に有望だ。<br>これらの機械を稼働状態に戻せる見込みは十分にある。</div>
+                    <div class="line"><span class="speaker">デイヴ・ストラウス：</span><span class="direction">（小声で、怯えて）</span>いったいこのロボットはどこから来てるんだ？<br>ここで何してるんだ？<br>もう逃げた方がいいんじゃないか。</div>
+                    <div class="line"><span class="speaker">サンジェイ・クマール：</span><span class="direction">（再び苛立って）</span>しっかりしろ！まったく、今まで会った中で一番臆病な警備ボランティアだ。<br>どこまで話したか？ああ。<br>この施設を完全な稼働状態に戻す可能性を調査するため、機械チームを連れて戻ることを推奨する。<br><span class="direction">（近くで戦闘の悲鳴、ポンプショットガンの装填音）</span>以上、報告終わり。</div>
+                </div>
+            </div>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">🔊</span> サンジェイのレポート</h3>
+                <p style="font-size: 0.85em; color: #888;">タイガート浄水場の北側、パイプ入り口の内部で入手可能</p>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">サンジェイ・クマール：</span>サンジェイの記録：タイガート浄水場。<br>どこから始めればいいのか。<br>この場所はもう手の施しようがない。<br>つまり……どうやったらこうなるんだ？この建物が核攻撃を受けたわけでもないだろうに。<br>ここは動物が運営していたのか？人間はそこまで無能なのか？<br>完全に腐食した浄化装置、未使用のフィルターには……何だこの黒いヘドロは。<br>マリアはこれを聞いて喜ばないだろうな。</div>
+                </div>
+            </div>
+
+            <h2>イベント音声</h2>
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">📢</span> Feed the People — サンジェイの放送</h3>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">サンジェイ・クマール：</span>レスポンダー各位に告ぐ！<br>ママ・ドルチェの食品加工機がようやく冷却されて再び動かせるようになった。<br>工場中に散らばった原材料コンテナを使ってシチューの缶詰を作れるようにセットしてある。<br>機械はかなりの騒音を立てるから、招かれざる客が来るだろうな。</div>
+                </div>
+            </div>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">📢</span> Back on the Beat — サンジェイの放送</h3>
+                <div class="dialogue-box">
+                    <div class="line"><span class="speaker">サンジェイ・クマール：</span>レスポンダー各位！<br>サンジェイだ。スティールハートのフル充電が完了し、出動準備が整ったことを知らせる。<br>モーガンタウンにいるなら、彼を起動して隠し部屋のアラームをチェックさせてくれ。<br>あまりダメージを受けさせないようにしてくれよ。<br>修理仕事はもう十分すぎるほど抱えてるんだから。</div>
+                </div>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>
+                サンジェイ・クマールは『<strong>Fallout 76</strong>』で言及のみの登場ですが、イベントクエスト「Back on the Beat」と「Feed the People」、そしてホロテープ「フィールドレポート：ママ・ドルチェ食品加工工場」と「サンジェイのレポート」で彼の音声を聞くことができます。<br>
+                声優はショーン・T・クリシュナンが担当しています。
+            </p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/sanjay-kumar/img_leaders.png" alt="仲間のレスポンダーと共にポーズをとるサンジェイ" onclick="openLightbox(this)"><div class="caption">仲間のレスポンダーと共にポーズをとるサンジェイ</div></div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                サンジェイ・クマールは、レスポンダーの中でも突出した技術者でした。<br><br>
+                ゲーム中に直接姿を見ることはできませんが、彼の「仕事」は至るところに残っています。<br>
+                モーガンタウンの街を巡回するプロテクトロン「スティールハート」、ママ・ドルチェの食品加工ラインで缶詰シチューを量産する機械——これらはすべてサンジェイが修理し、セットアップしたものです。<br>
+                プレイヤーがイベントクエストとして繰り返し体験するこれらの仕組みの裏に、一人の技師の奮闘があったわけです。<br><br>
+                印象深いのはママ・ドルチェのホロテープです。<br>
+                護衛のデイヴ・ストラウスが怯えて震える傍らで、サンジェイは淡々とレポートを録音し続けます。<br>
+                「しっかりしろ」「君は俺の護衛だろう」と叱咤しながら冷静に任務をこなす姿は、彼の職人気質と胆力を如実に物語っています。<br>
+                最後に聞こえる悲鳴とショットガンの装填音は、録音の向こう側で何が起きたのかを想像させ、静かな恐怖感を残します。<br><br>
+                タイガート浄水場のレポートでは彼の率直さが際立ちます。<br>
+                「動物が運営していたのか？」という苛烈な一言は、技術者として管理されていない設備への心底からの怒りを感じさせました。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Character</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Responders</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Sanjay_Kumar" target="_blank" rel="noopener">Sanjay Kumar</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = img.src;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡';
+            btn.querySelector('.like-count').textContent = count;
+            btn.classList.toggle('liked', isLiked);
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                updateLikeButton(btn, isLiked, data ? data.like_count : 0);
+            }
+        });
+
+        const _commentArticleId = 'sanjay-kumar';
+        const _commentArticleName = 'Sanjay Kumar (サンジェイ・クマール)';
+        const _commentArticleUrl = 'sanjay-kumar.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list'); if (!list) return;
+            if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50);
+            if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');
+            const now = Date.now();
+            if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

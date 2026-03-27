@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Charleston Capitol Courthouse | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/charleston-capitol-courthouse.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Charleston Capitol Courthouse | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Charleston Capitol Courthouse（チャールストン議事堂裁判所）のFalloutロア記事。カットスロートの報復とロザリンの最期。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_build.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/charleston-capitol-courthouse.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Charleston Capitol Courthouse | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Charleston Capitol Courthouse（チャールストン議事堂裁判所）のFalloutロア記事。カットスロートの報復とロザリンの最期。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_build.jpg">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .terminal-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 20px 0;
+            background: rgba(0, 255, 0, 0.05);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .terminal-box b { color: var(--accent-color); font-size: 1.05em; font-family: 'Share Tech Mono', monospace; }
+
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block; color: var(--accent-color); text-decoration: none;
+            border: 1px solid var(--accent-color); padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace; transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center;
+            gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s;
+        }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item {
+            background: var(--panel-bg); border: 1px solid #444; border-radius: 4px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .lightbox-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out;
+            justify-content: center; align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw; max-height: 95vh; object-fit: contain;
+            border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px;
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color);
+            color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em;
+            padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em;
+            cursor: pointer; border-radius: 4px; transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Charleston Capitol Courthouse</h3>
+            <img src="images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_build.jpg" alt="Charleston Capitol Courthouse">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所 / 裁判所</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属施設</span><span>チャールストン議事堂ビル</span></div>
+            <div class="infobox-row"><span class="infobox-label">区画</span><span>登記所、議事堂警察署</span></div>
+            <div class="infobox-row"><span class="infobox-label">勢力</span><span>カットスロート、レスポンダー（かつて）</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>スコーチ</span></div>
+            <div class="infobox-row"><span class="infobox-label">重要人物</span><span>ロザリン・ジェフリーズ（死亡）</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_charleston_capitol_courthouse" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Charleston Capitol Courthouse<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">チャールストン議事堂裁判所</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                チャールストン議事堂裁判所は、チャールストン議事堂ビル複合施設の一部で、南棟に位置するロケーションです。<br>
+                半壊した法廷を中心に、登記所、議事堂警察署の事務所、そして留置房が含まれています。<br>
+                クエスト「Key to the Past」の重要な経由地であり、デヴィッド・ソープの恋人ロザリン・ジェフリーズの遺体が安置されている場所です。
+            </p>
+
+            <!-- ===== Layout ===== -->
+            <h2>レイアウト</h2>
+            <p>
+                建物の西側にある青い扉から入ると、カットスロートの装飾——レスポンダーの遺体を含む——が出迎えます。<br>
+                左に曲がると、フェンスとレイダーのバリケードが追加されたかつての受付エリアがあります。
+            </p>
+            <p>
+                南に向かうと2つのバスルームがあり、左のバスルームの壁に開いた穴を通ると、演壇と廃棄された長椅子のある広い部屋に出ます。<br>
+                廊下を進むと、化学物質作業台と医療機器が備えられたクリニックに改造されたオフィスエリアにアクセスできます。<br>
+                近くの階段は下にのみ通じており、上は瓦礫で塞がれています。
+            </p>
+            <p>
+                階下には州の法廷があります。カットスロートはメインの机と椅子を瓦礫の上に積み上げて「山」を作り、そこから見下ろす位置に椅子を一脚置いて、別のレスポンダーの遺体を座らせています。<br>
+                北側のサイドオフィスには犯罪記録ターミナルがあり、マネキンに向けられたカメラが設置されています。マネキンの上にはチョークで「DUMM ASS」と書かれています。
+            </p>
+            <p>
+                赤い扉を通って北に進むと、留置房付きの尋問室があり、<b>ロザリン・ジェフリーズの遺体</b>が安置されています。<br>
+                壁の穴からは法廷に通じる同じ廊下に出ます。北西のエリアは物資保管室として使われており、投票サービス端末もここに設置されています。<br>
+                廊下の突き当たりの黒い両開き扉が出口です。この外部区画はトンネルの下に埋もれており、ボタン操作の外部ゲートを通って壊れたバスに出ると、チャールストンに戻れます。
+            </p>
+
+            <!-- ===== Holotape ===== -->
+            <h2>ホロテープ 🎙️</h2>
+            <div class="holotape-box">
+                <b>🎙️ Interrogation: Doe, Jane（尋問：ジェーン・ドウ）</b><br>
+                <em>場所：留置房区画のテーブル上</em><br><br>
+                <b>メロディ・ラーキン：</b>ジェーン・ドウの尋問を開始する。本日午後10時30分頃、2082年12月24日、この場所で致命的な襲撃が行われた。唯一拘束されているレイダーの尋問記録である。<br>
+                あんたたち、いい度胸してるわね！ よりによってクリスマスイブに！ さあ、もう一度聞くわよ。名前は？<br><br>
+                <b>ロザリン・ジェフリーズ：</b>くたばれ！ 「く」は「苦しみ」の「く」、「た」は…<br><br>
+                〈激しい打撃音〉 うっ…！<br><br>
+                <b>メロディ・ラーキン：</b>そうやるなら、そうやるまでよ。ふざけるのをやめなさい、さもなければもう一発くらうわよ。<br><br>
+                <b>ロザリン・ジェフリーズ：</b>〈笑い声〉<br><br>
+                <b>メロディ・ラーキン：</b>笑えるの？ 外で大勢を殺しておいて、これから清算するのよ。<br><br>
+                <b>ロザリン・ジェフリーズ：</b>デヴィッドが迎えに来るわ。あいつが来たら怒り狂うわよ。必要なら最後の一人まで殺す。だからこうしなさい。<br>
+                あたしをこの独房からまっすぐ歩いて出させなさい。クリスマスのお土産をたっぷり持たせて、デヴィッドの元に帰してくれるならね。そうすれば、何もなかったことにしてあげてもいいわ。<br><br>
+                <b>メロディ・ラーキン：</b>デヴィッド、ね？ じゃあ、デヴィッド・ソープの…彼女がここにいるってわけ？<br>
+                あいつがあんたたちの…山の上のリゾートに助けを差し伸べに行った、勇敢で献身的なレスポンダー2人を殺したのは知ってるわよね。<br>
+                なるほど、なるほど。紳士諸君、最重要指名手配犯をおびき出す方法が分かったわ。<br><br>
+                <b>ロザリン・ジェフリーズ：</b>そんな…やめて！ あいつは殺す、あんたたち全員殺すわよ！<br><br>
+                <b>メロディ・ラーキン：</b>閉じ込めておきなさい。あの山にメッセージを送る方法は明日考えましょう。
+            </div>
+
+            <!-- ===== Notes ===== -->
+            <h2>発見できるノート 📝</h2>
+
+            <div class="note-box">
+                <b>📄 Cutthroat orders（カットスロートの命令）</b><br>
+                <em>場所：入口近くの演壇上</em><br><br>
+                お前らジャンキーどもに念のために言っておくぞ：<br><br>
+                ・洪水で流れ着いた貴重品を全部集めろ。<br><br>
+                ・うろつき回っている奴を見つけたら全員連行しろ。レスポンダーの装備を着ていたらボーナスのケミカルをやるぞ。<br><br>
+                ・そいつらを裁判所まで行進させて、清算の準備をしろ。デヴィッド・ソープに逆らうとどうなるか、全員に最後のメッセージを残してやれ。
+            </div>
+
+            <div class="note-box">
+                <b>📄 Cutthroat warning（カットスロートの警告）</b><br>
+                <em>場所：法廷内のデスク上（コンバットナイフで刺さっている）</em><br><br>
+                残った者たちへの警告 ——<br><br>
+                見回してみろ。いわゆる「チャールストン緊急政府」の成れの果てを。カットスロートは許さない、そして忘れない。<br><br>
+                77年にチャールストンとレスポンダーが俺たちを助けるのを拒んだことを忘れていない。何度も俺たちの縄張りに侵入してきたことを忘れていない。俺たちの兄弟姉妹を冷血に殺したことを忘れていない。<br><br>
+                これを全員への戒めとする。俺たちに逆らった者にはこうなる。忘れるな、さもなければ次はお前だ。
+            </div>
+
+            <div class="note-box">
+                <b>📄 Rosalynn's note（ロザリンのメモ）</b><br>
+                <em>場所：ロザリン・ジェフリーズの遺体上</em><br><br>
+                <em>看守を刺すためにペンをくすねたけど、映画で見るほど簡単じゃなかった。あのレスポンダーのブタは様子を見にすら来なくなったし、あたしが閉じ込められている意味すらよく分からない！ メリー「くそったれ」クリスマスね…</em><br><br>
+                <em>デヴィッド、これは全部あなたのためにやったの。捕まっちゃってごめんね。こうなるつもりじゃなかった。なんとかして脱出するわ。それまで、バカなことしないで。あなたを失うなんて耐えられない。</em><br><br>
+                <em>— ローズ</em>
+            </div>
+
+            <!-- ===== Notable loot ===== -->
+            <h2>注目の戦利品</h2>
+            <ul>
+                <li>Cutthroat orders — ノート、入口近くの演壇上</li>
+                <li>Cutthroat warning — ノート、法廷のデスク上</li>
+                <li>Interrogation: Doe, Jane — ホロテープ、ロザリンの留置房内</li>
+                <li>Rosalynn's note — ノート、ロザリン・ジェフリーズの遺体上</li>
+                <li>設計図：化学物質作業台 — 化学物質作業台の上</li>
+                <li>レシピ — 調理ステーション上のテーブル</li>
+            </ul>
+
+            <!-- ===== Notes (game) ===== -->
+            <h2>ゲーム情報</h2>
+            <ul>
+                <li>この場所は元々、議事堂ビルの残りの部分と一つの大きな内部空間でしたが、ナビゲーション改善のために分割されました。</li>
+                <li>議事堂ビル本体はレベル30以上推奨ですが、裁判所はレベル15以上推奨と低めに設定されています。</li>
+            </ul>
+
+            <!-- ===== Appearances ===== -->
+            <h2>登場作品</h2>
+            <p>チャールストン議事堂裁判所は『Fallout 76』のNuclear Winterアップデートで追加されました。</p>
+
+            <!-- ===== GALLERY ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_1.jpg" alt="裁判所内部1">
+                        <div class="caption">裁判所内部</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_2.jpg" alt="裁判所内部2">
+                        <div class="caption">裁判所内部</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_3.jpg" alt="裁判所内部3">
+                        <div class="caption">裁判所内部</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_4.jpg" alt="裁判所内部4">
+                        <div class="caption">裁判所内部</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_Young_woman.jpg" alt="若い女性">
+                        <div class="caption">若い女性</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/Rosalynn_Jeffries_body.png" alt="ロザリン・ジェフリーズの遺体">
+                        <div class="caption">ロザリン・ジェフリーズの遺体</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76NW_Charleston_Capitol_Courthouse_Cutthroat_orders.jpg" alt="カットスロートの命令">
+                        <div class="caption">カットスロートの命令</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76NW_Charleston_Capitol_Courthouse_Cutthroat_warning.jpg" alt="カットスロートの警告">
+                        <div class="caption">カットスロートの警告</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-capitol-courthouse/FO76_Charleston_Capitol_Courthouse_Interrogation_Doe_Jane.png" alt="尋問テープ">
+                        <div class="caption">尋問ホロテープ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                裁判所は「Key to the Past」のダークなクライマックスの舞台です。<br>
+                カットスロートが机と椅子を瓦礫の上に積み上げて「玉座」を作り、レスポンダーの遺体を見下ろす配置——この空間演出がレイダーの残虐さを雄弁に物語っています。<br><br>
+                尋問テープは名演技の宝庫。メロディ・ラーキンの疲弊した怒りと、ロザリンの半ば錯乱しながらも折れない反抗心のコントラストが素晴らしい。<br>
+                「デヴィッドが来る」と脅すロザリンに、メロディが「ならデヴィッド・ソープの彼女がここにいるのね？」と冷たく切り返す瞬間——その声色の変化に鳥肌が立ちます。<br><br>
+                そしてロザリンのメモ。彼女は結局このままクリスマス洪水に飲まれ、デヴィッドに会えないまま死んでしまいました。<br>
+                「バカなことしないで」——しかしデヴィッドはこの後、彼女を取り戻すためにサマーズヴィル・ダムを破壊し、チャールストンを丸ごと洪水で沈めてしまうのです。<br>
+                愛する人を救おうとした行動が、その人を殺してしまった——これほど残酷な結末はありません。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Charleston_Capitol_Courthouse" target="_blank" rel="noopener">Charleston Capitol Courthouse</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        const _commentArticleId = 'note_charleston_capitol_courthouse';
+        const _commentArticleName = 'Charleston Capitol Courthouse';
+        const _commentArticleUrl = 'charleston-capitol-courthouse.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Charleston | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/charleston.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Charleston | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Charleston（チャールストン）のFalloutロア記事。ウェストバージニア州の州都とFallout 76のロケーション。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston/F76_Charleston.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/charleston.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Charleston | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Charleston（チャールストン）のFalloutロア記事。ウェストバージニア州の州都とFallout 76のロケーション。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston/F76_Charleston.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        .real-world-box {
+            border-left: 4px solid #ffd54f;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ffd54f 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .real-world-box b { color: #ffd54f; font-size: 1.05em; }
+
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block; color: var(--accent-color); text-decoration: none;
+            border: 1px solid var(--accent-color); padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace; transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center;
+            gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s;
+        }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item {
+            background: var(--panel-bg); border: 1px solid #444; border-radius: 4px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .lightbox-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out;
+            justify-content: center; align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw; max-height: 95vh; object-fit: contain;
+            border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px;
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color);
+            color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em;
+            padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em;
+            cursor: pointer; border-radius: 4px; transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Charleston</h3>
+            <img src="images/note_extracted/charleston/F76_Charleston.png" alt="Charleston">
+            <img src="images/note_extracted/charleston/Charleston_map.png" alt="マップマーカー"
+                style="margin-top:-10px; object-fit: contain; height:100px;">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所 / 大規模集落</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属地域</span><span>チャールストン</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール、スコーチ、スナリーギャスター、スーパーミュータント、グラフトン・モンスター</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>Recruitment Blues、Into the Fire、他</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_charleston" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Charleston<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">チャールストン</span></h1>
+
+            <div class="quote-box" style="margin-top: 0;">
+                <b>「チャールストンはウェストバージニアの州都であり、この地域で最も大きな都市の一つだった。大戦前には政治的反体制活動の温床であり、労働者の権利を求める無数の抗議活動が行われていた。」</b><br>
+                — Fallout 76 ロード画面
+            </div>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                チャールストンは、大戦前のウェストバージニア州の州都であり、Fallout 76に登場する最も重要なロケーションの一つです。<br>
+                森林地帯に位置する大規模集落で、議事堂ビル、消防署、メディカルセンターなど多くの施設が集まっています。<br>
+                現在はスーパーミュータント、スコーチ、フェラル・グールたちが廃墟と化した街を支配しています。
+            </p>
+
+            <!-- ===== Real World ===== -->
+            <h2>現実のチャールストン 🌍</h2>
+            <div class="real-world-box">
+                <b>🏛️ チャールストン — ウェストバージニア州の州都</b><br><br>
+                チャールストンは、エルク川とカノーア川の合流地点に位置するウェストバージニア州の州都であり、同州最大の都市です。<br>
+                2020年の国勢調査では人口約48,864人、都市圏では約203,000人が暮らしています。<br><br>
+                <b>歴史</b><br>
+                1787年、ジョージ・クレンデニン大佐がフォート・リーを建設したことに始まります。<br>
+                1794年にチャールズ・タウンとして正式に認可され、クレンデニンの父にちなんで名付けられました。<br>
+                19世紀にはカノーア川沿いの塩水鉱泉の発見により製塩業が栄え、続いて石炭採掘、天然ガス採掘へと産業が発展しました。<br>
+                南北戦争では一時的に南軍に占領され、1863年のウェストバージニア州独立後、1885年に正式な州都となりました（それまではウィーリングと交互に州都を担当）。<br>
+                20世紀にはナイロンやルーサイトなどの化学製品製造で知られるようになりました。<br><br>
+                <b>主なランドマーク</b><br>
+                ・<b>ウェストバージニア州議事堂</b> — キャス・ギルバート設計、1932年完成。金箔のドームは米国議事堂より高い<br>
+                ・<b>クレイ・センター</b> — 芸術・科学複合施設（美術館、プラネタリウム、劇場）<br>
+                ・<b>ハダッド・リバーフロント・パーク</b> — カノーア川沿いの公園、コンサートやフェスティバルの会場<br>
+                ・<b>イースト・エンド歴史地区</b> — ビクトリア様式の邸宅が並ぶ美しい区画<br>
+                ・<b>クリエル・マウンド</b> — 近郊サウス・チャールストンにあるアデナ族の古代の墳丘墓
+            </div>
+
+            <!-- ===== Background ===== -->
+            <h2>背景</h2>
+            <p>
+                ウェストバージニア州の州都であり最大の都市だったチャールストンは、大戦前にアパラチア全域を覆った自動化推進運動の中心地となりました。<br>
+                自動化の強力な推進者であり企業の味方でもあったエヴァンス知事は、サム・ブラックウェル上院議員ら一部の政治家の支持を受けつつ、残存する労働組合からの強い反対を押し切って自動化政策を推進しました。
+            </p>
+            <p>
+                大戦後、チャールストンはアパラチア復興の中心地となりました。<br>
+                核による壊滅を免れ、街は無事だったため、議事堂ビルを拠点に緊急政府が形成されました。<br>
+                ファースト・レスポンダーたちとともに、散り散りになった大戦前の指導者たちが再建を開始しました。
+            </p>
+            <p>
+                しかし、膨大な難民の問題が彼らを悩ませ、即座に対応できない援助や物資の要請を断らざるを得なくなりました。<br>
+                プレザント・バレー・スキーリゾートや世界の頂上からの生存者たちもその中に含まれていました。<br>
+                屈辱を受け、助けを得られなかった生存者たちは、冷酷で残忍なデイビッド・ソープの下で結集し、恐るべきレイダー戦闘団を結成しました。
+            </p>
+            <p>
+                2082年、ソープのレイダー部隊の一隊がロザリン・ソープに率いられてチャールストンを攻撃しましたが、早期に発見されレスポンダーに撃退されました。<br>
+                ロザリンは負傷して他のレイダーとともに捕虜となりました。<br>
+                レスポンダーは翌日に交渉を望んでいましたが、報復としてデイビッド・ソープはクリスマスの朝にミニ・ニュークを使ってサマーズビル・ダムを破壊し、チャールストンに壊滅的な被害をもたらしました。
+            </p>
+            <p>
+                一瞬にして、レスポンダーはほぼすべてを失いました — 家、物資、そして友人や家族の大半を。<br>
+                しかし壊滅的な打撃を受けながらも、彼らは生き延び、レスポンダーの理念を守り続けました。<br>
+                街は荒廃の後ほとんど放棄されましたが、ファイア・ブリーザーズはここを最適な訓練環境として活用しました。<br>
+                2103年、チャールストンの唯一の人間の住人はナッシュです。
+            </p>
+
+            <img src="images/note_extracted/charleston/FO76_Charleston_Topdown_label.png" alt="チャールストン俯瞰マップ" class="article-image">
+            <div class="image-caption">チャールストン俯瞰マップ（ラベル付き）</div>
+
+            <!-- ===== Layout ===== -->
+            <h2>レイアウト</h2>
+            <p>
+                チャールストンには議事堂ビルがあります。<br>
+                その他の施設や構造物には、ウェイド空港、チャールストン消防署、チャールストン操車場、AVRメディカルセンター、ホーンライト・インダストリアル本社などがあります。<br>
+                洪水の爪痕は今も残っており、通りは泥と瓦礫で埋め尽くされ、一部の建物は土台から外れてしまっています。<br>
+                スーパーミュータントとスコーチが廃墟を徘徊し、スナリーギャスターやグラフトン・モンスターも出没します。
+            </p>
+            <p>
+                チャールストンは谷間を東西に広がっています。<br>
+                東端はサマーズビル・ダム、西端はポセイドン・エネルギー・プラントWV-06に接しています。<br>
+                北の丘の上にはウェイド空港があり、南の谷の斜面にはファイア・ブリーザーズの拠点であるチャールストン消防署があります。<br>
+                議事堂ビルの前には、ウェストバージニア州のリバティ・ベルのレプリカがあります。
+            </p>
+            <p>
+                議事堂ビルの西側には、カノーア川を渡る橋がいくつかあり、無傷のものと崩壊したものがあります。<br>
+                これらの橋には操車場近くのサウスサイド・ブリッジや、発電所近くのウエスト・チャールストン・ブリッジなどがあります。
+            </p>
+
+            <h3>主な施設</h3>
+            <ul>
+                <li>議事堂ビル（Charleston Capitol Building）</li>
+                <li>議事堂裁判所（Charleston Capitol Courthouse）</li>
+                <li>チャールストン消防署（Charleston Fire Department）</li>
+                <li>チャールストン・ヘラルド社屋（Charleston Herald building）</li>
+                <li>AVRメディカルセンター（AVR Medical Center）</li>
+                <li>ホーンライト・インダストリアル本社（Hornwright Industrial HQ）</li>
+                <li>スローカムズ・ジョー（Slocum's Joe）</li>
+                <li>ファースト・フレンズ教会（First Friends Church）</li>
+                <li>自動車局（Department of Motor Vehicles）</li>
+                <li>チャールストン操車場（Charleston Trainyard）</li>
+            </ul>
+
+            <h3>クラフト設備</h3>
+            <ul>
+                <li>ケミカルステーション</li>
+                <li>クッキングステーション</li>
+            </ul>
+
+            <!-- ===== Notable loot ===== -->
+            <h2>注目の戦利品</h2>
+            <ul>
+                <li>The house — ノート、チャールストン・ヘラルド社屋から渡り廊下を渡った先の建物、床の穴から降りた先の鏡台の上</li>
+                <li>The view — ノート、「The house」のノートがあるアパートから1階下のテーブル上</li>
+                <li>The shrink — ノート、チャールストン・ヘラルド社屋の南東2棟目の精神科医のオフィスの受付デスク上</li>
+                <li>The drop — ノート、訓練コースが地上レベルに降りる直前のデスク上</li>
+                <li>The doctors — ノート、チャールストン・ヘラルド社屋の南東2棟目の最上階のデスク上</li>
+                <li>The safe — ノート、ファイア・ブリーザーズの訓練コースが地上に降りた先の赤い廃屋の金庫の中</li>
+                <li>The owner — ノート、ホーンライト・インダストリアル本社の南東にある木造家屋内、干上がった川の中</li>
+                <li>The end — ノート、チャールストン中央の破壊された教会の棺桶の中</li>
+                <li>The coffee — ノート、AVRメディカルセンターの東にあるスローカムズ・ジョーのレジの横</li>
+                <li>Tattoo parlor — ノート、チャールストン・ヘラルド社屋の南東のタトゥーパーラーの廃墟内</li>
+                <li>Charleston Herald - Bell article — ノート、ファースト・フレンズ教会の奥のテーブル上（収集不可）</li>
+                <li>Grafton Dam editorial ×2 — ノート、AVRメディカルセンター近くの書店、およびI-59沿いの家のポーチ上（収集不可）</li>
+                <li>Junk mail — ノート、Recruitment Blues中にメールボックスから入手</li>
+            </ul>
+
+            <!-- ===== Notes Content ===== -->
+            <h2>発見できるノート 📝</h2>
+            <p>
+                チャールストンでは、「R」という謎の人物が残した一連のノートを発見できます。<br>
+                これらのノートは街の各所に点在しており、かつてのチャールストンの日常生活を偲ばせる内容になっています。
+            </p>
+
+            <div class="note-box">
+                <b>📄 The house（家）</b><br>
+                <em>場所：チャールストン・ヘラルド社屋から渡り廊下を渡った先の建物、床の穴から降りた先の鏡台の上</em><br><br>
+                ここまでの道のりが大変だったのは申し訳ない。この建物はもっといい時代を見てきたけど、あなたが来てくれて嬉しい。くつろいでね。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The view（眺め）</b><br>
+                <em>場所：「The house」のノートがあるアパートから1階下のテーブル上</em><br><br>
+                ここからの眺め、なかなかだと思わない？<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The shrink（精神科医）</b><br>
+                <em>場所：チャールストン・ヘラルド社屋の南東2棟目の精神科医オフィスの受付デスク上</em><br><br>
+                ジョセフ先生は、議事堂のオフィスワーカーや政治家たちの不安やうつの治療でいつも忙しかった。<br><br>
+                今となっては贅沢に思えるかもしれないけど、本当に話を聞いてくれる誰かとの会話ほど価値のあるものはないこともある。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The drop（落下）</b><br>
+                <em>場所：訓練コースが地上レベルに降りる直前のデスク上</em><br><br>
+                気をつけて。落ちないでね。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The doctors（医者たち）</b><br>
+                <em>場所：チャールストン・ヘラルド社屋の南東2棟目の最上階のデスク上</em><br><br>
+                もし医療の助けを探しているなら、今はもう完全にDIYだよ。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The safe（金庫）</b><br>
+                <em>場所：ファイア・ブリーザーズの訓練コースが地上に降りた先の赤い廃屋の金庫の中</em><br><br>
+                ここに来た時にはもう開いてたんだ。誓うよ。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The owner（持ち主）</b><br>
+                <em>場所：ホーンライト・インダストリアル本社の南東にある木造家屋内、干上がった川の中</em><br><br>
+                ここに住んでいた男を知っていた。誰かがこの家を奪うために、見下ろせる建物から狙撃するまでそう長くはかからなかった。あなたには同じことが起きないようにね。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The end（終わり）</b><br>
+                <em>場所：チャールストン中央のファースト・フレンズ教会の棺桶の中</em><br><br>
+                これらはもう私のものではない。もうそうじゃない。私が失った慰めを、あなたに与えてくれるかもしれない。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 The coffee（コーヒー）</b><br>
+                <em>場所：AVRメディカルセンターの東にあるスローカムズ・ジョーのレジの横</em><br><br>
+                ここはただのコーヒーショップじゃなかった。待ち合わせ場所だったんだ。近所の人や友人に会うチャンス。この街に自分が知っている人がいるというだけで、クリーム2つと砂糖で買える、ささやかな人間らしさだった。<br><br>
+                —R
+            </div>
+
+            <div class="note-box">
+                <b>📄 Tattoo parlor（タトゥーパーラー）</b><br>
+                <em>場所：チャールストン・ヘラルド社屋の南東のタトゥーパーラーの廃墟内</em><br><br>
+                議事堂ビルで働いている人が大勢来てたっけ。スーツやブラウスで隠せる場所にタトゥーを入れにね。<br><br>
+                ちょっとした反逆心は誰も傷つけないよ、っていつも言ってた。まるで秘密結社にいるみたいなもの。インクは入ってるけど、誰にも知られない。
+            </div>
+
+            <!-- ===== Related quests ===== -->
+            <h2>関連クエスト</h2>
+            <ul>
+                <li>Recruitment Blues</li>
+                <li>Into the Fire</li>
+                <li>Runner's High</li>
+                <li>The Missing Link</li>
+                <li>Coming to Fruition</li>
+                <li>Overseer's Mission</li>
+                <li>The Motherlode</li>
+                <li>The Bell Tolls</li>
+            </ul>
+
+            <!-- ===== Notes ===== -->
+            <h2>その他の情報</h2>
+            <ul>
+                <li>地元新聞は「チャールストン・ヘラルド」でした。</li>
+                <li>レンジャーアーマーの衣装とそのバリエーションは、大戦前のチャールストン警察が使用していた暴動鎮圧用アーマーと説明されています。</li>
+            </ul>
+
+            <!-- ===== Appearances ===== -->
+            <h2>登場作品</h2>
+            <p>
+                チャールストンは『Fallout 76』にのみ登場します。
+            </p>
+
+            <!-- ===== Behind the scenes ===== -->
+            <h2>舞台裏</h2>
+            <ul>
+                <li>チャールストンは、現実のウェストバージニア州チャールストンをモデルにしています。</li>
+                <li>ゲーム内に見られるウェストバージニア州のリバティ・ベルは、銘板の刻印を含め現実のものと同一です。</li>
+            </ul>
+
+            <!-- ===== GALLERY ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/76_BC_Charleston_from_church_valley.png" alt="積灰の山からの遠景">
+                        <div class="caption">積灰の山からの遠景</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_entry_roadway_sign.png" alt="落書きされた入口の道路標識">
+                        <div class="caption">落書きされた入口の道路標識</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_city_limits_sign_8.png" alt="市域標識">
+                        <div class="caption">市域標識</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/F76_Charleston_Sign.png" alt="洪水後の街の標識">
+                        <div class="caption">洪水後の街の標識</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_north_view.png" alt="チャールストン駅からの眺め">
+                        <div class="caption">チャールストン駅からの眺め</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_bridge.png" alt="サウスサイド・ブリッジ">
+                        <div class="caption">サウスサイド・ブリッジ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/Fo76_Charleston_tattoo_parlor.jpg" alt="タトゥーパーラー">
+                        <div class="caption">タトゥーパーラー</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_West_Charleston_Bridge_11.png" alt="ウエスト・チャールストン・ブリッジ">
+                        <div class="caption">ウエスト・チャールストン・ブリッジ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/76_BC_Mutants_reloading.png" alt="スーパーミュータント">
+                        <div class="caption">スーパーミュータント</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_loc_items_3.png" alt="ワシントン通りの標識">
+                        <div class="caption">ワシントン通りの標識</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_Grafton_Dam_editorial_01.png" alt="グラフトン・ダム社説（書店）">
+                        <div class="caption">グラフトン・ダム社説（書店）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_Grafton_Dam_editorial_02.png" alt="グラフトン・ダム社説（家屋）">
+                        <div class="caption">グラフトン・ダム社説（家屋）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/Charleston_mailbox_junk_mail.png" alt="ジャンクメール">
+                        <div class="caption">ジャンクメール</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/Fo76_Charleston_tattoo_parlor_paper_note.jpg" alt="タトゥーパーラーのメモ">
+                        <div class="caption">タトゥーパーラーのメモ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_note_The_coffee.jpg" alt="「The coffee」ノート">
+                        <div class="caption">「The coffee」ノート</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_The_doctors.png" alt="「The doctors」ノート">
+                        <div class="caption">「The doctors」ノート</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_The_house.png" alt="「The house」ノート">
+                        <div class="caption">「The house」ノート</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_The_safe.png" alt="「The safe」ノート">
+                        <div class="caption">「The safe」ノート</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_The_shrink.png" alt="「The shrink」ノート">
+                        <div class="caption">「The shrink」ノート</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_The_view.png" alt="「The view」ノート">
+                        <div class="caption">「The view」ノート</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_Topdown.jpg" alt="俯瞰図（ラベルなし）">
+                        <div class="caption">俯瞰図（ラベルなし）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_street.jpg" alt="コンセプトアート">
+                        <div class="caption">コンセプトアート</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/Babylon_papermap_charleston.jpg" alt="Nuclear Winterのマップ">
+                        <div class="caption">Nuclear Winterのマップ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/Fallout76_E3_Nuked.jpg" alt="プロモーション画像">
+                        <div class="caption">プロモーション画像</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/CharlestonRuins-E3-Fallout76.png" alt="チャールストンの廃墟（E3）">
+                        <div class="caption">チャールストンの廃墟（E3）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/CharlestonConceptArt-E3-Fallout76.png" alt="コンセプトアート（E3）">
+                        <div class="caption">コンセプトアート（E3）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/Fallout76_E3_Vista.jpg" alt="プロモーション画像（遠景）">
+                        <div class="caption">プロモーション画像（遠景）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston/FO76_Charleston_city_sign_render_7.png" alt="市域標識レンダリング">
+                        <div class="caption">市域標識レンダリング</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                チャールストンは、Fallout 76の中でも特別な存在感を放つロケーションですよね。<br>
+                ウェストバージニア州の州都、つまりアパラチアの心臓部が舞台なわけですが、その心臓はもう止まっている。<br>
+                クリスマスの朝にデイビッド・ソープがダムを破壊して街を水没させたという「クリスマス洪水」のストーリーは、Fallout 76の中でも最も悲劇的なエピソードの一つだと思います。<br><br>
+                レスポンダーたちが必死に築いた復興の希望が、たった一人の男の報復で一瞬にして消し飛ぶ。<br>
+                しかもその引き金は、チャールストン側が救援を断ったことにあるという、どちらが正しいとも言い切れない複雑さがあるんですよね。<br>
+                Falloutの世界では善意だけでは生き残れない、という残酷な教訓がこの街の廃墟に刻まれています。<br><br>
+                実際に街を歩いてみると、泥と瓦礫に埋もれた通り、土台から外れた建物、あちこちに散らばるノートの断片から、かつてここに暮らしていた人々の生活が垣間見えます。<br>
+                「The house」「The view」「The shrink」「The coffee」といった一連のノートは、一人の人物の日常生活の断片で、それを読み解くと小さな物語が浮かび上がってくる。<br>
+                こういう細やかなストーリーテリングが大好きなんです。<br><br>
+                現実のチャールストンが製塩業や石炭産業で栄えた工業都市だったことを知ると、Fallout世界の自動化推進とそれに対する労働者の抗議という背景がよりリアルに感じられますね。<br>
+                キャス・ギルバート設計の金箔ドームの議事堂も、ゲーム内の議事堂ビルの威厳あるデザインのルーツなんだなと感慨深いものがあります。<br>
+                Falloutは現実の歴史をフィクションに昇華するのが本当に上手い。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Charleston" target="_blank" rel="noopener">Charleston</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        const _commentArticleId = 'note_charleston';
+        const _commentArticleName = 'Charleston';
+        const _commentArticleUrl = 'charleston.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

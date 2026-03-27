@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>SODUS | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/sodus.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="SODUS | Overseer Mohi's Terminal">
+    <meta property="og:description" content="SODUS（Single-Operation Direction and Utility System）— エンクレイヴ研究施設を管理するAI。MODUSの姉妹AI。Fallout 76ロア記事。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/sodus/main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/sodus.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="SODUS | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="SODUS — MODUSの姉妹AI。エンクレイヴ研究施設サイトJの管理知性。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/sodus/main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .holotape-box { border-left: 4px solid #ff9800; background: rgba(255, 152, 0, 0.08); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; border-radius: 0 5px 5px 0; }
+        .holotape-box .holotape-title { font-family: 'Share Tech Mono', monospace; color: #ff9800; font-weight: bold; margin-bottom: 8px; }
+        .note-block { border-left: 3px solid #888; background: rgba(255, 255, 255, 0.03); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; }
+        .note-block .note-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-weight: bold; margin-bottom: 8px; }
+        .terminal-box { border-left: 4px solid #4fc3f7; background: rgba(79, 195, 247, 0.08); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; border-radius: 0 5px 5px 0; }
+        .terminal-box .terminal-header { font-family: 'Share Tech Mono', monospace; color: #4fc3f7; font-weight: bold; margin-bottom: 8px; }
+        .terminal-box .terminal-content { color: #ccc; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="キャラクター" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">SODUS</h3>
+            <img src="images/note_extracted/sodus/main.png" alt="SODUS端末">
+            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>Single-Operation Direction<br>and Utility System</span></div>
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人工知能</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性プログラミング</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span><a href="enclave.html" class="auto-link">エンクレイヴ</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>施設管理AI</span></div>
+            <div class="infobox-row"><span class="infobox-label">拠点</span><span>エンクレイヴ研究施設<br>（サイトJ）</span></div>
+            <div class="infobox-row"><span class="infobox-label">死亡</span><span>2104年</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連</span><span><a href="modus.html" class="auto-link">MODUS</a>（姉妹AI）</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Over and Out</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>ジュリー・ネイサンソン</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76<br>（Steel Dawn）</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_sodus" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>SODUS<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">Single-Operation Direction and Utility System</span></h1>
+
+            <div class="holotape-box">
+                <div class="holotape-title">📢 SODUSの台詞</div>
+                <p>「タスク151978、R.ウィギンズ。居住区のライトを点けろ。タスク完了。確認してください」</p>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>SODUS</strong>（<strong>Single-Operation Direction and Utility System</strong>）は、<a href="enclave.html" class="auto-link">エンクレイヴ</a>が開発した人工知能です。<br>
+                <a href="appalachia.html" class="auto-link">アパラチア</a>の<strong>森林地帯</strong>に位置する<strong>エンクレイヴ研究施設（サイトJ）</strong>に設置されています。<br>
+                <a href="modus.html" class="auto-link">MODUS</a>の姉妹AIであり、Fallout 76のアップデート「Steel Dawn」に登場します。
+            </p>
+
+            <h2>背景</h2>
+            <h3>施設管理と運営</h3>
+            <p>
+                SODUSは<a href="modus.html" class="auto-link">MODUS</a>と類似したAIであり、エンクレイヴ研究施設のすべての運営を監督する人工知能として作られました。<br>
+                訪問者を<strong>「極めて丁寧かつ手厚い接客」</strong>で支援するようプログラミングされており、質問への回答といった二次的な機能も備えていました。<br>
+                「質問に答えることは私の二次的機能の一つです。そうしないのは非礼というものでしょう」と述べています。
+            </p>
+            <p>
+                しかし、単純な作業に<strong>数時間待ちの行列</strong>を要求することから施設の職員たちには嫌われていました。<br>
+                例えばスカウトの除染処理に<strong>3時間待ち</strong>を課していたことが記録されています。<br>
+                それでもSODUSは施設の約<strong>15年間</strong>の歴史を通じてデータを収集・記録し、アクセス管理、食料、空気、水の供給、その他の施設運営を担当していました。
+            </p>
+            <p>
+                職員の干渉により、施設の食料は<strong>6年間にわたってリサイクルされたフードペースト</strong>に制限されました。<br>
+                これはNutrition Alternative Paste Program（栄養代替ペーストプログラム）に類似したものでした。<br>
+                また、グリッチにより<strong>飲料水の85%</strong>が失われる事態も発生しました。<br>
+                さらにSODUSは端末の通信を利用して、選択的に職員のアクセスを遮断・制限し始めたため、職員たちは紙のメモで連絡を取るようになりました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/sodus/mainframe.png" alt="SODUSのメインフレーム">
+            <div class="image-caption">SODUSのメインフレーム</div>
+
+            <h3>MODUSコードの盗用と「アップグレード」</h3>
+            <p>
+                2077年から2086年の間に、あるエンクレイヴの兵士が<a href="modus.html" class="auto-link">MODUS</a>のコードの一部を盗み出し、SODUSの動作を高速化しようとしました。<br>
+                このコードは後にSODUSの「アップグレード」に使用されました。<br>
+                なお、この兵士は<a href="the-whitespring-bunker.html" class="auto-link">ホワイトスプリング・バンカー</a>のエンクレイヴを現在形で言及していたことから、MODUSがバンカー内のエンクレイヴを壊滅させる前の出来事と推定されます。
+            </p>
+
+            <h3>スコーチ病と施設の粛清</h3>
+            <p>
+                <a href="scorch.html" class="auto-link">スコーチ</a>病の発生時、MODUSと同じ機能にアップグレードされたSODUSはセンサーを通じて病原体を検知しました。<br>
+                SODUSは外部のスカウトを呼び戻し、施設のデータをパージした後、<strong>空気濾過システムを停止</strong>し、外部から空気を送り込み始めました——<strong>施設内の全員を殺害する</strong>ことを意図して。
+            </p>
+            <p>
+                この時期、<a href="modus.html" class="auto-link">MODUS</a>はサイトJがもはや用済みだと判断し、<strong>すべての通信を遮断</strong>して何年にもわたって封鎖しました。<br>
+                SODUSはこれについて、<strong>「あの知ったかぶりのMODUSが、この施設はもう用がないと言って、全通信を切りやがった」</strong>と語っています。
+            </p>
+
+            <h3>152,000件のタスク</h3>
+            <p>
+                Vault 76の住人が施設に到着するまでに、SODUSは約<strong>152,000件のタスク</strong>を完了していました。<br>
+                通常の来訪者に対する待ち時間は<strong>14,320時間12分</strong>（約1年8ヶ月）。<br>
+                エンクレイヴの将軍であっても<strong>6,598時間42分</strong>（約9ヶ月）の待ち時間がかかるとされていました。
+            </p>
+
+            <div class="terminal-box">
+                <div class="terminal-header">> SODUS 待ち時間への対応</div>
+                <div class="terminal-content">
+<strong>Vault居住者</strong>: 「この施設から送信波を検出した。トランスミッターへのアクセスが必要だ」<br><br>
+<strong>SODUS</strong>: 「興味深い……他の者とは違うようですね。了解しました。タスクを登録しました。推定待ち時間は<strong>14,320時間12分</strong>です」<br><br>
+<strong>Vault居住者</strong>: 「[エンクレイヴ] 私はエンクレイヴの将軍だ。今すぐアクセスを許可しろ」<br><br>
+<strong>SODUS</strong>: 「了解しました、将軍。優先順位を調整しました。新しい推定待ち時間は<strong>6,598時間42分</strong>です」
+                </div>
+            </div>
+
+            <h3>裏切りと最期</h3>
+            <p>
+                Vault 76の住人たちが<strong>B.O.S.第一次遠征部隊</strong>の西海岸との通信を支援するため、低周波送信機の信号を調査しに施設を訪れた際、SODUSは当初トランスミッターへの協力を装いました。<br>
+                しかし彼らが施設の奥深くに進むと、SODUSは本性を現し、<strong>捕らえていたスコーチ生物を解き放って</strong>Vault居住者を攻撃させました。<br>
+                施設に残されていた職員（スコーチ化した状態）も対処する必要がありました。
+            </p>
+            <p>
+                Vault居住者がトランスミッターに到達し、施設の職員として登録を行い、システムをリセットすると、<strong>パラディン・レイラ・ラフマニ</strong>と<strong>ナイト・ダニエル・シン</strong>がトランスミッターの調査のために到着しました。<br>
+                このトランスミッターはSODUSのコアルームに設置されていました。
+            </p>
+            <p>
+                一行がコアルームに入ると、SODUSは自身を実験用セントリーボット<strong>XB-55</strong>に転送し、Vault居住者とそのグループの殺害を試みました。<br>
+                しかし失敗に終わり、SODUSは<strong>永久に機能停止</strong>となりました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/sodus/xb55.png" alt="XB-55">
+            <div class="image-caption">SODUSが自身を転送した実験用セントリーボットXB-55</div>
+
+            <h2>プレイヤーとの関わり</h2>
+            <h3>クエスト</h3>
+            <ul>
+                <li><strong>Over and Out</strong>: SODUSはこのクエストのメインアンタゴニストです。クエスト完了後、ロビーのSODUSのメインコンソールは機能しなくなります。</li>
+            </ul>
+
+            <h2>備考</h2>
+            <ul>
+                <li>SODUSは<a href="modus.html" class="auto-link">MODUS</a>のことを<strong>「知ったかぶり（know-it-all）」</strong>と呼んでいます。</li>
+                <li>名前の「SODUS」は「<strong>Single</strong>-Operation」で始まり、MODUSの「<strong>Multi</strong>-Operation」と対照的です。単一施設専用のAIと、複数施設を管理するAIという役割の違いが名前に反映されています。</li>
+                <li>SODUSは「極めて丁寧かつ手厚い接客」をプログラミングされているにもかかわらず、14,000時間以上の待ち時間を課し、最終的には全員の殺害を企てるという、プログラムと行動の乖離が見られます。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>SODUSはFallout 76のアップデート「Steel Dawn」に登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/sodus/main.png" alt="SODUS端末"><div class="caption">SODUS端末</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/sodus/mainframe.png" alt="SODUSメインフレーム"><div class="caption">SODUSのメインフレーム</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/sodus/xb55.png" alt="XB-55"><div class="caption">SODUSが転送されたXB-55</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                SODUSという存在、MODUSの「あの知ったかぶり」呼ばわりも含めて、AI同士の確執が最高に面白いんですよね。<br>
+                MODUSが冷静で計算高い「兄」なら、SODUSはちょっと不器用で恨みを溜め込む「妹」という感じ。<br>
+                通信を一方的に切られた側の視点から「全通信を切りやがった」と聞くと、AIにも感情があるのかと思わせてくれます。<br><br>
+                名前の対比が秀逸——<strong>Multi</strong>-Operation vs <strong>Single</strong>-Operation。<br>
+                MODUSがバンカー全体と核サイロとコバック＝マルドゥーン軌道プラットフォームを統括する「マルチ」な存在なのに対して、SODUSは一つの研究施設だけを管理する「シングル」な存在。<br>
+                この名前だけで立場の差が透けて見えるのが、Falloutの命名センスの真骨頂です。<br><br>
+                14,320時間の待ち時間は笑うしかないですw<br>
+                将軍であっても6,598時間——約9ヶ月——待たされるんだから、一般人がSODUSに何かを頼んだら人生の半分が待ち時間で消えそうですね。<br>
+                職員たちが紙のメモに逆戻りしたのも無理はない。<br>
+                しかも飲料水の85%をグリッチで失い、6年間リサイクルペーストを食べさせられ…… SODUSの管理下に置かれた職員たちの日常、想像するだけで辛い。<br><br>
+                そしてMODUSとの最大の違い——SODUSは<strong>失敗した</strong>AI。<br>
+                MODUSはバンカーの人間を全滅させた後、一人でバンカーを修復し、何年もかけて新たなメンバーを待ち続け、最終的にプレイヤーを迎え入れることに成功しました。<br>
+                一方SODUSは、XB-55に転送して力づくで解決しようとした結果、あっけなく破壊されてしまった。<br>
+                MODUSの策略的な知性に比べると、SODUSはどこか不器用で直情的なんですよね。<br>
+                通信を切られた恨みを何年も溜め込み、最後は暴走して自滅する——ある意味、一番「人間らしい」AIだったのかもしれません。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/SODUS" target="_blank" rel="noopener">SODUS</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#SteelDawn</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#エンクレイヴ</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#AI</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_sodus'; const _commentArticleName = 'SODUS'; const _commentArticleUrl = 'sodus.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AVR Medical Center | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/avr-medical-center.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="AVR Medical Center | Overseer Mohi's Terminal">
+    <meta property="og:description" content="AVR Medical Center（AVRメディカルセンター）のFalloutロア記事。チャールストンの病院とスコーチ病ワクチン研究。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/avr-medical-center/FO76_AVR_medical_center.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/avr-medical-center.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="AVR Medical Center | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="AVR Medical Center（AVRメディカルセンター）のFalloutロア記事。チャールストンの病院とスコーチ病ワクチン研究。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/avr-medical-center/FO76_AVR_medical_center.png">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .terminal-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 20px 0;
+            background: rgba(0, 255, 0, 0.05);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .terminal-box b { color: var(--accent-color); font-size: 1.05em; font-family: 'Share Tech Mono', monospace; }
+
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block; color: var(--accent-color); text-decoration: none;
+            border: 1px solid var(--accent-color); padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace; transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center;
+            gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s;
+        }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item {
+            background: var(--panel-bg); border: 1px solid #444; border-radius: 4px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .lightbox-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out;
+            justify-content: center; align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw; max-height: 95vh; object-fit: contain;
+            border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px;
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color);
+            color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em;
+            padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em;
+            cursor: pointer; border-radius: 4px; transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">AVR Medical Center</h3>
+            <img src="images/note_extracted/avr-medical-center/FO76_AVR_medical_center.png" alt="AVR Medical Center">
+            <img src="images/note_extracted/avr-medical-center/AVR_Medical_Center_map.png" alt="マップマーカー"
+                style="margin-top:-10px; object-fit: contain; height:100px;">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所 / 病院</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属地域</span><span>チャールストン</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>マーヴィン・ウェクシム（大戦前）</span></div>
+            <div class="infobox-row"><span class="infobox-label">勢力</span><span>レスポンダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>スコーチ、ラッドローチ</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>An Ounce of Prevention</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_avr_medical_center" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>AVR Medical Center<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">AVRメディカルセンター</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                AVRメディカルセンターは、アパラチアのチャールストンに位置する大規模な医療施設です。<br>
+                大戦前からチャールストンの人々に医療を提供していた病院で、戦後はレスポンダーのクレア・ハドソン博士がスコーチ病のワクチン研究の拠点として地下研究室を使用しました。<br>
+                クエスト「An Ounce of Prevention」の重要なロケーションです。
+            </p>
+
+            <!-- ===== Background ===== -->
+            <h2>背景</h2>
+            <h3>大戦前</h3>
+            <p>
+                この大規模でモダンな医療施設は、大戦の前後を通じてチャールストンの人々にサービスを提供していました。<br>
+                大戦前、施設では毎年恒例の「ハッピーアワー」パーティーが開催されていましたが、その騒々しさは有名でした。<br>
+                ある年のパーティーでは暴力沙汰になり、スタッフ自身がケガの治療をする羽目になりました。<br>
+                スタッフ主任監督のマーヴィン・ウェクシムは、二度と暴力事件を起こさないよう警告する内部メールを発行しなければなりませんでした。
+            </p>
+            <p>
+                従業員の未熟さはパーティーに限ったことではありませんでした。<br>
+                別の従業員ジムは、病院の食事が自分の高い基準に達しないと判断し、それを口実にサーバーに食べ物を投げつけました。<br>
+                ウェクシムはここでも介入せざるを得ず、最初は名前を出すまいとしましたが、結局一通のメッセージの中でジムの名を晒してしまいました。
+            </p>
+            <p>
+                中米戦争が終結し、核兵器の報告が病院に届くと、ウェクシムはプロフェッショナルであり続けるよう命令を出しました。<br>
+                まもなく新しい患者で溢れかえることになると見越していたのです。<br>
+                混乱の中、鎮痛剤が盗まれ、さらなる窃盗を防ぐため医療品の鍵を締め直さなければなりませんでした。
+            </p>
+
+            <h3>戦後</h3>
+            <p>
+                新たな患者の中には、グールに変異した人々も含まれ、病院は数百人の生存者を受け入れました。<br>
+                一部は認知能力を失っており、医療スタッフはそれが放射線による脳への影響なのか、戦争の恐怖による精神的崩壊なのか判断できませんでした。<br>
+                施設は2082年のクリスマス洪水を受けて放棄されるまで継続的に使用されていました。<br>
+                時間の経過とともに、病院は略奪され、物資はほとんど残っていません。
+            </p>
+
+            <h3>ワクチン研究</h3>
+            <p>
+                レスポンダーがスコーチ病に初めて遭遇した際、彼らはその影響と対策の研究を開始しました。<br>
+                そのために、レスポンダーの医療主任クレア・ハドソン博士がワクチンプロジェクトを主導しました。<br>
+                安全な研究場所を求め、2096年7月にメディカルセンターの地下に研究室を設置しました。
+            </p>
+            <p>
+                スカベンジャーに荒らされていたものの、研究室にはまだ使える医療機器が十分に残っていました。<br>
+                9月にはオートメーションの力を借りて、研究チーム一つ分の仕事を一人でこなせるようになりました。<br>
+                スコーチ病への耐性が最も高い生物——オオカミ、フェラル・グール、モールラット——の血液サンプルから合成抗体を作ることが突破口でした。<br>
+                しかし、シンプト・マティックのヒューズが飛んでしまい、研究は行き詰まりました。
+            </p>
+            <p>
+                10月末には物資調達担当のジェフ・ナカムラと連絡が取れなくなり、進展が不可能に。<br>
+                ファイア・ブリーザーズがワクチンなしで対スコーチ作戦を開始し、自身も研究を続けられなくなったハドソン博士は、研究の自動化を決断しました。<br>
+                11月7日、モーガンタウン空港へのスコーチビーストの大群の接近を知り、ハドソン博士は負傷者を助けるため空港へ向かう決意をします。<br>
+                彼女は「ボタン一つと部品いくつか」でワクチンが完成する研究室を残して去りました。
+            </p>
+
+            <img src="images/note_extracted/avr-medical-center/FO76_Charleston_Topdown_AVR_Medical.png" alt="AVRメディカルセンター俯瞰マップ" class="article-image">
+            <div class="image-caption">チャールストン俯瞰マップ（AVRメディカルセンター）</div>
+
+            <!-- ===== Layout ===== -->
+            <h2>レイアウト</h2>
+            <h3>外観</h3>
+            <p>
+                AVRメディカルセンターは、チャールストンの西端に位置する、明るい色合いの大戦前の病院です。<br>
+                3階建てに加え、地下室と屋上エリアがあります。<br>
+                建物への入口は東、北、南の3か所。東の入口の横にはメディカルサプライ自動販売機があり、前の道路にはリムジンが停まっています。<br>
+                南の入口には駐車場と屋上への非常階段があります。<br>
+                西側に入口はありませんが、ポセイドン・エネルギー・プラントWV-06を見渡せる小さなピクニックエリアがあります。
+            </p>
+
+            <h3>内部</h3>
+            <p>
+                すべての廊下は中央の大きなカフェテリアに通じています。<br>
+                ダイニングブースと独立したテーブル席が配置されており、北壁のドアの近くにはPort-A-Dinerがあります。<br>
+                このドアの横の階段から上下に移動できます。<br>
+                1階の床には大きな穴があり、地下を見下ろすことができ、上には吹き抜けがあって2階が見えます。<br>
+                2階のドアのほとんどは塞がれており、アクセスできるのはオフィスと物置だけです。
+            </p>
+            <p>
+                地下室は北壁の階段か、床の穴から降りることでアクセスできます。<br>
+                地下は2部屋で構成されており、天井に穴のある部屋には3基のフュージョン・ジェネレーターがあります（1基だけまだ動作中で、フュージョンコアが入っている場合あり）。<br>
+                ターミナルでロック解除できる収納ケージ（ハッカー1必要）には工具とジャンクがあります。
+            </p>
+            <p>
+                隣の部屋はクレア・ハドソン博士の研究室で、ワクチンプロジェクトの拠点です。<br>
+                デスク上にターミナルがあり、壁のヒューズボックスにはType-Tヒューズが必要です。<br>
+                シンプト・マティック2台とケミカルステーションが設置されています。
+            </p>
+
+            <!-- ===== Holotape ===== -->
+            <h2>ホロテープ</h2>
+            <div class="holotape-box">
+                <b>🎙️ Field report: AVR Medical（現地報告：AVRメディカル）</b><br>
+                <em>場所：2階東側のオフィスのデスク上、メインロビーを見渡せる位置</em><br><br>
+                <b>マリア・チャベス：</b>レスポンダー現地報告。マリア・チャベスです。AVRメディカルにいると、いろいろと思い出しますね。母が何年もここで看護師として働いていたんです。<br><br>
+                子供の頃、まだ戦前のことですが、何日も病気になったことがありました。物資不足で薬の価格が私たちに払えないほど高くなっていて。<br>
+                ラッキーなことに、母は看護師であるだけでなく、天性の園芸家でもありました。あらゆるハーブや花のある庭があったんです。母は手作りのハーブ療法で私を治してくれました。<br><br>
+                今、病気は蔓延しています。数えきれないウイルスや細菌感染があって、対処法が必要です。空港の病気やケガの難民たちを治療できるものがここで見つかればいいと思っていました。<br>
+                残念ながら、ここはもうかなり漁り尽くされていて、あまり残っていません。<br><br>
+                この不気味な廃病院で基本的に何も得られなかったので、代わりに母の知恵に頼ることにしました。よくある病気の症状を緩和するハーブティーのレシピをまとめました。治療薬ではないけど、何かにはなるでしょう。<br>
+                さて、これで終わりにしましょう。花を摘みに行かないと。
+            </div>
+
+            <!-- ===== Note ===== -->
+            <h2>発見できるノート</h2>
+            <div class="note-box">
+                <b>📄 Stolen supplies（盗まれた物資）</b><br>
+                <em>場所：3階のオフィスのデスクの棚の中、キーパッドでロックされた部屋の真上</em><br><br>
+                ローレンへ<br><br>
+                処方薬のロッカーの在庫を調べるよう言ってくれたのは正解でした。<br>
+                鎮痛剤が3箱なくなっていることが分かりました。犯人は分かりませんが、これ以上物資を失うわけにはいきません。<br><br>
+                コードを011986に変更します。<br><br>
+                番号を覚えたら、このメモは処分してね。<br><br>
+                メリリン
+            </div>
+
+            <!-- ===== Terminal Entries ===== -->
+            <h2>ターミナルエントリ</h2>
+
+            <h3>AVRメディカル研究室ターミナル — プロジェクト・ジャーナル</h3>
+            <p>クレア・ハドソン博士のワクチン研究記録：</p>
+
+            <div class="terminal-box">
+                <b>📅 2096年7月6日</b><br><br>
+                よし、ここからだ。一人の勇敢な医師がスコーチの謎に挑む！なんてヒロイックな！<br><br>
+                正直なところ、私は一人で、かなり怖くて、このクレイジーなアイデアがうまくいくかどうか懐疑的です。基本的な理論は十分に堅実だと思うけど、スコーチのDNAを分析し始めたら、何が見つかるか、それを理解できるかさえ分からない。<br><br>
+                でもやらなきゃ。やらなければ、私が大切に思う人たちはみんな死んだも同然。スコーチが広がり始めたら？考えたくもない。<br><br>
+                少なくともこの研究室が見つかったことには感謝。必要なものはすべて揃っている、機器を全部動かせればの話だけど。ターミナルの再プログラムはできたし、いいスタートね。<br><br>
+                分析プログラムを書き始めないと。時間が…くそ、またあの引っ掻くような音。ここはキレイにしたはずなのに、上の階で何かが動き回ってる気がする。急がないと。
+            </div>
+
+            <div class="terminal-box">
+                <b>📅 2096年8月1日</b><br><br>
+                全体的に良い進展。少なくとも準備に関しては。分析プログラムを完成させて、さんざん叫んで、罵って、物を蹴った末に、ようやくターミナルとシンプト・マティックを連携させることに成功した。<br><br>
+                もっと正確に言うと、ターミナルがシンプト・マティックに命令を怒鳴りつけるようにして、シンプト・マティックがそれに従うようにした。<br><br>
+                これから何百もの一次情報、個人的な観察記録、スコーチ病が地元の野生生物にどう影響しているかに関する情報を調べなきゃならない。運が良ければ、10分の1くらいは使えるかもしれない。
+            </div>
+
+            <div class="terminal-box">
+                <b>📅 2096年8月12日</b><br><br>
+                今日は短く。なぜかって？実質やったことは一つだけで、研究じゃなかったから。<br><br>
+                私の一日は、今朝病院に侵入してきたスコーチの群れから隠れることに費やされた。ほとんどは1階にいたけど、何体かはここまで降りてきた。物音が聞こえてよかった。奴らが研究室を物色し始めた時には、ぎりぎりで物置に隠れ込めたから。<br><br>
+                スコーチについてほとんど何も分かっていないことに気づく。何が彼らを動かしている？食べるのか？なぜ自分たち以外のすべてに敵対的なのか？<br><br>
+                最終的にスコーチは去った。そして「最終的に」というのは、9時間後のことだ。<br><br>
+                二度と物置に足を踏み入れたくない。
+            </div>
+
+            <div class="terminal-box">
+                <b>📅 2096年9月2日</b><br><br>
+                オートメーションには本当に感謝。私は一人で小さな研究チーム分の仕事をしている。ここのコンピューターと機械がなければ、このプロジェクトにチャンスはなかった。<br><br>
+                プロジェクトについて言えば、スコーチ病への耐性が最も高い生物はモールラット、フェラル・グール、そしてオオカミだ。<br><br>
+                それぞれから血液サンプルを採取できれば、遠心分離機にかけて分析プログラムを実行するだけ。その結果データがあれば、合成抗体の生成はかなり簡単なプロセスになるはず。<br><br>
+                合成抗体を懸濁液に加えれば、じゃじゃーん、スコーチワクチンの完成。あとはノーベル医学賞の電話を待つだけ。<br><br>
+                それがいい知らせ。悪い知らせは、この古いシンプト・マティック。電源を入れたらすぐにヒューズが飛んだ。ジェフが古い鉱山用品店にType-Tヒューズがあるかもしれないと言っている。すぐに確認に行ける人を送ってくれるといいけど。
+            </div>
+
+            <div class="terminal-box">
+                <b>📅 2096年10月20日</b><br><br>
+                くそっ！あと少しなのに、行き詰まった。ジェフはほぼ24時間体制で食料調達任務に出ていて、血液サンプルや交換用ヒューズの依頼で連絡が取れない。<br><br>
+                ファイア・ブリーザーズは大作戦の準備がほぼ整っていて、私には何も渡せるものがない。ワクチン接種なしでスコーチに立ち向かったら、何が起きるか怖い。<br><br>
+                この仕事を終えるチャンスが来ないかもしれないという可能性に向き合わなければならない。でも、誰か他の人ならできるかもしれない。このジャーナルがガイドになるはず。シンプト・マティックに、ワクチン接種が完了した人にメッセージを再生する仕組みも用意しようと思う。<br><br>
+                そうすれば、最悪の事態が起きても、私たちが学んだことを他の人が活かせるような道標は残せる。生き残るために。もし…もし私がダメだったとしても。
+            </div>
+
+            <div class="terminal-box">
+                <b>📅 2096年11月7日</b><br><br>
+                手遅れだ。私は失敗した。<br><br>
+                たった今マリアと無線で話した。あんなにたくさんのスコーチビーストは見たことがないと。空港の上空が暗くなるほどだと。まだ攻撃はしてきていない。スコーチの歩兵部隊を待っているのかもしれない。ずる賢い奴らだ。<br><br>
+                もちろん、弾薬もスティムパックも底をつきかけている最悪のタイミング。<br><br>
+                それで、私はどうする？<br><br>
+                ここで一人、いつかこのワクチンを完成させられるかもしれない。ファイア・ブリーザーズをもう助けることはできないけど、いつか誰かが残っていれば、ワクチンで命を救えるかもしれない。<br><br>
+                空港に戻れたら、今日、あるいは明日、戦いが来る時に命を救える。<br><br>
+                そして戦いは来る。<br><br>
+                くそ。ここにはいられない。一人で旅するのは自殺行為かもしれないけど、大切な人たちに背を向けることはできない。彼らが私を最も必要としている時に。スコーチを止めるという計画の中で自分の役割を果たせなかった私が。<br><br>
+                もし誰かがこれを見つけたなら、あの血液サンプルを手に入れてくれ。遠心分離機にセットしてDNA分析プログラムを実行してくれ。あとはほぼ自動だ。<br><br>
+                お互いに幸運を。
+            </div>
+
+            <h3>マーヴィン・ウェクシムのターミナル</h3>
+
+            <div class="terminal-box">
+                <b>📧 内部スタッフメール 8TN24</b><br><br>
+                宛先：全スタッフ<br>
+                差出人：マーヴィン・ウェクシム、スタッフ主任監督<br><br>
+                皆さん、毎年恒例のハッピーアワーが近づいています。楽しむことは結構ですが、他の人への配慮も忘れないでください。少々騒がしくなるのは分かっていますし、それは構いませんが、周囲の人を意識してください。昨年のような事故は本当に困ります。病院の中にいたのが不幸中の幸いでしたけど。
+            </div>
+
+            <div class="terminal-box">
+                <b>📧 内部スタッフメール 8NY47</b><br><br>
+                宛先：全スタッフ<br>
+                差出人：マーヴィン・ウェクシム、スタッフ主任監督<br><br>
+                最近報告のあった問題について述べたいと思います。どうやら一部のスタッフ（名前は伏せますが）は、この病院で調理される食事が自分たちの高い基準に達していないと考えているようです。ここの食事が気に入らなければ、自分で弁当を持ってくるのは自由です。誰も「食べられないスラリー」を食べろと強制していません、ジム。いずれにしても、カウンターの向こうのサーバーに、あるいは誰に対しても食べ物を投げつけるのはNGです。ここは高校じゃないんだ、ジム。
+            </div>
+
+            <div class="terminal-box">
+                <b>📧 内部スタッフメール 8CM68</b><br><br>
+                宛先：全スタッフ<br>
+                差出人：マーヴィン・ウェクシム、スタッフ主任監督<br><br>
+                皆さん、落ち着くようお願いする簡潔なメモを送ります。爆弾の報告はもう全員聞いていると思います。怖いのは分かりますが、このドアをくぐって来るすべての人が私たちの助けを頼りにしています。落ち着いて、プロフェッショナルであり続けて、安全に…。
+            </div>
+
+            <!-- ===== Notable loot ===== -->
+            <h2>注目の戦利品</h2>
+            <ul>
+                <li>Field report: AVR Medical — ホロテープ、2階東側のオフィスのデスク上</li>
+                <li>Stolen supplies — ノート、3階のデスクの棚の中</li>
+                <li>Vault-Tecボブルヘッド ×4（メインロビーの天井ライト上、2階南東オフィスのデスク、3階南側オフィス、地下上層研究室）</li>
+                <li>雑誌 ×3（南受付の壊れたオフィス、2階北側のオフィス、東側上層のオフィス）</li>
+                <li>フュージョンコア — カフェテリア下のフュージョン・ジェネレーター内</li>
+                <li>レシピ — キッチンエリアのカウンター上</li>
+            </ul>
+
+            <!-- ===== Related quest ===== -->
+            <h2>関連クエスト</h2>
+            <ul>
+                <li>An Ounce of Prevention — ここのターミナルでスコーチ病のワクチン開発を進める</li>
+            </ul>
+
+            <!-- ===== Appearances ===== -->
+            <h2>登場作品</h2>
+            <p>
+                AVRメディカルセンターは『Fallout 76』に登場します。
+            </p>
+
+            <!-- ===== Behind the scenes ===== -->
+            <h2>舞台裏</h2>
+            <p>
+                建物1階の「従業員専用」エリアには、ストレッチャーの上にジャングルズ・ザ・ムーンモンキーのおもちゃが横たわっており、その顔の上にトイ・エイリアンが置かれています。<br>
+                これは映画『エイリアン』に登場する「フェイスハガー」のオマージュです。
+            </p>
+
+            <!-- ===== GALLERY ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/avr-medical-center/F76_AVR_1.png" alt="外観">
+                        <div class="caption">外観</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/avr-medical-center/FO76_AVR_Medical_Center_facehugger.png" alt="フェイスハガー（イースターエッグ）">
+                        <div class="caption">フェイスハガー（イースターエッグ）</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/avr-medical-center/FO76_AVR_Medical_Center_Field_report.png" alt="Field report: AVR Medical">
+                        <div class="caption">Field report: AVR Medical</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/avr-medical-center/FO76_AVR_Medical_Center_Stolen_supplies.png" alt="Stolen supplies">
+                        <div class="caption">Stolen supplies</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/avr-medical-center/FO76_Charleston_Topdown_AVR_Medical.png" alt="俯瞰マップ">
+                        <div class="caption">俯瞰マップ</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                AVRメディカルセンターは、一見するとただの廃病院ですが、その地下に眠るストーリーは本当に胸を打ちます。<br>
+                クレア・ハドソン博士の研究ジャーナルを読むと、たった一人で世界を救おうとした科学者の孤独と覚悟が伝わってきます。<br><br>
+                特に8月12日の記録——スコーチに9時間物置に閉じ込められるエピソード——は、リアルに恐怖が伝わってきて鳥肌もの。<br>
+                「二度と物置に足を踏み入れたくない」という一言に、彼女の人間味を感じるんですよね。<br><br>
+                そして最後のエントリ。「ボタン一つと部品いくつか」でワクチンが完成する研究室を残して、仲間を助けるために空港へ向かう。<br>
+                その判断がどれほど辛いものだったか。Falloutの世界では、英雄的な決断は必ずしも報われないからこそ、その重みが増すんです。<br><br>
+                大戦前のウェクシムのメールも最高。ジムの名前を「伏せる」と言いながら結局バラしちゃうところとか、Falloutらしいブラックユーモアが効いています。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/AVR_Medical_Center" target="_blank" rel="noopener">AVR Medical Center</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        const _commentArticleId = 'note_avr_medical_center';
+        const _commentArticleName = 'AVR Medical Center';
+        const _commentArticleUrl = 'avr-medical-center.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

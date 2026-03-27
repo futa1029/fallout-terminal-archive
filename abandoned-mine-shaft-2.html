@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>放棄された鉱山坑道2 | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/abandoned-mine-shaft-2.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="放棄された鉱山坑道2 | Overseer Mohi's Terminal">
+    <meta property="og:description" content="放棄された鉱山坑道2 — 積灰の山に位置し、ウルトラサイト・タイタンが潜む鉱山。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/abandoned-mine-shaft-2/ultracite.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/abandoned-mine-shaft-2.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="放棄された鉱山坑道2 | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="放棄された鉱山坑道2 — ウルトラサイト・タイタンが潜む鉱山。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/abandoned-mine-shaft-2/ultracite.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .loot-list { list-style: none; padding: 0; }
+        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
+        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
+        .holotape-box { background: var(--panel-bg); border: 2px solid #ff9800; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .holotape-box h3 { color: #ff9800; border-bottom: 1px solid #ff9800; margin-top: 0; font-size: 1.1em; }
+        .holotape-box .holotape-icon::before { content: '🎙 '; }
+        .holotape-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; font-style: italic; }
+        .note-box { background: var(--panel-bg); border: 2px solid #8bc34a; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .note-box h3 { color: #8bc34a; border-bottom: 1px solid #8bc34a; margin-top: 0; font-size: 1.1em; }
+        .note-box .note-icon::before { content: '📝 '; }
+        .note-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; }
+        .note-box .transcript .date-entry { color: var(--accent-color); font-weight: bold; margin-top: 12px; display: block; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Abandoned Mine Shaft 2</h3>
+            <img src="images/note_extracted/abandoned-mine-shaft-2/ultracite.jpg" alt="放棄された鉱山坑道2（現在の外観）" onclick="openLightbox(this)">
+            <img src="images/note_extracted/abandoned-mine-shaft-2/map.png" alt="マップ" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">ゲーム</span><span>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>採石場</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在</span><span><a href="ash-heap.html" class="auto-link">積灰の山</a>、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">クリーチャー</span><span>フェラル・グール<br>モール・マイナー<br>スコーチド</span></div>
+            <div class="infobox-row"><span class="infobox-label">クラフト</span><span>武器作業台</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>What Slept Beneath<br>Lost and Found</span></div>
+            <div class="infobox-row"><span class="infobox-label">イベント</span><span>Seismic Activity</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_abandoned-mine-shaft-2" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Abandoned Mine Shaft 2<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">放棄された鉱山坑道2</span></h1>
+
+            <h2>概要</h2>
+            <p><strong>放棄された鉱山坑道2</strong>は、アパラチアの<a href="ash-heap.html" class="auto-link">積灰の山</a>地域にあるロケーションである。この場所に核を落とすと、イベント「<strong>Seismic Activity</strong>」が発生する。</p>
+
+            <h2>背景</h2>
+            <p>放棄された鉱山坑道シリーズの2番目にあたるこの場所は、大戦発生時にカバーの修理工事中であった。それから数年が経った今も、カバーから放射線が漏れ続けている。</p>
+            <p>この鉱山坑道は、<strong>ジャック・ウッドハウス</strong>のような人々による戦後の<strong>ウルトラサイト</strong>採掘の標的でもあった。
+            しかし、この目立たないロケーションの地下には、はるかに不吉なものが潜んでいた——<strong>ウルトラサイト・タイタン</strong>、恐ろしく変異したモールラットであり、この鉱山坑道で見つかるモール・マイナーたちと何らかの繋がりを持つ存在である。</p>
+
+            <img src="images/note_extracted/abandoned-mine-shaft-2/crystals.png" alt="ウルトラサイトの結晶" class="article-image" style="max-width: 70%;" onclick="openLightbox(this)">
+            <div class="image-caption">「What Slept Beneath」中に操作できるウルトラサイトの結晶</div>
+
+            <p>この怪物は鉱山坑道の地下に潜んでおり、タイタンに遭遇した者たちは、これを排除するには核が必要だと言っている。</p>
+
+            <h2>レイアウト</h2>
+            <p>西から入ると、プレイヤーキャラクターはまずコンテナと戦利品が散らばった青いポッドに遭遇する。東側のドアを通って階段を上ると、2番目の青いポッドに到着する。こちらには更に多くのコンテナがあり、検索可能なケミカル・コンテナ2つと追加の戦利品が含まれている。南側のドアは、両方のポッドに隣接する精製所の上部に繋がっている。</p>
+            <p><em>Nuka-World on Tour</em>アップデートにより、ウルトラサイト・タイタンの巣であることを反映して、鉱山坑道の周辺にウルトラサイトの結晶が配置された。モール・マイナーもここに出現し、様々なストライクブレーカー・ロボットと戦闘することがある。
+            アパラチア自動発射システムのMission: Countdownから核を投下すると、核がウルトラサイト・タイタンを動揺させて地上に浮上させ、ヌカワールド・オン・ツアーでイベント「<strong>Seismic Activity</strong>」が開始される。</p>
+
+            <h2>注目アイテム</h2>
+            <ul class="loot-list">
+                <li><strong>エアフィルター部品の箱</strong> — クエストアイテム。「What Slept Beneath」中、1階の金属箱内</li>
+                <li><strong>ホロテープ</strong> — ジャック・ウッドハウスの遺体から入手</li>
+                <li><strong>破れたメモ</strong> — 1階のデスクの上（取得不可）</li>
+                <li><strong>ウルトラサイト採掘日誌</strong> — 「What Slept Beneath」中、2階のテーブルの上（取得不可）</li>
+                <li><strong>フュージョン・コア</strong> — 2番目のポッド外のキャットウォーク上</li>
+                <li><strong>アーマー設計図</strong>（ランダム） — フュージョン・コアのすぐ下</li>
+                <li><strong>パワーアーマーMOD</strong>（ランダム） — 2番目のポッド内、階段に最も近い金属棚の最下段</li>
+            </ul>
+
+            <h2>関連クエスト</h2>
+            <ul>
+                <li><strong>What Slept Beneath</strong> — ピート・マイヤーズからエアフィルター部品の捜索と、巨大な生物——ウルトラサイト・タイタン——の目撃情報の調査のために派遣される</li>
+                <li><strong>Seismic Activity</strong>（イベント） — この鉱山坑道に核を投下すると開始。ヌカ・ランチャーのジェットコースターで実施される</li>
+            </ul>
+
+            <h2>ホロテープ・メモ</h2>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">ホロテープ（無題）</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">ジャック・ウッドハウスの遺体から入手。声優：スティーブン・ラッセル</p>
+                <div class="transcript">
+                    やばい。やばいぞ。あいつらは嘘をついてなかった。作り話じゃなかった。本当にいたんだ……あの「<strong>もの</strong>」が、ここに。<br><br>
+                    マスクが壊れて、ガスが入ってきてるのかと思った……それから、あの臭い。スーツの中で吐きそうになった！ たぶん……あいつを起こしちまった……<br><br>
+                    鉱石は見つけた。でも叩いたら、岩じゃなくて……肉みたいだった？ それから音が聞こえた、あの音だ……<br><br>
+                    地震かと思った。あいつを見るまでは。（荒い息）くそ……くそ！ 壁が動いて、口があった。危うく漏らすところだった！ ウルトラサイトがあろうがなかろうが関係ない。<br><br>
+                    （パニック状態の息遣い）人に警告しないと……すべきか？ 動き続けないと。<br><br>
+                    あんなもの、あのバケモノに二度と近づくもんか。排除するには<strong>核</strong>が必要だ！ ここから出ないと。出ないと——<br><br>
+                    <em>（クリーチャーの絶叫）</em><br><br>
+                    ああ、嘘だろ——
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h3><span class="note-icon">破れたメモ</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">1階のデスクの上、血まみれの骸骨の横。取得不可。</p>
+                <div class="transcript">
+                    何も効かなかった<br><br>
+                    <strong>あいつ</strong>の腕を叩くと動きは鈍くなったが、すぐにもっと強くなって戻ってきた
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h3><span class="note-icon">ウルトラサイト採掘日誌</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">2階のテーブルの上。「What Slept Beneath」中に出現。取得不可。</p>
+                <div class="transcript">
+                    <span class="date-entry">9月11日</span>
+                    昔のキャンプの近くなのが嫌だ。あいつらの誰かに見つかったら終わりだ……バカどもは金鉱の隣に座ってたことすら知らなかった。モール・マイナーが当分はあいつらの気を引いてくれるだろう。<br><br>
+                    <span class="date-entry">9月12日</span>
+                    くそ！！ あの鉱石を掘ろうとして丸一日無駄にした。弾丸でも傷一つつかなかった。明日はツルハシか、もっとガツンとくるものを見つけよう。<br><br>
+                    <span class="date-entry">9月13日</span>
+                    鉱山がかなり揺れている。鉱石の妙な反応と関係があるのかもしれない。昨日より鉱石が増えてる気がする。<br><br>
+                    <span class="date-entry">9月14日</span>
+                    くそ！ ツルハシが滑った。なんとか傷口を洗った。痛みは耐えられないほどだった。あのケミカル箱の中にサイコがあった。1本くらい大丈夫だ、痛み止めだけで、それで終わりだ。<br><br>
+                    <span class="date-entry">9月15日</span>
+                    地面が揺れ止まらない。鉱山全体が崩壊しそうだ、くそ。気が狂いそうだ。でも何かが下にいるに違いない。<br><br>
+                    <span class="date-entry">9月16日</span>
+                    薬が切れた。もう痛みを紛らわすものがない。この場所は精神を蝕む。でもこの結晶？ ウルトラサイト？ 重さ分のキャップの価値がある。今日でかいやつを割って、次に通りかかるキャラバンに売ろう。もう少しマシな装備を手に入れて、この地獄を乗り越えたい……
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h3><span class="note-icon">ジャックの日誌</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">ヌカワールド・オン・ツアー南西の無名倉庫（old storehouse）、2階の箱内。ガスマスクとアディクトールの下。</p>
+                <div class="transcript">
+                    <span class="date-entry">6月8日</span>
+                    ようやくだ。ブラッド・イーグルズから離れた。アディクトールをくすねてきた。これで禁断症状を抑えられるかもしれない。もう二度と戻らない。あいつら、やってることは……頭がおかしい。頭を低くして、パトロールに気をつけるんだ。生き延びるための何かが必要だ。<br><br>
+                    <span class="date-entry">7月10日</span>
+                    積灰の山に「ウルトラサイト」って呼ばれる希少鉱石があるって情報を得た。そういうレアものを高いキャップで買ってくれる奴は必ずいる。もし手に入れられたら、十分な物資と交換して、ここから出られるかもしれない。世界を見るんだ！……残ってる世界をな。<br><br>
+                    <span class="date-entry">7月24日</span>
+                    誕生日おめでとう、俺！ 積灰の山の古い鉱山坑道の情報を見つけた。どこかにあの鉱石があるはずだ！ 古いホロテープも見つけた。鉱山の中に怪物がいるとかいう怪談。地元民を追い払うために作った話だろう。<br><br>
+                    <span class="date-entry">8月15日</span>
+                    古いレスポンダーの施設から装備をくすねた。これで積灰の山の鉱山に安全に行けるはずだ。ブラッド・イーグルのパトロールとすれ違いそうになった。やつらはキレてた。足跡を消した方がいい。<br><br>
+                    <span class="date-entry">9月3日</span>
+                    古いルイスバーグに拠点を見つけた。近くに古い鉱山がいくつかあるみたいだ。地元の連中をやり過ごせれば、鉱石を手に入れてとっとと逃げられる。<br><br>
+                    <span class="date-entry">9月7日</span>
+                    丘の上の鉱山には何もなかった。次に行こう。もう少し先にもう一つある。古い倉庫でレイダーとぶつかった。先に撃って後から質問した。ブラッド・イーグルじゃなかった。気の毒だが、リスクは冒せない。埋めようとしたけどモール・マイナーが巡回してた。放置するしかない。<br><br>
+                    <span class="date-entry">9月10日</span>
+                    今がチャンスだ。鉱山に向かう。荷物は軽くしていく。ここにいくつか隠しておいて、終わったら戻ってこよう。全部持っていく意味はない。
+                </div>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>放棄された鉱山坑道2は<em>Fallout 76</em>にのみ登場する。</p>
+
+            <h2>舞台裏</h2>
+            <p><em>Nuka-World on Tour</em>アップデートでのこのロケーションのセット装飾とリデザインには、Double Elevenのレベルデザイナー、<strong>ライアン・キューア</strong>の仕事が関わっている。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-shaft-2/before_update.png" alt="アップデート前" onclick="openLightbox(this)"><div class="caption">Nuka-World on Tourアップデート前</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-shaft-2/ultracite.jpg" alt="現在の外観" onclick="openLightbox(this)"><div class="caption">現在の外観（ウルトラサイト結晶）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-shaft-2/supplies_box.jpg" alt="部品の箱" onclick="openLightbox(this)"><div class="caption">エアフィルター部品の箱</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-shaft-2/torn_note.png" alt="破れたメモ" onclick="openLightbox(this)"><div class="caption">破れたメモ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-shaft-2/mining_journal.jpg" alt="採掘日誌" onclick="openLightbox(this)"><div class="caption">ウルトラサイト採掘日誌</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/abandoned-mine-shaft-2/jack_woodhouse.png" alt="ジャック・ウッドハウス" onclick="openLightbox(this)"><div class="caption">ジャック・ウッドハウスの遺体</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br>
+                一見するとただの放棄された鉱山ですが、地下に潜むウルトラサイト・タイタンという巨大モールラットの存在が、このロケーションに独特の不気味さを与えています。<br>
+                Nuka-World on Tourアップデートで追加されたウルトラサイトの結晶群が、この場所が「何かおかしい」ことを視覚的に伝える良い演出ですね。<br>
+                核を落とさないと出てこないボス——というのもFallout 76らしいスケール感です。
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 15px; border-top: 1px solid #333; font-size: 0.8em; color: #666; line-height: 1.6;">
+                <p>この記事は <a href="https://fallout.fandom.com/wiki/Abandoned_mine_shaft_2" target="_blank" rel="noopener noreferrer" style="color: #888;">Nukapedia (Fallout Wiki)</a>の「Abandoned mine shaft 2」の記事を日本語に翻訳し再構成したものです。<br>
+                原文は <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color: #888;">Creative Commons Attribution-ShareAlike (CC BY-SA)</a> ライセンスのもとで利用しています。</p>
+                <p>© Bethesda Softworks LLC. Fallout およびすべての関連ロゴ・名称は Bethesda Softworks LLC の登録商標です。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = el.src;
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_abandoned-mine-shaft-2';
+        const COOLDOWN_MS = 60000;
+        let lastCommentTime = 0;
+
+        async function loadLikes() { if (!sb) return; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); const btn = document.querySelector('.like-button'); if (data) btn.querySelector('.like-count').textContent = data.count; if (localStorage.getItem('liked_' + ARTICLE_ID)) { btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } } catch(e) {} }
+        async function toggleLike(btn) { if (!sb) return; const liked = localStorage.getItem('liked_' + ARTICLE_ID); const delta = liked ? -1 : 1; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (data) { await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID); } else { await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 }); } if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; } else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (d2) btn.querySelector('.like-count').textContent = d2.count; } catch(e) {} }
+        function updateCharCount() { const ta = document.getElementById('commentInput'); document.getElementById('charCount').textContent = ta.value.length + ' / 500'; }
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+        async function loadComments() { if (!sb) return; const list = document.getElementById('commentsList'); try { const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false }); if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; } list.innerHTML = data.map(c => { const d = new Date(c.created_at); const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0'); const myId = localStorage.getItem('comment_id_' + c.id); return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (myId ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>'; }).join(''); } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; } }
+        async function submitComment() { if (!sb) return; const ta = document.getElementById('commentInput'); const body = ta.value.trim(); const msg = document.getElementById('commentMsg'); if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; } if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; } const now = Date.now(); if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; } const btn = document.getElementById('commentSubmitBtn'); btn.disabled = true; try { const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single(); if (error) throw error; if (data) localStorage.setItem('comment_id_' + data.id, '1'); ta.value = ''; updateCharCount(); lastCommentTime = now; msg.textContent = '投稿しました'; msg.style.color = 'var(--accent-color)'; loadComments(); } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; } btn.disabled = false; }
+        async function deleteComment(id) { if (!sb || !confirm('このコメントを削除しますか?')) return; try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) {} }
+        loadLikes(); loadComments();
+    </script>
+</body>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appalachia | Overseer Mohi's Terminal</title>
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Appalachia | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Appalachia（アパラチア）のFalloutロア記事。Fallout 76の舞台となるウエストバージニア州を中心とした地域。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/appalachia/Landscape.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/appalachia.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Appalachia | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Appalachia（アパラチア）のFalloutロア記事。Fallout 76の舞台となるウエストバージニア州を中心とした地域。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/appalachia/Landscape.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/terminal-style.css">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; margin-bottom: 25px; }
+        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 8px; border-radius: 4px; }
+        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; }
+        .gallery-item .caption { font-size: 0.8em; color: #aaa; }
+        .content-image { float: left; margin: 0 20px 15px 0; max-width: 300px; border: 1px solid #555; border-radius: 4px; }
+        .content-image-right { float: right; margin: 0 0 15px 20px; max-width: 300px; border: 1px solid #555; border-radius: 4px; }
+        .region-section { margin-bottom: 40px; clear: both; }
+        .region-section::after { content: ''; display: table; clear: both; }
+        @media (max-width: 768px) { .content-image, .content-image-right { float: none; display: block; margin: 15px auto; max-width: 100%; } }
+    </style>
+</head>
+<body data-article-category="ロケーション" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Appalachia</h3>
+            <img src="images/note_extracted/appalachia/Landscape.png" alt="アパラチアのランドスケープ">
+            <div style="font-size: 0.8em; color: #888; text-align: center; margin-bottom: 10px;">アパラチアの風景</div>
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>地域</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">言及</span><span>Fallout 4</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>ウエストランド（旧WV州）</span></div>
+            <div class="infobox-row"><span class="infobox-label">リージョン数</span><span>8</span></div>
+            <div class="infobox-row"><span class="infobox-label">主要勢力</span><span>B.O.S. / レスポンダーズ / レイダー / 入植者</span></div>
+            <img src="images/note_extracted/appalachia/WorldMap.jpg" alt="ワールドマップ" style="margin-top: 10px;">
+            <div style="font-size: 0.8em; color: #888; text-align: center; margin-bottom: 10px;">ワールドマップ</div>
+        </aside>
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_appalachia" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+            <h1>Appalachia<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">アパラチア — Fallout 76の舞台</span></h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>アパラチア</strong>は、大戦前のウエストバージニア州と、バージニア州やオハイオ州の一部を含む広大な地理的領域に付けられた名称である。<br>
+                いくつかの異なる地域名を持つこの地域は、<a href="fallout76.html" class="auto-link">Fallout 76</a>のゲームワールドとして機能している。
+            </p>
+            <p>
+                <a href="reflection.html" class="auto-link">大戦</a>による破壊と殺戮の大部分から、相対的な孤立と戦略的目標の欠如により免れたものの、ウエストバージニア中核部の生存者の多くは、その後の数年間でスコーチ病により命を落とした。<br>
+                2102年、<a href="vault76.html" class="auto-link">Vault 76</a>のVault居住者たちが25年間の隔離生活を経てアパラチアに出現し、荒野の奪還を開始した。<br>
+                2103年以降、周辺地域からの生存者たちがアパラチアへの再入植を始めている。
+            </p>
+
+            <h2>背景</h2>
+            <h3>初期の歴史</h3>
+            <p>
+                アパラチアは豊かな歴史を持つ地域である。<br>
+                紀元前1000年頃には、アデナ文化やその後継の先住民文化がこの地域に存在し、その遺跡は今でも荒野の一部に残されている。<br>
+                アパラチアは南北戦争中のウエストバージニア戦域における合衆国と南部連合の衝突の場でもあり、地域北部のフィリッピで戦闘が行われた。
+            </p>
+            <p>
+                アパラチアの歴史は鉱業と密接に結びついている。<br>
+                1907年、モノンガー鉱山で爆発事故が発生し、数百人が犠牲となった。<br>
+                この事件は、大戦前の数世紀後に起こる同様の出来事の前兆となった。<br>
+                アパラチアはその自然の荒野でも知られ、ドリー・ソッズ・ウィルダネス、モノンガーela国有林、カナワ国立公園、シェナンドー国立公園など、国立公園局および森林局が管理する公園や保護区域が含まれていた。
+            </p>
+
+            <h3>21世紀</h3>
+            <p>
+                21世紀後半、アパラチアの政治的・経済的景観はフロンティアの起源や鉱業から変化したが、同じ問題に悩まされ続けた。<br>
+                鉱業は依然として経済の主要な部分を占めていたものの、ウエストバージニア州は観光業、最先端ロボティクス、防衛など他の分野でもブームを経験した。<br>
+                しかし、資源危機の圧力とポセイドン・エナジー、<a href="west-tek.html" class="auto-link">West Tek</a>、アトミック・マイニング・サービス、ロブコ・インダストリーズといった巨大企業の台頭により、経済的繁栄は富裕層のみに恩恵をもたらした。
+            </p>
+            <p>
+                合衆国政府と軍は一般市民の窮状に無関心であり、状況を利用してアパラチア全域、特にアパラチア山脈の中心部に軍事施設のネットワークを拡大した。<br>
+                これらの施設にはホワイトスプリング議会バンカー、シュガー・グローブ海軍情報基地、ナショナル・アイソレーテッド・ラジオ・アレイ、ATLAS天文台、そして3基の完全自動化ミサイルサイロが含まれていた。<br>
+                アパラチア自動発射システムの一部であるこれらのサイロは、ロボット建設システムを備えており、わずか数時間で核弾頭の在庫を補充することが可能であった。
+            </p>
+
+            <img src="images/note_extracted/appalachia/VotingPoster.png" alt="特別選挙ポスター" class="content-image-right" style="max-width: 180px;">
+            <p>
+                Vault-Tec Corporationは2031年にモーガンタウンの地元大学を買収し、<a href="vault76.html" class="auto-link">Vault-Tec大学</a>に改名した。<br>
+                グラフトン鉄鋼社は北部アパラチア（後の毒の峡谷）に広範な環境被害を引き起こし、ホーンライト・インダストリアル・マイニング・カンパニーは南部（後の積灰の山）に同様の被害をもたらした。<br>
+                ホーンライトが開発した巨大なバケットホイール掘削機「ロックハウンド」はブレア山から資源を採掘した。<br>
+                アトミック・マイニング・サービスはクランベリー湿原で地下核実験を行い、強力な鉱石であるウルトラサイトを回収した。<br>
+                2042年には「未来の都市」<a href="reflection.html" class="auto-link">ワトガ</a>が設立された。
+            </p>
+
+            <p style="clear: both;">
+                2061年以降、この地域は生活に困窮する労働者で溢れていた。<br>
+                急速なオートメーション化により多くの鉱山労働者が職を失い、ロブコ・インダストリーズは地域のオートメーション化の主要プレイヤーであった。<br>
+                オート・マイナーが鉱夫に取って代わり、警察やセキュリティといった公務員も<a href="protectron.html" class="auto-link">プロテクトロン</a>に置き換えられた。
+            </p>
+            <p>
+                <a href="free-radicals.html" class="auto-link">フリー・ステイツ</a>はこの傾向に対抗した数少ない組織であった。<br>
+                政府と軍の動機を深く疑い、政治的扇動者や裏切り者として中傷された彼らは、最終的にアメリカ合衆国からの脱退を宣言し、北東部の沼地に建設した要塞化バンカーに退いた。
+            </p>
+            <p>
+                オートメーション化の狂乱は投票法案6号で頂点に達した。<br>
+                11月の投票に向けて、この法案は26億ドルの公債を発行し、アパラチア政府のすべての人間労働者を自動化システムに置き換えるプロセスを開始するものであった。<br>
+                上院議員サム・ブラックウェルは最も著名な反対者であり、この法案を「ゆっくりと迫る災害」と表現した。
+            </p>
+
+            <h3>最後の日々</h3>
+            <p>
+                不穏な空気は2077年10月初旬に爆発した。<br>
+                アトミック・マイニング・サービスによって町を追い出された家族たちの怒りから、10月3日に本格的な暴動が始まった。<br>
+                ブレア山ではミック・フラナガン率いる鉱夫たちがホーンライト・インダストリアルが所有するロックハウンドを奪取し、推定数千万ドルの損害を出した。<br>
+                しかし10月12日までに州兵が暴徒を武力で排除した。<br>
+                別の暴徒グループはブラムウェルの鉱山会社所有のメガ・マンションを爆破した。
+            </p>
+
+            <h3>大戦</h3>
+            <img src="images/note_extracted/appalachia/NukeOverlook.png" alt="アパラチアに落ちる3発の核爆弾" class="content-image-right">
+            <p>
+                相対的に孤立していたにもかかわらず、アパラチア中核部は大戦中にいくつかの核攻撃を受けた。<br>
+                積灰の山地域のキタリー鉱山跡付近で核爆発が確認された。<br>
+                グラフトン周辺でも正確な数は不明だが核爆弾が着弾した。<br>
+                サウス・マウンテン核クレーターは大戦の被害を示すもう一つの例であり、Vertibirdの墜落現場でもある。
+            </p>
+
+            <h3 style="clear: both;">戦後</h3>
+            <p>
+                政府関係者はホワイトスプリング議会バンカーに逃げ込んだが、エンクレイヴは非加盟メンバーに対する粛清を行った。<br>
+                アパラチアは自力で生き延びるしかなく、エンクレイヴのリーダーであるトーマス・エックハートは中国との戦争の秘密裏の継続に注力していた。
+            </p>
+            <p>
+                チャールストンでは連邦政府からの指示がない中、チャールストン緊急政府が組織され、レスポンダーズと連携して活動した。<br>
+                チャールストンは荒廃と混乱の中で安定のオアシスとなった。<br>
+                タガーディーズ・サンダーなどの軍事部隊は指揮系統との連絡が途絶え、命令を待つことを選択した。<br>
+                モーガンタウンは<a href="vault76.html" class="auto-link">Vault-Tec大学</a>の学生が形成したライバル派閥により引き裂かれた。
+            </p>
+            <p>
+                裕福なバケーション客たちはアパラチア山中のリゾートに閉じ込められた。<br>
+                食料が底をついた2078年の冬の経験は彼らの多くを精神的に壊し、暴力的な<a href="free-radicals.html" class="auto-link">レイダー</a>集団の誕生につながった。
+            </p>
+            <p>
+                その後数年間、レスポンダーズはチャールストンから勢力圏を拡大し、キャンプ・ベンチャーは<a href="power-armor.html" class="auto-link">ブラザーフッド・オブ・スティール</a>アパラチア支部の拠点となった。<br>
+                クリスマス・デー2082年、プレザント・バレーレイダーのリーダーであるデヴィッド・ソープがサマーズビルダムをミニニュークで爆破し、チャールストンを壊滅させた。
+            </p>
+
+            <h3>スコーチ病</h3>
+            <p>
+                次の10年はアパラチア全域で社会秩序が着実に崩壊した時代であった。<br>
+                フリー・ステイツはスコーチド検知システムの構築に苦戦し、ブラザーフッドは沼地での脅威封じ込めに必死の戦いを繰り広げた。
+            </p>
+            <p>
+                2095年までにブラザーフッドは最後の力を振り絞り、オペレーション・タッチダウンを発動したが、パラディン・タガーディを含む最も経験豊富なメンバーを失った。<br>
+                ブラザーフッドは2095年8月に壊滅した。
+            </p>
+            <p>
+                レスポンダーズは反撃を試み、スコーチ病のワクチン開発や戦略的攻撃を行ったが、時すでに遅かった。<br>
+                2096年11月、スコーチビーストの脅威がモーガンタウン空港に降りかかり、アパラチアにおける人類最後の主要拠点を破壊した。<br>
+                スコーチビースト以外のスコーチドに対する免疫を持つ<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>やフェラル・<a href="ghoul.html" class="auto-link">グール</a>も脅威であった。<br>
+                2102年のVault 76の開放まで、人類はアパラチア中核部の地表に戻ることはなかった。
+            </p>
+
+            <h3>再入植</h3>
+            <p>
+                2103年、生存者たちがアパラチアに戻り始めた。<br>
+                Vault居住者たちはヌカ・コーラ・ワクチネイテッドの形で予防接種を広く配布することで、スコーチビーストの脅威を軽減した。<br>
+                入植者（入植者）はスプルース・ノブに拠点を築き、ファウンデーションを建設した。<br>
+                クレイター・レイダーは墜落した宇宙ステーション「ヴァリアント1号」の残骸に基地を建設し、ザ・クレーターと呼ばれるようになった。<br>
+                両グループはVault 79とその金塊の存在が知られるまで、不安定な膠着状態にあった。
+            </p>
+            <p>
+                ブラザーフッド第一遠征軍の3名がATLAS天文台に到着し、アトラス砦と改名して技術回収を開始した。<br>
+                2104年にはレスポンダーズが再編され、ホワイトスプリング・リゾートを新しい本部として利用するようになった。
+            </p>
+
+            <h2>地理</h2>
+            <h3>環境</h3>
+            <p>
+                他の旧合衆国地域からの放射性降下物が地元の野生動物の多くを変異させ、制御不能な石炭鉱山の火災がブレア山周辺を灰で覆い、クラークスバーグ周辺の工場は白い粉塵を吐き出し、Vault 94のG.E.C.K.が破壊されたことで北東部に高度に変異した植物が生い茂った。
+            </p>
+
+            <h3>リージョン</h3>
+            <p>アパラチアはFallout 76において8つのリージョンに分かれている。</p>
+
+            <div class="region-section">
+                <h3>森林地帯</h3>
+                <img src="images/note_extracted/appalachia/Forest.png" alt="森林地帯：緑豊かな、ほぼ手つかずの地域" class="content-image-right">
+                <p>
+                    西のオハイオ川と東のアレゲニー山脈に囲まれた森林地帯は、その多様な動植物で知られるゆるやかに定義された地理的区域である。<br>
+                    大戦前は林業、農業、観光業、さらにはVault-Tecやホーンライト・インダストリアルによるハイテク分野など幅広い産業の本拠地であった。<br>
+                    豊富な植物と動物、十分な食料と水のおかげで、この地域は生存者たちの避難所となった。<br>
+                    レスポンダーズがインフラと資源を活用してアパラチアの再建を試みた主要な拠点であった。
+                </p>
+            </div>
+
+            <div class="region-section">
+                <h3>積灰の山</h3>
+                <img src="images/note_extracted/appalachia/AshHeap.png" alt="積灰の山：汚染された過酷な領域" class="content-image-right">
+                <p>
+                    森林地帯の南端、チャールストンを越えた先に位置する積灰の山は、ブレア山周辺の汚染地域を指す。<br>
+                    歴史的に石炭と多数の金属の豊富な埋蔵量のおかげでアパラチア鉱業の中心地であったが、資源の自由な搾取、特に露天掘りにより、地面、水、空気が毒化され、その名前が付けられた。<br>
+                    鉱山のトンネル内で絶え間なく燃え続ける火災による煙と燃えかすが常に立ち上っている。
+                </p>
+            </div>
+
+            <div class="region-section">
+                <h3>毒の峡谷</h3>
+                <img src="images/note_extracted/appalachia/ToxicValley.png" alt="毒の峡谷：白い粉、下水道の水路、ほぼ生物のいない風景" class="content-image-right">
+                <p>
+                    グラフトン市を取り囲む毒の峡谷は、グラフトン鉄鋼工場を経済発展の中心としていた。<br>
+                    同社の無責任な環境慣行とダリウス・アングラーによる産業妨害が、かつては緑豊かだった地域を生命がほぼ存在しない場所に変えてしまった。<br>
+                    汚染された水域にはあらゆる種類の変異水生生物が生息している。
+                </p>
+            </div>
+
+            <div class="region-section">
+                <h3>荒れた境域</h3>
+                <img src="images/note_extracted/appalachia/SavageDivide.png" alt="荒れた境域" class="content-image-right">
+                <p>
+                    ウエストバージニアを二分するアパラチア山脈は人気のバケーション地であり、多数の自然公園と観光産業を支える広範なインフラが整備されていた。<br>
+                    スキーリゾート、民宿、キャビン、無数のハイキングトレイルが日々の困難から逃れたいアメリカ人に人気であった。<br>
+                    山々の奥深さと孤立性は軍にとっても魅力的であり、機密軍事基地やインフラに多額の投資が行われた。<br>
+                    巨大なスキーリフトステーションである世界の頂上、独特な建築のパレス・オブ・ザ・ワインディング・パス、歴史あるホワイトスプリング・リゾートなど、多くのランドマークが点在している。
+                </p>
+            </div>
+
+            <div class="region-section">
+                <h3>沼地地帯</h3>
+                <img src="images/note_extracted/appalachia/TheMire.png" alt="沼地地帯" class="content-image-right">
+                <p>
+                    アパラチア山脈の東に位置する、ゆるやかに定義された湿地帯で、ハーパーズ・フェリーを中心とする。<br>
+                    密な森林と多数の沼地を持つ沼地地帯は、21世紀にはフリー・ステイツ運動の中心地として知られていた。<br>
+                    Vault 94 G.E.C.K.の爆発により急速に変異・拡大する沼地が生まれ、<a href="angler.html" class="auto-link">アングラー</a>などの独自の変異生物が生まれた。<br>
+                    沼地地帯固有のストラングラー・プラントは大戦後に無制限に成長し、建物や木々、さらには地面を這う光景が一般的である。
+                </p>
+            </div>
+
+            <div class="region-section">
+                <h3>クランベリー湿原</h3>
+                <img src="images/note_extracted/appalachia/CranberryBog.png" alt="クランベリー湿原：ワトガが遠くに見える" class="content-image-right">
+                <p>
+                    アパラチアの南東角を占めるクランベリー湿原は、この地域固有の色鮮やかな赤い植物からその名が付けられた。<br>
+                    先進都市ワトガは2042年にこの地域に設立された。<br>
+                    35年以上にわたる伐採、拡張、アトミック・マイニング・サービスによる地下核実験により、不安定でひび割れた大地が広がり、その上にワトガの高層ビルがそびえ立っている。<br>
+                    エックハート大統領は2085年までこの地域でスコーチビーストを隠し、その後アパラチアに解き放った。<br>
+                    Bogはこれらの怪物の拠点となり、アパラチアブラザーフッド・オブ・スティールさえも打ち破った。
+                </p>
+            </div>
+
+            <div class="region-section">
+                <h3>スカイライン・バレー</h3>
+                <img src="images/note_extracted/appalachia/SkylineValley.png" alt="スカイライン・バレー" class="content-image-right">
+                <p>
+                    アパラチアの南部、積灰の山とクランベリー湿原の山間に位置するスカイライン・バレーは、バージニア州のシェナンドー国立公園とその景観道路スカイライン・ドライブの地域をカバーしている。<br>
+                    大戦前、この土地の多くはシュトルツ家が所有しており、ヒューゴはVault-Tec Corporationの取締役でもあった。<br>
+                    Vault 63の居住者の多くは戦争を生き延びたが、放射線にさらされグール化した。<br>
+                    気象制御装置の実験はロストと呼ばれる狂気のグールを生み出し、2105年までにダーク・ホロウ・マナー上空に巨大な雷嵐が形成されている。
+                </p>
+            </div>
+
+            <div class="region-section">
+                <h3>バーニング・スプリングス</h3>
+                <img src="images/note_extracted/appalachia/BurningSprings.png" alt="バーニング・スプリングス" class="content-image-right">
+                <p>
+                    マップの西側、オハイオ川を渡り森林地帯のポイント・プレザントの対岸に位置するバーニング・スプリングスは、オハイオ州南東部の小さな農村地域を指す。<br>
+                    化学物質の流出により砂漠のような環境となり、「ザ・ラスト」と呼ばれる現象が発生している。<br>
+                    大戦前はアブラクソダイン・ケミカルが天然ガス埋蔵量のためにこの地域を支配していた。<br>
+                    戦後は知性を持つ<a href="super-mutant.html" class="auto-link">スーパーミュータント</a>であるザ・ラスト・キングが率いるレイダー集団「ラスト・キングの軍勢」が支配している。
+                </p>
+            </div>
+
+            <h2 style="clear: both;">政治と行政</h2>
+            <p>
+                アパラチアはアパラチア準州の上院議員によって代表されていた。<br>
+                サミュエル・ブラックウェルが2077年の辞任前の最後の上院議員であり、11月2日に選挙が予定されていた。<br>
+                アパラチア準州の最後の知事はエヴァンス知事であった。
+            </p>
+            <p>
+                アパラチアは「Appalachian Territories」「Appalachia Territory」「Territory of Appalachia」「Greater Appalachia Region」「Appalachian State」など、さまざまな地域名で呼ばれている。
+            </p>
+
+            <h2>組織</h2>
+            <p>
+                大戦後、生存者の間でエンクレイヴ、フリー・ステイツ、ブラザーフッド・オブ・スティール、レイダー、レスポンダーズなど多くの勢力が形成された。<br>
+                これらの勢力は2102年までにスコーチドによって全滅したが、エンクレイヴのAI「MODUS」などの痕跡が残っている。<br>
+                2103年にはCraterの新レイダーとファウンデーションの入植者という2大勢力が台頭した。<br>
+                カリフォルニアのロスト・ヒルズから派遣されたブラザーフッド第一遠征軍はアトラス砦を設立した。
+            </p>
+
+            <h2>ノート</h2>
+            <ul>
+                <li>オールド・アパラチアブランドのバーボンはコモンウェルス各地で見つけることができる。</li>
+                <li>アパラチアはクリエイション・クラブコンテンツ「キャピタル・ウエイストランド・マーセナリーズ」でも言及されている。</li>
+                <li>一部のキャラクターは、アパラチアが他の場所と比べて比較的良い状態であるとコメントしている。<br>バージニア出身のイセラ・メヒアは「あちらにはもっと多くのホットゾーンがある。住める場所も早々と漁り尽くされている。アパラチアは危険だけど、私たちがいた場所よりはましだ」と語っている。</li>
+            </ul>
+
+            <h2>舞台裏</h2>
+            <ul>
+                <li>現実世界の「アパラチア」は、ウエストバージニア州とその周辺地域を含む、アメリカ東部のアパラチア山脈にある広大な文化的・地理的地域を指す。<br>ウエストバージニア州は完全にアパラチアに含まれると見なされる唯一の州である。</li>
+                <li>スカイライン・バレーアップデートにより、ゲームワールドは南方のバージニア州シェナンドー国立公園地域まで拡大された。</li>
+                <li>バーニング・スプリングスアップデートにより、北西方向のオハイオ州南東部まで拡大された。</li>
+                <li>リードデザイナーのフェレット・バドゥインは「ウエストバージニアは他の場所に比べて核攻撃が軽かった。だからこそ、人類が本当に復活を試みる機会があった」と述べている。</li>
+            </ul>
+
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/CollectorMap.png" alt="E3で公開されたコレクターズエディションマップ"><div class="caption">E3コレクターズマップ</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/CollectorMapGlow.png" alt="暗闘で光るコレクターズマップ"><div class="caption">蓄光コレクターズマップ</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/ProspectorMap.jpg" alt="簡略化されたグリッドマップ"><div class="caption">Prospectorマップ</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/RespondersMap.png" alt="レスポンダーズが使用したマーク付きマップ"><div class="caption">レスポンダーズマップ</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/WVmap.jpg" alt="全6リージョンが記されたマップ"><div class="caption">旧6リージョンマップ</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/NightView.png" alt="アパラチアの夜景"><div class="caption">アパラチアの夜</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/MTG_RampantGrowth.png" alt="Magic: The Gatheringカード"><div class="caption">MTG: Rampant Growth</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/appalachia/MTG_ExoticOrchard.jpg" alt="Magic: The Gatheringアート"><div class="caption">MTG: Exotic Orchard</div></div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                アパラチアの記事を翻訳してみて改めて感じるのは、このゲームの世界観の奥深さですね。<br>
+                ウエストバージニア州という実在の土地を舞台にしながら、鉱業の歴史、オートメーション化による失業問題、大企業による環境破壊という現実的なテーマが核戦争後の世界と見事に絡み合っている。<br>
+                8つのリージョンそれぞれに明確な個性があるのも素晴らしいところで、森林地帯の穏やかな緑から始まって、積灰の山の灰とスモッグ、毒の峡谷の不気味な白い粉、クランベリー湿原の赤い植物と高層ビル群…と探索するたびに新しい景色が広がるんですよね。<br>
+                個人的には荒れた境域の山岳地帯が好きで、世界の頂上やホワイトスプリング・リゾートの存在感は格別です。<br>
+                スカイライン・バレーやバーニング・スプリングスの追加でバージニアやオハイオまで広がったのも嬉しいポイントで、まだまだアパラチアには語られていない物語がたくさん眠っていそうです。<br>
+                スコーチ病で一度は人類が全滅したこの地に、Vault 76から出た私たちが再び文明を築いていく…というストーリーは何度プレイしてもグッときます。<br>
+                ファウンデーション、レイダー、B.O.S、そして再建されたレスポンダーズ。<br>
+                それぞれの勢力が異なる理想を持ちながらもこの地に根を下ろしていく過程を見届けるのが、Fallout 76の醍醐味ではないかと思います。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Appalachia" target="_blank" rel="noopener">Appalachia</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+    <script>
+        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}btn.disabled=false}function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='\u2665'}else{btn.classList.remove('liked');heart.textContent='\u2661'}countSpan.textContent=count}document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count)}await loadComments()});document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();const overlay=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.src;overlay.classList.add('active')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
+        const _commentArticleId="note_appalachia";const _commentArticleName="Appalachia";const _commentArticleUrl="appalachia.html";const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)'}}function relativeTime(isoStr){const diff=(Date.now()-new Date(isoStr).getTime())/1000;if(diff<60)return'たった今';if(diff<3600)return Math.floor(diff/60)+'分前';if(diff<86400)return Math.floor(diff/3600)+'時間前';if(diff<86400*7)return Math.floor(diff/86400)+'日前';return new Date(isoStr).toLocaleDateString('ja-JP')}function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return}list.innerHTML=comments.map(c=>'<div class="comment-item" data-id="'+c.id+'"><div class="comment-meta"><span class="comment-time">'+relativeTime(c.created_at)+'</span>'+(_isAdminMode?'<button class="comment-delete-btn" title="完全削除" onclick="deleteComment(\''+c.id+'\')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment(\''+c.id+'\')">&#128064;</button>':'')+'</div><div class="comment-body">'+escapeHtml(c.content)+'</div></div>').join('')}function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id, content, created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return}renderComments(data||[])}async function submitComment(){const input=document.getElementById('comment-input');const msg=document.getElementById('comment-msg');if(!input||!msg)return;const hp=document.getElementById('hp_field');if(hp&&hp.value!=='')return;const content=input.value.trim();if(!content){showCommentMsg('コメントを入力してください。',false);return}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return}const NG_WORDS=['広啄','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];const lc=content.toLowerCase();if(NG_WORDS.some(w=>lc.includes(w.toLowerCase()))){showCommentMsg('不適切な表現が含まれているため投稿できません。',false);return}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){const remain=Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000);showCommentMsg('あと'+remain+'秒後に投稿できます。',false);return}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments()}function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent=''},3000)}async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを完全に削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return}await loadComments()}async function hideComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを非表示にしますか？'))return;const{error}=await supabaseClient.rpc('hide_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('非表示失敗: '+error.message);return}await loadComments()}document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);renderComments([]);loadComments();alert('管理者モードを終了しました。');return}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。')}else{alert('パスワードが違います。')}}});
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olivia Rivers | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/olivia-rivers.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Olivia Rivers | Overseer Mohi's Terminal">
+    <meta property="og:description" content="オリヴィア・リバーズ。オーダー・オブ・ミステリー最強の暗殺者にして最大の裏切り者。母シャノンへの複雑な感情と、レイダーへの離反の物語。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/olivia-rivers/img_main.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/olivia-rivers.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Olivia Rivers | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="「英雄なんていない。この世界は悪党のものよ。強い者が生き残り、支配する」——オリヴィアの最期の言葉が物語るオーダーの悲劇。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/olivia-rivers/img_main.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .holotape-box { border-left: 4px solid #ff9800; margin: 20px 0; background: rgba(255,152,0,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #ff9800; }
+        .note-box { border-left: 4px solid #42a5f5; margin: 20px 0; background: rgba(66,165,245,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #42a5f5; }
+        .blockquote-box { border-left: 4px solid #ce93d8; margin: 20px 0; background: rgba(206,147,216,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-style: italic; }
+        .blockquote-box .source { font-style: normal; color: #ce93d8; font-size: 0.9em; margin-top: 8px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="キャラクター" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Olivia Rivers</h3>
+            <img src="images/note_extracted/olivia-rivers/img_main.jpg" alt="オリヴィア・リバーズ（上）と母シャノン" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>オーダー・オブ・ミステリー（元）<br>レイダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">場所</span><span>セネカ・ロックス</span></div>
+            <div class="infobox-row"><span class="infobox-label">状態</span><span>死亡</span></div>
+            <div class="infobox-row"><span class="infobox-label">死亡</span><span>2086年11月<br>セネカ・ロックス</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>ミストレス（元）/ レイダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">家族</span><span>フレデリック・リバーズ（父）<br>シャノン・リバーズ（母・故人）</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>The Mistress of Mystery</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>Jan Johns</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_olivia_rivers" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Olivia Rivers<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">オリヴィア・リバーズ</span></h1>
+
+            <div class="blockquote-box">
+                「私たちは何人殺してきた？ 何百人？ 何のために？ 何も変わらない。レイダーはいつだって次から次へと湧いてくる。彼らが正しいのよ。英雄なんていない。この世界は悪党のものよ。強い者が生き残り、支配する。お母さん？ 私が一番強いの。あなたが私を一番強く育てたのよ。もう影に隠れて生きるのはうんざり。あなたの茶番劇で自分の役を演じるのも終わり。私は選んだの。もう現実の世界で自分の居場所を掴む時よ。」
+                <div class="source">— シャノン・リバーズの録音より</div>
+            </div>
+
+            <h2>背景</h2>
+            <p>
+                <strong>オリヴィア・リバーズ</strong>は、<a href="riverside-manor.html" class="auto-link">オーダー・オブ・ミステリー</a>のメンバーであり、有名女優<strong>シャノン・リバーズ</strong>と著名なアパラチアの発明家<strong>フレデリック・リバーズ</strong>の娘です。<br><br>
+                才能溢れる子供だったオリヴィアには、その才能を開花させるために最高の家庭教師が付けられました。<br>
+                しかし、両親の高い期待とシャノンのキャリアのストレス——特に2077年、シルバー・シュラウドの映画化が本格化した時期——がのしかかりました。<br>
+                責任の重さに押し潰されたオリヴィアは不機嫌で引きこもりがちになりました。<br>
+                母親の女優業が自分より優先されていると感じ、2077年6月にはセネカ・ロックスへの恒例の家族キャンプ旅行がシャノンの過密スケジュールのために中止され、深く傷つきました。<br>
+                彼女は大学に行って家を出ることを心待ちにしていました。<a href="great-war.html" class="auto-link">大戦</a>がその計画を中断させるまでは。
+            </p>
+
+            <h3>戦後の訓練</h3>
+            <p>
+                リバーズ一家は備蓄で数カ月を過ごしました。<br>
+                2078年7月8日、物資補充のためにチャールストンへ赴いた際、レイダーに襲われました。<br>
+                フレデリックが真水と今や無価値な紙幣で交渉しようとしましたが、レイダーたちは笑い飛ばし、オリヴィアに手をかけました。<br>
+                その瞬間、母シャノンが行動を起こし、襲撃者たちを制圧。<br><br>
+                母の勇姿に心を打たれたオリヴィアは、シャノンに訓練を懇願しました。<br>
+                シャノンは当初ためらいましたが、娘の熱意とフレデリックの「世界は変わったんだ、娘は自分を守れるようにならなくては」という冷静な理屈に折れ、訓練を承諾。<br>
+                シャノンがミステリーの女主人として活動し始めると、オリヴィアは母のような存在を目指して訓練に没頭しました。
+            </p>
+
+            <h3>オーダー・オブ・ミステリー</h3>
+            <p>
+                しかし、新鮮さは次第に薄れていきました。<br>
+                転機は、シャノンがリバーズ家のガレージを漁っていた3人の孤児の少女を引き取った時でした。<br>
+                オリヴィアは母に反論し、家族だけでは全員を救えないと主張。隣人のブロディ・トーランスを追い返しておいて3人の他人を引き取るのかと、特に不公平さを訴えました。<br><br>
+                シャノンがオーダー・オブ・ミステリーを創設すると、オリヴィアは母を妄想的だと考えましたが、「完璧で従順な小さな兵士」であり「他の少女たちのロールモデル」であることを期待される立場に最も苦しみました。<br>
+                それでもオーダーは繁栄し、訓練は数年にわたり激化。<br>
+                オリヴィアはシャノンが育てた暗殺者の中で群を抜いて最強となりました。<br><br>
+                任務では卓越した戦闘能力を発揮。ある時は、ガラハン前哨基地への完璧な襲撃を遂行した後、4つの狙撃陣地、半ダースの獣の巣穴、廃棄された軍用バンカーを制圧して3日遅れで帰還。<br>
+                初めての実地任務だったイニシエイト——レイチェル・ウェストを道連れにしてのことでした。
+            </p>
+
+            <h3>離反</h3>
+            <div class="blockquote-box">
+                「クラリッサが死んだ。彼女は壮大で英雄的な使命のために命を捧げたの？ いいえ。ただの無意味な監視任務よ。これは全部茶番。お母さんはレイダーを抑え込むことについて壮大な演説をした。でも何人殺そうと関係ない。いつだってもっと湧いてくる。今やこの世界はレイダーのものよ。人々は生き残るために必要なものを奪う。空腹の胃に英雄主義が何の役に立つというの？」
+                <div class="source">— 2086年2月、クラリッサの死に対するオリヴィアの反応</div>
+            </div>
+            <p>
+                2086年2月7日の監視任務中にオーダーが初の死者を出した時、オリヴィアは深く動揺しました。<br>
+                この事件は、母の事業、特にその死への対応が無意味で茶番だという彼女の信念を強化しました。<br><br>
+                母がノービスのミストレスの地位をオリヴィアではなくイヴ・デヴォワールに与えた時、オリヴィアはその決定を受け入れられませんでした。<br>
+                過去6年間の意味を振り返った彼女は、アパラチアで真の違いを生む唯一の方法はレイダーと手を組むことだと結論づけました。<br>
+                計画はレイダー組織に潜入し、最終的にリーダーの座を奪うことでした。<br><br>
+                オリヴィアはオーダーの任務を利用してレイダーを追跡し、組織への突破口を探りました。<br>
+                その突破口は、かつて両親に追い返されたブロディ・トーランスが管理する検問所という形で訪れました。<br>
+                2086年6月8日、オリヴィアは検問所を襲撃してブロディ以外の全員を殺し、ブロディには脚にかすり傷だけを残しました。<br><br>
+                情報を交換した二人は、ホワイトスプリング・リゾートの離れたコテージで再会の約束をしました。<br>
+                ブロディはボスのデイヴィッド・ソープに報告し、オーダー・オブ・ミステリーを完全に壊滅させるためにオリヴィアに同調するふりをする計画を立てました。<br><br>
+                数週間ごとの密会を重ねた後、オリヴィアは取引を持ちかけました——オーダーを売り渡す代わりに、デイヴィッドのサイン入りの白紙小切手を要求。<br>
+                証拠として、サマーズビルでの次の物資輸送の詳細をブロディに渡しました。<br><br>
+                アリソン・ロングがサマーズビルの任務を引き当てた時、オリヴィアは待ち伏せの成功を確保するために彼女を尾行。<br>
+                しかし待ち伏せは失敗し、アリソンが2人の待ち伏せ者を殺したため、オリヴィア自らが仲間のミストレスを殺す羽目になりました。<br><br>
+                その後もオリヴィアはブロディに情報を流し続け、ついにCryptosメインフレームのデータベース全体を収めた<strong>Project Siphonホロテープ</strong>をレイダーに引き渡しました。<br>
+                この膨大な情報により、レイダーはわずか3カ月で7人のオーダーメンバーを殺害。<br>
+                シャノンはマナーを封鎖し、外出を自分、イヴ、エイミー、オリヴィアの最上位4人のミストレスのみに限定しました。
+            </p>
+
+            <h3>崩壊と最期</h3>
+            <p>
+                11月13日頃、シーカーのレイチェル・ウェストがオリヴィアの計画に気づきました。<br>
+                追い詰められたオリヴィアは反撃。オーダー最強の暗殺者として、仲間たちを次々と虐殺しました——父フレデリックさえも殺害して。<br>
+                そして母に最後のメッセージを残しました。荒れた境域での最後の対面への招待状を。<br><br>
+                生き残った者への最後のメッセージを残した後、シャノンは娘との最後の対面に向かいました。<br><br>
+                <strong>セネカ・ロックス</strong>で対峙した母と娘は、オリヴィアが母に致命傷を負わせるまで戦いました。<br>
+                しかしオリヴィアも傷を負っていました。<br>
+                そして勝利の余韻に浸る暇はありませんでした。<br>
+                対決の間隠れていたブロディが、オリヴィアがオーダー最後の生き残りだと悟った瞬間に彼女を裏切りました。<br>
+                レイダーに裏切られたことに気づく間もなく、オリヴィアはブロディの銃弾一発で仕留められ、<strong>母の遺体を抱きしめたまま息を引き取りました</strong>。
+            </p>
+
+            <h2>プレイヤーとの関わり</h2>
+            <p>
+                オリヴィアの遺体はセネカ・ロックスで見つかり、クエスト「<a href="the-mistress-of-mystery.html" class="auto-link">The Mistress of Mystery</a>」で調査対象となります。<br>
+                所持品はボロボロのドレスと戦前の紙幣です。
+            </p>
+
+            <h2>関連ホロテープ</h2>
+            <ul>
+                <li><strong>Presidential Cottage security recording</strong> — 大統領コテージのセキュリティ録音</li>
+                <li><strong>Shannon Rivers' recording</strong> — シャノン・リバーズの録音（オリヴィアの最期の言葉を含む）</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>オリヴィア・リバーズは『<strong>Fallout 76</strong>』にのみ登場します。</p>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                オリヴィア・リバーズは、Fallout 76の中でも最も複雑で悲劇的なキャラクターの一人です。<br><br>
+                彼女の物語を時系列で追うと、単なる「裏切り者」というレッテルでは片付けられない深みが見えてきます。<br>
+                戦前から母に無視されていると感じていた少女。大戦後に母の勇姿に憧れて訓練を志願し、やがてオーダー最強の暗殺者に成長する。<br>
+                しかし「完璧なロールモデル」を求められるプレッシャーと、仲間の無意味な死を前に、英雄主義そのものへの信仰を失っていく。<br><br>
+                特に切ないのは、離反の突破口がブロディ・トーランス——かつて両親が追い返した隣人の少年——だったこと。<br>
+                シャノンが他人の孤児は引き取るのに隣人は見捨てる、というオリヴィアの不公平感が、巡り巡って破滅の引き金になったのです。<br><br>
+                そして最期。母を倒した直後にブロディに撃たれ、「母の遺体を抱きしめたまま死んだ」という描写は、彼女がどれほど母を憎み、どれほど母を愛していたかを同時に物語っています。<br>
+                レイダーに裏切られたことに気づく暇もなかった——結局、「強い者が支配する」世界で、本当に強かったのは誰だったのでしょうか。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#OrderOfMysteries</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#OliviaRivers</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Character</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Olivia_Rivers" target="_blank" rel="noopener">Olivia Rivers</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co'; const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'; const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        function openLightbox(img) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; lb.classList.add('active'); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡'; btn.querySelector('.like-count').textContent = count; btn.classList.toggle('liked', isLiked); }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); updateLikeButton(btn, isLiked, data ? data.like_count : 0); } });
+        const _commentArticleId = 'olivia-rivers'; const _commentArticleName = 'Olivia Rivers - オリヴィア・リバーズ'; const _commentArticleUrl = 'olivia-rivers.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50); if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const hp = document.getElementById('hp_field'); if (hp && hp.value) return; const ngWords = ['http://', 'https://', 'LINE', 'DM', 'discord.gg']; if (ngWords.some(w => content.includes(w))) { showCommentMsg('不正な内容が含まれています。', false); return; } const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0'); const now = Date.now(); if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content}); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

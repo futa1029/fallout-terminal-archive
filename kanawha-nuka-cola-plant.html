@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Kanawha Nuka-Cola Plant | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/kanawha-nuka-cola-plant.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Kanawha Nuka-Cola Plant | Overseer Mohi's Terminal">
+    <meta property="og:description" content="カナー・ヌカコーラ工場 ── ヌカ・コーラ社のアパラチア地域マーケティング＆R&D施設。量子ヌカ・コーラの開発拠点であり、スコーチ病ワクチン計画の舞台。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/kanawha-nuka-cola-plant/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/kanawha-nuka-cola-plant.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Kanawha Nuka-Cola Plant | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ヌカ・コーラの新商品テイスティング施設。ホエールシャーク、オルカ、アルバトロスのコードネームで新製品を開発していた。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/kanawha-nuka-cola-plant/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノートブロック（ターミナルエントリ・メモ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Kanawha Nuka-Cola Plant</h3>
+            <img src="images/note_extracted/kanawha-nuka-cola-plant/img_main.png" alt="カナー・ヌカコーラ工場">
+            <img src="images/note_extracted/kanawha-nuka-cola-plant/img_map_marker.png" alt="マップ上の位置" style="width:100%; margin-top:5px;">
+            <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">マップ上の位置</div>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>ヌカ・コーラ工場</span></div>
+            <div class="infobox-row"><span class="infobox-label">リージョン</span><span>森林地帯（The Forest）</span></div>
+            <div class="infobox-row"><span class="infobox-label">所有者</span><span>ヌカ・コーラ社（戦前）</span></div>
+            <div class="infobox-row"><span class="infobox-label">敵</span><span>フェラル・グール / ラッドラット / スコーチ</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>Wasted on Nukashine<br>The New Arrivals</span></div>
+            <div class="infobox-row"><span class="infobox-label">設備</span><span>アーマー作業台 / 武器作業台 / ケミストリーステーション / パワーアーマーステーション / ティンカー作業台</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_kanawha-nuka-cola-plant" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Kanawha Nuka-Cola Plant<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">カナー・ヌカコーラ工場</span></h1>
+
+            <p>
+                <strong>Kanawha Nuka-Cola plant</strong>は、<strong>Fallout 76</strong>のアパラチアの<strong>森林地帯</strong>にあるロケーションです。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                <strong>大戦</strong>前、カナー・ヌカコーラ工場はアパラチアの人々が新製品をどう感じるかをテストするための<strong>地域マーケティング＆研究開発施設</strong>でした。<br>
+                コードネーム「<strong>ホエールシャーク</strong>」「<strong>オルカ</strong>」「<strong>アルバトロス</strong>」をはじめ、<strong>ヌカ・コーラ量子</strong>、<strong>ヌカ・コーラ・ブラック</strong>、<strong>ヌカ・コーラ・オレンジ</strong>、<strong>ヌカ・コーラ・クォーツ</strong>などの新製品が開発・テストされていました。<br>
+                また、後に<strong>ヌカ・コーラ・クランベリー</strong>となる飲料の開発にも携わっていました。
+            </p>
+            <p>
+                2103年までに、この工場はVault 76の<strong>監督官</strong>が<strong>スコーチ病</strong>への広域ワクチン接種手段（<strong>ヌカ・コーラ・ワクチネイテッド</strong>）を製造する計画において、重要な拠点となりました。
+            </p>
+
+            <h2>関連メモ・ホロテープ</h2>
+
+            <div class="note-block">
+                <div class="note-title">📋 Blank Feedback Form（空白フィードバックフォーム）── 2階テイスティングエリアのブースの棚</div>
+                <p>
+                    <strong>NUKA-COLA</strong> ベータテスト フィードバックフォーム<br><br>
+                    サンプル名：<br><br>
+                    1～10のスケールで、10が最も最適として、<br>
+                    テストしたサンプルの体験を評価してください：<br><br>
+                    強度（INTENSITY）：<br>
+                    口当たり（MOUTHFEEL）：<br>
+                    酸味（ACIDITY）：<br>
+                    香り（AROMA）：<br>
+                    フレーバープロファイル（FLAVOR PROFILE）：<br>
+                    甘さ（SUGARINESS）：<br>
+                    金属味（METALNESS）：<br>
+                    後味（AFTERTASTE）：<br>
+                    中毒性（CRAVABILITY）：<br>
+                    総合味（OVERALL TASTE）：<br>
+                    総合体験（OVERALL EXPERIENCE）：<br><br>
+                    追加コメント：
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 NCB02-A6A1 Feedback Form ── 2階テイスティングエリアのブースの棚</div>
+                <p>
+                    <strong>NUKA-COLA</strong> ベータテスト フィードバックフォーム<br><br>
+                    サンプル名：<strong>NCB02-A6A1</strong>（※ヌカ・コーラ・ブラック）<br><br>
+                    強度：6 / 口当たり：2 / 酸味：5 / 香り：7 / フレーバープロファイル：7<br>
+                    甘さ：2 / 金属味：<strong>9</strong> / 後味：4 / 中毒性：4<br>
+                    総合味：3 / 総合体験：5<br><br>
+                    追加コメント：<strong>この飲み物を飲んだ後に歯が痒くなるのは正常ですか？ 爪楊枝かドリルか何かありませんか？</strong>
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 NCQ17-JH1A Feedback Form ── 2階テイスティングエリアのブースの棚</div>
+                <p>
+                    <strong>NUKA-COLA</strong> ベータテスト フィードバックフォーム<br><br>
+                    サンプル名：<strong>NCQ17-JH1A</strong>（※ヌカ・コーラ量子）<br><br>
+                    強度：<strong>10</strong> / 口当たり：<strong>10</strong> / 酸味：<strong>10</strong> / 香り：<strong>10</strong> / フレーバープロファイル：<strong>10</strong><br>
+                    甘さ：<strong>10</strong> / 金属味：<strong>10</strong> / 後味：<strong>10</strong> / 中毒性：<strong>10</strong><br>
+                    総合味：<strong>10</strong> / 総合体験：<strong>10</strong><br><br>
+                    追加コメント：<strong>私は全能の神の顔を見つめ、その無限の栄光に浸った。私はすべての生きとし生けるものと一体感を共有している。これは世界と共有されなければならない。</strong>
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 Nuka-Cola Marketing Memo（ヌカ・コーラ マーケティングメモ）── 2階Flavor Profile Ops室、金庫横のカウンター</div>
+                <p>
+                    To: マーケティングチーム全正社員<br>
+                    From: R. マーカス・テイラー<br>
+                    Re: 休暇<br><br>
+                    これは私がワトガで家族と2週間の休暇を取ることのリマインダーです。マーケティングおよびR&D関連の案件については、パット・ウォーカーまでご連絡ください。<br><br>
+                    よろしくお願いします、<br>
+                    マーカス
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 Clara's Note to Alexis（クララからアレクシスへのメモ）── 2階Snackability R&D研究室、施錠パントリー内の金属箱</div>
+                <p>
+                    アレクシスへ──このことを許してくれると嬉しい。方法論やR&Dについて長年意見が合わなかったのは分かっているけど、マーケティングがヌカ・コーラの世界では邪悪な力だということは、いつも意見が一致していたわよね。<br><br>
+                    罪のない人々を実験台にするのは許せない。だから<strong>ヒ素と水銀とストロンチウム90とその他全部</strong>を持って、<strong>サットン</strong>の自宅に帰ることにしたの。<br><br>
+                    分かってくれることを願って<br>
+                    ── クララ
+                </p>
+            </div>
+
+            <div class="holotape-box">
+                <div class="note-title">🎙️ Product Brainstorming 1（製品ブレインストーミング 1）── 2階Flavor Profile Ops室のテーブル</div>
+                <p>
+                    <strong>マーカス・テイラー</strong>：最新の市場調査によると、健康的なスナック需要は全市場セクターで8%上昇しており、今後数年間にわたり需要を牽引すると予測されています。<br><br>
+                    最初の実験では、<strong>セロリ風味のスパークリング飲料</strong>の復活を検討します。1860年代を起源とする飲料で、アウトサイダーのステータスを求める層に認知度が組み込まれています。<br><br>
+                    人工フレーバー、パッケージデザイン、マーケティングのバランスを取り、健康効果があると人々を納得させられると考えています。<br><br>
+                    法務部門と連携して主張できる範囲の限界を確認中ですが、現在のところ「<strong>新世代のためのクラシック消化飲料</strong>」あるいは「<strong>アメリカ最高の時代からのグリーントニックウォーター</strong>」を検討しています。
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 NCX13-GP01 Feedback Form ── Snackability R&D研究室の一番右のブース [Wild Appalachia]</div>
+                <p>
+                    <strong>NUKA-COLA</strong> ベータテスト フィードバックフォーム<br><br>
+                    サンプル名：<strong>NCX13-GP01</strong><br><br>
+                    強度：3.74 / 口当たり：5.2 / 酸味：0.4 / 香り：2.2 / フレーバープロファイル：4.275<br>
+                    甘さ：9.1 / 金属味：7.66 / 後味：1.9 / 中毒性：<strong>0.17</strong><br>
+                    総合味：3 / 総合体験：3.7645<br><br>
+                    追加コメント：<br>
+                    <strong>ソーダアーティストの皆さんへ──この私、世界一のヌカ・コーラ愛好家ルイスです！（おそらくブラッドバートン氏本人を除いて。）</strong><br>
+                    <strong>配合NCX13-GP01については、すでに完成された元の配合を改変する試みとして、信じられないほど凡庸な出来と言わざるを得ません。やり直してください。</strong>
+                </p>
+            </div>
+
+            <div class="note-block">
+                <div class="note-title">📋 My Advice（私の忠告）── 屋上ハッチから入った最初の部屋、大型コンソールの裏 [Wild Appalachia]</div>
+                <p>
+                    友よ、<br><br>
+                    私の忠告は、<strong>あのもの</strong>（X-01パワーアーマー・ヌカコーラ量子塗装設計図）を隠すことだ。マーケティング部はすべてを見ている、特に自分たちの予算がどこに消えたかを。そして予算関連の大炎上が来る…それは完全に君の責任になる！ そして手を貸そうとしている私の責任にもなる。<br><br>
+                    隠せる場所を知っている。目の届かない場所に、忘れられるように。経費明細書の項目を調整しておくから、誰にもバレない。お互いのために、リスクを取るな。<br><br>
+                    鍵の一つはタナグラ・タウンに行くときに持っていく。子供たちに会いに行くときだ。もう一つの鍵は君のために残しておいた。あの時あのものを置いた、あの場所にある。
+                </p>
+            </div>
+
+            <h2>レイアウト</h2>
+
+            <img class="article-image" src="images/note_extracted/kanawha-nuka-cola-plant/img_exterior.png" alt="カナー・ヌカコーラ工場 外観">
+            <div class="image-caption">カナー・ヌカコーラ工場 外観</div>
+
+            <h3>入口</h3>
+            <p>
+                工場には2つの入口があります。どちらの周辺にも低レベルの<strong>スコーチ</strong>や<strong>フェラル・グール</strong>が徘徊しています。<br>
+                <strong>正面入口</strong>から入るとレセプションエリアに、<strong>出荷入口</strong>から入ると工場フロアに出ます。
+            </p>
+
+            <h3>正面入口・ロビー</h3>
+            <p>
+                正面入口を通ると小さなレセプションエリアがあり、小さな階段を上がって大きな出入口を抜けると、多数の<strong>研究室</strong>と<strong>テイスティングエリア</strong>がある大きなオープンロビーに出ます。<br>
+                右側にはテイスティングエリアに隣接する研究室と、工場フロアへの通路トンネルがあります。左側は倉庫エリアです。<br>
+                メインロビーには約5体のスコーチがスポーンします。<br>
+                左右に階段があり研究室とキャットウォークに上がれます。ロビーの奥には工場階への出入口があり、より汚れたコンクリートのエリアが広がります。
+            </p>
+
+            <h3>出荷エリア・工場フロア</h3>
+            <p>
+                工場の反対側にある出荷エリアは2体の<strong>プロテクトロン</strong>が警備しています。プロテクトロンは近くのスコーチを撃ちますが、プレイヤーにも敵対します。<br>
+                プロテクトロンを越えると制御ポッド内のドアから工場フロアに入れます。<br>
+                工場フロアにはコンベアベルトと産業機械が並んでいますが、ヌカ・コーラ自体は工場のどこにも見当たりません。<br>
+                工場フロアの奥には、従業員休憩室、ロビーエリア、さらなる工場フロア、そして2基の核融合発電機がある小部屋へと続く<strong>ユーティリティトンネルネットワーク</strong>があります。
+            </p>
+
+            <h2>主なアイテム</h2>
+            <h3>メモ・ホロテープ</h3>
+            <ul>
+                <li><strong>Blank feedback form</strong>（空白フィードバックフォーム） ── 2階テイスティングエリアのブースのカウンター</li>
+                <li><strong>NCB02-A6A1 feedback form</strong> ── 2階テイスティングエリア</li>
+                <li><strong>NCQ17-JH1A feedback form</strong> ── 2階テイスティングエリア</li>
+                <li><strong>Nuka-Cola marketing memo</strong>（マーケティングメモ） ── 2階Flavor Profile Ops室</li>
+                <li><strong>Clara's note to Alexis</strong>（クララからアレクシスへのメモ） ── 2階Snackability R&D研究室の施錠パントリー</li>
+                <li><strong>Product brainstorming 1</strong>（ホロテープ） ── 2階Flavor Profile Ops室のテーブル</li>
+                <li><strong>NCX13-GP01 feedback form</strong> [Wild Appalachia] ── 2階テイスティングエリア</li>
+                <li><strong>My advice</strong> [Wild Appalachia] ── 屋上ハッチからの最初の部屋</li>
+            </ul>
+            <h3>その他</h3>
+            <ul>
+                <li><strong>パワーアーマー</strong>（T-シリーズ装備付きシャーシ） ── 地下のパワーアーマーステーション</li>
+                <li><strong>フュージョン・コア</strong> ×3</li>
+                <li><strong>TNTドームキー3</strong> ── Snackability R&Dのロッカー内（ヌカ・コーラロッカーキーが必要）</li>
+                <li><strong>Paired keycard 01</strong> [Wild Appalachia] ── バスルームの「故障中」個室</li>
+                <li><strong>Vault-Tecボブルヘッド</strong>（3箇所）</li>
+                <li><strong>雑誌</strong>（3箇所）</li>
+                <li>大量の<strong>アルミニウム</strong>、<strong>ガラス</strong>、<strong>核物質</strong></li>
+            </ul>
+
+            <h2>舞台裏</h2>
+            <p>
+                工場内部に、ヌカ・コーラのボトルをロケットに見立てた<strong>地球を周回するブロンズ像</strong>があります。<br>
+                これは<strong>Interplay Entertainment</strong>のロゴへのオマージュです。InterplayはオリジナルのFalloutとFallout 2のパブリッシャーでした。
+            </p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/kanawha-nuka-cola-plant/img_main.png" alt="メイン"><div class="caption">カナー・ヌカコーラ工場</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/kanawha-nuka-cola-plant/img_exterior.png" alt="外観"><div class="caption">外観</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/kanawha-nuka-cola-plant/img_night.png" alt="夜景"><div class="caption">夜間にライトアップされた工場</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/kanawha-nuka-cola-plant/img_interior.png" alt="内部"><div class="caption">工場内部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/kanawha-nuka-cola-plant/img_power_armor.png" alt="パワーアーマー"><div class="caption">パワーアーマー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/kanawha-nuka-cola-plant/img_concept.jpg" alt="コンセプトアート"><div class="caption">Connor McCampbell コンセプトアート</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ヌカ・コーラ関連のロケーションはFalloutシリーズの定番ですが、このカナー工場は「地域マーケティング＆R&D施設」という設定が独特。<br>
+                コードネーム「ホエールシャーク」「オルカ」「アルバトロス」──海洋生物の名前を冠した未知のヌカ・コーラ新製品。実際に製品化されたのか、それともプロトタイプのまま大戦を迎えたのか。<br><br>
+                ホロテープ「Product brainstorming 1」のセロリ味スパークリング飲料の話は最高に面白い。「1860年代起源」「アウトサイダーのステータスを求める層」「健康効果があると納得させる」──戦前のマーケティングの狂気が詰まっている。<br><br>
+                「My advice」のメモも秀逸。X-01パワーアーマーの量子塗装設計図を予算から隠すために経費明細を改竄し、鍵を2つに分けて隠す。「あの時あのものを置いた、あの場所にある」は映画『ハッカーズ』(1995)のセリフの引用。<br><br>
+                そしてInterplayロゴのイースターエッグ。ヌカ・コーラのボトルがロケットになって地球を周る──オリジナルFalloutへの敬意が込められている。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Kanawha_Nuka-Cola_plant" target="_blank" rel="noopener">Kanawha Nuka-Cola plant</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#TheForest</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#NukaCola</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Location</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_covered_bridge'; const _commentArticleName = 'Covered Bridge'; const _commentArticleUrl = 'covered-bridge.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

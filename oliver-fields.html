@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Oliver Fields | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/oliver-fields.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Oliver Fields | Overseer Mohi's Terminal">
+    <meta property="og:description" content="オリバー・フィールズ大尉 — 旧米陸軍将校。フォートノックスの金塊護送チームの生き残り。Fallout 76ロア記事。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/oliver-fields/main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/oliver-fields.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Oliver Fields | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="オリバー・フィールズ大尉 — フォートノックスの金塊護送任務を遂行し続ける元米軍将校。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/oliver-fields/main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .holotape-box { border-left: 4px solid #ff9800; background: rgba(255, 152, 0, 0.08); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; border-radius: 0 5px 5px 0; }
+        .holotape-box .holotape-title { font-family: 'Share Tech Mono', monospace; color: #ff9800; font-weight: bold; margin-bottom: 8px; }
+        .note-block { border-left: 3px solid #888; background: rgba(255, 255, 255, 0.03); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; }
+        .note-block .note-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-weight: bold; margin-bottom: 8px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        .copyright { margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #777; text-align: center; }
+        .copyright a { color: var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="キャラクター" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Oliver Fields</h3>
+            <img src="images/note_extracted/oliver-fields/main.png" alt="オリバー・フィールズ大尉">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>旧米陸軍<br>入植者（選択次第）</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>将校</span></div>
+            <div class="infobox-row"><span class="infobox-label">階級</span><span>大尉</span></div>
+            <div class="infobox-row"><span class="infobox-label">拠点</span><span>略奪されたバンカー<br>（Duty Calls中）<br>ファウンダーズ・ホール<br>（Duty Calls後）</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Duty Calls</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>フレッド・タタショア</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76<br>（Wastelanders）</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_oliver_fields" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Oliver Fields<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">オリバー・フィールズ大尉</span></h1>
+
+            <div class="holotape-box">
+                <div class="holotape-title">📢 フィールズの台詞</div>
+                <p>「なぜアメリカの<a href="gold-bullion.html" class="auto-link">金塊</a>備蓄を盗もうとしてるんだ？ アンクル・サムが<a href="vault76.html" class="auto-link">あのVault</a>であんたの安全を守ってくれてる間、ハグとキスが足りなかったか？」</p>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>オリバー・フィールズ大尉</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>で活動する元米陸軍将校です。<br>
+                Fallout 76のアップデート「Wastelanders」にのみ登場します。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                フィールズ大尉は、部下のフレッド・ラドクリフ軍曹とトンプソン軍曹と共に、<strong>中米戦争</strong>の頃から戦い続けてきました。<br>
+                ラドクリフはフィールズの指揮のおかげで生き延びられたと述べており、大尉には本当に退役が必要だとも言っています——「見た目ほど若くないんだ。あれはずっと食べてきたジャンクフードの保存料のおかげだ」と。
+            </p>
+            <p>
+                3人は<strong>フォートノックス</strong>の<a href="gold-bullion.html" class="auto-link">金塊</a>備蓄を<strong>Vault 79</strong>に移送する任務を担当した元々の軍事チームの一員でした。<br>
+                しかし、<a href="great-war.html" class="auto-link">大戦</a>のためにVaultが閉鎖された際、彼らは外に取り残されてしまいました。<br>
+                それでもフィールズは筋金入りの愛国者であり、アメリカが戦争で滅びたとは信じようとしませんでした。<br>
+                「戦前の歴史を少しでも知らないのか？ 俺たちアメリカは常に火の中で鍛えられてきた。今回はちょっと焼けすぎたかもしれないが、終わりだとは信じられない」と語っています。
+            </p>
+            <p>
+                <a href="power-armor.html" class="auto-link">パワーアーマー</a>を装備した彼らは何年もウエイストランドを放浪し、常にアパラチアの近くに留まりながら、安全が確認されてから戻ることにしていました。<br>
+                しかしアパラチアに到着する前に<strong>ピッツバーグ</strong>に辿り着き、そこで民間人を救おうとしました。<br>
+                しかしパワーアーマーに乗り込もうとしたフィールズは撃たれて負傷し、チームは軍用犬の<strong>エンジェル</strong>と<strong>オデュッセウス</strong>のおかげでかろうじて脱出できました。<br>
+                エンジェルはこの戦闘で前足を失いました。
+            </p>
+            <p>
+                彼らは軍人としての生活を諦めることも考えましたが、他の軍の残存勢力からの無線放送を再び聞き、アパラチアへの帰還を決意しました。<br>
+                最後の軍用犬である<strong>ラッキー二等兵</strong>と共に、ピッツバーグからアパラチアに向かう入植者たちを追跡・観察しながら移動しました。<br>
+                ウエストバージニアに到着後、チームはVault 76の住人と<strong>略奪されたバンカー</strong>で会うことに同意しました。
+            </p>
+
+            <h2>プレイヤーとの関わり</h2>
+            <h3>クエスト</h3>
+            <ul>
+                <li><strong>Duty Calls</strong>: フィールズは略奪されたバンカーでVault居住者と会うことに同意します。<br>最初はVault 79の金塊を強奪する計画に疑念を抱き否定的ですが、チームと相談した後、ラドクリフ軍曹を強奪に参加させることに同意します。</li>
+            </ul>
+
+            <h2>装備</h2>
+            <ul>
+                <li><strong>汚れた陸軍戦闘服</strong></li>
+            </ul>
+
+            <h2>備考</h2>
+            <p>
+                フィールズはアパラチアが北方の地域よりもはるかに恵まれていると主張しています。<br>
+                「俺たちは北の方からずっと南下してきたんだ。なぜそんなに時間がかかったかって聞く前に、アパラチアでの日常をよく見てくれ。ここはいい所だ。お前らは恵まれすぎて、うちの母ちゃんをここで引退させたいくらいだ。巨大コウモリ？ めそめそ言うな」
+            </p>
+
+            <h2>発見できるメモ</h2>
+
+            <div class="note-block">
+                <div class="note-title">📋 The Old Guard 第14巻 第2章</div>
+                <p>
+                    <strong>The Old Guard</strong><br>
+                    <em>第14巻：第2章</em><br><br>
+                    さて、どこまで話したっけ？ そうだ……最初に志願した時は総動員態勢だった。<br>
+                    戦争が始まったばかりの頃だ。<br>
+                    俺は他の連中と同じでバカなガキだったが……フィールズが俺の背中を守ってくれた。<br>
+                    アーマーの整備もしっかりやってくれた。<br>
+                    凍傷で失った指は1本だけだ——トンプソンの3本に比べればな。<br><br>
+                    だからピッツバーグで事態が最悪になった時も、あいつが民間人を助けに飛び出すのは分かっていた。<br>
+                    まさかアーマーに乗り込むだけで膝を壊すとは思わなかった。<br>
+                    まさか撃たれるとも思わなかった。<br><br>
+                    トンプソンがエンジェルとオデュッセウスにフィールズの護衛をさせなかったら、今頃死んでいただろう。<br>
+                    エンジェルはあの戦闘で前足を失った。<br>
+                    見ていてつらかった。<br><br>
+                    俺は考えたよ——俺たちはみんな年を取りすぎた。<br>
+                    最後のアーマーもボロボロだ。<br>
+                    たとえ無事に切り抜けたとしても、あいつは膝の負担を軽くするためにしばらくリグを着て歩くことになる。<br>
+                    俺たちもあの民間人たちに合流して、引退して、過去を忘れた方がいいんじゃないか——生き延びた他の老いぼれ共のように。<br><br>
+                    その夜、ようやくまたあの放送を聞いた。<br>
+                    すべてが少しだけ、まだ終わりじゃないような気がした。<br>
+                    フュージョン・コアももうすぐ空だし、アーマーも実質終わっている。<br>
+                    だがアパラチアにはまだ<strong>他の元軍人たち</strong>がいる。<br>
+                    もうひと冬の苦しみくらい何だ？ まだ9月だ。<br>
+                    そう遠くない。ホットゾーンを避ければ、そう時間はかからない。<br>
+                    フィールズが回復するまで少し休めばいい。<br><br>
+                    最後の放送の後も、俺たちは長い間あの部隊に会えるという希望を持ち続けた。<br>
+                    機器の故障かもしれない。<br>
+                    死んでないかもしれない。<br>
+                    あるいは、死んでいたとしても、少なくとも他の軍の残存勢力がどこに隠れているか知っているかもしれない。<br>
+                    「かもしれない」だらけだ……。
+                </p>
+            </div>
+
+            <img class="article-image" src="images/note_extracted/oliver-fields/old_guard_note.png" alt="The Old Guard メモ" style="max-width:400px;">
+            <div class="image-caption">The Old Guard 第14巻 第2章のメモ</div>
+
+            <h2>舞台裏</h2>
+            <p>
+                フィールズ大尉、トンプソン軍曹、ラドクリフ軍曹、ラッキー二等兵、オデュッセウス、エンジェルは全員「<strong>The Old Guard</strong>」のメンバーとして識別されています。<br>
+                彼らの存在は、現実世界の<strong>第947憲兵分遣隊</strong>——米陸軍第4大隊、第3合衆国歩兵連隊（通称「The Old Guard」）の一部——へのオマージュです。<br>
+                この部隊はアメリカ本土で2番目に大きな軍用犬部隊を擁し、シークレットサービスと緊密に連携しています。<br>
+                これはFallout 76における彼らの役割と一致しています。
+            </p>
+
+            <h2>登場作品</h2>
+            <p>オリバー・フィールズはFallout 76のアップデート「Wastelanders」にのみ登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/oliver-fields/main.png" alt="フィールズ大尉"><div class="caption">オリバー・フィールズ大尉</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/oliver-fields/old_guard_note.png" alt="The Old Guardメモ"><div class="caption">The Old Guard 第14巻 第2章</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/oliver-fields/old_guard_location.png" alt="メモの設置場所"><div class="caption">ファウンダーズ・ホールでのメモの設置場所</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                フィールズ大尉、Wastelandersで初めて会った時の印象がすごく良かったです。<br>
+                金塊強奪の計画を聞いて「なぜアメリカの金塊備蓄を盗もうとしてるんだ？」と開口一番にぶちまけてくるところが、この人の人となりをよく表してますよね。<br>
+                核戦争で国が滅んでも、金塊護送の任務を放棄しない筋金入りの愛国者——でもそこに嫌味がないんですよ。<br>
+                「俺たちアメリカは常に火の中で鍛えられてきた」っていう台詞に、彼なりの信念がしっかり感じられます。<br><br>
+                ラドクリフ軍曹のメモ「The Old Guard」が本当に味わい深い。<br>
+                ピッツバーグでアーマーに乗り込もうとしただけで膝を壊し、さらに撃たれるフィールズ——もう限界なんですよね、体力も装備も。<br>
+                軍用犬のエンジェルが前足を失いながらフィールズを守ったエピソードは、読んでいて胸が苦しくなりました。<br>
+                「俺たちはみんな年を取りすぎた。最後のアーマーもボロボロだ」——この一文に、何十年も戦い続けてきた兵士たちの疲弊が凝縮されています。<br><br>
+                そしてB.O.S.の放送を聞いて「もうひと冬の苦しみくらい何だ？」と再び立ち上がるところ！<br>
+                フュージョン・コアもほぼ空、アーマーも終わり、体はボロボロ。<br>
+                それでも「かもしれない」の希望だけで歩き続ける。<br>
+                この人たちの物語は、Wastelandersの中でも一番「兵士」を感じさせるエピソードだと思います。<br><br>
+                現実の「The Old Guard」——アーリントン墓地の護衛で知られる名誉ある部隊——とのオマージュも素晴らしい。<br>
+                軍用犬部隊を擁し、シークレットサービスと連携するという設定まで一致させているのは、開発チームの深いリサーチが感じられますね。<br>
+                「巨大コウモリ？ めそめそ言うな」も最高ですw<br>
+                アパラチアの住人としては確かにスコーチビーストは脅威ですが、ピッツバーグから命からがら逃げてきた兵士からしたら「まだマシ」なんでしょうね〜
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Oliver_Fields" target="_blank" rel="noopener">Oliver Fields</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Wastelanders</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#入植者</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#米軍</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_oliver_fields'; const _commentArticleName = 'Oliver Fields'; const _commentArticleUrl = 'oliver-fields.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

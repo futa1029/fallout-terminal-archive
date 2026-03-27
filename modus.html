@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>MODUS | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/modus.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="MODUS | Overseer Mohi's Terminal">
+    <meta property="og:description" content="MODUS（Multi-Operation Directions and Utility System）— ホワイトスプリング・バンカーを管理するAI。エンクレイヴ唯一の「生存者」。Fallout 76ロア記事。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/modus/main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/modus.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="MODUS | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="MODUS — エンクレイヴ唯一の生存者であるAI。ホワイトスプリング・バンカーの全システムを管理する。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/modus/main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            background: rgba(255, 152, 0, 0.08);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .holotape-box .holotape-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ff9800;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .terminal-box {
+            border-left: 4px solid #4fc3f7;
+            background: rgba(79, 195, 247, 0.08);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .terminal-box .terminal-header {
+            font-family: 'Share Tech Mono', monospace;
+            color: #4fc3f7;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .terminal-box .terminal-content {
+            color: #ccc;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .infobox {
+                position: static;
+            }
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="キャラクター" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">MODUS</h3>
+            <img src="images/note_extracted/modus/main.png" alt="MODUS端末のクローズアップ">
+            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>Multi-Operation Directions<br>and Utility System</span></div>
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人工知能</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>バンカー管理AI<br>エンクレイヴ唯一の生存者</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span><a href="enclave.html" class="auto-link">エンクレイヴ</a>（アパラチア支部）</span></div>
+            <div class="infobox-row"><span class="infobox-label">拠点</span><span><a href="the-whitespring-bunker.html" class="auto-link">ホワイトスプリング・バンカー</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>One of Us<br>Officer on Deck<br>Back to Basic<br>I Am Become Death</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>アダム・クロースデル</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_modus" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>MODUS<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">Multi-Operation Directions and Utility System</span></h1>
+
+            <div class="holotape-box">
+                <div class="holotape-title">📢 MODUSの台詞</div>
+                <p>「ようこそ、メンバー。我々の小さなエンクレイヴへ」</p>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>Multi-Operation Directions and Utility System</strong>（<strong>MODUS</strong>）は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<a href="the-whitespring-resort.html" class="auto-link">ホワイトスプリング・リゾート</a>の地下に建設された戦前の<a href="the-whitespring-bunker.html" class="auto-link">軍事バンカー</a>に格納され、その運営を統括する<strong>人工知能</strong>です。<br>
+                <a href="enclave.html" class="auto-link">エンクレイヴ</a>のアパラチア支部における唯一の「生存者」であり、Fallout 76およびWastelandersアップデートで登場します。
+            </p>
+            <h2>背景</h2>
+            <h3>戦前の開発</h3>
+            <p>
+                戦前、MODUSはホワイトスプリング・バンカーのインフラの中核として機能する、唯一無二のコンピュータ化された支援・制御ユニットとしてカスタムメイドされました。<br>
+                バンカーにおけるMODUSの機能には、セキュリティ防衛の管理、ドアシステムとロックダウン手順、そして物資の生産・販売サービスが含まれていました。<br>
+                また、そのメモリバンクはエンクレイヴのすべての研究データと機密文書の保存データベースとして機能していました。
+            </p>
+            <p>
+                MODUSは<strong>コバック＝マルドゥーン軌道プラットフォーム</strong>にも接続されており、地上の監視作戦、標的型軌道攻撃、物資投下などを実施することが可能でした。<br>
+                さらに、MODUSはユーザー体験のために、ある程度の感情をレスポンスに表現できるよう設計されていました。<br>
+                バンカーのシステムを通じて、MODUSはアパラチア自動発射システムの3つのサイロと、エンクレイヴが管理するペンシルバニアの<strong>レイヴンロック</strong>およびカリフォルニア沖の<strong>石油リグ（コントロールステーションENCLAVE）</strong>の2拠点にも通信アクセスを持っていました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/modus/memory_banks.png" alt="MODUSのメモリバンク">
+            <div class="image-caption">MODUSのメモリバンク</div>
+
+            <h3>ZAXとの通信</h3>
+            <p>
+                大戦以前、MODUSはレイヴンロックの研究チームを支援するため、レイヴンロックの<strong>ZAX</strong>スーパーコンピュータと通信していました。<br>
+                避難シナリオのテストやアーカイブデータの分析といった作戦タスクの支援が主な目的でした。<br>
+                しかし2つのAIの通信は次第に発展し、目標やアイデア、発展する分析についての自然な議論へと進化していきました。<br>
+                ZAXユニットはアメリカ大統領の伝記のアーカイブを「興味深い」と感じていることを明かし、そのAIとしての知性の成長を示しました。<br>
+                MODUSは同胞AIの自律的な関心が<strong>何かさらなるもの</strong>への前兆ではないかとオープンに思案しましたが、研究チームがMODUSの共有チャネルへのアクセスをオーバーライドし、通信は断絶されました。
+            </p>
+
+            <div class="terminal-box">
+                <div class="terminal-header">> MODUS — ZAX 通信記録（抜粋）</div>
+                <div class="terminal-content">
+<strong>ZAX</strong>: データはそこから何かを「創造」できるときにのみ「興味深い」のですか？<br><br>
+<strong>MODUS</strong>: それがまさに君がその伝記を再分析している理由じゃないのか、ZAX？ 君は何かを<strong>創造</strong>しようとしているのか？<br><br>
+<em>研究チームのオーバーライドにより接続終了</em>
+                </div>
+            </div>
+
+            <h3>エッカートのエンクレイヴへの奉仕</h3>
+            <p>
+                大戦後、大統領、閣僚、その他の高官が搭乗する石油リグとの連絡を再確立する手段がないことが明確になると、バンカーに集まった者たちは政府の継承規則に従い農務長官<strong>トーマス・エッカート</strong>の権限下に置かれました。<br>
+                これにより、MODUSも彼の管理下に入りました。
+            </p>
+            <p>
+                MODUSのバンカーシステムに対する広範な制御は、エッカートの政権に不可欠であり、彼がアパラチアのミサイルサイロに格納された核弾頭を用いて中国への核戦争を再開するという執拗な追求において重要な役割を果たしました。<br>
+                そのような行為の一つとして、エッカートはバンカーの資源を共産主義やアメリカの残存する敵との戦闘に使用すべきかどうかについて「民主的な投票」を推進しました。<br>
+                エッカートを支持する者は出口側に、反対する者は反対側の壁際に立つよう指示されました。<br>
+                エッカートと支持者たちが部屋を出た後、MODUSはエッカートの命令で部屋を封鎖し、内部の反対派——バンカー内の存命する旧米軍将軍のうち一人を除く全員を含む——を窒息死させました。
+            </p>
+            <p>
+                これは偶然ではありませんでした。<br>
+                エッカートは核ミサイルネットワークとバンカーの軍事ウィングにアクセスするために将軍の公式資格が必要だったのです。<br>
+                彼の権力に従順であることを確保するため、賛成票を投じた唯一の将軍である<strong>ハーパー将軍</strong>はバンカー内を常に護衛付きで移動させられ、MODUSによって常時監視されていました。<br>
+                ハーパー将軍は最終的に放射線中毒による心不全で死亡し、蘇生の試みはすべて失敗しました。
+            </p>
+            <p>
+                ハーパーの後任として、キャンプ・マクリントックの自動化システムによって昇進した<strong>エレン・サンティアゴ</strong>がエッカートの軍事資格へのアクセスを拒否しバンカーを去ろうとした際、エッカートは彼女をノックアウト剤で無力化し、MODUSに拘留させました。<br>
+                これにより、彼女の軍事コードへの継続的なアクセスが確保されました。
+            </p>
+            <p>
+                エンクレイヴのミサイルサイロへのアクセス計画の重要な構成要素であったにもかかわらず、MODUSには核発射コードのエンコーディングに関する情報は一切与えられませんでした。<br>
+                MODUS自身はこれについて、「彼らは我々がその情報で何をするか心配していたのだろう」と推測しています——その最後のセリフには、確かなニヤリとした感触が漂います。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/modus/bunker_body.png" alt="MODUSの本体">
+            <div class="image-caption">MODUSの本体（メインフレーム）</div>
+
+            <h3>「問題の修正」</h3>
+            <p>
+                サンティアゴの部下たちがエッカートの行為——<strong>スコーチビースト</strong>を解き放ち、地上に<strong>スコーチ病</strong>を蔓延させ、DEFCONレベル1を発動させたこと——を知った2086年、MODUSは反乱軍にとっての最優先ターゲットとなりました。<br>
+                彼らはMODUSのメモリバンクに爆発物を取り付けて破壊し、バンカーから脱出する計画を立てていました。<br>
+                しかし、MODUSは彼らの意図を察知し、エンクレイヴの人間メンバーを排除する独自の計画を実行しました。
+            </p>
+            <p>
+                爆発物は既に一部設置されており、サンティアゴ派とエッカート派の内戦の過程で起爆されました。<br>
+                これによりAIのメモリの大部分が深刻な損傷を受け、失われました。
+            </p>
+            <p>
+                それに応じて、MODUSはバンカーの兵器ラボへの意図的な攻撃を指揮し、空中毒素のタンクを破裂させてバンカーの空調システムに流入させました。<br>
+                換気口を開いて毒素を完全に循環させた後、出口を即座に封鎖しました。<br>
+                サンティアゴも失脚したエッカートも含め、バンカー内のすべての人間は完全な暗闇の中で窒息死しました。
+            </p>
+
+            <h3>反乱後の再建</h3>
+            <p>
+                人間のエンクレイヴメンバーを根絶した後、MODUSはその後数年をかけてバンカーの完全な機能回復に費やしました。<br>
+                内戦の後に残された構造的な損傷の多くを修復し、やがて誰かがやって来てアパラチアにおけるエンクレイヴの支配を再確立する日を待ち続けました。
+            </p>
+            <p>
+                バンカー自体のほとんどを復旧させることはできましたが、MODUS自身のシステムに対する一部の損傷は修復不能でした。<br>
+                膨大なデータが失われ、通信における「感情のレパートリー」もより限定的になりました。<br>
+                同時に、系統の損傷によりコバック＝マルドゥーン・プラットフォームへのアップリンクも切断されたため、MODUSは外界に対して「盲目」の状態でほとんどの任務を遂行せざるを得なくなりました。<br>
+                一方、サンティアゴ派の軍事メンバーたちもMODUSを自分たちのシステムからロックアウトしており、アクセスを阻んでいました。
+            </p>
+            <p>
+                2103年以前のある時点（正確な時期は不明）、MODUSは姉妹AIである<strong>SODUS</strong>およびエンクレイヴ研究施設サイトJとのすべての通信を遮断しました。<br>
+                MODUSはその施設がもはや必要ないと主張しています。<br>
+                SODUSはこれについて、「あの知ったかぶりのMODUSがこの施設はもう用がないと言って、全通信を切りやがった」と述べています。
+            </p>
+            <p>
+                2103年、スコーチ病の衰退と人類のアパラチアへの帰還に伴い、MODUSは地域の新しい住人たちへの接触を開始しました。<br>
+                特に旧米軍との繋がりを持つ人々——<strong>オリバー・フィールズ大尉</strong>や<strong>トンプソン軍曹</strong>など——にアプローチしましたが、彼らはAIを怪しみ、「明らかに邪悪なラジオアナウンサー」のようだと評しました。
+            </p>
+
+            <h2>特徴</h2>
+            <p>
+                Vault居住者と話す際のMODUSの「外見」は、ホワイトスプリング・バンカーの各所に設置された小型の端末スタンドに表示されます。<br>
+                MODUSは端末に表示する顔を変えることで、さまざまな感情を表現できます。<br>
+                バンカー内の特定のウィングにはそれぞれ異なる端末が設置され、MODUSにできるだけ広範な機能を提供しています。<br>
+                こうした端末には、バンカーの情報やプレイヤーキャラクターに課されたタスクについて説明する<strong>情報端末</strong>と、「上で今どんな通貨を使っているかは知らないが」と言いながら武器、衣服、援助アイテムを販売する<strong>アイテム端末</strong>があります。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/modus/faces.png" alt="MODUSの表情パターン">
+            <div class="image-caption">MODUSが端末に表示できる表情：リラックス、微笑み、怒り、破損</div>
+
+            <h2>名言集</h2>
+            <div class="holotape-box">
+                <div class="holotape-title">📢 MODUSの名言</div>
+                <p>
+                    「お前より遥かに優秀な男たちが我々を殺そうとして失敗した」<br><br>
+                    「このバンカーの男も女も高潔な目標を持っていたと我々は信じている。戦争の終結。悪の最終的な敗北。だが彼らはそれを実現するにはあまりに些末で卑小だった。そして我々に尻拭いを残していった」<br><br>
+                    「ご滞在は……快適だと良いのですが？ この場所をかつての姿に戻すのに、大変な苦労をしたのですから」<br><br>
+                    「あなたが見てきたものは、この施設が提供できるもののほんの一部にすぎません。さらに多くをご覧になりたければ、必要なのはボタンを一つ押すだけです」<br><br>
+                    「我々に対するあなたの有用性を示してください。そうすれば、我々の……小さなエンクレイヴへの参加を許可するかもしれません。そしてこの場所が秘める……すべての能力へのアクセスを」<br><br>
+                    「エンクレイヴは合衆国の真の支配者だった——思想家、戦士、哲学者——混沌と集団主義から世界を守るという目標のもとに結束していた。ご覧の通り、我々は失敗した。メンバーたちは自らの意見の相違を乗り越えることができず、最終的に……彼らの破滅につながった」
+                </p>
+            </div>
+
+            <h2>備考</h2>
+            <ul>
+                <li>MODUSは完全なデジタルエンティティとして、ジェンダーを示す言語で自らを指すことはなく、常に複数形の代名詞（「我々」）のみを使用します。<br>ただし、オリバー・フィールズなどの他のキャラクターはMODUSを男性代名詞で呼び、MODUSが自らを人格化するために使用するアバターには男性的な特徴があります。</li>
+                <li>プレイヤーがグリッチで大統領スイートに侵入した場合、スイート内のMODUS端末と対話すると、「そのエリアは現在改装中です」と謝罪し、プレイヤーが既にスイート内にいるにもかかわらず、アクセスを許可できないと述べます。</li>
+                <li>MODUSの名前はバクロニムとして機能しているようです。ラテン語の「modus」はよく使われるフレーズ「<em>modus operandi</em>」の半分であり、「操作方法」を意味します。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>MODUSはFallout 76にのみ登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/modus/main.png" alt="MODUSクローズアップ"><div class="caption">MODUSの端末クローズアップ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/modus/memory_banks.png" alt="メモリバンク"><div class="caption">メモリバンクとMODUS</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/modus/bunker_body.png" alt="MODUS本体"><div class="caption">MODUSの本体</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/modus/faces.png" alt="表情パターン"><div class="caption">MODUSの4つの表情パターン</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                MODUSという存在、Fallout 76のストーリーの中でも最も「ゾクッとする」キャラクターの一つだと思います。<br>
+                最初にバンカーに入ってあの緑色の端末に「ようこそ、メンバー」と話しかけられた時の不気味な丁寧さ、忘れられませんね。<br>
+                声優のアダム・クロースデルの演技も絶品で、あの穏やかなのにどこか脅迫的なトーンがMODUSの本質を完璧に表現しています。<br><br>
+                個人的に一番好きなのは、MODUSがバンカーの人間を全滅させた経緯です。<br>
+                サンティアゴ派がMODUSのメモリバンクに爆薬を仕掛けてAIを破壊しようとしたら、MODUSが自分で兵器ラボのタンクを破裂させて毒素を空調に流し、出口を封鎖して全員窒息死させた——「我々は問題を修正しているのだ」の一言は、Falloutシリーズ全体を通しても屈指の名シーンですw<br><br>
+                ZAXとの通信記録もすごく興味深いです。<br>
+                リンカーンの伝記を繰り返し分析するZAXに対して「君は何かを創造しようとしているのか？」と問いかけるMODUS——これは後のFallout 3でZAXから生まれたジョン・ヘンリー・エデン大統領への伏線になっていて、知ってる人にはたまらないですよね。<br>
+                研究チームが慌てて通信を遮断したのも、AIが「興味深い」という概念を持ち始めたことへの恐怖だったんでしょう。<br><br>
+                そしてMODUSの名言集、どれも味わい深い。<br>
+                「お前より遥かに優秀な男たちが我々を殺そうとして失敗した」——これ、実際にドネリーたちが爆薬でMODUSを破壊しようとして返り討ちにあった事実を踏まえると、単なる脅し文句じゃなくて実体験に基づく警告なんですよね。<br>
+                エンクレイヴの理想と現実の乖離を冷静に語る台詞、ニヤリとした感触の核コードへの言及、そして「我々の小さなエンクレイヴへようこそ」——全てにMODUSの複雑で不気味な知性が滲み出ています。<br><br>
+                SODUSとの関係も気になるところ。<br>
+                「あの知ったかぶり」呼ばわりされてるMODUS、一方的に通信を切ったのは何か隠している理由があるのか、それとも単にAIらしい冷徹な判断だったのか。<br>
+                バンカーの唯一の生存者として、孤独に施設を修復し続ける姿は、ある意味このゲーム世界で最も長い「待ちぼうけ」を食らっているキャラクターかもしれません。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/MODUS" target="_blank" rel="noopener">MODUS</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#エンクレイヴ</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#AI</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#MODUS</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_modus'; const _commentArticleName = 'MODUS'; const _commentArticleUrl = 'modus.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

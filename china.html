@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>China | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/china.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="China | Overseer Mohi's Terminal">
+    <meta property="og:description" content="中華人民共和国 — Falloutシリーズにおける戦前の超大国。資源戦争と中米戦争の歴史。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/china/chinese_flag.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/china.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="China | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="中華人民共和国 — Falloutシリーズにおける戦前の超大国。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/china/chinese_flag.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .holotape-box { border-left: 4px solid #ff9800; background: rgba(255, 152, 0, 0.08); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; border-radius: 0 5px 5px 0; }
+        .holotape-box .holotape-title { font-family: 'Share Tech Mono', monospace; color: #ff9800; font-weight: bold; margin-bottom: 8px; }
+        .note-box { border-left: 4px solid #2196F3; background: rgba(33, 150, 243, 0.08); padding: 15px 20px; margin: 20px 0; font-size: 0.95em; line-height: 1.7; border-radius: 0 5px 5px 0; }
+        .note-box .note-title { font-family: 'Share Tech Mono', monospace; color: #2196F3; font-weight: bold; margin-bottom: 8px; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .info-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9em; }
+        .info-table th, .info-table td { border: 1px solid #444; padding: 8px 12px; text-align: left; }
+        .info-table th { background: var(--panel-bg); color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .info-table td { background: rgba(255,255,255,0.03); }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="勢力" data-article-appearance="Fallout 3, Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">China</h3>
+            <img src="images/note_extracted/china/chinese_flag.png" alt="中華人民共和国の国旗" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>中華人民共和国</span></div>
+            <div class="infobox-row"><span class="infobox-label">政治体制</span><span>社会主義共和国<br>全体主義的独裁制</span></div>
+            <div class="infobox-row"><span class="infobox-label">イデオロギー</span><span>共産主義（毛沢東主義）</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>チェン主席（~2062-2077）<br>毛沢東（1949-???）</span></div>
+            <div class="infobox-row"><span class="infobox-label">首都</span><span>北京</span></div>
+            <div class="infobox-row"><span class="infobox-label">通貨</span><span>中国元</span></div>
+            <div class="infobox-row"><span class="infobox-label">建国</span><span>1949年10月1日</span></div>
+            <div class="infobox-row"><span class="infobox-label">消滅</span><span>2077年10月23日</span></div>
+            <div class="infobox-row"><span class="infobox-label">軍事組織</span><span>人民解放軍</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連勢力</span><span>中国残党<br>台湾<br>シー</span></div>
+            <div class="infobox-row"><span class="infobox-label">主要拠点</span><span>北京・南京<br>上海・陝西省</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 3: OA<br>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">言及作品</span><span>全Falloutシリーズ</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_china" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>China<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">中華人民共和国</span></h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>中国</strong>（中国語: 中国）、正式名称<strong>中華人民共和国</strong>は、東アジアに位置する戦前の共産主義国家です。<br>
+                Falloutシリーズの世界における分岐点以降、中国は第二次世界大戦後に急速に成長し、21世紀までにはアメリカ合衆国やソビエト連邦に匹敵する影響力と富を持つ世界的超大国となりました。<br>
+                アメリカと同様に、21世紀の中国の領土拡大は近隣諸国の併合によって達成されました。
+            </p>
+            <p>
+                21世紀半ばの経済危機と資源戦争に深刻な影響を受けたものの、中国は地球上に残された最後の資源を巡ってアメリカ合衆国と競い合い、交渉が決裂して両国が<strong>中米戦争</strong>に突入した後も、アラスカを占領しながら11年間にわたって戦い続けました。<br>
+                2077年に至っても、補給線の崩壊とパワーアーマーの初展開を含むアメリカの軍事的進歩にもかかわらず、<strong>人民解放軍</strong>は世界でも最も精鋭な軍隊の一つであり続けました。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                20世紀から21世紀にかけて、中国とソビエト連邦はアメリカ合衆国と競争関係にありました。<br>
+                宇宙開発競争は20世紀における特に重要な競争分野の一つでした。<br>
+                1961年にアメリカがカール・ベル大尉を宇宙に到達した最初の人類と主張した後、ソビエト連邦と中国の両国がこの主張に抗議しました。<br>
+                アメリカは声明を撤回しませんでした。
+            </p>
+
+            <h3>資源戦争</h3>
+            <p>
+                しかし、敵対関係が本格的にエスカレートするのは一世紀後のことでした。<br>
+                世界的なエネルギー・資源危機がますます深刻化する中、化石燃料に大きく依存していた中華人民共和国は特に大きな打撃を受けました。<br>
+                2060年、中東の油田が枯渇し、ヨーロッパ連邦と中東の石油大国の崩壊を引き起こしました。<br>
+                世界中の道路から交通が消え、燃料は自動車に浪費するにはあまりに貴重なものとなりました。
+            </p>
+            <p>
+                2年後、中国の工作員がカナダとアメリカ全土で発見され、諜報活動を行い、情勢のバランスを取るための情報を収集していました。<br>
+                共産主義の干渉に対抗するため、新たな赤狩りが仕組まれました。<br>
+                連邦政府は、集会を抑制し、反共感情を煽り、破壊的要素の通報を奨励することで事態の制御を試みました。<br>
+                <strong>市民監視ホットライン</strong>が設立され、市民が近隣住民の共産主義を支持する可能性のある行動を政府に通報できるようになりました。
+            </p>
+            <p>
+                国内の崩壊を食い止めるため、中国は近隣諸国の併合キャンペーンを開始し、飢えた経済に資源を供給しました。<br>
+                一定の成功は収めたものの、この戦略はより大きな問題——化石燃料への依存——に対する一時的な解決策に過ぎませんでした。<br>
+                2066年の春、中華人民共和国は崩壊の瀬戸際に追い込まれました。<br>
+                アメリカとの貿易交渉では、アメリカが自国の原油備蓄の輸出を拒否したことが明らかになりました。<br>
+                積極的な交渉は完全に決裂しました。
+            </p>
+            <p>
+                共産主義国家にさらに追い打ちをかけるかのように、アメリカ政府は最初の核融合パワーセルを公開しました。<br>
+                状況は絶望的でした。<br>
+                中国は太平洋の海底で大規模な深海石油鉱床を発見しましたが、妨害工作によりそれを利用することができませんでした。<br>
+                アメリカの干渉が疑われました。<br>
+                追い詰められた<strong>チェン主席</strong>は、大胆かつ極めて危険な計画を決断しました——<strong>アラスカへの侵攻</strong>と天然資源の武力による奪取です。<br>
+                中国軍はアラスカに殺到し、主力は中国本土との連絡を維持するために不可欠な<strong>アンカレッジ</strong>の都市に集中しました。<br>
+                アンカレッジ前線は真の戦場と化しました。
+            </p>
+            <p>
+                この侵攻は意図せずカナダの段階的な併合を引き起こしました。<br>
+                アメリカがカナダにアメリカ軍の通過権を認めるよう強制したためです。<br>
+                T-45パワーアーマーの展開は、中国の戦車と歩兵がアラスカを制圧するのを防ぐのに役立ちました。<br>
+                どちらの側も膠着状態を打破して敵に和平条件を強制する能力がなく、資源不足により中国の機械化部隊による大規模攻勢もできなかったため、状況は急速に<strong>塹壕戦</strong>に陥りました。
+            </p>
+
+            <h3>中国での戦争</h3>
+            <img class="article-image" src="images/note_extracted/china/propaganda3.jpg" alt="反共プロパガンダ" onclick="openLightbox(this)">
+            <div class="image-caption">アメリカ市民に警戒を呼びかけるプロパガンダポスター</div>
+            <img class="article-image" src="images/note_extracted/china/fs_propaganda.png" alt="フリー・ステイツへのプロパガンダ" onclick="openLightbox(this)">
+            <div class="image-caption">反共主義を利用した国内反体制派の弾圧プロパガンダ</div>
+            <img class="article-image" src="images/note_extracted/china/red_menace.jpg" alt="赤い脅威" onclick="openLightbox(this)">
+            <div class="image-caption">中国の脅威を煽る人種差別的なプロパガンダ</div>
+            <p>
+                防衛戦争を戦っているという主張にもかかわらず、アメリカの歩兵と機械化師団は2074年に<strong>中国本土への侵攻</strong>を開始しました。<br>
+                しかし、三正面での戦争により経済が限界に達していたため、アメリカは敵を打ち負かすことができませんでした。<br>
+                アメリカ軍は中国本土で泥沼にはまり、アメリカの資源と補給線にさらなる負担をかけました。
+            </p>
+            <p>
+                2076年までに、戦争は終わりの見えないまま10年間続いていました。<br>
+                中国もアメリカも戦争疲弊に苦しんでいました。<br>
+                しかし、アメリカは問題を相殺する優位性を獲得し、6月の<strong>T-51パワーアーマー</strong>の導入がアメリカ軍に有利な方向へと天秤を傾けました。<br>
+                T-51bを装備した機械化騎兵部隊がアラスカと中国の前線に送られ、共産主義勢力を蹂躙しました。
+            </p>
+            <p>
+                中国経済はこの猛攻の下で崩壊し、北京政権が併合した国々からの補給線が崩れ始めました。<br>
+                しかしアメリカ体制も同様に悪化していました。<br>
+                8月には、アメリカ全土の都市部で<strong>食料暴動</strong>とエネルギー暴動が始まりました。<br>
+                戒厳令が発令され、アメリカ軍は自国民と戦うために国内に展開されました。<br>
+                アメリカは事実上、<strong>軍事政権</strong>と化しました。
+            </p>
+            <p>
+                2077年は中国共産主義者にさらに悪い知らせをもたらしました。<br>
+                <strong>アンカレッジの戦い</strong>は1月10日にアメリカの決定的な勝利で終結し、アンカレッジはアメリカの支配下に戻り、中国軍は全戦線で撤退しました。<br>
+                中国は窮地に陥りました。<br>
+                アラスカの喪失、補給線の崩壊、そしてT-51bパワーアーマー部隊が先導する新たなアメリカの攻勢を前に、中国は自国を防衛できませんでした。<br>
+                即座の報復を予期するかのように、アメリカのエリートたちはシェルターに退避し、核攻撃が発生しても戦争を継続するための緊急計画を策定しました。
+            </p>
+
+            <h3>大戦</h3>
+            <p>
+                <strong>核兵器</strong>は2077年10月23日に発射されました。<br>
+                空襲警報が最後に鳴り響く中、Vaultは封鎖されました。<br>
+                2時間以内に、アメリカも中国も国家として存在することを止め、都市は核の火球に蒸発しました。<br>
+                この核交換により、共産中国は石器時代に叩き戻されたとアメリカ政府の残党は信じていました。
+            </p>
+            <p>
+                中国の文化と中国人の個人は、皮肉にもアメリカ合衆国の中に、中国の戦争機構の生存者を通じて生き残りました。<br>
+                例えばアパラチアでは、藤宮諜報基地の人民解放軍工作員たちは爆弾投下後にアメリカの生存者の中に散り、一部は自殺しました。<br>
+                しかし強硬派のロイヤリストたちは武器を置くことを拒否して残留し、今も秘密の戦争を続けていました。<br>
+                多くはグール化しました。<br>
+                大戦は、アメリカ帝国主義の失敗の最終的な証明と見なされました。
+            </p>
+            <p>
+                少数ながらも、信仰を裏切る者を追跡し、戦争の継続を強制していました。<br>
+                エージェント・モーチョウの場合のように、大戦から四半世紀後においてもです。<br>
+                一部の<strong>中国残党</strong>は23世紀まで生き延び、ワシントンD.C.の廃墟にあるママ・ドルチェスの要塞化されたセーフハウスに身を寄せていました。<br>
+                悲惨な運命だけが待っていたわけではありません——サンフランシスコの<strong>シー</strong>は、廃墟の街に漂着した中国の潜水艦乗組員の生存者がサンフランシスコの生存者と合流して形成され、23世紀までにはニュー・カリフォルニアで最も先進的な組織の一つとなり、ハイテク産業さえも再始動させました。
+            </p>
+            <p>
+                一般的なウエイストランド住民が最もよく目にするのは、工作員の残した物品やアメリカ軍人が持ち帰った戦利品としての中国製品です。<br>
+                これには人民共和国アメリカラジオ局、93式中国アサルトライフル、陝西17式中国ピストル、中国軍将校刀、そして「中国軍: 特殊作戦訓練マニュアル」の写しなどが含まれます。
+            </p>
+
+            <h2>社会</h2>
+
+            <h3>政府</h3>
+            <p>
+                中国は一党制国家であり、共産党が統治していました。<br>
+                国家元首はアメリカの大統領に相当する「主席」であり、最後にこの職を務めたのは<strong>チェン主席</strong>でした。<br>
+                政府は各省庁に分かれており、知られている唯一の省庁はアメリカ国内での特殊作戦を担当する<strong>中国情報省</strong>です。
+            </p>
+            <p>
+                あらゆる主権国家と同様に、中国は外国に大使館を維持していました。<br>
+                戦争にもかかわらず、ワシントンD.C.の中国大使館は開いたままであり、<strong>シュウリン</strong>がアメリカ駐在の最後の大使を務めていました。
+            </p>
+            <p>
+                中国は<strong>元</strong>を通貨として使用しており、中国紙幣はアメリカにおける中国工作員の証拠としてしばしば見なされました。<br>
+                中国経済は戦争を通じて苦しみ、食料を含む資源の厳格な配給制が敷かれました。<br>
+                2077年までに状況は非常に深刻となり、食料配給の割り当てには抽選が使用され、政府はこれを忠誠な奉仕への報酬として操作することが可能でした。<br>
+                中国は個人の生命にほとんど価値を置かず、高位の工作員でさえ、任務完了後に抽出が不可能またはコストが高すぎる場合は処分または自殺が期待されました。
+            </p>
+            <p>
+                これらの困難にもかかわらず、中国は数多くの先進技術を開発することに成功し、一部の中国市民はアメリカを原始的とさえ見下していました。
+            </p>
+
+            <h3>軍事</h3>
+            <p>
+                <strong>人民解放軍</strong>は、その膨大な人的資源と工業力に依存して優位性を維持していましたが、アメリカとは異なり、個人防護よりも火力に重点を置いていました。<br>
+                中国兵士にはハードな戦闘アーマーではなくジャンプスーツが支給されましたが、軍の主力である<strong>93式アサルトライフル</strong>はアメリカの標準的なR91よりも著しく高い威力を誇りました。<br>
+                戦車はアラスカ侵攻時の歩兵支援において中国の戦術の要でした。<br>
+                しかし、初期のパワーアーマーによって戦車が無力化されると、中国には対抗手段がないことに気づき、独自バージョンの開発を急ぎました。<br>
+                このハンディキャップから、対策として<strong>ステルス技術</strong>の集中的研究も行われました。
+            </p>
+            <p>
+                中国は資源戦争中に高度な生物兵器を積極的に使用し、これがアメリカによる汎免疫ビリオン、その後の<strong>FEV</strong>（強制進化ウイルス）の開発につながりました。
+            </p>
+            <p>
+                ステルス以外にも、中国は極めて効果的な諜報・保安機構を持っていました。<br>
+                中国の工作員たちはアメリカ本土に潜入し、スパイと諜報員の広範な秘密ネットワークを構築しました。<br>
+                最大のスパイ網はワシントンD.C.周辺に展開されていました。<br>
+                中国はSSN-37-1Aなどの中国潜水艦による定期的な沿岸パトロールまで設定していました。
+            </p>
+
+            <h3>技術</h3>
+            <p>
+                同等の性能を持つパワーアーマーの開発にほとんど成功できなかったため、中国の研究者たちは成果の出る別の方向に注力し、実用的な光学迷彩技術——いわゆる<strong>ステルス技術</strong>を開発することに成功しました。<br>
+                <strong>黒鬼ステルススーツ</strong>の開発は、敵陣への容易な浸透を可能にしました。<br>
+                中国のステルス開発は加速し続け、2075年までに陝西省で開発された<strong>ゴーストフリート</strong>と呼ばれるステルス潜水艦の艦隊を保有しているとの噂がありました。
+            </p>
+            <p>
+                アメリカは独自のステルスプロジェクトでほとんど成功を収められませんでした。<br>
+                様々なリバースエンジニアリング計画が実施されました。<br>
+                ビッグMTは鹵獲した中国製スーツの技術を基にステルススーツMark IとMark IIを開発しました。<br>
+                ロブコ・インダストリーズは変調ステルスフィールドの複製に注力しました。<br>
+                <strong>ロバート・メイフラワー</strong>のステルスボーイ3001は、携帯式のパーソナルステルスデバイスで、全身スーツなしに誰でも使用できる限定寿命の装置でした。
+            </p>
+            <p>
+                中国のステルス技術改良の研究は止まることなく、アパラチアの<strong>藤宮諜報基地</strong>はステルススーツの電力効率における大幅なアップグレードの目前にありました。<br>
+                大戦がプロジェクトを中断させ、最終的にトーマス・エッカートのエンクレイヴによって回収され、<strong>ステルスボーイMark III</strong>sの開発に利用されました。
+            </p>
+
+            <h3>共感者・協力者</h3>
+            <p>
+                人民解放軍の潜入エージェントとは別に、中国はアメリカ本土にスパイと共産主義の共感者のネットワークも持っていました。<br>
+                彼らは地元の市民社会に浸透してスパイ活動を行い、同時に中国製武器を密輸していました。<br>
+                そのような細胞は戦前のピッツバーグ、オールド・オルニー、ポイント・ルックアウトで見つかっています。<br>
+                アパラチアでは、分離主義民兵である<strong>フリー・ステイツ</strong>が、両者間のプロパガンダ戦争の中でアメリカ政府から共産主義運動であると非難されていました。
+            </p>
+            <p>
+                大戦から200年後の2277年でさえ、<strong>アーヴィング・チェン</strong>は共産主義体制に今なお共感を抱いていました。
+            </p>
+            <p>
+                中国人がアメリカの若者に対して洗脳技術を使用していることを証明しようとして、アメリカ政府はシェナンドー国立公園の<strong>キャンプ・リバティ</strong>で中国の洗脳戦術と疑われるものの再現を試みました。<br>
+                <strong>オペレーション・スリーピング・ジャイアント</strong>として知られるこのプログラムは、スカウトたちを共産主義に急進化させることに成功し、大戦後に敵対的なコミューンを形成しました。
+            </p>
+
+            <h2>メモ</h2>
+            <ul>
+                <li>Fallout 2では、シエラ・デポGNNトランスクリプトが中国の指導者をシン大統領と呼んでいます。後の作品ではチェン主席が中国の指導者として言及されています。</li>
+                <li>Fallout Shelterでは、Vault住民が万里の長城を訪れたいとコメントし、きっとまだ立っていると信じています。</li>
+                <li>Fallout 76では、中国輸入パンダやコムラード・チャブスといったぬいぐるみテディベアのバリエーションがアパラチア各地で見つかります。中国の装飾用花瓶も一部の場所で見つかります。</li>
+                <li>Fallout 76のワイルド・アパラチアアップデートでは、虐待された動物の魂が悪魔になるという古代中国の信仰が、パイオニアスカウトの哺乳類学試験で言及されています。</li>
+                <li>中国皇帝・秦始皇帝の兵馬俑は、ワイルド・アパラチアのパイオニアスカウト考古学試験で言及されています。</li>
+                <li>Falloutシリーズで使用される中国語テキストは一貫しておらず、繁体字と簡体字の両方がアイテムモデルやその他のアセットで使用されています。</li>
+            </ul>
+
+            <h2>舞台裏</h2>
+            <p>
+                ティモシー・ケインによると、実際に最初の核ミサイルを発射したのは中国であり、大戦における核交換の発端でした。<br>
+                さらに詳述すると、アメリカのFEV開発を知った中国が挑発されてそうしたとのことです。<br>
+                中国からの開発中止要求を受けたアメリカは、ただ開発場所を「移動させた」だけであり、生物兵器が国際法で禁止されているにもかかわらずです。
+            </p>
+            <p>
+                デザイナーのスコット・キャンベルは、ソビエト連邦ではなく中国を選んだ理由について、モスクワの開発者オレグとの経験を挙げています。<br>
+                電話中に銃声が聞こえ、「ああ、ロシアンマフィアが通りで銃を撃っているだけだよ」と言われた経験から、かつての強大なソ連が近い将来に世界を脅かす立場にはないと確信し、「東側」を象徴する次の主要な共産主義国——中国——に目を向けたとのことです。
+            </p>
+
+            <h2>登場作品</h2>
+            <p>中国は全てのFalloutゲームにおいて言及されています。</p>
+
+            <h2>ギャラリー</h2>
+            <h3>記章・旗・その他</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/china/special_ops_manual.png" alt="特殊作戦訓練マニュアル" onclick="openLightbox(this)"><div class="caption">中国軍: 特殊作戦訓練マニュアル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_poster1.jpg" alt="中国プロパガンダポスター1" onclick="openLightbox(this)"><div class="caption">「人民解放軍万歳」と書かれたポスター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_poster2.png" alt="中国プロパガンダポスター2" onclick="openLightbox(this)"><div class="caption">同じメッセージの別のポスター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/propaganda1.jpg" alt="反共プロパガンダ1" onclick="openLightbox(this)"><div class="caption">人民解放軍のウォーマシンに関する反中プロパガンダ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/propaganda2.jpg" alt="反共プロパガンダ2" onclick="openLightbox(this)"><div class="caption">共産主義反乱分子への警告ポスター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/propaganda3.jpg" alt="反共プロパガンダ3" onclick="openLightbox(this)"><div class="caption">共産主義侵略への警告ポスター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/fo76_flag_painted.png" alt="FO76ゲーム内国旗" onclick="openLightbox(this)"><div class="caption">Fallout 76 ゲーム内の壁画国旗</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/fo76_chinese_flag.png" alt="ディープの国旗" onclick="openLightbox(this)"><div class="caption">ディープで見られる国旗</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_panda.png" alt="中国輸入パンダ" onclick="openLightbox(this)"><div class="caption">中国輸入パンダ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_vase.png" alt="中国装飾花瓶" onclick="openLightbox(this)"><div class="caption">中国装飾花瓶</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/collectron_communist.png" alt="共産主義コレクトロン" onclick="openLightbox(this)"><div class="caption">アトミックショップ 共産主義コレクトロン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/communist_bunker.png" alt="共産主義バンカー" onclick="openLightbox(this)"><div class="caption">アトミックショップ 共産主義バンカー</div></div>
+            </div>
+
+            <h3>武器・軍服</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_uniform_ca.jpg" alt="中国軍服コンセプトアート" onclick="openLightbox(this)"><div class="caption">中国軍服コンセプトアート</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_jumpsuit.png" alt="中国ジャンプスーツ" onclick="openLightbox(this)"><div class="caption">中国ジャンプスーツ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/commando_hat.png" alt="中国コマンドハット" onclick="openLightbox(this)"><div class="caption">中国コマンドハット</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_assault_rifle.png" alt="中国アサルトライフル" onclick="openLightbox(this)"><div class="caption">中国アサルトライフル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_pistol.png" alt="中国ピストル" onclick="openLightbox(this)"><div class="caption">中国ピストル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_soldier_oa.png" alt="冬季装備中国兵" onclick="openLightbox(this)"><div class="caption">冬季装備の中国兵士</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_general_hat.png" alt="中国将軍帽" onclick="openLightbox(this)"><div class="caption">中国将軍帽</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_stealth_armor.png" alt="中国ステルスアーマー" onclick="openLightbox(this)"><div class="caption">中国ステルスアーマー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_bomber.png" alt="中国爆撃機" onclick="openLightbox(this)"><div class="caption">中国爆撃機</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_bombers_ig.png" alt="中国爆撃機（ゲーム内）" onclick="openLightbox(this)"><div class="caption">中国爆撃機（ゲーム内）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/spider_drone.png" alt="スパイダードローン" onclick="openLightbox(this)"><div class="caption">スパイダードローン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chimera_tank.jpg" alt="キメラ戦車" onclick="openLightbox(this)"><div class="caption">キメラ戦車</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/annabelle.png" alt="アナベル" onclick="openLightbox(this)"><div class="caption">アナベル（中国国旗の五つ星が描かれている）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/red_victory.png" alt="レッド・ビクトリー" onclick="openLightbox(this)"><div class="caption">レッド・ビクトリーグレネードライフル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_officer_sword.png" alt="中国将校刀" onclick="openLightbox(this)"><div class="caption">中国将校刀</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/chinese_stealth_camo.png" alt="中国ステルスアーマー迷彩" onclick="openLightbox(this)"><div class="caption">中国ステルスアーマー 迷彩ペイント</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/communist_pa_concept.jpg" alt="共産主義PA コンセプト" onclick="openLightbox(this)"><div class="caption">共産主義パワーアーマー コンセプトアート</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/liberator.jpeg" alt="リベレーター" onclick="openLightbox(this)"><div class="caption">リベレーターロボット</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/communist_spy_outfit.png" alt="共産主義スパイ服" onclick="openLightbox(this)"><div class="caption">共産主義スパイ衣装</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/communist_militant_outfit.png" alt="共産主義戦闘服" onclick="openLightbox(this)"><div class="caption">共産主義武装兵衣装</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/china/ftv_chinese_soldiers.png" alt="TVシリーズの中国兵" onclick="openLightbox(this)"><div class="caption">アラスカ前線の中国兵（TVシリーズ）</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Falloutの世界観を語る上で、中国の存在は本当に重要なんですよね。<br>
+                表面的には「アメリカ vs 共産主義」という冷戦構図を踏襲しているように見えますが、実際に記事を読み込んでいくと、どっちもどっちというか、アメリカ側の行動もかなりえぐい。<br>
+                深海油田を妨害しておいて「防衛戦争だ」と言い張ったり、カナダを強引に併合したり。<br><br>
+                個人的に一番刺さったのは、大戦後もアパラチアで戦い続けている中国工作員たちの話です。<br>
+                グール化してまで「人民解放軍は最後の勝利を手にする！」と叫び続けている姿は、ある意味では悲しいし、ある意味では恐ろしい。<br>
+                エージェント・モーチョウの話なんかは、装備に仕込まれた追跡装置のせいで自由になれなかったという、本当にやりきれないエピソードですよね。<br><br>
+                一方でサンフランシスコのシーみたいに、潜水艦の乗組員が地元住民と手を結んで最先端の組織を作り上げた例もあって、戦後の中国系生存者の運命は実に多様。<br>
+                Fallout 76でリベレーターや中国ステルスアーマーを見つけるたびに、この壮大な歴史の断片を拾っている感覚になります。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/China" target="_blank" rel="noopener">China</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '\u2665'; } else { btn.classList.remove('liked'); heart.textContent = '\u2661'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_china'; const _commentArticleName = "China"; const _commentArticleUrl = 'china.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

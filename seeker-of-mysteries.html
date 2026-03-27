@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seeker of Mysteries | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/seeker-of-mysteries.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Seeker of Mysteries | Overseer Mohi's Terminal">
+    <meta property="og:description" content="シーカー・オブ・ミステリー。オーダー・オブ・ミステリーのクエストライン第3弾。プレザント・バレーのレイダー基地に潜入し、オリヴィアの裏切りの真相に迫る。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/seeker-of-mysteries/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/seeker-of-mysteries.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Seeker of Mysteries | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ミステリーの女主人になるための最終試練。レイダー基地に潜入し、オリヴィアの裏切りの証拠を見つけ出せ。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/seeker-of-mysteries/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; transition: transform 0.2s; }
+        .gallery-item img:hover { transform: scale(1.02); }
+        .gallery-caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .loot-list li { margin-bottom: 8px; }
+        .loot-list .loot-location { color: #888; font-size: 0.9em; }
+        .holotape-box { border-left: 4px solid #ff9800; margin: 20px 0; background: rgba(255,152,0,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #ff9800; }
+        .note-box { border-left: 4px solid #42a5f5; margin: 20px 0; background: rgba(66,165,245,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #42a5f5; }
+        .quest-stage { border-left: 3px solid var(--accent-color); margin: 10px 0; padding: 8px 15px; background: rgba(0,255,0,0.03); font-size: 0.95em; }
+        .quest-stage-num { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; font-weight: bold; margin-right: 8px; }
+        .quest-stage-desc { color: #ccc; }
+        .quest-stage-log { color: #888; font-size: 0.9em; margin-top: 4px; font-style: italic; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="クエスト" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Seeker of Mysteries</h3>
+            <img src="images/note_extracted/seeker-of-mysteries/img_main.png" alt="ミステリーの女主人" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>サイドクエスト</span></div>
+            <div class="infobox-row"><span class="infobox-label">場所</span><span>リバーサイド邸<br>プレザント・バレー</span></div>
+            <div class="infobox-row"><span class="infobox-label">依頼者</span><span>Cryptos</span></div>
+            <div class="infobox-row"><span class="infobox-label">報酬</span><span>250 XP / 70キャップ<br>Cryptosホロテープ<br>オリヴィア・リバーズのログイン<br>ランダムレイダーアーマー</span></div>
+            <div class="infobox-row"><span class="infobox-label">前のクエスト</span><span>Novice of Mysteries</span></div>
+            <div class="infobox-row"><span class="infobox-label">次のクエスト</span><span>The Mistress of Mystery</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_seeker_of_mysteries" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Seeker of Mysteries<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">シーカー・オブ・ミステリー</span></h1>
+
+            <div class="note-box">
+                <b>📋 クエスト目標</b><br>
+                「ミステリーの女主人にふさわしい任務を達成せよ。」
+            </div>
+
+            <h2>背景</h2>
+            <p>
+                <strong>シーカー・オブ・ミステリー</strong>は、『Fallout 76』のサイドクエストで、<a href="riverside-manor.html" class="auto-link">オーダー・オブ・ミステリー</a>のクエストラインの第3弾です。<br><br>
+                ミステリーの女主人の武器庫を揃え上げ、シーカーの階級を獲得したVault居住者たち。<br>
+                しかし、真のミステリーの女主人となるためには、ミストレス級の任務を完了する必要があります。<br>
+                Cryptosがその任務を一つ発行してくれます。
+            </p>
+
+            <h2>簡易ウォークスルー</h2>
+            <ol>
+                <li><strong>Order of Mysteries - Rank: Seeker</strong> のホロテープを聴く</li>
+                <li>Cryptosからミストレス級の任務を受諾し、発行されたホロテープを聴く</li>
+                <li><strong>プレザント・バレー・スキーリゾート</strong>に向かい、ブロディの部屋に入る
+                    <ul>
+                        <li>ロックピックするか、モーテル棟のダッフルバッグ内にある<strong>ブロディの部屋の鍵</strong>を見つける</li>
+                    </ul>
+                </li>
+                <li>ブロディの部屋のフットロッカーにある<strong>プレザント・バレー・イントラネット・メモ</strong>を読む</li>
+                <li>ブロディのターミナルにアクセスし、エントリを読む</li>
+                <li>「SIPHONホロテープを発行」のエントリを選択してクエスト完了、次のクエスト「The Mistress of Mystery」へ</li>
+            </ol>
+
+            <h2>詳細ウォークスルー</h2>
+            <p>
+                クエストは<strong>Order of Mysteries - Rank: Seeker</strong>のホロテープから始まります。<br>
+                聴き終えたら、Cryptosにアクセスしてミストレス級の任務を選びます。<br>
+                利用可能な任務はプレザント・バレーへの潜入のみです。<br>
+                <strong>Order of Mysteries - Pleasant Valley</strong>のホロテープを聴いたら、<strong>プレザント・バレー・スキーリゾート</strong>に向かいましょう。<br><br>
+                到着したら、レイダーたちがオーダー・オブ・ミステリーについてどのように知ったのかを調査します。<br>
+                リゾートに散らばるメモを探し回ると、やがて<strong>ブロディ</strong>というレイダーが情報源だったことが判明します。<br>
+                彼の部屋はレイダーのアリーナ近くのキャビンにあります。<br><br>
+                ブロディの部屋にはターゲットのホロテープが入ったターミナルがあります。<br>
+                レベル3のロックピックで扉を開けるか、近くのターミナルで「Yo Brody」エントリを読むと部屋の鍵の場所にマーカーが表示されます。<br>
+                部屋に入ったらもう一つ関門があります——ターミナルにはレベル3のパスワードが設定されています。<br>
+                ハッキングが難しい場合は、ベッド脇のフットロッカーをピックロックして<strong>ブロディのパスワード</strong>が書かれたメモを見つけるか、リゾートのメインロッジにあるコンピュータでパスワードをリセットしてください。<br><br>
+                ターミナルからSIPHONホロテープを回収し、Cryptosでオリヴィアとしてログインすると、このクエストが完了して最終クエストへと進みます。
+            </p>
+
+            <h2>クエストステージ</h2>
+            <div class="quest-stage">
+                <span class="quest-stage-num">1.</span>
+                <span class="quest-stage-desc">シーカーのホロテープを聴く</span>
+                <div class="quest-stage-log">オーダー・オブ・ミステリーでシーカーの階級を獲得し、新しいホロテープが発行された。ヘッドミストレスからのメッセージを聴こう。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">2.</span>
+                <span class="quest-stage-desc">ミストレス級の任務を受諾する</span>
+                <div class="quest-stage-log">ミステリーの女主人になるためには、ミストレス級の任務を完了する必要がある。Cryptosに選択できる任務のリストがあるはずだ。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">3.</span>
+                <span class="quest-stage-desc">プレザント・バレー任務のホロテープを聴く</span>
+                <div class="quest-stage-log">ミステリーの女主人になるため、「プレザント・バレー潜入」任務を受諾した。詳しくは任務ブリーフィングを聴こう。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">4.</span>
+                <span class="quest-stage-desc">プレザント・バレー・スキーリゾートに潜入する</span>
+                <div class="quest-stage-log">プレザント・バレー・スキーリゾートのレイダー基地に潜入し、彼らがなぜオーダー・オブ・ミステリーについて詳しかったのかを突き止める必要がある。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">5.</span>
+                <span class="quest-stage-desc">オーダー・オブ・ミステリーに関する情報を探す</span>
+                <div class="quest-stage-log">レイダーたちがなぜオーダー・オブ・ミステリーに詳しかったのかを調べる。まずはオーダーに言及しているメモやターミナルを探そう。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">6.</span>
+                <span class="quest-stage-desc">ブロディの部屋を見つける</span>
+                <div class="quest-stage-log">ブロディというレイダーが自分の部屋にオーダーに関する情報のホロテープを持っているというメモがあった。見つけなければ。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">7.</span>
+                <span class="quest-stage-desc">ブロディの部屋に侵入する</span>
+                <div class="quest-stage-log">ブロディの部屋に入る方法を見つける必要がある。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">8.</span>
+                <span class="quest-stage-desc">（任意）ブロディの部屋の鍵を見つける</span>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">9.</span>
+                <span class="quest-stage-desc">ブロディのホロテープを見つける</span>
+                <div class="quest-stage-log">ブロディの部屋にあるオーダーに関するホロテープを見つける必要がある。</div>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">10.</span>
+                <span class="quest-stage-desc">（任意）ブロディのターミナルのパスワードを見つける</span>
+            </div>
+            <div class="quest-stage">
+                <span class="quest-stage-num">✓</span>
+                <span class="quest-stage-desc">クエスト完了</span>
+                <div class="quest-stage-log">オリヴィア・リバーズは母親とオーダー・オブ・ミステリーを裏切り、レイダーたちにCryptosデータベースのコピーを渡していた。</div>
+            </div>
+
+            <h2>登場作品</h2>
+            <p>シーカー・オブ・ミステリーは『<strong>Fallout 76</strong>』にのみ登場するサイドクエストです。</p>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                シーカー・オブ・ミステリーは、オーダー・オブ・ミステリーのクエストラインにおけるクライマックスへの布石となるクエストです。<br><br>
+                これまでの「ベールを見つけてマナーに入る」「武器と装備を製造する」という段階を経て、ついに外の世界への実地任務が始まります。<br>
+                プレザント・バレー・スキーリゾートのレイダー基地に潜入し、なぜ彼らがオーダーのことをこれほど詳しく知っていたのかを突き止める——その答えが「オリヴィアの裏切り」だったという展開は、<a href="riverside-manor.html" class="auto-link">リバーサイド邸</a>のホロテープで断片的に感じていた不穏な空気を一気に確定させます。<br><br>
+                ブロディの部屋にたどり着くまでの過程も丁寧で、ロックピックかメモの発見か、複数のアプローチが用意されているのがRPGらしくて良いですね。<br>
+                そして最後にSIPHONホロテープを手に入れ、Cryptosにオリヴィアのログインで接続する瞬間——「裏切り者の痕跡を辿って真実にたどり着く」というカタルシスがあります。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#OrderOfMysteries</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#SideQuest</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#PleasantValley</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Seeker_of_Mysteries" target="_blank" rel="noopener">Seeker of Mysteries</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co'; const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'; const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        function openLightbox(img) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; lb.classList.add('active'); }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡'; btn.querySelector('.like-count').textContent = count; btn.classList.toggle('liked', isLiked); }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); updateLikeButton(btn, isLiked, data ? data.like_count : 0); } });
+        const _commentArticleId = 'seeker-of-mysteries'; const _commentArticleName = 'Seeker of Mysteries - シーカー・オブ・ミステリー'; const _commentArticleUrl = 'seeker-of-mysteries.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50); if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const hp = document.getElementById('hp_field'); if (hp && hp.value) return; const ngWords = ['http://', 'https://', 'LINE', 'DM', 'discord.gg']; if (ngWords.some(w => content.includes(w))) { showCommentMsg('不正な内容が含まれています。', false); return; } const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0'); const now = Date.now(); if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content}); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

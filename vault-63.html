@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Vault 63 | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/vault-63.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Vault 63 | Overseer Mohi's Terminal"><meta property="og:description" content="Vault 63。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/vault-63.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Vault 63</h3><img src="images/note_extracted/vault-63/img_main.png" alt="vault-63"><img src="images/note_extracted/vault-63/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>Vault</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯/Skyline Valley</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <main class="content">
+            
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_vault_63" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Vault 63<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">Vault 63</span></h1>
+            <h2>概要</h2>
+<p><b>Vault 63</b> はShenandoah National Park of アパラチア . Although the door to Vault 63 is located in 積灰の山, this is not the ロケーション of the Vault itself, and is merely the hub for an underground railway transit system that leads to the actual, separate areas of the Vault.にあるVault-Tec Vault located under Dark Hollow Manorです<br>Although present in the live game since its release in 2018, the Vault was inaccessible. It was expanded upon as part of the  <i>スカイライン・バレー</i> update, which added connections to the Vault's interior in the スカイライン・バレー 地域.</p>
+<h2>概要</h2>
+<p>This Vault was constructed under the orders of Hugo Stolz, a member of Vault-Tec's board of directors, and his wife Cassidy Stolz. They felt that war was imminent, and wanted a Vault that would give them the greatest amount of power that they could have in a post-apocalyptic society. However, they recognized that the Vault-Tec board would not allow them to build a Vault all for themselves unless it had some greater benefit to the company. As such, Hugo and Cassidy pitched Vault 63 as a research facility for various technologies that could help Vault-Tec establish and defend its own 戦後の societies. These projects included weather control, using assets and personnel from the government's shuttered ATLAS Program; as well as the creation of special Vault-Tec guardian robots using research stolen from the Department of Defense's own large-scale robotics project. <br>The Vault's construction was also controversial, as Hugo's business decisions made the community of Dark Hollow Falls resent him as they were driven off the land; Hugo claimed he would allow the community space in his Vault, and they tolerated the construction of Vault 63 under this condition.<br>As with the other Vaults, Vault 63 was sealed sometime around 大戦 in 2077. It is known that some residents and science staff were let into the Vault in early 2077, before the bombs dropped, and made use of its facilities. Hugo also went back on his deal with the Dark Hollow community by the time of 大戦, as he did not allow them in when the bombs struck. The Vault remains sealed by 2105, as the tunnels leading out were damaged by earthquakes, and the main door in Dark Hollow Manor requires a two-way joint authorization.<br>The Vault was still in the process of being constructed, and the residents were not immune to 放射線. Those who survived the 放射線 were transformed into ghouls, rendering some of their survival concerns moot. However, they quickly discovered the costs of ghoulification when some dwellers began to go feral, one of the earliest being Hugo's brother August. Symptoms of feralization were so common that practically everybody personally knew someone who was suffering. Already personal for Hugo, the crisis worsened for him when Cassidy began showing signs of turning feral as well. The entire Vault quickly shifted gears to researching ways to reverse, or at least prevent, feralization. Not wishing to lose Cassidy, Hugo secretly activated the Vault's unfinished weather machine in 2095, at full power. While Cassidy was prevented from going feral, she was put into a coma. However, the act still had major consequences: it transformed many of the Vault residents into feral beings known as Lost, who began attacking their former friends and colleagues indiscriminately. Hugo was also turned into a Lost but retained his sanity, having been the one who activated the machine and thus subject to the full mutation. Even with the huge cost, and the limited success at saving Cassidy, Hugo was still devastated and wished for a way to save his wife.<br>In 2105, Hugo views this linkage as more important than their ability to have free will.</p>
+<h3>Vault entrance</h3>
+<p>Vault 63's entrance wing is located inside a small cave in 積灰の山 near ブレア山, 外観 of which was concealed by a one-room shack. Inside the shack were several junk items. The door across from 外観 opened onto a small balcony with additional junk items, while the door to the left of 外観 led into the cave. Outside the Vault door was a functioning ターミナル that divulged about the Vault's status, saying the vault door was "sealed," and that the status of the Vault itself was "normal."<br>In 2105, following the second activation of the Vault 63 weather machine, Vault 63 suffered significant damage. A pressure build-up inside 外観 sector caused the door to blast open from the inside with such force that that it flew all the way onto the highway north of Sutton in 森林地帯. 外観 shack that previously hid the Vault's entrance was also completely 破壊された. Much of the sector also caved in, leaving only a few rooms past the Vault doorframe still accessible (and briefly occupied by Lost who had managed to escape because of the destruction). The access control ターミナル still functioned, although it had been damaged alongside much of the other equipment in the cavern; it now reported emergency messages about what had happened to the Vault.<br>The Vault's main entrance in 積灰の山 did not lead directly into the Vault itself. Instead, it served as a railway station hub, from which Vault entrants would be able to travel to all of the other sectors of the Vault built, which were built throughout the スカイライン・バレー 地域.</p>
+<h3>Atrium</h3>
+<p>The Vault 63 atrium served as the administrative center for the entire Vault, including the offices of the overseer and the chief of security. これは last remaining sanctuary for the ghoul dwellers who have not turned feral or Lost.</p>
+<h3>Meteorology sector</h3>
+<p>Built into and underneath the Hawksbill weather station, the Vault 63 meteorology sector was created to allow experiments to be performed using storm systems outside the vault. Originally, the facility was used for Project Storm Goliath, which meant to use research stolen from the Pentagon to create grand-scale battle robots. These robots could be used to defend the Vault, if the need arose.<br>It also is the ロケーション of the Vault 63 weather machine, a device that caused the creation of the Lost, devastated the 地域's surface, and created a massive electrical storm.</p>
+<h3>Organics sector</h3>
+<p>Built into the Shining Creek Cavern, the Vault 63 organics sector was meant to be the primary research center for all organics, including bacteria, plants such as "Henry," human brains, and a strange animal called a wanamingo.<br>Eventually, the section became used to research cures for the feralization of ghouls, and later, to research a cure for the Lost.</p>
+<h3>Engineering sector</h3>
+<p>This sector is mentioned in Hawksbill weather station ターミナル entries but does not appear in-game. It served as the weapons and robotics research wing of Vault 63, and was a production facility for Robobrains, including the more advanced Storm Goliaths.<br>An interior cell exists for the ロケーション, but it is unused. 外観 entrance to the engineering sector can still be found in-game, 地下室には of the Slumber Mill Motel.</p>
+<h3>Other facilities</h3>
+<p>Vault 63 maintained a number of other facilities throughout スカイライン・バレー as a result of Stolz Enterprises having purchased much of the land around Shenandoah National Park. These included the Hawksbill weather station, which housed the Vault 63 meteorology sector underneath but was also home to other projects such as the Storm Goliaths, as well as the three surface research sites Bavaria, Rhineland, and Saxony.</p>
+<h2>Known inhabitants</h2>
+<p>* Security<br>* Vault doctor<br>* Vault dwellers<br>* The Lost (formerly)<br>}}<br>;Mentioned</p>
+<h2>関連クエスト</h2>
+<p> Lockdown<br>*  Vault Mission: Reactor Meltdown<br>*  Vault Mission: Fire Outbreak<br>*  Vault Mission: Riot<br>}}</p>
+<h2>補足</h2>
+<p>*  Prior to <i>スカイライン・バレー</i>, a keycard slider could be found on the Vault console, but there was no keycard that worked with it. It was not possible to open the Vault 63 door or officially access its interior without using glitches.<br>* In the pond at Rapidan Camp, また、collapsed entrance with the skeletal remains of a Vault 63 dweller wedged between the fallen rocks.</p>
+<h2>舞台裏</h2>
+<p>* Vault 63 was originally planned to be opened alongside Vault 94 and Vault 96 in the summer of 2019 as part of the Vault raids feature. After Vault raids were discontinued, Vaults 94 and 96 were repurposed as ロケーションs for Daily Ops, with Vault 94 being released as part of <i>One ウエイストランド For All</i> (September 2020), and Vault 96 in <i>Locked & Loaded</i> (April 2021).<br>** There was mention in 2021 of plans to implement Vault 63 as a Daily Ops ロケーション, but this never materialized.<br>** Prior to <i>スカイライン・バレー</i>, Vault 63 was an interior in 積灰の山 consisting of a sealed Vault Door. Behind this, the cell contained an inaccessible standard Vault entry chamber, with walls placed imperfectly over the standard doorways.<br>** In <i>スカイライン・バレー</i> (June 2024), the Vault was implemented for story content. There はchanges only visible in the game's files. Some of the original Vault 63 assets have been removed.にあるsignificant amount of cut content for the Vault, as it has gone through several iterations,です<br>* Double Eleven developer Luna Dalton contributed to the level design of Vault 63's entrance wing as it was changed in the <i>スカイライン・バレー</i> update, alongside an art pass by Stewart Morrison.</p>
+<h2>バグ</h2>
+<p> Previously, fast traveling to an 積灰の山 Horde activity that had its map marker not placed in 積灰の山 (instead, in the center of the world map) would teleport the player to a non-playable Vault interior cell and the player would be disconnected from the server upon loading in. When the player resumed playing, their character would be spawned directly outside Vault 63.</p>
+<h2>See also</h2>
+<p>* Vault 63 crash site</p>
+<h2>登場作品</h2>
+<p>Vault 63はFallout 76に登場します。</p>
+
+            
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Vault 63は、ウエイストランドの中でも印象的なロケーションです。<br>坑道の奥深くまで続く暗い通路は、探索の緊張感と発見の喜びを同時に味わえます。<br><br><br>ターミナルやメモに残された記録を読み解いていくと、このロケーションに関わった人々の生々しい物語が浮かび上がってきます。<br>こうした細部のロアを追いかけるのが、Fallout 76の探索の醍醐味ですね。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Vault_63" target="_blank" rel="noopener">Vault 63</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="拡大画像"></div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_vault_63'; const _commentArticleName = 'Vault 63'; const _commentArticleUrl = 'vault-63.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

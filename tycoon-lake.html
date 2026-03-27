@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Tycoon Lake | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/tycoon-lake.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Tycoon Lake | Overseer Mohi's Terminal"><meta property="og:description" content="タイクーン・レイク — 干上がった湖。パブリックイベント「Sinkhole Solutions」の舞台。Breaking Badイースターエッグあり。"><meta property="og:url" content="https://www.fallout-jp.com/tycoon-lake.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
+        }
+
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+                position: static;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Tycoon Lake</h3><img src="images/note_extracted/tycoon-lake/img_main.jpg" alt="Tycoon Lake"><img src="images/note_extracted/tycoon-lake/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>キャビン（干上がった湖）</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>バーニング・スプリングス</span></div><div class="infobox-row"><span class="infobox-label">関連イベント</span><span>Event: Sinkhole Solutions</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76 (Burning Springs)</span></div></aside>
+        <main class="content">
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_tycoon_lake" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Tycoon Lake<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">タイクーン・レイク</span></h1>
+            <h2>概要</h2><p><b>Tycoon Lake</b>は、バーニング・スプリングス南東部に位置するロケーションである。<br>干上がった湖を中心としたエリアで、パブリックイベント「<b>Sinkhole Solutions</b>」のメイン会場となっている。<br>かつてはカワウソが生息する美しい湖だったが、<a href="abraxodyne-chemical-power-substation.html" class="auto-link">アブラクソダイン・ケミカル</a>による化学物質の不法投棄により環境が破壊され、現在は完全に干上がっている。</p>
+
+<h2>レイアウト</h2>
+<p>湖に到達する前に、南側には大きなボートハウス、医療キット、ランタンが置かれた木箱、そしてボートを載せた車とトレーラーがある。<br>北東には放棄されたキャンパー（アクセス不可）がある。<br>西側にはピクニックエリアを備えた小さな売店と、散在する車がある。<br>北側の外縁部には、薬物ラボとして使用されていた別のキャンパーがあり、内部に<a href="flatwoods-tavern.html" class="auto-link">ケミストリーステーション</a>が設置されている。</p>
+
+<p>タイクーン・レイクは広大な干上がった湖で、壊れた桟橋や荒れた不均一な地形が特徴的である。<br>イベント「Sinkhole Solutions」の開催中は、ラッドスコルピオンの巣や火柱が湖底から噴き出し、バーニング・スプリングス特有の砂嵐の中で非常に危険な場所となる。<br>湖の西側を見下ろす位置には、かつて<a href="abraxodyne-chemical-power-substation.html" class="auto-link">アブラクソダイン・ケミカル</a>が運営していたポンプ場と化学工場がある。<br>メインの建物には入ることができないが、いくつかの小屋やオープンエリアで探索が可能である。<br>工場は搬入ベイ、電力変電所、複数の大型<a href="abraxodyne-office.html" class="auto-link">アブラクソ</a>コンテナ、そして輸送コンテナが並ぶヤードで構成されている。</p>
+
+<h2>発見できるメモ</h2>
+
+<h3>Mission Stomper（ミッション・ストンパー）</h3>
+<p>桟橋の下で発見できるメモ。ラッドスコルピオン退治装置を開発しようとするウィローという人物の手記。</p>
+<div class="note-box" style="border-left:4px solid #5599ff;background:rgba(85,153,255,0.08);padding:15px 15px 15px 20px;border-radius:0 5px 5px 0;margin:15px 0;line-height:1.6;">
+<b>📝 Mission Stomper</b><br><br>
+ついにやったわ！もちろん、いつかは成功すると分かっていたけど、バージョン8まで来た時は私でさえ疑い始めていた。<br><a href="highway-town.html" class="auto-link">ハイウェイ・タウン</a>のみんなに見せたら何て言うかしら！<br>もうウィローのことを「クレイジー」とか「執念深い」なんて呼ばせない。<br><br>
+簡単じゃなかった。<br>ストンパー・バージョン1は本当に終わりかと思った。<br>スピーカーからラッドスコルピオンの求愛音を流すのが賢いアイデアだと本気で思っていたのよ。<br>ジェットを吸ったグールの群れよりも速く集まってくるなんて、分かるわけないじゃない。<br><br>
+でもこれは価値がある。<br>あの忌々しい虫どもは、ウィローの名前を短い余生の間ずっと覚えているでしょう。<br>さて、問題は実際にあの生き物を殺す方法がないってことだけど……もっと早く考えておくべきだったわね。<br>これは難しくなりそう。
+</div>
+
+<h3>Note to Manny（マニーへのメモ）</h3>
+<p>湖の西、ルート33沿いの緑色のピックアップトラックの荷台で発見できるメモ。</p>
+<div class="note-box" style="border-left:4px solid #5599ff;background:rgba(85,153,255,0.08);padding:15px 15px 15px 20px;border-radius:0 5px 5px 0;margin:15px 0;line-height:1.6;">
+<b>📝 Note to Manny</b><br><br>
+マニーへ<br><br>
+作業が終わったら、ジェフと一緒にピックアップトラックで化学工場まで行ってくれ。<br>うちの「友人たち」がちょっとした廃棄処理の仕事を用意している。<br>守衛にはお前たちが来ることを伝えてあるから、ゲートはすぐに通れるはずだ。<br>荷物は「いつもの場所」に届けろ。そして何があっても、<br><br>
+<u>絶対に開けるな！</u>
+</div>
+
+<h3>Summers Gone By（過ぎ去った夏の日々）</h3>
+<p>小屋近くのピクニックテーブルの上で発見できるメモ。亡き伴侶への追悼の手紙。</p>
+<div class="note-box" style="border-left:4px solid #5599ff;background:rgba(85,153,255,0.08);padding:15px 15px 15px 20px;border-radius:0 5px 5px 0;margin:15px 0;line-height:1.6;">
+<b>📝 Summers Gone By</b><br><br>
+記念日おめでとう、愛する人よ。<br>また湖まで来たよ——昔みたいに。<br>初めて君と出会ったあのベンチに座って、一緒にカワウソを眺めたあの場所。<br><br>
+もう同じじゃないんだ。<br>何年か前に、新しい農業関連の会社がやってきて、私たちの生活を良くすると約束した。<br>最初は湖にちょっと何かを捨てるだけだったのが、あっという間に大量になった。<br>もう湖で泳ぐことなんかできない。<br>大きな訴訟沙汰になった。<br>しばらくは町中の話題だったよ。<br>子供が一人、ひどく病気になった。<br>結果がどうなったかは聞いていない——その家族は訴訟が始まってすぐに引っ越してしまった。<br><br>
+子供たちが巣立ってからは、私たちも来なくなったんだな。<br>もっと君を連れてきてやればよかった——君はいつもここを愛していた。<br>ここにいると、君がまた傍にいるような気がする。<br>これからも来続けようと思う。<br>カワウソがまだいてくれたら良かったのに。
+</div>
+
+<h3>Abraxodyne Intel（アブラクソダイン・インテル）</h3>
+<p>タイクーン・レイク周辺には<b>4つのアブラクソダイン・インテル</b>（青い金属製のブリーフケース）が配置されている。<br>湖の西側のメンテナンス小屋、ルート33沿いのピックアップトラック、北側の薬物ラボキャンパーのキャビネットの上、そして湖の北東の切り株の下で発見できる。<br>これらはバーニング・スプリングス全域に148個配置されたコレクタブルアイテムの一部で、クエスト「<b>Dirty Laundry</b>」に関連している。</p>
+
+<h2>舞台裏</h2>
+<ul>
+<li>タイクーン・レイクは実在の<b>オハイオ州ガリア郡</b>のタイクーン・レイクをモデルとしている。</li>
+<li>湖の北にある薬物ラボのトレーラーには、テレビドラマ「<b>Breaking Bad</b>」への複数のイースターエッグがある。<br>外のコートラックにはガスマスクとクシャクシャのフェドーラ帽が掛けられており、後者はウォルター・ホワイトの象徴的な「ハイゼンベルグ」としての帽子と衣装を表している。<br>さらに、トレーラーのドアには5つの弾痕があり、これはBreaking Badのパイロットエピソードでクレイジー8がウォルターとジェシーの薬物ラボのRVのドアに撃ち込んだ弾痕とほぼ同じ配置になっている。<br>なお、Breaking Badは以前にもFallout 76の「barrel burial」サイトで参照されている。</li>
+</ul>
+
+<h2>登場作品</h2>
+<p>Tycoon LakeはFallout 76の<b>Burning Springs</b>アップデートにのみ登場する。</p>
+
+<div class="quote-box">
+<b>感想</b><br><br>
+タイクーン・レイクは「干上がった湖」という見た目のインパクトもさることながら、散りばめられたメモが語る物語がとても印象的な場所です。<br>
+特に「Summers Gone By」は、亡くなった伴侶への手紙という形で、かつて美しかった湖の思い出と環境破壊の歴史を重ね合わせていて、読んでいてグッとくるものがあります。<br>
+カワウソを一緒に眺めた日々、子供が病気になった訴訟沙汰、そして「もっと君を連れてきてやればよかった」という後悔——Falloutの世界では大戦が全てを破壊する前から、企業の不法投棄で人々の日常が壊されていたんですよね。<br>
+一方で、ウィローの「ミッション・ストンパー」はかなりコミカルで、ラッドスコルピオンの求愛音を流したら逆に大群を呼び寄せてしまったという失敗談は笑えます。<br>
+退治する方法がないまま装置だけ完成させてしまったウィローの行き当たりばったり感、好きですw<br>
+Breaking Badのイースターエッグも芸が細かくて、弾痕の配置まで再現しているあたりに開発チームのこだわりを感じます。<br>
+砂嵐の中で火柱とラッドスコルピオンに囲まれるSinkhole Solutionsイベントは、バーニング・スプリングスらしい過酷さが味わえるので、ぜひ一度体験してみてほしいです！
+</div>
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Tycoon_Lake" target="_blank" rel="noopener">Tycoon Lake</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+            <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+<!-- Supabase Scripts + Lightbox logic -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            // Lightbox logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_tycoon_lake';
+        const _commentArticleName = 'Tycoon Lake';
+        const _commentArticleUrl = 'tycoon-lake.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    loadComments(); alert('管理者モードを終了しました。'); return;
+                }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                } else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    
+    <script src="article-common.js" defer></script>
+</body>
+</html>

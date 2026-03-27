@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Charleston Fire Department | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/charleston-fire-department.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Charleston Fire Department | Overseer Mohi's Terminal">
+    <meta property="og:description" content="チャールストン消防署のFalloutロア記事。レスポンダーの拠点であり、ファイア・ブリーザーの本部。クエスト「Into the Fire」の舞台。">
+    <meta property="og:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston-fire-department/Charleston_Fire_Department.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/charleston-fire-department.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Charleston Fire Department | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="チャールストン消防署のFalloutロア記事。レスポンダーの拠点であり、ファイア・ブリーザーの本部。">
+    <meta name="twitter:image"
+        content="https://www.fallout-jp.com/images/note_extracted/charleston-fire-department/Charleston_Fire_Department.jpg">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+
+        .back-link {
+            display: inline-block; color: var(--accent-color); text-decoration: none;
+            border: 1px solid var(--accent-color); padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace; transition: all 0.2s;
+        }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center;
+            gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s;
+        }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item {
+            background: var(--panel-bg); border: 1px solid #444; border-radius: 4px;
+            overflow: hidden; transition: all 0.3s;
+        }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+
+        .lightbox-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out;
+            justify-content: center; align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 95vw; max-height: 95vh; object-fit: contain;
+            border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px;
+        }
+
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color);
+            color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em;
+            padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color);
+            padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em;
+            cursor: pointer; border-radius: 4px; transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <!-- ===== Sidebar ===== -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Charleston Fire Department</h3>
+            <img src="images/note_extracted/charleston-fire-department/Charleston_Fire_Department.jpg" alt="チャールストン消防署">
+
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>低層建築物</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属地域</span><span>チャールストン<br>森林地帯、アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">勢力</span><span>レスポンダー</span></div>
+            <div class="infobox-row"><span class="infobox-label">生物</span><span>フェラル・グール<br>モールマイナー<br>スコーチ<br>スーパーミュータント</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>リベレイター<br>プロテクトロン</span></div>
+            <div class="infobox-row"><span class="infobox-label">商人</span><span>ベンダーボット・マック</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Into the Fire<br>Overseer's Mission</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <!-- ===== Main Content ===== -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_charleston_fire_department" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Charleston Fire Department<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">チャールストン消防署</span></h1>
+
+            <!-- ===== Overview ===== -->
+            <h2>概要</h2>
+            <p>
+                チャールストン消防署（正式名称：North Charleston Fire Department Station）は、アパラチアのチャールストン市にあるロケーションです。<br>
+                大戦後のチャールストンにおける復興活動の中心地であり、消防士たちはやがてレスポンダーの主要な戦力となりました。<br>
+                スコーチの脅威に対抗するため、メロディ・ラーキンと副官ハンク・マディガンの指揮のもと、精鋭部隊「ファイア・ブリーザー」が結成されました。
+            </p>
+            <p>
+                2096年にレスポンダーが壊滅すると、消防署はミュータントに占拠され放棄されました。<br>
+                しかし2103年までに施設は奪還され、レスポンダー所属の消防プロテクトロンが警備にあたっています。新たにファイア・ブリーザーへの入隊を目指す者たちのために、署は再び門を開いています。
+            </p>
+
+            <!-- ===== Layout ===== -->
+            <h2>レイアウト</h2>
+            <p>
+                チャールストン消防署は、森林地帯の端に位置するL字型の2階建て建物です。レスポンダーの交易所であることを示す看板があり、チャールストンF.D.のロゴが入った赤いプロテクトロンが配置されています。<br>
+                正面玄関の受付の前には<b>監督官のスタッシュ</b>があります。
+            </p>
+            <p>
+                受付の奥にはファイア・ブリーザーの知識試験と登録が行われる教室があります。建物内には試験対策に役立つメモが複数あります。ファイア・ブリーザー志望のティファニー・ブラントレーがこの部屋を歩き回って試験勉強をしているのを見かけることができます。
+            </p>
+            <p>
+                受付近くの廊下からガレージに行け、消防車やアーマー作業台・武器作業台のあるワークショップエリアがあります。<br>
+                施錠されたセキュリティゲート（ピックロック1）の奥に武器と弾薬箱があり、ターミナル（ハッカー1）でも開錠できます。
+            </p>
+            <p>
+                2階にはベンダーボット・マックと交易所があります。マスターターミナルがあるオフィスには知識試験のカンニングペーパーも。<br>
+                屋上には2階の階段からアクセスでき、南の道路を見渡せる即席の見張り台があります。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/charleston-fire-department/FO76_Charleston_Topdown_Charleston_Fire.png" alt="チャールストン消防署の俯瞰マップ">
+            <div class="image-caption">チャールストン消防署の俯瞰マップ</div>
+
+            <!-- ===== Notable Loot ===== -->
+            <h2>主なアイテム</h2>
+            <h3>ホロテープ・メモ</h3>
+            <ul>
+                <li><b>Anti-Scorched tactics</b> — メモ。教室エリアの大きな金属デスク上。</li>
+                <li><b>Asphyxiation and you!</b> — メモ。教室エリアの小さなデスク上。</li>
+                <li><b>Charleston Herald - Man vs. Machine</b> — メモ。2階のオフィスの机上。</li>
+                <li><b>Knowledge exam cheat sheet</b> — メモ。2階、マスターターミナル横の机上。</li>
+                <li><b>Fire Breathers' first aid guide</b> — メモ。ガレージのロッカー内。</li>
+                <li><b>Mine signaling quick reference</b> — メモ。1階ウェイトルームのロッカー内。</li>
+                <li><b>Madigan scouting report - Garrahan</b> — ホロテープ。2階オフィス、マスターターミナル横。</li>
+                <li><b>Overseer's log - Firehouse</b> — ホロテープ。正面ロビーの監督官のスタッシュ内。</li>
+            </ul>
+            <h3>その他</h3>
+            <ul>
+                <li><b>設計図コード（ライフル / ショットガン / サポート）</b> — マスターターミナルから取得。</li>
+                <li><b>Plan: Vault 76 jumpsuit</b> — 2階の棚。</li>
+                <li><b>Stealth Boy</b> — 屋上北西の木製見張り塔。</li>
+                <li>ウェイトルームの器具を解体すると約<b>80個の鉛</b>が取得可能。</li>
+            </ul>
+
+            <!-- ===== Holotapes & Notes ===== -->
+            <h2>発見できるホロテープ・メモ</h2>
+
+            <div class="holotape-box">
+                <b>🎙️ Overseer's log - Firehouse（監督官ログ — 消防署）</b><br>
+                <em>場所：正面ロビーの監督官のスタッシュ内</em><br><br>
+                <b>監督官：</b>監督官ログ。チャールストン消防署。<br>
+                自動化はかつてウェストバージニアの生活そのものでした。今ではそれだけが残っています。レスポンダーが設置したこのトレーニングプログラム——何人の生存者がこれをくぐり抜けたのでしょう。自ら進んで火の中に飛び込む。人を救う。それには特別な使命感が必要です。危険が変わっても、彼らはその精神を守り続けたようです。彼らは誰よりもスコーチと至近距離で戦い続けた。彼らが何を知っていたのか、私は見つけ出す必要があります。
+            </div>
+
+            <div class="holotape-box">
+                <b>🎙️ Madigan scouting report - Garrahan（マディガン偵察報告 — ガラハン）</b><br>
+                <em>場所：2階オフィス、マスターターミナル横の机上</em><br><br>
+                <b>メロディ：</b>録音してもいい？<br>
+                <b>マディガン：</b>あんたが隊長だろ、メロディ。俺の許可はいらないよ。<br>
+                <b>メロディ：</b>ふん。で、外の様子は？<br>
+                <b>マディガン：</b>生存者を何人か見つけた。俺を見た瞬間に銃を撃ってきた。他と同じだ。<br>
+                <b>メロディ：</b>いつも通りね。ブレア山より南にまともな頭の持ち主はいないみたい。他には？<br>
+                <b>マディガン：</b>灰は予想より早く積もってる。でも以前のチームの地図を見る限り、広がりは止まってるようだ。<br>
+                <b>メロディ：</b>つまりウェルチ、ベックリー、ルイスバーグとその周辺だけ失ったってこと。ささやかな幸運ね。<br>
+                <b>マディガン：</b>あ、それと本当にいいニュースがある。ガラハン鉱業だ。<br>
+                <b>メロディ：</b>「いいニュース」と「ガラハン鉱業」が一緒に聞けたのは久しぶりね。<br>
+                <b>マディガン：</b>だよな。でもあのエクスカベーターアーマー——会社は潰れたけど、あれは頑丈らしい。設計図もまだ本社にあるって噂だ。もしあれを作れるようになったら、パトロールがどれだけ変わるか想像してみろよ。<br>
+                <b>メロディ：</b>住民もそう簡単には撃ってこなくなるかもね。<br>
+                <b>マディガン：</b>そうだ。1日か2日くれたら、また行って——<br>
+                <b>メロディ：</b>ダメ。ガラハンは待てる。あんたは休め。モーガンタウンに行きなさい。エクスカベーターアーマーは逃げない。行って。
+            </div>
+
+            <div class="note-box">
+                <b>📄 Anti-Scorched tactics（対スコーチ戦術）</b><br>
+                <em>著者：クレア・ハドソン博士 ／ 場所：教室の大きな金属デスク上</em><br><br>
+                一つだけはっきりさせておきたい——スコーチは致命的です。存在そのものへの脅威です。もし彼らを倒す、あるいは少なくとも封じ込める方法を見つけられなければ、彼らが広がり、道にある全てを変異させるか破壊しないと考える理由はありません。<br><br>
+                スコーチビーストに遭遇した場合、全力で距離を取ってください。銃を持っていて閉所から撃てるなら理想的です——スコーチビーストは狭い場所に入れません。強い放射線を出すことも覚えておいてください。近接戦闘を避けられない場合はRad-Xの服用を。<br><br>
+                スコーチ化した人間はレイダーのように戦ってください——ただし致命的な疫病を持つレイダーです。感染リスクを下げるため距離を保つことが最重要です。カバーに入り、必要なら後退し、<b>絶対に近づかせないでください</b>。
+            </div>
+
+            <div class="note-box">
+                <b>📄 Asphyxiation and you!（窒息とあなた！）</b><br>
+                <em>提供：ガラハン鉱業 労働者保護チーム ／ 場所：教室の小さなデスク上</em><br><br>
+                呼吸はお好きですか？もちろん！みんな好きです！でも現代の鉱山には危険がいっぱい。<br><br>
+                <b>火災の場合：</b>呼吸器がない煙の中に？近くの布を水に浸して口を覆い、低い姿勢で安全な場所へ！<br>
+                <b>水害の場合：</b>酔っ払いのラリーおじさんと同じで、鉱山に水が出ると手に負えなくなります。異常な排水を見つけたら直ちに上司に報告！<br>
+                <b>ガスの場合：</b>ノックノック！誰？鉱山の中の謎のガス！謎のガスが……あああ！死んだ！——鉱山のガスは冗談じゃありません！異臭を感知したら<b>即座に退避</b>！
+            </div>
+
+            <div class="note-box">
+                <b>📄 Charleston Herald - Man vs. Machine（人間 vs. 機械！）</b><br>
+                <em>チャールストン・ヘラルド紙 2077年10月18日（月）ルイスバーグ ／ 場所：2階オフィスの机上</em><br><br>
+                最初のつるはしがアパラチアの鉱脈に食い込んで以来、ホーンライト・インダストリアルとガラハン鉱業は対立してきました。ホーンライトがブレア山の頂上にロックハウンドを建設すれば、ガラハンはエクスカベーター・パワーアーマーを発表して応戦。<br><br>
+                最新の一手はホーンライトから——地元のテック新興企業アトミック・マイニング・サービスと共同開発した完全自律型ロボット採掘ユニット「オートマイナー」の公開です。<br><br>
+                ガラハンのCEOヴィヴィアン・ガラハンは技術革新ではなく爆弾発言で応じました——<b>「Man Vs. Machine」チャレンジ</b>。24時間ぶっ通しの岩石粉砕対決で、ホーンライトのオートマイナーとガラハンのエクスカベーターアーマー装着鉱夫が直接対決します。
+            </div>
+
+            <div class="note-box">
+                <b>📄 Knowledge exam cheat sheet（知識試験カンニングペーパー）</b><br>
+                <em>場所：2階のオフィス、マスターターミナル横の机上</em><br><br>
+                グレッグ、これがファイア・ブリーザー知識試験の答えだ。<br>
+                俺たちは一緒にやるか、やらないかだ。<br>
+                これを他の奴に見つけられるなよ、いいか？<br><br>
+                Q1 - 3) できるだけ早く退避する<br>
+                Q2 - 2) 水で濡らした布<br>
+                Q3 - 1) 火傷を清潔な包帯で優しく巻く<br>
+                Q4 - 2) 直ちに撤退<br>
+                Q5 - 3) 浄水1、アッシュローズ2、ブライト2、スートフラワー2（2番だったらよかったのに）<br>
+                Q6 - 2) 後退して遠距離から銃で攻撃<br>
+                Q7 - こいつは……俺たちはよく分かってるだろ。だからここにいるんだ。
+            </div>
+
+            <div class="note-box">
+                <b>📄 Fire Breathers' first aid guide（ファイア・ブリーザー応急手当ガイド）</b><br>
+                <em>場所：ガレージのロッカー内</em><br><br>
+                冷湿布を当てる<br>
+                3. 火傷を清潔な包帯で優しく巻く<br><br>
+                <b>疾病治療薬：</b><br>
+                以下の材料を集め、コンロや調理鍋で調合してください。<br><br>
+                森林地帯の植物：煮沸水1、ファイアキャップ2、スナップテール2、ブラッドリーフ2<br>
+                灰の山の植物：浄水1、アッシュローズ2、ブライト2、スートフラワー2
+            </div>
+
+            <div class="note-box">
+                <b>📄 Mine signaling quick reference（鉱山信号クイックリファレンス）</b><br>
+                <em>場所：1階ウェイトルームのロッカー内</em><br><br>
+                <b>ファイア・ブリーザー 信号クイックリファレンス</b><br><br>
+                鉱山内やグループ行動中は会話を最小限に。信号ランプで以下を伝達：<br><br>
+                長1回 + 短1回 — 前進<br>
+                長2回 — その場で停止<br>
+                長1回 + 短1回 + 長1回 — 直ちに撤退<br>
+                連続点滅 — 危険<br><br>
+                以前鉱山で働いていた方へ：敵対的な生存者が旧式の信号を使って待ち伏せを仕掛ける事例が発生したため、信号を変更しました。旧式の信号を見たら、友軍からのものではない可能性があります。
+            </div>
+
+            <!-- ===== Terminal Entries ===== -->
+            <h2>ターミナルエントリ</h2>
+            <p>消防署にはファイア・ブリーザーのマスターターミナルとトレーニングシステムが設置されています。</p>
+
+            <img class="article-image" src="images/note_extracted/charleston-fire-department/FO76_Charleston_Fire_Department_Fire_Breathers_Master_Terminal.jpg" alt="ファイア・ブリーザー マスターターミナル">
+            <div class="image-caption">ファイア・ブリーザー マスターターミナル</div>
+
+            <h3>メッセージアーカイブ（メロディ・ラーキンからの通達）</h3>
+
+            <div class="note-box">
+                <b>📟 集合地点 — ラスティ・ピック</b><br>
+                <em>宛先：全現役ファイア・ブリーザーへ</em><br><br>
+                よし、皆の衆。上からのお達しだ——マディガンの帰りをこれ以上待つ時間はない。彼なしでやるしかない。<br><br>
+                明日、ビッグベンドに出撃する。集合地点はラスティ・ピック。装備を整えて0700までに移動準備完了のこと。<br><br>
+                今夜はよく眠れ。明日、俺たちはアパラチアを救う。<br><br>
+                &emsp;|| メロディ ||
+            </div>
+
+            <div class="note-box">
+                <b>📟 射撃場一時閉鎖</b><br>
+                <em>宛先：全現役ファイア・ブリーザーへ</em><br><br>
+                トンネル作業用の爆薬が現場にある間、射撃場は別途通知があるまで閉鎖する。<br>
+                再開したらメッセージを送る。それまでは、怒りを別の健全な方法で発散してくれ。<br><br>
+                &emsp;|| メロディ ||
+            </div>
+
+            <div class="note-box">
+                <b>📟 スコーチを止める</b><br>
+                <em>宛先：全現役ファイア・ブリーザーへ</em><br><br>
+                全ファイア・ブリーザーへ通達。<br>
+                本日1800に試験室で会議。例外なし。<br>
+                スコーチに対する作戦がある。<br>
+                アパラチアを救いたいなら、午後6時までに座席に尻をつけろ。<br><br>
+                &emsp;|| メロディ ||
+            </div>
+
+            <div class="note-box">
+                <b>📟 エクスカベーターアーマー</b><br>
+                <em>宛先：全現役ファイア・ブリーザーへ</em><br><br>
+                マディガンの最新の「遠足」から有力情報。<br>
+                ガラハン鉱業の「エクスカベーターアーマー」は——未来の採掘方法とはいかなかったが——実はとんでもなく頑丈な代物らしい。煙・火・ガスに耐性あり。しかもガラハンは製造技術を全て自社の地下室に保管してたとか。<br>
+                ブラムウェル方面に行くファイア・ブリーザーは、旧ガラハン本社に立ち寄って古いスーツがないか探してみてくれ。<br><br>
+                &emsp;|| メロディ ||
+            </div>
+
+            <div class="note-box">
+                <b>📟 AMS本部偵察志願者募集</b><br>
+                <em>宛先：全現役ファイア・ブリーザーへ</em><br><br>
+                スコーチに穴を開けやすくする技術の有力な手がかりがある。回収の志願者を募集する。<br>
+                ビッグベンドはまだ奴らの手中にあるため、山越えルートで向かう。その先はワトガの中心部——まともな大人の監視がなくなって暴走状態らしい。<br>
+                そのため、志願者には最高の火力を装備させる。興味のある者はマディガン副官に申し出ること。<br><br>
+                &emsp;|| メロディ ||
+            </div>
+
+            <div class="note-box">
+                <b>📟 ビッグベンド立入禁止</b><br>
+                <em>宛先：全現役ファイア・ブリーザーへ</em><br><br>
+                多くの者が聞いている通り、スコーチの流入源を特定した——ビッグベンド・トンネルだ。初期報告では、これまで遭遇した連中はほんの始まりに過ぎない。<br>
+                座して親指をしゃぶっているつもりはないが、計画なしに突入して命を無駄にするつもりもない。<br><br>
+                別途通知があるまで、全パトロールと偵察班はビッグベンド・トンネルとその周辺を避けること。そして<b>銃なしで署を出るな</b>。<br><br>
+                &emsp;|| メロディ ||
+            </div>
+
+            <!-- ===== Behind the Scenes ===== -->
+            <h2>舞台裏</h2>
+            <ul>
+                <li>ゲーム内の施設は架空ですが、現実のチャールストン消防局はウェストバージニア州チャールストンに8つのステーションを持っています。</li>
+                <li>正面の看板やロゴは、サウスカロライナ州ノースチャールストン消防署の現代のデザインに似ています。</li>
+            </ul>
+
+            <!-- ===== Appearances ===== -->
+            <h2>登場作品</h2>
+            <p>チャールストン消防署は『Fallout 76』にのみ登場します。</p>
+
+            <!-- ===== Gallery ===== -->
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-fire-department/F76_Charleston_Fire_Department.png" alt="消防署全景">
+                        <div class="caption">消防署全景</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-fire-department/FO76_Charleston_Fire_Department_Fire_Main_hall.jpg" alt="メインホール">
+                        <div class="caption">メインホール</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-fire-department/FO76_161020_Charleston_fire_logo.png" alt="消防署ロゴ">
+                        <div class="caption">壁のロゴ</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-fire-department/FO76_161020_Fire_protectron.png" alt="消防プロテクトロン">
+                        <div class="caption">消防プロテクトロン</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-fire-department/FO76_FO76_Charleston_Fire_Department_Fire_Anti-Scorched_tactics.jpg" alt="Anti-Scorched tactics">
+                        <div class="caption">Anti-Scorched tactics</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/note_extracted/charleston-fire-department/FO76_Charleston_Fire_Department_Fire_Asphyxiation_and_you.jpg" alt="Asphyxiation and you!">
+                        <div class="caption">Asphyxiation and you!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== Kanso ===== -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                チャールストン消防署は、Fallout 76の序盤で最も印象に残るロケーションの一つです。<br><br>
+                メロディ・ラーキンのターミナルメッセージを読むと、ファイア・ブリーザーズがどう活動し、どう戦い、最後にどう覚悟を決めたかが見えてきます。「明日、ビッグベンドに出撃する…今夜はよく眠れ。明日、俺たちはアパラチアを救う」——彼女がこのメッセージを送った時、マディガンはまだ帰っていませんでした。それでも待たずに出撃を決めた。<br><br>
+                カンニングペーパーの最後の答え「Q7 — こいつは……俺たちはよく分かってるだろ。だからここにいるんだ」も重い。Q7の問題は「スコーチに感染した幼なじみを捕まえた。どうする？」で、正解は「できるだけ慈悲深く命を絶つ」。書いた本人もグレッグも、その答を知っていたからこそファイア・ブリーザーズに志願した。<br><br>
+                ここに来ると、プレイヤーは消えた人々の遺した教材で試験を受け、消えた人々の残したプログラムで合格し、消えた人々の名前でファイア・ブリーザーズに登録されます。火の中に飛び込む覚悟をした人間は全員いなくなったけれど、その精神を引き継ぐ新人を、赤いプロテクトロンが今も待っています。
+            </div>
+
+            <!-- ===== Footer ===== -->
+            <div
+                style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Charleston_Fire_Department" target="_blank" rel="noopener">Charleston Fire Department</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank"
+                        rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        const _commentArticleId = 'note_charleston_fire_department';
+        const _commentArticleName = 'Charleston Fire Department';
+        const _commentArticleUrl = 'charleston-fire-department.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

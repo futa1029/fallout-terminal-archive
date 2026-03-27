@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Kanawha County Cemetery | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/kanawha-county-cemetery.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Kanawha County Cemetery | Overseer Mohi's Terminal"><meta property="og:description" content="カナワ郡墓地。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/kanawha-county-cemetery.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; }
+        li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.6em; }
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Kanawha County Cemetery</h3><img src="images/note_extracted/kanawha-county-cemetery/img_main.png" alt="kanawha-county-cemetery"><img src="images/note_extracted/kanawha-county-cemetery/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>墓地</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <main class="content">
+            
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_kanawha_cemetery" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Kanawha County Cemetery<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">カナワ郡墓地</span></h1>
+
+            <h2>概要</h2>
+<p><b>カナワ郡墓地</b>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の<a href="the-forest.html" class="auto-link">森林地帯</a>にあるロケーションです。</p>
+
+            <h2>背景</h2>
+<p><a href="great-war.html" class="auto-link">大戦</a>後のある時期、カナワ教会の信徒たちは集団自殺協定の一環としてネズミ駆除剤を服毒しました。<br>
+時期は不明ですが、<a href="cult-of-the-mothman.html" class="auto-link">モスマン教団</a>が霊廟近くの大きな小屋に小さな祠を作り、教会内にトーテムを建てました。</p>
+<p>それから2103年まで、墓地には昆虫しか住んでいませんでしたが、「翼ある者の信徒たち」がこの地域に再び姿を現し、ここに定住しました。<br>
+彼らはこれを墓地への「帰還」と考えており、以前この場所で活動していたことを匂わせています。</p>
+<p>彼らの帰還の動機の一つは霊廟への関心でした。<br>
+カルティストたちは、封印された墓に昆虫学者<b>ウォレス博士</b>の著作が眠っているのではないかと期待していたのです。<br>
+博士の遺体はそこに納められていました。</p>
+<p>その後、礼拝堂はカルティストの活動の温床となり、人身御供も行われるようになりました。<br>
+2階の奥の部屋には串刺しにされた遺体が証拠として残されています。<br>
+夜になると、最大10人のカルティストが教会に集まり礼拝を行い、11人目のNPCが前方に立って儀式を監督します。<br>
+さらに墓地のパトロールを続けるカルティストもいます。<br>
+数分ごとに教会内のカルティストが一斉にアニメーションを変え、一部が突然死亡します。<br>
+これは夜明けまで数分ごとに繰り返され、生き残ったNPCは墓地に向かって退出します。</p>
+<p>時折、夜に<a href="mothman.html" class="auto-link">モスマン</a>が教会の止まり木に出現し、カルティストたちがその下に集まって崇拝します。<br>
+屋根の上にも1〜2人が現れ、モスマンに向かって祈りを捧げることがあります。</p>
+
+            <h2>レイアウト</h2>
+<p>カナワ教会は、カナワ郡墓地の南側に目立つように建っています。<br>
+駐車場から丘を上った場所にあり、墓地を見渡しています。<br>
+カルティストたちは墓地最大の木の根を教会まで導き、蔦で覆い尽くしました。<br>
+天然素材で構造を強化し、宗教儀式でモスマンを崇拝する拠点を築いています。</p>
+<p>内部の壁には神の彫像が並び、祭壇の上には巨大なモスマンのアイコンが建てられています。<br>
+礼拝席には、そこで命を落とした信者の骸骨がまだ残っています。<br>
+祭壇の下の低いベンチには10個のグラスがネズミ駆除剤の容器と並んで置かれています。</p>
+<p>2階には祠が隠されており、建物の頂上へのアクセスが可能です。<br>
+奥の部屋は、そびえ立つトーテムの前に皮を剥がれ串刺しにされた遺体が中心に飾られています。<br>
+この小さな部屋にはカメラとスティムパックがあります。<br>
+梁を伝っていくと尖塔にアクセスでき、牧師の祭服が弾薬箱の横に置かれています。<br>
+尖塔の階段は2階の通路から直接たどり着けず、木の成長により塞がれているため、頂上からのみアクセスできます。</p>
+<p>広々とした墓地のもう一つの注目点は、中央パビリオンのウォレス博士の墓です。<br>
+スコーチ疫病以前にこの霊廟に住んでいた人物がいたようで、2102年には調理台と寝袋が置かれていました。<br>
+墓にはファーストエイド、フットロッカー、スーツケースもあります。</p>
+<p>北の小屋はロウソクとモスマンの卵に囲まれた別の祠に改造されており、門の近くには管理事務所があります。<br>
+敷地の東端にある用具小屋にはセメント袋5個、肥料袋3個、ペンキ缶3個、大型工具箱とシャベルが入っています。<br>
+このエリアにはすすの花、ファイアキャップ、シャクナゲ、テイトーの採取ポイントもあります。</p>
+
+            <h2>主なアイテム</h2>
+<ul>
+<li><b>手紙</b>（メモ、Wastelanders） — 教会2階の机の上</li>
+<li><b>説教のメモ</b>（メモ、Wastelanders） — 教会内の倒れた説教台の上</li>
+<li><b>カナワ霊廟の鍵</b>（Wastelanders） — 教会2階の机、手紙の隣。霊廟は墓地の中央にあります</li>
+<li><b>雑誌</b>（ランダム） — 教会内の礼拝席の上</li>
+</ul>
+
+            <h2>発見できるメモ</h2>
+
+<h3>手紙（Wastelanders）</h3>
+<div class="note-box">
+<b>📄 Letter</b><br>
+<em>場所：教会2階の奥の部屋、角の机の上</em><br><br>
+ローランド、<br>
+一行はウォレス博士を探してカナワ教会に戻ってきた。<br>
+墓地の霊廟に彼の遺骨が収められていると考えている。<br>
+彼はこの地域の蛾を研究しながら論文を書いた有名な昆虫学者で、我々のすべての疑問に対する答えを持っているかもしれない。<br>
+彼の論文を見つける試みは今まで失敗してきたが、遺品と一緒に埋葬されている可能性もある。<br>
+望み薄なのは分かっているが、それが鍵になるかもしれない。<br><br>
+我々の説教に一度来て、教会を見てほしい。<br>
+敷地内には卵の備蓄もある。かき集めて教会に運んできたんだ。<b>あの方</b>が来てくれることを願って。<br>
+あなたをゲストとして迎えることで、我々の活動の幅が広がるだろう。
+</div>
+
+<h3>説教のメモ（Wastelanders）</h3>
+<div class="note-box">
+<b>📄 Sermon notes</b><br>
+<em>場所：教会内の祠近く、小さな説教台の上</em><br><br>
+聞きなさい、我が信徒たちよ。<br>
+私はあなたがたを信じる者ではなく、従う者と呼ぶ。<br>
+我々はもはや信じる者ではなく、この新しい始まりにおいて従う者なのだ。<br>
+目を開きなさい。耳を開きなさい。そして心を開きなさい。<br><br>
+アパラチアのすべての新たな住人たちから聞いたことがないのか？<br>
+目撃は本物であり、遭遇は真実なのだ。<br><br>
+我々は森の恵みを捧げる。<br>
+我々が築き、広がるにつれて、あの方に近づいていく。<br>
+人間の災いから離れて。上を見よ。<br><br>
+我々は成長する<br>
+あの方に向かって広がる。<br><br>
+あの方はそこにいる。あの方は来る。そして我々はそこにいるだろう。
+</div>
+
+            <h2>補足</h2>
+<ul>
+<li>カルティストたちはウォレス博士の墓を暴き、アパラチア地方の蛾に関する博士論文を手に入れようとしました。<br>
+著書『ウォレスの論文について』の中で、啓発派の著者「髭の賢者マーティン」は、この考えを完全に見当違いだと批判しています。<br>
+基本的な哲学的・方法論的な不同意に加え、ウォレスの博士論文が著者の墓に封印されていると考える理由はなく、むしろ彼を認定した教育機関の図書館から探すべきだと指摘しています。
+<ul><li>メモ「手紙」には、論文を探す過去の試みが言及されており、著者は論文が墓にあるのは「望み薄」だと考えていました。</li></ul></li>
+<li>教会の奥の部屋では、周囲の野生動物の環境音が劇的に低くなり、独特の環境音が聞こえてきます。</li>
+</ul>
+
+            <h2>登場作品</h2>
+<p>カナワ郡墓地はFallout 76にのみ登場します。</p>
+
+            <div class="gallery-section">
+            <h2>ギャラリー</h2>
+<div class="gallery-grid">
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_church.png" alt="教会"><div class="caption">カナワ教会</div></div>
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_dusk.png" alt="夕暮れの墓地"><div class="caption">夕暮れの墓地</div></div>
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_congregation.png" alt="カルティストの集会"><div class="caption">カルティストの集会</div></div>
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_mothman_perch.png" alt="モスマンの止まり木"><div class="caption">モスマンの止まり木</div></div>
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_sacrifice.png" alt="生贄"><div class="caption">奥の部屋の生贄</div></div>
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_shrine.png" alt="祠"><div class="caption">小屋の祠</div></div>
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_suicide.png" alt="集団自殺の痕跡"><div class="caption">集団自殺の痕跡</div></div>
+<div class="gallery-item"><img src="images/note_extracted/kanawha-county-cemetery/img_view2.png" alt="墓地の眺め"><div class="caption">墓地の眺め</div></div>
+</div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                カナワ郡墓地は、Fallout 76で最も不気味で魅力的なロケーションの一つです。<br>
+昼間に訪れても教会に蔓延する蔦と暗い雰囲気に圧倒されますが、真の体験は夜に訪れることで得られます。<br><br>
+夜になると最大10人のカルティストが教会に集まり、不気味な礼拝を始めます。<br>
+数分ごとに一部が突然倒れていく様は、見ているだけで背筋が凍ります。<br>
+そして時折、教会の尖塔にモスマン本体が出現する——その瞬間の衝撃は筆舌に尽くしがたいものがあります。<br><br>
+重層的なロアも見事です。<br>
+戦前の信徒たちの集団自殺、ウォレス博士の論文を巡るカルティストの狂信、そしてWastelandersで追加された説教メモに至るまで。<br>
+「我々は成長する。あの方に向かって広がる」——この一節に、モスマン教団の狂気と、不思議な美しさが同居しています。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Kanawha_County_Cemetery" target="_blank" rel="noopener">Kanawha County Cemetery</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="拡大画像"></div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_kanawha_cemetery'; const _commentArticleName = 'Kanawha County Cemetery'; const _commentArticleUrl = 'kanawha-county-cemetery.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,4453 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN: Draft記事一覧 | Overseer Mohi's Terminal</title>
+    <meta name="description" content="Falloutシリーズのロア（世界観・設定）を日本語で読める記事アーカイブ。人物・派閥・クリーチャー・アイテム・場所など240件以上の記事をカテゴリ別に収録。">
+    <meta name="keywords" content="Fallout, ロア, 考察, 日本語, 攻略, Fallout 76, Fallout 4, Fallout 3">
+    <meta name="author" content="MOHI">
+        <!-- OGP -->
+                                <!-- Twitter Card -->
+                        <!-- JSON-LD 構造化データ -->
+    
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- フォントをpreconnectで事前接続しdisplay=swapで非ブロッキング読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --term-green: #33ff33;
+            --term-bg: #000;
+            --term-dim: #00aa00;
+            --term-highlight: rgba(51, 255, 51, 0.2);
+        }
+
+        body {
+            background-color: var(--term-bg);
+            color: var(--term-green);
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            text-shadow: 0 0 5px var(--term-dim);
+            padding: 40px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* CRT Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--term-green);
+            padding-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .header .sub {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        .terminal-screen {
+            flex: 1;
+            overflow-y: auto;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            padding-right: 10px;
+        }
+
+        /* Scrollbar styling */
+        .terminal-screen::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .terminal-screen::-webkit-scrollbar-track {
+            background: #111;
+        }
+
+        .terminal-screen::-webkit-scrollbar-thumb {
+            background: var(--term-dim);
+            border: 1px solid var(--term-green);
+        }
+
+        .line {
+            margin-bottom: 10px;
+        }
+
+        .cursor::after {
+            content: "█";
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        /* Controls Area */
+        .controls {
+            margin-bottom: 20px;
+            border: 1px solid var(--term-dim);
+            padding: 15px;
+            font-size: 0.9em;
+        }
+
+        .control-group {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .control-label {
+            min-width: 100px;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: var(--term-dim);
+            padding: 2px 8px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.1s;
+            position: relative;
+        }
+
+        .btn:hover {
+            color: var(--term-green);
+            text-shadow: 0 0 8px var(--term-green);
+            text-decoration: underline;
+        }
+
+        /* Improved Active State */
+        .btn.active {
+            color: var(--term-green);
+            font-weight: bold;
+            text-shadow: 0 0 5px var(--term-green);
+            border: 1px solid var(--term-green);
+            background: rgba(51, 255, 51, 0.1);
+        }
+
+        .btn.active::before {
+            content: "[ ";
+        }
+
+        .btn.active::after {
+            content: " ]";
+        }
+
+        /* Search Input */
+        .search-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--term-dim);
+            color: var(--term-green);
+            font-family: inherit;
+            font-size: 1.1em;
+            width: 200px;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-bottom-color: var(--term-green);
+            box-shadow: 0 1px 0 var(--term-green);
+        }
+
+        /* Menu Items */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--term-green);
+            text-decoration: none;
+            padding: 10px 5px;
+            border-bottom: 1px dashed #004400;
+            transition: all 0.2s;
+        }
+
+        .menu-item:hover {
+            background: var(--term-highlight);
+            border-left: 5px solid var(--term-green);
+            padding-left: 10px;
+        }
+
+        .item-meta {
+            font-size: 0.8em;
+            opacity: 0.7;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .badge {
+            border: 1px solid var(--term-dim);
+            padding: 0 4px;
+            border-radius: 2px;
+        }
+
+        /* New Article Badge */
+        .new-badge {
+            background-color: #ffce07;
+            color: #000;
+            font-size: 0.8em;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 8px;
+            animation: pulse-new 2s infinite;
+            vertical-align: middle;
+            display: inline-block;
+        }
+
+        @keyframes pulse-new {
+            0% {
+                opacity: 1;
+                box-shadow: 0 0 5px #ffce07;
+            }
+
+            50% {
+                opacity: 0.6;
+                box-shadow: 0 0 12px #ffce07;
+            }
+
+            100% {
+                opacity: 1;
+                box-shadow: 0 0 5px #ffce07;
+            }
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            opacity: 0.6;
+        }
+
+        .back-to-main {
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            color: var(--term-green);
+            text-decoration: none;
+            border: 1px solid var(--term-green);
+            padding: 5px 10px;
+            font-size: 0.9em;
+            background: rgba(51, 255, 51, 0.1);
+            transition: all 0.2s;
+        }
+
+        .back-to-main:hover {
+            background: var(--term-green);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                height: auto;
+                overflow: auto;
+                padding: 10px;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            body::before {
+                pointer-events: none;
+            }
+
+            .terminal-screen {
+                padding-right: 5px;
+                overflow-y: visible;
+                flex: none;
+            }
+
+            .control-group {
+                gap: 12px;
+            }
+
+            .btn {
+                padding: 12px 16px;
+                margin-bottom: 5px;
+                font-size: 1rem;
+            }
+
+            .search-input {
+                width: 100%;
+                font-size: 16px;
+                padding: 10px;
+                margin-top: 5px;
+            }
+
+            .control-label {
+                display: block;
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .menu-item {
+                padding: 15px 5px;
+                font-size: 1.1em;
+            }
+
+            .back-to-main {
+                position: static;
+                display: inline-block;
+                margin-bottom: 15px;
+            }
+
+            .header {
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+            }
+        }
+
+        /* ===== Card Grid View ===== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .card-item {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 4px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--term-green);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-item:hover {
+            border-color: var(--term-green);
+            box-shadow: 0 0 15px rgba(51, 255, 51, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .card-thumb {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            display: block;
+            background: #0a0a0a;
+        }
+
+        .card-thumb-placeholder {
+            width: 100%;
+            height: 120px;
+            background: #0a0a0a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 2em;
+        }
+
+        .card-body {
+            padding: 10px;
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 0.85em;
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+
+        .card-meta {
+            font-size: 0.7em;
+            opacity: 0.6;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .card-meta .badge {
+            font-size: 0.9em;
+        }
+
+        /* List view thumbnails */
+        .menu-item .list-thumb {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 3px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            background: #111;
+        }
+
+        .menu-item .list-thumb-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 3px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .menu-item .item-left {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .menu-item .item-name {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* ===== カテゴリ別カラーボーダー ===== */
+        :root {
+            --cat-person: #00aaff;
+            --cat-creature: #ff8800;
+            --cat-faction: #00ccff;
+            --cat-location: #ffce07;
+            --cat-weapon: #ff4444;
+            --cat-item: #ff66cc;
+            --cat-plant: #aaff00;
+            --cat-system: #aa88ff;
+            --cat-default: #006600;
+        }
+
+        .menu-item[data-cat="人物"] {
+            border-left: 4px solid var(--cat-person);
+        }
+
+        .menu-item[data-cat="クリーチャー"] {
+            border-left: 4px solid var(--cat-creature);
+        }
+
+        .menu-item[data-cat="勢力"] {
+            border-left: 4px solid var(--cat-faction);
+        }
+
+        .menu-item[data-cat="場所"] {
+            border-left: 4px solid var(--cat-location);
+        }
+
+        .menu-item[data-cat="武器"] {
+            border-left: 4px solid var(--cat-weapon);
+        }
+
+        .menu-item[data-cat="アイテム"] {
+            border-left: 4px solid var(--cat-item);
+        }
+
+        .menu-item[data-cat="植物"] {
+            border-left: 4px solid var(--cat-plant);
+        }
+
+        .menu-item[data-cat="システム"] {
+            border-left: 4px solid var(--cat-system);
+        }
+
+        .menu-item[data-cat] {
+            padding-left: 10px;
+        }
+
+        .card-item[data-cat="人物"] {
+            border-top: 3px solid var(--cat-person);
+        }
+
+        .card-item[data-cat="クリーチャー"] {
+            border-top: 3px solid var(--cat-creature);
+        }
+
+        .card-item[data-cat="勢力"] {
+            border-top: 3px solid var(--cat-faction);
+        }
+
+        .card-item[data-cat="場所"] {
+            border-top: 3px solid var(--cat-location);
+        }
+
+        .card-item[data-cat="武器"] {
+            border-top: 3px solid var(--cat-weapon);
+        }
+
+        .card-item[data-cat="アイテム"] {
+            border-top: 3px solid var(--cat-item);
+        }
+
+        .card-item[data-cat="植物"] {
+            border-top: 3px solid var(--cat-plant);
+        }
+
+        .card-item[data-cat="システム"] {
+            border-top: 3px solid var(--cat-system);
+        }
+
+        @media (max-width: 768px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .card-thumb,
+            .card-thumb-placeholder {
+                height: 90px;
+            }
+
+            .card-title {
+                font-size: 0.8em;
+            }
+
+            .card-body {
+                padding: 8px;
+            }
+        }
+    </style>
+    <meta name="robots" content="noindex, nofollow">
+</head>
+
+<body>
+
+    <div class="header" style="position: relative;">
+        <a href="index.html" class="back-to-main">
+            < BACK TO MAIN</a>
+                <h1>FALLOUT ロア・アーカイブ</h1>
+                <div class="sub">ENTER PASSWORD NOW</div>
+                <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                    <a href="about.html"
+                        style="color: var(--term-green); text-decoration: none; border: 1px solid var(--term-green); padding: 2px 10px; font-size: 0.8em; transition: 0.3s;"
+                        onmouseover="this.style.background='var(--term-green)'; this.style.color='#000'"
+                        onmouseout="this.style.background='transparent'; this.style.color='var(--term-green)'">>
+                        ABOUT</a>
+                    <a href="rules.html"
+                        style="color: var(--term-green); text-decoration: none; border: 1px solid var(--term-green); padding: 2px 10px; font-size: 0.8em; transition: 0.3s;"
+                        onmouseover="this.style.background='var(--term-green)'; this.style.color='#000'"
+                        onmouseout="this.style.background='transparent'; this.style.color='var(--term-green)'">>
+                        RULES</a>
+
+                    <a href="season.html"
+                        style="color: var(--term-green); text-decoration: none; border: 1px solid var(--term-green); padding: 2px 10px; font-size: 0.8em; transition: 0.3s;"
+                        onmouseover="this.style.background='var(--term-green)'; this.style.color='#000'"
+                        onmouseout="this.style.background='transparent'; this.style.color='var(--term-green)'">>
+                        SEASON</a>
+                </div>
+    </div>
+
+    <div class="terminal-screen">
+        <div class="line">> WELCOME TO OVERSEER MOHI'S PRIVATE TERMINAL.</div>
+        <div class="line">> UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</div>
+        <div class="line">> ACCESSING DATABASE... OK.</div>
+        <br>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="control-group">
+                <span class="control-label">SORT:</span>
+                <button class="btn active" data-type="sort" data-value="date" onclick="setSort('date')">DATE
+                    (日付)</button>
+                <button class="btn" data-type="sort" data-value="name" onclick="setSort('name')">NAME (名前)</button>
+            </div>
+            <div class="control-group">
+                <span class="control-label">CATEGORY:</span>
+                <button class="btn active" data-type="category" data-value="all"
+                    onclick="setFilter('category', 'all')">ALL</button>
+                <button class="btn" data-type="category" data-value="人物" onclick="setFilter('category', '人物')">PERSON
+                    (人物)</button>
+                <button class="btn" data-type="category" data-value="クリーチャー"
+                    onclick="setFilter('category', 'クリーチャー')">CREATURE (生物)</button>
+                <button class="btn" data-type="category" data-value="勢力" onclick="setFilter('category', '勢力')">FACTION
+                    (勢力)</button>
+                <button class="btn" data-type="category" data-value="場所" onclick="setFilter('category', '場所')">LOCATION
+                    (場所)</button>
+                <button class="btn" data-type="category" data-value="武器" onclick="setFilter('category', '武器')">WEAPON
+                    (武器)</button>
+                <button class="btn" data-type="category" data-value="アイテム" onclick="setFilter('category', 'アイテム')">ITEM
+                    (道具)</button>
+                <button class="btn" data-type="category" data-value="植物" onclick="setFilter('category', '植物')">PLANT
+                    (植物)</button>
+            </div>
+            <div class="control-group">
+                <span class="control-label">APPEARANCE:</span>
+                <button class="btn active" data-type="appearance" data-value="all"
+                    onclick="setFilter('appearance', 'all')">ALL</button>
+                <button class="btn" data-type="appearance" data-value="Fallout"
+                    onclick="setFilter('appearance', 'Fallout')">FO1</button>
+                <button class="btn" data-type="appearance" data-value="Fallout 2"
+                    onclick="setFilter('appearance', 'Fallout 2')">FO2</button>
+                <button class="btn" data-type="appearance" data-value="Fallout 3"
+                    onclick="setFilter('appearance', 'Fallout 3')">FO3</button>
+                <button class="btn" data-type="appearance" data-value="Fallout 4"
+                    onclick="setFilter('appearance', 'Fallout 4')">FO4</button>
+                <button class="btn" data-type="appearance" data-value="Fallout 76"
+                    onclick="setFilter('appearance', 'Fallout 76')">FO76</button>
+                <button class="btn" data-type="appearance" data-value="Fallout: New Vegas"
+                    onclick="setFilter('appearance', 'Fallout: New Vegas')">FO:NV</button>
+                <button class="btn" data-type="appearance" data-value="Fallout TV"
+                    onclick="setFilter('appearance', 'Fallout TV')">TV SHOW</button>
+            </div>
+            <div class="control-group">
+                <span class="control-label">VIEW:</span>
+                <button class="btn active" data-type="view" data-value="list" onclick="setView('list')">LIST</button>
+                <button class="btn" data-type="view" data-value="card" onclick="setView('card')">CARD</button>
+            </div>
+            <div class="control-group">
+                <span class="control-label">SEARCH:</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="TYPE TO SEARCH..."
+                    oninput="debouncedRender()">
+            </div>
+        </div>
+
+        <!-- 最新コメントパネル -->
+        <div id="recent-comments-panel"
+            style="margin: 10px 0 4px 0; border: 1px solid var(--term-dim); border-radius: 4px; overflow: hidden;">
+            <div id="recent-comments-header" onclick="toggleRecentComments()"
+                style="padding: 6px 12px; background: rgba(0,170,0,0.12); cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: 'Share Tech Mono', monospace; font-size: 0.82em; color: var(--term-green);">
+                <span>&gt; RECENT COMMENTS</span>
+                <span id="recent-comments-toggle">▼</span>
+            </div>
+            <div id="recent-comments-body" style="padding: 8px 12px; display: none;">
+                <div id="recent-comments-list"
+                    style="font-family: 'Noto Sans JP', sans-serif; font-size: 0.82em; color: var(--term-green);">
+                    LOADING...</div>
+            </div>
+        </div>
+
+        <div class="line">----------------------------------------</div>
+        <div class="line">SEARCH RESULTS: <span id="result-count">0</span> ENTRIES FOUND</div>
+        <div class="line">----------------------------------------</div>
+        <br>
+
+        <div id="entries-container">
+            <!-- Entries will be injected here by JS -->
+        </div>
+
+        <br>
+        <div class="line cursor">> AWAITING INPUT</div>
+    </div>
+
+    <div class="footer">
+        OVERSEER MOHI'S TERMINAL // ADMIN: DRAFT ARTICLES
+    </div>
+
+    
+    <script>
+    // 管理者認証: URLパラメータ ?key=mohi-admin でアクセス
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const validKey = 'mohi-admin';
+        if (params.get('key') !== validKey) {
+            document.body.innerHTML = `
+                <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#0a0a0a;color:#4af626;font-family:'Share Tech Mono',monospace;">
+                    <div style="text-align:center;">
+                        <h1 style="font-size:2em;margin-bottom:10px;">> ACCESS DENIED</h1>
+                        <p style="color:#888;">管理者用ページです。正しいアクセスキーが必要です。</p>
+                        <p style="margin-top:20px;font-size:0.8em;color:#555;">admin-drafts.html?key=YOUR_KEY</p>
+                        <a href="lore.html" style="display:inline-block;margin-top:20px;color:#4af626;border:1px solid #4af626;padding:8px 20px;text-decoration:none;border-radius:4px;">< BACK TO TERMINAL</a>
+                    </div>
+                </div>`;
+            throw new Error('Unauthorized');
+        }
+    })();
+    </script>
+    <script>
+        const loreEntries = [
+            {
+                name: "アーロン・キンバル",
+                yomi: "あーろん・きんばる",
+                url: "kimball.html",
+                category: "人物",
+                appearance: ["Fallout: New Vegas"],
+                date: "2026-02-19"
+            },
+            {
+                name: "レイダー (Fallout 76)",
+                yomi: "れいだー",
+                url: "raiders_76.html",
+                category: "勢力",
+                appearance: ["Fallout 76"],
+                date: "2026-02-19"
+            },
+            {
+                name: "リー・モルデイヴァー",
+                yomi: "りー・もるでいゔぁー",
+                url: "lee_moldaver.html",
+                category: "人物",
+                appearance: ["Fallout TV"],
+                date: "2026-02-19"
+            },
+            {
+                name: "Vaultの居住者",
+                yomi: "ぼるとのきょじゅうしゃ",
+                url: "vault_dweller_lore.html",
+                category: "人物",
+                appearance: ["Fallout"],
+                date: "2026-02-18"
+            },
+            {
+                name: "回収されたアサルトロン頭部",
+                yomi: "かいしゅうされたあさるとろんとうぶ",
+                url: "assaultron_head.html",
+                category: "武器",
+                appearance: ["Fallout 4","Fallout 76"],
+                date: "2026-02-20"
+            },
+            {
+                name: "ブライト",
+                yomi: "ぶらいと",
+                url: "blight.html",
+                category: "植物",
+                appearance: ["Fallout 76"],
+                date: "2026-02-20"
+            },
+            {
+                name: "タンディ",
+                yomi: "たんでぃ",
+                url: "tandi.html",
+                category: "人物",
+                appearance: ["Fallout","Fallout 2"],
+                date: "2026-02-20"
+            },
+            {
+                name: "ミスター・プライズボット",
+                yomi: "みすたー・ぷらいずぼっと",
+                url: "prize_bot.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-02-20"
+            },
+            {
+                name: "新カリフォルニア共和国 (NCR)",
+                yomi: "しんかりふぉるにあきょうわこく",
+                url: "ncr.html",
+                category: "勢力",
+                appearance: ["Fallout","Fallout 2","Fallout: New Vegas","Fallout TV"],
+                date: "2026-02-20"
+            },
+            {
+                name: "バッファロー・ゴードの種",
+                yomi: "ばっふぁろー・ごーどのたね",
+                url: "buffalo-gourd-seed.html",
+                category: "植物",
+                appearance: ["Fallout: New Vegas"],
+                date: "2026-02-21"
+            },
+            {
+                name: "アーマー・エース",
+                yomi: "あーまー・えーす",
+                url: "armor-ace.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-02-22"
+            },
+            {
+                name: "Vault-Tec Industries",
+                yomi: "ぼるとてっく・こーぽれーしょん",
+                url: "vault_tec.html",
+                category: "勢力",
+                appearance: ["Fallout","Fallout 2","Fallout 3","Fallout 4","Fallout 76","Fallout: New Vegas","Fallout TV"],
+                date: "2026-02-23"
+            },
+            {
+                name: "ビリングス農場",
+                yomi: "びりんぐすのうじょう",
+                url: "billings-homestead.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-02-23"
+            },
+            {
+                name: "ペット (Fallout 76)",
+                yomi: "ぺっと",
+                url: "fallout-76-pets.html",
+                category: "システム",
+                appearance: ["Fallout 76"],
+                date: "2026-02-24"
+            },
+            {
+                name: "ブラッドリーフ",
+                yomi: "ぶらっどりーふ",
+                url: "bloodleaf.html",
+                category: "植物",
+                appearance: ["Fallout 76"],
+                date: "2026-02-24"
+            },
+            {
+                name: "シングルアクション・リボルバー",
+                yomi: "しんぐるあくしょん・りぼるばー",
+                url: "single-action-revolver.html",
+                category: "武器",
+                appearance: ["Fallout 76","Fallout TV"],
+                date: "2026-02-25"
+            },
+            {
+                name: "キャベツ",
+                yomi: "きゃべつ",
+                url: "cabbage.html",
+                category: "植物",
+                appearance: ["Fallout 2"],
+                date: "2026-02-25"
+            },
+            {
+                name: "Vault",
+                yomi: "ぼると",
+                url: "vault.html",
+                category: "ロケーション",
+                appearance: ["Fallout","Fallout 2","Fallout 3","Fallout 4","Fallout 76","Fallout: New Vegas","Fallout TV"],
+                date: "2026-02-26"
+            },
+            {
+                name: "カタラックス",
+                yomi: "かたらっくす",
+                url: "catarax.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-02-26"
+            },
+            {
+                name: "ルーシー・マクレーン",
+                yomi: "るーしー・まくりーん",
+                url: "lucy-maclean.html",
+                category: "人物",
+                appearance: ["Fallout TV"],
+                date: "2026-02-26"
+            },
+            {
+                name: "複葉機の墜落現場（アンカー農場）",
+                yomi: "ふくようきのついらくげんば",
+                url: "biplane-crash-anchor-farm.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-02-27"
+            },
+            {
+                name: "バードハウス・リッジ",
+                yomi: "ばーどはうす・りっじ",
+                url: "birdhouse-ridge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-02-27"
+            },
+            {
+                name: "野鳥観察者のプラットフォーム",
+                yomi: "やちょうかんさつしゃのぷらっとふぉーむ",
+                url: "birdwatchers-platform.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-02-27"
+            },
+            {
+                name: "ブラックマウンテン兵器工場",
+                yomi: "ぶらっくまうんてんへいきこうじょう",
+                url: "black-mountain-ordnance-works.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-02-28"
+            },
+            {
+                name: "ダフネ",
+                yomi: "だふね",
+                url: "daphne.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-02-28"
+            },
+            {
+                name: "チャールストン駅",
+                yomi: "ちゃーるすとんえき",
+                url: "charleston-station.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "チャールストン操車場",
+                yomi: "ちゃーるすとんそうしゃじょう",
+                url: "charleston-trainyard.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "ファースト・フレンズ教会",
+                yomi: "ふぁーすとふれんずきょうかい",
+                url: "first-friends-church.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "ホーンライト・インダストリアル本社",
+                yomi: "ほーんらいと・いんだすとりあるほんしゃ",
+                url: "hornwright-industrial-headquarters.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "自由の鐘",
+                yomi: "じゆうのかね",
+                url: "liberty-bell.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "スロッカムズ・ジョー（チャールストン店）",
+                yomi: "すろっかむず・じょー",
+                url: "slocums-joe-charleston.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "サウスサイド・ブリッジ",
+                yomi: "さうすさいど・ぶりっじ",
+                url: "south-side-bridge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "タトゥーパーラー",
+                yomi: "たとぅーぱーらー",
+                url: "tattoo-parlor.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "ウェスト・チャールストン・ブリッジ",
+                yomi: "うぇすと・ちゃーるすとん・ぶりっじ",
+                url: "west-charleston-bridge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "クランシー邸宅",
+                yomi: "くらんしーていたく",
+                url: "clancy-manor.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "屋根付き橋",
+                yomi: "やねつきはし",
+                url: "covered-bridge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "教団のトーテム",
+                yomi: "きょうだんのとーてむ",
+                url: "cultist-totem.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "カウスポット乳製品製造所",
+                yomi: "かうすぽっとにゅうせいひんせいぞうしょ",
+                url: "cow-spots-creamery.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-16",
+                isDraft: true
+            },
+            {
+                name: "ダーリング姉妹のラボ",
+                yomi: "だーりんぐしまいのらぼ",
+                url: "darling-sisters-lab.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "デスクロー・アイランド",
+                yomi: "ですくろー・あいらんど",
+                url: "deathclaw-island.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "デスクロー",
+                yomi: "ですくろー",
+                url: "deathclaw.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "イースト・カナー監視塔",
+                yomi: "いーすと・かのーわかんしとう",
+                url: "east-kanawha-lookout.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "Vault-Tec農業研究センター",
+                yomi: "う゛ぉるとてっくのうぎょうけんきゅうせんたー",
+                url: "vault-tec-agricultural-research-center.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "フラットウッズ監視塔",
+                yomi: "ふらっとうっずかんしとう",
+                url: "flatwoods-lookout.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "チェスウィック",
+                yomi: "ちぇすうぃっく",
+                url: "cheswick.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "フラットウッズ・リバー",
+                yomi: "ふらっとうっず・りばー",
+                url: "flatwoods-river.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ケシャ・マクダーモット",
+                yomi: "けしゃ・まくだーもっと",
+                url: "kesha-mcdermott.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ママ・ドルスの食品加工場",
+                yomi: "まま・どるすのしょくひんかこうじょう",
+                url: "mama-dolces-food-processing.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "藤仁屋情報基地",
+                yomi: "ふじにやじょうほうきち",
+                url: "fujiniya-intelligence-base.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "アパラチアの核発射コード",
+                yomi: "あぱらちあのかくはっしゃこーど",
+                url: "appalachian-launch-codes.html",
+                category: "ゲームプレイ",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ステルス技術",
+                yomi: "すてるすぎじゅつ",
+                url: "stealth-technology.html",
+                category: "テクノロジー",
+                appearance: ["Fallout シリーズ"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "中国ステルスアーマー",
+                yomi: "ちゅうごくすてるすあーまー",
+                url: "chinese-stealth-armor.html",
+                category: "アーマー",
+                appearance: ["Fallout シリーズ"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "中米戦争",
+                yomi: "ちゅうべいせんそう",
+                url: "sino-american-war.html",
+                category: "イベント",
+                appearance: ["Fallout シリーズ"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "分岐",
+                yomi: "ぶんき",
+                url: "divergence.html",
+                category: "設定",
+                appearance: ["Fallout シリーズ"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ステルス・ボーイ",
+                yomi: "すてるすぼーい",
+                url: "stealth-boy.html",
+                category: "アイテム",
+                appearance: ["Fallout シリーズ"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "Game of Thrones",
+                yomi: "げーむおぶすろーんず",
+                url: "game-of-thrones.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "グレッグの鉱山用品店",
+                yomi: "ぐれっぐのこうざんようひんてん",
+                url: "gregs-mine-supply.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ホールディングフォード農場",
+                yomi: "ほーるでぃんぐふぉーどのうじょう",
+                url: "holdingford-homestead.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ゴルフカート",
+                yomi: "ごるふかーと",
+                url: "golf-cart.html",
+                category: "車両",
+                appearance: ["Fallout: New Vegas","Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ホライゾンズ・レスト",
+                yomi: "ほらいぞんずれすと",
+                url: "horizons-rest.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ホーンライト夏の別荘",
+                yomi: "ほーんらいとなつのべっそう",
+                url: "hornwright-summer-villa.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "ハンツマンズ・グレイド",
+                yomi: "はんつまんずぐれいど",
+                url: "huntsmans-glade.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "J. シュラムの家",
+                yomi: "じぇいしゅらむのいえ",
+                url: "j-schrams-house.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "カナー郡墓地",
+                yomi: "かなわぐんぼち",
+                url: "kanawha-county-cemetery.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "カナー・ヌカコーラ工場",
+                yomi: "かなーぬかこーらこうじょう",
+                url: "kanawha-nuka-cola-plant.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "カナー川",
+                yomi: "かなーがわ",
+                url: "kanawha-river.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-17",
+                isDraft: true
+            },
+            {
+                name: "レイクサイド・キャビンズ",
+                yomi: "れいくさいど・きゃびんず",
+                url: "lakeside-cabins.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-18",
+                isDraft: true
+            },
+            {
+                name: "ルイス＆サンズ農業用品店",
+                yomi: "るいすあんどさんずのうぎょうようひんてん",
+                url: "lewis-and-sons-farming-supply.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-18",
+                isDraft: true
+            },
+            {
+                name: "リムジンの衝突事故現場",
+                yomi: "りむじんのしょうとつじこげんば",
+                url: "limousine-crash.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-18",
+                isDraft: true
+            },
+            {
+                name: "モーガンタウン",
+                yomi: "もーがんたうん",
+                url: "morgantown.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-18",
+                isDraft: true
+            },
+            {
+                name: "オハイオ川",
+                yomi: "おはいおがわ",
+                url: "ohio-river.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "オハイオ・リバー・アドベンチャーズ",
+                yomi: "おはいおりばーあどべんちゃーず",
+                url: "ohio-river-adventures.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "オーウェル果樹園",
+                yomi: "おーうぇるかじゅえん",
+                url: "orwell-orchards.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "見晴らしのいいキャビン",
+                yomi: "おーばーるっくきゃびん",
+                url: "overlook-cabin.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "監督官の自宅",
+                yomi: "かんとくかんのじたく",
+                url: "overseers-home.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "パーティタイム・ダイナーズ",
+                yomi: "ぱーてぃたいむだいなーず",
+                url: "party-time-diners.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "ポートサイド・パブ",
+                yomi: "ぽーとさいどぱぶ",
+                url: "portside-pub.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "ポセイドン・エネルギー発電所WV-06",
+                yomi: "ぽせいどんえねるぎーはつでんしょ",
+                url: "poseidon-energy-plant-wv-06.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "HalluciGen, Inc.",
+                yomi: "はるしじぇんしゃ",
+                url: "hallucigen-inc.html",
+                category: "場所",
+                appearance: ["Fallout 4"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "ポセイドン・エネルギー発電所ヤード",
+                yomi: "ぽせいどんえねるぎーはつでんしょやーど",
+                url: "poseidon-energy-plant-yard.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "ポセイドン変電所PX-01",
+                yomi: "ぽせいどんへんでんしょ",
+                url: "poseidon-power-substation-px-01.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "ポセイドン変電所PX-02",
+                yomi: "ぽせいどんへんでんしょ",
+                url: "poseidon-power-substation-px-02.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "先史時代の骨のキャンプ",
+                yomi: "せんしじだいのほねのきゃんぷ",
+                url: "prehistoric-bones-camp.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "プリブロの珍品店",
+                yomi: "ぷりぶろのちんぴんてん",
+                url: "priblos-curios.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "レッド・ロケット（フラットウッズ）",
+                yomi: "れっどろけっとふらっとうっず",
+                url: "red-rocket-flatwoods.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "レッド・ロケット（巨大ティーポット）",
+                yomi: "れっどろけっときょだいてぃーぽっと",
+                url: "red-rocket-giant-teapot.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-19",
+                isDraft: true
+            },
+            {
+                name: "レッド・ロケット（モーガンタウン）",
+                yomi: "れっどろけっともーがんたうん",
+                url: "red-rocket-morgantown.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "中継タワー EM-B1-27",
+                yomi: "ちゅうけいたわー",
+                url: "relay-tower-em-b1-27.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "中継タワー HN-B1-12",
+                yomi: "ちゅうけいたわー",
+                url: "relay-tower-hn-b1-12.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "リバーサイド邸",
+                yomi: "りばーさいどまなー",
+                url: "riverside-manor.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "ヴェール・オブ・シークレッツ",
+                yomi: "う゛ぇーるおぶしーくれっつ",
+                url: "veil-of-secrets.html",
+                category: "アーマー・アパレル",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "シーカー・オブ・ミステリー",
+                yomi: "しーかーおぶみすてりー",
+                url: "seeker-of-mysteries.html",
+                category: "クエスト",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "ザ・ミストレス・オブ・ミステリー",
+                yomi: "ざみすとれすおぶみすてりー",
+                url: "the-mistress-of-mystery.html",
+                category: "クエスト",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "オリヴィア・リバーズ",
+                yomi: "おりゔぃありばーず",
+                url: "olivia-rivers.html",
+                category: "キャラクター",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "フレデリック・リバーズ",
+                yomi: "ふれでりっくりばーず",
+                url: "frederick-rivers.html",
+                category: "キャラクター",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "シャノン・リバーズ",
+                yomi: "しゃのんりばーず",
+                url: "shannon-rivers.html",
+                category: "キャラクター",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "生贄の祭壇",
+                yomi: "いけにえのさいだん",
+                url: "sacrifice-altar.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "金庫破りの小屋",
+                yomi: "きんこやぶりのこや",
+                url: "safecrackers-shack.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "シャドーブリーズ・アパートメント",
+                yomi: "しゃどーぶりーずあぱーとめんと",
+                url: "shadowbreeze-apartments.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "シルヴァ・ホームステッド",
+                yomi: "しるゔぁほーむすてっど",
+                url: "silva-homestead.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "石鹸まみれの骸骨",
+                yomi: "せっけんまみれのがいこつ",
+                url: "soapy-skeleton.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "シュガーメイプル",
+                yomi: "しゅがーめいぷる",
+                url: "sugarmaple.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "サマーズビル・ダム",
+                yomi: "さまーずびるだむ",
+                url: "summersville-dam.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "サマーズビル・ドック",
+                yomi: "さまーずびるどっく",
+                url: "summersville-docks.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "サマーズビル湖",
+                yomi: "さまーずびるこ",
+                url: "summersville-lake.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "サンシャイン・メドウズ工業農場",
+                yomi: "さんしゃいんめどうずこうぎょうのうじょう",
+                url: "sunshine-meadows-industrial-farm.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "テディベアの家",
+                yomi: "てでぃべあのいえ",
+                url: "teddy-bear-house.html",
+                category: "ロケーション",
+                appearance: ["Fallout 76"],
+                date: "2026-03-20",
+                isDraft: true
+            },
+            {
+                name: "ザ・ディープ",
+                yomi: "ざ・でぃーぷ",
+                url: "the-deep.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ザ・キルボックス",
+                yomi: "ざ・きるぼっくす",
+                url: "the-kill-box.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ザ・ピグスティ",
+                yomi: "ざ・ぴぐすてぃ",
+                url: "the-pigsty.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "トーランス・ハウス",
+                yomi: "とーらんす・はうす",
+                url: "torrance-house.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ブロディ・トーランス",
+                yomi: "ぶろでぃ・とーらんす",
+                url: "brody-torrance.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "中継局1AT-U03",
+                yomi: "ちゅうけいきょく1at-u03",
+                url: "transmission-station-1at-u03.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "タイガート浄水施設",
+                yomi: "たいがーとじょうすいしせつ",
+                url: "tygart-water-treatment.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "タイラー郡ダートトラック",
+                yomi: "たいらーぐんだーととらっく",
+                url: "tyler-county-dirt-track.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "Vault 63墜落現場",
+                yomi: "vault63ついらくげんば",
+                url: "vault-63-crash-site.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ウェイド空港",
+                yomi: "うぇいどくうこう",
+                url: "wade-airport.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ランドン",
+                yomi: "らんどん",
+                url: "landon.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ベルチバード",
+                yomi: "ばーてぃばーど",
+                url: "vertibird.html",
+                category: "乗り物",
+                appearance: ["Fallout 2","Fallout 3","Fallout: New Vegas","Fallout 4","Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ホワイトパウダー・ウィンタースポーツ",
+                yomi: "ほわいとぱうだーうぃんたーすぽーつ",
+                url: "white-powder-winter-sports.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ホワイトスプリング",
+                yomi: "ほわいとすぷりんぐ",
+                url: "the-whitespring.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ホワイトスプリング・リゾート",
+                yomi: "ほわいとすぷりんぐりぞーと",
+                url: "the-whitespring-resort.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "アネットのアレンジメンツ",
+                yomi: "あねっとのあれんじめんつ",
+                url: "anettes-arrangements.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "アーティザンズ・ロウ",
+                yomi: "あーてぃざんずろう",
+                url: "artisans-row-shoppes.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ブルーリッジ・ギャラリー",
+                yomi: "ぶるーりっじぎゃらりー",
+                url: "blue-ridge-gallery.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "クラウス＆カンパニー",
+                yomi: "くらうすかんぱにー",
+                url: "claus-and-co.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "デコラ",
+                yomi: "でこら",
+                url: "decorat.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "マダム・テイラーズ",
+                yomi: "まだむていらーず",
+                url: "madame-taylors.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "スプリングヒル・ゴルフコース",
+                yomi: "すぷりんぐひるごるふこーす",
+                url: "springhill-golf-course.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "スプリングハウス",
+                yomi: "すぷりんぐはうす",
+                url: "the-springhouse.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "ホワイトスプリング・バンカー",
+                yomi: "ほわいとすぷりんぐばんかー",
+                url: "the-whitespring-bunker.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-21",
+                isDraft: true
+            },
+            {
+                name: "中華人民共和国",
+                yomi: "ちゅうかじんみんきょうわこく",
+                url: "china.html",
+                category: "勢力",
+                appearance: ["Fallout 3","Fallout 76"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "エンクレイヴ石油リグ",
+                yomi: "えんくれいゔせきゆりぐ",
+                url: "enclave-oil-rig.html",
+                category: "場所",
+                appearance: ["Fallout 2"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "ポセイドン・エネルギー",
+                yomi: "ぽせいどんえねるぎー",
+                url: "poseidon-energy.html",
+                category: "勢力",
+                appearance: ["Fallout","Fallout 2","Fallout 3","Fallout: New Vegas","Fallout 4","Fallout 76"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "ポセイドン・ガソリン",
+                yomi: "ぽせいどんがそりん",
+                url: "poseidon-gasoline.html",
+                category: "勢力",
+                appearance: ["Fallout","Fallout 2"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "ポセイドン・オイル",
+                yomi: "ぽせいどんおいる",
+                url: "poseidon-oil.html",
+                category: "勢力",
+                appearance: ["Fallout 2"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "PoseidoNet",
+                yomi: "ぽせいどねっと",
+                url: "poseidonet.html",
+                category: "テクノロジー",
+                appearance: ["Fallout 2","Fallout: New Vegas","Fallout 76"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "積灰の山",
+                yomi: "あっしゅひーぷ",
+                url: "ash-heap.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山坑道1",
+                yomi: "ほうきされたこうざんこうどういち",
+                url: "abandoned-mine-shaft-1.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山坑道2",
+                yomi: "ほうきされたこうざんこうどうに",
+                url: "abandoned-mine-shaft-2.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山坑道3",
+                yomi: "ほうきされたこうざんこうどうさん",
+                url: "abandoned-mine-shaft-3.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "モール・マイナー",
+                yomi: "もーる・まいなー",
+                url: "mole-miner.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山坑道4",
+                yomi: "ほうきされたこうざんこうどうよん",
+                url: "abandoned-mine-shaft-4.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山坑道5",
+                yomi: "ほうきされたこうざんこうどうご",
+                url: "abandoned-mine-shaft-5.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山坑道6",
+                yomi: "ほうきされたこうざんこうどうろく",
+                url: "abandoned-mine-shaft-6.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山坑道イレーン",
+                yomi: "ほうきされたこうざんこうどういれーん",
+                url: "abandoned-mine-shaft-elaine.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "放棄された鉱山サイト・キタリー",
+                yomi: "ほうきされたこうざんさいときたりー",
+                url: "abandoned-mine-site-kittery.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "AMSテストサイト",
+                yomi: "えーえむえすてすとさいと",
+                url: "ams-testing-site.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "Vault-Tec大学",
+                yomi: "ぶぉるとてっくだいがく",
+                url: "vault-tec-university.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-23",
+                isDraft: true
+            },
+            {
+                name: "ウルトラサイト",
+                yomi: "うるとらさいと",
+                url: "ultracite.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2026-03-22",
+                isDraft: true
+            },
+            {
+                name: "積灰の山マーケットプレイス",
+                yomi: "つもりはいのやままーけっとぷれいす",
+                url: "ash-heap-marketplace.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-24",
+                isDraft: true
+            },
+            {
+                name: "シュガー・グローヴ",
+                yomi: "しゅがーぐろーゔ",
+                url: "sugar-grove.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-24",
+                isDraft: true
+            },
+            {
+                name: "アブラクソダイン・ケミカル配電所",
+                yomi: "あぶらくそだいんけみかるはいでんしょ",
+                url: "abraxodyne-chemical-power-substation.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "アブラクソダイン・オフィス",
+                yomi: "あぶらくそだいんおふぃす",
+                url: "abraxodyne-office.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "オールバニー",
+                yomi: "おーるばにー",
+                url: "albany.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "アッシュ・ケイブ",
+                yomi: "あっしゅけいぶ",
+                url: "ash-cave.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "アテネ",
+                yomi: "あてね",
+                url: "athens.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "アテネ武器庫",
+                yomi: "あてねぶきこ",
+                url: "athens-armory.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "アテネ精神病院",
+                yomi: "あてねせいしんびょういん",
+                url: "athens-lunatic-asylum.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ビッグ・マスキーのバケット",
+                yomi: "びっぐますきーのばけっと",
+                url: "big-muskies-bucket.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "バーニング・スプリングス（地域）",
+                yomi: "ばーにんぐすぷりんぐすちいき",
+                url: "burning-springs-region.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "鎖で封じられた農場",
+                yomi: "くさりでふうじられたのうじょう",
+                url: "chained-up-farm.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "チェックポイント・キャニオン",
+                yomi: "ちぇっくぽいんときゃにおん",
+                url: "checkpoint-canyon.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ダイノ・ピークス・ミニゴルフ",
+                yomi: "だいのぴーくすみにごるふ",
+                url: "dino-peaks-mini-golf.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ダウ湖流域",
+                yomi: "だうこりゅういき",
+                url: "dow-lake-watershed.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "エンクレイヴ・ベルチバード墜落地点",
+                yomi: "えんくれいゔべるちばーどついらくちてん",
+                url: "enclave-vertibird-crash-site.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "フォート・スチューベン",
+                yomi: "ふぉーとすちゅーべん",
+                url: "fort-steuben.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ハイウェイ・タウン",
+                yomi: "はいうぇいたうん",
+                url: "highway-town.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ホッキング・ヒルズ・ステーション",
+                yomi: "ほっきんぐひるずすてーしょん",
+                url: "hocking-hills-station.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ホッキング・ヒルズ州立公園",
+                yomi: "ほっきんぐひるずしゅうりつこうえん",
+                url: "hocking-hills-state-park.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ハニーウェル養蜂場",
+                yomi: "はにーうぇるようほうじょう",
+                url: "honey-well-apiary.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ムーンベイル・トンネル",
+                yomi: "むーんべいるとんねる",
+                url: "moonvale-tunnel.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "サンディーズ・ソック・ホップ",
+                yomi: "さんでぃーずそっくほっぷ",
+                url: "sandys-sock-hop.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "シェイド・ヒル教会",
+                yomi: "しぇいどひるきょうかい",
+                url: "shade-hill-church.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "南オハイオ避難センター",
+                yomi: "みなみおはいおひなんせんたー",
+                url: "south-ohio-evacuation-center.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "スターライト・ドライブイン（BS）",
+                yomi: "すたーらいとどらいぶいん",
+                url: "starlight-drive-in-bs.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ストラウズ・ラン州立公園",
+                yomi: "すとらうずらんしゅうりつこうえん",
+                url: "strouds-run-state-park.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "エグゼクティブの部屋",
+                yomi: "えぐぜくてぃぶのへや",
+                url: "executives-apartment.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ハムリー・ラン・キャンプ",
+                yomi: "はむりーらんきゃんぷ",
+                url: "hamley-run-camp.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ジャクソン・ジャンクヤード",
+                yomi: "じゃくそんじゃんくやーど",
+                url: "jackson-junkyard.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ラスト・リゾート",
+                yomi: "らすとりぞーと",
+                url: "last-resort.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "メドウ・ブリーズ貯蔵庫",
+                yomi: "めどうぶりーずちょぞうこ",
+                url: "meadow-breeze-storage-depot.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "プロスペクト・ヒル",
+                yomi: "ぷろすぺくとひる",
+                url: "prospect-hill.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "鉄道整備場",
+                yomi: "てつどうせいびじょう",
+                url: "railroad-service-yard.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "サンド・フォーク製材所",
+                yomi: "さんどふぉーくせいざいしょ",
+                url: "sand-fork-lumber.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "スーパー・デューパー・マート（BS）",
+                yomi: "すーぱーでゅーぱーまーと",
+                url: "super-duper-mart-bs.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ザ・チョップ・ショップ",
+                yomi: "ざちょっぷしょっぷ",
+                url: "the-chop-shop-bs.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ラスト・キングダム",
+                yomi: "らすときんぐだむ",
+                url: "the-rust-kingdom.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "タイクーン・レイク",
+                yomi: "たいくーんれいく",
+                url: "tycoon-lake.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ウェストブルック牧場",
+                yomi: "うぇすとぶるっくぼくじょう",
+                url: "westbrook-horse-ranch.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "ワールド・オブ・コーン",
+                yomi: "わーるどおぶこーん",
+                url: "world-of-corn.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-03-25",
+                isDraft: true
+            },
+            {
+                name: "中傷ボット",
+                yomi: "中傷ボット",
+                url: "slander-bot.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-13"
+            },
+            {
+                name: "シェイディ・サンズ",
+                yomi: "シェイディ・サンズ",
+                url: "shady-sands.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout TV","Fallout: New Vegas","Fallout","Fallout 2"],
+                date: "2026-02-12"
+            },
+            {
+                name: "Vault 76の監督官",
+                yomi: "Vault 76の監督官",
+                url: "overseer-of-vault-76.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-12"
+            },
+            {
+                name: "フランキー・ベケット",
+                yomi: "フランキー・ベケット",
+                url: "frankie-beckett.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-11"
+            },
+            {
+                name: "アラデシュ",
+                yomi: "アラデシュ",
+                url: "aradesh.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout"],
+                date: "2026-02-11"
+            },
+            {
+                name: "ロニー",
+                yomi: "ロニー",
+                url: "ronnie.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-10"
+            },
+            {
+                name: "ブラッド・イーグル ",
+                yomi: "ブラッド・イーグル ",
+                url: "blood-eagle.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-10"
+            },
+            {
+                name: "エドウィン",
+                yomi: "エドウィン",
+                url: "edwin.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-09"
+            },
+            {
+                name: "B.O.S.アウトキャスト",
+                yomi: "B.O.S.アウトキャスト",
+                url: "b-o-s-outcast.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3"],
+                date: "2026-02-09"
+            },
+            {
+                name: "ベケット ",
+                yomi: "ベケット ",
+                url: "beckett.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-08"
+            },
+            {
+                name: "ゲイリー",
+                yomi: "ゲイリー",
+                url: "gary.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-08"
+            },
+            {
+                name: "Vault 108",
+                yomi: "Vault 108",
+                url: "vault-108.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2026-02-07"
+            },
+            {
+                name: "コズワース",
+                yomi: "コズワース",
+                url: "codsworth.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2026-02-07"
+            },
+            {
+                name: "ビルボードのジャンクキャンプ",
+                yomi: "ビルボードのジャンクキャンプ",
+                url: "billboard-junk-camp.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-02-06"
+            },
+            {
+                name: "ブロートフライ",
+                yomi: "ブロートフライ",
+                url: "broat-fries.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4"],
+                date: "2026-02-06"
+            },
+            {
+                name: "アリステア",
+                yomi: "アリステア",
+                url: "alistair.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-02-05"
+            },
+            {
+                name: "プリドゥエン",
+                yomi: "プリドゥエン",
+                url: "pryduen.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4","Fallout 3"],
+                date: "2026-02-05"
+            },
+            {
+                name: "ブラッドバグ",
+                yomi: "ブラッドバグ",
+                url: "blood-bug.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2026-02-04"
+            },
+            {
+                name: "Vault 13",
+                yomi: "Vault 13",
+                url: "vault-13.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 2"],
+                date: "2026-02-04"
+            },
+            {
+                name: "バブルガム",
+                yomi: "バブルガム",
+                url: "bubble-gum.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-02-03"
+            },
+            {
+                name: "Vault 101",
+                yomi: "Vault 101",
+                url: "vault-101.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2026-02-03"
+            },
+            {
+                name: "ガウスピストル",
+                yomi: "ガウスピストル",
+                url: "gauss-pistol.html",
+                category: "武器",
+                appearance: ["Fallout 76","Fallout 2"],
+                date: "2026-02-02"
+            },
+            {
+                name: "ジェームス",
+                yomi: "ジェームス",
+                url: "james.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 3"],
+                date: "2026-02-02"
+            },
+            {
+                name: "スローカム・ジョー [企業]",
+                yomi: "スローカム・ジョー [企業]",
+                url: "slocum-joe-corporate.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-01"
+            },
+            {
+                name: "食事バフ(Fallout76)",
+                yomi: "食事バフ(Fallout76)",
+                url: "food-buff-fallout76.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-01"
+            },
+            {
+                name: "スローカム・ジョー",
+                yomi: "スローカム・ジョー",
+                url: "slocum-joe.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-01"
+            },
+            {
+                name: "ジェフ・ナカムラ",
+                yomi: "ジェフ・ナカムラ",
+                url: "jeff-nakamura.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-31"
+            },
+            {
+                name: "ゴーリー鉱山",
+                yomi: "ゴーリー鉱山",
+                url: "gauley-mine.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-31"
+            },
+            {
+                name: "エイミー・ケリー",
+                yomi: "エイミー・ケリー",
+                url: "amy-kelly.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-30"
+            },
+            {
+                name: "孤立したキャビン",
+                yomi: "孤立したキャビン",
+                url: "isolated-cabin.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2026-01-30"
+            },
+            {
+                name: "タイガート水処理場 ",
+                yomi: "タイガート水処理場 ",
+                url: "tygart-water-treatment-plant.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-29"
+            },
+            {
+                name: "サマーズビル",
+                yomi: "サマーズビル",
+                url: "summersville.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-29"
+            },
+            {
+                name: "脳みそキノコ",
+                yomi: "脳みそキノコ",
+                url: "brain-mushroom.html",
+                category: "植物",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4"],
+                date: "2026-01-28"
+            },
+            {
+                name: "ダンカン＆ダンカン・ロボティクス",
+                yomi: "ダンカン＆ダンカン・ロボティクス",
+                url: "duncan-duncan-robotics.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-28"
+            },
+            {
+                name: "ガンマ線銃",
+                yomi: "ガンマ線銃",
+                url: "gamma-ray-gun.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2026-01-27"
+            },
+            {
+                name: "パイパー・ライト",
+                yomi: "パイパー・ライト",
+                url: "piper-light.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2026-01-27"
+            },
+            {
+                name: "Fallout76初心者用ビルド構築方法",
+                yomi: "Fallout76初心者用ビルド構築方法",
+                url: "fallout76-beginner-build-how-to-build.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-27"
+            },
+            {
+                name: "アッシュ・ローズ",
+                yomi: "アッシュ・ローズ",
+                url: "ash-rose.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-26"
+            },
+            {
+                name: "ロボブレイン",
+                yomi: "ロボブレイン",
+                url: "robobrain.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-26"
+            },
+            {
+                name: "蜂の群れ",
+                yomi: "蜂の群れ",
+                url: "swarm-of-bees.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-25"
+            },
+            {
+                name: "オルガン洞窟 ",
+                yomi: "オルガン洞窟 ",
+                url: "organ-cave.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2026-01-25"
+            },
+            {
+                name: "アデレード",
+                yomi: "アデレード",
+                url: "adelaide.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-24"
+            },
+            {
+                name: "ラッドガル",
+                yomi: "ラッドガル",
+                url: "ladgal.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2026-01-24"
+            },
+            {
+                name: "クラシック・ラジオ- Fallout 76",
+                yomi: "クラシック・ラジオ- Fallout 76",
+                url: "classic-radio-fallout-76.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-23"
+            },
+            {
+                name: "ドッティ",
+                yomi: "ドッティ",
+                url: "dotty.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-23"
+            },
+            {
+                name: "アパラチア・ラジオ",
+                yomi: "アパラチア・ラジオ",
+                url: "appalachian-radio.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-22"
+            },
+            {
+                name: "アンストッパブル",
+                yomi: "アンストッパブル",
+                url: "unstoppable.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout TV"],
+                date: "2026-01-22"
+            },
+            {
+                name: "海賊放送",
+                yomi: "海賊放送",
+                url: "pirate-broadcast.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-21"
+            },
+            {
+                name: "カボチャ",
+                yomi: "カボチャ",
+                url: "pumpkin.html",
+                category: "植物",
+                appearance: ["Fallout 76"],
+                date: "2026-01-21"
+            },
+            {
+                name: "イータ・プサイ・ハウス",
+                yomi: "イータ・プサイ・ハウス",
+                url: "eta-psi-house.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-20"
+            },
+            {
+                name: "ジュンコおばあちゃん",
+                yomi: "ジュンコおばあちゃん",
+                url: "junko-grandma.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-01-20"
+            },
+            {
+                name: "パイハウス",
+                yomi: "パイハウス",
+                url: "pie-house.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-19"
+            },
+            {
+                name: "デル・ローソン",
+                yomi: "デル・ローソン",
+                url: "del-lawson.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-01-19"
+            },
+            {
+                name: "Wasted on Nukashine",
+                yomi: "Wasted on Nukashine",
+                url: "wasted-on-nukashine.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-18"
+            },
+            {
+                name: "グレロック",
+                yomi: "グレロック",
+                url: "grelock.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-18"
+            },
+            {
+                name: "フラタニティ・ロウ",
+                yomi: "フラタニティ・ロウ",
+                url: "fraternity-row.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-17"
+            },
+            {
+                name: "ドクター・ゾルボ",
+                yomi: "ドクター・ゾルボ",
+                url: "dr-zorbo.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-17"
+            },
+            {
+                name: "ムーンモンキーのジャングルズ",
+                yomi: "ムーンモンキーのジャングルズ",
+                url: "moon-monkey-jungles.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-16"
+            },
+            {
+                name: "PTSアップデート – 2026年1月16日",
+                yomi: "PTSアップデート – 2026年1月16日",
+                url: "pts-update-january-16-2026.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-16"
+            },
+            {
+                name: "グログナック",
+                yomi: "グログナック",
+                url: "grognac.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-16"
+            },
+            {
+                name: "ヌカシャイン",
+                yomi: "ヌカシャイン",
+                url: "nuka-shine.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2026-01-15"
+            },
+            {
+                name: "キャプテン・コスモス",
+                yomi: "キャプテン・コスモス",
+                url: "captain-cosmos.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-15"
+            },
+            {
+                name: "ヌカシャイン",
+                yomi: "ヌカシャイン",
+                url: "nuka-shine_2.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2026-01-14"
+            },
+            {
+                name: "K.D.インクウェル",
+                yomi: "K.D.インクウェル",
+                url: "k-d-inkwell.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-14"
+            },
+            {
+                name: "ビッグ・アルのタトゥー・パーラー",
+                yomi: "ビッグ・アルのタトゥー・パーラー",
+                url: "big-al-s-tattoo-parlor.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-13"
+            },
+            {
+                name: "ウエスト・テック (West Tek)",
+                yomi: "ウエスト・テック (West Tek)",
+                url: "west-tek.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2026-01-13"
+            },
+            {
+                name: "D.B.テクニカルハイスクール",
+                yomi: "D.B.テクニカルハイスクール",
+                url: "d-b-technical-high-school.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-12"
+            },
+            {
+                name: "バナナ・ユッカの果実",
+                yomi: "バナナ・ユッカの果実",
+                url: "banana-yucca-fruit.html",
+                category: "植物",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-11"
+            },
+            {
+                name: "クライスラス・モータース・コーポレーション",
+                yomi: "クライスラス・モータース・コーポレーション",
+                url: "chryslus-motors-corporation.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2026-01-11"
+            },
+            {
+                name: "フレアガン",
+                yomi: "フレアガン",
+                url: "flare-gun.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2026-01-10"
+            },
+            {
+                name: "サンセット・サルサパリラ",
+                yomi: "サンセット・サルサパリラ",
+                url: "sunset-sarsaparilla.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-10"
+            },
+            {
+                name: "キャッピー",
+                yomi: "キャッピー",
+                url: "cappy.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout TV"],
+                date: "2026-01-09"
+            },
+            {
+                name: "H&H Tools Company",
+                yomi: "H&H Tools Company",
+                url: "h-h-tools-company.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout TV","Fallout: New Vegas"],
+                date: "2026-01-09"
+            },
+            {
+                name: "ビーバー ",
+                yomi: "ビーバー ",
+                url: "beaver.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-01-09"
+            },
+            {
+                name: "ボトル ",
+                yomi: "ボトル ",
+                url: "bottle.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-08"
+            },
+            {
+                name: "サークルG",
+                yomi: "サークルG",
+                url: "circle-g.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-08"
+            },
+            {
+                name: "The Vault Dweller's Official Cookbook",
+                yomi: "The Vault Dweller's Official Cookbook",
+                url: "the-vault-dweller-s-official-cookbook.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4","Fallout 3"],
+                date: "2026-01-07"
+            },
+            {
+                name: "ヌカ・コーラ (Nuka-Cola)",
+                yomi: "ヌカ・コーラ (Nuka-Cola)",
+                url: "nuka-cola.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2026-01-07"
+            },
+            {
+                name: "エイリアンの食用生物",
+                yomi: "エイリアンの食用生物",
+                url: "alien-edible-creatures.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-06"
+            },
+            {
+                name: "変異パブリックイベント",
+                yomi: "変異パブリックイベント",
+                url: "mutation-public-event.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout"],
+                date: "2026-01-06"
+            },
+            {
+                name: "アングラー",
+                yomi: "アングラー",
+                url: "angler.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-01-05"
+            },
+            {
+                name: "バラモン",
+                yomi: "バラモン",
+                url: "brahmin.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout"],
+                date: "2026-01-05"
+            },
+            {
+                name: "アークトス・ファーマ (企業) ",
+                yomi: "アークトス・ファーマ (企業) ",
+                url: "arktos-pharma-corporate.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-04"
+            },
+            {
+                name: "スコーチ",
+                yomi: "スコーチ",
+                url: "scorch.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-01-04"
+            },
+            {
+                name: "Project Paradise",
+                yomi: "Project Paradise",
+                url: "project-paradise.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-03"
+            },
+            {
+                name: "ウェンディゴ",
+                yomi: "ウェンディゴ",
+                url: "wendigo.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2026-01-03"
+            },
+            {
+                name: "アークトス・ファーマ・バイオーム研究所",
+                yomi: "アークトス・ファーマ・バイオーム研究所",
+                url: "arktos-pharma-biome-research-institute.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-01-02"
+            },
+            {
+                name: "セントリーボット",
+                yomi: "セントリーボット",
+                url: "sentry-bot.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 2"],
+                date: "2026-01-02"
+            },
+            {
+                name: "アークトス・ファーマ",
+                yomi: "アークトス・ファーマ",
+                url: "arktos-pharma.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-01"
+            },
+            {
+                name: "血濡れ不屈ビルド",
+                yomi: "血濡れ不屈ビルド",
+                url: "bloody-indomitable-build.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-01"
+            },
+            {
+                name: "クルセイダーピストル",
+                yomi: "クルセイダーピストル",
+                url: "crusader-pistol.html",
+                category: "武器",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-12-31"
+            },
+            {
+                name: "ジャイアントティーポット",
+                yomi: "ジャイアントティーポット",
+                url: "giant-teapot.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-31"
+            },
+            {
+                name: "デイリー・オプス",
+                yomi: "デイリー・オプス",
+                url: "daily-ops.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-30"
+            },
+            {
+                name: "ヒルフォーク・ホットドッグ",
+                yomi: "ヒルフォーク・ホットドッグ",
+                url: "hillfolk-hot-dog.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-30"
+            },
+            {
+                name: "黒色火薬ピストル",
+                yomi: "黒色火薬ピストル",
+                url: "black-powder-pistol.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-12-29"
+            },
+            {
+                name: "ヘルヴェティア",
+                yomi: "ヘルヴェティア",
+                url: "helvetia.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-29"
+            },
+            {
+                name: "ブラムコ・ブランド・マック＆チーズ",
+                yomi: "ブラムコ・ブランド・マック＆チーズ",
+                url: "bramco-brand-mac-and-cheese.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3","Fallout 2"],
+                date: "2025-12-28"
+            },
+            {
+                name: "ランドビュー灯台",
+                yomi: "ランドビュー灯台",
+                url: "land-view-lighthouse.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-12-28"
+            },
+            {
+                name: "黒色火薬ブランダーバス",
+                yomi: "黒色火薬ブランダーバス",
+                url: "black-powder-blunderbuss.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-12-27"
+            },
+            {
+                name: "ニューリバー渓谷橋",
+                yomi: "ニューリバー渓谷橋",
+                url: "new-river-gorge-bridge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-12-27"
+            },
+            {
+                name: "ドッグフード缶",
+                yomi: "ドッグフード缶",
+                url: "dog-food-cans.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2025-12-26"
+            },
+            {
+                name: "バックパック",
+                yomi: "バックパック",
+                url: "backpack.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-26"
+            },
+            {
+                name: "パブリックパーティー",
+                yomi: "パブリックパーティー",
+                url: "public-party.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-25"
+            },
+            {
+                name: "エイリアンブラスター ",
+                yomi: "エイリアンブラスター ",
+                url: "alien-blaster.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-24"
+            },
+            {
+                name: "C.A.M.P. (建設組立用移動プラットフォーム)",
+                yomi: "C.A.M.P. (建設組立用移動プラットフォーム)",
+                url: "c-a-m-p-mobile-platform-for-construction-assembly.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-12-24"
+            },
+            {
+                name: "反射",
+                yomi: "反射",
+                url: "reflection.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-23"
+            },
+            {
+                name: "Fallout76 Atomic Shop返品方法",
+                yomi: "Fallout76 Atomic Shop返品方法",
+                url: "fallout76-atomic-shop-return-method.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-23"
+            },
+            {
+                name: "10mmピストル",
+                yomi: "10mmピストル",
+                url: "10mm-pistol.html",
+                category: "武器",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout"],
+                date: "2025-12-22"
+            },
+            {
+                name: "サバイバルテント",
+                yomi: "サバイバルテント",
+                url: "survival-tent.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout"],
+                date: "2025-12-22"
+            },
+            {
+                name: "渓谷の廃品集積場",
+                yomi: "渓谷の廃品集積場",
+                url: "valley-junkyard.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-12-21"
+            },
+            {
+                name: "グール",
+                yomi: "グール",
+                url: "ghoul.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-12-21"
+            },
+            {
+                name: ".44ピストル",
+                yomi: ".44ピストル",
+                url: "44-pistol.html",
+                category: "武器",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2025-12-21"
+            },
+            {
+                name: "SPECIAL",
+                yomi: "SPECIAL",
+                url: "special.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-20"
+            },
+            {
+                name: "ウィルソン・ブラザーズ自動車修理屋",
+                yomi: "ウィルソン・ブラザーズ自動車修理屋",
+                url: "wilson-brothers-auto-repair-shop.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-19"
+            },
+            {
+                name: "リプトカ－ド",
+                yomi: "リプトカ－ド",
+                url: "ripto-card.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-19"
+            },
+            {
+                name: "デルバート・ウィンターズ",
+                yomi: "デルバート・ウィンターズ",
+                url: "delbert-winters.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-19"
+            },
+            {
+                name: "フラットウッズ酒場",
+                yomi: "フラットウッズ酒場",
+                url: "flatwoods-tavern.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-12-18"
+            },
+            {
+                name: "アーチェリー・セット",
+                yomi: "アーチェリー・セット",
+                url: "archery-set.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-17"
+            },
+            {
+                name: "フラットウッズ教会",
+                yomi: "フラットウッズ教会",
+                url: "flatwoods-church.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-12-17"
+            },
+            {
+                name: "クランシー邸宅",
+                yomi: "クランシー邸宅",
+                url: "clancy-mansion.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-12-16"
+            },
+            {
+                name: "フラットウッズ集会所",
+                yomi: "フラットウッズ集会所",
+                url: "flatwoods-meeting-house.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-12-16"
+            },
+            {
+                name: "フラットウッズ",
+                yomi: "フラットウッズ",
+                url: "flat-woods.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-12-15"
+            },
+            {
+                name: "サーリーの小屋",
+                yomi: "サーリーの小屋",
+                url: "surly-s-hut.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-12-14"
+            },
+            {
+                name: "密造酒業者の小屋",
+                yomi: "密造酒業者の小屋",
+                url: "moonshiner-s-hut.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-12-14"
+            },
+            {
+                name: "ザ・クロスヘア",
+                yomi: "ザ・クロスヘア",
+                url: "the-crosshair.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-13"
+            },
+            {
+                name: "アディクトール（Addictol）",
+                yomi: "アディクトール（Addictol）",
+                url: "addictol.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2025-12-13"
+            },
+            {
+                name: "賢明なるチャールズ",
+                yomi: "賢明なるチャールズ",
+                url: "wise-charles.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-12"
+            },
+            {
+                name: "ランチボックス",
+                yomi: "ランチボックス",
+                url: "lunch-box.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-12-12"
+            },
+            {
+                name: "ポイント・プレザント",
+                yomi: "ポイント・プレザント",
+                url: "point-pleasant.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-11"
+            },
+            {
+                name: "パーティーハット",
+                yomi: "パーティーハット",
+                url: "party-hat.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-11"
+            },
+            {
+                name: "北カナー監視地点",
+                yomi: "北カナー監視地点",
+                url: "north-kanner-monitoring-point.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-10"
+            },
+            {
+                name: "バファウト",
+                yomi: "バファウト",
+                url: "buffout.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-12-10"
+            },
+            {
+                name: "強制進化ウイルス（FEV）",
+                yomi: "強制進化ウイルス（FEV）",
+                url: "forced-evolution-virus-fev.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2025-12-09"
+            },
+            {
+                name: "サターナイト・フィスト",
+                yomi: "サターナイト・フィスト",
+                url: "saturnite-fist.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-12-09"
+            },
+            {
+                name: "スーパーミュータント",
+                yomi: "スーパーミュータント",
+                url: "super-mutant.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3","Fallout 2"],
+                date: "2025-12-08"
+            },
+            {
+                name: "B.O.B.クッキングステーション",
+                yomi: "B.O.B.クッキングステーション",
+                url: "b-o-b-cooking-station.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout"],
+                date: "2025-12-08"
+            },
+            {
+                name: "ツイン・パイン・キャビン",
+                yomi: "ツイン・パイン・キャビン",
+                url: "twin-pine-cabin.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-07"
+            },
+            {
+                name: "石鹸",
+                yomi: "石鹸",
+                url: "soap.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout"],
+                date: "2025-12-07"
+            },
+            {
+                name: "変異",
+                yomi: "変異",
+                url: "mutation.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-06"
+            },
+            {
+                name: "ギルマン製材所",
+                yomi: "ギルマン製材所",
+                url: "gilman-sawmill.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-06"
+            },
+            {
+                name: "プラズマガン",
+                yomi: "プラズマガン",
+                url: "plasma-gun.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-12-05"
+            },
+            {
+                name: "コズミック・ナイフ",
+                yomi: "コズミック・ナイフ",
+                url: "cosmic-knife.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-12-05"
+            },
+            {
+                name: "ドム・ペドロ",
+                yomi: "ドム・ペドロ",
+                url: "dom-pedro.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-04"
+            },
+            {
+                name: "フーズボールゲーム",
+                yomi: "フーズボールゲーム",
+                url: "foosball-game.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-04"
+            },
+            {
+                name: "パイプ・リボルバー",
+                yomi: "パイプ・リボルバー",
+                url: "pipe-revolver.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-03"
+            },
+            {
+                name: "水",
+                yomi: "水",
+                url: "water.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3"],
+                date: "2025-12-03"
+            },
+            {
+                name: "マリーゴールド・パビリオン",
+                yomi: "マリーゴールド・パビリオン",
+                url: "marigold-pavilion.html",
+                category: "植物",
+                appearance: ["Fallout 76"],
+                date: "2025-12-02"
+            },
+            {
+                name: "モスマン",
+                yomi: "モスマン",
+                url: "mothman.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-12-02"
+            },
+            {
+                name: "ブルーリッジの宿泊小屋",
+                yomi: "ブルーリッジの宿泊小屋",
+                url: "blue-ridge-lodge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-12-01"
+            },
+            {
+                name: "天候制御ステーション",
+                yomi: "天候制御ステーション",
+                url: "weather-control-station.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-01"
+            },
+            {
+                name: "アサルトロン",
+                yomi: "アサルトロン",
+                url: "assaultron.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-11-30"
+            },
+            {
+                name: "ミスター・ハンディ",
+                yomi: "ミスター・ハンディ",
+                url: "mr-handy.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76"],
+                date: "2025-11-30"
+            },
+            {
+                name: "ポリー",
+                yomi: "ポリー",
+                url: "polly.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-29"
+            },
+            {
+                name: "雑誌",
+                yomi: "雑誌",
+                url: "magazine.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-11-29"
+            },
+            {
+                name: "ソル",
+                yomi: "ソル",
+                url: "sol.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-28"
+            },
+            {
+                name: "プロテクトロン",
+                yomi: "プロテクトロン",
+                url: "protectron.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-11-28"
+            },
+            {
+                name: "モルデカイ \"モート\" マッコイ",
+                yomi: "モルデカイ \"モート\" マッコイ",
+                url: "mordecai-mort-mccoy.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-27"
+            },
+            {
+                name: "抗議プラカード",
+                yomi: "抗議プラカード",
+                url: "protest-placard.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-27"
+            },
+            {
+                name: "ダッチェス",
+                yomi: "ダッチェス",
+                url: "duchess.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-26"
+            },
+            {
+                name: "メンタス",
+                yomi: "メンタス",
+                url: "mentas.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-26"
+            },
+            {
+                name: "入植者のリッジ",
+                yomi: "入植者のリッジ",
+                url: "settler-s-ridge.html",
+                category: "勢力",
+                appearance: ["Fallout 76"],
+                date: "2025-11-25"
+            },
+            {
+                name: "Vault-Tec ボブルヘッド",
+                yomi: "Vault-Tec ボブルヘッド",
+                url: "vault-tec-bobblehead.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 3"],
+                date: "2025-11-25"
+            },
+            {
+                name: "クレーン",
+                yomi: "クレーン",
+                url: "crane.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-24"
+            },
+            {
+                name: "パワーアーマー",
+                yomi: "パワーアーマー",
+                url: "power-armor.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-24"
+            },
+            {
+                name: "前線基地タンゴ",
+                yomi: "前線基地タンゴ",
+                url: "front-line-tango.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-23"
+            },
+            {
+                name: "ヌカ・タッパー",
+                yomi: "ヌカ・タッパー",
+                url: "nuka-tapper.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-23"
+            },
+            {
+                name: "コンスタンティン・チェイス ",
+                yomi: "コンスタンティン・チェイス ",
+                url: "constantine-chase.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-22"
+            },
+            {
+                name: "タバコ",
+                yomi: "タバコ",
+                url: "tobacco.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-22"
+            },
+            {
+                name: "グリーンカントリー・ロッジ",
+                yomi: "グリーンカントリー・ロッジ",
+                url: "green-country-lodge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-11-21"
+            },
+            {
+                name: "スティムパック",
+                yomi: "スティムパック",
+                url: "stim-pack.html",
+                category: "アイテム",
+                appearance: ["Fallout 76"],
+                date: "2025-11-21"
+            },
+            {
+                name: "パイプガン",
+                yomi: "パイプガン",
+                url: "pipe-gun.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-11-20"
+            },
+            {
+                name: "スウィートウォータースペシャルブレンド",
+                yomi: "スウィートウォータースペシャルブレンド",
+                url: "sweetwater-special-blend.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-20"
+            },
+            {
+                name: "RobCo Auto-Cache #001",
+                yomi: "RobCo Auto-Cache #001",
+                url: "robco-auto-cache-001.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-19"
+            },
+            {
+                name: "シュガーボム",
+                yomi: "シュガーボム",
+                url: "sugar-bomb.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-11-19"
+            },
+            {
+                name: "パイプボルトアクション",
+                yomi: "パイプボルトアクション",
+                url: "pipe-bolt-action.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-18"
+            },
+            {
+                name: "聖なる書物",
+                yomi: "聖なる書物",
+                url: "sacred-writings.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-17"
+            },
+            {
+                name: "The Mothman Equinox",
+                yomi: "The Mothman Equinox",
+                url: "the-mothman-equinox.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-17"
+            },
+            {
+                name: "JES-2R",
+                yomi: "JES-2R",
+                url: "jes-2r.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-17"
+            },
+            {
+                name: "Mischief Night",
+                yomi: "Mischief Night",
+                url: "mischief-night.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-16"
+            },
+            {
+                name: "ホーマー・サパースタイン",
+                yomi: "ホーマー・サパースタイン",
+                url: "homer-saperstein.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-16"
+            },
+            {
+                name: "ゼータ星人",
+                yomi: "ゼータ星人",
+                url: "zeta-alien.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 3"],
+                date: "2025-11-16"
+            },
+            {
+                name: "Invaders from Beyond",
+                yomi: "Invaders from Beyond",
+                url: "invaders-from-beyond.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-15"
+            },
+            {
+                name: "Fallout76",
+                yomi: "Fallout76",
+                url: "fallout76.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout","Fallout 2"],
+                date: "2025-11-15"
+            },
+            {
+                name: "Fasnacht Day",
+                yomi: "Fasnacht Day",
+                url: "fasnacht-day.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-14"
+            },
+            {
+                name: "グラム",
+                yomi: "グラム",
+                url: "grams.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-14"
+            },
+            {
+                name: "Grahm's Meat-Cook(ミート ウィーク)",
+                yomi: "Grahm's Meat-Cook(ミート ウィーク)",
+                url: "grahm-s-meat-cook-meat-week.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-13"
+            },
+            {
+                name: "スーザンの小屋",
+                yomi: "スーザンの小屋",
+                url: "susan-s-cabin.html",
+                category: "植物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-13"
+            },
+            {
+                name: "ブラックアイド・スーザン",
+                yomi: "ブラックアイド・スーザン",
+                url: "black-eyed-susan.html",
+                category: "植物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-13"
+            },
+            {
+                name: "The Big Bloom",
+                yomi: "The Big Bloom",
+                url: "the-big-bloom.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-13"
+            },
+            {
+                name: "ポトマック川",
+                yomi: "ポトマック川",
+                url: "potomac-river.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2025-11-12"
+            },
+            {
+                name: "サイコ",
+                yomi: "サイコ",
+                url: "psycho.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-12"
+            },
+            {
+                name: "レーザーガン",
+                yomi: "レーザーガン",
+                url: "laser-gun.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-11-11"
+            },
+            {
+                name: "Fallout 4",
+                yomi: "Fallout 4",
+                url: "fallout-4.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4"],
+                date: "2025-11-11"
+            },
+            {
+                name: "シェルター受付センター",
+                yomi: "シェルター受付センター",
+                url: "shelter-reception-center.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-10"
+            },
+            {
+                name: "Rad-X",
+                yomi: "Rad-X",
+                url: "rad-x.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-10"
+            },
+            {
+                name: "エンクレイヴ・プラズマガン/ライフル",
+                yomi: "エンクレイヴ・プラズマガン/ライフル",
+                url: "enclave-plasma-gun-rifle.html",
+                category: "勢力",
+                appearance: ["Fallout 76"],
+                date: "2025-11-09"
+            },
+            {
+                name: "RadAway",
+                yomi: "RadAway",
+                url: "radaway.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-09"
+            },
+            {
+                name: "Vault 51",
+                yomi: "Vault 51",
+                url: "vault-51.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-08"
+            },
+            {
+                name: "ホロテープ",
+                yomi: "ホロテープ",
+                url: "holotape.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-08"
+            },
+            {
+                name: "レディ・ジャネットのソフトクリーム",
+                yomi: "レディ・ジャネットのソフトクリーム",
+                url: "lady-janet-s-soft-serve-ice-cream.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-07"
+            },
+            {
+                name: "Pip-Boy",
+                yomi: "Pip-Boy",
+                url: "pip-boy.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-07"
+            },
+            {
+                name: "犬",
+                yomi: "犬",
+                url: "dog.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-06"
+            },
+            {
+                name: "ハンター・リッジ",
+                yomi: "ハンター・リッジ",
+                url: "hunter-ridge.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-11-05"
+            },
+            {
+                name: "ジャイアントラット",
+                yomi: "ジャイアントラット",
+                url: "giant-rat.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-04"
+            },
+            {
+                name: "ボトルキャップ",
+                yomi: "ボトルキャップ",
+                url: "bottle-cap.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 3","Fallout 2"],
+                date: "2025-11-04"
+            },
+            {
+                name: "G.O.A.T.",
+                yomi: "G.O.A.T.",
+                url: "g-o-a-t.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2025-11-03"
+            },
+            {
+                name: "グローブス家のキャビン",
+                yomi: "グローブス家のキャビン",
+                url: "groves-family-cabin.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-03"
+            },
+            {
+                name: "アルパインリバー・キャビン",
+                yomi: "アルパインリバー・キャビン",
+                url: "alpine-river-cabin.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-02"
+            },
+            {
+                name: "モールラット",
+                yomi: "モールラット",
+                url: "mall-rat.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-01"
+            },
+            {
+                name: "フリーラジカルズ",
+                yomi: "フリーラジカルズ",
+                url: "free-radicals.html",
+                category: "勢力",
+                appearance: ["Fallout 76"],
+                date: "2025-10-31"
+            },
+            {
+                name: "中継タワーEM-B1-27",
+                yomi: "中継タワーEM-B1-27",
+                url: "relay-tower-em-b1-27_2.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-10-30"
+            },
+            {
+                name: "WV木材会社",
+                yomi: "WV木材会社",
+                url: "wv-lumber-company.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-10-29"
+            },
+            {
+                name: "ジョン・ハンコック",
+                yomi: "ジョン・ハンコック",
+                url: "john-hancock.html",
+                category: "人物",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2025-10-28"
+            },
+            {
+                name: "アーロンホルト農場",
+                yomi: "アーロンホルト農場",
+                url: "aaron-holt-farm.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-10-27"
+            },
+            {
+                name: "アリ",
+                yomi: "アリ",
+                url: "ali.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 3","Fallout 2"],
+                date: "2025-10-26"
+            },
+            {
+                name: "ダーリン・シスターの研究所",
+                yomi: "ダーリン・シスターの研究所",
+                url: "darling-sister-s-institute.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-10-24"
+            },
+            {
+                name: "ブッチ・デロリア",
+                yomi: "ブッチ・デロリア",
+                url: "butch-deloria.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2025-10-22"
+            },
+            {
+                name: "Mr.スクイーズ",
+                yomi: "Mr.スクイーズ",
+                url: "mr-squeeze.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-21"
+            },
+            {
+                name: "ブロートフライ",
+                yomi: "ブロートフライ",
+                url: "broat-fries_2.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 3"],
+                date: "2025-10-20"
+            },
+            {
+                name: "タイラー郡移動遊園地",
+                yomi: "タイラー郡移動遊園地",
+                url: "tyler-county-mobile-amusement-park.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-19"
+            },
+            {
+                name: "マジソン・リー",
+                yomi: "マジソン・リー",
+                url: "madison-lee.html",
+                category: "人物",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3"],
+                date: "2025-10-18"
+            },
+            {
+                name: "サットン",
+                yomi: "サットン",
+                url: "sutton.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-18"
+            },
+            {
+                name: "アンカー農場",
+                yomi: "アンカー農場",
+                url: "anchor-farm.html",
+                category: "場所",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2025-10-17"
+            },
+            {
+                name: "カウスポット乳製品製造所 ",
+                yomi: "カウスポット乳製品製造所 ",
+                url: "cowspot-dairy.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-10-17"
+            },
+            {
+                name: "Vault76",
+                yomi: "Vault76",
+                url: "vault76.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-17"
+            },
+            {
+                name: "The WayWard",
+                yomi: "The WayWard",
+                url: "the-wayward.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-17"
+            }
+        ];
+
+        // State
+        let currentSort = 'date'; // 'date' | 'name'
+        let currentView = 'list'; // 'list' | 'card'
+        let currentFilters = {
+            category: 'all',
+            appearance: 'all'
+        };
+        let thumbnails = {}; // サムネイルデータ
+
+        // DOM Elements
+        const container = document.getElementById('entries-container');
+        const countDisplay = document.getElementById('result-count');
+        const searchInput = document.getElementById('searchInput');
+
+        // 日付をタイムスタンプに事前変換してキャッシュ（ソート高速化）
+        loreEntries.forEach(entry => {
+            entry._dateMs = entry.date ? new Date(entry.date).getTime() : 0;
+        });
+        const todayMs = Date.now();
+        const twoDaysMs = 2 * 24 * 60 * 60 * 1000;
+
+        // サムネイルJSONの読み込み
+        fetch('lore-thumbnails.json')
+            .then(r => r.json())
+            .then(data => { thumbnails = data; renderEntries();
+
+        // Draft件数表示
+        const draftCount = loreEntries.filter(e => e.isDraft).length;
+        const totalCount = loreEntries.length;
+        const draftEl = document.getElementById('draft-total-count');
+        if (draftEl) draftEl.textContent = draftCount + ' / ' + totalCount + ' 件'; })
+            .catch(() => { renderEntries(); });
+
+        // デバウンス: 200ms以内の連続入力をまとめて1回に処理
+        let _debounceTimer = null;
+        function debouncedRender() {
+            clearTimeout(_debounceTimer);
+            _debounceTimer = setTimeout(renderEntries, 200);
+        }
+
+        // サムネイルHTML生成ヘルパー
+        function thumbHtml(url, isCard) {
+            const src = thumbnails[url];
+            if (isCard) {
+                return src
+                    ? `<img class="card-thumb" src="${src}" alt="" loading="lazy">`
+                    : `<div class="card-thumb-placeholder">?</div>`;
+            } else {
+                return src
+                    ? `<img class="list-thumb" src="${src}" alt="" loading="lazy">`
+                    : `<div class="list-thumb-placeholder">?</div>`;
+            }
+        }
+
+        // ===== 仮想スクロール =====
+        // フィルタ・ソート後の全件をキャッシュし、スクロール位置に応じて
+        // WINDOW_SIZE 件だけDOMに描画する。
+        const WINDOW_SIZE = 60;  // 一度に描画する最大件数
+        let _filteredCache = []; // 現在の表示対象全件
+        let _winStart = 0;       // 描画ウィンドウの先頭インデックス
+        const scrollEl = document.querySelector('.terminal-screen');
+
+        // ビルドした要素をDOMに反映（ウィンドウ分だけ）
+        function renderWindow() {
+            const total = _filteredCache.length;
+            const winEnd = Math.min(_winStart + WINDOW_SIZE, total);
+            const slice = _filteredCache.slice(_winStart, winEnd);
+
+            container.innerHTML = '';
+            container.className = currentView === 'card' ? 'card-grid' : '';
+
+            if (total === 0) {
+                container.innerHTML = '<div class="line" style="color:red">> NO MATCHING ARCHIVES FOUND.</div>';
+                return;
+            }
+
+            // 上部スペーサー（仮想行の高さを確保）
+            const ITEM_H = currentView === 'card' ? 180 : 62;
+            if (_winStart > 0) {
+                const top = document.createElement('div');
+                top.style.height = (_winStart * ITEM_H) + 'px';
+                container.appendChild(top);
+            }
+
+            const fragment = document.createDocumentFragment();
+
+            if (currentView === 'card') {
+                slice.forEach(entry => {
+                    const el = document.createElement('a');
+                    el.href = entry.url;
+                    el.className = 'card-item';
+                    if (entry.category) el.dataset.cat = entry.category;
+
+                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
+                    const newBadge = isNew ? '<span class="new-badge" style="position:absolute;top:6px;right:6px;z-index:1">NEW!</span>' : '';
+                    const draftBadge = entry.isDraft ? '<span style="position:absolute;top:6px;left:6px;z-index:1;background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold">DRAFT</span>' : '';
+                    let badgesHtml = entry.category && entry.category !== 'その他'
+                        ? `<span class="badge">${entry.category}</span>` : '';
+
+                    el.innerHTML = `
+                        <div style="position:relative">${newBadge}${draftBadge}${thumbHtml(entry.url, true)}</div>
+                        <div class="card-body">
+                            <div class="card-title">${entry.name}</div>
+                            <div class="card-meta">${badgesHtml}</div>
+                        </div>`;
+                    fragment.appendChild(el);
+                });
+            } else {
+                slice.forEach(entry => {
+                    const el = document.createElement('a');
+                    el.href = entry.url;
+                    el.className = 'menu-item';
+                    if (entry.category) el.dataset.cat = entry.category;
+
+                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
+                    const newBadgeHtml = isNew ? '<span class="new-badge">NEW!</span>' : '';
+                    const draftBadgeHtml = entry.isDraft ? '<span style="background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold;margin-right:4px">DRAFT</span>' : '';
+                    let badgesHtml = entry.category && entry.category !== 'その他'
+                        ? `<span class="badge">${entry.category}</span>` : '';
+                    entry.appearance.forEach(a => { badgesHtml += ` <span class="badge">${a}</span>`; });
+
+                    el.innerHTML = `<div class="item-left">${thumbHtml(entry.url, false)}<span class="item-name">> ${draftBadgeHtml}${newBadgeHtml}${entry.name}</span></div><div class="item-meta">${badgesHtml}</div>`;
+                    fragment.appendChild(el);
+                });
+            }
+
+            container.appendChild(fragment);
+
+            // 下部スペーサー
+            const remaining = total - winEnd;
+            if (remaining > 0) {
+                const bottom = document.createElement('div');
+                bottom.style.height = (remaining * ITEM_H) + 'px';
+                container.appendChild(bottom);
+            }
+        }
+
+        // スクロール時にウィンドウをずらす
+        scrollEl.addEventListener('scroll', () => {
+            const total = _filteredCache.length;
+            if (total === 0) return;
+            const ITEM_H = currentView === 'card' ? 180 : 62;
+            const newStart = Math.max(0, Math.floor(scrollEl.scrollTop / ITEM_H) - 10);
+            if (newStart !== _winStart) {
+                _winStart = newStart;
+                renderWindow();
+            }
+        }, { passive: true });
+
+        function renderEntries() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const cat = currentFilters.category;
+            const app = currentFilters.appearance;
+
+            // フィルタ
+            _filteredCache = loreEntries.filter(entry => {
+                if (!entry.isDraft) return false;  // 管理者ページ: Draft記事のみ表示
+                if (cat !== 'all' && entry.category !== cat) return false;
+                if (app !== 'all' && !entry.appearance.includes(app)) return false;
+                if (searchTerm) {
+                    if (!entry.name.toLowerCase().includes(searchTerm) &&
+                        !entry.yomi.toLowerCase().includes(searchTerm)) return false;
+                }
+                return true;
+            });
+
+            // ソート
+            _filteredCache.sort((a, b) => {
+                if (currentSort === 'date') return b._dateMs - a._dateMs;
+                return a.yomi.localeCompare(b.yomi);
+            });
+
+            countDisplay.innerText = _filteredCache.length;
+            _winStart = 0;  // フィルタ変更時は先頭にリセット
+            scrollEl.scrollTop = 0;
+            renderWindow();
+        }
+
+        function setSort(type) {
+            currentSort = type;
+            updateButtons('sort', type);
+            renderEntries();
+        }
+
+        function setView(type) {
+            currentView = type;
+            updateButtons('view', type);
+            renderEntries();
+        }
+
+        function setFilter(type, value) {
+            currentFilters[type] = value;
+            updateButtons(type, value);
+            renderEntries();
+        }
+
+        // data-type/data-value属性で直接ターゲットを絞り込む（全ボタン走査を廃止）
+        function updateButtons(type, value) {
+            document.querySelectorAll(`[data-type="${type}"]`).forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === value);
+            });
+        }
+
+        // DOMContentLoadedで初期化（window.onloadより早い）
+        document.addEventListener('DOMContentLoaded', () => {
+            renderEntries();
+            loadRecentComments();
+        });
+
+        // ========== 最新コメント ==========
+        const _loreSupabase = window.supabase ? window.supabase.createClient(
+            'https://qkdjufvdeisnunismgaw.supabase.co',
+            'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'
+        ) : null;
+
+        function relativeTimeLore(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+
+        function escapeHtmlLore(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        async function loadRecentComments() {
+            const el = document.getElementById('recent-comments-list');
+            if (!el || !_loreSupabase) return;
+            const { data, error } = await _loreSupabase
+                .from('comments')
+                .select('id, article_name, article_url, content, created_at')
+                .order('created_at', { ascending: false })
+                .limit(5);
+            if (error || !data || data.length === 0) {
+                el.innerHTML = '<span style="color:var(--term-dim)">コメントはまだありません</span>';
+                return;
+            }
+            el.innerHTML = data.map(c => `
+                <div style="border-bottom: 1px dashed var(--term-dim); padding: 5px 0; display: flex; flex-wrap: wrap; gap: 4px; align-items: baseline;">
+                    <a href="${escapeHtmlLore(c.article_url)}" style="color: var(--term-green); font-weight: bold; font-size: 0.85em; text-decoration: none; white-space: nowrap;">[${escapeHtmlLore(c.article_name)}]</a>
+                    <span style="flex: 1; color: #ccffcc; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${escapeHtmlLore(c.content.length > 30 ? c.content.slice(0, 30) + '…' : c.content)}</span>
+                    <span style="color: var(--term-dim); font-size: 0.8em; white-space: nowrap;">${relativeTimeLore(c.created_at)}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleRecentComments() {
+            const body = document.getElementById('recent-comments-body');
+            const toggle = document.getElementById('recent-comments-toggle');
+            if (!body) return;
+            const isOpen = body.style.display !== 'none';
+            body.style.display = isOpen ? 'none' : 'block';
+            if (toggle) toggle.textContent = isOpen ? '▼' : '▲';
+        }
+
+    </script>
+
+</body>
+
+</html>

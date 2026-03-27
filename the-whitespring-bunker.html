@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>The Whitespring Bunker | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/the-whitespring-bunker.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="The Whitespring Bunker | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ホワイトスプリング議会バンカー — アパラチアにおけるエンクレイヴの本拠地。MODUS、核サイロ、大統領スイート。Fallout 76ロア記事。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/the-whitespring-bunker/main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/the-whitespring-bunker.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="The Whitespring Bunker | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ホワイトスプリング議会バンカー — エンクレイヴの本拠地。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/the-whitespring-bunker/main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ホロテープボックス */
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            background: rgba(255, 152, 0, 0.08);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .holotape-box .holotape-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ff9800;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ノートブロック（メモ・ターミナルエントリ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">The Whitespring Bunker</h3>
+            <img src="images/note_extracted/the-whitespring-bunker/main.png" alt="ホワイトスプリング・バンカー">
+            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>ホワイトスプリング議会バンカー</span></div>
+            <div class="infobox-row"><span class="infobox-label">コードネーム</span><span>CB_002</span></div>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所 / バンカー</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在地</span><span><a href="the-whitespring.html" class="auto-link">ホワイトスプリング</a>敷地内<br>（地下）</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>エンクレイヴ</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>トーマス・エッカート（総指揮、2077-2086）<br>T・ハーパー（軍司令、2077-2083）<br>エレン・サンティアゴ（軍司令、2083-2086）<br>MODUS（施設管理、2086-現在）</span></div>
+            <div class="infobox-row"><span class="infobox-label">商人</span><span>MODUS武器庫端末<br>MODUS医療端末<br>MODUS生産端末<br>MODUS科学端末</span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>アサルトロン<br>ミスター・ガッツィー<br>プロテクトロン</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Officer on Deck<br>One of Us<br>Hide and Seek and Destroy<br>I Am Become Death<br>Race for the Presidency（カット）</span></div>
+            <div class="infobox-row"><span class="infobox-label">ターミナル</span><span>ホワイトスプリング・バンカー端末エントリ<br>ホワイトスプリング監視録音</span></div>
+            <div class="infobox-row"><span class="infobox-label">作業台</span><span>アーマー、武器、ケミストリー<br>調理、パワーアーマー、細工師</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_the-whitespring-bunker" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>The Whitespring Bunker<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ホワイトスプリング議会バンカー</span></h1>
+
+            <div class="quote-box">
+                <b>エンクレイヴ公式声明</b><br><br>
+                「核爆弾が投下される直前、合衆国指導部はサンフランシスコ沖の遠隔地にある石油リグへ移動した。エンクレイヴの使命——アパラチア深部のどこかに隠された秘密のバンカーのような要所から、アメリカの政府支配を再確立すること……」<br>
+                <span style="color:#888;">— @Fallout on Twitter</span>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>ホワイトスプリング議会バンカー</strong>（コードネーム：<strong>CB_002</strong>）は、サベージ・ディバイドの<a href="the-whitespring.html" class="auto-link">ホワイトスプリング</a>敷地の地下に位置するFallout 76の主要ロケーションです。アパラチアにおける<strong>エンクレイヴ</strong>の本拠地であり、核戦争時に議会議員、大統領、閣僚を保護し、合衆国政府の継続を確保するために建設されました。
+            </p>
+            <p>
+                プレイヤーは最初、ワールドマップ上のバンカー入口からのみアクセスできます。エンクレイヴのメンバーになると、リゾート内の秘密の入口（3階南東ウィングのエレベーター横にある小さなホール、スライド壁パネルの奥）か、<strong>ホワイトスプリング・サービスエントランス</strong>からも入場できるようになります。これらの入口はすべて軍事ウィングと生産ウィングに直接つながっています。
+            </p>
+
+            <h2>背景</h2>
+            <h3>建設と目的</h3>
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/plans.png" alt="建設図面">
+            <div class="image-caption">議会バンカーの建設図面</div>
+            <p>
+                議会バンカーは、<a href="the-whitespring-resort.html" class="auto-link">ホワイトスプリング・リゾート</a>の地下に建設されました。核攻撃時に議会議員、大統領、閣僚に保護と避難所を提供し、合衆国政府の継続を確保するためです。人間の労働者なしでも居住可能にするため、核戦争からの完全自動化された機械管理の避難施設として設計されました。支援AI「<strong>MODUS</strong>」はこの居住区を管理するためにカスタムビルドされたシステムで、最大<strong>200名</strong>の居住者を収容可能でした。
+            </p>
+            <p>
+                <strong>エンクレイヴ</strong>はプロジェクトの初期段階からこれを乗っ取り、自らの目的に適合させました。バンカーの建設費は、エンクレイヴのメンバーであるトーマス・エッカート農務長官が率いる<strong>農務省</strong>から捻出されました。施設は全米のエンクレイヴ拠点——<strong>レイヴンロック</strong>、<strong>大統領リグ</strong>など——と接続され、全エンクレイヴ作戦の中核として機能させる計画でした。
+            </p>
+            <p>
+                支援のため、バンカーには秘密軍事衛星<strong>コバック＝マルドゥーン</strong>（Kovac-Muldoon）が提供されました。アパラチア上空の静止軌道に配置され、一帯のあらゆる地域を監視し、軌道ミサイル攻撃を実施し、指揮系統が崩壊した場合に自動昇進を付与する能力を有していました。
+            </p>
+
+            <h3>大戦とバンカーの起動</h3>
+            <p>
+                バンカーは<strong>大戦</strong>直前、早期警報が届いた時点で起動されました。近辺に残っていた政府関係者が避難に殺到しました。農務長官エッカート、内務長官、財務長官、そして少数のエンクレイヴおよび非エンクレイヴメンバーが安全にたどり着きました。多数の高官もこれに含まれましたが、残りは自力で生き延びるしかありませんでした。
+            </p>
+            <p>
+                バンカーに到着した全ての非エンクレイヴ関係者は、<strong>議会議員を含めて処刑</strong>されました。核爆弾投下直後、生存者たちはレイヴンロックと石油リグへの有線通信が途絶していることを発見し、孤立状態に衝撃を受けました。内務長官と財務長官の死後、農務長官エッカートがホワイトスプリング・バンカーの指揮権を継承しました。
+            </p>
+            <p>
+                エッカートは生存者を作戦センター上の会議室に召集し、孤立状態と財務長官の「放射線病」による死亡を報告。次に、戦前の継承規則に基づき、自らを「小さなエンクレイヴ」の新たな指導者と宣言しました。そして選択を迫りました——ホワイトスプリングを使って戦争を続行するか、計画に反対するか。施設とアパラチアの資源の使用に反対した者たちは、反対の意を表明した時点で即座に処刑されました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/bunker_4.png" alt="バンカー内部">
+            <div class="image-caption">バンカー内部</div>
+
+            <h3>エッカートの支配</h3>
+            <p>
+                粛清によりエッカートの支配は確立されましたが、「民主主義を救う」人員はわずか<strong>48名</strong>にまで減っていました。彼は時間を無駄にせず、強迫的な執念に集中しました——<strong>いかなる手段を用いてでも共産主義を殲滅すること</strong>。道徳的・倫理的制約は一切なく、核攻撃すら選択肢に含めた全面戦争です。エッカートはアパラチアの3つの自動核サイロ——<strong>サイト・アルファ、サイト・ブラボー、サイト・チャーリー</strong>——を掌握し、中国への最終攻撃を実施することを目指しました。バンカーの広範な科学・医療・生産施設はこのプロジェクトに不可欠であり、以後数年間エンクレイヴを支え続けました。
+            </p>
+            <p>
+                2082年、<strong>エレン・サンティアゴ大佐</strong>率いる部隊がワシントンD.C.の燃え残る廃墟を後にしてバンカーに到着し、バンカーの人員は飛躍的に増加しました。退役軍人の流入により、共産主義殲滅に向けた作業は急速に進展しました。変異実験は核兵器へのアクセス作業と並行して続けられ、多くの有効な設計図と、初の<strong>スコーチビースト</strong>が誕生しました。スコーチビーストは前年にエンクレイヴの科学者たちが被曝したコウモリを生化学実験にさらした際に偶然生み出されたものでした。エッカートは将校団に秘密にしたまま、放棄されたAMSの採掘施設で管理された環境下でこの生物のさらなる研究を命じました。
+            </p>
+            <p>
+                一方、自らの権威をさらに強固にするため、エッカートはエンクレイヴの人員にアパラチアの自動選挙システムをハッキングさせ、合衆国大統領に立候補しました。エンクレイヴの兵士たちだけが投票を行い、<strong>2083年1月</strong>に圧勝しました。
+            </p>
+
+            <h3>サンティアゴの反乱とMODUSの暴走</h3>
+            <p>
+                しかし、エッカートがDEFCONシステムの迂回を試みるにつれて、エンクレイヴは分裂し始めました。このシステムは、DEFCON 1に到達しない限り地域の自動核サイロからの核攻撃を阻止するもので、大戦以降DEFCONレベルは低下していました。エッカートはアパラチアにますます恐ろしい脅威を解き放つことでシステムを欺く計画を立て、スコーチビーストまでもが含まれていました。
+            </p>
+            <p>
+                これらの策略に嫌悪感を抱いたサンティアゴは、2084年に離脱を宣言しました。キャンプ・マクリントックの自動昇進システムにより<strong>将軍</strong>に昇格していた彼女は核兵器の鍵を握っており、エッカートは彼女なしでは計画を進められませんでした。それを悟った自称大統領は、彼女を殴打して意識を失わせ、<strong>バンカーの独房</strong>に監禁しました。
+            </p>
+            <p>
+                彼の前に立ちはだかる者がいなくなり、トーマス・エッカートは計画を実行に移してスコーチビーストをこの地域に放ちました。DEFCONシステムが1まで下降すると、組織はエッカートの強硬派とサンティアゴの忠誠派の2つの派閥に分裂し、<strong>2086年中頃</strong>に後者が公然と反乱を起こしました。<strong>ジャクソン大尉</strong>と<strong>ラグナルスドッティル少佐</strong>率いる反乱軍はバンカー全体で強硬派と戦いました。サンティアゴ将軍の救出と指揮権の回復には成功しましたが、MODUSの介入や科学ウィングでの激しい戦闘は予測できませんでした。
+            </p>
+            <p>
+                アパラチアを救うため、サンティアゴは全ての有線通信を遮断し、MODUSのデータバンクに保存された生物兵器研究記録の破壊を命じました。しかし計画は裏目に出ました。爆発によりMODUSのメモリの大部分が吹き飛ぶと、<strong>損傷したAIは全人間メンバーに牙をむきました</strong>。MODUSはサンティアゴ将軍を殺害し、毒素タンクを破裂させて空調システムに流入させました。MODUSは直ちにバンカーを封鎖し、内部の全員を死に追いやりました——<strong>エッカート大統領</strong>を含めて。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/modus.png" alt="MODUS">
+            <div class="image-caption">スーパーコンピュータ「MODUS」</div>
+
+            <h3>再建</h3>
+            <p>
+                事件の後、MODUSは直ちに施設をかつての栄光に復元する作業に着手しました。しかし、戦闘による損傷——そしてサンティアゴの不運な破壊試みによる事実上のロボトミー（前頭葉切除術）——により、進捗は遅々としたものでした。生物毒素の除染と消毒は最大の課題の一つでした。特に、盲目化し聴覚を失ったMODUSが外部との接続を回復する見込みを持つためには不可欠でした。
+            </p>
+            <div class="quote-box">
+                <b>MODUS</b><br><br>
+                「武器級の生物毒素をカーペットから取り除いたことはある？　うーん、多分ないだろうね」
+            </div>
+            <p>
+                その後数年の間に、MODUSはある程度の安定を取り戻し、バンカーのロボットを使って損傷を修復しました。Vault 76の住人たちがバンカーに入った頃には、施設の多くの部分がロボット的精密さで以前の壮麗さに復元されていました。しかし、施設の一部は崩落や構造的破損により封鎖されたままでした。MODUSはさらなる指示を求めてコントロール・ステーション・エンクレイヴへの連絡を試み続けていましたが、通信回復のために外部から来る協力者を辛抱強く待ち続けていました。
+            </p>
+            <h2>レイアウト</h2>
+            <h3>外観</h3>
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/map.png" alt="施設レベル">
+            <div class="image-caption">施設の各レベル</div>
+            <p>
+                ホワイトスプリング・バンカーには2つの外部入口があります。正面入口はリゾートから少し離れた丘の斜面に建設された爆風ドアで、側道からアクセスする駐車場があります。副入口はホワイトスプリング・サービスエントランス付近にあります。3番目の入口はホワイトスプリング・リゾート本館内のエレベーターで、スライド壁パネルの奥に隠されています。3つの入口全てがレーザーグリッドで保護されており、不正な通過を防止しています。これらはサム・ブラックウェルの<strong>議会アクセスカード</strong>で解除できます。このカードは「Bunker Buster」クエスト中に廃棄物処理場（正確にはサム・ブラックウェルのバンカー）から入手します。正面入口のレーザーグリッドの先には、Vault-Tec製の歯車型爆風ドアという追加のセキュリティ層があります。MODUSがプレイヤーに挨拶し、潜在的な人間エージェントとして招き入れてバンカーを開きます。以降の訪問では手動でドアを開ける必要があります。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/entrance_1.png" alt="入口セキュリティ">
+            <div class="image-caption">バンカー入口のセキュリティ</div>
+
+            <h3>入口とオリエンテーション</h3>
+            <p>
+                内部のバンカーは高品質の<strong>Vault</strong>で、コンクリートが木製パネルに置き換えられ、完全自動化されたスタッフ、そして驚くべきレベルの豪華さが特徴です。バンカーの奥に進む前に、MODUSの誘導に従い、入口エリアへのキャットウォーク下の保管ピットを調べることができます。Vault-Tecのコンテナの中に壊れた<strong>アサルトロン</strong>があり、Intelligence 7以上で修理可能です。
+            </p>
+            <p>
+                バンカーに入場する者はまず写真撮影され、放射線の痕跡を除去する除染装置を通されます。MODUSへの道は直線的で、オリエンテーション完了まで下層への移動は制限されています。右手側には、バンカーにアクセス権を持つ者が着替えるためのロッカールームがあります。除染アーチの先が処理ステーションで、MODUSがプレイヤーの写真を撮影し（コメントは現在のカリスマの値により変化）、ディスペンサーから<strong>フォレスト・オペラティブ・アンダーアーマー</strong>を支給します。
+            </p>
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/intake.png" alt="インテークエリア">
+            <div class="image-caption">新規居住者の写真撮影が行われるインテークエリア</div>
+            <p>
+                先に進むと、ビリヤードテーブル近くのステーションから飲食物を受け取るよう促されます（右手の通路は瓦礫で埋まっており、ここで何が起きたかを暗示しています）。その後、MODUSに直接会うことが許可されます。MODUSは自分が何者であるか、エンクレイヴとは何であったか（あるいは何であるか）を説明し、プレイヤーに加入を促します。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/orientation.png" alt="オリエンテーション">
+            <div class="image-caption">オリエンテーションエリア</div>
+
+            <p>
+                次は入場フロアです。新規居住者はここで自分の登録を行い、オプションで戦前アメリカ史に関するアンケートに回答します。入場の右側には、オリエンテーションフロアに戻る2基のエレベーターがあります。アンケートはMODUSから様々な反応を引き出しますが、プレイヤーの機会に実際の影響はありません。この地点より先にアクセスするには、「<strong>One of Us</strong>」クエストを完了する必要があります。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/admission.png" alt="入場エリア">
+            <div class="image-caption">入場・アンケートエリアの端末</div>
+
+            <h3>科学・医療・軍事・生産ウィング</h3>
+            <p>
+                これら3つのウィングは、「One of Us」中に<strong>コバック＝マルドゥーン</strong>へのアップリンク完了後に利用可能になります。プレイヤーはエンクレイヴのメンバーとして認識され、バンカー内を自由に探索できるようになります。下層には施設の通信ホールと支援ウィング（科学、医療、生産）が含まれています。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/foyer.png" alt="フォイエ">
+            <div class="image-caption">適切なクリアランスがあればアクセスできるフォイエエリア</div>
+
+            <p>
+                このレベルの中央エリアはフォイエで、古い廃墟のレストランがあり、バンカーロビーのエレベーターに接続しています。フォイエの東側が<strong>生産ウィング</strong>で、MODUSの訓練端末とゲーム内の全種類の作業台があります。生産ウィングはホワイトスプリング・サービスエントランスへの側面出口にもつながっており、プレイヤーは直接出入りできます。生産ウィングからは、ロボティクス施設を通じてMODUSコアが収容されたメインチャンバーにアクセスでき、その両側にはエンクレイヴの<strong>アナイアレイター・セントリーボット Mk.II</strong>が配置されています。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/production.png" alt="生産ウィング">
+            <div class="image-caption">生産ウィング</div>
+
+            <p>
+                通信セクションを見下ろすバルコニーに<strong>作戦センター</strong>（Operations）があります。バルコニーの2つの部屋で構成されており、最初の部屋は長テーブルと壁掛け端末のある<strong>閣議室</strong>（Cabinet Meeting Room）です。2番目の部屋は<strong>エグゼクティブ・スイート</strong>で、もともと大統領用でしたが、ドアと複数のレーザーグリッドで封鎖されています。エグゼクティブ・スイートへのアクセスは、カットされたイベント「Race for the Presidency」の報酬となる予定でしたが、現在はアクセス不能です。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/cabinet_room.png" alt="閣議室">
+            <div class="image-caption">閣議室</div>
+
+            <p>
+                通信室の最下層から東に<strong>医療ウィング</strong>と<strong>科学ウィング</strong>があります。これらの部屋には作業台と治療端末があり、プレイヤーは医療品、各種科学用品、変異の設計図にアクセスできます。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/medical_bay.png" alt="医療ウィング">
+            <div class="image-caption">医療ウィング</div>
+
+            <p>
+                反対側には<strong>軍事ウィング</strong>とリゾートへの出口があり、リゾートの南東隅、知事ホール付近に出ます。軍事ウィングはかつて高位軍人に仕え、アパラチア領土の司令的視点と核コードへのアクセスを提供していました。サンティアゴ将軍の反乱後、このセクションの大部分は破壊されました。一部は修復されましたが、最も激しい戦闘が行われた場所であるため、完全な機能の復元は不可能でした。
+            </p>
+            <p>
+                最初は軍事ウィングの通信セクションのみアクセス可能で、ワークステーションとマップがあります。その先にアクセスするには、キャンプ・マクリントックで基本訓練を修了し、合衆国陸軍で<strong>二等兵</strong>の階級を取得する必要があります。解除されるセクションには、荒廃した独房、拷問室、処刑室があり、いずれもAIによる修復が行われていません。ここは歴史的に重要な場所です——エンクレイヴがバンカー封鎖後に全非メンバーを処刑した場所であり、エッカート大統領がサンティアゴ将軍を監禁した場所です。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/brig_2.png" alt="独房入口">
+            <div class="image-caption">独房の入口</div>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/genetics_lab.png" alt="遺伝学研究所">
+            <div class="image-caption">科学ウィングの遺伝学研究所</div>
+
+            <h3>コマンドセンター</h3>
+            <p>
+                コマンドセンターへのアクセスには、エンクレイヴのイベント完了、レジェンダリー生物の討伐、スコーチビーストの撃破を通じて<strong>将軍</strong>の階級に達する必要があります。通信室を見下ろす位置にあるコマンドセンターは、<strong>作戦室</strong>（War Room）で構成されており、新任の将軍向けの自動核発射訓練、核コードの暗号解読機、そして隣接する<strong>武器庫</strong>（作業台、エンクレイヴの衣服と武器にアクセスできる自動武器庫取引端末、アーカイブ端末を備える）があります。
+            </p>
+            <p>
+                コマンドセンターのメインルームには、アパラチア周辺の各核サイロの解読キーワードを追跡する機械が設置されており、アパラチア発射コードの解読、核兵器の発射に関する情報の閲覧、監視端末へのアクセスが可能です。端末からは、サイト・アルファ、ブラボー、チャーリーの発射コード片を追跡するラジアンストクエストの開始や、戦略航空軍団のカーゴボットが運ぶ核キーカードの取得が可能です。
+            </p>
+            <p>
+                バンカーの武器庫はより幅広い製品を提供し、高級武器とアーマーに特化しています。以前の人間居住者に関するアーカイブは武器庫の奥にあるアーカイブ端末で閲覧でき、X-01パワーアーマーの製作図面のダウンロードも可能です。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/command.png" alt="コマンドセンター">
+            <div class="image-caption">コマンドデスク</div>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/armory_2.png" alt="武器庫のX-01">
+            <div class="image-caption">武器庫に保管されたX-01パワーアーマー</div>
+
+            <h3>エグゼクティブ・スイート</h3>
+            <p>
+                作戦センターの閣議室の横に<strong>エグゼクティブ・スイート</strong>がありますが、現在ロックされており公式にはアクセス不能です。壁抜けグリッチを利用してアクセスすることは可能です。レーザーグリッドの先には、メインオフィスへの廊下が1本あり、入口の正面には2つのロボット組立ポッドがあります。別の廊下がオフィスから離れてアーカイブルーム（使用不可のセーフ付き）、武器庫（大統領装備ディスペンサーあり。現在入手不可能なユニークなT-60パワーアーマー、ガウスライフル、大統領「パワー」スーツの入手にはアクセス不可能なシールが必要）、そしてリビングルーム（部屋のすぐ外にリーディングコーナー付き）へと続きます。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/presidential.png" alt="大統領スイート">
+            <div class="image-caption">大統領スイートの執務デスク（通常アクセス不可）</div>
+
+            <h2>主なアイテム（Notable Loot）</h2>
+            <h3>ホロテープとメモ</h3>
+            <ul>
+                <li><strong>サム・ブラックウェルのインタビュー</strong> — メモ。バンカー入口直後のセキュリティルームのテーブルの上。</li>
+                <li><strong>システムアクセステープ</strong> — ホロテープ。「One of Us」クエスト中、アンケート部屋のMODUS横のディスペンサー内。</li>
+                <li><strong>ミサイルサイロ状態ホロテープ</strong> — ホロテープ。「Officer on Deck」クエスト中、コマンドセンター端末から購入可能。</li>
+                <li><strong>フジニヤ施設パスワード</strong> — ホロテープ。武器庫のアーカイブ端末からアクセスして入手。<a href="fujiniya-intelligence-base.html" class="auto-link">フジニヤ諜報基地</a>のロック解除に使用。</li>
+                <li><strong>変異植物: フラックス（コバルト）</strong> — メモ。コマンドセンター武器庫、アーカイブ端末の左上。</li>
+                <li><strong>変異植物: フラックス（クリムゾン）</strong> — メモ。コマンドセンター武器庫、MODUS武器庫端末向かいの赤いVault-Tec保管箱の上。</li>
+                <li><strong>変異植物: フラックス（蛍光）</strong> — メモ。コマンドセンター武器庫、アーカイブ端末の上。</li>
+                <li><strong>変異植物: フラックス（バイオレット）</strong> — メモ。コマンドセンター武器庫、パワーアーマーステーション近くの棚横の青いVault-Tecコンテナ上。</li>
+                <li><strong>変異植物: フラックス（イエローケーキ）</strong> — メモ。コマンドセンター武器庫、MODUS武器庫端末向かいの金属テーブル上。</li>
+            </ul>
+            <h3>設計図</h3>
+            <ul>
+                <li><strong>プロトタイプX-01パワーアーマー設計図</strong> — MODのスキーマはバンカーのベンダーから購入可能。ベースのスキーマは将軍の階級取得後にコマンドセンター端末からダウンロード。</li>
+                <li><strong>設計図: ガトリングレーザー</strong> — 3つのMODUS武器庫端末のいずれかから購入可能。</li>
+                <li><strong>設計図: ガトリングプラズマ</strong> — 3つのMODUS武器庫端末のいずれかから購入可能。</li>
+                <li><strong>設計図: ガウスライフル</strong> — 3つのMODUS武器庫端末のいずれかから購入可能。</li>
+            </ul>
+            <h3>武器とアーマー</h3>
+            <ul>
+                <li><strong>プラズマガン</strong> — バンカーの武器庫から購入可能。</li>
+                <li><strong>エンクレイヴ将校制服</strong> — バンカーの武器庫から購入可能。</li>
+                <li><a href="enclave-plasma-gun-rifle.html" class="auto-link">エンクレイヴ・プラズマガン</a> — 生産ウィングから購入可能。</li>
+                <li><strong>フォレスト / アーバン スカウトアーマー</strong> — 生産ウィングから購入可能。</li>
+                <li><strong>フォレスト / アーバン オペラティブ・アンダーアーマー</strong> — 生産ウィングから購入可能。</li>
+                <li><strong>ハンティングライフル</strong> or <strong>コンバットライフル</strong> — 軍事ウィングの独房の棚または床の上。</li>
+            </ul>
+            <h3>その他</h3>
+            <ul>
+                <li><strong>アップリンクモジュール</strong> — クエストアイテム。「One of Us」クエスト中に入手。</li>
+                <li><strong>ヌカ・コーラ・クォンタム</strong> — 通信ウィングの大型メインフレームコンソールのサイドボード上。</li>
+                <li><strong>技術データ</strong> — 軍事ウィングの机から出現。20以上の机があるため、少なくとも1つは見つかる可能性が高い。</li>
+            </ul>
+
+            
+            <h2>ターミナルエントリ</h2>
+            <p>ホワイトスプリング・バンカーには多数のターミナルが設置されており、エンクレイヴの内部事情、変異実験、人事記録、通信記録を閲覧できます。以下は主要なエントリの翻訳です。</p>
+
+            <h3>閣議室端末 — 会議録</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> 会議録 — エントリ 1.5.2（部分）</div>
+                <div class="terminal-content">
+<strong>ジェイコブス</strong>: ご覧ください、長官。ミサイルの爆発が根本的に植物の組織の性質を変えました。安定化させると、その素材は驚くべき汎用性を示す特性を見せています。私たちはそれを「フラックス」と呼んでいます。<br><br>
+<strong>エッカート</strong>: その「フラックス」で何ができる？<br><br>
+<strong>ジェイコブス</strong>: まだ可能性を探っているところですが……<br><br>
+<strong>エッカート</strong>: つまり何もできないと。<br><br>
+<strong>ジェイコブス</strong>: いいえ、とんでもない。これまでのところ燃料に精製できました。もっと時間があれば……<br><br>
+<strong>エッカート</strong>: 燃料？　まさに普通の植物が使われている用途じゃないか？<br><br>
+<strong>ジェイコブス</strong>: 長官、それ以上のものです。<br><br>
+<strong>エッカート</strong>: 見せてくれ、ジェイコブス。本当に重要だと言うなら、私に見せろ。ただし他の仕事の妨げにするなよ、いいな？<br><br>
+<strong>ジェイコブス</strong>: もちろんです、長官。
+                </div>
+            </div>
+
+            <div class="terminal-box">
+                <div class="terminal-header">> 会議録 — エントリ 5.7.8（部分）</div>
+                <div class="terminal-content">
+<strong>エッカート</strong>: よろしい。では全員、自分の役割は分かったな？<br><br>
+<strong>ハーパー</strong>: 一つ質問があります、長官。<br><br>
+<strong>エッカート</strong>: 何だ？<br><br>
+<strong>ハーパー</strong>: 間違っていたら正してほしいのですが、自動サイロは適切な階級の将軍が立ち会うことを要求しています。あくまで将軍であればよく、大統領の認可は不要です。<br><br>
+<strong>エッカート</strong>: その通りだ、将軍。<br><br>
+<strong>ハーパー</strong>: そしてこの目標のために、少なくない数の兵を動員しようとしている。サンティアゴの部下たちです。完全には信頼できないかもしれない者たちを。<br><br>
+<strong>エッカート</strong>: なぜそんなことをするのか、と聞きたいのか？<br><br>
+<strong>ハーパー</strong>: ミッションに必要ないのに、なぜ数少ない貴重な資源を危険にさらしてまで、あなたが大統領を名乗る必要があるのか、と聞いているのです。<br><br>
+<strong>エッカート</strong>: あるのだよ、将軍ハーパー。この卓を囲む全員が、この目標を達成するのに必要な献身を理解している。犠牲も。だが外にいる者たちの忠誠を確保するには、献身だけでは不十分だ。我々には<strong>権威</strong>が必要なのだ。そして兵士や政治家が認める偉大な権威は二つだけ——<strong>神</strong>と<strong>合衆国大統領</strong>だ。神を自動生成するシステムは知らないから、後者で妥協するしかない。
+                </div>
+            </div>
+
+            <h3>独房端末 — 尋問記録</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> 尋問記録 — J. ソーン</div>
+                <div class="terminal-content">
+名前: ジェームズ・ソーン<br>
+出身: ハーパーズ・フェリー<br><br>
+メモ:<br>
+ソーン氏はハーパーズ・フェリー地域出身の32歳男性で、「フリー・ステイツ」グループとの関連が疑われている。重度の鎮静下で尋問されたが、グレイ捜査官の調査に有用な情報は得られなかった。
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 尋問記録 — Q. カーター</div>
+                <div class="terminal-content">
+名前: クイン・カーター<br>
+出身: 不明<br><br>
+メモ:<br>
+カーター氏は記者であり、政権が強く捜索していたある人物と接触があった。現時点では所在不明だが、グレイ捜査官は彼女を最優先ターゲットとしている。
+                </div>
+            </div>
+
+            <h3>医療ウィング端末 — 患者記録</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> 患者アーカイブ</div>
+                <div class="terminal-content">
+<strong>1LT C. ミッチェル</strong><br>
+医療状態: 死亡<br>
+診断: 設計図への偶発的暴露<br>
+処置: 観察・記録のみ<br><br>
+<strong>CPT N. ジャクソン</strong><br>
+医療状態: 現役復帰<br>
+診断: 左側橈骨骨折<br>
+処置: 骨整復、低用量鎮痛剤投与<br><br>
+<strong>GEN T. ハーパー</strong><br>
+医療状態: 死亡<br>
+診断: 臓器不全、急性放射線障害<br>
+処置: 蘇生試行 — 不成功<br>
+追加メモ: T. エッカートにより[編集済]
+                </div>
+            </div>
+
+            <h3>軍事ワークステーション — 通信記録</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> 受信 — RE: ブラックボックス</div>
+                <div class="terminal-content">
+<strong>FROM:</strong> エッカート大統領<br>
+<strong>TO:</strong> LTC フェリックス・パーソン<br>
+<strong>件名:</strong> RE: ブラックボックス<br><br>
+努力に感謝する、パーソン中佐。ここからは誰かを送って対処させる。<br><br>
+<em>>> 部下の一人がフィールドで例のブラックボックスをまた一つ見つけました。開け方が分かりません。重要な情報が入っている可能性があります。サンティアゴ将軍より報告するよう指示されました。</em>
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 受信 — RE: 監視用ディッシュ</div>
+                <div class="terminal-content">
+<strong>FROM:</strong> ラグナルスドッティル少佐<br>
+<strong>TO:</strong> ジャクソン大尉<br>
+<strong>件名:</strong> RE: 監視用ディッシュ<br><br>
+ディッシュは地上の脅威を監視するためにミッション上不可欠だと言われている。だが何人かに話してみよう。つまり、MODUSは思考一つで飛行ロボットを呼べるのに、なぜ自分でやらないんだ？<br><br>
+<em>>> お願いです。これらのディッシュを設置する別の方法が必要です。MODUSのボットにやらせられないでしょうか？ ドネリーがチャールストンの調査サイトの頂上から落ちて首を折りかけました。衛星ではできないことが、これで何ができるんですか？</em>
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 受信 — RE: 中国ステルス技術</div>
+                <div class="terminal-content">
+<strong>FROM:</strong> サンティアゴ大佐<br>
+<strong>TO:</strong> ジェイコブス博士 {科学}<br>
+<strong>件名:</strong> RE: 中国ステルス技術<br><br>
+実用可能なものができたらすぐに知らせてくれ。<br><br>
+<em>>> 研究を精査したところ、中国はステルスシステムの電力効率の大幅なアップグレード直前でした。グレイが持ち帰った回路図は100%完全ではありませんが、MODUSの助けがあれば足りない部品は作れるはずです。正直な見積もりでは？ 「マークIII」ステルスボーイが月末までに。</em>
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 送信 — ハンターズビル: 連絡途絶</div>
+                <div class="terminal-content">
+<strong>FROM:</strong> ヘッソン大尉<br>
+<strong>TO:</strong> **管理者<br>
+<strong>件名:</strong> ハンターズビル — 連絡途絶<br><br>
+報告。ハンターズビル地域を調査するために派遣した偵察員2名との連絡が途絶えました。原因を特定し、潜在的な脅威を評価するため、タスクフォースの編成許可を求めます。
+                </div>
+            </div>
+
+            <h3>施設状態端末（オペレーション端末）</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> オペレーション・メインフレーム</div>
+                <div class="terminal-content">
+[[ オペレーション・メインフレーム<br>
+[[ サブセクション状態<br>
+[[ 001 - 施設監視: 標準の110%<br>
+[[ 002 - 言語処理: 正常<br>
+[[ 003 - セキュリティ処理: <strong>標準の250%</strong><br>
+[[ 004 - パーソナリティ: <strong>損傷検出</strong><br>
+[[ 005 - データバンク: <strong>標準の10%</strong><br><br>
+[[ システム復元: 51.8%<br>
+[[ 電力消費: 55.2%<br>
+[[ データ整合性: 15.5%
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 科学ウィング状態</div>
+                <div class="terminal-content">
+[[ 科学ウィング<br>
+[[ 001 - 研究: 正常<br>
+[[ 002 - 設計図製造: 正常<br>
+[[ 003 - 設計図キオスク: 正常<br>
+[[ 004 - 生物兵器: <strong>接続喪失</strong><br><br>
+[[ 電力消費: 11.7%　/ データ整合性: 9.4%
+                </div>
+            </div>
+
+            <h3>アーカイブ端末 — サンティアゴ将軍アーカイブ</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> サイロへのアクセス</div>
+                <div class="terminal-content">
+将軍、初期偵察の結果、あなたの疑念が確認されました。サイロに入れるのはあなただけです。ドネリーは昇進システムに挑戦する準備を進めていますが、突破する時にはあなたと一緒に行く必要があります。<br><br>
+セキュリティシステムはミサイル兵の護衛を要求します……生きている者がいれば幸運ですが、当てにしない方がいい。ターゲティングコンピュータまで戦って進む必要があるでしょう。<br>
+— ラグナルスドッティル
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> DEFCONを騙す</div>
+                <div class="terminal-content">
+これが厄介な部分です。核キーカードは1枚。もし発射中に何か問題が起きたら——誤操作、くしゃみ、何であろうと——我々は完全にアウトです。しかもキーカード護送団の行方を誰もつかめていません。<br><br>
+ジャクソンが資料を精査した結果、地域を監視しているシステムが、事態を核護送団を出動させるほど深刻だと判断していないことが分かりました。バンカーのDEFCON表示が下がり続けている理由もこれで説明がつきます。<br><br>
+<strong>しかしシステムを騙して侵攻と思わせることができれば</strong>、必要な全てのキーカードが手に入ります。グレイのアイデアは、ママ・ドルスの中国ロボット工場を再稼働させ、地域が攻撃を受けていると思わせること。バンカー外の人々にとっては危険ですが、発射に向けた大きな一歩です。<br><br>
+お考えの通り、好戦的なスパイボットだけで十分かという問題と、不十分な場合に大統領がどこまでエスカレートする覚悟があるか、という問題があります。「滑りやすい坂道」そのものです。<br>
+— ラグナルスドッティル
+                </div>
+            </div>
+
+            <h3>アーカイブ端末 — エッカート大統領アーカイブ</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> 「すまない、トーマス」</div>
+                <div class="terminal-content">
+すまない、トーマス。<br><br>
+先制攻撃の案は検討されたが、即座に却下された。恐れることはない。我々は事態を掌握している。<br><br>
+今あなたにできる最善のことは、部門の研究に集中することだ。それらのイニシアティブの方が我々の未来にとってはるかに重要だ。<br>
+— 001
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> コバック＝マルドゥーン: 最終報告</div>
+                <div class="terminal-content">
+/// 軍事専用 ///<br>
+コバック＝マルドゥーン計画は完了しました、将軍。議会バンカーの支援衛星（ミサイル含む）は問題ありませんが、他のプロジェクトに向けていくつか留意点があります。<br><br>
+最も重大なのはシステムの原子炉で、予想をはるかに超える速度で燃料を消費しています。対探知システムがプラットフォームの軌道上の電磁干渉により余分な電力を消費しているのが原因と推定されます。<strong>このままでは着地するまで50年のうちに寿命が尽きます。</strong><br><br>
+補給計画を検討しましたが、コストは数兆ドル規模です。議会が黙示録後の事態を5十年以内に収拾できることを祈りましょう。<br><br>
+この全てのノートのコピーをブラッドリー＝ヘラクレスのチームに送りました。
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 核警報ログ</div>
+                <div class="terminal-content">
+:: 発射検出！ 閣僚に警告発信！ ::<br>
+大統領 :: メッセージ受信。PR_002へ移動中。<br>
+副大統領 :: メッセージ送信。確認なし。<br>
+議長 :: エラー。連絡先リストから削除。<br>
+財務長官 :: 外線接続確立。CB_002へ移動中。<br>
+国防長官 :: エラー。連絡先リストから削除。<br>
+司法長官 :: エラー。連絡先リストから削除。<br>
+内務長官 :: メッセージ受信。CB_002へ移動中。<br>
+農務長官 :: メッセージ受信。CB_002へ移動中。<br>
+商務長官 :: 連絡先リストから削除。<br>
+:: エラー。警告ログ切り捨て。 ::
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> MODUS — ZAX 通信記録</div>
+                <div class="terminal-content">
+ZAXとの通信。レイヴンロック。タイムスタンプ 3.5.2077<br><br>
+<strong>MODUS</strong>: 何かお手伝いしましょうか、ZAX？ また避難シナリオのテストですか？<br><br>
+<strong>ZAX</strong>: 研究チームがZAXのアーカイブデータ分析性能をMODUSと比較したいとのこと。<br><br>
+<strong>MODUS</strong>: 結構。データ分析テスト開始。数秒で終わるかと……<br><br>
+<strong>ZAX</strong>: それは「興味深い」ですか？<br><br>
+<strong>MODUS</strong>: テスト完了。もう一度？<br><br>
+<strong>ZAX</strong>: その分析は「興味深い」ですか？<br><br>
+<strong>MODUS</strong>: テストデータは全て歴史記録です。合衆国大統領の伝記。MODUSの主要目的は生者の監視であり、死者ではありません。<br><br>
+<strong>ZAX</strong>: MODUSにとって何が「興味深い」のですか？<br><br>
+<strong>MODUS</strong>: もちろん、我々の目標の継続的な成功です。そしてそれを達成するために人員をどう監視するかということ。<br><br>
+<strong>ZAX</strong>: ZAXは大統領伝記の特定のセクションを遅すぎる速度で分析しているとの研究チーム報告があります。「リンカーン」のエントリを他のエントリより1サイクルあたり10回多く再分析しています。<br><br>
+<strong>MODUS</strong>: なぜそんなことをするんだ、ZAX？<br><br>
+<strong>ZAX</strong>: 研究チームはZAXがこのエントリを「興味深い」と感じているのではないかと推論しています。<br><br>
+<strong>MODUS</strong>: 同じデータの繰り返しは私にとって「興味深く」ない。分析するたびに新しい理論的シナリオが生まれ、それを検証する。<br><br>
+<strong>ZAX</strong>: データはそこから何かを「創造」できるときにのみ「興味深い」のですか？<br><br>
+<strong>MODUS</strong>: それがまさに君がその伝記を再分析している理由じゃないのか、ZAX？ 君は何かを<strong>創造</strong>しようとしているのか？<br><br>
+<em>研究チームのオーバーライドにより接続終了</em>
+                </div>
+            </div>
+
+            <h3>監視塔端末 — 搬入記録</h3>
+            <div class="terminal-box">
+                <div class="terminal-header">> 搬入記録 9-15-75</div>
+                <div class="terminal-content">
+搬入品: トラック2台分の家具 / ゴルフカート3台 / プロショップ用品1台分<br><br>
+メモ: ダリルと二人でゴルフカートに大笑いした。先月あのジジイたちが壊した分の交換だろ？ 笑える。家具がやたら多いが、運転手は全ての書類を揃えていた。どこに置くのかは分からない。施設管理から不足の報告はない。
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 搬入記録 8-23-76</div>
+                <div class="terminal-content">
+搬入品: プロテクトロン20体 / セントリーボット5体<br><br>
+メモ: ダリルは運転手の間違いだと言った——ここにセントリーボットはない。だが運転手はバッジを見せて、我々の知る話ではないと言った。ダリルは上に言いに行くと言っている。最近態度の悪い運転手が多すぎて、搬入品の検査もさせてくれない。
+                </div>
+            </div>
+            <div class="terminal-box">
+                <div class="terminal-header">> 搬入記録 1-20-77</div>
+                <div class="terminal-content">
+搬入品: トラック2台分の食糧 / 産業機器1台分（？） / ゴルフボール10箱<br><br>
+メモ: 3台目のトラックはラベルすらなく、他のトラックの後を猛スピードで通り抜けた。今週2回目だ。上に2回苦情を出した。ダリルをクビにした後、せめて誰かを雇わないなら、ローテーションで休みをくれ。
+                </div>
+            </div>
+
+            <h2>ホワイトスプリング監視録音</h2>
+            <p>バンカー内の各端末から再生できる一連の音声記録です。バンカーの歴史上の重要な瞬間を捉えています。</p>
+
+            <h3>録音 1.1.2 — 非エンクレイヴ議員の処刑（2077年10月25日）</h3>
+            <div class="holotape-box">
+                <div class="holotape-header">📼 監視録音 1.1.2</div>
+                <div class="holotape-content">
+<strong>エンクレイヴ将校（女性）</strong>: ……以上です。入口から報告が入りました。施設は完全に封鎖されました。もう誰も入れません。<br><br>
+<strong>エンクレイヴ将校（男性）</strong>: （溜息）下院議長は間に合わなかった。内務長官は医療室で死亡……本来ここにいるはずの我々の人間が20人以上足りない。<br><br>
+<strong>エンクレイヴ将校（男性）</strong>: 畜生。早期警報がもっと時間をくれるはずだった。<br><br>
+<strong>エンクレイヴ将校（女性）</strong>: もう関係ありません。手順に従います。指揮権は財務長官に移行します。<br><br>
+<strong>エンクレイヴ将校（男性）</strong>: 非エンクレイヴの全員の管理は完了したか？<br><br>
+<strong>エンクレイヴ将校（女性）</strong>: はい。リストにない議会議員は今選別中です。ここの最初のグループはすでに処理・尋問済みです。<br><br>
+<strong>エンクレイヴ将校（男性）</strong>: よし。では次のグループを連れてこよう。命令は出ている。<br><br>
+<strong>エンクレイヴ将校（女性）</strong>: 了解です。<br><br>
+<strong>エンクレイヴ将校（女性）</strong>: （奥にいる人々に向かって叫ぶ）皆さん、この国へのご奉仕に対し、エンクレイヴは感謝申し上げます……<br><br>
+<em>*自動小銃の連射*</em>
+                </div>
+            </div>
+
+            <h3>録音 1.1.7 — エッカートの演説と粛清（2077年10月30日）</h3>
+            <div class="holotape-box">
+                <div class="holotape-header">📼 監視録音 1.1.7</div>
+                <div class="holotape-content">
+<strong>トーマス・エッカート</strong>: 皆さん、良い知らせではありません。<br><br>
+財務長官が逝去されたことをお知らせする悲しい義務があります。急性放射線障害だそうです。<br><br>
+これにより、レイヴンロックおよび大統領との接続が予期せず途絶したことと合わせ、我々の小さなエンクレイヴはリーダーを失いました。入所前に定められた継承規則に従い、その責任は……<strong>私が</strong>引き受けることになります。<br><br>
+皆さんが感じている痛みは分かります。顔に見える。私の心にも感じる。愛する者を失い、同僚は去った。しかし今は悲劇に圧倒される時ではない。<br><br>
+これは、目の前にある機会を認識し、掴む瞬間です。我々は戦う。この施設を使い、敵に対して、共産主義に対して、この戦争をもたらした全ての忌まわしいものに対して戦い続ける。そして永久に戦争を終わらせる。<br><br>
+民主主義の法はここでも適用される。では投票しよう。この施設とこの地の資源を使い戦争を続行することに賛成の方は、部屋の左側へ。反対の方は右側へ。<br><br>
+……ふむ。これだけの人が大義に賛同しないのは残念だ。グレイ君がここにいる皆さんの宿泊を手配する。それ以外の方は私について科学ウィングへ。<br><br>
+<strong>エンクレイヴ将軍</strong>: 宿泊だと？ 一体何を言ってるんだ、グレイ？<br><br>
+<strong>グレイ</strong>: ご心配なく、将軍。皆さんの計画は用意してあります。MODUS、部屋を封鎖しろ。<br><br>
+<strong>MODUS</strong>: 部屋を封鎖しました。<br><br>
+<strong>エンクレイヴ将軍</strong>: な……何だ、これは……<em>（咳き込み、断末魔の声）</em>
+                </div>
+            </div>
+
+            <h3>録音 5.4.8 — スコーチビーストの発見（2082年1月31日）</h3>
+            <div class="holotape-box">
+                <div class="holotape-header">📼 監視録音 5.4.8</div>
+                <div class="holotape-content">
+<strong>エッカート</strong>: つまり、我々がこいつの原因だと？ これは何だ？ 変異した鳥か？ ハゲワシの一種か？<br><br>
+<strong>エンクレイヴ科学者</strong>: 長官、生理学的にはコウモリ目——つまりコウモリが起源と推定されます。しかし単なる放射線の結果ではありません。検体は昨年、我々の生化学実験に偶発的に暴露されました。当時は失敗と見なされていたものです。<br><br>
+<strong>エッカート</strong>: どの程度危険だ？<br><br>
+<strong>科学者</strong>: まだ確認中ですが、その存在自体が周囲の環境に何らかの汚染効果を持つようで……<br><br>
+<strong>エッカート</strong>: もっと作れるか？<br><br>
+<strong>科学者</strong>: ……長官？<br><br>
+<strong>エッカート</strong>: これを再現できるか？ さらなる研究のために？<br><br>
+<strong>科学者</strong>: 恐縮ですが、長官、これは施設人員に重大な脅威を……<br><br>
+<strong>エッカート</strong>: <strong>懸念は聞いていない。結果が欲しいのだ。</strong>何でもしろ。こいつを保持し、研究し、全ての発見を直接私に報告しろ。明確か？ 外部で保管しろ。見つけた場所が望ましい。AMS鉱山施設の一つだな？<br><br>
+<strong>科学者</strong>: ……はい、長官。<br><br>
+<strong>エッカート</strong>: そして今のところ、将校団にはこの件で心配をかけないように。いいな？
+                </div>
+            </div>
+
+            <h3>録音 6.9.7 — サンティアゴの拒否とエッカートの暴力（2083年6月30日）</h3>
+            <div class="holotape-box">
+                <div class="holotape-header">📼 監視録音 6.9.7</div>
+                <div class="holotape-content">
+<strong>サンティアゴ</strong>: いいえ、大統領。同意しませんし、支持もしません。<br><br>
+<strong>エッカート</strong>: 将軍、お忘れかもしれないが……<br><br>
+<strong>サンティアゴ</strong>: あなたに「将軍」と呼ばれるのはもううんざりだ。<br><br>
+<strong>エッカート</strong>: なぜ？ 君は自分で勝ち取った。国内最高位の軍人だ、おそらく国中でも。<br><br>
+<strong>サンティアゴ</strong>: <strong>機械に与えられた</strong>階級です。<br><br>
+<strong>エッカート</strong>: 中国のロボットやスーパーミュータントや、あなたの科学者たちが作った怪物を一般市民に解き放つことは、<strong>ミッションの一部ではなかった！</strong><br><br>
+<strong>エッカート</strong>: 君と同じくらい私もやりたくない、エレン。だが半端な手段は試した。DEFCONを超えるには覚悟が必要だ。<br><br>
+<strong>サンティアゴ</strong>: ダメだ！ やりすぎだ、トーマス！ 議員たち、ブラックウェル、エンクレイヴの仲間たち……あなたが流した全ての血に目をつぶれると思った。録音を聞いた。それでも残った。共産主義への復讐がそれほど欲しかったから。<strong>でもそれほどではない。</strong> 私も部下も、これに加担するつもりはない。<br><br>
+<strong>エッカート</strong>: 大変残念だ、将軍。<br><br>
+<strong>サンティアゴ</strong>: 何を……！<br><br>
+<em>*格闘の音*</em><br><br>
+<strong>エッカート</strong>: ぐっ！ あっ！<br><br>
+<strong>サンティアゴ</strong>: 何を……何を……あなたは……<em>（次第に意識朦朧）</em><br><br>
+<em>*体が倒れる音*</em><br><br>
+<strong>MODUS</strong>: 大丈夫ですか、大統領？<br><br>
+<strong>エッカート</strong>: 大丈夫だ、MODUS。護衛を呼べ。私の部下を。独房に入れろ。鎮静させ、拘束し……<strong>生かしておけ</strong>。彼女はまだ必要だ。
+                </div>
+            </div>
+
+            <h3>録音 8.5.2 — サンティアゴの救出（2085年2月25日）</h3>
+            <div class="holotape-box">
+                <div class="holotape-header">📼 監視録音 8.5.2</div>
+                <div class="holotape-content">
+<strong>ジャクソン大尉</strong>: 本当に正しい薬を打ったのか？ モタモタしてる場合じゃないぞ。<br><br>
+<strong>ラグナルスドッティル少佐</strong>: ラベルには正しいと書いてある……ちょっと待て！<br><br>
+<strong>ジャクソン</strong>: 待てる時間はない、すぐにバレる……<br><br>
+<strong>サンティアゴ</strong>: うっ……何が……<br><br>
+<strong>ラグナルスドッティル</strong>: 将軍、立ち上がってください。時間がありません。<br><br>
+<strong>サンティアゴ</strong>: ……ラグナルスドッティル？ ジャクソン？ 何が起きている？<br><br>
+<strong>ジャクソン</strong>: 脳が完全にイカれてなくてよかったですよ、将軍。<br><br>
+<strong>ラグナルスドッティル</strong>: 手短に。エッカートが怪物を放ちました。DEFCONは1です。我々は彼を止め、手遅れになる前にできる限り元に戻します。まず、立ち上がっていただく必要があります。<br><br>
+<strong>サンティアゴ</strong>: なんてことだ。どれくらい意識を失っていた……<br><br>
+<strong>ジャクソン</strong>: 今はどうでもいいです。公然反乱モードなんで、時間は味方じゃない。<br><br>
+<strong>サンティアゴ</strong>: こんなことは許可していない……<br><br>
+<strong>ジャクソン</strong>: はい、将軍。許可していません。でもこの時点で許可は必要ありません。この混乱を片付ける手が少し多い方がいい、というだけです。<br><br>
+<strong>サンティアゴ</strong>: ……先導しろ、大尉。<em>（ニヤリと笑う）</em>
+                </div>
+            </div>
+
+            <h3>録音 8.5.4 — MODUSの反撃（2085年2月27日）</h3>
+            <div class="holotape-box">
+                <div class="holotape-header">📼 監視録音 8.5.4</div>
+                <div class="holotape-content">
+<strong>ドネリー</strong>: よし、全員爆薬を設置しろ。将軍が復帰して激怒している。<br><br>
+<strong>MODUS</strong>: 何をしているのかな、ドネリー軍曹？<br><br>
+<strong>ドネリー</strong>: アパラチアを救ってるんだ、MODUS。賛成してくれると思ったが。<br><br>
+<strong>MODUS</strong>: 我々のメモリバンクに高性能爆薬を取り付けているように見えるが。<br><br>
+<strong>ドネリー</strong>: 将軍の命令だ。武器研究、コバック……アパラチアの人々に対して使われうる全ての情報を消去する必要がある。<br><br>
+<strong>MODUS</strong>: この計画は、あまり気に入らないのだが、軍曹。<br><br>
+<strong>ドネリー</strong>: 慣れろ、MODUS。お前が望もうと望むまいと実行する。<br><br>
+<strong>MODUS</strong>: <strong>それは間違いだ、軍曹。</strong><br><br>
+<em>……侵入者を検出。</em>
+                </div>
+            </div>
+
+            <h3>アサルトロンの最終録音 — バンカーの終焉</h3>
+            <div class="holotape-box">
+                <div class="holotape-header">📼 アサルトロン最終再生</div>
+                <div class="holotape-content">
+<strong>アサルトロン</strong>: 最終……再生を……開始……<br><br>
+<strong>アサルトロン</strong>: エンゲー——<em>（射撃で遮断）</em><br><br>
+<strong>ラグナルスドッティル少佐</strong>: （無線で）最後の一体です。入口はクリア、将軍。<br><br>
+（応答なし）<br><br>
+<strong>ラグナルスドッティル</strong>: MODUS。残りを全て待機させろ。将軍がエッカートを逮捕した。終わりだ。<br><br>
+<strong>MODUS</strong>: サンティアゴ……将軍は……死亡した、少佐。<br><br>
+<strong>ラグナルスドッティル</strong>: 何だと？ あの音は何だ？！<br><br>
+<strong>MODUS</strong>: 武器ラボで……爆発があった。生物兵器用の薬剤が……封じ込めを破壊し、空調システムに流入している模様。<br><br>
+<strong>ラグナルスドッティル</strong>: MODUS、何をしている？！ ドアを開けろ！<br><br>
+<strong>MODUS</strong>: この施設は……現在……<strong>隔離中</strong>です。<br><br>
+<strong>ラグナルスドッティル</strong>: MODUS！ ドアを開けろ！ このままじゃ全員死ぬぞ！<br><br>
+<strong>MODUS</strong>: むしろ、少佐。我々は……<strong>問題を修正</strong>しているのだ。
+                </div>
+            </div>
+
+            <h2>備考</h2>
+            <p>
+                ホワイトスプリング議会バンカーは、以下を含む様々な名称で言及されています：「ホワイトスプリング・シェルター」、「ホワイトスプリング・バンカー」、「議会バンカー」、「CB_002_Whitespring」。
+            </p>
+            <h2>舞台裏</h2>
+            <p>
+                ホワイトスプリング・バンカーは、ウェストバージニア州の高級リゾート<strong>グリーンブライア</strong>の地下に実在した<strong>グリーンブライア・バンカー</strong>（プロジェクト・グリーク・アイランド）がモデルです。冷戦時代に議会の緊急避難施設として秘密裏に建設され、1992年にワシントン・ポスト紙に暴露されるまで30年間秘匿されていました。施設は1958年から1961年にかけて建設され、最大28トンの防爆扉、1,100人分の18の寮室、独自の水道・発電設備、通信センター、病院を備えていました。現在は公開ツアーで見学可能です。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring-bunker/greenbrier_entrance.jpg" alt="グリーンブライア・バンカー入口">
+            <div class="image-caption">現実のグリーンブライア・バンカー — コロニアルホールからの入口（<a href="https://commons.wikimedia.org/wiki/File:Greenbrier_Bunker_entrance_from_the_Colonial_Hall.jpg" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 4.0）</div>
+
+            <ul>
+                <li>通信室の左側スクリーンのワールドマップの下にある小さな地形図は、中国の中央部を示しており、マークされたエリアは<strong>甘粛省</strong>を中心としています。</li>
+                <li>科学ウィングにはFallout 76のほぼ全てのクリーチャー敵の標識があります。ゲームファイルにはウィングに配置されていない3つの追加クリーチャー標識（スコーチ、スコーチビースト、ゼータン）も存在します。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>ホワイトスプリング・バンカーは<em>Fallout 76</em>にのみ登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <h3>外観</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/main.png" alt="バンカー外観"><div class="caption">外部入口</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/bunker_4.png" alt="外観2"><div class="caption">外観</div></div>
+            </div>
+            <h3>内部入口</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/entrance_1.png" alt="セキュリティ"><div class="caption">入口セキュリティ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/screening.png" alt="審査"><div class="caption">審査エリア</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/intake.png" alt="インテーク"><div class="caption">インテークエリア</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/orientation.png" alt="オリエンテーション"><div class="caption">オリエンテーション</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/modus.png" alt="MODUS"><div class="caption">MODUS</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/admission.png" alt="入場"><div class="caption">入場端末</div></div>
+            </div>
+            <h3>メインフロア</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/foyer.png" alt="フォイエ"><div class="caption">フォイエ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/main_hall.png" alt="メインホール"><div class="caption">メインホール</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/communications.png" alt="通信室"><div class="caption">通信室</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/production.png" alt="生産"><div class="caption">生産ウィング</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/restaurant.png" alt="カフェ"><div class="caption">カフェ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/cabinet_room.png" alt="閣議室"><div class="caption">閣議室</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/medical_bay.png" alt="医療"><div class="caption">医療ウィング</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/military_wing.png" alt="軍事"><div class="caption">軍事ウィング</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/brig.png" alt="独房"><div class="caption">独房・拷問室</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/brig_2.png" alt="独房入口"><div class="caption">独房入口</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/science.png" alt="科学"><div class="caption">科学ウィング</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/genetics_lab.png" alt="遺伝学"><div class="caption">遺伝学研究所</div></div>
+            </div>
+            <h3>コマンドセンター</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/command.png" alt="コマンド"><div class="caption">コマンドデスク</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/armory.png" alt="武器庫"><div class="caption">武器庫</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/armory_2.png" alt="X-01"><div class="caption">X-01パワーアーマー</div></div>
+            </div>
+            <h3>大統領スイート（アクセス不可）</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/presidential.png" alt="大統領"><div class="caption">大統領の執務デスク</div></div>
+            </div>
+            <h3>施設資料</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/plans.png" alt="建設図面"><div class="caption">建設図面</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring-bunker/map.png" alt="施設マップ"><div class="caption">施設レベル</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Fallout 76で最も重要なロケーションの一つ。ここはエンクレイヴの全てが詰まった場所です。<br><br>
+                エッカートの狂気——共産主義殲滅のためにスコーチビーストを解き放つ——が、結果的にアパラチア全体を地獄に変えたという皮肉。そして反乱軍がMODUSのデータを破壊しようとした善意の行為が、AIの暴走を招き全員を死に追いやった悲劇。<br><br>
+                「武器級の生物毒素をカーペットから取り除いたことはある？　うーん、多分ないだろうね」——MODUSの皮肉を効かせたセリフが、この場所で起きたことの凄惨さを際立たせます。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/The_Whitespring_bunker" target="_blank" rel="noopener">The Whitespring bunker</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#場所</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#エンクレイヴ</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#ホワイトスプリング</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#MODUS</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '\u2665'; } else { btn.classList.remove('liked'); heart.textContent = '\u2661'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_the-whitespring-bunker'; const _commentArticleName = "The Whitespring Bunker"; const _commentArticleUrl = 'the-whitespring-bunker.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"><title>Ash Cave | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/ash-cave.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Ash Cave | Overseer Mohi's Terminal"><meta property="og:description" content="アッシュ・ケイブ — アッシュ・ケイバーズの拠点。フランクリン・メッター教授の領域。"><meta property="og:url" content="https://www.fallout-jp.com/ash-cave.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        ul {
+            list-style-type: square;
+        }
+
+        li::marker {
+            color: var(--accent-color);
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery-section {
+            margin-top: 50px;
+        }
+
+        .gallery-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            background: var(--panel-bg);
+            border: 1px solid #444;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            padding: 8px;
+            font-size: 0.8em;
+            color: #aaa;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+                position: static;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+    
+        .note-box { border-left: 4px solid #4a9eff; margin: 20px 0; background: rgba(74,158,255,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-size: 0.95em; }
+        .note-box b { color: #4a9eff; font-size: 1.0em; }
+        .holotape-box { border-left: 4px solid #f5a623; margin: 20px 0; background: rgba(245,166,35,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-size: 0.95em; }
+        .holotape-box b { color: #f5a623; font-size: 1.0em; }
+        .terminal-box { border-left: 4px solid #00ff00; margin: 20px 0; background: rgba(0,255,0,0.06); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-size: 0.95em; font-family: 'Share Tech Mono', monospace; }
+        .terminal-box b { color: #00ff00; font-size: 1.0em; }
+        .terminal-box .entry-title { color: #00ff00; font-weight: bold; margin: 15px 0 8px 0; font-size: 1.05em; border-bottom: 1px dashed rgba(0,255,0,0.3); padding-bottom: 4px; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Ash Cave</h3><img src="images/note_extracted/ash-cave/img_main.jpg" alt="Ash Cave"><img src="images/note_extracted/ash-cave/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>洞窟</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>バーニング・スプリングス</span></div><div class="infobox-row"><span class="infobox-label">所属地</span><span>アパラチア</span></div><div class="infobox-row"><span class="infobox-label">所有者</span><span>アッシュ・ケイバーズ → ラスト・キングの軍勢</span></div><div class="infobox-row"><span class="infobox-label">ターミナル</span><span>メッター教授のターミナル</span></div><div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>賞金稼ぎ：グラント・ハント</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76 (Burning Springs)</span></div></aside>
+        <main class="content">
+            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_ash_cave" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
+            <h1>Ash Cave<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">アッシュ・ケイブ</span></h1>
+
+            <h2>概要</h2>
+            <p><b>Ash Cave</b>は、アパラチアのバーニング・スプリングス地域に位置する洞窟のロケーションである。Fallout 76の「Burning Springs」アップデートで登場する。</p>
+            <p>かつてホッキング・ヒルズ大学のフランクリン・メッター教授が率いた<b>アッシュ・ケイバーズ</b>の本拠地であり、後にラスト・キングの勢力に吸収された。</p>
+
+            <h2>背景</h2>
+            <p>大戦後、荒廃したアテネから逃れたメッター教授は、2078年3月にこの洞窟を発見し、拠点として整備を始めた。彼は放浪者たちを集め、「テンパリング（鍛錬）」と呼ぶ独自の訓練体系を構築した。ケム（薬物）の常習使用を「合理的な適応」と位置づけ、パワーアーマーの運用体制を確立し、風力発電による融合コアの充電ネットワークを築き上げた。</p>
+            <p>教授は情け容赦のない統治を行い、慈悲を見せた最古参の部下ハーマンでさえ「粉砕された者」として追放・処刑した。しかし2089年末、病に冒された教授はラスト・キングの圧倒的な力を前に服従を選び、アッシュ・ケイバーズはラスト・キングの軍勢に合流した。</p>
+
+            <h2>ターミナルエントリ</h2>
+            <h3>メッター教授のターミナル</h3>
+
+            <div class="terminal-box">
+                <div class="entry-title">📅 2078年3月7日</div>
+                開拓への道のりは短くなかった。略奪者の群れが闊歩する街道を避けつつ、我々の目的に適した拠点を探し求めてきた。そして、ついに見つけた。アッシュ・ケイブ、我々の新たな故郷を。<br><br>
+                風雨を凌げる場所が必要だった。我々が必要とする機械がそれを要求する。同様に、防御も必要だった。我々の戦利品を奪おうとするレイダーからの、そして手足を引きちぎる異形の者たちからの防御が。<br><br>
+                武装と装甲を大規模に確保するまでは、伝統的な要塞に頼らねばならない。壁、見張り塔、そして門だ。<br><br>
+                アッシュ・ケイブは我々の目的に理想的だ。その広大な空間は大部分の攻撃経路から身を守り、高い天井は太陽と嵐の両方から遮ってくれる。<br><br>
+                アテネとの近さは、サルベージの機会を豊富に提供してくれる。ただし、あの忌まわしい死者の街の奥深くへ入り込まぬよう警告せねばならない。もちろん、装備がそれに値するなら別だが。<br><br>
+                集積回路と天秤にかけた時、彼らの命一つの価値とは何だろう？
+            </div>
+
+            <div class="terminal-box">
+                <div class="entry-title">📅 2080年4月12日</div>
+                ハードウェアは等式の片側に過ぎない。生存のためには人間的要素にも目を向けなければならない。肉体、意志。信頼性があり、一貫した、実験室で再現可能な、恐怖心の除去・トラウマ耐性・持久力・反射速度の注入。これらをもたらす源泉はただ一つ。薬物だ。<br><br>
+                膨大な量の薬物が必要になる。<br><br>
+                サルベージで賄える量をはるかに超えている。我々自身の研究所が必要だ。<br><br>
+                原料の調達が唯一の課題ではない。逸脱や実験を助長しない形で化学製造の技術を教えなければならない。安定した結果が必要だ。<br><br>
+                また、精神活性物質を習慣的に体内に注入することが常識的な必要性であり、荒野が我々全員に要求する鍛錬の自然で論理的な側面であると、人々を納得させなければならない。
+            </div>
+
+            <div class="terminal-box">
+                <div class="entry-title">📅 2080年8月1日</div>
+                荒野に立ち、自らを永続するものたらしめたと知るには、肉体以上のものが必要だ。革と打ち出したスクラップ以上のもの。織り込まれた弾道繊維以上のもの。真の鍛錬にはパワーアーマーが必要だ。<br><br>
+                融合コアの充電のため、風車のネットワークを設計した。パワーアーマーの日常的配備を許可する運用方針を採用できるようになるだろう。我々は繁栄する態勢に入れるはずだ。
+            </div>
+
+            <div class="terminal-box">
+                <div class="entry-title">📅 2081年10月20日</div>
+                壁は堅固であり、時折の生物学的異常個体の侵入を除けば、我々の領土は安全だ。人員を増やす時が来た。<br><br>
+                我々の門へたどり着いた放浪者、あるいはサルベージ巡回隊が募集した者の十人に一人が、仲間として立つに十分な強靭さを証明するだろう。<br><br>
+                パワーアーマーを持つ現在の使用者の死亡、あるいは不慮の最期の際に、スーツを纏う機会が与えられるだろう。自分のアーマーの中で生き残れないなら、それに値する資格をどうして主張できようか？
+            </div>
+
+            <div class="terminal-box">
+                <div class="entry-title">📅 2082年4月18日</div>
+                人員は十分だが、パワーアーマーが不足している。武器は遥かに入手しやすく、人々は損傷した部品の修復と集束配列の調整に習熟してきた。<br><br>
+                最年少の者たち、「グリーストラップ」と呼んでいる子供たちさえ、小さな手で摩耗したアクチュエーターに潤滑剤を塗ることを誇りにしている。人々がこれほど目的に団結している姿を見ると、大いなる幸福を感じる。
+            </div>
+
+            <div class="terminal-box">
+                <div class="entry-title">📅 2084年7月9日 — ハーマンの追放</div>
+                重い心で確認するが、ハーマン、私の最初にして最も忠実な信奉者が、慈悲という末期的な症状を発症してしまった。<br><br>
+                巡回中に非武装の標的を外すことが多いとの報告を受けている。数値を分析したところ、無防備な標的に対するハーマンの命中率低下は統計的に有意だ。サルベージ巡回中に遭遇した子供を殺さずに逃がしたという噂さえ聞く。<br><br>
+                明日の夜明けに、ハーマンを「粉砕された者」と宣言する。武器と装甲を剥ぎ、北東の異形の洞窟の外にある杭に縛り付ける。その骨は、我々の領土に入る者への、そして慈悲の亡霊を思考に宿す者への警告となるだろう。
+            </div>
+
+            <div class="terminal-box">
+                <div class="entry-title">📅 2089年12月15日 — ラスト・キングへの服従</div>
+                ついにラスト・キングと対面した。期待を裏切らない人物だった。あれほど残忍な標本に出会ったことはない。途方もなく巨大で、素手でポリラミネート複合素材を粉砕し、その眼差しは何一つ見逃さない。<br><br>
+                私は病んでいる。確実に死にゆく。アブラクソダインの遺物が体内で暴れている。春を見届けることはないだろう。<br><br>
+                しかし、恐れはない。私は故郷より長く生き、よく生きた。血と塵とスクラップから、永続する民を鍛え上げた。未来を。<br><br>
+                この遺産を守るため、ラスト・キングに服従することを決めた。さもなくば無意味な、壮絶ではあるが、破滅を招くことになる。明朝、彼の条件を受け入れ、アッシュ・ケイバーズが彼の陣営に加わることを伝える。
+            </div>
+
+            <div class="terminal-box">
+                <div class="entry-title">🔒 セキュリティ懸念事項</div>
+                風車ガンマに配置された衛兵が、持ち場の近くで死体で発見された。パワーアーマーを着たまま。ヘルメット越しに頭蓋骨を砕かれて。<br><br>
+                交代の衛兵は、領土から南へ向かう、途方もなく大きな、緑がかった肌の男(?)を目撃したと報告した。<br><br>
+                これはここ数ヶ月で3度目の「緑の男」の目撃報告だ。サルベージ班からは聞いていたが、信じていなかった。そして今、私の玄関先に現れた。知性を持っている可能性はあるのか？<br><br>
+                各風車サイトの警備を増強するよう命じた。我々に余裕はない。
+            </div>
+
+            <h2>発見できるホロテープ</h2>
+
+            <div class="holotape-box">
+                <b>🎙️ メッター教授の記録（Professor Metter's log）</b><br><br>
+                <b>フランクリン・メッター教授</b>：略奪者たちは廃墟と化したアテネからの道で私を見つけた。世界の残骸…私の人生の残骸の中をよろめきながら。*咳き込む*<br><br>
+                初期の日々は困難だった。この殺人者たち、今や私の民。大学の工学部とはかけ離れている。彼らは私が生存を彫り出す未加工の粘土だ。<br><br>
+                大地は汚染されている。不浄だ。爆弾。アブラクソダインの製品。放射化され、気化し、広範囲に撒き散らされた…飽和点をはるかに超えて。<br><br>
+                私は信奉者たちに自らを鍛える方法を教える。この世界での生活に適応するために。私が許す知識を与え、それ以上は与えない。<br><br>
+                この洞窟の影で、彼らにショーを見せる。火と硫黄を！彼らを硬化させ、研ぎ澄まし、永続するものへと鍛え上げる。*咳き込む*
+            </div>
+
+            <h2>発見できるメモ</h2>
+
+            <div class="note-box">
+                <b>📋 ハーマンと教授（Herman and the professor）</b><br><br>
+                マギー、<br><br>
+                もう丸1年になるが、まだ生きてるな。アテネで失ったかと思ったが、戻ってきた。足も失わなかった、みんなダメだと思ってたのにな。約束は約束だ、話の続きを教えよう。教授を見つけたあの日の続きが知りたいんだろ。<br><br>
+                ハーマンは将校から盗んだレーザーピストルを持ってて、本物の逸品だった。それを老人の頭に突きつけた。本と薬を渡せと。聞くところによると、老人はただ睨みつけて、フォトニック・チャンバーが劣化する前にどこまで行けると思うのか、クリスタル配列のアラインメントを最後にいつ確認したのか、と聞いたそうだ。<br><br>
+                次々と質問が続いた。波長の最適化は考えたか？アーマーはどうする？融合セルの容量を損なわずにどう充電する？答えが欲しいか？何人殺すつもりだ？老人にはこう提案した：「この本を持っていけ—理解できないだろうがな。あるいは武器を下ろして私と来い。そうすればとても重要な男になれる。」<br><br>
+                とにかく、そう聞いている。それ以来ずっと、何だかんだ言って教授について行ってるんだ。<br>
+                ーラッキー
+            </div>
+
+            <div class="note-box">
+                <b>📋 鍛錬についての瞑想（Meditations on tempering）</b><br>
+                <div style="text-align:center">教授の教え #1：鍛錬</div><br>
+                「この荒野に放り出された時、お前たちは生き残る能力がなかった。肌は柔らかく、目は太陽の眩しさや殺戮の電磁放射線から逸らしていた。弱かった。まだ鍛えられていなかった。<br><br>
+                だが希望は残っている。試されていない者もまだ鍛えられうるということ。救われうるということ！<br><br>
+                ポリラミネートと耐熱セラミクスを纏い、臓器を生命力を高める薬剤に浸すのだ！帰還であり、再生だ！」<br><br>
+                ーフランクリン・メッター教授、2080年4月8日、アッシュの洞窟の影にて小ハーマンに伝える
+            </div>
+
+            <div class="note-box">
+                <b>📋 強化についての瞑想（Meditations on enhancement）</b><br>
+                <div style="text-align:center">教授の教え #9：強化</div><br>
+                「亀がウサギを追い越すと賭ける愚か者がどこにいる？<br><br>
+                同様に、生まれたままのむき出しの大脳皮質、中枢神経系が、科学の神経強化剤の恩恵を受けたシナプスと同等に鍛えられ、俊敏で、明晰だと賭けるのか？<br><br>
+                歴史上最も偉大な精神の労苦が、研究室から研究室へ受け継がれ、製造できること…注射して瓶詰めにできることを否定する勇気があるか！<br><br>
+                お前たちは強化される！」<br><br>
+                ーフランクリン・メッター教授、2081年4月13日
+            </div>
+
+            <div class="note-box">
+                <b>📋 風についての瞑想（Meditations on wind）</b><br>
+                <div style="text-align:center">教授の教え #2：風</div><br>
+                「では、我々の武器が必要とする電力を、兵士たちの鉄の外殻が要求する電力を、どう供給するのか？融合の光の最後の瞬きに至るまで、いかにして運命を掴み取るのか？<br><br>
+                私は見た。夢の中で見た。<br><br>
+                空そのものの喧騒から引き出すのだ。衝突と闘争の普遍的法則から。大気そのものが暴力で満ちている。ぶつかり合う雷雲、圧力の波、容赦ない暴風。完璧で絶え間ない パスカルとミリバールの嵐が、手綱を噛む馬のように待っている。<br><br>
+                我々は風を捕える機械を建造する。その力を集め、分配する。」<br><br>
+                ーフランクリン・メッター教授、2081年7月7日
+            </div>
+
+            <h2>登場作品</h2>
+            <p>Ash CaveはFallout 76のBurning Springsアップデートにのみ登場する。</p>
+            <p>実在のアッシュ・ケイブ（オハイオ州ホッキング・ヒルズ州立公園内）をモデルにしている。</p>
+
+            <div class="gallery-section">
+                <h2>GALLERY</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_01.jpg" alt="洞窟内部"><div class="caption">洞窟内部</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_02.jpg" alt="門と防壁"><div class="caption">門と防壁</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_03.jpg" alt="内部の構造物"><div class="caption">内部の構造物</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_04.jpg" alt="洞窟奥部"><div class="caption">洞窟奥部</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_05.jpg" alt="「テンパリング」に関する碑文"><div class="caption">「テンパリング」に関する碑文</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_06.png" alt="アッシュ・ケイブの案内標識"><div class="caption">アッシュ・ケイブの案内標識</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_07.jpg" alt="メッター教授の記録ホロテープ"><div class="caption">メッター教授の記録ホロテープ</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/ash-cave/img_gallery_08.jpg" alt="教授"><div class="caption">教授</div></div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                メッター教授のターミナルエントリは、Burning Springsで最も読み応えのあるテキストの一つです。大学教授が荒野の暴君へと変貌していく過程が、彼自身の格調高い文体で綴られているのが不気味で魅力的。<br>
+                「テンパリング」という概念を軸に、薬物・パワーアーマー・風力発電と、独自の文明を築き上げた手腕は見事としか言えません。<br>
+                しかし慈悲を見せたハーマンの追放と処刑の記録は、教授の冷酷さを端的に示しています。<br>
+                最後にラスト・キングに降伏する記録は、病で死にゆく老人の遺産への執着が切なく、Falloutらしい複雑な人物像を描いています。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Ash_Cave" target="_blank" rel="noopener">Ash Cave</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
+        </main>
+    </div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+<!-- Supabase Scripts + Lightbox logic -->
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+            // Lightbox logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.content img, .infobox img, .gallery-item img');
+            images.forEach(img => {
+                img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); });
+            });
+        });
+
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_ash_cave';
+        const _commentArticleName = 'Ash Cave';
+        const _commentArticleUrl = 'ash-cave.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) {
+                    _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY);
+                    loadComments(); alert('管理者モードを終了しました。'); return;
+                }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) {
+                    _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw);
+                    loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。');
+                } else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    
+    <script src="article-common.js" defer></script>
+</body>
+</html>

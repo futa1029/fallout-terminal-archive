@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responders | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/responders.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Responders | Overseer Mohi's Terminal">
+    <meta property="og:description" content="レスポンダー。アパラチアのファースト・レスポンダーたちが大戦後に結成したボランティア災害救援組織の全記録。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/responders/img_logo.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/responders.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Responders | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="レスポンダー。アパラチアのボランティア災害救援組織の全記録。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/responders/img_logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .member-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9em; }
+        .member-table th { background: var(--accent-color); color: var(--bg-color); padding: 8px 12px; text-align: left; font-family: 'Share Tech Mono', monospace; }
+        .member-table td { padding: 6px 12px; border-bottom: 1px solid #333; }
+        .member-table tr:hover { background: rgba(0,255,0,0.05); }
+        .location-list { column-count: 3; column-gap: 20px; margin: 10px 0; }
+        .location-list li { break-inside: avoid; margin-bottom: 5px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        .copyright { margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #777; text-align: center; }
+        .copyright a { color: var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } .location-list { column-count: 2; } }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="組織" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Responders</h3>
+            <img src="images/note_extracted/responders/img_logo.png" alt="レスポンダーのロゴ">
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>ボランティア災害救援組織</span></div>
+            <div class="infobox-row"><span class="infobox-label">状態</span><span>活動中</span></div>
+            <div class="infobox-row"><span class="infobox-label">創設者</span><span>マリア・チャベス †<br>サンジェイ・クマール †<br>メロディ・ラーキン †<br>ジェフ・ナカムラ †</span></div>
+            <div class="infobox-row"><span class="infobox-label">解散</span><span>2096年（初代）</span></div>
+            <div class="infobox-row"><span class="infobox-label">現リーダー</span><span>ラッカー（再建後）</span></div>
+            <div class="infobox-row"><span class="infobox-label">本部</span><span>ホワイトスプリング保護区<br>（旧: モーガンタウン空港）<br>（旧: チャールストン）</span></div>
+            <div class="infobox-row"><span class="infobox-label">下部組織</span><span>ファイア・ブリーザー<br>重犯罪課</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連</span><span>チャールストン非常事態政府</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_responders" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Responders<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">レスポンダー</span></h1>
+
+            <div class="quote-box">
+                <b>「大戦後、アパラチアの緊急対応要員は市民を助けるために動員された。これらのレスポンダーは、半ば政府、半ば危機救援組織となった。」</b><br>
+                <span style="color: #aaa; font-size: 0.85em;">— Fallout 76 ロード画面</span>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <strong>レスポンダー</strong>は、アパラチアのファースト・レスポンダー部隊の生存メンバーで構成されるボランティア災害救援組織であり、初代グループは大戦直後に結成されました。地域コミュニティの生存を助けることに専念し、基本的なサバイバル訓練から、スコーチ疫病に対する主要な防衛力となった<strong>ファイア・ブリーザー</strong>と呼ばれる特殊部隊に至るまで、さまざまなプログラムを構築しました。しかし、2096年に組織全体が壊滅しました。
+            </p>
+            <p>
+                初代グループの消滅後、アパラチアに新たな住民が戻る中、レスポンダーの再建を試みる者が現れ始めました。2104年に<strong>ラッカー</strong>という女性が、オーランドとマネジメントの招待により<strong>ホワイトスプリング保護区</strong>を拠点として、レスポンダーの本格的な再編成を実現しました。
+            </p>
+
+            <h2>背景</h2>
+
+            <h3>戦後</h3>
+            <p>
+                大戦の余波の中、アパラチアのファースト・レスポンダーたちは市民を助けるために動員されました。やがて「レスポンダー」として知られる統一グループとなり、アパラチアにおける政府と危機救援の役割を担い、必要な人々に自動化されたサバイバル訓練を提供しました。核の大災害を生き延びた人々や、粉塵が収まった後に生まれた人々を助けることが目標でした。ウェストバージニア各地に拠点を設け、秩序を打ち立てようとしました。
+            </p>
+            <p>
+                ウェストバージニアの州都チャールストンがアパラチア復興の中心となり、レスポンダーがその最前線に立ちました。しかし、荒れた境域のプレザントバレー・スキーリゾートからの難民たちは助けを得られず、デイヴィッド・ソープの下で集結し、この地域初のレイダー戦団となりました。
+            </p>
+
+            <h3>クリスマスの大洪水</h3>
+            <p>
+                戦後の困難を乗り越え、レスポンダーはレイダーの脅威にもかかわらず持ちこたえました。チャールストンは成長し、レイダーの攻撃に対する安全な避難所となりました。<br>
+                しかし2082年、デイヴィッド・ソープの恋人ロザリン・ジェフリーズ率いる襲撃隊がレスポンダーに撃退され、ロザリン自身が捕虜となりました。レスポンダーは捕虜を交渉材料に停戦を望みましたが、ソープはロザリンが死んだと信じました。<br>
+                クリスマスの朝、ソープの命令でサマーズビル・ダムにミニ・ニュークが仕掛けられ、破壊されました。壊滅的な洪水が発生し、数えきれないレスポンダー、難民、無辜の市民が命を落としました。生存者たちはモーガンタウン空港に移転しました。
+            </p>
+
+            <h3>モーガンタウン</h3>
+            <p>
+                壊滅的な打撃にもかかわらず、レスポンダーは諦めませんでした。モーガンタウンは幸運な発見でした——地元ギャングの問題を制圧した後、中心的な位置にある拠点、山岳部のレイダーとの距離、そしてフリー・ステイツやアパラチアン・ブラザーフッド・オブ・スティールとの接点を得ました。フラットウッズにも進出し、食料生産や治安の再建を始めました。
+            </p>
+            <p>
+                食料・医薬品・その他の必需品へのアクセスが、フリー・ステイツやブラザーフッドとの関係の基盤となり、荒れた境域を越えるキャラバンが定期的に往来しました。洪水から4年後の2086年1月、レスポンダーは勢力の頂点に達し、パラディン・タガーディのパワーアーマー部隊と共にハンターズビルのスーパーミュータントと戦いました。この勝利はアパラチアの新時代の始まりに見えました。
+            </p>
+            <p>
+                しかし状況は暗転します。隠れていたエンクレイヴが内戦で自壊し、トーマス・エクハート大統領がDEFCONレベルを引き上げるためにスコーチビーストをアパラチアに解き放ちました。スコーチビーストはクランベリー・ボグに急速に感染し、周辺地域に広がりました。レスポンダーは反撃を組織し、メロディ・ラーキンとブラザーフッドの脱走兵ハンク・マディガンの経験を活かして、精鋭戦闘部隊<strong>ファイア・ブリーザー</strong>を創設しました。
+            </p>
+
+            <h3>スコーチとの戦い</h3>
+            <p>
+                しかし、レスポンダーは全体像を見誤りました。事実上のリーダーであるマリア・チャベスは、脅威がブラザーフッドほど深刻だとは信じず、彼らの軍国主義と度重なる物資の要求を嫌いました。数年前にはアパラチアの新秩序を約束した同盟は急速に崩壊し、2095年3月12日、ブラザーフッドがエイミー・ケリーのプロジェクト情報を銃口を向けて要求したことで頂点に達しました。<br>
+                2095年8月のブラザーフッドの陥落により、レスポンダーはアパラチアに残された唯一の組織となり、スコーチビーストに壊滅させられるのは時間の問題でした。荒れた境域から逃げるレイダーたちが森林地帯を席巻し、フラットウッズを含む多くのレスポンダーの前哨基地を壊滅させました。
+            </p>
+            <p>
+                AVRメディカルセンターでのスコーチ・ワクチン研究プロジェクトは、ファイア・ブリーザーを守るには遅すぎました。2096年9月までにワクチン作成の全てのピースは揃いましたが、スコーチの絶え間ない攻撃による通信途絶がハドソン博士の完成を妨げ、ファイア・ブリーザーはワクチンなしでビッグベンドトンネル封鎖作戦を強行しました。作戦は10月下旬に実行され、失敗しました。ハンク・マディガンのスコーチ探知システム設置の試みも、レイダーに捕えられ殺害されて失敗しました。<br>
+                そして2096年11月7日、スコーチビーストの大群とその手下に対する絶望的な防衛の末、モーガンタウン空港が陥落しました。レスポンダーは全滅しました。
+            </p>
+
+            <h3>再定住</h3>
+            <p>
+                2103年頃、人々がアパラチアに戻ってくると、入植者たちと共に帰還した<strong>ヘザー・エリス</strong>がフラットウッズに移り住み、レスポンダーの歴史を発見しました。彼女はレスポンダーの制服を着て支援活動を続けることで、グループの復活を目指しました。また、<strong>ティファニー・ブラントリー</strong>はファイア・ブリーザーに入隊を決意し、チャールストン消防署でファイア・ブリーザーの制服を着て入隊試験に挑んでいます。
+            </p>
+
+            <h3>本格的な再建と保護区</h3>
+            <p>
+                2104年頃、<strong>ラッカー</strong>という女性がアパラチアに戻り、レスポンダーの制服を着た人々を発見しました。ラッカーは旧レスポンダーの歴史を調査し、理念の復活を実現しました。<br>
+                難民の波がアパラチアに押し寄せる中、新レスポンダーは治療と住居を提供するための大きな拠点が必要になりました。彼らは一見放棄されたホワイトスプリング・リゾートに定着し、保護区（レフュージ）に変えました。設立後、リゾートの「マネジメント」との連絡係を名乗る謎めいたオーランドの援助を受けました。
+            </p>
+            <p>
+                この時期、新レスポンダーはベルチバードの修復にも成功し、アパラチア外の地域の探索と支援が可能になりました。最初に接触したのは、大戦後「ピット」と呼ばれるようになったピッツバーグの廃墟で見つかった生存者グループ「ユニオン」でした。オーランドとマネジメントはベルチバードの燃料としてウルトラセルを提供しました。彼らはまた、ギルマン木材工場に前哨基地を設立しました。
+            </p>
+
+            <h2>組織</h2>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/responders/img_leaders.png" alt="レスポンダー創設者たち">
+                <div class="note-figcaption">レスポンダー創設者：左からジェフ・ナカムラ、マリア・チャベス、メロディ・ラーキン、サンジェイ・クマール</div>
+            </div>
+
+            <p>
+                初代レスポンダーは、管理下の人々のニーズに対応するために設計された分散型の水平構造を持っていました。近隣の農場とレスポンダー本部の間に定期供給路が確立され、ジェリー・アバナシーのようなメンバーが護衛に割り当てられました。緊急事態への即応のために、フェリックス・オデルが訓練した緊急対応チームも設立されました。
+            </p>
+            <p>
+                初期のレスポンダーは概ね既存の指揮系統（警察、救急救命士、消防士など）の下で活動し、チャールストン非常事態政府の指導を無視していました。しかし、この初期構造は統一されておらず、崩壊を防ぐために多くの駆け引きと外交が必要でした。
+            </p>
+            <p>
+                モーガンタウン空港に移転後、組織は5人のシニアメンバーによって事実上導かれていました：<strong>マリア・チャベス</strong>（シニア・レスポンダー、事実上のリーダー）、<strong>クレア・ハドソン</strong>（主任医務官）、<strong>サンジェイ・クマール</strong>（主任技師）、<strong>メロディ・ラーキン</strong>（戦闘訓練官）、<strong>ジェフ・ナカムラ</strong>（需品係）。ただし、業務分担は実力主義で行われ、シニアメンバーがジュニアメンバーと共同で働いていました。ファイア・ブリーザーは例外で、必要性から厳格な指揮系統の下で運営されていました。
+            </p>
+            <p>
+                ホワイトスプリング保護区の再建レスポンダーも、初代と同様に分散型組織であり、他者の支援に重点を置いています。ラッカーは事実上の指導者ですが、単独のリーダーと呼ばれることを拒否しています。
+            </p>
+
+            <h3>シンボルとアイコノグラフィー</h3>
+            <p>
+                警察官、消防士、医師といった戦前の組織から形成されたレスポンダーは、それらの機関のシンボルを受け継ぎました。主なシンボルは、赤いハートと脈拍信号のラインが入った白い円を持つ青い警察盾でした。赤・白・青がメインカラーでしたが、通常は青が主色でした。
+            </p>
+            <p>
+                レスポンダーは一般市民のボランティアに頼ることが多く、制服の使用を義務付けませんでしたが、創設時の警察官・消防士・医師の戦前の制服を持ち越しました。武器に関してはアクセスできるものを使用しましたが、ファイア・ブリーザーは消防斧を多用しました。
+            </p>
+
+            <h3>階級</h3>
+            <div class="note-figure">
+                <img src="images/note_extracted/responders/img_checkin.png" alt="チェックインバナー" style="max-width: 300px;">
+            </div>
+            <p><em>注: これらの階級は壊滅前の初代レスポンダーにのみ適用されます。ホワイトスプリング保護区の再建レスポンダーには階級や部門の制度は言及されていません。</em></p>
+            <ul>
+                <li><strong>シニア・レスポンダー</strong>：組織の事実上のリーダーシップ。通常、設立当初からの人物。</li>
+                <li><strong>レスポンダー</strong>：完全な訓練を受けた正式メンバー。各自に仕事、専門分野、住居が割り当てられた。</li>
+                <li><strong>ファイア・ブリーザー</strong>：荒地の有毒地域、特に積灰の山での戦闘に特化した精鋭部隊。</li>
+                <li><strong>ボランティア</strong>：自動訓練を受けた人々。週次の配給、フォレスト・ウォッチへのアクセス、公認ベンダーでの割引が与えられた。</li>
+                <li><strong>ボランティア候補</strong>：訓練中の者、または若すぎてボランティアやレスポンダーになれない者。13歳で昇進可能。</li>
+            </ul>
+
+            <h3>テクノロジー</h3>
+            <p>
+                レスポンダーは戦前の各分野の専門家を擁しており、高い技術力を持っていましたが、資源不足とスコーチ疫病に完全に制約されていました。スコーチ・ワクチンの開発など、いくつかのプロジェクトは成功の瀬戸際で放棄されました。もう一つの進歩は、スコーチに対抗するためのウルトラサイト10mmピストルの開発でした。レスポンダーはまた、限定的ながらエクスカベーター・パワーアーマーのスーツを回収・転用しました。
+            </p>
+            <p>
+                多くのメンバーがアパラチアの自動化に反対していたにもかかわらず、戦後の人手不足により大量のロボットが思わぬ恩恵となり、多数のプロテクトロンがレスポンダーの支援のために再プログラムされました。レスポンダーは自動化されたバーティボットや転用された農薬散布機など、限定的な航空能力を持っていました。アパラチアの再定住後には、稼働するベルチバードが遠征に使用されました。
+            </p>
+
+            <h2>下部組織</h2>
+
+            <h3>初代レスポンダー</h3>
+            <h4>ファイア・ブリーザー</h4>
+            <p>メロディ・ラーキンが率い、積灰の山の探索を目的として結成された部門。チャールストン消防署を拠点とし、戦前のチャールストン消防局員と戦後のボランティアの混成部隊でした。プレイヤーはクエスト「Into the Fire」で入隊試験を受けてファイア・ブリーザーになれます。</p>
+
+            <h4>フラットウッズ救急部隊</h4>
+            <p>フラットウッズのレスポンダー本隊と共に、医療サービスとリクルート活動を行いました。フラットウッズのメインクエストライン完了時にレスポンダー・パラメディック・ジャンプスーツが報酬として得られます。</p>
+
+            <h4>レスポンダー警察部隊</h4>
+            <ul>
+                <li><strong>モーガンタウン警察</strong> — モーガンタウン空港の大規模防衛と市民の保護に従事。スコーチとの防衛戦で大半が壊滅し、多くの警察官自身がスコーチ化。</li>
+                <li><strong>チャールストン警察</strong> — チャールストンの法と秩序の維持を担当。レイダーのロザリン・ジェフリーズの捕獲後、デイヴィッド・ソープによるサマーズビル・ダム爆破（クリスマスの大洪水）で壊滅。</li>
+            </ul>
+
+            <h3>保護区レスポンダー</h3>
+            <p>再建レスポンダーには特定の部門やサブグループは言及されていません。しかし、フラットウッズでのヘザー・エリスのメンバーシップを認識しており、フラットウッズを現役の前哨基地と見なしています。ギルマン木材工場にはレーン・プラットが率いる別の前哨基地があります。</p>
+
+            <h2>外部関係</h2>
+            <h3>初代レスポンダー</h3>
+            <p>
+                初代ブラザーフッド・オブ・スティールは、熟練したレスポンダーをリクルートしようとしましたが、ハンク・マディガンは逆にブラザーフッドを脱走してレスポンダーに加わりました。レスポンダーはブラザーフッドのような元軍事部隊としての装備や専門知識を持っておらず、装備の多くは民間の緊急サービスに由来するものでした。ブラザーフッドと同様にスコーチと戦い、スコーチ疫病のワクチン開発も研究しましたが、最終的に失敗し、Vault 76が開く前に壊滅しました。
+            </p>
+            <p>
+                レスポンダーはフリー・ステイツともある程度協力し、ハーパーズ・フェリーの住民を支援しました。フリー・ステイツがハーパーズ・フェリーを再建した後、レスポンダーとの関係を深めるためにチャールストンへの交易路も確立されました。
+            </p>
+
+            <h3>保護区レスポンダー</h3>
+            <p>
+                再建レスポンダーはホワイトスプリング保護区内にファウンデーションからの入植者代表とクレーターからのレイダー代表の居住を許可しています。入植者とは友好的ですが、多くのメンバーはレイダーを不信に思っており、レイダーと付き合う者を拒絶するほどです。<br>
+                フォート・アトラスのブラザーフッド第一遠征軍に対してはやや中立的で、エリソン候補がブラザーフッドの代表として保護区に駐在しています（エリソンは個人的に、レスポンダーはブラザーフッドに吸収された方が良いと考えています）。<br>
+                レスポンダーはピッツバーグ・ユニオンとも同盟を結び、ファナティクスとの戦争で支援しています。アトランティック・シティとの連絡も維持しています。
+            </p>
+
+            <h2>ロケーション</h2>
+            <h3>現在の活動場所</h3>
+            <ul class="location-list">
+                <li>チャールストン消防署</li>
+                <li>チャールストン駅</li>
+                <li>フラットウッズ</li>
+                <li>グラフトン駅</li>
+                <li>ルイスバーグ駅</li>
+                <li>モーガンタウン駅</li>
+                <li>ウェルチ駅</li>
+                <li>ホワイトスプリング保護区</li>
+                <li>ギルマン木材工場</li>
+            </ul>
+            <h3>過去の活動場所</h3>
+            <ul class="location-list">
+                <li>AVRメディカルセンター</li>
+                <li>キャムデン・パーク</li>
+                <li>チャールストン</li>
+                <li>チャールストン議事堂</li>
+                <li>グラフトン</li>
+                <li>ルイスバーグ</li>
+                <li>レイノルズ湖</li>
+                <li>モーガンタウン</li>
+                <li>モーガンタウン空港</li>
+                <li>ノース・カナワ展望台</li>
+                <li>ポイント・プレザント</li>
+                <li>ウェルチ</li>
+            </ul>
+
+            <h2>メンバー</h2>
+            <h3>現役メンバー</h3>
+            <table class="member-table">
+                <tr><th>名前</th><th>役割</th></tr>
+                <tr><td>ラッカー</td><td>ホワイトスプリング保護区、レスポンダー・リーダー</td></tr>
+                <tr><td>エスメ・ルソー</td><td>ホワイトスプリング保護区、シェフ</td></tr>
+                <tr><td>ジュゼッペ・デッラ・リーパ</td><td>ホワイトスプリング保護区、スタンプ販売員</td></tr>
+                <tr><td>レノックス</td><td>ホワイトスプリング保護区、ベルチバード・パイロット</td></tr>
+                <tr><td>ソフィー・ワゴナー</td><td>ホワイトスプリング保護区、寄付活動管理者</td></tr>
+                <tr><td>ジューン・シーバー</td><td>ギルマン木材工場前哨基地、需品係</td></tr>
+                <tr><td>レーン・プラット</td><td>ギルマン木材工場前哨基地、需品係</td></tr>
+                <tr><td>ヘザー・エリス</td><td>フラットウッズ、新ボランティア</td></tr>
+                <tr><td>ティファニー・ブラントリー</td><td>チャールストン、ファイア・ブリーザー候補</td></tr>
+                <tr><td>Vault 76 住民（任意）</td><td>ボランティア / ファイア・ブリーザー</td></tr>
+            </table>
+
+            <h3>ロボット</h3>
+            <table class="member-table">
+                <tr><th>名前</th><th>役割</th></tr>
+                <tr><td>バーニー</td><td>ファイア・ブリーザー教官</td></tr>
+                <tr><td>Mr. フラッフィー</td><td>ミゲル・カルデラのボディガード（元）</td></tr>
+                <tr><td>レスポンダー・ベンダー</td><td>ホワイトスプリング・モールの販売員</td></tr>
+                <tr><td>スティールハート</td><td>モーガンタウン巡回ボット</td></tr>
+                <tr><td>ベンダーボット・ボブ</td><td>フラットウッズ販売員</td></tr>
+                <tr><td>ベンダーボット・チャド</td><td>キャムデン・パーク販売員</td></tr>
+                <tr><td>ベンダーボット・グレッグ</td><td>グラフトン販売員</td></tr>
+                <tr><td>ベンダーボット・マック</td><td>チャールストン販売員</td></tr>
+            </table>
+
+            <h3>初代レスポンダー（主要メンバー）</h3>
+            <table class="member-table">
+                <tr><th>名前</th><th>役割</th></tr>
+                <tr><td>マリア・チャベス</td><td>シニア・レスポンダー</td></tr>
+                <tr><td>クレア・ハドソン博士</td><td>主任医務官</td></tr>
+                <tr><td>サンジェイ・クマール</td><td>主任技師</td></tr>
+                <tr><td>メロディ・ラーキン</td><td>戦闘訓練官</td></tr>
+                <tr><td>ジェフ・ナカムラ</td><td>需品係</td></tr>
+                <tr><td>デレク・キャッスル</td><td>緊急対応チーム、護衛</td></tr>
+                <tr><td>ヴェロニカ・チャン</td><td>緊急対応チーム、野戦衛生兵</td></tr>
+                <tr><td>ケヴィン・トレイジャー</td><td>緊急対応チーム、野戦衛生兵</td></tr>
+                <tr><td>ジェリー・アバナシー</td><td>供給列車護衛</td></tr>
+                <tr><td>チェルシー・マッキー</td><td>フォレスト・ウォッチ、整備士</td></tr>
+                <tr><td>ダサ・ベン=アミ</td><td>フラットウッズ・リーダー</td></tr>
+                <tr><td>ミゲル・カルデラ</td><td>フラットウッズ、ロボティシスト</td></tr>
+                <tr><td>ケーシャ・マクダーモット</td><td>フラットウッズ、水処理専門家</td></tr>
+                <tr><td>デルバート・ウィンターズ</td><td>フラットウッズ、料理人・訓練官</td></tr>
+                <tr><td>フェリックス・オデル</td><td>緊急対応訓練官</td></tr>
+                <tr><td>ダリオン・ジョーンズ少佐</td><td>弾薬製造</td></tr>
+                <tr><td>デイヴィッド・ストラウス</td><td>コンピュータ技術者</td></tr>
+                <tr><td>リリアン・トンプキンス</td><td>補給官</td></tr>
+                <tr><td>ケイレブ・ウィドマー</td><td>救急救命士</td></tr>
+                <tr><td>ギャリー・ウィルキンス</td><td>伝令</td></tr>
+                <tr><td>ライアン・ゼルナック</td><td>ケミカル専門家</td></tr>
+            </table>
+
+            <h2>関連クエスト</h2>
+            <h3>初代レスポンダー</h3>
+            <ul>
+                <li>Thirst Things First</li>
+                <li>Second Helpings</li>
+                <li>Final Departure</li>
+                <li>An Ounce of Prevention</li>
+                <li>Into the Fire</li>
+                <li>Runner's High</li>
+                <li>The Missing Link</li>
+            </ul>
+            <h3>ホワイトスプリング保護区</h3>
+            <ul>
+                <li>Responders Reborn</li>
+                <li>Refuge Daily: Code Blue</li>
+                <li>Refuge Daily: Mutual Aid</li>
+                <li>Refuge Daily: Recipe for Success</li>
+            </ul>
+
+            <h2>プレイヤーとのインタラクション</h2>
+            <ul>
+                <li>Vault 76を出た直後にレスポンダーを発見できます。テラスの外にあるランプにもたれかかったボランティアのミイラ化した遺体が見つかります。</li>
+                <li>レスポンダー・ボランティアへの登録は「First Contact」クエストの間接的な一部です。フラットウッズの監督官を見つけるよう言われ、まだ稼働中のセルフ登録キオスクを使って「Thirst Things First」を開始できます。</li>
+                <li>メインクエストはファイア・ブリーザーへの入隊に導き、その後アパラチアへ送り出されます。</li>
+                <li>レスポンダー・ベンダーボットは主に駅と拠点に配置されています。</li>
+                <li>ホワイトスプリング保護区の再建レスポンダーは、初代レスポンダーのクエストラインとは別に交流できます。</li>
+            </ul>
+
+            <h2>ノート</h2>
+            <p>一般的な警察の制服は、「レスポンダーの制服を着てレベルアップする」チャレンジの条件を満たします。</p>
+
+            <h2>登場作品</h2>
+            <p>レスポンダーは『<strong>Fallout 76</strong>』に登場します。</p>
+
+            <h2>舞台裏</h2>
+            <ul>
+                <li>レスポンダーはゲーム発売前に公式Fallout Twitterページで初公開されました。</li>
+                <li>レスポンダーは『<em>Fallout 76 Vault Dweller's Survival Guide</em>』のファクションプロフィールセクションに掲載されています。</li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_logo_ground.png" alt="地面に描かれたレスポンダーのロゴ" onclick="openLightbox(this)"><div class="caption">I-59に描かれたレスポンダーのロゴ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_bell1.png" alt="自由の鐘に描かれたロゴ" onclick="openLightbox(this)"><div class="caption">自由の鐘に描かれたロゴ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_bell2.png" alt="自由の鐘のロゴ" onclick="openLightbox(this)"><div class="caption">自由の鐘のロゴ（別角度）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_id.png" alt="レスポンダーのキーカード" onclick="openLightbox(this)"><div class="caption">キーカード</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_map1.png" alt="モーガンタウン空港のマップ" onclick="openLightbox(this)"><div class="caption">モーガンタウン空港のマップ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_map2.png" alt="レスポンダー活動域マップ" onclick="openLightbox(this)"><div class="caption">スコーチ疫病時の活動域</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_cop.png" alt="レスポンダー警察官の遺体" onclick="openLightbox(this)"><div class="caption">フラットウッズ教会の警察官の遺体</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_courier.jpg" alt="レスポンダーの伝令" onclick="openLightbox(this)"><div class="caption">死亡報告書を持つレスポンダーの伝令</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_poster.png" alt="レスポンダーのポスター" onclick="openLightbox(this)"><div class="caption">レスポンダーのポスター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_logo_alt_worn.png" alt="代替ロゴ（摩耗）" onclick="openLightbox(this)"><div class="caption">代替ロゴ（摩耗版）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_logo_alt_restored.png" alt="代替ロゴ（復元）" onclick="openLightbox(this)"><div class="caption">代替ロゴ（復元版）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_logo_blue.png" alt="消防士ロゴ（青）" onclick="openLightbox(this)"><div class="caption">消防士ロゴ（青）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_logo_gold.png" alt="消防士ロゴ（金）" onclick="openLightbox(this)"><div class="caption">消防士ロゴ（金）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_fb_flag.png" alt="消防士旗ロゴ" onclick="openLightbox(this)"><div class="caption">ファイア・ブリーザー旗ロゴ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_photomode.png" alt="フォトモードロゴ" onclick="openLightbox(this)"><div class="caption">フォトモード用ロゴ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_ems.png" alt="WV Fire EMSロゴ" onclick="openLightbox(this)"><div class="caption">WV Fire EMSロゴ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_logo_black.png" alt="黒ロゴ" onclick="openLightbox(this)"><div class="caption">黒ロゴ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_sign_test.png" alt="体力テスト看板" onclick="openLightbox(this)"><div class="caption">体力テスト看板テクスチャ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_sign_vol.png" alt="ボランティア募集看板" onclick="openLightbox(this)"><div class="caption">ボランティア募集看板テクスチャ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_twitter.jpg" alt="公式Twitter画像" onclick="openLightbox(this)"><div class="caption">公式Twitter画像</div></div>
+            </div>
+
+            <h3>装備と制服</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_uniform_police.png" alt="レスポンダー警察制服" onclick="openLightbox(this)"><div class="caption">レスポンダー警察制服</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_uniform_fire.png" alt="レスポンダー消防制服" onclick="openLightbox(this)"><div class="caption">レスポンダー消防制服</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/responders/img_uniform_medic.png" alt="レスポンダー救急ジャンプスーツ" onclick="openLightbox(this)"><div class="caption">レスポンダー救急ジャンプスーツ</div></div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                レスポンダーは、Fallout 76の世界で唯一「善意だけで戦い続けた」ファクションです。<br><br>
+                ブラザーフッドは軍の規律と技術力を持ち、フリー・ステイツは孤立主義と技術で身を守り、レイダーは暴力で奪い取った。しかしレスポンダーは——元警官、元消防士、元救急救命士という普通の人々が、核戦争後の世界で他者を助けることだけを目的に団結した組織でした。<br><br>
+                彼らの最大の強みは同時に致命的な弱点でもありました。暴力を忌避し、対話と協力を重んじるマリア・チャベスのリーダーシップは、平時であれば理想的な統治でした。しかしスコーチビーストの脅威という未曾有の危機に際して、軍事力を持たないレスポンダーは孤立し、崩壊しました。<br><br>
+                特に印象深いのは、2096年の最後の数ヶ月間の物語です。ワクチンはあと一歩で完成するはずだった。ファイア・ブリーザーはビッグベンドトンネルを封鎖する作戦に出発した。ハンク・マディガンはスコーチ探知システムを設置しようとした。全てが失敗し、2096年11月7日の朝、空がスコーチビーストで覆われた時、彼らは全てを知りながら戦い続けました。<br><br>
+                そしてラッカーの再建。廃墟の中にレスポンダーの制服を着た数人を見つけ、「理念は死んでいない」と気づいた彼女の行動が、この組織に二度目の命を与えました。ホワイトスプリング保護区は、チャベスが夢見た「全ての人に手を差し伸べる場所」の実現とも言えるでしょう。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Faction</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Responders</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Responders" target="_blank" rel="noopener">Responders</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = img.src;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡';
+            btn.querySelector('.like-count').textContent = count;
+            btn.classList.toggle('liked', isLiked);
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                updateLikeButton(btn, isLiked, data ? data.like_count : 0);
+            }
+        });
+
+        const _commentArticleId = 'responders';
+        const _commentArticleName = 'Responders (レスポンダー)';
+        const _commentArticleUrl = 'responders.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list'); if (!list) return;
+            if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50);
+            if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');
+            const now = Date.now();
+            if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

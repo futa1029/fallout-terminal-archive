@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ウルトラサイト | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/ultracite.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="ウルトラサイト | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ウルトラサイト — アパラチアの地下で発見された放射性ガラス状鉱石。AMSが採掘を独占し、地域の運命を左右した。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/ultracite/vein.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/ultracite.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="ウルトラサイト | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ウルトラサイト — アパラチアの放射性鉱石。エネルギー源として驚異的な潜在能力を持つ。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/ultracite/vein.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .holotape-box { background: var(--panel-bg); border: 2px solid #ff9800; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .holotape-box h3 { color: #ff9800; border-bottom: 1px solid #ff9800; margin-top: 0; font-size: 1.1em; }
+        .holotape-box .holotape-icon::before { content: '🎙 '; }
+        .holotape-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; font-style: italic; }
+        .note-box { background: var(--panel-bg); border: 2px solid #8bc34a; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .note-box h3 { color: #8bc34a; border-bottom: 1px solid #8bc34a; margin-top: 0; font-size: 1.1em; }
+        .note-box .note-icon::before { content: '📝 '; }
+        .note-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="アイテム" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Ultracite</h3>
+            <img src="images/note_extracted/ultracite/main.png" alt="ウルトラサイト（アイテム）" onclick="openLightbox(this)">
+            <div class="infobox-row"><span class="infobox-label">ゲーム</span><span>Fallout 76</span></div>
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>クラフト素材</span></div>
+            <div class="infobox-row"><span class="infobox-label">重量</span><span>0.1</span></div>
+            <div class="infobox-row"><span class="infobox-label">価値</span><span>25</span></div>
+            <div class="infobox-row"><span class="infobox-label">用途</span><span>ウルトラサイト・パワーアーマー<br>ウルトラサイト弾薬<br>スーパー・スティムパック</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_ultracite" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Ultracite<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ウルトラサイト</span></h1>
+
+            <h2>概要</h2>
+            <p><strong>ウルトラサイト</strong>は、<em>Fallout 76</em>におけるクラフト素材である。</p>
+
+            <h2>背景</h2>
+            <p>ウルトラサイトは、<strong>アトミック・マイニング・サービス</strong>（AMS）がアパラチアの土壌の下で発見した、放射性のガラス状鉱石である。<br>
+            AMSは核爆発を用いてかつてないほど深く掘削することで、以前放棄された炭鉱を新たな繁栄の源に変えることができた。<br>
+            その起源はAMSの科学者たちを当惑させたが、その特性は謎ではなかった——ウルトラサイトは驚異的に強力なエネルギー源だった。</p>
+
+            <img src="images/note_extracted/ultracite/vein.png" alt="ウルトラサイト鉱脈" class="article-image" style="max-width: 70%;" onclick="openLightbox(this)">
+            <div class="image-caption">ウルトラサイト鉱脈</div>
+
+            <p>適切に扱えば、産業用機械を数十年にわたって稼働させ続けるのに十分な電力を供給できた。<br>
+            そうでなければ、その強力さが原子炉を溶かし、メルトダウンを引き起こす可能性があった。<br>
+            AMSはウルトラサイトこそがアメリカ全土の未来のエネルギー源であると確信しており、供給を掌握することで市場における覇権を握ろうとしていた。</p>
+
+            <p>当初、AMSは地域的に事業を開始し、<a href="abandoned-mine-shaft-2.html" class="auto-link">ワトガ</a>に電力を供給し、アパラチアの採掘市場における二大企業——<strong>ホーンライト・インダストリアル</strong>と<strong>ガラハン鉱業会社</strong>——およびエネルギー複合企業<a href="poseidon-energy.html" class="auto-link">ポセイドン・エネルギー</a>に技術をリースした。<br>
+            ウラニウムと同様の扱いで取り扱っていた。<br>
+            契約には条件が付いていた。<strong>エクスカベーター・パワーアーマー</strong>に電力を供給するために、ガラハンはAMSの技術に10年間のコミットメントを行わなければならなかった。<br>
+            さらに、<a href="poseidon-energy-plant-wv-06.html" class="auto-link">ポセイドン・エネルギー発電所WV-06</a>はウルトラサイト燃料を燃焼するよう改修された。</p>
+
+            <p>AMSは市場で支配的な地位を確保しつつ、ウルトラサイトの全国的な普及に対する障害の除去にも取り組んだ。<br>
+            劣化ウルトラサイトは通常の素材と接触すると腐食反応を起こし、両方の素材を溶かしてしまうため、二つの素材の分離と封じ込めに細心の注意が必要だった。<br>
+            しかし、その合併症は最大の問題に比べれば二次的なものに過ぎなかった——AMSはウルトラサイトの生成過程を理解していなかったのだ。<br>
+            これにより、失敗と判定された坑道が突然ウルトラサイトの鉱脈を形成したり、以前の予想を超えて成長・拡大するという状況が発生した。<br>
+            ウェルチの町の近くの9番坑道がその例だった。</p>
+
+            <p>ウルトラサイトの鉱脈は急速に発達し、坑道内だけでなく町の中にまで出現した。<br>
+            独占を維持するため、AMSは12時間以内に財産権を確保し、町の全住民を強制的に退去させた。<br>
+            この動きが、すでに怒っていた鉱夫たちを過激化させた。</p>
+
+            <img src="images/note_extracted/ultracite/warning_sign.png" alt="ウルトラサイト警告標識" class="article-image" style="max-width: 60%;" onclick="openLightbox(this)">
+            <div class="image-caption">ウルトラサイト関連の警告標識</div>
+
+            <p>ウルトラサイトの性質は<strong>エンクレイヴ</strong>にも注目された。<br>
+            エンクレイヴはダミー会社の<strong>レイヴンLLC</strong>を通じてAMSの鉱山の一つ（<strong>グリーミング・デプス</strong>）を買収し、<strong>プロジェクト・ヴァルカン</strong>の一環として鉱物の研究を開始した。</p>
+
+            <h2>特徴</h2>
+            <p>スコーチ対策の武器、<strong>ウルトラサイト・パワーアーマー</strong>、その他の強力な武器・防具のクラフトに使用される非常に希少な素材である。<br>
+            ウルトラサイトと劣化ウルトラサイトは互いの接触に耐えられず、接触すると両方のサンプルが爆発的に溶融する。<br>
+            AMSは実験を通じてこの性質を発見し、<strong>レスポンダーズ</strong>は後に<strong>ハンク・マディガン</strong>を通じてこの情報を発見し活用した。</p>
+
+            <p>スコーチ病が生体組織内にウルトラサイトの破片を形成させることが証明されると、レスポンダーズはこの機会を利用して武器化に着手した。<br>
+            劣化ウルトラサイトを発射するよう改造された銃は、スコーチ・クリーチャーに対して特に効果的だった。</p>
+
+            <p>ワールド内ではライムグリーンまたは黄緑色に光る宝石として出現するが、アイテムそのものは暗い緑青色で表示される。</p>
+
+            <h2>クラフト</h2>
+            <p>ウルトラサイトはクラフトシステムにおけるウルトラサイト・スクラップの表現である。<br>
+            使用可能なウルトラサイトの量は、インベントリ、スタッシュ、スクラップボックスに保管されているウルトラサイト・スクラップの量に直結する。<br>
+            ウルトラサイトの利用量を増やすには、より多くのウルトラサイト・スクラップを入手する必要がある。</p>
+
+            <h2>ホロテープ・メモ</h2>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">立退き通知録音：カミンスキ家</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">ウェルチの崖の横から突き出た開いた棺の中、骸骨の横で発見</p>
+                <div class="transcript">
+                    <strong>AMSエージェント</strong>：カミンスキ夫妻。これが最後の警告です。<br>
+                    あなたがたの住居はAMSの所有地の上にあります。<br>
+                    15秒以内に退去してください。<br>
+                    従わない場合、我々は実力で排除する権利を有しています。<br><br>
+
+                    <strong>男</strong>：あいつら出てこなさそうだな、おい。<br><br>
+
+                    <strong>AMSエージェント</strong>：あなたには関係のないことです。お引き取りください。<br><br>
+
+                    <strong>男</strong>：お前ら企業の犬は俺たちの仕事を奪った。<br>
+                    尊厳も奪った。<br>
+                    今度は家まで取ろうってのか？ 十分に関係あると思うがな。<br><br>
+
+                    <strong>AMSエージェント</strong>：もう一度だけ言います。家に戻りなさい。<br>
+                    困っているのはカミンスキ家だけです……今のところは。<br><br>
+
+                    <strong>男</strong>：そこが間違ってるんだよ、坊や。<br>
+                    <em>（口笛。銃声が鳴り響く）</em>
+                </div>
+            </div>
+
+            <div class="holotape-box">
+                <h3><span class="holotape-icon">ハンク・マディガンからのメッセージ</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">AMS本社のレセプション端末に録音されている</p>
+                <div class="transcript">
+                    <strong>ハンク・マディガン</strong>：こちらハンク・マディガン。<br>
+                    俺の後にここを通るファイア・ブリーザーの誰かに伝える。<br>
+                    数え切れないほどのロボットとタレットをかわさなきゃならなかったが、探していたものを見つけた。<br>
+                    アトミック・マイニング・サービスはウルトラサイトの王者だった。<br>
+                    このオフィスにラボがあった。<br>
+                    連中が俺たちを助ける方法を見つけていたかもしれないと思う——たとえ本人たちがそれに気づいていなくてもな。<br><br>
+
+                    燃料を使い切ると、後に塊が残るんだ。<br>
+                    この劣化ウルトラサイトは通常のやつとは相性が悪い。<br>
+                    腐食性になる。<br>
+                    AMSは廃棄と封じ込めを考えていた。<br>
+                    俺は武器として考えている。<br>
+                    スコーチどもはウルトラサイトの塊を体に突っ込んで歩き回ってる。<br>
+                    劣化ウルトラサイトを発射するよう銃を改造してみよう。<br>
+                    あのクソどもが溶けるか見てやる。
+                </div>
+            </div>
+
+            <div class="note-box">
+                <h3><span class="note-icon">AMS: 企業の暴君</span></h3>
+                <p style="font-size: 0.85em; color: #aaa;">チャールストン・ヘラルド紙の記事。チャールストン・ヘラルド・ビルのオーバービーのオフィス外、大テーブルの上</p>
+                <div class="transcript">
+                    <div style="text-align: center; font-weight: bold; margin-bottom: 10px;">AMS: 企業の暴君</div>
+                    アトミック・マイニング・サービスはアパラチアでは比較的新しい会社だが、その手法はウェスト・ヴァージニアの歴史を少しでも知っている人なら馴染みのあるものだ。<br>
+                    暴動や労働争議を「鎮圧」するために使用される武装した「警備要員」チームの報告は、本紙が報じてきたほぼ日常的な出来事である。<br>
+                    残念ながら、新たな最低記録が達成されたと言わざるを得ない。<br><br>
+
+                    AMSが初めてウェスト・ヴァージニアに来た時、彼らは地域の救世主として称賛された。<br>
+                    古い鉱山にさらに深く掘り下げる新しい方法をもたらしたのだ。<br>
+                    その方法に核爆薬の爆発が含まれていたことも、炭鉱地帯に慣れ親しんだリスクに慣れきった硬骨の鉱山コミュニティを怯ませることはなかった。<br><br>
+
+                    しかしAMSは到着するや否やプロジェクトを放棄し、「技術的失敗」を理由に挙げた。<br>
+                    雇用は再び枯渇した。<br>
+                    地域はさらに深い貧困に沈んだ。<br>
+                    それだけで十分な被害だと思うだろうが、AMSはまだ終わっていなかった。<br><br>
+
+                    夜の盗人のごとく、AMSは突然ウェルチの町に急襲し、土地の資源権を主張した。<br>
+                    ウェルチの住民が暮らしている住宅を含めてだ。<br>
+                    当然、町はこの家屋の強奪に抵抗し——そこでAMSの今や悪名高い「警備要員」が投入された。<br><br>
+
+                    なぜAMSはウェルチを欲するのか？ AMSはコメントを出していない。<br>
+                    本紙の記者はAMSのロゴを身につけた武装した男たちに町から護送された。
+                </div>
+            </div>
+
+            <h2>関連項目</h2>
+            <ul>
+                <li>ウルトラサイト鉱石</li>
+                <li>ウルトラサイト・スクラップ</li>
+                <li>ウルトラサイト供給箱</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>ウルトラサイトは<em>Fallout 76</em>にのみ登場する。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/ultracite/warning_sign.png" alt="警告標識" onclick="openLightbox(this)"><div class="caption">ウルトラサイト警告標識</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/ultracite/vein.png" alt="鉱脈" onclick="openLightbox(this)"><div class="caption">ウルトラサイト鉱脈</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/ultracite/mine_shaft_ultracite.jpg" alt="鉱山坑道2のウルトラサイト" onclick="openLightbox(this)"><div class="caption">放棄された鉱山坑道2のウルトラサイト</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/ultracite/gleaming_depths_ext.png" alt="グリーミング・デプス外観" onclick="openLightbox(this)"><div class="caption">グリーミング・デプス外観</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/ultracite/gleaming_depths_33.png" alt="グリーミング・デプス内部" onclick="openLightbox(this)"><div class="caption">グリーミング・デプス内部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/ultracite/gleaming_depths_51.png" alt="グリーミング・デプス内部2" onclick="openLightbox(this)"><div class="caption">グリーミング・デプス内部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/ultracite/gleaming_depths_61.png" alt="グリーミング・デプス内部3" onclick="openLightbox(this)"><div class="caption">グリーミング・デプス内部</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br>
+                ウルトラサイトはFallout 76のロアにおいて極めて重要な素材です。<br>
+                AMSが核爆発を使って発見したというダイナミックな経緯、劣化状態では通常の素材と激しく反応するという性質、そしてスコーチ病との密接な関連——どれも物語に深みを加えています。<br>
+                特にハンク・マディガンが「AMSが廃棄を考えていた劣化ウルトラサイトを武器にする」と発想転換する場面がかっこいいですね。<br>
+                カミンスキ家の立退きホロテープは、企業の暴力とそれに対する鉱夫たちの抵抗を生々しく伝えていて、積灰の山の暗い歴史を象徴しています。
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 15px; border-top: 1px solid #333; font-size: 0.8em; color: #666; line-height: 1.6;">
+                <p>この記事は <a href="https://fallout.fandom.com/wiki/Ultracite" target="_blank" rel="noopener noreferrer" style="color: #888;">Nukapedia (Fallout Wiki)</a>の「Ultracite」の記事を日本語に翻訳し再構成したものです。<br>
+                原文は <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color: #888;">Creative Commons Attribution-ShareAlike (CC BY-SA)</a> ライセンスのもとで利用しています。</p>
+                <p>© Bethesda Softworks LLC. Fallout およびすべての関連ロゴ・名称は Bethesda Softworks LLC の登録商標です。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) { const lb = document.getElementById('lightbox'); document.getElementById('lightboxImg').src = el.src; lb.classList.add('active'); }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_ultracite';
+        const COOLDOWN_MS = 60000;
+        let lastCommentTime = 0;
+
+        async function loadLikes() { if (!sb) return; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); const btn = document.querySelector('.like-button'); if (data) btn.querySelector('.like-count').textContent = data.count; if (localStorage.getItem('liked_' + ARTICLE_ID)) { btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } } catch(e) {} }
+        async function toggleLike(btn) { if (!sb) return; const liked = localStorage.getItem('liked_' + ARTICLE_ID); const delta = liked ? -1 : 1; try { const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (data) { await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID); } else { await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 }); } if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; } else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; } const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single(); if (d2) btn.querySelector('.like-count').textContent = d2.count; } catch(e) {} }
+        function updateCharCount() { const ta = document.getElementById('commentInput'); document.getElementById('charCount').textContent = ta.value.length + ' / 500'; }
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+        async function loadComments() { if (!sb) return; const list = document.getElementById('commentsList'); try { const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false }); if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; } list.innerHTML = data.map(c => { const d = new Date(c.created_at); const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0'); const myId = localStorage.getItem('comment_id_' + c.id); return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (myId ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>'; }).join(''); } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; } }
+        async function submitComment() { if (!sb) return; const ta = document.getElementById('commentInput'); const body = ta.value.trim(); const msg = document.getElementById('commentMsg'); if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; } if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; } const now = Date.now(); if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; } const btn = document.getElementById('commentSubmitBtn'); btn.disabled = true; try { const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single(); if (error) throw error; if (data) localStorage.setItem('comment_id_' + data.id, '1'); ta.value = ''; updateCharCount(); lastCommentTime = now; msg.textContent = '投稿しました'; msg.style.color = 'var(--accent-color)'; loadComments(); } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; } btn.disabled = false; }
+        async function deleteComment(id) { if (!sb || !confirm('このコメントを削除しますか?')) return; try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) {} }
+        loadLikes(); loadComments();
+    </script>
+</body>
+</html>

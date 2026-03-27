@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Enclave Oil Rig | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/enclave-oil-rig.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Enclave Oil Rig | Overseer Mohi's Terminal">
+    <meta property="og:description" content="エンクレイヴ石油リグ — Fallout 2におけるエンクレイヴの本部。太平洋上の石油掘削プラットフォーム。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/enclave-oil-rig/loading.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/enclave-oil-rig.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Enclave Oil Rig | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="エンクレイヴ石油リグ — エンクレイヴの太平洋上の本部基地。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/enclave-oil-rig/loading.jpg">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .loot-box { border: 1px solid #555; background: rgba(255,255,255,0.03); padding: 15px 20px; margin: 15px 0; border-radius: 5px; font-size: 0.9em; line-height: 1.7; }
+        .loot-box h4 { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; margin-top: 0; margin-bottom: 10px; font-size: 1em; border-bottom: none; }
+        .loot-box ul { margin: 5px 0; padding-left: 20px; }
+        .loot-box li { margin-bottom: 3px; }
+        .layout-flow { text-align: center; margin: 20px 0; font-family: 'Share Tech Mono', monospace; color: var(--accent-color); line-height: 2; }
+        .layout-flow .node { display: inline-block; border: 1px solid var(--accent-color); padding: 5px 15px; margin: 3px; background: rgba(0,255,0,0.05); }
+        .layout-flow .arrow { color: var(--accent-color); font-size: 1.2em; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 2">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Enclave Oil Rig</h3>
+            <img src="images/note_extracted/enclave-oil-rig/loading.jpg" alt="エンクレイヴ石油リグ">
+            <img src="images/note_extracted/enclave-oil-rig/backdrop.png" alt="エンクレイヴ石油リグ（トーキングヘッド背景）">
+            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>コントロールステーション<br>ENCLAVE</span></div>
+            <div class="infobox-row"><span class="infobox-label">別名</span><span>大統領リグ / PR_002</span></div>
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>軍事基地</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在地</span><span>太平洋上<br>カリフォルニア沖175マイル</span></div>
+            <div class="infobox-row"><span class="infobox-label">運営</span><span><a href="enclave.html" class="auto-link">エンクレイヴ</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">戦前運営</span><span>ポセイドン・エネルギー</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>合衆国最後の大統領<br>リチャードソン・シニア<br>ディック・リチャードソン</span></div>
+            <div class="infobox-row"><span class="infobox-label">人口</span><span>常駐60-80人<br>総計 約1,000人</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>エンクレイヴを止めろ<br>トラップルームパズル</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 2</span></div>
+            <div class="infobox-row"><span class="infobox-label">言及作品</span><span>FNV, FO4, FO76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_enclave-oil-rig" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Enclave Oil Rig<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">エンクレイヴ石油リグ</span></h1>
+
+            <div class="quote-box">
+                <b>「海の向こうにポセイドンの巨大な石油リグが残っている。<br>あそこがエンクレイヴの最終基地だ。<br>俺の勘が正しければ、お前の仲間もそこにいるはずだ。」</b>
+                <br>— A・ロン・マイヤーズ
+            </div>
+
+            <h2>概要</h2>
+            <p><strong>エンクレイヴ石油リグ</strong>（正式名称：<strong>コントロールステーション ENCLAVE</strong>）は、<em>Fallout 2</em>に登場するロケーションである。</p>
+            <p>核戦争直後から2241年まで、西海岸<a href="enclave.html" class="auto-link">エンクレイヴ</a>の主要司令部として機能した、かつてのアメリカ合衆国の領土上およびその周辺における組織最大級の厳重警備拠点である。<br>
+            大戦以前、この施設はポセイドン・エネルギー社が建設した深海掘削プラットフォームとしてアメリカ国民に公開されており、カリフォルニア沿岸から175マイル沖の太平洋上、海底油田の上に建設されていた。</p>
+
+            <h2>背景</h2>
+            <h3>戦前</h3>
+            <p>資源戦争の緊張が高まる中、大戦前に建設されたこの石油リグは、カリフォルニア大陸部の沿岸から175マイル沖の太平洋上に位置する深海掘削プラットフォームとして公に紹介されていた。</p>
+            <p>シエラ貯蔵庫GNN記録によれば、2073年1月に合衆国がこの地点にプラットフォームを設置する国際的な競争に勝利し、その後<a href="china.html" class="auto-link">中国</a>側は米国が自国の権利主張を妨害したと非難した。<br>
+            元々、この油田は海底から数千フィート下に位置していたため、到達不可能と考えられていた。</p>
+            <p style="color: #888; font-size: 0.9em;">※ 石油リグが「最後の既知の石油資源」の上に建設されたとされているが、この情報はシエラ貯蔵庫GNN記録に基づくものであり、信頼性に疑問がある。<br>
+            ただし、石油リグが実際に稼働していたことを考えれば、最後の（もしくは最後の一つの）利用可能な石油資源である可能性はある。</p>
+
+            <p>2077年3月、世界が核対決に向かって突き進む中、現職の合衆国大統領と閣僚の大部分（その多くがエンクレイヴの「影の政府」構成員）は、世界各地の要塞化された拠点に退避した。<br>
+            太平洋上のポセイドン・エネルギーの石油リグは、合衆国が存続し<a href="china.html" class="auto-link">中国</a>との戦争を継続するための秘密基地として選ばれ、最終的には核戦争後のアメリカ大陸を奪還するという目標が掲げられた。<br>
+            エンクレイヴの他のメンバーは世界各地の辺境に退避したが、核爆弾が投下された後、本隊との連絡をすべて失った。</p>
+
+            <h3>エンクレイヴ基地</h3>
+            <p>世界が燃え上がり、合衆国の社会政治構造が崩壊する中、大統領とエンクレイヴは ── 今や影の政府の残存そのもの ── 合衆国の継承者として自らを位置づけ、放射能に汚染されたアメリカの廃墟に対する支配権を主張した。</p>
+            <p>2077年末、大戦の直前に、石油リグはホワイトスプリング議会バンカーからX-01パワーアーマーと<a href="vertibird.html" class="auto-link">ベルチバード</a>の設計図を受領した。</p>
+
+            <h3>破壊</h3>
+            <p>2242年、選ばれし者はナバロのエンクレイヴ基地から石油タンカー「PMVバルディーズ」を奪い、誘拐された部族民（アロヨ）とVault 13の住人を救出するために石油リグへの強襲を敢行した。<br>
+            エンクレイヴの撃破は副次的な目標であった。</p>
+            <p>スーパーミュータントのマーカスを含む仲間の助けを借り、選ばれし者は人質救出の任務を完遂。<br>
+            その過程でエンクレイヴのディック・リチャードソン大統領とシークレットサービスのエージェント、フランク・ホリガンを殺害した。<br>
+            さらに一次原子炉を過負荷にさせることで石油リグの破壊を確実にし、100キロトンの熱核爆発を引き起こした。</p>
+            <p>これにはドミノ効果があり、リチャードソン大統領がFEVカーリング-13をジェット気流に放出する計画が阻止された。<br>
+            この計画はすべてのウエイストランドの住民を殺害し、エンクレイヴの入植の下地を整えることを目的としていた。</p>
+            <p>石油リグの破壊時に脱出した、あるいは不在だったエンクレイヴの残存メンバーは真相のすべてを知ることはなく、判明している情報も詳細に欠けていた。</p>
+
+            <h2>概観</h2>
+            <p>一般大衆からその真の性質を意図的に隠されていたポセイドン・エネルギーの太平洋石油リグは、実際にはコントロールステーション ENCLAVEであった。<br>
+            産業施設と最先端の医療技術を備えた最先端の軍事通信ハブであり、完全に自給自足が可能で、エンクレイヴの核戦争後の権力基盤の完璧な土台として機能していた。</p>
+            <p>本部としてだけでなく、PoseidoNetを介してエンクレイヴ、軍事、企業の各施設との接続を維持していた（ただし石油リグのPoseidoNetソフトウェアはトライアル版で、2079年に機能を停止した模様）。</p>
+            <p>石油リグで使用された標準的なコンピュータはDataPlex 2000 SmarTerminal（64KBのRAMを搭載した最新鋭の機種）であった。<br>
+            使用されたオペレーティングシステムには、Fenestra '98、Apricot OS、そしてVault-Tec社独自のOSが含まれていた。</p>
+
+            <h3>電力</h3>
+            <p>大戦中の米国電力網の崩壊を予期し、石油リグはVault-Tec社が特許を持つウラン系原子炉によって自給的に電力を供給されていた。<br>
+            プロセス全体は、最近発明された同期マルチプロセッサをトリプロセッサ・マザーボード上で動作させるスーパーコンピュータによって自動化されていた。<br>
+            このコンピュータは冷却材温度、冷却用の海水取水、排熱水と廃棄物の排出、そしてウラン燃料棒への中性子照射を慎重に制御していた。<br>
+            海水は深さ500メートルから汲み上げられ、タービンの駆動と炉心の冷却の両方に使用された。</p>
+            <p>放射性水とその他の有害な副産物は廃棄物導管を通じて処分され、リグの南1マイルの地点で終端していたが、その副作用として南カリフォルニアとメキシコの海岸に不可逆的な生態系被害をもたらした。</p>
+            <p>このシステムの最大の欠陥は、スーパーコンピュータの動作がわずかでも中断されると、ウラン同位体への制御されない中性子照射により2時間以内に100キロトンの核爆発が起こることであった。<br>
+            電力の喪失はまた石油リグに深刻な打撃を与え、フォースフィールドなどのエネルギー集約型システムは停止し、水密扉が閉鎖されて浸水を防ぐことになる。</p>
+            <p>2241年までに、160年以上の連続使用を経て、原子炉は劣悪な状態に陥り、常に故障と放射能漏れが発生していた。<br>
+            そのため、リグに配置されたエンクレイヴの人員は、最寄りのRad-X供給所や密閉シェルターの位置を把握し、定期的な原子炉警報の維持と頻繁な即応訓練、緊急システムテストを行うよう指示されていた。</p>
+
+            <h3>防衛</h3>
+            <p>戦前の米国の全資源にアクセスできる軍事基地として、石油リグはポセイドンIFF（敵味方識別）トランスポンダーを持たない海上からのあらゆる脅威に対応するため、外部火砲を含む強力な防衛装備で強化されていた。<br>
+            リグはまた、艦隊を構成する相当数のベルチバード輸送機を保有していた。</p>
+            <p>内部では、先進パワーアーマーを装備したエンクレイヴ兵士の他に、セキュリティタレット（.223口径デュアルミニガン）と哨戒ロボットの広範なネットワークが配備され、あらゆる敵を無力化する準備が整っていた。<br>
+            すべての推定によれば、エンクレイヴの全盛期には、石油リグは核戦争後のアメリカにおいて最も厳重に防衛された場所であった。</p>
+
+            <h3>産業・科学施設</h3>
+            <p>石油リグの科学施設には、最先端の戦前テクノロジーが装備されていた。<br>
+            設備には赤外線分光計や化合物の合成装置（必要に応じて大量生産も可能）が含まれていた。</p>
+
+            <h3>住民</h3>
+            <p>エンクレイヴはそのメンバーに、石油リグにはアメリカ最高の知性と人材が集まっていると信じさせようとしていた（少なくとも理論上は）。<br>
+            しかし実際には、長年の孤立とプロパガンダにより、エンクレイヴ市民は頽廃的で外国人排斥的となり、部外者にとっては極めて危険な存在となっていた。<br>
+            特に、重武装の兵士がその最悪の例であった。</p>
+            <p>石油リグに当初配置されていた人員は60〜80人であった。</p>
+            <p>カーリング博士によれば、2241年までにリグの総人口は約1,000人に達していた。<br>
+            一般的な住民は日光不足から蒼白な顔色が多かったが、それ以外の健康状態は良好であった。</p>
+            <p>リグの市民は通常、Vaultの住人に支給されるものと同一デザインの青と黄色のジャンプスーツを着用し、武器は携帯していなかった。<br>
+            科学部門のメンバーは白衣を着用し、個人防衛用武器（通常Wattz 1000レーザーピストル）を携帯していた。<br>
+            軍事部門（シークレットサービスを含む）はT-51bパワーアーマーとM72ガウスライフル（下級兵）、あるいは先進パワーアーマーと各種大型火器を使用した。</p>
+            <p>大統領と副大統領は戦前のスーツを着用し武器を持たないことで容易に識別できた。<br>
+            特に大統領は、石油リグ全体で最も重要な資産であろう「大統領アクセスキー」を携帯していた。<br>
+            このキーにより、掘削プラットフォームのシステム全体を完全に制御することができた。</p>
+            <p>2236年までに、エンクレイヴは本土への作戦展開を開始していた。<br>
+            外国の介入への懸念から、セキュリティドリルが石油リグでの生活の定番となっていた。<br>
+            夜の娯楽は通常、さまざまな安全映画の上映で構成されていた。</p>
+
+            <h2>レイアウト</h2>
+            <p>石油リグの巨大な構造は、産業製造、研究開発、そしてベルチバードの整備のための多くの施設を支えていたと信じられていた。<br>
+            以下の模式図はエリアの接続を示す。<br>
+            原子炉が破壊工作されると、大統領階から兵舎への特別避難階段が開き、拘禁/研究階とアクセス通路への通行は封鎖される。</p>
+
+            <div class="layout-flow">
+                <span class="node">ドック</span>
+                <span class="arrow"> → </span>
+                <span class="node">エントリーホール</span>
+                <span class="arrow"> → </span>
+                <span class="node">兵舎</span>
+                <br>
+                <span class="arrow">↓</span><br>
+                <span class="node">拘禁・研究階</span><br>
+                <span class="arrow">↓</span><br>
+                <span class="node">アクセス通路</span><br>
+                <span class="arrow">↓</span><br>
+                <span class="node">大統領階</span>
+                <span class="arrow"> ⟵ ⟵ (緊急時) ⟵ ⟵ </span>
+                <span class="node">兵舎</span><br>
+                <span class="arrow">↓</span><br>
+                <span class="node">原子炉</span>
+            </div>
+
+            <h3>ドック</h3>
+            <img src="images/note_extracted/enclave-oil-rig/dock.png" alt="石油リグのドック" class="article-image" style="max-width: 60%;">
+            <div class="image-caption">エンクレイヴへようこそ</div>
+            <p>リグの入口となる大型ドックで、黄色いスポットライトで照らされている。<br>
+            すべての到着船がここに接岸し、石油タンカー「PMVバルディーズ」も例外ではない。</p>
+
+            <h3>エントリーホール</h3>
+            <img src="images/note_extracted/enclave-oil-rig/entry_hall.png" alt="エントリーホール" class="article-image" style="max-width: 60%;">
+            <div class="image-caption">エントリーホール</div>
+            <p>リグのエントランスホールで、強力な自動タレットが並び、施設への攻撃を愚かにも試みるすべてのものを殲滅するよう設計されている。<br>
+            メインホールの床には「Enclave」と刻印された巨大なレリーフがあり、左下隅に小さなアクセスターミナルが設置されている。<br>
+            ホールは螺旋階段を介して拘禁/R&D階と兵舎（待合室付きの通路経由）に接続している。<br>
+            フランク・ホリガンとの最終決戦はここで行われる。</p>
+
+            <h3>兵舎</h3>
+            <img src="images/note_extracted/enclave-oil-rig/barracks.png" alt="兵舎" class="article-image" style="max-width: 60%;">
+            <div class="image-caption">兵舎区域</div>
+            <p>エントランスホールに接続する兵舎エリアには、T-51bパワーアーマーがフォークリフト代わりに使われている倉庫、兵員居住区（大型ジムとトイレ付き）、爆発物が備蓄された武器庫、兵士用の管理セクションおよび指揮官の居住区が含まれている。<br>
+            防水扉の奥の螺旋階段が大統領階に接続している。</p>
+            <div class="loot-box">
+                <h4>＞ 戦利品</h4>
+                <p><strong>倉庫:</strong> コンバットナイフ×2、スレッジハンマー×2、スーパースレッジ×1、パルスグレネード×1、スーパースティムパック×2、救急キット×2、Big Book of Science×1、Guns and Bullets×1</p>
+                <p><strong>警備室:</strong> スティムパック×1</p>
+                <p><strong>ラウンジ:</strong> フルーツ×6、ビール×5、ブーズ×3</p>
+                <p><strong>兵舎:</strong> Wattz 1000レーザーピストル×1、パルスグレネード×1、クラブ×1、スーパースティムパック×1、スティムパック×2、2mm EC弾×300、電子ロックピック×1</p>
+                <p><strong>管理区域:</strong> 花×1、金×13ドル</p>
+                <p><strong>武器庫:</strong> T-51bパワーアーマー×1、ロケットランチャー×6、P94プラズマライフル×1、Wattz 2000レーザーライフル×1、アベンジャーミニガン×1、プラスチック爆弾×4、マイクロフュージョンセル×50、小型エネルギーセル×40、プラズマグレネード×2、フラググレネード×2、パルスグレネード×4、5mm JHP×100, 5mm AP×100、AP弾ロケット×4、炸裂ロケット×4</p>
+                <p><strong>指揮官居住区:</strong> Glock 86プラズマピストル×1、マイクロフュージョンセル×50、小型エネルギーセル×40、パルスグレネード×2、ナイフ×2、クラブ×3、ブラスナックル×1、バール×1、投げナイフ×6、First Aid Book×2、Dean's Electronics×2、Scout Handbook×2</p>
+                <p><strong>大統領警備チェックポイント:</strong> サイコ×1、Guns and Bullets×1</p>
+            </div>
+
+            <h3>拘禁・研究階</h3>
+            <img src="images/note_extracted/enclave-oil-rig/detention.png" alt="拘禁・研究階" class="article-image" style="max-width: 60%;">
+            <div class="image-caption">拘禁・研究階</div>
+            <p>アロヨの村人とVault 13の住人を収容するための監房が設置されている。<br>
+            また、小規模な研究室と医療施設、および倉庫エリアが含まれている。<br>
+            エントリーホールの南に位置し、トラップルームに接続している。</p>
+            <div class="loot-box">
+                <h4>＞ 戦利品</h4>
+                <p>Dean's Electronics×2 — 科学者のオフィスの棚<br>
+                First Aid Book×2 — 同じ棚と実験室内のロッカー<br>
+                Guns and Bullets×1 — 警備チェックポイントのデスク</p>
+            </div>
+
+            <h3>アクセス通路</h3>
+            <img src="images/note_extracted/enclave-oil-rig/trap_level.png" alt="アクセス通路" class="article-image" style="max-width: 60%;">
+            <div class="image-caption">アクセス通路（トラップルーム）</div>
+            <p>コンピュータ制御のドアと電気床を備えた一連の小部屋。<br>
+            正しいコンピュータの組み合わせにアクセスしなければ、ドアが不幸な探索者を閉じ込め、電気床のなすがままにする。<br>
+            2つの小さなサイドルームが倉庫とトラップからの休息を提供する。<br>
+            北東の部屋の左側のサバイバルロッカーにG.E.C.K.が見つかる。<br>
+            拘禁階の南に位置し、大統領階に接続している。</p>
+            <div class="loot-box">
+                <h4>＞ 戦利品</h4>
+                <p>G.E.C.K.×1 — 北東の部屋、左側のサバイバルロッカー<br>
+                First Aid Book×3 — サバイバル/ギアロッカー内<br>
+                Scout Handbook×3 — 同ロッカー<br>
+                先進パワーアーマー Mk II×1 — パズルルーム右側の小さなアルコーブ</p>
+            </div>
+
+            <h3>大統領階</h3>
+            <img src="images/note_extracted/enclave-oil-rig/presidential.png" alt="大統領階" class="article-image" style="max-width: 60%;">
+            <div class="image-caption">大統領階</div>
+            <p>ディック・リチャードソン大統領、ダニエル・バード副大統領、リチャードソンの秘書、その他エンクレイヴのエリートが執務する区画。<br>
+            また、爆弾、作戦室、会議室、FEVの実験が行われている医療施設も含まれている。<br>
+            後方の階段が原子炉階に接続し、緊急階段が拘禁階に接続している。</p>
+            <p>チャールズ・カーリング大佐兼博士のオフィスは北西端にある。<br>
+            彼と話すことで、選ばれし者は本土の人間がエンクレイヴと同じ種であることを彼に確信させる機会が与えられ、良心の危機を引き起こしてFEVカーリング-13を換気システムに投入させる可能性がある。<br>
+            これにより、30分以内に保護されていない全人員（民間人と科学者、ただし名前付きキャラクターを除く）が死亡し、プレイヤーは彼らのアイテムを自由に回収できるようになる。<br>
+            カーリング博士は選ばれし者に免疫を与え、エアロゾル化した予防接種を囚われた部族民とVault住民に施すため、彼らは影響を受けない。</p>
+
+            <h3>原子炉階</h3>
+            <img src="images/note_extracted/enclave-oil-rig/reactor.png" alt="原子炉階" class="article-image" style="max-width: 60%;">
+            <div class="image-caption">原子炉階</div>
+            <p>リグの最深部で、中央コンピュータ、リグの発電機、小規模な兵舎、そしてこれらを維持するための数名の科学者と市民が配置されている。<br>
+            大統領階の階段からのみアクセス可能。</p>
+            <div class="loot-box">
+                <h4>＞ 戦利品</h4>
+                <p>Dean's Electronics×1 — メインフレーム室の科学者が所持<br>
+                Big Book of Science×1 — 隣の科学者が所持</p>
+            </div>
+
+            <h2>メモ</h2>
+            <p>この場所のサウンドトラックは「Followers' Credo」で、元々は<em>Fallout</em>のボーンヤード図書館で使用されていた楽曲である。</p>
+
+            <h2>登場作品</h2>
+            <p>エンクレイヴ石油リグは<em>Fallout 2</em>に登場し、<em>Fallout: New Vegas</em>、<em>Fallout 4</em>、<em>Fallout 76</em>およびそのアップデート<em>Steel Dawn</em>で言及されている。</p>
+
+            <h2>舞台裏</h2>
+            <img src="images/note_extracted/enclave-oil-rig/seal_relief.jpg" alt="1933年シカゴ万博のレリーフ" class="article-image" style="max-width: 50%;">
+            <div class="image-caption">エンクレイヴの床のシールの元となった実物のレリーフ</div>
+            <ul>
+                <li>クリス・アヴェロンによれば、石油リグの常駐住民数は60〜80人であった。</li>
+                <li>ゲーム内でナバロ基地の中央コンピュータが提供する正確な座標は、実際にはフレズノとマリポーザの間、カリフォルニア州レイモンドの小さな池という、海岸から135マイル内陸の地点を指している。</li>
+                <li>エントランスフロアのシールは、1933年のシカゴ万博に展示された実在のレリーフに基づいている。</li>
+                <li>石油リグの破壊は<em>Fallout Bible</em>で言及されている。</li>
+                <li><em>Fallout 76</em>の目的で石油リグのさまざまな要素が高精細でリメイクされた（特にエンクレイヴC.A.M.P.バンドル：エンクレイヴの壁、タレットセット、ライト、フラットレーザードア（拘禁階のフォースフィールドに基づく）、オフィス壁紙（リチャードソンのオフィスのもの）など）。</li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/skill_books.png" alt="Big Book of ScienceとDean's Electronics" onclick="openLightbox(this)"><div class="caption">Big Book of ScienceとDean's Electronics</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/de_detention.png" alt="Dean's Electronics（拘禁階）" onclick="openLightbox(this)"><div class="caption">Dean's Electronics（拘禁階）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/de_barracks.png" alt="Dean's Electronics（兵舎倉庫）" onclick="openLightbox(this)"><div class="caption">Dean's Electronics（兵舎倉庫）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/bbos_barracks.png" alt="Big Book of Science（兵舎倉庫）" onclick="openLightbox(this)"><div class="caption">Big Book of Science（兵舎倉庫）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/fab_barracks.png" alt="First Aid Book（兵舎倉庫）" onclick="openLightbox(this)"><div class="caption">First Aid Book（兵舎倉庫）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/scout_barracks.png" alt="Scout Handbook（倉庫）" onclick="openLightbox(this)"><div class="caption">Scout Handbook（倉庫）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/fab_experiment.png" alt="First Aid Book（実験室）" onclick="openLightbox(this)"><div class="caption">First Aid Book（実験室）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/fab_trap.png" alt="First Aid BookとScout Handbook（トラップ階）" onclick="openLightbox(this)"><div class="caption">First Aid BookとScout Handbook（トラップ階）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/gab_detention.png" alt="Guns and Bullets（拘禁階）" onclick="openLightbox(this)"><div class="caption">Guns and Bullets（拘禁階）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/gab_barracks.png" alt="Guns and Bullets（兵舎）" onclick="openLightbox(this)"><div class="caption">Guns and Bullets（兵舎）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/ship_hangar.jpg" alt="石油リグに接近するPMVバルディーズ" onclick="openLightbox(this)"><div class="caption">石油リグに接近するPMVバルディーズ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/explosion.jpg" alt="エンドゲームカットシーンでの石油リグ爆発" onclick="openLightbox(this)"><div class="caption">エンドゲームカットシーンでの石油リグ爆発</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/mushroom.jpg" alt="爆発によるキノコ雲" onclick="openLightbox(this)"><div class="caption">爆発によるキノコ雲</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/loading_screen.png" alt="ローディングスクリーン" onclick="openLightbox(this)"><div class="caption">Fallout 2 ローディングスクリーン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/backdrop.png" alt="トーキングヘッド背景" onclick="openLightbox(this)"><div class="caption">トーキングヘッドの背景</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/floor_symbol.png" alt="床のエンクレイヴ紋章" onclick="openLightbox(this)"><div class="caption">床のエンクレイヴ紋章</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/insignia.png" alt="コントロールステーション ENCLAVE記章" onclick="openLightbox(this)"><div class="caption">コントロールステーション ENCLAVE記章</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/clipboard.jpg" alt="石油リグ" onclick="openLightbox(this)"><div class="caption">石油リグ</div></div>
+            </div>
+
+            <h3>Magic: The Gathering</h3>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/mtg_dragonskull.png" alt="Dragonskull Summit" onclick="openLightbox(this)"><div class="caption">Dragonskull Summit</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/mtg_dragonskull_ext.png" alt="Dragonskull Summit（拡張アート）" onclick="openLightbox(this)"><div class="caption">Dragonskull Summit（拡張アート）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/enclave-oil-rig/mtg_dragonskull_art.jpg" alt="カードアート" onclick="openLightbox(this)"><div class="caption">カードアート</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br>
+                Fallout 2の最終ダンジョンにして、エンクレイヴの本拠地。<br>
+                太平洋上の石油掘削プラットフォームという設定は、「影の政府」であるエンクレイヴの秘密主義と自己完結性を象徴しているように思えます。<br>
+                160年間稼働し続けた原子炉が常に故障しているという設定が、文明の「末期」を感じさせて印象的です。<br>
+                エントリーホールの床に刻まれた巨大な「Enclave」の文字が、1933年シカゴ万博の実在するレリーフに基づいているという裏話も興味深いですね。<br>
+                選ばれし者がたった一人でこの要塞を攻略し、爆発させるという展開は、Falloutシリーズ屈指のクライマックスだと思います。
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 15px; border-top: 1px solid #333; font-size: 0.8em; color: #666; line-height: 1.6;">
+                <p>この記事は <a href="https://fallout.fandom.com/wiki/Enclave_Oil_Rig" target="_blank" rel="noopener noreferrer" style="color: #888;">Nukapedia (Fallout Wiki)</a>の「Enclave Oil Rig」の記事を日本語に翻訳し再構成したものです。<br>
+                原文は <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color: #888;">Creative Commons Attribution-ShareAlike (CC BY-SA)</a> ライセンスのもとで利用しています。</p>
+                <p>© Bethesda Softworks LLC. Fallout およびすべての関連ロゴ・名称は Bethesda Softworks LLC の登録商標です。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count" id="charCount">0 / 500</span>
+                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">
+                            SUBMIT
+                        </button>
+                    </div>
+                    <div class="comment-msg" id="commentMsg"></div>
+                </div>
+                <div class="comments-list" id="commentsList">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+        <img src="" alt="拡大画像" id="lightboxImg">
+    </div>
+
+    <script>
+        function openLightbox(el) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src = el.src;
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        document.querySelectorAll('.article-image').forEach(img => {
+            img.addEventListener('click', function() { openLightbox(this); });
+        });
+
+        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
+        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+        const ARTICLE_ID = 'note_enclave-oil-rig';
+        const COOLDOWN_MS = 60000;
+        let lastCommentTime = 0;
+
+        async function loadLikes() {
+            if (!sb) return;
+            try {
+                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                const btn = document.querySelector('.like-button');
+                if (data) btn.querySelector('.like-count').textContent = data.count;
+                if (localStorage.getItem('liked_' + ARTICLE_ID)) {
+                    btn.classList.add('liked');
+                    btn.querySelector('.heart').textContent = '♥';
+                }
+            } catch(e) { console.log('likes load error', e); }
+        }
+
+        async function toggleLike(btn) {
+            if (!sb) return;
+            const liked = localStorage.getItem('liked_' + ARTICLE_ID);
+            const delta = liked ? -1 : 1;
+            try {
+                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                if (data) {
+                    await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID);
+                } else {
+                    await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 });
+                }
+                if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; }
+                else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; }
+                const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
+                if (d2) btn.querySelector('.like-count').textContent = d2.count;
+            } catch(e) { console.log('like error', e); }
+        }
+
+        function updateCharCount() {
+            const ta = document.getElementById('commentInput');
+            document.getElementById('charCount').textContent = ta.value.length + ' / 500';
+        }
+
+        async function loadComments() {
+            if (!sb) return;
+            const list = document.getElementById('commentsList');
+            try {
+                const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false });
+                if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; }
+                list.innerHTML = data.map(c => {
+                    const d = new Date(c.created_at);
+                    const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+                    const myId = localStorage.getItem('comment_id_' + c.id);
+                    return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (myId ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>';
+                }).join('');
+            } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; }
+        }
+
+        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+        async function submitComment() {
+            if (!sb) return;
+            const ta = document.getElementById('commentInput');
+            const body = ta.value.trim();
+            const msg = document.getElementById('commentMsg');
+            if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; }
+            if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; }
+            const now = Date.now();
+            if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; }
+            const btn = document.getElementById('commentSubmitBtn');
+            btn.disabled = true;
+            try {
+                const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single();
+                if (error) throw error;
+                if (data) localStorage.setItem('comment_id_' + data.id, '1');
+                ta.value = '';
+                updateCharCount();
+                lastCommentTime = now;
+                msg.textContent = '投稿しました';
+                msg.style.color = 'var(--accent-color)';
+                loadComments();
+            } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; }
+            btn.disabled = false;
+        }
+
+        async function deleteComment(id) {
+            if (!sb || !confirm('このコメントを削除しますか?')) return;
+            try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) { console.log('delete error', e); }
+        }
+
+        loadLikes();
+        loadComments();
+    </script>
+</body>
+</html>

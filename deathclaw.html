@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Deathclaw | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/deathclaw.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Deathclaw | Overseer Mohi's Terminal">
+    <meta property="og:description" content="チE��クロー ── エンクレイブが戦前に遺伝子工学で生み出した爬虫類型クリーチャー。ジャクソンカメレオンを�Eースに褁E��の動物種を混合し、人間�E士の代替として開発された、E>
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/deathclaw-fallout76/img_main.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/deathclaw.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Deathclaw | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="チE��クロー ── エンクレイブが戦前に遺伝子工学で生み出した爬虫類型クリーチャー、Ealloutシリーズを代表する最強の敵、E>
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/deathclaw-fallout76/img_main.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ノ�EトブロチE���E�ターミナルエントリ・メモ用�E�E*/
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシチE*/
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+    
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="クリーチャー" data-article-appearance="Fallout,Fallout 2,Fallout 3,Fallout: New Vegas,Fallout 4,Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Deathclaw</h3>
+            <img src="images/note_extracted/deathclaw-fallout76/img_main.png" alt="チE��クロー">
+            <div class="infobox-row"><span class="infobox-label">タイチE/span><span>クリーチャー</span></div>
+            <div class="infobox-row"><span class="infobox-label">種旁E/span><span>チE��クロー</span></div>
+            <div class="infobox-row"><span class="infobox-label">起溁E/span><span>エンクレイブ�E遺伝子実騁Ebr>�E�ジャクソンカメレオンベ�Eス�E�E/span></div>
+            <div class="infobox-row"><span class="infobox-label">特徴</span><span>二足歩衁E巨大な爪<br>高い耐乁E��・知性</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout<br>Fallout 2<br>Fallout 3<br>Fallout: New Vegas<br>Fallout 4<br>Fallout 76<br>Fallout TV series</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_deathclaw" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Deathclaw<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">チE��クロー</span></h1>
+
+            <blockquote style="border-left: 4px solid var(--accent-color); padding: 10px 15px; background: rgba(0,0,0,0.3); font-style: italic; margin: 20px 0;">
+                「でかい�E�Eでかい�E�E人間三人刁E�E大きさだ�E�E爪は俺の腕ほどもある！E引き裂かれた�E�E引き裂かれた�E�、Ebr>
+                <span style="font-size: 0.85em; color: #888;">── トレント�Eバリスター、『Fallout、E/span>
+            </blockquote>
+
+            <p>
+                <strong>チE��クロー</strong>は、その特徴皁E��巨大な爪から俗にそう名付けられた、E��伝子工学で生み出された爬虫類型クリーチャーです、Ebr>
+                <strong>エンクレイチE/strong>が合衁E��政府�E秘寁E�Eロジェクトとして、人間�E士に代わるスーパ�Eソルジャー——高リスクの捜索殲滁E��務を遂行できる安価で使ぁE��ての戦闘部隊——を開発するために作り出しました、Ebr>
+                大戦後に野生に送E��たデスクローの個体群は爁E��皁E��増加・進化し、北米のウェイストランドにおける頂点捕食老E��なりました、E            </p>
+
+            <h2>背景</h2>
+
+            <h3>起溁E/h3>
+            <p>
+                チE��クローと呼ばれるようになるクリーチャーは、エンクレイブが行った科学実験から生まれました、Ebr>
+                危険な戦闘任務で使ぁE��てにできる、安価な人間�E士の代替として開発されたものです、Ebr>
+                褁E��の動物種を遺伝子的に混合して生み出され、主なベ�Eスとなった�Eは<strong>ジャクソンカメレオン</strong>�E�角�Eある品種�E�でした、E            </p>
+            <p>
+                こ�Eプロジェクト�E、ほぼあらめE��環墁E��自力で生存�E繁栁E��きる獰猛な捕食老E��生み出すことに成功しました、Ebr>
+                少なくとめE体�EチE��クローぁE077年以前に実戦チE��トされたことが知られており、Estrong>日中戦亁E/strong>のさなかにアラスカの島で中国人民解放軍�E部隊に対して投�EされてぁE��す、E            </p>
+            <p>
+                極秘�Eロジェクトであったため、このクリーチャーに関する知識�Eエンクレイブ�E部の他�E部門ですら共有されてぁE��ぁE��ど限定的でした、Ebr>
+                一般市民が知ることは当然想定されてぁE��せんでしたが、事故皁E��目撁E��件は発生してぁE��す、Ebr>
+                米国海兵隊員のクーパ�E・ハワード（後�Eグール�E��E、デスクローがテストされてぁE��のと同じアラスカの島に配備されてぁE��際にそれと遭遁E��てぁE��す、Ebr>
+                チE��クローは数名�E中国兵を虐殺しましたが、クーパ�Eと対面してもなぜか彼の命を奪ぁE��せんでした、E            </p>
+
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_tv_s2e4.png" alt="TVシリーズ シーズン2のチE��クロー">
+            <div class="image-caption">Fallout TVシリーズ シーズン2に登場するチE��クロー</div>
+
+            <h3>戦後�E拡大</h3>
+            <p>
+                大戦後、生き残った新種のチE��クローは封じ込めから送E��、ウェイストランドへと脱出しました、Ebr>
+                そ�E個体数は増加し、大陸全土に庁E��りました、Ebr>
+                2102年の時点で、Ea href="appalachia.html" class="auto-link">アパラチア</a>にもデスクローの存在が確認されており、既にそ�E名で呼ばれてぁE��した、E            </p>
+            <p>
+                22世紀後半には、デスクローの生理機�Eは<strong>マスター</strong>による遺伝子操作でさらに洗練されました、Ebr>
+                ニューカリフォルニアでの最初�E目撁E��告�E孤立した巣に限られてぁE��ため、当�EチE��クローは伝説皁E��破壊�E生き物として認識されてぁE��した、Ebr>
+                しかぁEstrong>ボ�EンヤーチE/strong>の住民�E他�E地域よりも早くその存在を認識してぁE��した— E161年頁E��1体�EチE��マザーとそ�E子供たちがこの地域�E一部を占拠し、ガン・ランナ�Eズのような絁E��集団を�E着状態に追ぁE��んでぁE��ためです、E            </p>
+
+            <h3>知性チE��クロー</h3>
+            <p>
+                西海岸エンクレイブ�E2235年頁E��らデスクローの研究を�E開し、改良FEVを用ぁE��知性を人為皁E��増強したチE��クローの群れを作り出しました、Ebr>
+                2242年5朁E7日、最初�E実戦投�Eが行われ、知性チE��クロー部隊が<strong>Vault 13</strong>に送り込まれました、Ebr>
+                エンクレイブ�E住民�E拉�Eを隠蔽するためにチE��クローを�E備しましたが、予想外�E出来事が起きます、Ebr>
+                戦闘テスト後、誰も予測しなかったほど知性を発達させたチE��クローたちは、創造老E��の繋がりを断ち刁E��、Vaultで平和な暮らしを築こぁE��したのです、E            </p>
+            <p>
+                <strong>グルーサー</strong>玁E��るこの群れ�E、歴史上�Eめての非人型知皁E��命体としてユニ�Eクな斁E��を発展させました、Ebr>
+                しかし、この群れ�E存在とそ�E高度な知性はめE��てエンクレイブに発覚します、Ebr>
+                秘寁E��報部エージェント、Estrong>フランク・ホリガン</strong>玁E��る殲滁E��隊がVaultに派遣され、知性チE��クローは壊滁E��ました、Ebr>
+                ゴリスとザーンだけがVaultに不在だったため唯一の生存老E��なりました、E            </p>
+
+            <h2>生物学</h2>
+
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_skull.png" alt="チE��クローの頭蓋骨">
+            <div class="image-caption">チE��クローの頭蓋骨</div>
+
+            <p>
+                チE��クローは大型�E肉食二足歩行爬虫類で、最大限�E殺傷力を持つように設計されてぁE��す、Ebr>
+                二足歩行�E頭部の位置を高くし、視野を庁E��てターゲチE��の探知能力を向上させます、Ebr>
+                上肢は二足歩行により解放され、極めて危険な武器として特化されました、Ebr>
+                四足動物ほどの走行速度はありませんが、獲物を追ぁE��ける際�E四つ足で走ることも観察されてぁE��す、E            </p>
+            <p>
+                ジャクソンカメレオンの系統から対向する親持E��持ち、さらに2本の持E��ゲノムにコードされ、各手に合訁E本の持E��あります、Ebr>
+                吁E��は鋭ぁE��で終わり、一振りで<strong>非裁E��の人間を真っ二つに刁E��</strong>できるほどの刁E��味を誁E��ます、Ebr>
+                チE��クローの皮膚�E極めて頑丈で、E�E器めE�E物に対する優れた防御を提供します、Ebr>
+                角と背棘がこ�E防御をさらに強化し、近接戦闘�E非常に危険です、E            </p>
+            <p>
+                ただし、その鋭敏な感覚を送E��に取ることも可能です、Ebr>
+                大きな音と強ぁE�E�E�フレアなど�E��E、デスクローの前進を抑止したり、接近を防ぐ�Eに利用できます、E            </p>
+
+            <h3>行動</h3>
+            <p>
+                チE��クローは群れで行動し、リーダーシチE�Eは<strong>アルファペア</strong>——群れ�E中で最も強ぁE��と雌——が拁E��ます、Ebr>
+                群れ�E他�Eメンバ�Eはリーダーに従い、�Eに移動します、E            </p>
+            <p>
+                群れ行動と結�EつぁE��激しい<strong>縁E��り意譁E/strong>を持ちます、Ebr>
+                通常は屁E��地域から離れた場所を選びますが�E�おそらく騒音を嫌うため�E�、一時的に放棁E��れた人間�E建物めE��域に定着することもあります、Ebr>
+                2161年のボ�Eンヤード�E倉庫めE��E281年のクォーリー・ジャンクションがその例です、E            </p>
+            <p>
+                一度縁E��りを主張した群れを追ぁE�Eす�Eは極めて困難です、Ebr>
+                アルファ雁E�Eパックマザーが殺されても縁E��りを放棁E��ず、アルファ雌も死んだ場合�E別の雁E��選んで繁殖を続けます、Ebr>
+                縁E��り�E奪邁E��は通常、Estrong>両方のリーダーを殺ぁE/strong>か、群れ�E体を殲滁E��る忁E��があります、E            </p>
+
+            <h3>繁殁E/h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_eggs.png" alt="チE��クローの卵" style="max-width: 200px; float: right; margin-left: 15px;">
+            <p>
+                ジャクソンカメレオンとは異なり、デスクローは卵生です、Ebr>
+                雌�EチE��クローは群れ�E最も強ぁE���E�通常はアルファ雁E��によって受精した卵をまとめて産みます、Ebr>
+                チE��クローの卵は大きく、E��さ�E最大紁E.5kg�E�E2ポンド）に達し、E��くほど長ぁE��存期間を持ちます、E            </p>
+            <p>
+                幼体�E目立つ角や背棘なしで生まれ、�E長とともに発達します、Ebr>
+                角�E雁E��は前方に、E��では後方かつ上方に成長します、Ebr>
+                ベビーチE��クローは明るぁE��色の肌で生まれ、�E熟するにつれて暗くなります、Ebr>
+                成体では深ぁE��色、さらに年老いた個体では黒、あるいは黒と青にまで変化します、E            </p>
+            <div style="clear: both;"></div>
+
+            <h3>人間との関俁E/h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_boneyard.png" alt="ボ�Eンヤード�EチE��クロー倉庫">
+            <div class="image-caption">ボ�Eンヤード�EチE��クロー倉庫。リチE��ーズの拠点がデスクローに占拠されぁE/div>
+
+            <p>
+                チE��クローは積極皁E��人間�E屁E��地を攻撁E��ませんが、人類�E拡大は忁E��皁E��両種の接触をもたらします、Ebr>
+                チE��クローは人間にとって極めて危険であり、どれだけ準備を整えても安�Eとは言えません、Ebr>
+                ブラザーフッド�Eオブ�EスチE��ールのパトロールでさえ、気づかずにチE��クローの縁E��りに入ると深刻な被害を受けることがあります、E            </p>
+            <p>
+                チE��クローの卵は珍味としても知られ、E��常に栁E��価が高くおいしい<strong>ウェイストランド�EオムレチE/strong>の材料になります、E            </p>
+
+            <h2>バリアンチE/h2>
+
+            <h3>ベビー・チE��クロー</h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_baby.png" alt="ベビー・チE��クロー" style="max-width: 120px; float: right; margin-left: 15px;">
+            <p>
+                最も小さく若ぁE��スクローですが、決して無害ではありません、Ebr>
+                群れと母親の保護下にありながら、恐るべき爪とそれに見合ぁE��撁E��を持ちます、Ebr>
+                成体�E紁E0%の大きさです、Ebr>
+                母親が殺されると、子供たちはそ�E死体�Eもとに雁E��ります、E            </p>
+            <div style="clear: both;"></div>
+
+            <h3>成体デスクロー</h3>
+            <p>
+                性皁E��成�Eした雁E�EチE��クローは、茶色の皮膚と完�Eに形成された角で容易に識別できます、Ebr>
+                速く、�E命皁E��、耐乁E��があり、ほとんどあらめE��脁E��を容易に排除できます、Ebr>
+                雁E�EチE��クローは群れで行動し、単独の成体�E例外的です、E            </p>
+
+            <h3>アルファ雁E�EチE��クロー</h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_alpha_fnv.png" alt="アルファ雁E��スクロー" style="max-width: 150px; float: right; margin-left: 15px;">
+            <p>
+                ウェイストランド�E様、E��危険を生き延びた完�Eに成�EしたチE��クローは、アルファに成長します、Ebr>
+                角�Eより長く、曲がり、厚く、皮膚�E年齢とともに暗い茶色から黒に変化します、Ebr>
+                交配優先権を持ち、群れ�E体を玁E��ます、E            </p>
+            <div style="clear: both;"></div>
+
+            <h3>マザー・チE��クロー�E��Eトリアーク�E�E/h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_mother.png" alt="マザー・チE��クロー" style="max-width: 150px; float: right; margin-left: 15px;">
+            <p>
+                成体�E雌デスクローは、オリーブと青が混ざった体色、後方に曲がる角、棘�Eある尾、目立つ皮膚�Eひだで区別されます、Ebr>
+                マザー・チE��クロー�E��Eトリアーク�E��E、群れ�E最も強力な雁E��よって受精した卵のみを産みます、E            </p>
+            <div style="clear: both;"></div>
+
+            <h3>レジェンダリー・チE��クロー</h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_legendary.png" alt="レジェンダリー・チE��クロー" style="max-width: 200px; float: right; margin-left: 15px;">
+            <p>
+                モハビのチE��ドウィンド�Eキャバ�Eンでのみ発見される、十刁E��長く生き延びたアルファ雁E��スクローです、Ebr>
+                通常の成体よめE5%も大きく、それに見合ぁE��大な角と爪を持ちます、Ebr>
+                こ�E個体�E洞窟を探索しよぁE��したブラザーフッド�Eオブ�EスチE��ールのパラチE��ンを殺害した張本人です、E            </p>
+            <div style="clear: both;"></div>
+
+            <h3>エンクレイブ�EチE��クロー</h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_enclave.png" alt="エンクレイブ�EチE��クロー" style="max-width: 150px; float: right; margin-left: 15px;">
+            <p>
+                キャピタル・ウェイストランドでエンクレイブに捕獲された�E体デスクローには、Estrong>家畜化ユニッチE/strong>が裁E��されることがあります、Ebr>
+                頭蓋骨に取り付けられ脳に接続されるこ�E裁E��により、エンクレイブ�E要員は番犬のようにチE��クローを使役できます、Ebr>
+                ライオンズのBOSはこ�E制御信号をスクランブルしてIFFを反転させるデバイスを開発しました、E            </p>
+            <div style="clear: both;"></div>
+
+            <h3>ヘアリー・チE��クロー</h3>
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_hairy.jpg" alt="ヘアリー・チE��クロー" style="max-width: 150px; float: right; margin-left: 15px;">
+            <p>
+                イリノイ州、ミズーリ州、カンザス州�E領域に出現した、E��常のチE��クローとは完�Eに別の種です、Ebr>
+                哺乳類に近い特徴を持ち、体�E厚い毛皮に要E��れてぁE��す、Ebr>
+                5本の角で形成される冠と1本の鼻角が特徴です、Ebr>
+                天然の知性と自意識を発達させ、人間�E会話を模倣する能力も持ってぁE��す、Ebr>
+                <em>�E�Eallout Tacticsのみに登場�E�E/em>
+            </p>
+            <div style="clear: both;"></div>
+
+            <h2>開発裏話</h2>
+            <p>
+                チE��クローの名前は、『Wasteland』に登場するシャドウクローから着想を得てぁE��す、Ebr>
+                チE��イナ�EのスコチE��・キャンベルによる初期コンセプトでは、デスクローは<strong>クズリとヒグチE/strong>を遺伝子的に混合し、FEVで強化された毛�EくじめE��の哺乳類でした、Ebr>
+                しかし、アーチE��ストが「毛が多すぎる」と持E��。当時のレンダリングソフトが毛�E動きを正しく処琁E��きなかったためです、E            </p>
+            <p>
+                そ�E後、新設のブラチE��・アイルが『Planescape: Torment』�E開発を開始、Ebr>
+                最初�Eアート作品の一つとして「ターラスク」とぁE��怪物が粘土で造形され、EDモチE��化されましたが、最終的にゲームには採用されませんでした、Ebr>
+                こうして、毛�EくじめE��のクズリ熊�E<strong>毛�EなぁE��虫類型の二足歩行生物</strong>に生まれ変わりました、Ebr>
+                D&Dのモンスターマニュアルの339ペ�Eジを見れば——まさにチE��クローそ�Eも�Eです、E            </p>
+
+            <img class="article-image" src="images/note_extracted/deathclaw-fallout76/img_concept.png" alt="初期コンセプトアーチE>
+            <div class="image-caption">スコチE��・キャンベルによるチE��クロー初期コンセプトアーチE/div>
+
+            <h2>登場作品</h2>
+            <p>
+                チE��クローはFallout、Fallout 2、Fallout 3、Fallout: New Vegas、Fallout 4、Fallout 76、Fallout Tactics、Fallout: Brotherhood of Steel、Fallout Shelter、Fallout TVシリーズに登場します、E            </p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_render.png" alt="FalloutのチE��クローレンダリング"><div class="caption">FalloutのチE��クローレンダリング</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_standard.png" alt="Fallout 76のチE��クロー"><div class="caption">Fallout 76のチE��クロー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_fo4_glowing.jpg" alt="Fallout 4のグロウイング・チE��クロー"><div class="caption">Fallout 4のグロウイング・チE��クロー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_fo4_albino.jpg" alt="Fallout 4のアルビノ・チE��クロー"><div class="caption">Fallout 4のアルビノ・チE��クロー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_tv_s2e5.png" alt="TVシリーズのチE��クロー"><div class="caption">Fallout TVシリーズ シーズン2</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_emmett.png" alt="エメチE��・マウンチE��処琁E��のチE��クロー"><div class="caption">エメチE��・マウンチE��処琁E��のチE��クロー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_fasnacht_mask.png" alt="チE��クローのファスナハト�Eスク"><div class="caption">チE��クローのファスナハト�Eスク</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/deathclaw-fallout76/img_rusted.png" alt="ラスチE��ド�EチE��クロー"><div class="caption">ラスチE��ド�EチE��クロー (Fallout 76)</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Falloutシリーズを代表するクリーチャーと言え�EめE��ぱりデスクロー、Ebr>
+                初代Falloutから最新のTVシリーズまで、すべての作品に登場し続けてぁE��のは伊達じゃありません、Ebr><br>
+                こ�E記事を訳して一番驚いた�Eは、デスクローが単なるミュータントではなく、Estrong>エンクレイブが戦前に遺伝子工学で意図皁E��作り出した生物兵器</strong>だったとぁE��こと、Ebr>
+                ジャクソンカメレオンを�Eースに褁E��の動物種を混合して——とぁE��設定�E、TVシリーズ シーズン2で具体的に描�Eされました、Ebr>
+                アラスカの戦場でクーパ�E・ハワード（グール�E�がチE��クローと遭遁E��るシーンは本当に鳥肌ものです、Ebr><br>
+                Fallout 2の知性チE��クロー、グルーサーの群れ�Eエピソードも胸が�Eくなります、Ebr>
+                FEVで知性を与えられた結果、�E意識と良忁E��で発達させ、平和的な共存を目持E��た�Eに、エンクレイブ�Eフランク・ホリガンに殲滁E��れてしまった、Ebr>
+                ゴリスとザーンだけが生き残ったとぁE��結末は、FalloutらしぁE��ぁE�Eなさ、Ebr><br>
+                開発裏話も面白ぁE��すよね、Ebr>
+                最初�Eクズリとヒグマ�E毛�EくじめE��チE��インだった�Eに、「毛が多すぎ」で描画できず、たまたまD&Dのターラスクの粘土モチE��があったからそれ�EースになったとぁE��、Ebr>
+                偶然の産物が、ゲーム史に残るモンスターになったわけです、E            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Deathclaw" target="_blank" rel="noopener">Deathclaw</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#クリーチャー</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#チE��クロー</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#ロア</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持�Eため、Ea href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寁E��を受け付けておりまぁE/a>、E/p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入劁E(最大100斁E��E..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画僁E>
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_deathclaw'; const _commentArticleName = 'Deathclaw'; const _commentArticleUrl = 'deathclaw.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった仁E; if (d < 3600) return Math.floor(d/60)+'刁E��'; if (d < 86400) return Math.floor(d/3600)+'時間剁E; if (d < 86400*7) return Math.floor(d/86400)+'日剁E; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初�Eコメントを投稿してみましょぁE��E/div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした、E/div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください、E, false); return; } if (content.length > 100) { showCommentMsg('100斁E��以冁E��入力してください、E, false); return; } const NG_WORDS = ['庁E��','http://','https://','LINE','DMして','死ね','クソ','アチE,'ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適刁E��表現が含まれてぁE��ため投稿できません、E, false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます、E, false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました、E, false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました�E�E, true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('こ�Eコメントを削除しますか�E�E)) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敁E ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管琁E��E��ードを終亁E��ました、E); return; } const pw = prompt('管琁E��E��スワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管琁E��E��ードに入りました、E); } else { alert('パスワードが違います、E); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morgantown Airport | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/morgantown-airport.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Morgantown Airport | Overseer Mohi's Terminal">
+    <meta property="og:description" content="モーガンタウン空港のFallout 76ロア記事。レスポンダー本部として機能した空港の全貌。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/morgantown-airport/img_1.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/morgantown-airport.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Morgantown Airport | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="モーガンタウン空港のFallout 76ロア記事。レスポンダー本部として機能した空港の全貌。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/morgantown-airport/img_1.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .note-figure { margin: 20px 0; text-align: center; }
+        .note-figure img { max-width: 100%; height: auto; border: 1px solid #444; cursor: zoom-in; }
+        .note-figcaption { font-size: 0.85em; color: #888; margin-top: 5px; font-style: italic; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { text-align: center; }
+        .gallery-item img { width: 100%; border: 1px solid #444; cursor: zoom-in; }
+        .gallery-item .caption { font-size: 0.8em; color: #888; margin-top: 5px; }
+        .holotape-box { border: 1px solid var(--accent-color); padding: 15px; margin: 20px 0; background: rgba(0,255,0,0.03); }
+        .holotape-box h3 { margin-top: 0; }
+        .holotape-box .transcript { font-family: 'Share Tech Mono', monospace; font-size: 0.9em; color: var(--accent-color); white-space: pre-wrap; line-height: 1.6; }
+        .note-box { border: 1px solid #ffaa00; padding: 15px; margin: 20px 0; background: rgba(255,170,0,0.03); }
+        .note-box h3 { margin-top: 0; color: #ffaa00; border-bottom-color: #ffaa00; }
+        .note-box .transcript { font-family: 'Share Tech Mono', monospace; font-size: 0.9em; color: #ffcc44; white-space: pre-wrap; line-height: 1.6; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        #lightbox-img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
+        .copyright { margin-top: 60px; padding-top: 20px; border-top: 1px solid #333; font-size: 0.8em; color: #777; text-align: center; }
+        .copyright a { color: var(--accent-color); }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .infobox { position: static; } }
+        /* コメントセクション */
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Morgantown Airport</h3>
+            <img src="images/note_extracted/morgantown-airport/img_1.png" alt="モーガンタウン空港">
+            <img src="images/note_extracted/morgantown-airport/img_map.png" alt="マップ" style="width:100%; margin-top:5px;">
+            <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">マップマーカー</div>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>飛行場</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>モーガンタウン、森林地帯</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>レスポンダー（旧）</span></div>
+            <div class="infobox-row"><span class="infobox-label">敵</span><span>スコーチ</span></div>
+            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Final Departure<br>Safe for Work<br>Tentative Plans</span></div>
+            <div class="infobox-row"><span class="infobox-label">イベント</span><span>Collision Course</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_morgantown_airport" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Morgantown Airport<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">モーガンタウン空港</span></h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>モーガンタウン空港</strong>は、アパラチアの森林地帯、モーガンタウン内にあるロケーションです。<br>
+                大戦前は交通の要所として機能していましたが、大戦後はレスポンダーの本部として転用されました。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                モーガンタウン空港は大戦後、レスポンダーの本部として機能していました。<br>
+                2096年、生存していた全レスポンダーが空港の防衛のために召集されましたが、スコーチの大群に圧倒され、空港は陥落し、内部の全員が殺害されました。<br>
+                本部の喪失により、レスポンダーは空港を奪還するための攻勢を行うことも、新たな本部を設立することもできなくなりました。
+            </p>
+            <p>
+                Vault 76が開放された時点で、確認されているレスポンダーは全員死亡しているか、その任務を放棄してアパラチアから逃亡していました。<br>
+                レスポンダーが使用していた自動カーゴボット配送システムは今も稼働しており、プレイヤーが着陸パッド付近にいるとイベント「Collision Course」がトリガーされます。<br>
+                現在は、スコーチと石化した死体が空港を占拠しています。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_2.png" alt="モーガンタウン空港パノラマ">
+                <div class="note-figcaption">モーガンタウン空港パノラマビュー</div>
+            </div>
+
+            <h2>レイアウト</h2>
+            <p>
+                かつてモーガンタウンへの出入りの交通拠点として機能していた空港は、アパラチアにおけるレスポンダー作戦の中央本部に転用されました。<br>
+                広大な滑走路、メイン駐車場、格納庫は避難所として使用され、難民への食事提供や治療の拠点としても機能していました。<br>
+                輸送コンテナも同様に仮設シェルターに改造され、空港のターミナルビルは上級訓練やその他の必要な施設の収容に利用されました。
+            </p>
+            <p>
+                正面駐車場にはメディカルテントとトリアージステーションがチェックポイント付近に設置されています。<br>
+                モーガンタウン・モノレールの駅がターミナル前方に位置し、外周は回収された装甲兵員輸送車を含む、入手可能な資材で構築された即席の壁で要塞化されています。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_8.png" alt="ターミナルビル前の石化した死体">
+                <div class="note-figcaption">ターミナルビル前の石化した死体</div>
+            </div>
+
+            <p>
+                ターミナル北西側にはバスケットコートの隣にコミュニティガーデンがあります。<br>
+                ワイルドキャロットフラワー、スナップテイルリード、レイザーグレイン、テイト、トウモロコシ、パンプキンなどの農作物が栽培されていました。<br>
+                赤い輸送コンテナ内にはアーマー作業台、南側の青いコンテナには武器作業台とレスポンダー・ロッキーの遺体があります。<br>
+                トラックの荷台はシェルターに改造され、その付近にクッキングステーションがあります。<br>
+                ガーデン北東には複数の墓がある小さな墓地があり、一部は開いたままになっています。
+            </p>
+            <p>
+                メインの管制塔の外側には即席の足場が組まれ、マシンガンタレットが設置されています。<br>
+                塔内にはレスポンダーの救難信号の発信源であるラジオと、メロディ・ラーキンが録音したホロテープが置かれています。<br>
+                エリア内には2つのパワーアーマーステーションがあります。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_24.png" alt="管制塔">
+                <div class="note-figcaption">航空管制塔</div>
+            </div>
+
+            <p>
+                管制塔北東にある3つの格納庫は、ボットショップ、医療エリア、研究室に改造されています。<br>
+                ボットショップはかつてミゲル・カルデラの主な活動拠点であり、彼のターミナルが今も残されています。<br>
+                武器作業台、ティンカー作業台、クッキングストーブ、作動中のフュージョンコア付きフュージョンジェネレーターがあります。<br>
+                1階にはルート可能なスチーマートランクがあります。
+            </p>
+            <p>
+                隣接する医療格納庫には4つのファーストエイドキットとレスポンダー研究所ターミナルがあります。<br>
+                研究室格納庫はフェンスで囲まれた隔離エリア内に位置し、ケミストリーステーションと検査台の上のスコーチの死体があります。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_6.png" alt="隔離区域ゲート">
+                <div class="note-figcaption">隔離区域のゲート</div>
+            </div>
+
+            <p>
+                最西部にはクォンセット・ハットがあり、「隔離」と表示されています。<br>
+                内部にはスコーチ化が進行する様々な段階の死体——一般の死体、骸骨、石化した死体——がセルに収容されています。<br>
+                エリア奥にはスカイレーンズ・エアの旅客機の残骸があります。機内にはクッキングステーションがあり、コックピットにはヌカ・ガールの段ボールの切り抜きと金庫があります。<br>
+                飛行機の横にはカーゴボットの着陸パッドがあり、クエスト「Collision Course」に関連しています。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_7.png" alt="隔離区域の遺体処理">
+                <div class="note-figcaption">隔離区域での遺体処理の様子</div>
+            </div>
+
+            <h2>主なアイテム</h2>
+            <h3>ホロテープ（11本）</h3>
+            <ul>
+                <li><strong>The Christmas Flood</strong> — 飛行場北西端のテント内のクレートの上</li>
+                <li><strong>Psych eval: Wyatt Johnson</strong> — 飛行場北東端の旅客機残骸内、コックピットの鍵付き金庫内</li>
+                <li><strong>Psych eval: Olivia P. Henderson</strong> — 医療施設に改造された格納庫の金属棚の上</li>
+                <li><strong>Melody Larkin: Dispatch</strong> — 管制塔内、ハムラジオの隣</li>
+                <li><strong>Camp guide program v3.4</strong> — ロボット修理格納庫のステレオの上（クエスト「Tentative Plans」進行中）</li>
+                <li><strong>Volunteer training: Camping 101</strong> — レスポンダー訓練ターミナルからクエスト開始時に取得</li>
+                <li><strong>Patrol 1: Training Exercise</strong> — レスポンダー訓練ターミナルの「Patrol Supplies」選択で取得</li>
+                <li><strong>Patrol 2: Triage Center</strong> — トリアージセンターのテント内、鍵付き金庫内</li>
+                <li><strong>Patrol 3: Processing Center</strong> — レスポンダー・ロッキーの遺体横の鍵付き金庫内</li>
+                <li><strong>Patrol 4: Medical Center</strong> — 医療センター格納庫奥、台車の上の爆薬箱内</li>
+                <li><strong>Patrol 5: Control Tower</strong> — 管制塔のターミナルの「Resource Requests」選択で取得</li>
+            </ul>
+
+            <h3>メモ（11枚）</h3>
+            <ul>
+                <li><strong>De'Andre's note</strong> — 中央格納庫奥のグリーンフットロッカー内</li>
+                <li><strong>Flatwoods supply delivery</strong> — ロボットパーツの格納庫、アイボットが置かれたテーブルのクリップボードに添付</li>
+                <li><strong>Sweet bean</strong> — ロボット修理格納庫のステレオの上</li>
+                <li><strong>Flatwoods kiosks</strong> — ロボット修理格納庫のシャワーエリア</li>
+                <li><strong>Tasks</strong> — ロボット修理格納庫のキッチン、シンクの左側</li>
+                <li><strong>Camping Syllabus</strong> — 空港滑走路エリア北東、ミゲルのキャンプ跡</li>
+                <li><strong>I remember you, mom</strong> — 北西の墓地、開いた墓の棺の上</li>
+                <li><strong>O Holy Night</strong> — 難民キャンプエリアのピックアップトラックの荷台、牧師服を着たレスポンダーの死体の上</li>
+                <li><strong>DON'T TOUCH</strong> — ロボット修理格納庫の上階、歩道の端のプーリーマシンの側面</li>
+                <li><strong>Gardening test</strong> — 北西の農場、石化した死体と箱の隣の地面</li>
+                <li><strong>Sweetheart</strong> — 北西セクションのグリーン展示エリア内、右端の椅子の上</li>
+            </ul>
+            <!-- ホロテープ全文 -->
+            <h2>ホロテープの内容</h2>
+
+            <div class="holotape-box">
+                <h3>🎙️ The Christmas Flood（クリスマスの大洪水）</h3>
+                <div class="transcript">マリア・チャベス: 私はマリア・チャベスです。今日は2092年12月25日。かつて、戦争前の世界では、この日は愛する人たちと祝う幸せな時間でした。今では、振り返り、追悼する時間です。10年前のこの日、私たちは「クリスマスの大洪水」と呼ぶ悲劇的な出来事で、多くのものを失いました。この録音をすることで、あの洪水とその犠牲者が決して忘れられないようにしたいと思っています。
+
+話は2077年11月、戦争の翌月に遡ります。プレザントバレー・スキーリゾートの生存者たちが、チャールストンに助けと物資を求める代表団を送りました。しかし、街の指導者たちは彼らを追い返しました。当時はあまりにも多くの混乱と必要があったので、無理な要求だったのかもしれません。
+
+援助の獲得に失敗したことで、スキーリゾートの生存者たちの間でリーダーが交代しました。デイヴィッド・ソープという冷酷な男が実権を握り、あの人々を恐ろしいものに変えてしまいました。彼らは欲しいものを力で奪い、立ちはだかる者を殺しました。
+
+数年後、ソープのガールフレンドであるロザリンがチャールストンを襲撃しました。彼らは早期に発見され、戦闘が勃発しました。何人かは逃げ延びましたが、ロザリンは負傷して捕虜になりました。
+
+当時、レスポンダーは街をほぼ運営しており、かなりうまくやっていました。レイダーたちの本拠地に対峙できると考え、山岳地帯に交渉のグループを送りました。囚人の一部を解放すれば見逃してもらえるよう交渉しようとしました。間違いでした。ソープはどうにかミニ・ニュークを手に入れ、クリスマスの朝にサマーズビル・ダムを爆破しました。
+
+私たちはほぼすべてを失いました――家、物資、そして友人や家族の大半を。その後の日々や数週間は、人生で最も辛い時間でした。しかし、どうにか持ちこたえました。ほんの一握りの仲間しか残っていなかったのに、レスポンダーの理念を生かし続けました。これがクリスマスの大洪水の物語です。子供たちに伝えてください。出会う全ての人に伝えてください。できる限り長く、この記憶を生かし続けましょう。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Psych eval: Wyatt Johnson（心理査定: ワイアット・ジョンソン）</h3>
+                <div class="transcript">...:: 機密 ::...
+レスポンダー医療部門所有
+
+...:: 機密 ::...
+...:: 複製禁止 ::...
+
+...:: 音声記録の書き起こし開始 ::...
+
+マディソン医師: これはレスポンダーのマディソン医師です。患者ワイアット・ジョンソンの心理査定を行います。このセッションは記録されています。こんにちは、ワイアット。
+
+ワイアット・ジョンソン: どうも。
+
+マディソン医師: この査定は非公式の評価であり、あなたの状態をより良く理解するためだけのものです。お分かりですか？
+
+ワイアット: はい、先生。
+
+マディソン医師: いくつか簡単な質問をします。正直に答えてください。まず、レスポンダーでの現在の役割を教えてください。
+
+ワイアット: 化け物が閉じ込められたままでいるようにすること。
+
+マディソン医師: スコーチのことですか？
+
+ワイアット: ああ、歩く悪魔だ。
+
+マディソン医師: なるほど。なぜこの仕事を志願したのか説明できますか？
+
+ワイアット: 志願？ 強制だと思ってた。
+
+マディソン医師: いいえ、完全に任意でした。私たちは依頼を掲示し、面接を行いました。
+
+ワイアット: ああ、母さんがスコーチにやられたから、これは俺への罰だと思ってた。
+
+マディソン医師: いいえ、ワイアット。完全に任意の役割です。あなたのお母さん、ブレンダはスコーチに感染しましたが、だからといって何かの罰があるわけではありません。
+
+ワイアット: 俺が奴らを母さんに近づけた。俺のせいだ。
+
+マディソン医師: いいえ、事故です、ワイアット。
+
+ワイアット: そんなの関係ない。これが俺への罰だって分かってる。
+
+マディソン医師: ワイアット、面接の時あなたは末期の病気があると言いましたね。それで隔離区域の警備員を選んだと。
+
+ワイアット: ああ、末期の病気がある。「人生」って名前のな。
+
+マディソン医師: ワイアット、協力してください。
+
+ワイアット: もう行っていい？ リヴィーに今夜ホットドッグを焼くって約束したんだ。やっとグリルが直ったから。
+
+マディソン医師: もうすぐ終わります。あと少し質問させてください。
+
+ワイアット: グリルで焼くとき、灯油が少し漏れて、あの化け物の臭いを消してくれるんだ。
+
+マディソン医師: *ため息* ……すまない。終わりだ。もう行っていいよ。
+
+音声記録の書き起こし終了 ::...
+
+===査定結果===
+ワイアットとの継続的な面接の結果は困難かつ心配なものでした。被験者は協力を拒否し、精神病と重大な乖離の兆候を示しています。被験者は距離を置き、不安定性、PTSD、分離不安の兆候を見せています。あるいは単にふざけたガキなだけかもしれません。ただし、オリビアとは非常にうまくやっているようです。推奨事項: 毎週の査定を継続。注意深く観察すること。ただしオリビアの監督下であれば大丈夫でしょう。
+
+===医師のメモ===
+マリアにホロテープ在庫の状況を確認するよう連絡すること。他の目的で供給が削減されているのが見え始めている。テープの消失について調査が必要。犯人が見つかるまで、冗長性のために音声からテキストへの書き起こしを続ける。</div>
+            </div>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_26.png" alt="ワイアット・ジョンソンの査定 - コックピットの金庫">
+                <div class="note-figcaption">隔離区域の旅客機コックピット内の金庫（Psych eval: Wyatt Johnson）</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Psych eval: Olivia P. Henderson（心理査定: オリビア・P・ヘンダーソン）</h3>
+                <div class="transcript">...:: 機密 ::...
+レスポンダー医療部門所有
+
+...:: 機密 ::...
+...:: 複製禁止 ::...
+
+...:: 音声記録の書き起こし開始
+
+マディソン医師: これはレスポンダーのマディソン医師です。患者オリビア・ヘンダーソンの心理査定を——
+
+オリビア: 「P.」を忘れてるわ。
+
+マディソン医師: 患者オリビア・P・ヘンダーソンの心理査定を行います。このセッションは記録されています。こんにちは、オリビア。
+
+オリビア: またよろしくね、先生。
+
+マディソン医師: 始めましょう。まず、レスポンダーでの現在の役割を教えてください。
+
+オリビア: そうねえ。最初はボランティアとして始めたわ、今どきのみんなと同じようにね。あまり役に立たなかった。で、ここの隔離区域のことを知って、ここにいなきゃって思ったの。
+
+マディソン医師: 記録のために、モーガンタウン空港の隔離区域はスコーチ現象の研究と封じ込めを行う場所です。
+
+オリビア: ええ、そうね。でもそんなきれいな言葉では呼ばないわ。悪夢よ。
+
+マディソン医師: あなたの仕事は隔離区域の警備とスコーチの犠牲者の世話ですか？
+
+オリビア: ええ。あの哀れな魂たちを見張って、閉じ込められたままにしておくのが私の仕事よ。
+
+マディソン医師: なぜこの仕事を選んだのか教えてもらえますか？
+
+オリビア: 隔離警備員の募集が出た時、注意書きが付いてたのよ。
+
+マディソン医師: なるほど。説明してもらえますか？
+
+オリビア: 永久配属ってこと。つまり……私もここに永久に隔離されるの。スコーチは危険すぎて、感染力が非常に高い。だから二度と出られないわ。
+
+マディソン医師: なぜその仕事を選んだのですか？
+
+オリビア: それは簡単よ。もう言ったと思うけど。ガンよ。
+
+マディソン医師: はい、爆弾投下の直前にガンの末期宣告を受けたとおっしゃっていましたね。
+
+オリビア: ええ。
+
+マディソン医師: でもここまで長く生き延びていますよね。医者は余命数年と言っていたのに。何が起きたと思いますか？
+
+オリビア: その辺はよく分からないわ。色々考えたんだけど、放射線が進行を遅らせてるのかも。それか、えーと……リセッション？
+
+マディソン医師: リミッション（寛解）ですね。
+
+オリビア: ああ、それ。寛解してるのかもしれないわね。
+
+マディソン医師: もう一人の隔離警備員、ワイアットについて教えてください。二人はうまくやっていますか？
+
+オリビア: ああ、ワイアットね。息子を思い出すわ、安らかに眠れますように。賢い子よ。とんでもなく不運だけど、賢い。あの子は人生が与えたものに値しないわ。
+
+マディソン医師: 本当にそうですね。今週中にワイアットの査定も予定しています。
+
+オリビア: 優しくしてあげて。あの飛行機の中に一緒に閉じ込められてから、家族みたいになったの。
+
+マディソン医師: そうします。残念ながら時間切れです。本日はありがとうございました。レスポンダーとしてもあなたの献身に感謝しています。
+
+オリビア: お酒を届け続けてくれればいいわよ、先生。そうすれば満足よ。
+
+マディソン医師: もちろん。それくらいは当然です。
+
+音声記録の書き起こし終了 ::...
+
+===査定結果===
+オリビアとの継続的な面接は、当初の仮説が概ね正しかったことを証明しました。被験者は認識力があり、機知に富み、精神的に健全で、隔離での業務を継続する心理的適性があります。また頑固さ、意図的な無知、皮肉の兆候も見られます。背景的・潜在的なうつ病の兆候に注意を続けます。不安は極めて高いですが、今はそうでない人がいるでしょうか？推奨事項: より遅いペースでの査定を継続。隔月で十分でしょう。心配なのはもう一人の警備員の方です。</div>
+            </div>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_25.png" alt="オリビア・P・ヘンダーソンの査定の場所">
+                <div class="note-figcaption">Psych eval: Olivia P. Henderson の場所</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Melody Larkin: Dispatch（メロディ・ラーキン: 通信記録）</h3>
+                <div class="transcript">メロディ・ラーキン: 大変な一週間だったわ、まったく。またあの忌々しいスコーチどもと戦って、優秀な仲間をさらに失った。で、今度はチャベスが新しい無線信号を拾ったって言ってきたの。誰かが助けを求めてる。彼女は私のチームで追跡して見つけてほしいと。そう遠くないわ。南の方で信号が強くなっているのを追跡済み。問題は、彼らを見つけるにはレイダーの支配域を真っ直ぐ突っ切らなきゃならないってこと。今はそんな時間も人手もない。
+
+だから、言うのは辛いけど、無理だって伝えなきゃならない。今はダメだ。私のチームは最後の防衛線だから、彼らを連れて野犬追いみたいなことに出掛けたら、次のクリスマスの大洪水みたいな状況に身をさらすことになる。だから絶対にそんなことはさせない。たとえどこかで誰かが私たちを必要としているとしても。まったく、時代は変わったもんだわ。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Camp guide program v3.4（キャンプガイドプログラム v3.4）</h3>
+                <div class="transcript">codebase mod prog
+
+;camp guide prog v3.4 beta
+;;notes: これはプライマリーキャンプガイドAIをロードします
+;;;自分のロボットでしか動かない
+;;;;バグを直すまで -mcaldera
+
+//../../../brain/this.shutdown(now)
+//../../../brain/run *camp-guide*.mod
+//../../../ai/tether==true?del tether:stop
+//../../../ai/mod loyalty=id.human
+//../../../ai/del follow id.owner
+//../../../brain/this.wakeup(now)
+
+===./execute===
+... 実行中 ....
+...
+
+エラー:
+プログラムは以下のレスポンダー・プロテクトロンモデルにのみ対応: ボランティアボット、毒物管理ボット（廃止）、獣医ボット（廃止）、ダンスボット（廃止）
+
+このプログラムを他のデバイスで実行するとホロテープが損傷する可能性があります。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Volunteer training: Camping 101（ボランティア訓練: キャンプ入門）</h3>
+                <div class="transcript">ミゲル・カルデラ: レスポンダー生存者ボランティアプログラム: 上級訓練: キャンプ。ミゲル・カルデラ著——ロボットプログラマーの天才！
+
+パート1: 完璧なキャンプ場所を見つけよう。世界が変わってしまった今、安全でいるのは難しい。キャンプは昔は安全だった。*笑い* まあ、強風が来るまではね。最近は何も安全じゃない。キャンプ内でさえ、誰かに傷つけられるかもしれない。完璧な場所はもう重要じゃない。重要なのは防御だ！信頼できる人の近くに建てて背中を守ってもらうか、自分の代わりに背中を守る物を作ればいい！問題なし！誰にでもできるさ！
+
+キャンプは移動式だってことを覚えておこう。僕たちは今や冒険者で、冒険と驚異と危険に満ちた見知らぬ土地でキャンプをしているんだ。だからこまめにキャンプして、たっぷり休もう。戦争前、僕はリタイアしてキャンプに行くつもりだった。今は毎日、永遠にできる！夢が叶ったんだ！好きなことをしよう、だろ？
+
+さあ、僕のキャンプに来て、ロープの結び方やフレーミング技術を教えるよ。それから役立つ物資を案内する！頑張って、ボランティア！</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Patrol 1: Training Exercise（パトロール1: 訓練演習）</h3>
+                <div class="transcript">ケシャ・マクダーモット: レスポンダー生存者ボランティアプログラム: 上級訓練: 物資確保！ケシャ・マクダーモット著。ボランティアのレスポンダー（あなたのような）は、定期的に物資の補給を手伝う必要があります。もし備蓄が尽きたら、大きな問題になります。初めてのパトロールなので、手順を説明しますね。まず、下の階に行って裏口からトリアージセンターへ向かってください。この演習ではモーガンタウン空港の主要エリアを巡回します。定期的にこれらの備蓄を補充したいと思うでしょう。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Patrol 2: Triage Center（パトロール2: トリアージセンター）</h3>
+                <div class="transcript">ケシャ・マクダーモット: よくやりました、ボランティア。トリアージセンターは最も重い被害者を受け入れているので、ここの物資はおそらくいつも不足しているでしょう。負傷者の間を歩きながら棚を補充するだけっていうのは辛いことだと分かっています。でも、あなたにこれをやってもらう必要があるんです。他のレスポンダーが彼らの世話をします。私たちには頼れる人が必要なんです。全員が安全なら、何でも再建できますから。世界は破壊されたんじゃない、ただ助けが必要なだけなんです。次の物資キャッシュには鍵がかかっていますが、レスポンダー・ロッキーから受け取る必要があります。ケシャにパトロールを任されたと言ってください。</div>
+            </div>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_21.png" alt="トリアージセンターの金庫">
+                <div class="note-figcaption">トリアージセンター内の金庫（Patrol 2: Triage Center）</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Patrol 3: Processing Center（パトロール3: 処理センター）</h3>
+                <div class="transcript">ケシャ・マクダーモット: 次は医療センターへ向かってください。パトロールは素早く終わらせてね、レスポンダー・データベースにロックアウトされないように。処理センターはトリアージに運ばれてきた新しい生存者のための食料と飲料の物資を保管しています。だから在庫を保つことが本当に重要なんです。スコーチ以来……いや、爆弾以来、在庫を保つのはずっと混乱しっぱなしで……もう永遠のように感じるわ。学生たちにいつも言っていたように：困難はいつもそれぞれ違う形をしている、でもあなたもそうよ。乗り越えるのに十分な強さがあればいいの。でも補足があって……乗り越えるにはリソースとサポートも必要で、完全に一人では無理なの。さあ、クリニックに行って。</div>
+            </div>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_22.png" alt="レスポンダー・ロッキーの遺体">
+                <div class="note-figcaption">レスポンダー・ロッキーの遺体（Patrol 3: Processing Center）</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Patrol 4: Medical Center（パトロール4: 医療センター）</h3>
+                <div class="transcript">ケシャ・マクダーモット: ここにいる間に、医師たちに何か特別な物資の要望がないか聞いてみてね。その後、最後の場所、管制塔へ向かってください。見ての通り、常にこれらの物資を補充し続けなければ人々を支えられません。そして物事が静かになる兆しは全くないの！管制塔は滑走路にあって、最後のパトロール地点よ。ボランティアプログラムを設立して本当に良かったわ。おかげでたくさんのレスポンダーのボランティアを得られたの。ダッサはフラットウッズで良い仕事をしてくれてるわ。</div>
+            </div>
+
+            <div class="holotape-box">
+                <h3>🎙️ Patrol 5: Control Tower（パトロール5: 管制塔）</h3>
+                <div class="transcript">ケシャ・マクダーモット: そんなに難しくなかったでしょう？ ミゲルがボットにこれらの物資キャッシュを補充するようプログラムしていますが、必要な量には全然足りません。だからボランティアを集めて、正式な上級訓練として少なくとも1回はパトロールをやってもらうのが目標です。あなたの助力に心から感謝します。レスポンダー・データベースにログインすれば、追加のキャッシュを調べることができます。ありがとう、ボランティア！そして覚えておいて：他の人を助けることは、自分自身を助けることにもなるのよ。</div>
+            </div>
+
+            <!-- メモ全文 -->
+            <h2>メモの内容</h2>
+
+            <div class="note-box">
+                <h3>📝 De'Andre's note（デアンドレのメモ）</h3>
+                <div class="transcript">愛しいあなたへ、
+
+アビーが彼女のバンカーを記念日の計画に使っていいって言ってくれたわ。まだほんの数ヶ月……ええと、2ヶ月3週間と4日だけど、すごくワクワクしてるの！あなたは私の人生を変えてくれた、デアンドレ。分かっていてほしい。
+
+愛を込めて、
+リディア</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 Flatwoods supply delivery（フラットウッズ物資配送）</h3>
+                <div class="transcript">ミゲルへ、
+
+頼まれた通り、物資の一部を金庫に届けたよ。
+
+どこにいるか分からなかった。また森の中のどこかかな？ 君のロボットもどこにも見当たらないから、安全だろうと思ってる。
+
+マリアに何かフラットウッズに持ち帰るものがあるか聞いてみるから、1日か2日はこっちにいるよ。
+
+僕を見つけてくれ！寂しいよ！
+ギャリー</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 Sweet bean（スイートビーン）</h3>
+                <div class="transcript">僕のかわいいギャリービーンへ、
+
+僕はキャンプにいるよ——マリアが「精神衛生の日」をくれたから、リラックスできるんだ。来てよ！フラットウッズからあのコンフォートフードを持ってきてくれると嬉しいな。ピクニックしよう！
+
+ボランティアが来ても心配しないで、ロボットが対応してくれるはず。そのためのプログラムを書いたから、やっとリラックスして君と一緒に大自然を楽しめるよ。
+
+愛してるよ、ディアハート。
+-ミゲル</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 Flatwoods kiosks（フラットウッズ・キオスク）</h3>
+                <div class="transcript">タスク: フラットウッズ用の新しい「セルフサーブ・ボランティア・キオスク」システムをプログラムする。
+
+1日に数十人のボランティアを処理でき、地元のレスポンダーが時間を寄付して基本的なスキルを教えられるシステムにすること。
+
+担当者はケシャとデルバート。二人とも、このプログラムのモデルになることを了承済み。</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 Tasks（タスク一覧）</h3>
+                <div class="transcript">今週中：
+
+- キャンプ・プログラムのバグを修正
+- フラットウッズのキオスクに問題がないか確認
+- ギャリーへの次回訪問用のプレゼントを用意
+- キャンプにもう一つ椅子を持っていく</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 Camping Syllabus（キャンプ講座シラバス）</h3>
+                <div class="transcript">キャンプ講座シラバス
+
+1. 安全な場所を見つけよう！近くに新しい動物の——あるいは人間の！——フンがないか確認。覚えておこう。フンを見つけたら、退散しよう！
+
+2. リサイクル素材を使ってテントを建てよう！スクラップはどこにでも見つかるよ。
+
+3. キャンプの利点は？ クッキングステーション、そして自分だけの隠し場所まで！
+
+課題: 学生は最寄りのレスポンダーに報告し、キャンプを建設すること。キャンプ内に簡単なクッキングステーションと隠し場所ボックスを建設し、その知識を地元のレスポンダーに実演すること。</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 I remember you, mom（覚えてるよ、お母さん）</h3>
+                <div class="transcript">                    お母さん
+あの人が僕らを捨てた後、一人で僕を育ててくれたね……ちゃんと学校に行かせてくれた。自分よりもいい生活を送れるようにしてくれた。
+いつも幸せだった。そうじゃないように見えた時でも。お母さんはいつもそばにいてくれた。
+でも、いざという時……僕はそばにいなかった。
+絶対に自分を許さない。
+絶対に。</div>
+            </div>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_19.png" alt="覚えてるよ、お母さん">
+                <div class="note-figcaption">墓地に置かれたメモ「I remember you, mom」</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 O Holy Night（オー・ホーリー・ナイト）</h3>
+                <div class="transcript">            オー・ホーリー・ナイト
+
+オー・ホーリー・ナイト、星は輝き、救世主がお生まれになった夜
+
+長い間、世界は罪と誤りの中であえいでいた。主が現れ、魂はその価値を知った
+
+希望のときめきに、疲れた魂は喜び、彼方に新しい栄光の朝が明ける！ 膝をつきなさい！ オー
+
+天使の声を聞きなさい！ オー聖なる夜！ キリストが生まれた夜！ オー聖なる——
+
+... オー夜よ、オー聖なる夜よ！</div>
+            </div>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_20.png" alt="O Holy Night">
+                <div class="note-figcaption">牧師服を着たレスポンダーの遺体の上に残された賛美歌</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 DON'T TOUCH（さわるな）</h3>
+                <div class="transcript">            さわるな
+
+最後のスコーチの攻撃からちゃんと動かないから、現状のまま封印した。
+
+とにかく、さわるな。
+
+今のところ必要ないし。
+
+-ミゲル</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 Gardening test（園芸テスト）</h3>
+                <div class="transcript">園芸テスト
+名前: サマンサ
+
+問題1:
+全ての植物に必要なものは何？
+
+     水とひかり
+
+問題2:
+光合成って何？ お父さんお母さんに聞いてみよう！
+
+  しょくぶつがエネルぎーをえるほうほう！！
+
+問題3:
+ガーデンのお気に入りの植物は何？
+
+   テイト！
+
+問題4:
+ガーデンクラスで毎日使う道具は何？
+
+                  シャベル
+
+ボーナス問題:
+昨日のクラスで学んだ植物の名前は？
+
+      パ ン プ キ ン！！！
+
+よくできました、サマンサ！ 5/5正解</div>
+            </div>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_18.png" alt="園芸テスト">
+                <div class="note-figcaption">サマンサの園芸テスト</div>
+            </div>
+
+            <div class="note-box">
+                <h3>📝 Sweetheart（スイートハート）</h3>
+                <div class="transcript">           私のかわいい赤ちゃんへ、
+
+とても欲しかったの……でも叶わなかった。でも今はそれで良かったって分かるの、すべてを考えると……</div>
+            </div>
+
+            <h2>コレクティブル</h2>
+            <ul>
+                <li>Vault-Tecボブルヘッド（2箇所）
+                    <ul>
+                        <li>隔離テントの一つ、メドキットの隣</li>
+                        <li>研究室格納庫の棚の上</li>
+                    </ul>
+                </li>
+                <li>雑誌（2箇所）
+                    <ul>
+                        <li>管制塔の最上階、ホットプレートとコーヒーポットの近くデスクの左側</li>
+                        <li>旅客機残骸内部、小さなテーブルの上</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h3>その他のアイテム</h3>
+            <ul>
+                <li><strong>レスポンダー・ブラボー・ステーションの鍵</strong> — レスポンダー・ロッキーの遺体から入手。空港のレイダー金庫を開錠</li>
+                <li><strong>フュージョンコア</strong> — ボットショップ格納庫のフュージョンジェネレーター内</li>
+                <li>レシピ（2個） — 旅客機残骸内部のテーブルとクッキングストーブ</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>モーガンタウン空港は『<strong>Fallout 76</strong>』にのみ登場します。</p>
+
+            <h2>舞台裏</h2>
+            <p>
+                ゲーム内のモーガンタウン空港は、実在の<strong>モーガンタウン市営空港</strong>（Morgantown Municipal Airport / Walter L. Bill Hart Field）をモデルにしています。
+            </p>
+
+            <div class="note-figure">
+                <img src="images/note_extracted/morgantown-airport/img_real_aerial.jpg" alt="モーガンタウン市営空港 空撮写真（1988年）">
+                <div class="note-figcaption">実在のモーガンタウン市営空港（1988年6月18日、USGS撮影） / Wikimedia Commons / Public Domain</div>
+            </div>
+
+            <h3>空港概要</h3>
+            <p>
+                <strong>モーガンタウン市営空港</strong>（IATA: <strong>MGW</strong> / ICAO: <strong>KMGW</strong>）は、ウェストバージニア州モノンガリア郡モーガンタウンの東約3マイル（4.8km）に位置する公共空港です。<br>
+                正式名称は「ウォルター・L・ビル・ハート・フィールド」（Walter L. Bill Hart Field）としても知られています。
+            </p>
+
+            <h3>主要スペック</h3>
+            <ul>
+                <li><strong>標高</strong>: 1,244フィート（379m）</li>
+                <li><strong>滑走路</strong>: 18/36 — 5,198 × 150フィート（1,584 × 46m）、アスファルト舗装</li>
+                <li><strong>コード</strong>: IATA: MGW / ICAO: KMGW / FAA LID: MGW</li>
+            </ul>
+
+            <h3>航空サービスの歴史</h3>
+            <p>
+                1940年代後半にはキャピタル航空が乗り入れを始め、その後もエア・ミッドウェスト、USエアウェイズ・エクスプレス、コルガン航空（ユナイテッド・エクスプレス）、シルバー・エアウェイズ、サザン・エアウェイズ・エクスプレスなど、数多くの航空会社が変遷を経てサービスを提供してきました。<br>
+                現在はユナイテッド・エクスプレス（スカイウェスト航空が運航）がワシントン・ダレス国際空港（IAD）への定期便を毎日運行しています。<br>
+                この路線は米国連邦政府の「<strong>Essential Air Service</strong>（EAS）」プログラム——地方空港への航空サービスを維持するための補助金制度——によって支えられています。
+            </p>
+
+            <h3>将来の拡張計画</h3>
+            <p>
+                より大型の機体の離着陸に対応するため、滑走路を1,001フィート延長する計画がFAA（連邦航空局）に申請されています。
+            </p>
+
+            <p style="font-size: 0.85em; color: #888; margin-top: 20px;">
+                <em>現実の空港情報は <a href="https://en.wikipedia.org/wiki/Morgantown_Municipal_Airport" target="_blank" rel="noopener" style="color: var(--accent-color);">Wikipedia: Morgantown Municipal Airport</a> より取得。空撮写真は Wikimedia Commons / Public Domain（USGS）。</em>
+            </p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_3.png" alt="入口の看板" onclick="openLightbox(this)"><div class="caption">入口の看板</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_4.jpg" alt="空港の農場" onclick="openLightbox(this)"><div class="caption">空港の農場</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_5.png" alt="牧師の遺体" onclick="openLightbox(this)"><div class="caption">牧師の遺体</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_6.png" alt="隔離区域ゲート" onclick="openLightbox(this)"><div class="caption">隔離区域のゲート</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_7.png" alt="隔離区域の遺体処理" onclick="openLightbox(this)"><div class="caption">隔離区域の遺体処理</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_8.png" alt="石化した死体" onclick="openLightbox(this)"><div class="caption">ターミナルビル前の石化した死体</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_9.png" alt="外壁1" onclick="openLightbox(this)"><div class="caption">外壁</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_10.png" alt="外壁2" onclick="openLightbox(this)"><div class="caption">外壁</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_12.png" alt="スコーチの頭部" onclick="openLightbox(this)"><div class="caption">瓶の中のスコーチの頭部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_13.png" alt="Camp guide program 1" onclick="openLightbox(this)"><div class="caption">Camp guide program v3.4（1箇所目）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_14.png" alt="Camp guide program 2" onclick="openLightbox(this)"><div class="caption">Camp guide program v3.4（2箇所目）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_15.png" alt="DON'T TOUCH" onclick="openLightbox(this)"><div class="caption">DON'T TOUCH</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_16.png" alt="Flatwoods kiosks" onclick="openLightbox(this)"><div class="caption">Flatwoods kiosks</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_17.png" alt="Flatwoods supply delivery" onclick="openLightbox(this)"><div class="caption">Flatwoods supply delivery</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_18.png" alt="Gardening test" onclick="openLightbox(this)"><div class="caption">Gardening test</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_19.png" alt="I remember you, mom" onclick="openLightbox(this)"><div class="caption">I remember you, mom</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_20.png" alt="O Holy Night" onclick="openLightbox(this)"><div class="caption">O Holy Night</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_21.png" alt="Patrol 2 金庫" onclick="openLightbox(this)"><div class="caption">Patrol 2: Triage Center（金庫内）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_22.png" alt="ロッキーの遺体" onclick="openLightbox(this)"><div class="caption">レスポンダー・ロッキーの遺体</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_23.jpg" alt="Patrol 4 クレート" onclick="openLightbox(this)"><div class="caption">Patrol 4: Medical Center（クレート内）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_24.png" alt="管制塔" onclick="openLightbox(this)"><div class="caption">航空管制塔</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_25.png" alt="Olivia査定" onclick="openLightbox(this)"><div class="caption">Psych eval: Olivia P. Henderson</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_26.png" alt="コックピット金庫" onclick="openLightbox(this)"><div class="caption">Psych eval: Wyatt Johnson（コックピットの金庫）</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_27.png" alt="Sweet bean" onclick="openLightbox(this)"><div class="caption">Sweet bean</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_28.png" alt="Tasks" onclick="openLightbox(this)"><div class="caption">Tasks</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_29.png" alt="Christmas Flood" onclick="openLightbox(this)"><div class="caption">The Christmas Flood</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_30.png" alt="訓練ターミナル" onclick="openLightbox(this)"><div class="caption">レスポンダー訓練ターミナル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/morgantown-airport/img_31.jpg" alt="Nuclear Winterロード画面" onclick="openLightbox(this)"><div class="caption">Nuclear Winter ロード画面</div></div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                モーガンタウン空港は、レスポンダーの栄光と悲劇の両方が凝縮された、Fallout 76の中でも特に感慨深いロケーションです。<br>
+                空港全体がレスポンダーの「最後の砦」として機能していた痕跡——トリアージテント、コミュニティガーデン、改造された格納庫——を見ると、彼らがいかに組織的に、そして必死に人々を守ろうとしていたかが伝わってきます。<br><br>
+                特に心に残るのは、ワイアットとオリビアの心理査定ホロテープ。二人の隔離警備員が、互いを支えながら「二度と出られない」任務に就いているという設定が切ない。ワイアットの母への罪悪感、オリビアの末期がんを抱えながらの献身——荒廃した世界で人間の絆がどれほど大切かを教えてくれます。<br>
+                墓地に残された「覚えてるよ、お母さん」のメモは、おそらくワイアットが書いたもので、彼の母への想いが読み取れます。<br><br>
+                ミゲルとギャリーのラブストーリーも素敵です。ロボットプログラマーと物資配送係という役割を超えた、温かいメモのやり取りが格納庫のあちこちに残されている。サマンサの園芸テストの可愛らしさとの対比で、ここがかつては「生きた」コミュニティだったことを実感させられます。<br><br>
+                そして何より、メロディ・ラーキンの通信記録。助けを求める信号が聞こえているのに、人手が足りず救助に行けない——その苦渋の決断が、レスポンダーの最期を象徴しているように思えます。<br>
+                ケシャのパトロール訓練テープを聞きながら空港を巡ると、「かつてここで働いていた人々」の気配を感じずにはいられません。<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Location</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Responders</span>
+                </div>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Morgantown_Airport" target="_blank" rel="noopener">Morgantown Airport</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = img.src;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { isLiked = false; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { isLiked = true; localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡';
+            btn.querySelector('.like-count').textContent = count;
+            btn.classList.toggle('liked', isLiked);
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                updateLikeButton(btn, isLiked, data ? data.like_count : 0);
+            }
+        });
+
+        // コメント機能
+        const _commentArticleId = 'morgantown-airport';
+        const _commentArticleName = 'Morgantown Airport (モーガンタウン空港)';
+        const _commentArticleUrl = 'morgantown-airport.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 604800) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list'); if (!list) return;
+            if (!comments || !comments.length) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', {ascending:false}).limit(50);
+            if (error) { document.getElementById('comments-list').innerHTML = '<div class="comment-empty">読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const last = parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');
+            const now = Date.now();
+            if (now - last < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-last))/1000)+'秒後に投稿できます。', false); return; }
+            const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(t, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = t; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(()=>{el.textContent='';},3000); }
+        async function deleteComment(id) { if (!_isAdminMode) return; if (!confirm('削除しますか？')) return; await supabaseClient.rpc('delete_comment_admin',{comment_id:id,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''}); await loadComments(); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
+        document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

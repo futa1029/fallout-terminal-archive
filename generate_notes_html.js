@@ -852,7 +852,19 @@ async function processArticles() {
     }
 
     // 既に手作業で作った特定のファイル群を上書きから守るリスト（拡張子除く）
-    const protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax'];
+    // remove_duplicates.js の protectedFiles から自動読み込み（リストの同期忘れ防止）
+    let protectedFiles = [];
+    try {
+        const rdScript = fs.readFileSync(path.join(DIR, 'remove_duplicates.js'), 'utf8');
+        const pfMatch = rdScript.match(/const protectedFiles\s*=\s*\[([^\]]+)\]/);
+        if (pfMatch) {
+            protectedFiles = pfMatch[1].match(/'([^']+)'/g).map(s => s.replace(/'/g, ''));
+            console.log(`[保護リスト] remove_duplicates.jsから${protectedFiles.length}件の保護ファイルを読み込みました`);
+        }
+    } catch (e) {
+        console.log('[保護リスト] remove_duplicates.jsの読み込みに失敗。フォールバックリストを使用します');
+        protectedFiles = ['kimball', 'tandi', 'raiders_76', 'blight', 'ncr', 'prize_bot', 'assaultron_head', 'lee_moldaver', 'vault_dweller_lore', 'vault_dweller_jp', 'wayward_jp', 'buffalo-gourd-seed', 'vault_tec', 'armor-ace', 'billings-homestead', 'fallout-76-pets', 'bloodleaf', 'single-action-revolver', 'cabbage', 'vault', 'catarax'];
+    }
     const usedFilenames = new Set();
     // 既存ファイル名を予約済みにする
     protectedFiles.forEach(f => usedFilenames.add(`${f}.html`));

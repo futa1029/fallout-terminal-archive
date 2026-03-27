@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault 112 | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/vault-112.html">
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Vault 112 | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Vault 112のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note/vault-112/Vault112.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/vault-112.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Vault 112 | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Vault 112のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note/vault-112/Vault112.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .quote-block {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #88ff88;
+            background: rgba(0, 255, 0, 0.05);
+            padding: 15px;
+        }
+
+        .article-image {
+            max-width: 100%;
+            border: 1px solid #444;
+            margin: 20px 0;
+            display: block;
+            cursor: pointer;
+        }
+
+        .image-caption {
+            font-size: 0.85em;
+            color: #aaa;
+            margin-top: -15px;
+            margin-bottom: 20px;
+        }
+
+        .note-figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .note-figure img {
+            max-width: 100%;
+            border: 1px solid #444;
+            cursor: pointer;
+        }
+
+        .note-figure .image-caption {
+            margin-top: 5px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 5px 15px;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+                position: static;
+            }
+
+            .content { padding: 15px; }
+            h1 { font-size: 1.5em; }
+            .back-link { padding: 12px 20px; font-size: 1.1em; }
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .action-header .back-link { margin-bottom: 0; }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+            border-radius: 4px;
+        }
+
+        .like-button:hover { box-shadow: 0 0 8px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+
+        @media (max-width: 768px) {
+            .like-button { padding: 10px 15px; font-size: 1em; }
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0 30px 0;
+        }
+        .gallery-item {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #444;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #333;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+        .gallery-item .caption {
+            font-size: 0.85em;
+            color: #aaa;
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+
+<body data-article-category="ロケーション" data-article-appearance="Fallout 3">
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Vault 112</h3>
+            <img src="./images/note/vault-112/Vault112.jpg" alt="Vault 112" onclick="openLightbox(this)">
+
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>Vault</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在地</span><span>キャピタル・ウエイストランド<br>（スミス・ケイシーのガレージ地下）</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span><a href="stanislaus-braun.html" class="auto-link">スタニスラウス・ブラウン</a></span></div>
+            <div class="infobox-row"><span class="infobox-label">ロボット</span><span>ロボブレイン</span></div>
+            <div class="infobox-row"><span class="infobox-label">接続先</span><span>トランキリティ・レーン・シミュレーション</span></div>
+            <div class="infobox-row"><span class="infobox-label">関連クエスト</span><span>Scientific Pursuits<br>Tranquility Lane</span></div>
+            <div class="infobox-row"><span class="infobox-label">設計者</span><span>ジェシー・タッカー</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 3</span></div>
+
+            <img src="./images/note/vault-112/Smith_Caseys_Garage_loc.jpg" alt="マップ上のVault 112の位置" onclick="openLightbox(this)" style="margin-top:10px;">
+            <div style="font-size: 0.8em; color: #aaa; text-align: center;">スミス・ケイシーのガレージを経由してアクセスする</div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_vault_112" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Vault 112<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">Vault 112</span></h1>
+
+            <div class="quote-block">
+                「私はVault 112に向かう。ブラウンが残したもので、この浄水器を稼働させる手がかりになるものを探すんだ。<br>
+                分かっていることは、エバーグリーン・ミルズという場所の西にあり、何かのガレージの中にうまく隠されているということだけだ。<br>
+                だが必ず見つける。見つけなければならない。<br>
+                もうすぐそこまで来ているんだ。だが、それがプロジェクト・ピュリティの物語なんだろう？<br>
+                永遠に「もう少し」の連続だ。<br>
+                ブラウンがパズルの最後のピースを持っているかどうか、確かめに行こう」<br>
+                <br>
+                ―― プロジェクト・ピュリティ・ジャーナル #10
+            </div>
+
+            <p>
+                <strong>Vault 112</strong>は、2277年のキャピタル・ウエイストランドに位置する<a href="vault_tec.html" class="auto-link">Vault-Tec</a>の<a href="vault.html" class="auto-link">Vault</a>である。<br>
+                地域の南西部、エバーグリーン・ミルズの西、チャーネル・ハウスの南にある、スミス・ケイシーのガレージの地下に位置している。<br>
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                Vault 112は建設された最後のVaultの一つであった。<br>
+                建設は2068年11月に始まり、2074年6月に完了した。<br>
+                わずか85名の居住者のみを収容する予定で、Vaultの実験が続く不定の期間、バーチャルリアリティの世界に浮遊させるものだった。<br>
+                このVaultは、<a href="geck.html" class="auto-link">G.E.C.K.</a>の生みの親である監督官<a href="stanislaus-braun.html" class="auto-link">スタニスラウス・ブラウン</a>博士のニーズに応え、彼を収容するために建設された。<br>
+                ブラウンはその中にバーチャルリアリティ・シミュレーターとVisontronラウンジャーを設置し、当初はいくつかのシミュレーションされたユートピアを含んでいた。<br>
+                最後のシミュレーションが「トランキリティ・レーン」であった。<br>
+                このシステムは、選ばれた少数の人々がバーチャルに、そして事実上永遠に「完璧な生活」を送ることを可能にするはずであった。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/vault-112/Vault_112_TQ.jpeg" alt="Vault 112のメインホール" onclick="openLightbox(this)">
+                <div class="image-caption">Vault 112のメインホール</div>
+            </div>
+
+            <p>
+                Vault 112の居住者が知らなかったのは、彼らがバーチャルリアリティ・ポッドに入った瞬間、ブラウンがシミュレーションの完全な支配権を握り、彼ら自身では脱出する手段がなくなるということだった。<br>
+                彼らはブラウンの遊び道具となり、完全に彼の思いのままとなった。<br>
+                様々なシミュレーション世界に飽きた後、ブラウン博士は住民一人一人をバーチャルに「殺害」し始めた。<br>
+                殺害するたびに記憶を消去し、プログラム内で蘇生させた。<br>
+            </p>
+
+            <h2>ロケーション</h2>
+            <p>
+                Vault 112への入口はスミス・ケイシーのガレージ内にある。<br>
+                ガレージにはモールラットやラッドローチがいるが、大した脅威ではない。<br>
+                カウンターを通り過ぎて工房に入ると、左手すぐにある床に大きなハッチがあり、その横の壁のスイッチを操作することで開けることができる。<br>
+                その下にはVault 112の防爆ドアにつながる短い通路がある。<br>
+                ここにもモールラットがいることがある。<br>
+            </p>
+
+            <h2>レイアウト</h2>
+            <p>
+                Vault 112は他のすべてのVaultと同様の入口を備えており、これがエアロック/除染エリアとして機能し、外界との唯一の接続である。<br>
+                入口からメインホールへは一本の通路が通じている。<br>
+                メインホールには12基のトランキリティ・ラウンジャーが大型メインフレームの周囲に接続・配置されており、それぞれがラウンジャー内の「被験者」の状態を監視するターミナルに接続されている。<br>
+                メインホールの南にある監督官のオフィスには、もう1基のトランキリティ・ラウンジャーがある。<br>
+                Vaultの唯一の医療ユニットは、メインホールの東側からアクセスできる。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/vault-112/FO3_TL_lounger_4.jpg" alt="トランキリティ・ラウンジャー" onclick="openLightbox(this)">
+                <div class="image-caption">トランキリティ・ラウンジャー</div>
+            </div>
+
+            <p>
+                居住者は全員トランキリティ・ラウンジャーの中にいるため人間が施設を維持することができず、Vault 112は代わりに特殊な管理用ロボブレインのグループによって維持されている。<br>
+                ロボブレインは非敵対的であり（攻撃しても敵対しない）、戦闘抑制装置も搭載していない。<br>
+                プレイヤーキャラクターがVaultに入ると、到着が「予定より202.3年遅れている」と告げられる。<br>
+                Vault 112実験の不定の期間に対応するため、Vaultは地熱発電のみを使用している。<br>
+                これはSure Power社の地熱ユニットとX-Tra Sure Power社の地熱ユニットのバックアップによって供給されている。<br>
+                メインホールにはThink Machine 3600rメインフレームが設置されている。<br>
+                通常のVaultコンピュータシステムの機能に加え、シミュレーション制御コンピュータとして機能し、メインのシミュレーション・プログラムを実行し、すべてのトランキリティ・ラウンジャーを同期させている。<br>
+            </p>
+
+            <p>
+                ロボブレインによって維持されていること、そして他の多くのVaultよりもうまく隠されていることから、Vault 112はキャピタル・ウエイストランドでVault 101以外に唯一無傷で残っているVaultである。<br>
+                この特定の実験の結果は曖昧である。<br>
+                ブラウンがシミュレーターを設計した際にサディスティックな衝動を満たすことだけを意図していたのなら、その目的は完全に達成された。<br>
+                一方、住民たちが永遠に生きるためのバーチャルな楽園を真摯に作ろうとしていたのであれば、その後、神のような立場が彼を狂気に陥れ、他の住民の存在を永遠の地獄にしたという事実は、実験が失敗だったことを意味する。<br>
+            </p>
+
+            <div class="note-figure">
+                <img src="./images/note/vault-112/FO3_TL_lounger_5.jpg" alt="Think Machine 3600r メインフレーム" onclick="openLightbox(this)">
+                <div class="image-caption">Think Machine 3600r メインフレーム</div>
+            </div>
+
+            <h2>注目のルート</h2>
+            <ul>
+                <li>監督官の部屋のパスワード — 倉庫室にある。</li>
+            </ul>
+
+            <h2>ノート</h2>
+            <ul>
+                <li>Vault 112はFallout 3で放射線や敵対的なミュータント・クリーチャーの影響をまったく受けていない唯一のVaultであり、さらにロボブレインを使用している。<br>
+                ロボブレインを持つもう一つのVaultはFallout 4のアドオン Far HarborのVault 118である。</li>
+                <li>Vault 112のジャンプスーツは、ローン・ワンダラーが最初に遭遇するロボブレインと、メインフロア上のキャットウォークからアクセスできる部屋からのみ入手できる。</li>
+                <li>ロボブレインは、Vaultを最初に訪れた時期に関係なく、ローン・ワンダラーが「予定より202.3年遅れている」と述べる。<br>
+                2277年に訪れた場合、Vault 112は大戦の2年前の2075年に封鎖されたことになる。</li>
+                <li>メインホールの13基のラウンジャーのうち、使用中なのは10基のみ。<br>
+                1基は故障しており、残りの2基はローン・ワンダラーとその父がシミュレーションに入るために使用される。</li>
+                <li>メインホールのラウンジャーモニターは操作可能。<br>
+                一部は被験者の情報を表示し、例えばオールド・レディ・ディザーズは「一貫性のない読み取り値」と「異常」を示す。</li>
+                <li>ロボブレインを攻撃しても敵対しないが、破壊するとカルマを失う。<br>
+                1体を破壊すると他の2体が意識不明になる。</li>
+                <li>Vaultのコンテナは安全に保管に使用できる。</li>
+                <li>このVaultは、元の居住者またはその子孫がまだ住んでいることが知られている数少ないVaultの一つ。<br>
+                他にはVault 101、Vault 8、Vault 34（フェラル・グール化しなかった住民はわずか4人）、Vault 21、Vault 81、Vault 84、Vault 118がある。</li>
+                <li>シタデルのマップにはVault 112は表示されない。<br>
+                同様に、Vault-Tec本社のメインフレームのVaultリストにもマップ上にマークされていない。</li>
+                <li>85名を収容可能とされているが、ラウンジャーは13基しかなく、そのうち3基はジェームズ到着前には使用されていなかった。</li>
+                <li>ドクター・ピンカートンのジャーナルの一つには、このVaultからメモリチップを盗み出し、ハークネスに「人生」の記憶を与えるために使用したと記されている。</li>
+                <li>Fallout: New Vegasでは、ヒドゥン・バレーとネリス空軍基地にトランキリティ・ラウンジャーが見られる。</li>
+            </ul>
+
+            <h2>登場作品</h2>
+            <p>
+                Vault 112はFallout 3にのみ登場する。<br>
+            </p>
+
+            <h2>舞台裏</h2>
+            <ul>
+                <li>レベルデザイナーのジェシー・タッカーがVault 112の作成とレイアウトを担当した。</li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/Vault_112_TQ.jpeg" alt="Vault 112のメインホール" onclick="openLightbox(this)">
+                    <div class="caption">メインホール</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/Vault_112_overseers_office_code.jpg" alt="監督官の部屋のパスワード" onclick="openLightbox(this)">
+                    <div class="caption">監督官の部屋のパスワード</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/Frag_grenades_Vault_112.jpg" alt="フラグ・グレネード" onclick="openLightbox(this)">
+                    <div class="caption">フラグ・グレネード</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FO3_TL_lounger_4.jpg" alt="トランキリティ・ラウンジャー" onclick="openLightbox(this)">
+                    <div class="caption">トランキリティ・ラウンジャー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FO3_TL_lounger_3.jpg" alt="トランキリティ・ラウンジャー" onclick="openLightbox(this)">
+                    <div class="caption">トランキリティ・ラウンジャー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FO3_TL_lounger_5.jpg" alt="Think Machine 3600r メインフレーム" onclick="openLightbox(this)">
+                    <div class="caption">Think Machine 3600r メインフレーム</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FO3_TL_lounger_2.jpg" alt="監督官のトランキリティ・ラウンジャー" onclick="openLightbox(this)">
+                    <div class="caption">監督官のトランキリティ・ラウンジャー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FO3_TL_lounger_1.jpg" alt="ラウンジャー" onclick="openLightbox(this)">
+                    <div class="caption">ラウンジャー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FO3_TL_lounger_6.jpg" alt="ラウンジャー" onclick="openLightbox(this)">
+                    <div class="caption">ラウンジャー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/Black_and_white_adventure_begins.jpg" alt="白黒の冒険が始まる" onclick="openLightbox(this)">
+                    <div class="caption">白黒の冒険が始まる</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FNV_VR_pod_1.png" alt="トランキリティ・ラウンジャーのレンダリング" onclick="openLightbox(this)">
+                    <div class="caption">トランキリティ・ラウンジャーのレンダリング</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FNV_VR_pod_2.png" alt="サイドビュー" onclick="openLightbox(this)">
+                    <div class="caption">サイドビュー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/FNV_VR_pod_3.png" alt="バックビュー" onclick="openLightbox(this)">
+                    <div class="caption">バックビュー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/note/vault-112/Vault_112_loungers_CA.jpg" alt="アダム・アダモウィッツによるコンセプトアート" onclick="openLightbox(this)">
+                    <div class="caption">アダム・アダモウィッツによるコンセプトアート</div>
+                </div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Vault 112は、Fallout 3のメインクエストの中でも最も記憶に残るロケーションの一つじゃないかなと思います。<br>
+                スミス・ケイシーのガレージの床からVaultに入っていく流れ、ロボブレインに「202年遅れています」って言われるあの瞬間、そしてラウンジャーに横たわる200年以上眠り続けた人々…全部が異質で引き込まれるんですよね〜。<br><br>
+                Vault実験の設計思想として見ても興味深くて、住民をバーチャルリアリティの中で「永遠に幸せに暮らさせる」というのは、Vaultの実験の中でも最も穏やかに聞こえる反面、その支配者が<a href="stanislaus-braun.html" class="auto-link">スタニスラウス・ブラウン</a>というサイコパスだったせいで「永遠の地獄」に変わってしまったっていうのが何とも皮肉です。<br>
+                ブラウンの監督官オフィスに専用のラウンジャーがあるっていうのもまた、彼の特権意識と支配欲を物語っていて、設計レベルで組み込まれた恐ろしさを感じます。<br><br>
+                ロボブレインがメンテナンスを担当しているおかげで、キャピタル・ウエイストランドで唯一無傷のVault（Vault 101を除く）っていうのもすごい。<br>
+                200年以上、ロボブレインだけで施設を完璧に維持し続けたっていう技術力と、それでも中の人間たちは「玩具」にされているっていう対比がFalloutの世界観を濃縮している感じがします。<br>
+                Fallout: New Vegasでもトランキリティ・ラウンジャーがちらっと登場するのもファンとしては嬉しいポイントですね〜！<br>
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FO3</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Location</span>
+                </div>
+    <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Vault_112" target="_blank" rel="noopener">Vault 112</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+            <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        function openLightbox(el) {
+            const overlay = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = el.src;
+            overlay.classList.add('active');
+        }
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                isLiked = false;
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            } else {
+                isLiked = true;
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); }
+            }
+            btn.disabled = false;
+        }
+
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; }
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; }
+            countSpan.textContent = count;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) { count = data.like_count; }
+                else if (error && error.code === 'PGRST116') { count = 0; }
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+
+        // ========== コメント機能 ==========
+        const _commentArticleId = 'note_vault_112';
+        const _commentArticleName = 'Vault 112';
+        const _commentArticleUrl = 'vault-112.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d/60)+'分前';
+            if (d < 86400) return Math.floor(d/3600)+'時間前';
+            if (d < 86400*7) return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const hp = document.getElementById('hp_field');
+            if (hp && hp.value) return;
+            const ngWords = ['http://', 'https://', 'LINE', 'DM', 'discord.gg'];
+            if (ngWords.some(w => content.includes(w))) { showCommentMsg('不正な内容が含まれています。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' });
+            if (error) { alert('削除失敗: ' + error.message); return; }
+            await loadComments();
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+                e.preventDefault();
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; }
+                const pw = prompt('管理者パスワードを入力してください:');
+                if (!pw) return;
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。コメントの🗑ボタンで削除できます。'); }
+                else { alert('パスワードが違います。'); }
+            }
+        });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+
+</html>

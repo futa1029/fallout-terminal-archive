@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>The Whitespring | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/the-whitespring.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="The Whitespring | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ホワイトスプリングのFallout 76ロア記事。1858年創業の高級リゾートの栄光と没落、エンクレイヴのバンカー、そして大戦後の生存者たちの物語。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/the-whitespring/front.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/the-whitespring.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="The Whitespring | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ホワイトスプリング — 1858年創業の高級リゾート。エンクレイヴのバンカー、ロボット化、大戦後の物語。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/the-whitespring/front.png">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        /* Sidebar InfoBox */
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        /* Content Area */
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .like-button:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* ホロテープボックス */
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            background: rgba(255, 152, 0, 0.08);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .holotape-box .holotape-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ff9800;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ノートブロック（メモ・ターミナルエントリ用） */
+        .note-block {
+            border-left: 3px solid #888;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px 20px;
+            margin: 20px 0;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .note-block .note-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ギャラリー */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .infobox {
+                position: static;
+            }
+        }
+
+        /* コメントセクション */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
+
+        .comment-form {
+            margin-bottom: 20px;
+        }
+
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            font-size: 0.95em;
+            padding: 10px;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 70px;
+            outline: none;
+            transition: box-shadow 0.2s;
+        }
+
+        .comment-textarea:focus {
+            box-shadow: 0 0 8px var(--accent-color);
+        }
+
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .comment-submit-btn:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        .comment-submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .comment-delete-btn:hover {
+            opacity: 1;
+        }
+
+        .comment-empty,
+        .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+    </style>
+</head>
+<body data-article-category="場所" data-article-appearance="Fallout 76">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">The Whitespring</h3>
+            <img src="images/note_extracted/the-whitespring/front.png" alt="ホワイトスプリング正面">
+            <img src="images/note_extracted/the-whitespring/map.png" alt="マップ上の位置" style="margin-top:-10px;">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>場所</span></div>
+            <div class="infobox-row"><span class="infobox-label">種類</span><span>高級リゾート</span></div>
+            <div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯 / アパラチア</span></div>
+            <div class="infobox-row"><span class="infobox-label">構成</span><span>ホワイトスプリング・リゾート<br>ホワイトスプリング敷地<br>ホワイトスプリング・バンカー</span></div>
+            <div class="infobox-row"><span class="infobox-label">指導者</span><span>ウィルバー・エインズリー3世（戦前）</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_the-whitespring" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>The Whitespring<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ホワイトスプリング</span></h1>
+
+            <h2>概要</h2>
+            <p>
+                <strong>ホワイトスプリング</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>の森林地帯に位置する広大な高級リゾート施設の総称です。<br>
+                ホワイトスプリング・リゾート（ホテル本館）、ホワイトスプリング敷地（ゴルフコースや付帯施設）、そしてホワイトスプリング・バンカー（地下施設）で構成されています。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                <strong>1858年</strong>に建設され、敷地内の天然硫黄泉「ホワイト・サルファー・スプリングス」にちなんで名付けられました。<br>
+                ホワイトスプリングはその南部スタイルで有名で、連邦政府との歴史的な結びつきを持ち、<strong>2077年までに31人の現職アメリカ大統領</strong>がゲストとして訪れています。うち12人はホワイトスプリング大統領コテージ・博物館に宿泊しました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring/lobby.png" alt="ホワイトスプリング・ロビー">
+            <div class="image-caption">ホワイトスプリング・リゾートのロビー</div>
+
+            <h2>財政危機と2080イニシアチブ</h2>
+            <p>
+                大戦前、ホワイトスプリングは深刻な財政難に陥っていました。<br>
+                <strong>2065年頃</strong>には利益が出なくなり、運営資金と改装ローンのために周辺の土地の多くを売却せざるを得なくなりました。
+            </p>
+            <p>
+                こうした中、<strong>2075年5月27日</strong>に「<strong>2080イニシアチブ</strong>」が発表されました。<br>
+                これは5年間にわたる大規模改装計画で、以下の4つのプロジェクトを含んでいました:
+            </p>
+            <ul>
+                <li>🏠 <strong>ホームステッズ</strong> — 敷地内への高級住宅分譲</li>
+                <li>⛳ <strong>スプリングヒル</strong> — ゴルフコースの改修</li>
+                <li>🤖 <strong>アイアンクラッド・サービス</strong> — ロボットによるスタッフ置き換え</li>
+                <li>🏛️ <strong>モダン・ヘリテージ</strong> — 施設の近代化・改装</li>
+            </ul>
+            <p>
+                しかし、ホームステッズは100区画中5区画しか売れず、財政面のテコ入れは大失敗に終わりました。<br>
+                マネージャーの<strong>ジェームズ・ウィルコックス</strong>と取締役会は、即座の崩壊を避けるため投資家への報告を隠蔽しました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring/bicentennial.png" alt="建国200周年記念プレート">
+            <div class="image-caption">建国200周年記念プレート</div>
+
+            <h2>アイアンクラッド・サービスの惨事</h2>
+            <p>
+                2077年7月、残りの警備・造園スタッフがアイアンクラッドのロボットに置き換えられ、数ヶ月かけてホテル全体のスタッフが機械化されました。<br>
+                従業員は自分の後任であるロボットの訓練を手伝うことを求められました。
+            </p>
+            <p>
+                この措置はPR上の悪夢となりました。<strong>チャールストン・ヘラルド</strong>紙はリゾートの経営陣を「ロボットに頼る大企業の象徴」として批判。<br>
+                去った従業員の多くは借金を抱え、残ったわずかな者もロボットの故障を喜ぶ（延長雇用の口実になるため）という有様でした。
+            </p>
+            <p>
+                <strong>10月</strong>までに、軍用グレードのロボットをサービス業に転用した結果は惨憺たるものでした:
+            </p>
+            <ul>
+                <li>🤖 <strong>アサルトロン</strong>のマッサージ師 — 繊細な圧力センサーがなく、脊椎損傷を連発</li>
+                <li>🧳 ベルボーイロボット — 1週間でスーツケース24個を紛失</li>
+                <li>🍳 ロボットシェフ — キッチンで火災を起こす</li>
+                <li>🍫 キャンディショップのロボット — ダークチョコレートで店を水没させる</li>
+            </ul>
+
+            <h2>スプリングヒル改修の失敗</h2>
+            <p>
+                9月になると、スプリングヒル・ゴルフコースの改修プロジェクトも破綻しました。<br>
+                CEOの<strong>ウィルバー・エインズリー3世</strong>は、経験のない息子<strong>ライアン・エインズリー</strong>（核エンジニア出身）を「主任建築家」に任命しました。<br>
+                プロジェクトはすぐに暴走し、予算超過、工期遅延、品質低下に陥りました。<br>
+                ウィルコックスがライアンの解雇を求めると、CEO から逆に「お前がクビになるぞ」と脅されました。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring/golf.png" alt="ゴルフコース">
+            <div class="image-caption">ホワイトスプリング・ゴルフコース</div>
+
+            <h2>エンクレイヴ・バンカー</h2>
+            <p>
+                ホワイトスプリングの財政難は、<strong>トーマス・エッカート</strong>の思惑にとって好都合でした。<br>
+                彼はリゾート地下に<strong>ホワイトスプリング・バンカー</strong>の建設を資金援助し、エンクレイヴのメンバーが使用する大規模な自動化シェルターを構築しました。
+            </p>
+            <p>
+                ホテルのコンピュータネットワークは<strong>MODUS</strong>に接続され、すべてのターミナルは隔離されました。<br>
+                配管は封印・隠蔽され、技術仕様書は偽造されてバンカーへの接続は秘匿されました。
+            </p>
+            <p>
+                ホワイトスプリングが選ばれた理由は:
+            </p>
+            <ul>
+                <li>🏔️ 山岳地帯と卓越風による核降下物の最小化</li>
+                <li>🤖 ロボットによる常時監視体制</li>
+                <li>🏭 バンカーの完全自動製造・組立システム（損失ロボットの即時補充が可能）</li>
+                <li>💰 債務を抱えるホテルには到底手が出ない最先端技術</li>
+            </ul>
+
+            <h2>大戦</h2>
+            <p>
+                <strong>大戦</strong>が始まったとき、スタッフとゲストのほとんどがリゾートから逃げ出しました。<br>
+                残ったのはスタッフ4名、ゲスト92名、そして<strong>約500体のロボット</strong>でした。
+            </p>
+            <p>
+                キャンディショップのカウンターにいた事務員<strong>ジョイス・イーストン</strong>が、残りのスタッフから指揮を執るよう選ばれました。<br>
+                翌日、<strong>ルー・パーメスト</strong>がロボットを再プログラムし、彼女をアシスタント・マネージャーとして認識させました。
+            </p>
+            <p>
+                ジョイスの指揮の下:
+            </p>
+            <ul>
+                <li>ホテルを封鎖し、放射線が落ち着くまで出入りを禁止</li>
+                <li>物資の在庫管理を実施 — わずかな人数のため食料は<strong>10年分</strong>あった</li>
+                <li>ロボットを戦闘用に再装備</li>
+                <li>2078年夏、廃車やコテージからの資源回収チームを派遣</li>
+                <li>難民が現れたが、承認した者のみ受け入れる方針を貫いた</li>
+            </ul>
+
+            <h2>冬の終わりと追放</h2>
+            <p>
+                <strong>2078年12月</strong>、ジョイスの楽観は尽きました。<br>
+                「モダン・ヘリテージ」改装がロボットのルーティンに深く組み込まれており、<strong>2079年1月1日</strong>に改装が自動的に開始される予定でした。<br>
+                ゲストとスタッフは部屋から締め出され、必須アップデートにより「不法占拠者」として追い出されることになります——建築検査官が到着するまでは。検査官が来る見込みがないことは誰もが知っていました。
+            </p>
+            <p>
+                スタッフとゲストは出発の準備を始めました:
+            </p>
+            <ul>
+                <li>アーティザンズ・コーナーでサバイバル講習</li>
+                <li>パッティンググリーンで射撃・護身術のレッスン</li>
+                <li>大晦日のガラパーティーで残りの備蓄を全員に分配</li>
+            </ul>
+            <p>
+                一部の生存者はゴルフクラブでロボットを制圧しようとし、残りは逃げ出しました。<br>
+                ポーラとジョイスはチャールストンへのキャラバンを率い、ルーと仲間たちはゴルフクラブのロボットと賭けに出ました。<br>
+                その他の者はサニートップ・スキーレーンやプレザントバレーのリゾートを目指しました。
+            </p>
+            <p>
+                ホワイトスプリングはロボットの管理下で放棄され、<strong>2086年5月30日</strong>に「O.R.」というイニシャルの人物がロックダウンを解除し、公共施設をウェイストランドに開放するまで、何年もの間閉ざされたままでした。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring/refuge.png" alt="ホワイトスプリング避難所">
+            <div class="image-caption">ホワイトスプリング避難所の入口</div>
+
+            <h2>ホワイトスプリング避難所</h2>
+            <p>
+                その後、アパラチアに人々が再定住し始めると、<a href="responders.html" class="auto-link">レスポンダー</a>の再建を目指すグループが本部をホワイトスプリングに設立しました。<br>
+                リゾート本館を引き継いだこのプロジェクトは「<strong>ホワイトスプリング避難所</strong>」として知られるようになりました。<br>
+                ザ・ピットを含む荒れ地中から難民が集まり、レスポンダーによって多くの新しい設備が整えられています。
+            </p>
+
+            <h2>レイアウト</h2>
+            <p>
+                ホワイトスプリングはそれ自体が一つの広大なエリアです。<br>
+                フェンスとゴルフコースに囲まれ、ロボットの軍団がパトロールしています。<br>
+                リゾート本体はロボットスタッフによってほぼ完璧な状態に維持されており、その美しさは際立っています。
+            </p>
+
+            <img class="article-image" src="images/note_extracted/the-whitespring/shops.png" alt="ショッピングエリア">
+            <div class="image-caption">リゾート内のショッピングエリア</div>
+
+            <h2>舞台裏 — 実在のモデル「ザ・グリーンブライアー」</h2>
+            <p>
+                ホワイトスプリングのモデルとなったのは、ウェストバージニア州ホワイト・サルファー・スプリングスにある実在の高級リゾート<strong>「ザ・グリーンブライアー」（The Greenbrier）</strong>です。
+            </p>
+            <img class="article-image" src="images/note_extracted/the-whitespring/greenbrier_real.jpg" alt="ザ・グリーンブライアー">
+            <div class="image-caption">実在のザ・グリーンブライアー（パブリックドメイン）</div>
+            <p>
+                ザ・グリーンブライアーは<strong>1778年</strong>から続く歴史を持ち、アレゲーニー山脈に位置する全米有数のリゾートホテルです。<br>
+                天然の鉱泉の治療効果を求めて政治家や富裕層が集まり、<strong>マーティン・ヴァン・ビューレン</strong>や<strong>ジョン・タイラー</strong>など複数の大統領が宿泊しました。<br>
+                1858年には「グランド・セントラル・ホテル」（通称「オールド・ホワイト」）が建設されています。
+            </p>
+            <p>
+                南北戦争中は病院・軍事司令部として使用され、第二次世界大戦中には日本・ドイツ・イタリアの外交官の抑留施設、さらに<strong>アシュフォード総合病院</strong>として24,000人以上の兵士を治療しました。
+            </p>
+            <p>
+                最もゲームとの関連が深いのは、<strong>1959〜1962年に秘密裏に建設された「プロジェクト・グリーク・アイランド」</strong>です。<br>
+                これはホテル地下に核攻撃時に<strong>米国議会</strong>を収容するための緊急移転センターで、<strong>30年間秘密のまま維持</strong>され、1992年に機密解除されました。<br>
+                この地下バンカーの実話が、ゲーム内のエンクレイヴ・バンカーの直接的なインスピレーションとなっています。
+            </p>
+            <p>
+                2009年にはウェストバージニア州の実業家<strong>ジム・ジャスティス</strong>（後の州知事）が買収し、カジノやPGAツアーイベントなどを導入して復活を遂げました。<br>
+                現在も国定歴史建造物に指定されている名門リゾートです。
+            </p>
+
+            <h2>登場作品</h2>
+            <p>ホワイトスプリングはFallout 76にのみ登場します。</p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/front.png" alt="正面"><div class="caption">リゾート正面</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/lobby.png" alt="ロビー"><div class="caption">メインロビー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/bar.png" alt="ロビーバー"><div class="caption">ロビーバー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/shops.png" alt="ショップ"><div class="caption">ショッピングエリア</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/interior.png" alt="内装"><div class="caption">リゾート内装</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/golf.png" alt="ゴルフコース"><div class="caption">ゴルフコース</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/refuge.png" alt="避難所"><div class="caption">ホワイトスプリング避難所</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/bicentennial.png" alt="記念プレート"><div class="caption">建国200周年記念プレート</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/the-whitespring/logo.png" alt="ロゴ"><div class="caption">ホワイトスプリング・ロゴ</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                キャンディショップの事務員が、世界の終末にリゾートの指揮を取る——Fallout 76で最も印象的なリーダーシップの物語の一つです。<br><br>
+                ジョイス・イーストンの冷静な判断力——ホテルの封鎖、ロボットの掌握、厳格な入場管理——は、Vault監督官と同等の采配です。<br>
+                そして「最高級リゾートに閉じ込められるのは最悪の運命ではない」という一節の苦いユーモアも、Falloutらしさに溢れています。<br><br>
+                実在のグリーンブライアーと核シェルター「プロジェクト・グリーク・アイランド」の実話を知ると、ホワイトスプリング・バンカーの設定がいかに現実に根ざしているかが分かります。<br>
+                フィクションと現実が最も美しく重なり合う場所、それがホワイトスプリングです。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/The_Whitespring" target="_blank" rel="noopener">The Whitespring</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>The photo of The Greenbrier is in the <a href="https://commons.wikimedia.org/wiki/File:The_Greenbrier,_White_Sulphur_Springs,_West_Virginia_(73367).jpg" target="_blank" rel="noopener">public domain</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#場所</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#森林地帯</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#エンクレイヴ</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#リゾート</span>
+                </div>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_the-whitespring'; const _commentArticleName = 'The Whitespring'; const _commentArticleUrl = 'the-whitespring.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>
