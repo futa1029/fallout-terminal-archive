@@ -77,9 +77,139 @@
     </style>
 </head>
 <body data-article-category="人物" data-article-appearance="Fallout 76">
-<div class="container"><aside class="infobox"><h3 style="margin-top:0;text-align:center;">Cassie Halloway</h3><img src="images/note_extracted/cassie-halloway/img_main.png" alt="Cassie Halloway"><div class="infobox-row"><span class="infobox-label">所属</span><span>Vault 96</span></div><div class="infobox-row"><span class="infobox-label">場所</span><span>Vault 96<br />Foundation supply room</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside><main class="content"><div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_cassie_halloway" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div><h1>Cassie Halloway</h1><h2>概要</h2>
-<p>Prior to traveling to Appalachia, Cassie lived as a farmer "out West" and remained in contact with her uncle in Appalachia, Art Knapp, by writing letters to him.</p>
-<p>At some point, she decided to move to Foundation and help them with farming. Cassie traveled alongside a Blue Ridge caravan that took 15 days of walking before reaching the Mire. After staying the night in an old train tunnel to avoid a major radstorm,</p>
-<p>They were then brought to cells in Vault 96 and were used as unwilling test subjects by Edgar Blackburn. Cassie was tested on like the other members of the caravan; Blackburn decided to dose her with diseases such as sludge lung for "testing incubation and immune response times" - though she claims she's "holding up" and "some of the others are in worse shape." Cassie, along with Ashmore, Petersen and Wilkins are the only known survivors. Cassie tried to look out for them in their desperate situation.</p>
-<p>After the ordeal and her rescue by the Vault Dweller and Odessa Valdez, Cassie finally reached Foundation, where she is currently helping at the supply room.</p>
-<div class="quote-box"><b>感想</b><br><br>Vault 96に関わるキャラクター。<br>アパラチアの物語を彩る存在です。</div><div style="margin-top:30px;border-top:1px dashed var(--accent-color);padding-top:20px;font-size:0.85em;color:#888;"><p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Cassie%20Halloway" target="_blank" rel="noopener">Cassie Halloway</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia</a>.<br>Licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p><p style="margin-top:15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color:var(--accent-color);">寄付を受け付けております</a>。</p></div><div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div></main></div><div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div><script>const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(b){const a=b.getAttribute('data-article-id');let l=localStorage.getItem(a+'_liked')==='true';b.disabled=true;if(l){const{data}=await supabaseClient.rpc('decrement_like',{article_id_param:a});localStorage.setItem(a+'_liked','false');uLB(b,false,data);}else{const{data}=await supabaseClient.rpc('increment_like',{article_id_param:a});localStorage.setItem(a+'_liked','true');uLB(b,true,data);}b.disabled=false;}function uLB(b,l,c){b.querySelector('.heart').textContent=l?'\u2665':'\u2661';l?b.classList.add('liked'):b.classList.remove('liked');b.querySelector('.like-count').textContent=c;}document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();uLB(b,localStorage.getItem(a+'_liked')==='true',data?data.like_count:0);}document.querySelectorAll('.content img,.infobox img').forEach(i=>{i.onclick=e=>{e.stopPropagation();document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');};});const _a='note_cassie_halloway';const _n='Cassie Halloway';const _u='cassie-halloway.html';function uc(){document.getElementById('char-count').textContent=document.getElementById('comment-input').value.length;}async function lc(){const{data}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_a).order('created_at',{ascending:false}).limit(50);const l=document.getElementById('comments-list');if(!data||!data.length){l.innerHTML='<div class="comment-empty">まだコメントがありません。</div>';return;}l.innerHTML=data.map(c=>'<div class="comment-item"><div class="comment-meta"><span>'+new Date(c.created_at).toLocaleDateString('ja-JP')+'</span></div><div class="comment-body">'+c.content.replace(/</g,'&lt;')+'</div></div>').join('');}window.updateCharCount=uc;window.submitComment=async function(){const i=document.getElementById('comment-input');const v=i.value.trim();if(!v||v.length>100)return;await supabaseClient.from('comments').insert({article_id:_a,article_name:_n,article_url:_u,content:v});i.value='';uc();lc();};lc();});</script><script src="article-common.js" defer></script></body></html>
+<div class="container"><aside class="infobox"><h3 style="margin-top:0;text-align:center;">Cassie Halloway</h3><img src="images/note_extracted/cassie-halloway/img_main.png" alt="Cassie Halloway"><div class="infobox-row"><span class="infobox-label">所属</span><span>Vault 96</span></div><div class="infobox-row"><span class="infobox-label">場所</span><span>Vault 96<br />Foundation supply room</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside><main class="content"><div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_cassie_halloway" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div><h1>Cassie Halloway<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">キャシー・ハロウェイ</span></h1>
+<h2>概要</h2>
+<p>アパラチアへ旅立つ前、キャシーは「西部」の農家として生活しており、アパラチアにいる叔父のアート・ナップと連絡を取り合い、手紙を書いていた。</p>
+<p>ある時、彼女はファウンデーションに移住し、彼らの農業を手伝うことを決心する。キャシーはブルーリッジ・キャラバンに同行して、沼地地帯に到着するまで15日間歩き続けた。凄まじいラッドストームを避けるため、古い列車のトンネルで夜を明かした後、キャラバンはヘルキャット・カンパニーの傭兵たちに待ち伏せされ、メンバー全員が捕らえられてしまった。</p>
+<p>その後、彼らはVault 96の独房に連行され、エドガー・ブラックバーンによる人体実験の被験者にされた。キャシーも他のメンバーと同様に実験され、ブラックバーンは「潜伏期間と免疫反応時間のテスト」のためにスラッジ肺などの病気を彼女に投与した。それでも彼女は「持ちこたえている」「他のみんなはもっと酷い状態だ」と主張していた。キャシーは、アシュモア、ピーターセン、ウィルキンスと共に数少ない生存者であった。キャシーは絶望的な状況の中で彼らを守ろうと奮闘していた。</p>
+<p>過酷な試練の後、居住者とオデッサ・バルデスの手によって救出されたキャシーは、ようやくファウンデーションへとたどり着き、現在は物資保管室で手伝いをしている。</p>
+
+<h2>関連するノート・メモ</h2>
+<div class="note-box">
+    <h3 class="note-icon">キャラバンの積荷目録</h3>
+    <div class="transcript" style="font-family: 'Share Tech Mono', monospace; font-size: 0.85em;">
+        出発：確認済み（ケン・ターナー）<br>
+        <br>
+        護衛：アリエス<br>
+        <br>
+        グループ詳細---<br>
+        <br>
+        F. フェルナンデス - 缶詰工場オーナー<br>
+        R. フェルナンデス - 商人（食料品）<br>
+        ミネルヴァ - 商人（設計図、レシピ）<br>
+        トミー・テン・トウズ - 護衛（非番）<br>
+        L. リース - 農家（茶葉）<br>
+        J. クラーク - 商人（花火） <br>
+        <br>
+        到着：確認済み（ヴィニー）<br>
+        <br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        出発：確認済み（ケン・ターナー）<br>
+        <br>
+        護衛：キーラン<br>
+        <br>
+        グループ詳細---<br>
+        <br>
+        Dr. E. ブラックバーン - 医師<br>
+        C. マーシュ - 地図作成者（輸送中に行方不明）<br>
+        J. モレロ - メカニック<br>
+        ユージニー - 商人（銃器）<br>
+        L. チャペル - 商人（おもちゃ、コレクターアイテム）<br>
+        J. ブラッシュ - 音楽家<br>
+        A. ロリンズ - インテリアデコレーター<br>
+        V. マクリアリー - 獣医 <br>
+        <br>
+        到着：確認済み（ジョアンナ）<br>
+        <br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        出発：確認済み（ケン・ターナー）<br>
+        <br>
+        護衛：リビー<br>
+        <br>
+        グループ詳細---<br>
+        <br>
+        Dr. E. ブラックバーン - 医師（またか）<br>
+        C. ティンマーマン - 商人（家具）<br>
+        ジョニー・ビルズ - 護衛（非番）<br>
+        J. マククォリー - 翻訳家<br>
+        B. シュナウザー - 醸造家（行方不明）<br>
+        C. マクデヴィット - 商人（レアなホロテープ）（行方不明）<br>
+        （もしかして支払いをバックレて私たちを置いていった？）<br>
+        <br>
+        到着：確認済み（ヴィニー）<br>
+        <br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/<br>
+        出発：確認済み（ケン・ターナー）<br>
+        <br>
+        護衛：ガエターノ<br>
+        <br>
+        グループ詳細---<br>
+        <br>
+        Dr. E. ブラックバーン - 医師（また？？）<br>
+        C. ハロウェイ - 農家（「色々な種類」）<br>
+        C. バーナード - 建築家<br>
+        D. ボダート - ロボット工学者<br>
+        S. モッシー - 現場監督<br>
+        J. ダラード - 商人（ターミナル部品）<br>
+        M. タッカー - 商人（建築資材）<br>
+        R. ボイエ - 商人（武器モジュール）<br>
+        B. コフマン - 植物学者<br>
+        A. ファイン - ハンター（昆虫）<br>
+        T. ロビンス - ハンター（昆虫）<br>
+        D. ターナー - シェフ（昆虫...）<br>
+        C. シェパード - 人形遣い<br>
+        M. レイモント - 登山家<br>
+        I. ノルソン - 彫刻家<br>
+        <br>
+        到着：<br>
+    </div>
+</div>
+<div class="note-figure">
+    <img src="images/note_extracted/cassie-halloway/Caravan manifest.png" alt="キャラバンの積荷目録" style="max-width:300px; display:block; margin: 0 auto; border: 1px solid #333;">
+    <div class="image-caption">キャラバンの積荷目録</div>
+</div>
+
+<div class="note-box">
+    <h3 class="note-icon">キャシーの日記</h3>
+    <div class="transcript">
+        1日目 - 出発<br>
+        <br>
+        新しい旅の始まり！ファウンデーションよ、キャシーのためにレッドカーペットを用意して。アパラチアの農業をひっくり返してあげるんだから！道中で見る素晴らしいものをすべて記録するために、この小さな日記をつけることにした…幸運を祈って！<br>
+        <br>
+        5日目 - 最悪<br>
+        <br>
+        歩く。私たちがすることはそれだけ。歩く。燃え落ちた建物…済。くすぶる枯れ木の森…済。あら見て、空っぽのレッドロケット・ガスステーション。結局のところ、なんてスリリングな遠足のかしら。おまけに、私たちのグループには不気味なハゲ頭の男がいる。彼が私をじっと見ているのを何度も捕まえた。目はどこに付いてるのよ、変態ドクター。<br>
+        <br>
+        15日目 - 近くて遠い<br>
+        <br>
+        ついにアパラチアが目と鼻の先まで来たけど、外はラッドストームが吹き荒れている。私たちは一日中この古い列車のトンネルを歩き続けていて、今は嵐が過ぎ去るまで外への一歩も踏み出せない。歩き疲れたから、居心地の良い場所を見つけて昼寝してくる。<br>
+        <br>
+        15日目 - 夜<br>
+        <br>
+        ちょっと、すごく変。突然、武装した連中が現れた。彼らはただその変なドクターとおしゃべりして座っている。みんな少し緊張しているみたい、護衛でさえも。待って、彼ら護衛の銃を奪ったわ！一体何が起こってるの！？ やばい見られた 誰かこれを見つけたら助けて!!
+    </div>
+</div>
+<div class="note-figure">
+    <img src="images/note_extracted/cassie-halloway/Cassie's journal.jpg" alt="キャシーの日記" style="max-width:300px; display:block; margin: 0 auto; border: 1px solid #333;">
+    <div class="image-caption">キャシーの日記</div>
+</div>
+
+<h2>GALLERY</h2>
+<div class="gallery">
+    <div class="gallery-item"><img src="images/note_extracted/cassie-halloway/FO76SR Cassie locked up.png" alt="キャシー（Vault 96の独房）"><div class="caption">Vault 96の独房に監禁されたキャシーとアシュモア</div></div>
+    <div class="gallery-item"><img src="images/note_extracted/cassie-halloway/Cassie Halloway.png" alt="ファウンデーションの物資保管室にいるキャシー"><div class="caption">ファウンデーションの物資保管室にいるキャシー</div></div>
+    <div class="gallery-item"><img src="images/note_extracted/cassie-halloway/FO76SR Cassie eating.png" alt="食事中のキャシー"><div class="caption">食事中のキャシー</div></div>
+</div>
+
+<div class="quote-box">
+    <b>感想</b><br><br>
+    Steel Reignアップデートで登場したキャラクターで、悲惨な人体実験の被害者でもあります。<br>
+    彼女が残した日記を読むと、アパラチアへ希望を抱いてやってきた若者が直面した過酷すぎる現実がよく分かってつらい。<br>
+    不気味なドクター（ブラックバーン）の視線を日記に書き残していたり、武装集団の襲撃に震える様子が克明に描かれていて、ゲームのメモの中でもかなり印象深いです。<br>
+    数多くの犠牲者が出た中で、彼女が生き残ってファウンデーションで安全に暮らせるようになったのは本当に良かった。
+</div><div style="margin-top:30px;border-top:1px dashed var(--accent-color);padding-top:20px;font-size:0.85em;color:#888;"><p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Cassie%20Halloway" target="_blank" rel="noopener">Cassie Halloway</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia</a>.<br>Licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p><p style="margin-top:15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color:var(--accent-color);">寄付を受け付けております</a>。</p></div><div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div></main></div><div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div><script>const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(b){const a=b.getAttribute('data-article-id');let l=localStorage.getItem(a+'_liked')==='true';b.disabled=true;if(l){const{data}=await supabaseClient.rpc('decrement_like',{article_id_param:a});localStorage.setItem(a+'_liked','false');uLB(b,false,data);}else{const{data}=await supabaseClient.rpc('increment_like',{article_id_param:a});localStorage.setItem(a+'_liked','true');uLB(b,true,data);}b.disabled=false;}function uLB(b,l,c){b.querySelector('.heart').textContent=l?'\u2665':'\u2661';l?b.classList.add('liked'):b.classList.remove('liked');b.querySelector('.like-count').textContent=c;}document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();uLB(b,localStorage.getItem(a+'_liked')==='true',data?data.like_count:0);}document.querySelectorAll('.content img,.infobox img').forEach(i=>{i.onclick=e=>{e.stopPropagation();document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');};});const _a='note_cassie_halloway';const _n='Cassie Halloway';const _u='cassie-halloway.html';function uc(){document.getElementById('char-count').textContent=document.getElementById('comment-input').value.length;}async function lc(){const{data}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_a).order('created_at',{ascending:false}).limit(50);const l=document.getElementById('comments-list');if(!data||!data.length){l.innerHTML='<div class="comment-empty">まだコメントがありません。</div>';return;}l.innerHTML=data.map(c=>'<div class="comment-item"><div class="comment-meta"><span>'+new Date(c.created_at).toLocaleDateString('ja-JP')+'</span></div><div class="comment-body">'+c.content.replace(/</g,'&lt;')+'</div></div>').join('');}window.updateCharCount=uc;window.submitComment=async function(){const i=document.getElementById('comment-input');const v=i.value.trim();if(!v||v.length>100)return;await supabaseClient.from('comments').insert({article_id:_a,article_name:_n,article_url:_u,content:v});i.value='';uc();lc();};lc();});</script><script src="article-common.js" defer></script></body></html>

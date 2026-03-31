@@ -121,18 +121,30 @@
             <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_huntsmans_glade" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
             <h1>Huntsman's Glade<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">ハンツマンズ・グレイド</span></h1>
             <h2>概要</h2>
-<p>'''Huntsman's Glade''' は森林地帯 地域 of アパラチア. It はサマーズビル Dam.にあるunmarked ロケーションですの近くに位置しています</p>
-<h2>レイアウト</h2>
-<p>Huntsman's Glade はdried サマーズビル Lake with a centrally-located scorchbeast lure. The lure sits on top of a beached, black and white trawler boat. A small defensive guard post lies その方向には of the boat.にあるlargely flat, empty, areaです</p>
-<h2>補足</h2>
-<p>Huntsman's Glade is referred to as "Military Comms Tower サマーズビル" in the official game guide.</p>
-<h2>登場作品</h2>
-<p>ハンツマンズ・グレイドはFallout 76に登場します。</p>
+<p><b>ハンツマンズ・グレイド（Huntsman's Glade）</b>は、アパラチアの森林地帯（The Forest）地域にあるマークされていないロケーション（POI）である。<br>
+サマーズビルダムの北東に位置している。</p>
 
-            
+<h2>レイアウト</h2>
+<p>ハンツマンズ・グレイドは、干上がったサマーズビル湖の底にある、広くて平坦な何もないエリアである。中央には乗り上げた白黒のトロール船があり、その上にスコーチビーストを誘き寄せるためのルアー（発信機）が設置されている。船の西側には小さな防御用の監視ポストがある。</p>
+
+<h2>補足</h2>
+<ul>
+<li>公式ゲームガイドでは、ハンツマンズ・グレイドは「サマーズビル軍事通信タワー（Military Comms Tower Summersville）」と呼ばれている。</li>
+</ul>
+
+<h2>関連クエスト</h2>
+<ul>
+<li><b>It's a Trap</b></li>
+</ul>
+
+<h2>登場作品</h2>
+<p>ハンツマンズ・グレイドはFallout 76に登場する。</p>
+
             <div class="quote-box">
                 <b>感想</b><br><br>
-                ハンツマンズ・グレイドには、核戦争以前の生活の痕跡が色濃く残っています。<br>Vault-Tecの実験施設は、いつ訪れてもゾクゾクする発見があります。<br>彼らが住民に対して行った実験の記録を読むと、人間の倫理観について考えさせられます。<br><br><br>ターミナルやメモに残された記録を読み解いていくと、このロケーションに関わった人々の生々しい物語が浮かび上がってきます。<br>こうした細部のロアを追いかけるのが、Fallout 76の探索の醍醐味ですね。
+                干上がったサマーズビル湖の湖底に船が乗り上げており、その上にスコーチビースト誘引用のルアーが設置されているユニークな場所です。<br>
+<br>
+ここは公開イベント「It's a Trap」の専用発生ロケーションとして用意された場所であり、スコーチビーストを地上に引きずり下ろして討伐するためにB.O.S.が準備した罠であることが伺えます。普段は何もない湖底の荒れ地ですが、イベント発生時には激戦の舞台へと様変わりします。
             </div>
 
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
@@ -165,7 +177,7 @@
         async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
         function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
         document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
-        const _commentArticleId = 'note_huntsmans_glade'; const _commentArticleName = 'Huntsman's Glade'; const _commentArticleUrl = 'huntsmans-glade.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        const _commentArticleId = 'note_huntsmans_glade'; const _commentArticleName = "Huntsman's Glade"; const _commentArticleUrl = 'huntsmans-glade.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
         function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
         function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
         function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }

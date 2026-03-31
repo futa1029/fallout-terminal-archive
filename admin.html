@@ -563,6 +563,12 @@
                     <input type="text" id="searchInput" class="search-input" placeholder="記事名を検索..." oninput="debouncedFilter()">
                 </div>
                 <div class="control-row">
+                    <span class="control-label">STATUS:</span>
+                    <button class="filter-btn active" data-status="all" onclick="setStatus('all')">ALL</button>
+                    <button class="filter-btn" data-status="draft" onclick="setStatus('draft')">非公開 (DRAFT)</button>
+                    <button class="filter-btn" data-status="published" onclick="setStatus('published')">公開済み</button>
+                </div>
+                <div class="control-row">
                     <span class="control-label">CATEGORY:</span>
                     <button class="filter-btn active" data-filter="all" onclick="setCategory('all')">ALL</button>
                     <button class="filter-btn" data-filter="人物" onclick="setCategory('人物')">人物</button>
@@ -670,10 +676,12 @@
     // ===== 状態管理 =====
     let allEntries = [];
     let draftEntries = [];
+    let displayEntries = []; // ステータスフィルタ適用後のリスト
     let filteredEntries = [];
     let selectedUrls = new Set();
     let activeUrl = null;
     let currentCategory = 'all';
+    let currentStatus = 'all'; // 'all' | 'draft' | 'published'
     let currentLoreContent = '';  // GitHub上のlore.htmlの中身
     let currentLoreSha = '';      // GitHubのファイルSHA（更新時に必要）
     let pendingPublishUrls = [];  // 投稿待ちURL
@@ -803,6 +811,8 @@
             document.getElementById('published-count').textContent = publishedCount;
             document.getElementById('total-count').textContent = allEntries.length;
 
+            // ステータスフィルタの適用
+            updateDisplayEntries();
             applyFilter();
 
         } catch (err) {
@@ -824,16 +834,41 @@
 
     function setCategory(cat) {
         currentCategory = cat;
-        document.querySelectorAll('.filter-btn').forEach(btn => {
+        document.querySelectorAll('[data-filter]').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.filter === cat);
         });
         applyFilter();
     }
 
+    function setStatus(status) {
+        currentStatus = status;
+        document.querySelectorAll('[data-status]').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.status === status);
+        });
+        updateDisplayEntries();
+        applyFilter();
+    }
+
+    function updateDisplayEntries() {
+        if (currentStatus === 'draft') {
+            displayEntries = allEntries.filter(e => e.isDraft === true);
+        } else if (currentStatus === 'published') {
+            displayEntries = allEntries.filter(e => !e.isDraft);
+        } else {
+            displayEntries = [...allEntries];
+        }
+        // 日付順ソート（古い順）
+        displayEntries.sort((a, b) => {
+            const da = a.date ? new Date(a.date).getTime() : 0;
+            const db = b.date ? new Date(b.date).getTime() : 0;
+            return da - db;
+        });
+    }
+
     function applyFilter() {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
 
-        filteredEntries = draftEntries.filter(entry => {
+        filteredEntries = displayEntries.filter(entry => {
             if (currentCategory !== 'all' && entry.category !== currentCategory) return false;
             if (searchTerm) {
                 const nameMatch = entry.name.toLowerCase().includes(searchTerm);
@@ -864,6 +899,7 @@
         container.innerHTML = filteredEntries.map(entry => {
             const isSelected = selectedUrls.has(entry.url);
             const isActive = activeUrl === entry.url;
+            const isDraft = entry.isDraft === true;
             const classes = ['article-item'];
             if (isSelected) classes.push('selected');
             if (isActive) classes.push('active');
@@ -874,22 +910,31 @@
                 entry.appearance.forEach(a => badges.push(`<span class="meta-badge">${escapeHtml(a)}</span>`));
             }
 
+            // ステータスバッジ
+            const statusBadge = isDraft
+                ? '<span style="color:#cc8800;border:1px solid #cc8800;padding:0 4px;border-radius:2px;font-size:0.85em">DRAFT</span>'
+                : '<span style="color:#33ff33;border:1px solid #33ff33;padding:0 4px;border-radius:2px;font-size:0.85em">LIVE</span>';
+
+            // 公開ボタン（ドラフトのみ表示）
+            const publishBtn = isDraft
+                ? `<button class="article-publish-btn" onclick="event.stopPropagation(); publishSingle('${escapeHtml(entry.url)}')">公開</button>`
+                : '<span style="color:var(--term-dim);font-size:0.75em;white-space:nowrap">公開済み</span>';
+
             return `
                 <div class="${classes.join(' ')}" data-url="${escapeHtml(entry.url)}" onclick="previewArticle('${escapeHtml(entry.url)}')">
-                    <input type="checkbox" class="article-checkbox"
+                    ${isDraft ? `<input type="checkbox" class="article-checkbox"
                         ${isSelected ? 'checked' : ''}
                         onclick="event.stopPropagation(); toggleSelect('${escapeHtml(entry.url)}')"
-                    >
+                    >` : '<span style="width:16px;flex-shrink:0"></span>'}
                     <div class="article-info">
                         <div class="article-name">> ${escapeHtml(entry.name)}</div>
                         <div class="article-meta">
+                            ${statusBadge}
                             <span class="meta-date">${entry.date || '不明'}</span>
                             ${badges.join('')}
                         </div>
                     </div>
-                    <button class="article-publish-btn" onclick="event.stopPropagation(); publishSingle('${escapeHtml(entry.url)}')">
-                        PUBLISH
-                    </button>
+                    ${publishBtn}
                 </div>`;
         }).join('');
 
@@ -899,7 +944,7 @@
     // ===== プレビュー =====
     function previewArticle(url) {
         activeUrl = url;
-        const entry = draftEntries.find(e => e.url === url);
+        const entry = allEntries.find(e => e.url === url);
 
         document.getElementById('preview-header').style.display = 'flex';
         document.getElementById('preview-title').textContent = `> PREVIEW: ${entry ? entry.name : url}`;
@@ -977,23 +1022,24 @@
             processingText.textContent = 'GitHub からlore.htmlを取得中...';
             const loreContent = await fetchLoreFromGitHub();
 
-            // 2. isDraft: true を除去
+            // 2. isDraft: true を除去 + dateを今日に更新
             processingText.textContent = `${pendingPublishUrls.length}件の記事を公開処理中...`;
             let modifiedContent = loreContent;
             let publishedNames = [];
+            const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
 
             for (const url of pendingPublishUrls) {
                 const entry = draftEntries.find(e => e.url === url);
                 const escapedUrl = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-                // パターン: date行の後の,\n isDraft: true を除去
+                // パターン: date行の後の,\n isDraft: true を除去 + dateを今日に更新
                 const pattern = new RegExp(
-                    `(url:\\s*"${escapedUrl}"[\\s\\S]*?date:\\s*"[^"]*?")(,\\s*\\n\\s*isDraft:\\s*true)`,
+                    `(url:\\s*"${escapedUrl}"[\\s\\S]*?)(date:\\s*"[^"]*?")(,\\s*\\n\\s*isDraft:\\s*true)`,
                     'g'
                 );
 
                 const before = modifiedContent;
-                modifiedContent = modifiedContent.replace(pattern, '$1');
+                modifiedContent = modifiedContent.replace(pattern, `$1date: "${todayStr}"`);
 
                 if (modifiedContent !== before) {
                     publishedNames.push(entry ? entry.name : url);

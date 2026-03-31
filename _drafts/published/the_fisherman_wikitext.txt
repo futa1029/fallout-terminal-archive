@@ -1,0 +1,100 @@
+{{For|other appearances of the name|Fisherman}}
+{{Infobox character
+|games       =FO76, FO76GF
+|type        =
+|image       =FO76GF The Fisherman.png
+|shortname   =
+|race        =[[Creature|Mutated amphibian]]
+|gender      =Male
+|nickname    =
+|affiliation =Captain [[Raymond Clark]]<br/>[[Linda-Lee]]
+|role        =[[Fallout 76 vendors|Vendor]]
+|occupation  =Fisherman
+|location    =[[Fisherman's Rest]]
+|quests      =[[Casting Off]]
+|dialogue    =[[The Fisherman/Dialogue]]
+|archetype   =
+|skin        =SkinNakedFisherman
+|height      =1.0
+|level       =66
+|derived     =[[Action Points]]: 50
+|special     ={{SPECIAL|8,4,0,0,0,5,0}}
+|aggression  =Unaggresive
+|confidence  =Foolhardy
+|assistance  =Helps Allies
+|flags       =
+|perks       =
+|scripts     =
+|factions    =CaptiveFaction<br/>Fishing_Fisherman_VendorFaction
+|CK race     =FishermanRace
+|class       =raiderClass
+|combat style=
+|actor       =[[Jesse Burch]]
+|designer    =[[Gus De Tommaso]]
+|voice type  =Fish_NPCM_Fisherman
+|edid        =FISH_Vendor_TheFisherman
+|formid      =007AC576
+|refid       =
+}}
+
+{{Quotation|{{Tooltip|He's some kind of a -|lucid and scared.}} {{Tooltip|*Pained groan*|Very painful for him.}} {{Tooltip|He's a swell fella, just looks a little different from [[Human|you and I]], is all!|Enthusiastic, but still in some pain.}}|sound=Raymond Clark 007aecd8_1.ogg|[[Raymond Clark]]}}
+
+'''The Fisherman''' is one of two traveling [[Fallout 76 vendors|merchants]] operating at the [[Fisherman's Rest]] in [[Appalachia]]. He appears {{In|FO76GF}}.
+
+==Background==
+To date, nothing is known about the Fisherman's origins or history in the wasteland. His [[Mutations|mutated]] appearance evokes characteristics of the [[Mirelurk (Fallout 3)#Mirelurk king|mirelurk kings]] found in the [[Capital Wasteland]] and the [[lakelurk]]s found in the [[Mojave Wasteland]], but any connection is currently unknown.
+
+At some point prior to [[Timeline (2100-2149)#2105|2105]], [[Raymond Clark]] became acquainted with the Fisherman and the [[Hermit crab (Fallout 76)|hermit crab]] [[Linda-Lee]] that serves as their "ship" carrying them across the post-nuclear [[East Coast]].<ref>A [[Vault Dweller (Fallout 76)|Vault Dweller]]: ''"Is that a giant crab back there?"''<br />[[Raymond Clark]]: ''"{{tooltip|That monster is the one that-|Momentarily lucid and absolutely terrified. Stopped by head pain}} *pained grunt* That elegant crustacean is the Linda-Lee. She was... is... a mighty fine vessel. She deals with the fish that my friend no longer wants, and she carries us from place to place."''<br />([[Raymond Clark/Dialogue|Raymond Clark's dialogue]])</ref> By that year, they had come from somewhere to the east of [[Appalachia]] and set up at [[Fisherman's Rest]], catching specimens of wasteland marine life for unknown purposes as well as allegedly embarking on a mission to reintroduce [[Fallout 76 fishing|fishing]] to wasteland society.<ref>A [[Vault Dweller (Fallout 76)|Vault Dweller]]: ''"How did you get here?"''<br />[[Raymond Clark]]: ''"{{tooltip|In truth, I haven't the slightest inkling. One minute I was-|Lucid and panicked, interrupted by pain after 'was'.}} *Pained yelp* What I be meanin' to say is that we traveled in from the East, sampling as many catches as this place has to offer. And now we're looking to share this ancient art form and sell quality equipment ot fine customers, such as yourself."''<br />([[Raymond Clark/Dialogue|Raymond Clark's dialogue]])</ref> However, Clark has hinted that there is more to the Fisherman and a nefarious reason for their activities, but he has been unable to give details due to experiencing severe head pain conveniently right before he can explain.<ref>A [[Vault Dweller (Fallout 76)|Vault Dweller]]: ''"That fish thing pointed me to you."''<br />[[Raymond Clark]]: ''"{{tooltip|Oh. Him. He's truly a monstrous crea-|Disdainful then cut off by searing pain in head}} *Pained Moan* He's truly a fine specimen, isn't he? A gentle soul."''<br />([[Raymond Clark/Dialogue|Raymond Clark's dialogue]])</ref><ref>A [[Vault Dweller (Fallout 76)|Vault Dweller]]: ''"Who is the creature I just spoke with?"''<br />[[Raymond Clark]]: ''"{{tooltip|He's some kind of a-|Lucid and scared}} *Pained groan* He's a swell fella, just looks a little different from you and me, is all!"''<br />([[Raymond Clark/Dialogue|Raymond Clark's dialogue]])</ref><ref>A [[Vault Dweller (Fallout 76)|Vault Dweller]]: ''"What is this place? Some kind of freak show?"''<br />[[Raymond Clark]]: ''"I'd be careful making those kinds of japes around here, friend. Ya never know who might take it the wrong way..."''<br />([[Raymond Clark/Dialogue|Raymond Clark's dialogue]])</ref>
+
+==Interactions with the player character==
+===Interactions overview===
+{{Interactions FO76
+|ghost              =yes
+|none               =
+|quests started     =
+|essential          =yes
+|ally               =
+|allyfurn           =
+|wares              =[[Fallout 76 fishing|Bait]], [[Fallout 76 plans|plans]], and [[Fallout 76 recipes|recipes]].
+|caps               =yes
+|bonus              =
+|other              =
+|romanced           =
+}}
+
+==Inventory==
+{{Inventory
+|apparel   =
+|weapon    =[[Meat hook (Fallout 76)|Meat hook]]
+|otheritem =
+|ondeath   =empty
+}}
+
+==Notes==
+In a Bethesda Discord AMA, members of the ''Gone Fission'' development team declined to confirm whether there is a connection between the Fisherman and the aquatic creatures he strongly resembles, but indicated that more might be revealed with additional content, as well as their desire to let the mystery unfold on its own.<ref name="Gone Fission AMA" group="Non-game">'''[https://www.theduchessflame.com/post/gone-fishing-ama-fallout-76-transcript Gone Fishing AMA – Fallout 76 Transcript]'''<br />[[Richard Stanford|Rich Stanford]]: ''"We’re on lore questions. And the next one is from Flackals... In the latest fishing update, we got to meet the mysterious Fisherman, his unwilling assistant Captain Raymond, and his partner/mobile home Linda Lee. My question is — what exactly is the Fisherman? Many people have speculated on what he could be. Is he some kind of sapient Mirelurk King, implying that he’s an animal that’s somehow achieved human-level intelligence? Or is he a severely mutated human being that’s lost his ability to speak somewhere along the way? Perhaps he’s just a wasteland wacko in a very convincing-looking fish suit? Inquiring minds would like to know."''<br /> [[Jonathan Rush|Jon Rush]]: ''"Well, I am a member of the inquiring minds that want to know. But like my previous answer — that’s where all the fun lies. In getting those questions and thinking about those questions and just having them in your head. If everything were just exposition — this is exactly where it comes from, this was its date of birth, and its genetic makeup — it takes all the mystery out of it, right? So perhaps down the road with more fishing updates, more of their story will unfold. Or perhaps not. That’s kind of part of the fun. Those are great questions. I love how you're thinking, but I don’t want to do the character or the story a disservice by trying to lay out the exact details of who that being is and what they’re doing."''<br />[[Danielle Bartholomew]]: ''"Yeah. So, stay tuned."''</ref>
+
+==Appearances==
+The Fisherman appears only {{in|FO76GF}}.
+
+==Behind the scenes==
+[[Double Eleven]] developer [[Gus De Tommaso]] was one of the designers who worked on content for the Fisherman, writing for the narrative of Fisherman's Rest and ''Gone Fission'' as a whole.<ref group="Non-game">[https://gusdetommaso.journoportfolio.com/fallout-76/ Gus De Tommaso's portfolio] ([https://archive.ph/pbxaO archived)]</ref>
+
+==Gallery==
+<gallery widths=200>
+FO76GF The Fisherman Front Render.png|Render front
+FO76GF The Fisherman Back Render.png|Back
+FO76GF The Fisherman Front Unclothed Render.png|Unclothed render front
+FO76GF The Fisherman Back Unclothed Render.png|Back
+</gallery>
+
+==References==
+{{References}}
+'''Non-game'''
+{{References|group="Non-game"}}
+
+{{Navbox Gone Fission}}
+{{Navbox vendors FO76}}
+
+[[Category:Gone Fission characters]]
+[[Category:Fallout 76 merchants]]
+[[ru:Рыболов]]

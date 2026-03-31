@@ -121,20 +121,32 @@
             <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_hunters_shack" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
             <h1>Hunter's Shack<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">ハンターの小屋</span></h1>
             <h2>概要</h2>
-<p>The '''hunter's shack''' は沼地地帯 地域 of アパラチア.にあるロケーションです</p>
-<h2>概要</h2>
-<p>Located at the edge of 沼地地帯, the shack was set up by Shelby O'Rourke, a hunter interested in tracking down and hunting cryptids of アパラチア.</p>
-<h2>レイアウト</h2>
-<p>There are two buildings at this ロケーション, including the main shack which contains Shelby's ターミナル and an outhouse just southeast of the shack. The outhouse is rigged with a frag grenade booby-trap.</p>
-<h2>主なアイテム</h2>
-<p>Potential armor mod - On a crate inside the main shack.</p>
-<h2>登場作品</h2>
-<p>ハンターの小屋はFallout 76に登場します。</p>
+<p><b>ハンターの小屋（Hunter's shack）</b>は、アパラチアの沼地地帯（The Mire）地域にあるロケーションである。</p>
 
-            
+<h2>背景</h2>
+<p>沼地地帯の端に位置するこの小屋は、アパラチアの未確認生物（クリプティッド）を追跡し狩ることに執念を燃やしていたハンター、シェルビー・オロークによって建てられた。</p>
+
+<h2>レイアウト</h2>
+<p>このロケーションには2つの建物がある。シェルビーのターミナルがあるメインの小屋と、その南東にある離れのトイレである。トイレにはフラググレネードのブービートラップが仕掛けられているので注意が必要だ。</p>
+
+<h2>主なアイテム</h2>
+<ul>
+<li><b>アーマーモジュールの設計図（ランダム）</b>：メインの小屋の中にある木箱の上</li>
+</ul>
+
+<h2>関連クエスト</h2>
+<ul>
+<li><b>Queen of the Hunt</b></li>
+</ul>
+
+<h2>登場作品</h2>
+<p>ハンターの小屋はFallout 76に登場する。</p>
+
             <div class="quote-box">
                 <b>感想</b><br><br>
-                ハンターの小屋を訪れると、アパラチアの歴史の一端に触れることができます。<br>荒廃した建物の隅々まで探索すると、思わぬ発見が待っていることがあります。<br><br><br>ターミナルやメモに残された記録を読み解いていくと、このロケーションに関わった人々の生々しい物語が浮かび上がってきます。<br>こうした細部のロアを追いかけるのが、Fallout 76の探索の醍醐味ですね。
+                アパラチアのクリプティッドを狩るデイリークエスト「Queen of the Hunt」の開始地点としておなじみの場所です。<br>
+<br>
+小屋の主であるシェルビー・オロークは、戦後にアパラチアでクリプティッドの調査を行っていた人物で、彼のターミナルには未確認生物に関する詳細な研究記録が残されています。クリプティッドから抽出されたサンプルを入れるための組織分析器もここに設置されており、沼地の奥深くに潜む未知の生物に対する彼の執念が感じられるロケーションです。
             </div>
 
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
@@ -167,7 +179,7 @@
         async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
         function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
         document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
-        const _commentArticleId = 'note_hunters_shack'; const _commentArticleName = 'Hunter's Shack'; const _commentArticleUrl = 'hunters-shack.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        const _commentArticleId = 'note_hunters_shack'; const _commentArticleName = "Hunter's Shack"; const _commentArticleUrl = 'hunters-shack.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
         function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
         function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
         function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }

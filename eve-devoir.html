@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"><title>Eve Devoir | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/eve-devoir.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Eve Devoir | Overseer Mohi's Terminal"><meta property="og:description" content="Eve Devoir — オーダー・オブ・ミステリーズのミストレス。信頼と組織力でノヴィスの指導者に選ばれた女性。"><meta property="og:url" content="https://www.fallout-jp.com/eve-devoir.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        .loot-list { list-style: none; padding: 0; }
+        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
+        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
+        .holotape-box { background: var(--panel-bg); border: 2px solid #ff9800; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .holotape-box h3 { color: #ff9800; border-bottom: 1px solid #ff9800; margin-top: 0; font-size: 1.1em; }
+        .holotape-box .holotape-icon::before { content: '🎙 '; }
+        .holotape-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; font-style: italic; }
+        .note-box { background: var(--panel-bg); border: 2px solid #8bc34a; border-radius: 5px; padding: 20px; margin: 30px 0; }
+        .note-box h3 { color: #8bc34a; border-bottom: 1px solid #8bc34a; margin-top: 0; font-size: 1.1em; }
+        .note-box .note-icon::before { content: '📝 '; }
+        .note-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; }
+        .note-box .transcript .date-entry { color: var(--accent-color); font-weight: bold; margin-top: 12px; display: block; }
+        .variant-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85em; }
+        .variant-table th { background: var(--header-bg); color: var(--accent-color); padding: 8px; text-align: left; border: 1px solid #444; font-family: 'Share Tech Mono', monospace; }
+        .variant-table td { padding: 8px; border: 1px solid #333; }
+        .variant-table tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        .script-notes { background: var(--panel-bg); border: 1px solid #555; border-radius: 5px; padding: 20px; margin: 20px 0; }
+        .script-notes summary { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1em; }
+        .script-notes .note-category { color: var(--accent-color); font-weight: bold; margin-top: 15px; display: block; }
+        .script-notes ul { margin: 5px 0 10px 20px; }
+        .script-notes li { font-size: 0.9em; line-height: 1.6; font-style: italic; }
+    </style>
+</head>
+<body data-article-category="人物" data-article-appearance="Fallout 76">
+<div class="container"><aside class="infobox"><h3 style="margin-top:0;text-align:center;">Eve Devoir</h3><div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div><div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div><div class="infobox-row"><span class="infobox-label">所属</span><span>オーダー・オブ・ミステリーズ</span></div><div class="infobox-row"><span class="infobox-label">階級</span><span>ミストレス・オブ・ノヴィス</span></div><div class="infobox-row"><span class="infobox-label">声優</span><span>ケイトリン・ピッピー</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76 (言及のみ)</span></div></aside><main class="content"><div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_eve_devoir" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div><h1>Eve Devoir<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">イヴ・ドゥヴァール</span></h1>
+<h2>概要</h2><p><b>イヴ・ドゥヴァール</b>は、オーダー・オブ・ミステリーズのミストレスだった。</p>
+<h2>背景</h2>
+<h3>リバーサイド・マナーの孤児</h3>
+<p>2078年11月にクラリッサ、エイミー・トーマスとともにリバーサイド・マナーのガレージ前で発見された最初の3人の孤児の一人。<br>
+<a href="shannon-rivers.html" class="auto-link">シャノン・リバーズ</a>とフレデリックに養子として引き取られた。</p>
+
+<h3>ミストレス・オブ・ノヴィスへの任命</h3>
+<p>オーダー内で最も信頼性が高く組織的なメンバーとして評価され、2086年5月にシャノンによってミストレス・オブ・ノヴィスに任命された。<br>
+依存性、組織力、冷静で実際的な問題解決能力——これらはシャノンの娘<a href="olivia-rivers.html" class="auto-link">オリヴィア</a>が欠いていた資質だった。</p>
+<p>オリヴィアはこの決定を侮辱と受け取り、離反とレイダーへの内通の直接的な引き金となった。<br>
+この皮肉な因果――最も穏健なメンバーの任命が最も暴力的な結末を招いた――はオーダーの悲劇の核心です。</p>
+
+<h3>最期</h3>
+<p>オーダーのメンバー数が急減する中、イヴはますます多くの責任を引き受け、最年少のメンバーにまで自衛の訓練を行った。<br>
+マナーから出ることを許された4人の上級ミストレスの一人となったが、<a href="olivia-rivers.html" class="auto-link">オリヴィア</a>の裏切りが露見した際の虐殺で命を落とした。</p>
+
+<div class="quote-box"><p class="quote-text">イヴ・ドゥヴァールは「正しい人材が正しい場所に置かれたが、結果は最悪だった」という物語の典型です。<br>
+シャノンの判断は客観的に正しかった——オリヴィアは人をまとめるリーダーではなく、一匹狼の暗殺者だったから。<br>
+しかし正しい判断がオリヴィアの自尊心を砕き、オーダー全体の崩壊を招いた。<br>
+イヴ自身に落ち度はなく、ただ優秀であるがゆえに悲劇のトリガーとなってしまった——これほど理不尽な運命はないでしょう。</p></div>
+<div style="margin-top:30px;border-top:1px dashed var(--accent-color);padding-top:20px;font-size:0.85em;color:#888;"><div class="copyright"><p>This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Eve_Devoir" target="_blank" rel="noopener">Eve Devoir</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p><p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p><p style="margin-top:15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p></div></div><div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div></main></div><div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div><script>const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(b){const a=b.getAttribute('data-article-id');let l=localStorage.getItem(a+'_liked')==='true';b.disabled=true;if(l){const{data}=await supabaseClient.rpc('decrement_like',{article_id_param:a});localStorage.setItem(a+'_liked','false');uLB(b,false,data);}else{const{data}=await supabaseClient.rpc('increment_like',{article_id_param:a});localStorage.setItem(a+'_liked','true');uLB(b,true,data);}b.disabled=false;}function uLB(b,l,c){b.querySelector('.heart').textContent=l?'\u2665':'\u2661';l?b.classList.add('liked'):b.classList.remove('liked');b.querySelector('.like-count').textContent=c;}document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();uLB(b,localStorage.getItem(a+'_liked')==='true',data?data.like_count:0);}document.querySelectorAll('.content img,.infobox img').forEach(i=>{i.onclick=e=>{e.stopPropagation();document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');};});const _a='note_eve_devoir';const _n='Eve Devoir';const _u='eve-devoir.html';function uc(){document.getElementById('char-count').textContent=document.getElementById('comment-input').value.length;}async function lc(){const{data}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_a).order('created_at',{ascending:false}).limit(50);const l=document.getElementById('comments-list');if(!data||!data.length){l.innerHTML='<div class="comment-empty">まだコメントがありません。</div>';return;}l.innerHTML=data.map(c=>'<div class="comment-item"><div class="comment-meta"><span>'+new Date(c.created_at).toLocaleDateString('ja-JP')+'</span></div><div class="comment-body">'+c.content.replace(/</g,'&lt;')+'</div></div>').join('');}window.updateCharCount=uc;window.submitComment=async function(){const i=document.getElementById('comment-input');const v=i.value.trim();if(!v||v.length>100)return;await supabaseClient.from('comments').insert({article_id:_a,article_name:_n,article_url:_u,content:v});i.value='';uc();lc();};lc();});</script><script src="article-common.js" defer></script></body></html>

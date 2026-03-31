@@ -1011,7 +1011,7 @@ const manualEntries = [
     { name: "Hijack", yomi: "hijack", url: "hijack.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-27", status: "draft" },
     { name: "Johnny Weston", yomi: "johnnyweston", url: "johnny-weston.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-27", status: "draft" },
     { name: "Kiyomi", yomi: "kiyomi", url: "kiyomi.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-27", status: "draft" },
-    { name: "Kogan", yomi: "kogan", url: "kogan.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-27", status: "draft" },
+    { name: "コーガン", yomi: "こーがん", url: "kogan.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-31" },
     { name: "Lev", yomi: "lev", url: "lev.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-27", status: "draft" },
     { name: "Lucky Lou", yomi: "luckylou", url: "lucky-lou.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-27", status: "draft" },
     { name: "Maximum Maddie", yomi: "maximummaddie", url: "maximum-maddie.html", category: "人物", appearance: ["Fallout 76"], date: "2026-03-27", status: "draft" },
