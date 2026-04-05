@@ -16589,7 +16589,7 @@
 
             // フィルタ
             _filteredCache = loreEntries.filter(entry => {
-                if (entry.isDraft) return false;  // 下書き記事を非表示
+                if (!isEntryPublished(entry)) return false;  // Supabase優先、フォールバックでisDraft
                 if (cat !== 'all' && entry.category !== cat) return false;
                 if (app !== 'all' && !entry.appearance.includes(app)) return false;
                 if (searchTerm) {
@@ -16636,8 +16636,38 @@
             });
         }
 
-        // DOMContentLoadedで初期化（window.onloadより早い）
-        document.addEventListener('DOMContentLoaded', () => {
+        // ========== Supabase公開制御 ==========
+        // Supabaseから公開状態を取得し、isDraftよりも優先する
+        let _visibilityMap = null; // url -> is_published のMap（取得成功時のみ）
+
+        async function loadVisibility() {
+            if (!_loreSupabase) return;
+            try {
+                const { data, error } = await _loreSupabase
+                    .from('article_visibility')
+                    .select('url, is_published');
+                if (!error && data) {
+                    _visibilityMap = new Map();
+                    data.forEach(row => _visibilityMap.set(row.url, row.is_published));
+                    console.log('[Visibility] Supabaseから' + data.length + '件の公開状態を取得');
+                }
+            } catch (e) {
+                console.warn('[Visibility] Supabase取得失敗、isDraftにフォールバック:', e);
+            }
+        }
+
+        // 記事が公開かどうかを判定する関数
+        // Supabaseの値を優先し、なければisDraftフラグにフォールバック
+        function isEntryPublished(entry) {
+            if (_visibilityMap && _visibilityMap.has(entry.url)) {
+                return _visibilityMap.get(entry.url);
+            }
+            return !entry.isDraft;
+        }
+
+        // DOMContentLoadedで初期化（Supabase取得後にレンダリング）
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadVisibility();
             renderEntries();
             loadRecentComments();
         });

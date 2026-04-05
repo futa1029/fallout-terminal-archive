@@ -535,6 +535,51 @@
                 padding: 8px;
             }
         }
+
+        /* ===== 公開/非公開トグルスイッチ ===== */
+        .toggle-btn {
+            background: #331100;
+            border: 1px solid #cc8800;
+            color: #cc8800;
+            padding: 3px 10px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.75em;
+            font-weight: bold;
+            border-radius: 3px;
+            transition: all 0.2s;
+            flex-shrink: 0;
+            min-width: 80px;
+            text-align: center;
+        }
+        .toggle-btn:hover {
+            background: #cc8800;
+            color: #000;
+        }
+        .toggle-btn.published {
+            background: #003311;
+            border-color: var(--term-green);
+            color: var(--term-green);
+        }
+        .toggle-btn.published:hover {
+            background: var(--term-green);
+            color: #000;
+        }
+        .toggle-btn:disabled {
+            opacity: 0.4;
+            cursor: wait;
+        }
+        .status-bar {
+            border: 1px solid var(--term-dim);
+            padding: 8px 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+        }
+        .status-published { color: var(--term-green); font-weight: bold; }
+        .status-draft { color: #cc8800; font-weight: bold; }
     </style>
     <meta name="robots" content="noindex, nofollow">
 </head>
@@ -619,6 +664,12 @@
                     onclick="setFilter('appearance', 'Fallout TV')">TV SHOW</button>
             </div>
             <div class="control-group">
+                <span class="control-label">STATUS:</span>
+                <button class="btn active" data-type="status" data-value="all" onclick="setFilter('status', 'all')">ALL (全て)</button>
+                <button class="btn" data-type="status" data-value="published" onclick="setFilter('status', 'published')">PUBLISHED (公開中)</button>
+                <button class="btn" data-type="status" data-value="draft" onclick="setFilter('status', 'draft')">DRAFT (非公開)</button>
+            </div>
+            <div class="control-group">
                 <span class="control-label">VIEW:</span>
                 <button class="btn active" data-type="view" data-value="list" onclick="setView('list')">LIST</button>
                 <button class="btn" data-type="view" data-value="card" onclick="setView('card')">CARD</button>
@@ -628,6 +679,12 @@
                 <input type="text" id="searchInput" class="search-input" placeholder="TYPE TO SEARCH..."
                     oninput="debouncedRender()">
             </div>
+        </div>
+
+        <!-- ステータスバー -->
+        <div class="status-bar">
+            <span>> VISIBILITY CONTROL ACTIVE (Supabase)</span>
+            <span><span class="status-published" id="pub-count">0</span> PUBLISHED / <span class="status-draft" id="draft-count">0</span> DRAFT</span>
         </div>
 
         <!-- 最新コメントパネル -->
@@ -4321,19 +4378,21 @@
                 });
             } else {
                 slice.forEach(entry => {
-                    const el = document.createElement('a');
-                    el.href = entry.url;
+                    const el = document.createElement('div');
                     el.className = 'menu-item';
                     if (entry.category) el.dataset.cat = entry.category;
 
+                    const isPublished = _visibilityMap ? _visibilityMap.get(entry.url) : !entry.isDraft;
+                    const toggleClass = isPublished ? 'toggle-btn published' : 'toggle-btn';
+                    const toggleText = isPublished ? 'PUBLIC' : 'DRAFT';
+
                     const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
                     const newBadgeHtml = isNew ? '<span class="new-badge">NEW!</span>' : '';
-                    const draftBadgeHtml = entry.isDraft ? '<span style="background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold;margin-right:4px">DRAFT</span>' : '';
                     let badgesHtml = entry.category && entry.category !== 'その他'
                         ? `<span class="badge">${entry.category}</span>` : '';
                     entry.appearance.forEach(a => { badgesHtml += ` <span class="badge">${a}</span>`; });
 
-                    el.innerHTML = `<div class="item-left">${thumbHtml(entry.url, false)}<span class="item-name">> ${draftBadgeHtml}${newBadgeHtml}${entry.name}</span></div><div class="item-meta">${badgesHtml}</div>`;
+                    el.innerHTML = `<div class="item-left"><a href="${entry.url}" style="display:flex;align-items:center;text-decoration:none;color:inherit;flex:1;min-width:0">${thumbHtml(entry.url, false)}<span class="item-name">> ${newBadgeHtml}${entry.name}</span></a></div><div class="item-meta"><button class="${toggleClass}" data-url="${entry.url}" onclick="togglePublish(event, this)">${toggleText}</button>${badgesHtml}</div>`;
                     fragment.appendChild(el);
                 });
             }
@@ -4361,14 +4420,96 @@
             }
         }, { passive: true });
 
+        // ========== Supabase公開制御 ==========
+        let _visibilityMap = null; // url -> is_published のMap
+
+        async function loadVisibility() {
+            if (!_loreSupabase) return;
+            try {
+                const { data, error } = await _loreSupabase
+                    .from('article_visibility')
+                    .select('url, is_published');
+                if (!error && data) {
+                    _visibilityMap = new Map();
+                    data.forEach(row => _visibilityMap.set(row.url, row.is_published));
+                    console.log('[Admin] Supabaseから' + data.length + '件の公開状態を取得');
+                }
+            } catch (e) {
+                console.warn('[Admin] Supabase取得失敗:', e);
+            }
+        }
+
+        // 記事が公開かどうかを判定する関数
+        function isEntryPublished(entry) {
+            if (_visibilityMap && _visibilityMap.has(entry.url)) {
+                return _visibilityMap.get(entry.url);
+            }
+            return !entry.isDraft;
+        }
+
+        // トグルボタンクリック時の処理
+        async function togglePublish(event, btn) {
+            event.preventDefault();
+            event.stopPropagation();
+            const url = btn.dataset.url;
+            const currentlyPublished = btn.classList.contains('published');
+            const newState = !currentlyPublished;
+
+            btn.disabled = true;
+            btn.textContent = '...';
+
+            try {
+                const { error } = await _loreSupabase
+                    .from('article_visibility')
+                    .upsert({ url: url, is_published: newState, updated_at: new Date().toISOString() });
+
+                if (error) {
+                    alert('エラー: ' + error.message);
+                    btn.disabled = false;
+                    btn.textContent = currentlyPublished ? 'PUBLIC' : 'DRAFT';
+                    return;
+                }
+
+                // ローカルMapを更新
+                if (_visibilityMap) _visibilityMap.set(url, newState);
+
+                // ボタン表示を更新
+                btn.className = newState ? 'toggle-btn published' : 'toggle-btn';
+                btn.textContent = newState ? 'PUBLIC' : 'DRAFT';
+                btn.disabled = false;
+
+                // ステータスバーを更新
+                updateStatusBar();
+            } catch (e) {
+                alert('通信エラー: ' + e.message);
+                btn.disabled = false;
+                btn.textContent = currentlyPublished ? 'PUBLIC' : 'DRAFT';
+            }
+        }
+
+        // ステータスバーの公開/非公開件数を更新
+        function updateStatusBar() {
+            let pub = 0, draft = 0;
+            loreEntries.forEach(e => {
+                if (isEntryPublished(e)) pub++; else draft++;
+            });
+            const pubEl = document.getElementById('pub-count');
+            const draftEl = document.getElementById('draft-count');
+            if (pubEl) pubEl.textContent = pub;
+            if (draftEl) draftEl.textContent = draft;
+        }
+
         function renderEntries() {
             const searchTerm = searchInput.value.toLowerCase().trim();
             const cat = currentFilters.category;
             const app = currentFilters.appearance;
+            const statusFilter = currentFilters.status || 'all';
 
-            // フィルタ
+            // フィルタ（全記事表示 + ステータスフィルタ）
             _filteredCache = loreEntries.filter(entry => {
-                if (!entry.isDraft) return false;  // 管理者ページ: Draft記事のみ表示
+                // ステータスフィルタ
+                if (statusFilter === 'published' && !isEntryPublished(entry)) return false;
+                if (statusFilter === 'draft' && isEntryPublished(entry)) return false;
                 if (cat !== 'all' && entry.category !== cat) return false;
                 if (app !== 'all' && !entry.appearance.includes(app)) return false;
                 if (searchTerm) {
@@ -4385,7 +4526,7 @@
             });
 
             countDisplay.innerText = _filteredCache.length;
-            _winStart = 0;  // フィルタ変更時は先頭にリセット
+            _winStart = 0;
             scrollEl.scrollTop = 0;
             renderWindow();
         }
@@ -4408,15 +4549,17 @@
             renderEntries();
         }
 
-        // data-type/data-value属性で直接ターゲットを絞り込む（全ボタン走査を廃止）
+        // data-type/data-value属性で直接ターゲットを絞り込む
         function updateButtons(type, value) {
             document.querySelectorAll(`[data-type="${type}"]`).forEach(btn => {
                 btn.classList.toggle('active', btn.dataset.value === value);
             });
         }
 
-        // DOMContentLoadedで初期化（window.onloadより早い）
-        document.addEventListener('DOMContentLoaded', () => {
+        // DOMContentLoadedで初期化（Supabase取得後にレンダリング）
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadVisibility();
+            updateStatusBar();
             renderEntries();
             loadRecentComments();
         });
