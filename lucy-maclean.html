@@ -1,221 +1,60 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Lucy MacLean | Overseer Mohi's Terminal</title>
-    <!-- Open Graph / Discord Embed -->
+    <link rel="canonical" href="https://www.fallout-jp.com/lucy-maclean.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="Lucy MacLean | Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Lucy MacLean (ルーシー・マクレーン) | Overseer Mohi's Terminal">
     <meta property="og:description" content="ルーシー・マクレーンのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/og-default.png">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/lucy-maclean/Lucy_MacLean_TV_infobox.png">
     <meta property="og:url" content="https://www.fallout-jp.com/lucy-maclean.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lucy MacLean | Overseer Mohi's Terminal">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Lucy MacLean (ルーシー・マクレーン) | Overseer Mohi's Terminal">
     <meta name="twitter:description" content="ルーシー・マクレーンのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-default.png">
-
-    <!-- Supabase CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/lucy-maclean/Lucy_MacLean_TV_infobox.png">
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        :root {
-            --bg-color: #0f0f0f;
-            --text-color: #e0e0e0;
-            --accent-color: #00ff00; /* Dynamic Theme Color */
-            --header-bg: #1a1a1a;
-            --panel-bg: #222;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Noto Sans JP', sans-serif;
-            margin: 0;
-            line-height: 1.8;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 30px;
-        }
-        h1, h2, h3 {
-            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
-            color: var(--accent-color);
-            border-bottom: 1px solid var(--accent-color);
-            padding-bottom: 5px;
-        }
-        h1 {
-            font-size: 2.2em;
-            margin-top: 0;
-            line-height: 1.4;
-        }
-        .infobox {
-            background: var(--panel-bg);
-            border: 2px solid var(--accent-color);
-            padding: 15px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-            align-self: start;
-        }
-        .infobox img {
-            width: 100%;
-            border: 1px solid #555;
-            margin-bottom: 15px;
-        }
-        .infobox-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9em;
-            border-bottom: 1px dashed #444;
-        }
-        .infobox-label {
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-        .content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 5px;
-            font-size: 1em;
-            line-height: 1.9;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-        .quote-box {
-            border-left: 4px solid var(--accent-color);
-            margin: 40px 0 20px 0;
-            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
-            padding: 15px 15px 15px 20px;
-            border-radius: 0 5px 5px 0;
-            line-height: 1.6;
-        }
-        .quote-box b {
-            color: var(--accent-color);
-            font-size: 1.05em;
-        }
-        .content a {
-            color: var(--accent-color);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-        }
-        .content a:hover {
-            border-bottom: 1px solid var(--accent-color);
-        }
-        .auto-link {
-            color: var(--accent-color) !important;
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 1px dashed var(--accent-color) !important;
-            transition: all 0.2s;
-            padding: 0 2px;
-        }
-        .auto-link:hover {
-            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
-            border-bottom: 1px solid var(--accent-color) !important;
-        }
-        .content img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #444;
-            display: block;
-            margin: 0 auto 10px auto;
-        }
-        .action-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-        .back-link {
-            display: inline-block;
-            color: var(--accent-color);
-            text-decoration: none;
-            border: 1px solid var(--accent-color);
-            padding: 8px 15px;
-            font-family: 'Share Tech Mono', monospace;
-            transition: all 0.2s;
-        }
-        .back-link:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-        .like-button {
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 15px;
-            font-size: 1.1em;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'Share Tech Mono', monospace;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        .like-button:hover {
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-        .like-button.liked {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                padding: 10px;
-                gap: 20px;
-            }
-            .infobox {
-                grid-row: 1;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .content {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 1.6em;
-            }
-            .action-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-        }
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 9999;
-            cursor: zoom-out;
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox-overlay.active {
-            display: flex;
-        }
-        .lightbox-overlay img {
-            max-width: 95vw;
-            max-height: 95vh;
-            object-fit: contain;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
-            border-radius: 4px;
-        }
-        .content img, .infobox img, .gallery-item img {
-            cursor: zoom-in;
-        }
-
-        /* コメントセクション */
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .dialogue-box { font-style: italic; border-left: 4px solid var(--accent-color); padding: 15px 15px 15px 20px; margin: 20px 0; color: #aaffaa; background: rgba(0, 255, 0, 0.05); }
+        .article-image { max-width: 100%; border: 1px solid #444; margin: 20px 0; display: block; cursor: pointer; }
+        .image-caption { font-size: 0.85em; color: #888; margin-top: -15px; margin-bottom: 20px; }
+        .image-right { float: right; max-width: 250px; margin: 0 0 15px 20px; border: 1px solid #444; cursor: pointer; }
+        .image-left { float: left; max-width: 250px; margin: 0 20px 15px 0; border: 1px solid #444; cursor: pointer; }
+        .clearfix::after { content: ""; display: table; clear: both; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { position: relative; overflow: hidden; border: 1px solid #444; cursor: pointer; }
+        .gallery-item img { width: 100%; display: block; transition: transform 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item .caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.75); color: #ddd; font-size: 0.78em; padding: 6px 8px; text-align: center; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 5px 15px; }
+        .back-link:hover { background: var(--accent-color); color: #000; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .action-header .back-link { margin-bottom: 0; }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 5px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; border-radius: 4px; }
+        .like-button:hover { box-shadow: 0 0 8px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; border: 2px solid var(--accent-color); }
         .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
         .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
         .comment-form { margin-bottom: 20px; }
@@ -224,7 +63,7 @@
         .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
         .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
         .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
-        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
         .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
         .comments-list { display: flex; flex-direction: column; gap: 10px; }
@@ -235,23 +74,33 @@
         .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
         .comment-delete-btn:hover { opacity: 1; }
         .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
+            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
+            .content { padding: 15px; }
+            h1 { font-size: 1.5em; }
+            .gallery { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            .back-link { padding: 12px 20px; font-size: 1.1em; }
+            .like-button { padding: 10px 15px; font-size: 1em; }
+            .image-right, .image-left { float: none; max-width: 100%; margin: 15px 0; }
+        }
     </style>
 </head>
 <body data-article-category="人物" data-article-appearance="Fallout TV">
     <div class="container">
-        <!-- Sidebar -->
         <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Lucy MacLean</h3>
-            <img src="images/note_extracted/lucy-maclean/img_0.png" alt="ルーシー・マクレーン (Lucy MacLean)">
-            <div class="infobox-row"><div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
-            <div class="infobox-row"><span class="infobox-label">人種</span><span>人間</span></div>
-            <div class="infobox-row"><span class="infobox-label">性別</span><span>女</span></div>
+            <h3 style="margin-top:0; text-align:center;">Lucy MacLean<br><span style="font-size:0.7em; color:#888; font-weight:normal;">ルーシー・マクレーン</span></h3>
+            <img src="images/note_extracted/lucy-maclean/Lucy_MacLean_TV_infobox.png" alt="ルーシー・マクレーン">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
+            <div class="infobox-row"><span class="infobox-label">職業</span><span>歴史・倫理学の教師</span></div>
+            <div class="infobox-row"><span class="infobox-label">あだ名</span><span style="text-align:right;font-size:0.85em">スウィートハート<br>ヴォルティー<br>シュガーボム</span></div>
+            <div class="infobox-row"><span class="infobox-label">家族</span><span style="text-align:right;font-size:0.85em">ハンク・マクレーン（父）<br>ローズ・マクレーン（母）<br>ノーム・マクレーン（弟）</span></div>
             <div class="infobox-row"><span class="infobox-label">所属</span><span style="text-align:right">Vault 33</span></div>
-            <div class="infobox-row"><span class="infobox-label">役割</span><span style="text-align:right">歴史・倫理学の教師（主人公）</span></div>
-            <div class="infobox-row" style="margin-top:5px;"><span class="infobox-label">登場</span><span>Fallout TV</span></div>
+            <div class="infobox-row"><span class="infobox-label">俳優</span><span style="text-align:right">エラ・パーネル</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場</span><span>Fallout TV</span></div>
         </aside>
 
-        <!-- Main Content -->
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
@@ -261,32 +110,684 @@
             </div>
 
             <h1>Lucy MacLean<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ルーシー・マクレーン</span></h1>
-            
-            <p>ルーシー・マクレーン（Lucy MacLean）は、Fallout TVシリーズの主人公の一人であり、ロサンゼルスの地下にある「Vault 33」で育った純真な居住者（Vault Dweller）です。<br>彼女の視点を通じて、視聴者は放射線に汚染された過酷な「ウェイストランド」の現実を体験していくことになります。</p><hr><h2>背景</h2><p>Vault 33の監督官である「ハンク・マクレーン」を父に持ち、弟のノームと共に何不自由ない地下の平和な環境で「古き良きアメリカの理想」を信じて育ちました。彼女の職業は歴史と倫理学の教師であり、各種スポーツ・体操・銃器の扱い（ターゲット射撃）など、Vaultのカリキュラムを優秀な成績で修了した明るく前向きな女性でした。</p><h2>Fallout TVシリーズ</h2><p>2296年、自身の結婚式の日に突如として他Vaultの住人を装った「レイダー」たち（リー・モルデイヴァー率いる部隊）にVault 33が襲撃され、父親のハンクが地上へと連れ去られてしまいます。<br>父を救い出すため、彼女は安全なVaultの掟を破り、ただ一人で危険なウェイストランドへと足を踏み出しました。<br><br>地上では、冷酷な賞金稼ぎである「グール（クーパー）」や、B.O.S.の兵士「マキシマス」といった全く異なる価値観を持つ人々との出会いを経て、世界の厳しい現実（ルールがないこと）を学んでいきます。<br>彼女の持ち前の黄金律（ゴールデン・ルール：他人にしてもらいたいことを、自分も他人にしなさい）の精神は、たびたび地上の荒んだ倫理観と衝突しますが、それでも彼女は「自分を見失わずに生き抜く」ことの強さを証明していきます。<br><br>シーズン1の終わりには、自分が信じていたVault-Tecの陰謀や、母の死の真実、そして「父ハンクの本当の正体」を知るという残酷な結末を迎えます。それでも彼女は、すべての真相を明らかにするため、グールと共に新たな旅へと向かいました。</p>
+
+            <div class="dialogue-box">
+                「私はあなたのような見た目になるかもしれない……でも、あなたのような人間には絶対にならない。<br>ゴールデン・ルールよ、このクソ野郎」<br><br>
+                ―― ルーシー、グールに対して
+            </div>
+
+            <p>
+                ルーシー・マクレーンは、Fallout TVシリーズの主人公であり、グールとマキシマスと並ぶ物語の中心人物です。<br>
+                ハンク・マクレーンとローズ・マクレーンの娘であり、ノーム・マクレーンの姉でもあるルーシーは、かつてのロサンゼルスに建設された「三つのVault」の一つであるVault 33の生涯にわたる居住者です。<br>
+                2296年、モルデイヴァーと名乗る謎の女性率いるレイダーの襲撃で父が誘拐されたことを受け、ルーシーは父を救うためウエイストランドへの旅に出ます。
+            </p>
+            <hr>
+
+            <h2>背景</h2>
+            <p>
+                ルーシーは2270年代半ば、Vault 33内でハンクとローズ・マクレーンの元に生まれ、後に弟のノーマンが続きました。<br>
+                ルーシーの思春期のある時期、母ローズは地上が居住不可能だというVaultの教義に疑問を持ち始めました。<br>
+                夫に懸念を却下された後、ローズは子供たちを連れてVault 33から脱出しました。<br>
+                ハンクはこれを子供たちを危険にさらす行為と見なし、激怒しました――物理的なリスクだけでなく、ウエイストランドの暴力と生存本能に影響されることで、Vault-TecのVaultに対するミッションが台無しになることを恐れたのです。
+            </p>
+            <p>
+                Vaultを出た後、マクレーン一家は新カリフォルニア共和国（NCR）の首都であるシェイディ・サンズに到着しました。<br>
+                そこでローズはリー・モルデイヴァーと親密な関係を築きました。<br>
+                しかし、ルーシーもノームもこの時期の記憶をほとんど持っていません――あまりに幼かったため完全な記憶が形成されなかったようです。<br>
+                それでもルーシーは、母に連れられて太陽の下の野原で遊んだことを漠然と覚えていましたが、最終的にはそれがVault 33の農場の照明だったと結論付けました。
+            </p>
+
+            <img src="images/note_extracted/lucy-maclean/FOTV_Official_Trailer_Still_051.png" class="image-right" alt="ルーシーとステフ・ハーパー" onclick="openLightbox(this)">
+
+            <p>
+                シェイディ・サンズに到着したある時点で、ローズはハンクに発見されましたが、一緒に戻ることを拒否しました。<br>
+                代わりにハンクはローズから子供たちを連れ戻し、Vault 33に帰りました。<br>
+                そこで彼はルーシーとノームに、母親は「77年の疫病」の犠牲者として亡くなったと信じ込ませました。<br>
+                その後、2283年にハンクはシェイディ・サンズの街路に核兵器を届けさせ、遠隔起爆でこの戦後国家を壊滅させました――そしてその直後、娘のリクエストに応えて読み聞かせをしに行ったのです。
+            </p>
+            <p>
+                Vault 33で成長したルーシーは、比較的幸せで、のんきで、恵まれた生活を送りました。<br>
+                しかし、常にVaultとコミュニティの維持と幸福のために貢献しました。<br>
+                彼女の実績には、若手配管工協会（親友のステフ・ハーパーと共に。ステフはVault 31からの移住者）、体操クラブ、フェンシングチームC、中級体育、射撃術の会員資格が含まれています。<br>
+                パワーアーマーの仕組みについても基本的な知識を持っていました。<br>
+                ルーシー自身によれば、主な情熱はVaultの子供たちにアメリカ史を教えることであり、特に倫理学に重点を置いていました。
+            </p>
+            <div class="clearfix"></div>
+
+            <p>
+                家族とのプライベートな時間は、父と映画を観たりガーデニングをしたり、家族のブッククラブで父とノームと議論したりして過ごしました。<br>
+                ルーシーは、本（『戦争と平和』や『西部戦線異状なし』など）や映画から学んだこと、または父から教わったこと以外、外の世界についてほとんど知識なく育ちました。<br>
+                直近の家族以外では、従兄弟のチェットと親密に交流しており、「10年間のいとこ同士のこと」をしていました。
+            </p>
+
+            <h2>Fallout TVシリーズ</h2>
+            <h3>シーズン1</h3>
+
+            <h3>「The End」</h3>
+            <img src="images/note_extracted/lucy-maclean/FOTV_wedding.png" class="image-right" alt="モンティと結婚するルーシー" onclick="openLightbox(this)">
+            <p>
+                物語の冒頭、ルーシーはVault 33統治評議会に結婚申請書を提出し、すぐに受理されます。<br>
+                彼女はVault 32の住人モンティとの取り決め結婚をします。<br>
+                初夜を終えた後、ルーシーは部屋の外から悲鳴を聞きます。<br>
+                驚いた彼女はPip-Boyでモンティをスキャンし、彼が被曝しており、地上からのレイダーであることに気づきます。<br>
+                ルーシーは彼の攻撃から生き延び、最終的にモンティの首をナイフで刺して意識を失わせます。<br>
+                スティムパックで自分を治療し、レイダーの襲撃中にトランキライザーガンで武装します。<br>
+                アトリウムでの戦いの間、ルーシーはノームを床下収納に隠し、父がモンティをリンゴかじり遊びの桶で溺死させるのを目撃します。<br>
+                Vault 32の監督官を装ったリー・モルデイヴァーがハンクを誘拐します。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/Lucy_first_time_outside_Vault_33.webp" class="image-left" alt="Vault 33を出るルーシー" onclick="openLightbox(this)">
+            <p>
+                緊急評議会で父の救出隊を組織することを提案するルーシーですが、Vault評議会はVaultの扉を開けることを拒否します――新たな権限を放棄したくなかったのです。<br>
+                そこでルーシーは他の者が見ていない隙に抜け出すことを決意します。<br>
+                弟のノームに見張りを頼み、チェットにエレベーターの鍵を開けてもらい、Vaultの外扉の封印を解除してもらいます。<br>
+                チェットはルーシーと一緒に行くと主張しましたが、彼女は彼をトランキライザーで眠らせます。<br>
+                ノームに別れのハグをし、レッグとデイヴィーの叫び声を無視してVaultを去ります。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Target」</h3>
+            <img src="images/note_extracted/lucy-maclean/FOTV_S1_Amazon_promo_9.jpg" class="image-right" alt="フィリーでのルーシー" onclick="openLightbox(this)">
+            <p>
+                ウエイストランドを一日かけて旅した後、ルーシーは夜の休息を取ります。<br>
+                焚き火のそばで眠っている間、エンクレイヴの脱走者シギ・ウィルジグと遭遇します。<br>
+                彼はモルデイヴァーのための貴重なアーティファクト（常温核融合技術）を運んでいました。<br>
+                ウィルジグはウエイストランドの危険について警告し、帰宅を促しますが、夜の闇に消えていきます。
+            </p>
+            <p>
+                翌日、ルーシーはフィリーの集落に到着します。<br>
+                そこで店主のマー・ジューンに笑われ見下されます。<br>
+                ウィルジグが町に到着しルーシーと再び言葉を交わした直後、賞金稼ぎのグールが現れます。<br>
+                銃撃戦が始まり、グールはウィルジグの左足を撃ち飛ばし、立ち向かってきた数名のガンファイターを射殺します。<br>
+                ルーシーは平和的に状況を収めようとしますが失敗します。<br>
+                グールが彼女に一歩近づいた時、トランキライザーダートを撃ちますが効果なし。<br>
+                しかし間もなくマキシマスがパワーアーマーで到着し、ルーシーをタックルで押し退けてグールの銃撃から守ります。
+            </p>
+            <div class="clearfix"></div>
+            <p>
+                グールとの状況が解決した後、マー・ジューンはモルデイヴァーが自分の顧客であることを明かします。<br>
+                ルーシーは負傷したウィルジグをウエイストランドを越えて運ぼうとしますが、彼は足の傷が悪化し、シアン化物の丸薬を飲みます。<br>
+                彼の要望に従い、死後チェーンソーで首を切り落とし、その頭部を持って旅を続けます。
+            </p>
+
+            <h3>「The Head」</h3>
+            <img src="images/note_extracted/lucy-maclean/FOTV_Official_Trailer_Still_035.png" class="image-left" alt="グールに銃を向けられるルーシー" onclick="openLightbox(this)">
+            <p>
+                ルーシーはウィルジグの頭部を持って旅を続け、水没したハリウッド大通りに立ち寄ります。<br>
+                小鹿に餌をやりますが、ガルパーに食べられてしまいます。<br>
+                ガルパーがルーシーを襲いますが、トランキライザーガンで何とか逃れます。<br>
+                ガルパーは頭部を飲み込んで泳ぎ去ります。<br>
+                追いかけようとする前に、グールが追いつき彼女を捕らえます。<br>
+                グールはルーシーを水辺の滑車に縛り付け、ガルパーをおびき出すための餌として何度も水中に沈めます。<br>
+                ガルパーを引き寄せることには成功しますが、ルーシーがグールの吸入バイアルを事故で破壊してしまいます。
+            </p>
+            <div class="clearfix"></div>
+            <p>
+                怒ったグールは、ルーシーに新しいバイアルを見つける必要があるため彼女を捕虜として引きずっていきます。<br>
+                ガルパーが頭部を完全に消化する前に戻れるだろうと考えてのことでした。
+            </p>
+
+            <h3>「The Ghouls」</h3>
+            <img src="images/note_extracted/lucy-maclean/FOTV_The_gory_finger_scene.png" class="image-right" alt="指を切られるルーシー" onclick="openLightbox(this)">
+            <p>
+                旅の途中、ルーシーとグールはグールの友人ロジャーに出会います。<br>
+                ロジャーはフェラル化寸前のグールでした。<br>
+                友を救えないと悟ったグールは、楽しかった思い出を語らせた後、ロジャーを射殺します。<br>
+                ルーシーが彼の残酷さを責めると、自分の姓が「マクレーン」であることを明かしてしまい、グールは彼女が戦前の妻のアシスタントの娘であることに気づきます。<br>
+                グールはルーシーにロジャーの死体を肉として解体するよう強要します。
+            </p>
+            <p>
+                その後、ルーシーは絶望から放射線汚染された水を飲んでしまいます。<br>
+                グールが咳き込んでいる隙に逃亡を試みますが、すぐに捕まります。<br>
+                彼女はグールの右人差し指を噛みちぎり、グールはお返しに彼女の右人差し指を切り落とします。<br>
+                グールはルーシーをスーパー・ドゥーパー・マートに連れていき、ロボットのスニップ・スニップにバイアル2ヶ月分と引き換えに彼女を差し出します。
+            </p>
+            <div class="clearfix"></div>
+            <img src="images/note_extracted/lucy-maclean/FOTV_Official_Trailer_Still_078.png" class="image-left" alt="スニップ・スニップの手術を避けようとするルーシー" onclick="openLightbox(this)">
+            <p>
+                スニップ・スニップはルーシーに丁重に接し、腐敗した人差し指を外科的に取り付けます。<br>
+                ルーシーは助けを求めますが、スニップ・スニップの真の目的は彼女の臓器を摘出することでした。<br>
+                トランキライザーダートで意識を失わせられたルーシーですが、最終的にストレッチャーから脱出し、近くの除細動器でスニップ・スニップを感電させます。<br>
+                彼女はスニップ・スニップを盾にしてヒューイとスクワレルを脅し、自分と捕虜のグールたちの解放を要求します。
+            </p>
+            <p>
+                認知機能を失っていないグールたちは解放されましたが、ルーシーはフェラル・グールも含めて全員の解放を主張します。<br>
+                フェラルたちが解放されると、彼らはヒューイとスクワレルを殺害してから去って行きました。<br>
+                残ったグールのマーサはほぼフェラル化しており、ルーシーを攻撃しそうになったため、10mmピストルを手にします。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FOTV_Lucy_golden_rule_ep4.png" class="image-right" alt="グールにバイアルを渡すルーシー" onclick="openLightbox(this)">
+            <p>
+                外に出ると、グールがバイアルを必要として地面に倒れていました。<br>
+                彼による酷い扱いにもかかわらず、ルーシーはグールにマート内のバイアルを与えてから立ち去ることを決めます。<br>
+                これは、自分の理想と現実の要求を融合させることを学んでいる姿を示しています。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Past」</h3>
+            <p>
+                グールからの解放とほぼ臓器を摘出されかけた後、ルーシーは再びマキシマスに出くわします。<br>
+                マキシマスは従者サデウスによりパワーアーマーの中に閉じ込められていました。<br>
+                ルーシーがマキシマスを解放し、彼がルーシーの放射線症をRadAwayで治療するという取引をします。<br>
+                二人はサデウスとガルパーが吐き出した頭部を探すため協力することにします。
+            </p>
+
+            <img src="images/note_extracted/lucy-maclean/FOTV_Official_Trailer_Still_113.png" class="image-right" alt="マキシマスとシェイディ・サンズの廃墟を見るルーシー" onclick="openLightbox(this)">
+            <p>
+                サデウスを追跡する途中、ルーシーとマキシマスは地上の状況について話し合います。<br>
+                橋で食人族のジェイヴィンとリンクに遭遇しますが、マキシマスがルーシーの銃で二人を射殺します。<br>
+                その後、シェイディ・サンズの廃墟にたどり着きます。<br>
+                マキシマスはここがかつての自分の故郷であり、ブラザーフッドに引き取られる前に住んでいた場所だと明かします。<br>
+                Vault居住者なしで地上に文明が再建されていたことを知り、ルーシーは戸惑います。<br>
+                やがて二人はVault 4にたどり着きます。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Trap」〜「The Radio」</h3>
+            <p>
+                Vault 4に到着した二人はバーディーに迎えられ、マキシマスの傷が治療されます。<br>
+                隔離期間中、ルーシーはマキシマスに性的関係を提案しますが、ブラザーフッドでは禁じられているとして断られます。<br>
+                隔離後、監督官ベンジャミンに会い、Vaultがシェイディ・サンズの難民に開かれていることを知ります。<br>
+                Vaultの12階以外は全フロアが開放されていると聞きますが、ルーシーは「Flame Mother（炎の母）」の崇拝がリー・モルデイヴァーであることに恐怖を覚え、禁じられた12階に潜入して遺伝子実験を発見します。<br>
+                しかし捕まってしまいます。
+            </p>
+            <p>
+                捕らえられた後、ルーシーはVaultで何が起きたかをホロテープで学びます。<br>
+                処刑されると思っていましたが、実際にはVaultからの追放だけでした。<br>
+                マキシマスが核融合コアを奪ってパワーアーマーでルーシーを救出しますが、ルーシーは彼らが自分を解放するところだったと説明します。<br>
+                ルーシーはマキシマスに核融合コアを返すよう説得し、二人はVaultを去ります。<br>
+                その後、ルーシーはマキシマスに父を救出した後のVaultでの共同生活を提案します。<br>
+                マキシマスは本名がタイタスではなくマキシマスであり、タイタス騎士を脅されて見殺しにしたことを告白します。<br>
+                ルーシーもウエイストランドでひどいことをしてきたと認め、マキシマスの過去を咎めません。
+            </p>
+
+            <img src="images/note_extracted/lucy-maclean/Lucy_Maximus_kiss.png" class="image-left" alt="ルーシーとマキシマスの別れのキス" onclick="openLightbox(this)">
+            <p>
+                ついにサデウスと合流します。<br>
+                サデウスのブービートラップで首に穴が開きますが、瞬時に治癒します。<br>
+                マキシマスはサデウスがグール化しているのではないかと疑います。<br>
+                サデウスがウィルジグの頭部を渡すことで合意した後、マキシマスとルーシーはキスをして別々の方向に旅立ちます。<br>
+                マキシマスはブラザーフッドに偽物の頭を持って戻り、ルーシーはモルデイヴァーに本物の頭を届けて父を救出します。<br>
+                ルーシーはマキシマスにいつかVault 33で見つけてほしいと伝えます。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Beginning」</h3>
+            <img src="images/note_extracted/lucy-maclean/FOTV_Lucy_aiming_at_Hank.png" class="image-right" alt="父に銃を向けるルーシー" onclick="openLightbox(this)">
+            <p>
+                マキシマスと別れたルーシーは、モルデイヴァーの拠点であるグリフィス天文台に向かいます。<br>
+                メインオペレーションルームに到着すると、モルデイヴァーが彼女を待っており、拘束されたフェラル・グールの隣のテーブルに座り、近くのケージには父が閉じ込められていました。<br>
+                頭部を渡し父の解放を要求するルーシーに対し、モルデイヴァーは誘拐の理由を明かします。
+            </p>
+            <p>
+                モルデイヴァーはVault 31-33の真実を暴露します。<br>
+                ハンクはVault-Tecの幹部であり、200年の冷凍睡眠から目覚めた人物でした。<br>
+                母ローズがその事実を知った時、ルーシーとノームを連れてVault 33から脱出し、シェイディ・サンズでモルデイヴァーと暮らしていました。<br>
+                しかしハンクが発見し、シェイディ・サンズの壊滅を画策し、数千人の無辜の市民を殺害してルーシーとノームをVault 33に連れ戻したのです。<br>
+                頭部には常温核融合技術のカプセルが隠されており、その解除コードを知るハンクが必要でした。
+            </p>
+            <p>
+                ルーシーは母の運命の真実を知ります――飢餓による死ではなく、シェイディ・サンズへの核爆弾の放射線により、テーブルに拘束されているフェラル・グールへと変貌してしまったのです。<br>
+                ルーシーはハンクにモルデイヴァーへコードを渡すよう強要します。
+            </p>
+            <div class="clearfix"></div>
+            <p>
+                コードを得たモルデイヴァーが装置を起動しようとする中、ブラザーフッド・オブ・スティールが攻め込んできます。<br>
+                ルーシーは天文台に留まり、マキシマスが彼女を見つけ父を解放します。<br>
+                ルーシーは父がシェイディ・サンズを破壊した真実をマキシマスに明かし、怒ったマキシマスがハンクを攻撃しようとしますが、ハンクに叩きのめされます。<br>
+                ルーシーはマキシマスの銃を拾い父に向けますが、引き金を引くことをためらいます。<br>
+                そこにグールが現れ、ハンクの左頬をかすめる弾を撃ち、妻と娘の居場所を尋ねます。<br>
+                ハンクは答えずパワーアーマーで飛び去ります。
+            </p>
+            <p>
+                グールはルーシーにオリーブの枝を差し出し、ハンクを追う旅に誘います。<br>
+                マキシマスと残ればブラザーフッドに殺されるだろうと警告して。<br>
+                ルーシーは苦しみから母を解放するために射殺することを選び、グールと共に旅立ちます。<br>
+                意識のないマキシマスに、またいつか見つけると告げます。<br>
+                ルーシーとグールはハリウッド・フォーエバー霊廟に立ち寄り、ドッグミートと再会してライフルで武装し、ハンクの追跡に出発します。
+            </p>
+
+            <h3>シーズン2</h3>
+
+            <h3>「The Innovator」</h3>
+            <p>
+                モハビ・ウエイストランドに入った後、二人の旅の物資は底を尽きました。<br>
+                ノバックの町にたどり着きますが、そこはニック・ザ・プリック率いるグレートカーンの一団に占拠されていました。<br>
+                ルーシーは外交的に物資を頼むことを提案しますが、グールの作戦が採用されます――ルーシーがグールを賞金首として引き渡し、報酬のキャップを受け取ったら彼を救出し、全員を排除して物資を手に入れるというものです。
+            </p>
+            <img src="images/note_extracted/lucy-maclean/Lucy_in_Dinky_s2_teaser.png" class="image-right" alt="ダイナソーの中から見下ろすルーシー" onclick="openLightbox(this)">
+            <p>
+                しかし、グールを絞首台から撃ち落とす段になると、ルーシーは計画通りに殺すことを拒否し、交渉を試みます。<br>
+                カーンが拒否した後、ルーシーは元の計画に切り替え、ダイナソーの像から狙撃しますが、致命傷にならない程度の傷を狙い続けます。<br>
+                一方グールは容赦なく殺していきます。<br>
+                全員を片付けた後、二人とドッグミートはノバックを発つます。
+            </p>
+            <div class="clearfix"></div>
+            <p>
+                砂漠の平原を歩きながら、二人はルーシーの殺傷への消極性について口論します。<br>
+                やがて丘の上からニューベガスの広がりを目にします。<br>
+                ルーシーはその光景に目を見張ります――戦前とほとんど変わらない都市の姿に。<br>
+                グールは都市の防空システムがミサイルの大半を撃墜したと明かしますが、それはアメリカのためではなく、ロバート・ハウスという一人の男のためだったと言います。
+            </p>
+            <p>
+                ニューベガスへの道中、ハンクが盗んだT-60パワーアーマーで押し潰したウエイストランダーの死体を発見します。<br>
+                さらに進むと、路傍のスープ小屋を営む老婆グレッチに出会います。<br>
+                ルーシーはグレッチの「ノミのスープ」を2キャップで購入しますが、一口で後悔します。<br>
+                グレッチはハンクが来て息子を誘拐したことを明かし、おそらく殺したとも。<br>
+                グレッチの指示に従い旅を続ける二人は、やがて廃墟のスターライト・ドライブインシアターにたどり着き、そこでVault 24の入口を発見します。
+            </p>
+            <p>
+                Vault 24の内部を探索し、この Vaultの実験が共産主義プロパガンダによるアメリカ人のマインドコントロール用チップのテストだったことを発見します。<br>
+                ルーシーの父がハードドライブを持ち去っていました。<br>
+                食べかけのシュガーボムの箱——ハンクがルーシーを呼ぶあだ名——を見つけた後、グレッチの息子が現れます。<br>
+                チップを埋め込まれた彼を通じてハンクがメッセージを送ります。<br>
+                追跡をやめて帰れという警告の後、チップの出力を上げて男の頭を爆発させます。<br>
+                それでもルーシーは父の追跡をやめないとグールに伝えます。
+            </p>
+
+            <h3>「The Golden Rule」</h3>
+            <p>
+                ニューベガスへの道を歩きながら、ルーシーはグールの無礼さについて小言を言います。<br>
+                水筒を頼むのではなく奪うような態度を。<br>
+                旅は、廃墟の近くから聞こえる女性の助けを求める声で中断されます。<br>
+                グールは明らかな罠だと無視しようとしますが、ルーシーは助けに向かいます。
+            </p>
+            <p>
+                廃墟の病院で負傷した女性を発見し、ルーシーは最後のスティムパックを使おうとします。<br>
+                グールは近くの負傷した男に手を貸すふりをして喉を切り裂きます。<br>
+                直後にラッドスコルピオンが襲来し、戦闘になります。<br>
+                グールは女性を盾にしてラッドスコルピオンの毒針を防ごうとしますが、ルーシーが女性を引き戻したため、グール自身が刺されてしまいます。<br>
+                ルーシーは唯一のスティムパックを女性に使い、グールには「あなたが受けるべき報い」だと告げますが、彼の体質が死なせないことも分かっていました。<br>
+                安全な場所まで女性を運んだ後、必ず戻ると約束します。
+            </p>
+
+            <img src="images/note_extracted/lucy-maclean/FOTV2_Lucy_Legion.png" class="image-right" alt="レギオンのキャンプに連行されるルーシー" onclick="openLightbox(this)">
+            <p>
+                女性と歩き続けるうちに、ルーシーは彼女がラテン語を話すことに気づきます。<br>
+                「親切な退廃者」と呼ばれます。<br>
+                やがてローマ風の鎧を着た男たちが崖の上に現れ、女性は姿を消します。<br>
+                夜、ルーシーは炎を頼りに歩き、赤い旗に牛の紋章が描かれた旗——シーザーズ・レギオンの旗——を見つけます。<br>
+                ローマ風の武装兵に囲まれ、ルーシーは気まずい笑顔で友好的であることを示そうとします。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Profligate」</h3>
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E3_Still_083.png" class="image-right" alt="レギオンに磔にされるルーシー" onclick="openLightbox(this)">
+            <p>
+                翌朝、ルーシーと女性はレギオンの本陣を通され、指揮官のラケルタ・レガトゥスの前に連れ出されます。<br>
+                脱走した奴隷は命令通り戻らなかったとして、レガトゥスの合図で喉を切られて殺されます。<br>
+                ルーシーはシーザーの前に連れ出され、「プリマ・ノクティス」の権利について交渉していると告げられます。<br>
+                彼女は中世の伝統であってローマのものではないと反論し、しかも自分は処女ですらないと抗議します。
+            </p>
+            <p>
+                レガトゥスはルーシーにレギオンが直面する戦争を見せます——NCR、グレートカーン、ブラザーフッドとの争い、そして二つのシーザーズ・レギオン同士の内戦。<br>
+                ルーシーが外交による解決を申し出ますが拒否され、磔にされてしまいます。<br>
+                レガトゥスは歴史において「善良」であることよりも「強さ」の方が意味があると告げます。
+            </p>
+            <p>
+                少なくとも1〜2日は磔にされた後、グールが現れます。<br>
+                グールはレギオンとの取引でルーシーの解放を獲得しており、衰弱した彼女を担いでキャンプから運び出します。<br>
+                グールは密かにダイナマイトの仕掛けを行い、爆発を引き起こして二つのレギオン勢力を同士討ちさせます。<br>
+                NCR前哨基地への攻撃を遅延させつつ、ルーシーとグールは立ち去ります。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Demon in the Snow」</h3>
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E4_Still_085.png" class="image-left" alt="バフアウト中毒のルーシー" onclick="openLightbox(this)">
+            <p>
+                ルーシーはNCR前哨基地のベッドで目覚めます。<br>
+                グールが彼女を運び、レンジャーたちにバフアウトを投与させて回復を図りました。<br>
+                ロドリゲス大尉とレンジャー・ビフと出会い、NCRの残存勢力であることを知ります。<br>
+                ロドリゲスはルーシーに仲間入りを勧めますが、彼女は誰かを探していると答えます。
+            </p>
+            <p>
+                その後、ルーシーはかゆみ、落ち着かない思考、激しい呼吸、苛立ちといった症状を示し始めます。<br>
+                グールはNCRが使ったバフアウトの中毒症状であると明かします。<br>
+                禁断症状に耐えて数日かけてニューベガスに入るか、もっとドラッグを飲むかの二択。<br>
+                ルーシーはグールのバフアウトの提案を受け入れ、ニューベガスへ歩き出します。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E5_Still_004.png" class="image-right" alt="デスクローに対峙するルーシーとグール" onclick="openLightbox(this)">
+            <p>
+                ストリップの入口付近でフェラル化したキングスのグールの群れに遭遇します。<br>
+                バフアウトの影響で大胆になったルーシーは躊躇なくレバーアクションライフルで一匹の足を撃ち飛ばし、次々と射殺していきます。<br>
+                戦闘後、さらなるアドレナリンを求めてグールにタバコをねだりますが断られます。<br>
+                夜、ニューベガス・ストリップを歩く二人は人っ子一人いないことに気づきます。<br>
+                放射線数値の上昇に気づいたルーシーが大きな割れた卵の殻で遊び始めますが、グールはそれがデスクローの卵だと見抜きます。<br>
+                ゴモラのカジノからデスクローが姿を現し、ルーシーは怯えながらも「オーキードーキー」とつぶやきます。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Wrangler」</h3>
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E5_Still_023.png" class="image-left" alt="フリーサイドでのルーシーとグール" onclick="openLightbox(this)">
+            <p>
+                3体のデスクローに追われ、フラグ・グレネードで注意を逸らしてフリーサイドのゲートの下を滑り抜けて脱出します。<br>
+                翌日、グールはルーシーにアディクトールでバフアウト中毒を治すようサニーズ・サンドリーズに行かせます。<br>
+                しかし価格が1,000キャップに跳ね上がっており、ルーシーは裏口から忍び込んで盗むことにします。<br>
+                アディクトールと共にパワーフィストも持ち出します。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E5_Still_114.png" class="image-right" alt="偽の店主を撃つルーシー" onclick="openLightbox(this)">
+            <p>
+                脱出しようとしたルーシーはゴミ箱に切り刻まれた死体を発見し、店主に見つかります。<br>
+                壁の写真と目の前の男が異なることに気づき、この「店主」サイモンが本物の店主ソニーを殺した泥棒であることを見抜きます。<br>
+                ルーシーは穏便に立ち去ろうとしますが、泥棒が銃に手を伸ばしたためピストルで撃ちます。<br>
+                傷だけのつもりが致命傷を与えてしまい、人間を簡単に殺してしまったことにショックを受けます。<br>
+                店の外でアディクトールを服用し、バフアウトを体外に排出するため激しく嘔吐します。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E5_Still_193.png" class="image-left" alt="パワーフィストでクーパーを殴り飛ばすルーシー" onclick="openLightbox(this)">
+            <p>
+                アトミック・ラングラー・カジノでグールと合流しますが、ハンクの差し向けた使者から取引を持ちかけられます。<br>
+                ハンクはグールの家族を冷凍保存している施設にいることを明かし、ルーシーをVault 33に連れ戻せばグールの家族を無事にすると約束します。<br>
+                グールがルーシーの家族の安全と引き換えにした取引を受け入れようとしていることに気づいたルーシーは、やっと打ち解けてきたのに、と残念がります。<br>
+                グールはルーシーのトランキライザーガンで彼女を撃ちます。
+            </p>
+            <p>
+                しかしルーシーはトランキライザーに抵抗し、パワーフィストを装着してグールを窓の外に殴り飛ばします。<br>
+                グールは落下して金属ポールに串刺しになります。<br>
+                ルーシーの体がトランキライザーに屈した直後、ハンクが部屋に現れ、「リトル・シュガーボム」と呼びかけます。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Other Player」〜「The Handoff」</h3>
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E7_Still_023.png" class="image-right" alt="洗脳された使者とルーシー" onclick="openLightbox(this)">
+            <p>
+                ルーシーはラスベガスのVault-Tec施設の豪華な部屋で目覚めます。<br>
+                探索中にレギオンの兵士に出会いますが、首にブラックボックスチップが埋め込まれており礼儀正しく接してきます。<br>
+                施設内のオフィスではチップを量産する「職員」たちが作業しており、「シミュレーション」と書かれた部屋には自分のVaultとそっくりな空間が再現されていました。
+            </p>
+            <p>
+                そこでハンクと対面します。<br>
+                ハンクはブッククラブの続きを話そうとしますが、ルーシーは『西部戦線異状なし』を読んで動揺したと答えます。<br>
+                ハンクが人類の戦争本能について語り始めた時、ルーシーはオフィスからくすねたハサミで背後から彼を制圧し、Vault 33に連れ戻して裁判にかけると宣言します。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E7_Still_027.png" class="image-left" alt="ゴルフカートを運転するルーシー" onclick="openLightbox(this)">
+            <p>
+                ハンクは投降を受け入れ、手錠をかけられます。<br>
+                マインドコントロールチップの製造を止めるため地下のメインフレームを破壊する必要があるとルーシーに教え、ゴルフカートでそこまで案内します。<br>
+                道中、洗脳されたレギオンの戦士——先ほどルーシーの首を絞めようとした男——が穏やかに床を拭いている姿を見て、ルーシーは一瞬立ち止まります。<br>
+                レギオンはまだ外で大きな害を及ぼしている――チップを使えば止められるかもしれない。<br>
+                ハンクの言葉に言いくるめられ、ルーシーはメインフレーム破壊の計画を一時保留してしまいます。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E7_Still_123.png" class="image-right" alt="ハンクとの夕食" onclick="openLightbox(this)">
+            <p>
+                ルーシーは黄色いワンピースに着替え、ハンクとの夕食に臨みます。<br>
+                マッシュポテトの味がVaultのものと同じだと感じます。<br>
+                しかし洗脳されたビフが水を注ぎに来た時、彼がNCRでの25年間の記憶を完全に失っていることを確認し、衝撃を受けます。
+            </p>
+            <p>
+                ハンクはシーザーズ・レギオンとNCRに違いはないと主張します。<br>
+                オーブンの熱い鍋に触れて火傷したハンクに、ルーシーは手錠を外すふりをして、もう片方の手錠をオーブンの取っ手に繋ぎます。<br>
+                ハンクのPip-Boyを盗み、レギオンは殺人と奴隷の軍団で、NCRは「せいぜい問題あり程度」だと反論します。<br>
+                ルーシーは父の育て方のおかげで自分が「クソバカ」にならなかったと認めつつも、父の操作的な行動を信用しないと告げ、メインフレーム破壊に向かいます。
+            </p>
+            <div class="clearfix"></div>
+
+            <h3>「The Strip」</h3>
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E8_Still_042.png" class="image-left" alt="ダイアン・ウェルチを楽にするルーシー" onclick="openLightbox(this)">
+            <p>
+                地下のメインフレーム室に入ったルーシーは、メインフレームの「コア」が実はダイアン・ウェルチの切断された頭部であり、脳スキャンヘルメットに接続されていることを発見します。<br>
+                ウェルチの目が開き、電子音声で殺してくれと懇願します。<br>
+                もう誰も殺したくないルーシーですが、最終的にバールで彼女を楽にします。
+            </p>
+            <div class="clearfix"></div>
+            <p>
+                ハンクが現れ、チップの開発者ロバート・ハウスは人間をロボットにしようとしたが、自分はウェルチの人格マトリクスを使って個性を持たせたかったと語ります。<br>
+                そしてミニチュア版のチップを見せ、埋め込まれているかどうか見分けがつかなくなると言います。<br>
+                ルーシーにもチップを埋め込もうとしますが、グールの投げナイフでレギオンの戦士が倒され、ハンクの臀部にも弾が撃ち込まれます。<br>
+                グールはルーシーにピストルを滑らせ、判断は彼女に委ねます。
+            </p>
+
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E8_Still_137.png" class="image-right" alt="ラッキー38の前のルーシーとハンク" onclick="openLightbox(this)">
+            <p>
+                ルーシーは父の首にチップを埋め込み、リモコンを手にしてニューベガス・ストリップに連れ出します。<br>
+                ハンクに、地上が人を変えること、ウエイストランドでの経験が自分を変えたことを伝えます。<br>
+                ルーシーはハンクにベガスで何をしていたのかの真実を語るよう求めます。<br>
+                ハンクは最後に、本当の実験はVaultではなく地上にあったこと、そして戦前の命令を持つ小型チップを埋め込んだ人々を既にウエイストランドに送り出していることを明かします。<br>
+                それ以上の追及の前に、ハンクは自分の隠し持ったリモコンで自らのチップを起動し、記憶を消去してしまいます。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FTV_S2E8_Still_151.png" class="image-right" alt="マキシマスと再会するルーシー" onclick="openLightbox(this)">
+            <p>
+                ルーシーはもう何も語れなくなったハンクを抱きしめます。<br>
+                目覚めたハンクは彼女が誰なのかも分からず、顔の汚れを拭こうとします。<br>
+                涙を流しながら、ルーシーは空っぽになった父をその場に残します。
+            </p>
+            <p>
+                そこへマキシマスが現れ、二人は再会を果たします。<br>
+                レギオンの軍がベガスに入ってくる中、二人はラッキー38のペントハウスに到達します。<br>
+                ロバート・ハウスのコンピューターには「Signal Lost」と表示されていました。<br>
+                ニューベガスを見下ろしながら、ルーシーはこれから戦争が起き、それは自分のせいだとマキシマスに告げます。<br>
+                マキシマスはただ一言、「ようこそウエイストランドへ」と答えます。
+            </p>
+            <div class="clearfix"></div>
+
+            <h2>性格</h2>
+            <img src="images/note_extracted/lucy-maclean/The_End_episode_banner.jpg" class="image-right" alt="未来を見つめるルーシー" onclick="openLightbox(this)">
+            <p>
+                ルーシーはコミュニティの幸福に積極的に貢献する人物で、修理スキルを使ったVaultのメンテナンスやガーデニングに勤しみます。<br>
+                自分の射撃スキルを控えめに評価していますが、実際は的の中心に命中させています。<br>
+                読書、映画鑑賞、歴史の学習を楽しみ、優しく、魅力的で、勇敢で強い人物として描かれています。<br>
+                問題が発生すると、ルーシーは果敢に立ち向かいます――フィリーでグールを言葉で説得しようとしたり、ベンジャミン監督官の指示に反してVault 4の制限区域を調査したり。<br>
+                ルーシーは「ゴールデン・ルール」――自分がされたいように他人を扱うこと――を強く信じています。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FOTV_Lucy_attacks_a_woman.gif" class="image-left" alt="Vault 4の住人を攻撃するルーシー" onclick="openLightbox(this)">
+            <p>
+                しかし、ルーシーにはVault-Tecによる洗脳の痕跡も見られます。<br>
+                モンティに精子の数を直接聞いたり、マキシマスに突然性的関係を提案したりと、性に対してオープンなのか洗脳の結果なのか判然としない行動があります。<br>
+                彼女の口癖「オーキードーキー」は楽観主義も表していますが、本当の感情を抑圧する対処法かもしれません。<br>
+                最初の殺人までは下品な言葉を使うことも拒否していました。
+            </p>
+            <div class="clearfix"></div>
+
+            <img src="images/note_extracted/lucy-maclean/FOTV_Lucy_weeps.png" class="image-right" alt="父を信じられなくなり涙するルーシー" onclick="openLightbox(this)">
+            <p>
+                ルーシーの転機は、モルデイヴァーから父の真実を知った時に訪れます。<br>
+                Vault-Tecとの関わり、シェイディ・サンズの壊滅への関与、母がグールへと変貌した事実。<br>
+                彼女の世界は粉々に崩れ、父を同じ人間として見ることができなくなります。
+            </p>
+            <p>
+                それでもルーシーは優しさを失いません。<br>
+                マキシマスがハンクに殴り倒された時、彼を心配してマキシマスの銃を拾い父に向けるほどです。<br>
+                最終的にグールと共にハンクを追うことを選びますが、去る前に苦しむ母を慈悲から射殺します。
+            </p>
+            <div class="clearfix"></div>
+
+            <p>
+                最初は暴力を拒否していたルーシーですが、ウエイストランドでの経験を通じて、攻撃や傷害に対して徐々にオープンになっていきます。<br>
+                しかし冷血な殺人は依然として拒み続けます。<br>
+                グレートカーンとの戦闘でも致命傷を避けた射撃を行い、父を殺すのではなく正義の裁きにかけたいと考えます。<br>
+                一方、バフアウト中毒後には手口が変わり、窃盗に手を出したり、敵を殺すことへの抵抗感が薄れたりします。<br>
+                しかしアディクトールで回復し、グールの裏切りを経た後、元の思いやりのある自分に戻ります。<br>
+                「墓場の平和」ではなく、人々の自由意志を尊重した形でウエイストランドをより良い場所にしたいと願い続けます。
+            </p>
+
+            <h2>名言</h2>
+            <div class="dialogue-box">
+                「私の名前はルーシー・マクレーン。コミュニティの幸福に積極的に貢献しています。<br>
+                修理スキルは若手配管工協会の活動で磨いています。<br>
+                科学スキルは明らかに父には及びませんが、チャレンジは大好きです！」<br><br>
+                ―― ルーシー、結婚申請にて
+            </div>
+            <div class="dialogue-box">
+                「オーキードーキー」<br><br>
+                ―― ルーシーの口癖
+            </div>
+            <div class="dialogue-box">
+                「あなたを置いていくわけにはいかない。お願い、中に誰かがいるのは分かっている。<br>
+                話して。お願い！」<br><br>
+                ―― ルーシー、フェラル化寸前のマーサに語りかけて
+            </div>
+            <div class="dialogue-box">
+                「ここ200年間で何が起きたか教えてもらえますか？」<br><br>
+                ―― ルーシー、マキシマスに
+            </div>
+            <div class="dialogue-box">
+                「6歳まで、農場の大きなライトが太陽だって本気で思ってた」<br><br>
+                ―― ルーシー、母との思い出について
+            </div>
+            <div class="dialogue-box">
+                「一方は人殺しをして、奴隷にして、磔にしている。<br>
+                もう一方は……まあ、せいぜい問題がある程度よ」<br><br>
+                ―― ルーシー、レギオンとNCRの違いについて父に
+            </div>
 
             <h2>ギャラリー</h2>
-<div class="gallery">
-<img src="images/note_extracted/lucy-maclean/img_1.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_2.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_3.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_4.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_5.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_6.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_7.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_8.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/lucy-maclean/img_9.png" alt="ルーシー・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
-</div>
-<div class="quote-box"><b>感想</b><br><br>純度100%の「Falloutの主人公」らしい主人公です。ゲームを始めたばかりの「善人プレイをしようとしているプレイヤー」そのものを見ているかのような行動を取り続け、最終的に地上の過酷な倫理観に少しずつ適応していく姿は、シリーズファンから見ても完璧な「Vault居住者のロールプレイ」でした。<br><br>単なるお人好しではなく、首を切り落とすことに適応したり、麻酔銃を巧みに操って窮地を脱したりと、サバイバル能力がしっかり高いところも魅力的なキャラクターです。（※エラ・パーネル演）</div>
+            <h3>シーズン1</h3>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_Lucy_poster.jpg" alt="ルーシーのポスター">
+                    <div class="caption">ルーシーのポスター</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_series_promo.png" alt="プロモーション画像">
+                    <div class="caption">プロモーション画像</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Fallout_Season_1_Amazon_Lucy.png" alt="Prime Videoキャラクター概要">
+                    <div class="caption">Prime Videoキャラクター概要</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_S01E01.The.End._(8).jpg" alt="Vault 32のモンティと出会う">
+                    <div class="caption">Vault 32のモンティと出会う</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_wedding.png" alt="結婚式のルーシー">
+                    <div class="caption">結婚式のルーシー</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_Vault_33_attack.gif" alt="Vault 33の襲撃">
+                    <div class="caption">Vault 33の襲撃</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_Trailer_1_05.png" alt="Vault 33を出発">
+                    <div class="caption">Vault 33を出発</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Lucy_watching_Filly.webp" alt="フィリーに入る">
+                    <div class="caption">フィリーに入る</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/The_Target_Lucy_with_saw.png" alt="ウィルジグの首を切る準備">
+                    <div class="caption">ウィルジグの首を切る準備</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Lucy_deer.gif" alt="鹿を初めて見るルーシー">
+                    <div class="caption">鹿を初めて見るルーシー</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Lucy_finger_mouth.png" alt="グールの指を噛みちぎる">
+                    <div class="caption">グールの指を噛みちぎる</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_Lucy_gets_her_hand_mutilated.gif" alt="指を切り落とされるルーシー">
+                    <div class="caption">指を切り落とされるルーシー</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/The_Ghouls_episode_banner.jpg" alt="スーパー・ドゥーパー・マートにて">
+                    <div class="caption">スーパー・ドゥーパー・マートにて</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Lucy_MacLean_gun.png" alt="銃を構えるルーシー">
+                    <div class="caption">銃を構えるルーシー</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_Lucy_ashes.png" alt="シェイディ・サンズの灰を浴びて">
+                    <div class="caption">シェイディ・サンズの灰を浴びて</div>
+                </div>
+            </div>
 
-            <!-- Footer & Copyright -->
+            <h3>シーズン2</h3>
+            <div class="gallery">
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Fallout_Season_2_Amazon_Lucy.png" alt="シーズン2キャラクター概要">
+                    <div class="caption">シーズン2キャラクター概要</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_S2_Lucy_character_poster.jpg" alt="シーズン2キャラクターポスター">
+                    <div class="caption">シーズン2キャラクターポスター</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_Season_2_Lucy_Character_Poster_2.jpg" alt="別バージョンのキャラクターポスター">
+                    <div class="caption">別バージョンのポスター</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Lucy_MacLean_Mare's_Leg.jpg" alt="メアズレッグを射撃するルーシー">
+                    <div class="caption">メアズレッグを射撃</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV_S2_Radium_Rifle.jpg" alt="ラジウムライフルを使うルーシー">
+                    <div class="caption">ラジウムライフルを使用</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/Lucy_MacLean_New_Vegas_Sign.jpg" alt="ニューベガスのサインの前で">
+                    <div class="caption">ニューベガスのサインの前で</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FOTV2_Lucy_Legion.png" alt="レギオンのキャンプへ">
+                    <div class="caption">レギオンのキャンプへ</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FTV_S2E5_Still_024.png" alt="ニューベガスのルーシー">
+                    <div class="caption">ニューベガスのルーシー</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FTV_S2E7_Still_133.png" alt="レギオンとNCRの違いを語る">
+                    <div class="caption">NCRとレギオンの違いを語る</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FTV_S2E8_Still_073.png" alt="父との会話">
+                    <div class="caption">父との会話</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FTV_S2E8_Still_138.png" alt="記憶消去中の父を抱きしめるルーシー">
+                    <div class="caption">記憶消去中の父を抱きしめる</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FTV_S2E8_Still_195.png" alt="ラッキー38のルーシーとマキシマス">
+                    <div class="caption">ラッキー38のルーシーとマキシマス</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this.querySelector('img'))">
+                    <img src="images/note_extracted/lucy-maclean/FTV_S2E8_Still_198.png" alt="ルーシーとマキシマス、手をつないで">
+                    <div class="caption">手をつないで未来を見つめる</div>
+                </div>
+            </div>
+
+            <!-- 感想 -->
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ルーシー・マクレーン。もうこの名前だけで胸がいっぱいになります。<br>
+                Vault 33という温室の中で「善良であること」を教え込まれた少女が、世界の残酷な真実と向き合いながらも、自分の信念を手放さない――その姿にどれだけ勇気づけられたことか。<br><br>
+                彼女の旅は「ゴールデン・ルール」を貫くことの難しさそのものです。<br>
+                グールに指を切られても、スニップ・スニップに臓器を摘出されかけても、レギオンに磔にされても、ルーシーは「人間としてどうあるべきか」という問いから逃げません。<br>
+                バフアウト中毒のエピソードでは、ルーシーの内面に潜む暴力性と、それを自覚した時の恐怖がリアルに描かれていて、単なるヒロインではなく一人の人間として描写されているのが素晴らしいです。<br><br>
+                そしてシーズン2の最終盤。ハンクにマインドコントロールチップを埋め込むという選択。<br>
+                父を殺さず、しかし許すこともできない。「正義」とは何かを追い求め続けたルーシーが辿り着いた答えは、ある意味で最も残酷で、最も人間的な選択でした。<br>
+                涙を流しながら空っぽになった父を見つめるシーンは、シリーズ全体を通して最も心に刺さる場面の一つだと思います。<br><br>
+                エラ・パーネルの演技も本当に素晴らしくて、あの大きな瞳で絶望と希望を同時に表現できる女優はそういません。<br>
+                「ようこそウエイストランドへ」というマキシマスの言葉と共に、ルーシーの新たな章が始まることを期待せずにはいられません。<br>
+                オーキードーキー。<br>
+            </div>
+
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
                 <div style="margin-bottom: 10px;">
-                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutTV</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutTV</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Person</span>
                 </div>
-                <!-- 著作権表示 -->
-                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Lucy_Maclean" target="_blank" rel="noopener">Lucy MacLean</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
-                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Lucy_MacLean" target="_blank" rel="noopener">Lucy MacLean</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
 
             <!-- Comments Section -->
@@ -294,44 +795,152 @@
                 <h3 class="comments-title">&gt; COMMENTS</h3>
                 <div class="comment-form">
                     <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
                         <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
-                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
             </div>
         </main>
     </div>
 
-    <!-- Lightbox Overlay -->
+    <!-- Lightbox -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
+        <img id="lightbox-img" src="" alt="">
     </div>
 
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
         const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
-        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
-        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
-        
-        // Comment system
-        const _commentArticleId = 'lucy_maclean'; const _commentArticleName = 'Lucy MacLean'; const _commentArticleUrl = 'lucy-maclean.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
-        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
-        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
-        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
-        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
-        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
-        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
-        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
-        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
-        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+
+        function openLightbox(img) {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightbox-img');
+            lbImg.src = img.src; lbImg.alt = img.alt;
+            lb.classList.add('active');
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+        });
+
+        async function toggleLike(btn) {
+            const articleId = btn.getAttribute('data-article-id');
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            btn.disabled = true;
+            if (isLiked) {
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', false); updateLikeButton(btn, false, data); }
+            } else {
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
+                if (!error) { localStorage.setItem(articleId + '_liked', true); updateLikeButton(btn, true, data); }
+            }
+            btn.disabled = false;
+        }
+        function updateLikeButton(btn, isLiked, count) {
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '\u2665'; }
+            else { btn.classList.remove('liked'); heart.textContent = '\u2661'; }
+            countSpan.textContent = count;
+        }
+        document.addEventListener('DOMContentLoaded', async () => {
+            const btn = document.querySelector('.like-button');
+            if (btn) {
+                const articleId = btn.getAttribute('data-article-id');
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
+                let count = 0;
+                if (!error && data) count = data.like_count;
+                updateLikeButton(btn, isLiked, count);
+            }
+        });
+
+        // コメント機能
+        const _commentArticleId = 'lucy_maclean';
+        const _commentArticleName = 'Lucy MacLean (ルーシー・マクレーン)';
+        const _commentArticleUrl = 'lucy-maclean.html';
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
+        const ADMIN_PASSWORD = 'tq7jtq7j';
+        const RATE_LIMIT_KEY = 'comment_last_posted';
+        const RATE_LIMIT_SEC = 60;
+        let _isAdminMode = false;
+
+        function updateCharCount() {
+            const len = document.getElementById('comment-input').value.length;
+            const el = document.getElementById('char-count');
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; }
+        }
+        function relativeTime(s) {
+            const d = (Date.now() - new Date(s).getTime()) / 1000;
+            if (d < 60) return 'たった今';
+            if (d < 3600) return Math.floor(d / 60) + '分前';
+            if (d < 86400) return Math.floor(d / 3600) + '時間前';
+            if (d < 86400 * 7) return Math.floor(d / 86400) + '日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        function escapeHtml(str) {
+            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (!comments || comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        async function loadComments() {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50);
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; }
+            renderComments(data || []);
+        }
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input ? input.value.trim() : '';
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
+            const now = Date.now();
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
+                showCommentMsg('あと' + Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000) + '秒後に投稿できます。', false); return;
+            }
+            const btn = document.querySelector('.comment-submit-btn');
+            if (btn) btn.disabled = true;
+            const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content });
+            if (btn) btn.disabled = false;
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; }
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
+            input.value = ''; updateCharCount();
+            showCommentMsg('コメントを投稿しました！', true);
+            await loadComments();
+        }
+        function showCommentMsg(text, ok) {
+            const el = document.getElementById('comment-msg');
+            if (!el) return;
+            el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
+            setTimeout(() => { el.textContent = ''; }, 3000);
+        }
+        async function deleteComment(commentId) {
+            if (!_isAdminMode) return;
+            if (!confirm('このコメントを削除しますか？')) return;
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' });
+            if (!error) await loadComments();
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const token = localStorage.getItem(ADMIN_TOKEN_KEY);
+            if (token === ADMIN_PASSWORD) _isAdminMode = true;
+            loadComments();
+        });
     </script>
-    <script src="article-common.js" defer></script>
 </body>
 </html>
