@@ -2,713 +2,372 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>コズワース | Overseer Mohi's Terminal</title>
-    <!-- Open Graph / Discord Embed -->
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="コズワース | Overseer Mohi's Terminal">
-    <meta property="og:description" content="コズワースのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/nbc599b5daa3b_img_1.png">
-    <meta property="og:url" content="https://www.fallout-jp.com/nbc599b5daa3b.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="コズワース | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="コズワースのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/nbc599b5daa3b_img_1.png">
-    <!-- Supabase CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>コズワース (Codsworth) | Fallout Terminal Archive</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f0f0f;
-            --text-color: #e0e0e0;
-            --accent-color: #ff8800; /* Dynamic Theme Color */
-            --header-bg: #1a1a1a;
-            --panel-bg: #222;
+            --bg-color: #050d0a;
+            --term-color: #33ff33;
+            --term-dim: #1f8b1f;
+            --accent-color: #55ff55;
+            --scanline-color: rgba(51, 255, 51, 0.03);
+            --crt-curve: 5px;
+            --font-main: 'Share Tech Mono', monospace, 'MS Gothic', sans-serif;
+            --glow-spread: 8px;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--term-color);
+            font-family: var(--font-main);
             margin: 0;
-            line-height: 1.8;
+            padding: 20px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            text-shadow: 0 0 4px rgba(51, 255, 51, 0.4);
         }
 
-        /* 2-Column Grid Layout */
+        /* Scanline Overlay */
+        body::after {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(18, 16, 16, 0) 50%,
+                var(--scanline-color) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 100;
+            pointer-events: none;
+        }
+
         .container {
             max-width: 1000px;
             margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 30px;
+            border: 2px solid var(--term-dim);
+            padding: 30px;
+            position: relative;
+            background: radial-gradient(circle at center, #061810 0%, var(--bg-color) 100%);
+            box-shadow: inset 0 0 30px rgba(51, 255, 51, 0.1),
+                        0 0 var(--glow-spread) rgba(51, 255, 51, 0.2);
+            border-radius: var(--crt-curve);
+            min-height: 80vh;
         }
 
-        h1, h2, h3 {
-            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
-            color: var(--accent-color);
-            border-bottom: 1px solid var(--accent-color);
-            padding-bottom: 5px;
+        header {
+            border-bottom: 2px solid var(--term-dim);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
         }
 
         h1 {
-            font-size: 2.2em;
-            margin-top: 0;
-            line-height: 1.4;
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: flicker 4s infinite alternate;
         }
 
+        h2 {
+            color: var(--accent-color);
+            border-bottom: 1px dashed var(--term-dim);
+            padding-bottom: 5px;
+            margin-top: 40px;
+        }
 
-        /* Sidebar InfoBox */
+        .sys-info {
+            font-size: 0.9em;
+            text-align: right;
+            color: var(--term-dim);
+        }
+
+        /* Infobox Styles */
         .infobox {
-            background: var(--panel-bg);
-            border: 2px solid var(--accent-color);
+            float: right;
+            width: 320px;
+            border: 2px solid var(--term-color);
+            background-color: rgba(51, 255, 51, 0.05);
+            margin: 0 0 20px 20px;
             padding: 15px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-            align-self: start;
+            box-shadow: 0 0 10px rgba(51, 255, 51, 0.1);
         }
 
-        .infobox img {
-            width: 100%;
-            border: 1px solid #555;
+        .infobox-title {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-bottom: 2px solid var(--term-color);
             margin-bottom: 15px;
+            padding-bottom: 5px;
+            color: var(--accent-color);
+        }
+
+        .infobox-image {
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px solid var(--term-dim);
+            padding: 5px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #020604;
         }
 
         .infobox-row {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9em;
-            border-bottom: 1px dashed #444;
+            border-bottom: 1px dotted var(--term-dim);
+            padding: 6px 0;
         }
 
-        .infobox-label {
-            color: var(--accent-color);
+        .infobox-row:last-child {
+            border-bottom: none;
+        }
+
+        .infobox-header {
             font-weight: bold;
-        }
-
-        /* Content Area matching manual entries */
-        .content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 5px;
-            font-size: 1em;
-            line-height: 1.9;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Quote Box for Impressions */
-        .quote-box {
-            font-style: auto;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 20px;
-            margin: 40px 0 20px 0;
-            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
-            padding: 15px;
-            border-radius: 0 5px 5px 0;
-            line-height: 1.6;
-        }
-
-        .quote-box b {
+            width: 35%;
             color: var(--accent-color);
+        }
+
+        .infobox-data {
+            width: 65%;
+        }
+
+        /* Content Styles */
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+        }
+
+        ul {
+            list-style-type: square;
+            color: var(--term-color);
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
             font-size: 1.05em;
         }
 
-        .content a {
+        a {
+            color: var(--term-color);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--term-dim);
+            transition: all 0.2s ease;
+        }
+
+        a:hover {
             color: var(--accent-color);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-        }
-
-        .content a:hover {
             border-bottom: 1px solid var(--accent-color);
-        }
-        
-        /* Auto Cross-Links */
-        .auto-link {
-            color: var(--accent-color) !important;
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 1px dashed var(--accent-color) !important;
-            transition: all 0.2s;
-            padding: 0 2px;
+            text-shadow: 0 0 8px var(--accent-color);
+            background-color: rgba(51, 255, 51, 0.1);
         }
 
-        .auto-link:hover {
-            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
-            border-bottom: 1px solid var(--accent-color) !important;
-        }
-
-        /* Note specific Inline Images */
-        .note-figure {
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        /* Terminal / Holotape / Note Logs */
-        .note-figure blockquote {
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--accent-color);
-            border-left: 5px solid var(--accent-color);
-            padding: 20px;
-            margin: 0;
-            border-radius: 4px;
-            color: #dcdcdc;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
-            text-align: left;
-        }
-
-        .content img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #444;
-            display: block;
-            margin: 0 auto 10px auto;
-        }
-
-        .note-figcaption {
-            text-align: center;
-            font-size: 0.9em;
-            color: #888;
-            margin-bottom: 20px;
+        .quote-box {
+            border-left: 4px solid var(--term-color);
+            padding: 15px 20px;
+            background-color: rgba(51, 255, 51, 0.05);
+            margin: 25px 0;
             font-style: italic;
-        }
-
-        /* Action Header */
-        .action-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
         }
 
         .back-link {
             display: inline-block;
-            color: var(--accent-color);
-            text-decoration: none;
-            border: 1px solid var(--accent-color);
-            padding: 8px 15px;
-            font-family: 'Share Tech Mono', monospace;
-            transition: all 0.2s;
-        }
-
-        .back-link:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        .like-button {
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 8px 15px;
-            font-size: 1.1em;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-family: 'Share Tech Mono', monospace;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-
-        .like-button:hover {
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        .like-button.liked {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                padding: 10px;
-                gap: 20px;
-            }
-            .infobox {
-                grid-row: 1;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .content {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 1.6em;
-            }
-            .action-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
-            }
-        }
-
-        /* Lightbox */
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 9999;
-            cursor: zoom-out;
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox-overlay.active {
-            display: flex;
-        }
-        .lightbox-overlay img {
-            max-width: 95vw;
-            max-height: 95vh;
-            object-fit: contain;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
-            border-radius: 4px;
-        }
-        .content img, .infobox img, .gallery-item img {
-            cursor: zoom-in;
-        }
-
-        /* コメントセクション */
-        .comments-section {
             margin-top: 40px;
-            border-top: 2px solid var(--accent-color);
-            padding-top: 20px;
+            border: 1px solid var(--term-color);
+            padding: 8px 15px;
+            text-transform: uppercase;
         }
-        .comments-title {
-            font-family: 'Share Tech Mono', monospace;
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            font-size: 1em;
-            border: none;
-            padding: 0;
+
+        .back-link::before {
+            content: "< ";
         }
-        .comment-form {
-            margin-bottom: 20px;
+
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+                opacity: 1;
+            }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+                opacity: 0.4;
+            }
         }
-        .comment-textarea {
-            width: 100%;
-            box-sizing: border-box;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--accent-color);
-            color: var(--text-color);
-            font-family: 'Noto Sans JP', sans-serif;
-            font-size: 0.95em;
-            padding: 10px;
-            border-radius: 4px;
-            resize: vertical;
-            min-height: 70px;
-            outline: none;
-            transition: box-shadow 0.2s;
+
+        ::-webkit-scrollbar {
+            width: 12px;
         }
-        .comment-textarea:focus {
-            box-shadow: 0 0 8px var(--accent-color);
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+            border-left: 1px solid var(--term-dim);
         }
-        .comment-form-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 6px;
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--term-dim);
         }
-        .char-count {
-            font-size: 0.8em;
-            color: #888;
-            font-family: 'Share Tech Mono', monospace;
-        }
-        .comment-submit-btn {
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 6px 16px;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9em;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-        .comment-submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .comment-msg {
-            font-size: 0.85em;
-            min-height: 1.2em;
-            margin-top: 4px;
-            font-family: 'Share Tech Mono', monospace;
-        }
-        .comments-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        .comment-item {
-            background: rgba(255,255,255,0.04);
-            border-left: 3px solid var(--accent-color);
-            padding: 10px 14px;
-            border-radius: 0 4px 4px 0;
-        }
-        .comment-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 5px;
-        }
-        .comment-time {
-            font-size: 0.78em;
-            color: #666;
-            font-family: 'Share Tech Mono', monospace;
-        }
-        .comment-body {
-            font-size: 0.92em;
-            line-height: 1.6;
-            word-break: break-all;
-        }
-        .comment-delete-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 1em;
-            padding: 2px 6px;
-            border-radius: 3px;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-        }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading {
-            color: #666;
-            font-size: 0.85em;
-            font-family: 'Share Tech Mono', monospace;
-            padding: 10px 0;
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--term-color);
         }
     </style>
 </head>
-<body data-article-category="クリーチャー" data-article-appearance="Fallout 76,Fallout 4,Fallout">
+<body>
     <div class="container">
-        <!-- Sidebar -->
-        <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">コズワース</h3>
-            <img src="images/note_extracted/nbc599b5daa3b_img_1.png" alt="コズワース">
-            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>クリーチャー</span></div>
-        </aside>
+        <header>
+            <div>
+                <h1>コズワース</h1>
+                <div style="color: var(--accent-color); letter-spacing: 1px;">Codsworth</div>
+            </div>
+            <div class="sys-info">
+                FILE_REF: CODSWORTH_ROBOT<br>
+                STATUS: ACTIVE<br>
+                CLASS: MR. HANDY
+            </div>
+        </header>
 
-        <!-- Main Content -->
-        <main class="content">
-            <div class="action-header">
-                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_nbc599b5daa3b" onclick="toggleLike(this)">
-                    <span class="heart">♡</span> <span class="like-count">0</span>
-                </button>
+        <main>
+            <div class="infobox">
+                <div class="infobox-title">コズワース<br>(Codsworth)</div>
+                <div class="infobox-image">
+                    [Image: Codsworth]
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">機種体系</div>
+                    <div class="infobox-data">Mr.ハンディ<br>(Mister Handy)</div>
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">性別</div>
+                    <div class="infobox-data">男性プログラミング</div>
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">所属</div>
+                    <div class="infobox-data">唯一の生存者の家族<br>（ネイト/ノーラ、ショーン）</div>
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">役割</div>
+                    <div class="infobox-data">ロボット執事<br>コンパニオン</div>
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">居住地</div>
+                    <div class="infobox-data">サンクチュアリ・ヒルズ</div>
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">SPECIAL</div>
+                    <div class="infobox-data">S:9, P:10, E:7, C:7, I:16, A:10, L:7</div>
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">初期武器</div>
+                    <div class="infobox-data">内蔵バズソー & フレーマー</div>
+                </div>
+                <div class="infobox-row">
+                    <div class="infobox-header">CV</div>
+                    <div class="infobox-data">Stephen Russell (英)<br>岩崎ひろし (日)</div>
+                </div>
             </div>
 
-            <h1>コズワース</h1>
-            
-            <p name="0f3389be-e470-4e25-b030-79b495a3b11d" id="0f3389be-e470-4e25-b030-79b495a3b11d"><strong>コズワース</strong>は2077年の核戦争が始まる少し前に、主人公の家族によって購入されました。<br>彼は家事全般をこなし、赤ん坊のショーンの世話も手伝っていました。<br>爆弾が投下された際、彼は家族と共に <strong>Vault 111</strong> へ入ることはできませんでしたが、外の世界で生き延びることに成功しました。</p><p name="b01a8557-bf3f-4876-83cb-fe459e94a4a1" id="b01a8557-bf3f-4876-83cb-fe459e94a4a1">その後210年間、彼は<strong>サンクチュアリ・ヒルズ</strong>の家を守り続け、放射能の影響や経年劣化に抗いながら、主人の家の錆を落としたり、生け垣の手入れをしたりして過ごしていました。</p><div class="note-figure"><img src="images/note_extracted/nbc599b5daa3b_img_2.png" alt="" width="620" height="443"><div class="note-figcaption"></div></div><p name="45c83bed-5ebc-4ba9-9c7b-d6459e231231" id="45c83bed-5ebc-4ba9-9c7b-d6459e231231">彼はこの長い年月を孤独に耐え抜き、時折近隣のコンコードまで足を運ぶこともありましたが、基本的には主人の帰還を信じて家を離れませんでした。<br>彼はその間、近隣の住民から嫌がらせを受けたり、<strong><a href="brahmin.html" class="auto-link">バラモン</a></strong>に蹴られたり、部品を失ったりするなどの苦難を経験していましたが、プログラムされた執事としての忠誠心と楽観的な態度を失うことはありませんでした。</p><hr name="eda323fa-153c-4fc0-8451-93a98cd4f387" id="eda323fa-153c-4fc0-8451-93a98cd4f387"><h2 name="9e86e790-6111-4ac5-a01f-07bd490624f9" id="9e86e790-6111-4ac5-a01f-07bd490624f9">特性と能力</h2><div class="note-figure"><img src="images/note_extracted/nbc599b5daa3b_img_3.png" alt="" width="521" height="626"><div class="note-figcaption"></div></div><p name="c080c294-79f0-4d54-a583-fb7f81587fa8" id="c080c294-79f0-4d54-a583-fb7f81587fa8"><strong>コズワース</strong>は近接戦闘を得意とし、内蔵された火炎放射器と回転ノコギリを使用して敵を攻撃します。<br>彼は防具を装備することはできませんが、アップデート「<strong>Automatron</strong>」を導入している場合、ロボット作業台で全身を改造・強化することが可能です。<br>また、彼は<strong>ダービーハット</strong>を装備することができる数少ない非人間キャラクターの一人です。</p><p name="26fad856-5015-4811-9669-6dc344bbb05f" id="26fad856-5015-4811-9669-6dc344bbb05f">彼は時折、主人公に「きれいな水」をプレゼントしてくれます。</p><hr name="4c6afa7b-9522-4685-bdbf-ee266278b780" id="4c6afa7b-9522-4685-bdbf-ee266278b780"><h2 name="41c02372-72fa-425a-80a9-402c45b60f8a" id="41c02372-72fa-425a-80a9-402c45b60f8a">コンパニオンとしての挙動</h2><p name="5f2dc78a-4dcb-42e6-a487-ac360cc482a9" id="5f2dc78a-4dcb-42e6-a487-ac360cc482a9"><strong>コズワース</strong>を仲間にするためには、メインクエスト <strong>Out of Time</strong> を進め、コンコードでプレストン・ガービー一行を救出した後、<strong>サンクチュアリ・ヒルズ</strong>に戻って彼に話しかける必要があります。</p><p name="67b7af3e-974f-4247-ad9d-a721a3571877" id="67b7af3e-974f-4247-ad9d-a721a3571877">彼は独自の好感度システムを持っており、主人公の行動に対して「好き」「嫌い」の反応を示します。<br>彼は親切で寛大な行動、責任感のある態度、武器やアーマーの改造を好み、一方で無意味な暴力、窃盗、薬物（特に中毒性のあるもの）の使用、そして<strong>B.O.S.</strong> への過度な加担や人造人間への不当な差別などを嫌う傾向があります。</p><p name="9b4c7976-bd87-44be-aeae-2975c432e1d6" id="9b4c7976-bd87-44be-aeae-2975c432e1d6">好感度が最大に達すると、彼は主人公を家族の一員として認め、特別なパーク「<strong>Robot Sympathy</strong>」を授けます。このパークは、ロボットタイプの敵からのエネルギー武器ダメージを恒常的に10減少させる効果があります。</p><hr name="eb48485c-873a-45c1-974b-41eaa5f47d23" id="eb48485c-873a-45c1-974b-41eaa5f47d23"><h2 name="338645f4-9eb6-49da-8c19-fe2816af044c" id="338645f4-9eb6-49da-8c19-fe2816af044c">注目の戦利品と所持品</h2><p name="8fbc18db-aeae-4bbe-a954-49b2a7611f00" id="8fbc18db-aeae-4bbe-a954-49b2a7611f00"><strong>コズワースのダービーハット<br></strong>彼が装備している場合にのみ入手可能です</p><p name="18c3a670-a633-4720-a9cf-a45eb209d869" id="18c3a670-a633-4720-a9cf-a45eb209d869"><strong>ミスター・ハンディ燃料</strong></p><div class="note-figure"><img src="images/note_extracted/nbc599b5daa3b_img_4.png" alt="" width="620" height="826"><div class="note-figcaption"></div></div><p name="784ee1bd-9cdd-4ce7-bb23-1f7b3ffd8492" id="784ee1bd-9cdd-4ce7-bb23-1f7b3ffd8492"><strong>きれいな水</strong></p><hr name="d5945a37-a1fe-487e-857a-1e03d86ef01e" id="d5945a37-a1fe-487e-857a-1e03d86ef01e"><h2 name="d9264708-799d-4577-9c6c-3b13c06bed51" id="d9264708-799d-4577-9c6c-3b13c06bed51">注記</h2><p name="03afefcd-a0e2-4b98-baf5-33f073c1c85e" id="03afefcd-a0e2-4b98-baf5-33f073c1c85e"><strong>コズワース</strong>は、ゲーム開始時に設定した主人公の名前を音声で呼ぶことができる特殊な機能を備えています。<br>開発チームは約1000種類の名前（一般的なものから冗談のようなものまで）を録音しており、特定の名前を設定した場合、彼は「旦那様/奥様」ではなく名前で呼びかけます。 <br>彼は<strong>煤の花</strong>などの植物の採集や、家事に関連する特定の台詞を豊富に持っています。 <br>彼は水上を移動することができますが、水泳のアニメーションは持たず、常に浮遊して移動します。 <br>もし彼を攻撃しすぎると、一時的に敵対状態になりますが、コンパニオンとしての属性を失うことはありません。</p><hr name="cd94031c-bc12-4a1c-b51b-9cce7995c442" id="cd94031c-bc12-4a1c-b51b-9cce7995c442"><h2 name="c9f8e952-ceaa-4d80-ab2b-b5bd697bdebf" id="c9f8e952-ceaa-4d80-ab2b-b5bd697bdebf">内容の書き起こし：台詞</h2><p name="81575961-934a-4ce8-a43d-9185c7b6edae" id="81575961-934a-4ce8-a43d-9185c7b6edae">「210年ですぞ！ 210年も経っているのです！ 私がどれほど、このピカピカの床を磨き続け、埃を払い続けてきたかお分かりですか！」 <br>「この2世紀間、私がどれほど孤独だったか……ああ、いえ、失礼いたしました。執事たるもの、愚痴をこぼすなど言語道断でございますな」 <br>「奥様、ショーン坊ちゃまのオムツを替えるお時間ではございませんか？ ……ああ、申し訳ありません。つい、昔の癖で」 <br>「連邦の現状は嘆かわしい限りですが、旦那様とご一緒であれば、希望は失われません」</p><hr name="aadc6d00-53af-4882-bfa1-81b4a7b011c8" id="aadc6d00-53af-4882-bfa1-81b4a7b011c8"><h2 name="9469964b-4542-4936-8e93-ffa25e1ba600" id="9469964b-4542-4936-8e93-ffa25e1ba600">舞台裏</h2><p name="31bd7066-b9bd-40bf-bc55-3d578c542894" id="31bd7066-b9bd-40bf-bc55-3d578c542894"><strong>コズワース</strong>の声は、俳優のスティーヴン・ラッセルが担当しています。彼はシリーズの他の<a href="mr-handy.html" class="auto-link">ミスター・ハンディ</a>や、ニック・バレンタインの声も担当しています。 <br>彼のデザインは、1950年代のアメリカにおける「未来の家庭用ロボット」のイメージを忠実に反映しており、洗練された英国風のアクセントと丁寧な言葉遣いは、クラシックな執事のステレオタイプに基づいています。</p><hr name="d0f164b6-290a-4ac4-a2cc-24ca2f402dfc" id="d0f164b6-290a-4ac4-a2cc-24ca2f402dfc"><h2 name="277073f3-fe4c-4b40-acd2-b6be7fb8ca2f" id="277073f3-fe4c-4b40-acd2-b6be7fb8ca2f">登場作品</h2><p name="6eea26dc-a836-44ea-bf96-d6ad7415a979" id="6eea26dc-a836-44ea-bf96-d6ad7415a979"><strong>コズワース</strong>は <strong>Fallout 4</strong> に登場します。<br>また、プロモーション用のモバイルゲーム <strong>Fallout Shelter</strong> にも登場します。</p><hr name="af8c54c4-6abe-473a-bfbc-e8e6f727cd82" id="af8c54c4-6abe-473a-bfbc-e8e6f727cd82"><div class="quote-box">
-<b>感想</b><br><br>
-<b>コズワース</b>というキャラクターは、<b>Fallout 4</b> の物語において「失われた過去」と「過酷な現在」を繋ぐ最も重要な架け橋の一人です。<br><br><b>不変の忠誠心</b>: 核の炎に焼かれ、世界が崩壊したにもかかわらず、210年間も掃除を続けながら主人の帰りを待っていたという設定は、滑稽でありながらも深い哀愁を感じさせます。<br><br><b>音声による没入感</b>: 主人公の名前を実際に呼んでくれるシステムは、プレイヤーにとって「自分のための執事」であるという実感を強く持たせてくれる素晴らしい演出です。<br><br><b>改造による成長</b>: 「<b>Automatron</b>」での改造により、かつての家庭用ロボットが強力な戦闘兵器へと変貌を遂げる様は、ウェイストランドでの適応と進化を象徴しているようで非常に興味深いです。<br><br><div class="note-figure"><img src="images/note_extracted/nbc599b5daa3b_img_5.png" alt="" width="620" height="349"><div class="note-figcaption">This article uses material from the “Endor” article on the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
-</div>
+            <p><strong>コズワース（Codsworth）</strong>は、連邦のサンクチュアリ・ヒルズ周囲に居住しているロボットである。『Fallout 4』において「唯一の生存者（ソール・サバイバー）」のコンパニオンとなることが可能である。</p>
 
-</div></div>
+            <div class="quote-box">
+                「これは…夕食には200年ほど遅刻ですよ！軽食でもお作りしましょうか？さぞお腹が空いたでしょう！」<br>
+                <div style="text-align: right; font-size: 0.9em; margin-top: 10px;">— コロニアルな冗談を交えるコズワース</div>
+            </div>
 
-            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-                <div style="margin-bottom: 10px;">
-                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout4</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#ClassicFallout</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Creature</span>
-                </div>
-                
+            <p>主人公（唯一の生存者）とはゲーム本編が始まる2077年の大戦前から行動を共にしている数少ないキャラクターであり、再会後も献身的に主人をサポートし続ける忠誠心と、英国執事風の礼儀正しいプログラムが特徴的である。</p>
+
+            <!-- CONTENT_START -->
+            <h2>生い立ちと背景 (Background)</h2>
+            <h3>大戦前の生活と取り残された執事</h3>
+            <p>コズワースは汎用の家庭用モデルとして製造されたMr.ハンディであり、2077年10月23日（最終戦争の日）の直前に起動された。彼のモデルは掃除、ガーデニング、育児、食事の準備などができるようプログラムされており、雇い主であるサンクチュアリ・ヒルズの一家（元軍人の夫、弁護士の妻、そして幼い息子のショーン）に仕えていた。購入されたばかりであったため、自宅の洗濯室には彼が梱包されていた箱がそのまま残されている。<br>
+            なお、「コズワース」という名称は、架空のキャラクター「バーソロミュー・コズワース」にちなんで名付けられた。この声はハリウッド俳優であるセバスチャン・レスリーの声をロブコ・インダストリーズ社が買い上げ、汎用家庭用モデルの標準ボイスとして使用しているものである（この設定はTVドラマ版『フォールアウト』で明かされた）。</p>
+            <p>Vault-Tecの担当者が一家を訪れた際、彼らはコズワースも一緒にVault 111へ避難できるかと尋ねたが、担当者は「Vaultは人間のためのものである」と述べて拒否した。その悲劇的な日の直後、最終戦争勃発を告げる緊急放送を受信した一家はVaultへと走り去り、彼は一人家に取り残されることとなった。</p>
+
+            <h3>210年間の孤独と忠誠</h3>
+            <p>コズワースは爆弾による初期の破壊を生き延び、いつか帰ってくるはずの家族を待ちながら、元の家を見守り続けた。戦後の最初の10年間、彼は無駄な家事をして気を紛らわせていた。放射性降下物（フォールアウト）で汚染された床にワックスをかけ続け、半壊した家のホコリを払い、完全に錆びついた車を磨き続けた。しかし主人公との再会時に明かす通り、彼は実際には世界の惨状に深く悲しみ、数十年にも及ぶ孤独に精神を病みかけており、それを乗り越えるために「何も起きていないフリ」をしていたのであった。</p>
+            <p>爆弾が落ちた後のどこかの時点で彼はコンコードの住民との接触を試みたが、地元のレイダーたちは彼を「棒で何度も殴り」「何度も銃撃してきた」だけだった。それ以来彼が遠出することはなくなり、唯一の生存者が再びサンクチュアリに帰還した際も、彼はかつての家の周囲の生い茂った植え込みを虚しく手入れし続けている。</p>
+
+            <h2>性格 (Personality)</h2>
+            <div class="quote-box">
+                「ああご主人様、本当に恐ろしいことです！2世紀もの間、話し相手も仕えるべき相手もいなかったのですから！最初の10年は床にワックスを掛けようとしました。でも…ビニールウッドについた核の汚れだけはどうやっても落ちないんです！どうやっても！」<br>
+                <div style="text-align: right; font-size: 0.9em; margin-top: 10px;">— 210年間の隔離によるトラウマを吐露するコズワース</div>
+            </div>
+            <p>コズワースは、プログラムに深く根ざしたステレオタイプな「英国の執事」のパーソナリティを持っている。潔癖で、手伝いを惜しまず、常にプロフェッショナルで礼儀正しい。しかしイライラした時や呆れた時には、強い皮肉や軽蔑の態度を見せることもある。</p>
+            <p>他の先進的なロボットと同様に、コズワースも複雑な感情を模倣し、ロボットとしての精神的トラウマを経験する能力を持っている。途方もない孤独と、自分の主要な機能を果たすことができない能力不全の年月の末に主人が「Vault 111」から無事生還した時、彼は計り知れない安堵と喜びを見せた。<br>
+            彼は主人公の配偶者の死とショーンの誘拐という現実を最初は受け入れようとしなかったが、やがて主人公に寄り添い、サンクチュアリの捜索を手伝い、助けを求めるためコンコードへ向かうよう主人公を導く。</p>
+            <p>コズワースは、大戦前からの主人公やショーンとの歴史を共有している唯一のコンパニオンである。世話をし、仕えるようにプログラムされたロボットとして、彼は常に主人公を気遣い、危険を回避させようとしながらも「やればできる（can-do）」という前向きな姿勢で旅に同行する。善行を積んで好感度を上げると、再び生きる目的を与えてくれた主人公への強い感謝と敬意を語ってくれる。</p>
+            <h2>コンパニオンシステム (Companion Mechanics)</h2>
+            <p>コズワースは最序盤から同行可能になるコンパニオンである。コンコードでのクエスト「Out of Time」を進める（あるいはダイアモンドシティなどに到達する）ことで、正式に連れ歩くことができるようになる。</p>
+
+            <h3>基本ステータスと能力</h3>
+            <ul>
+                <li><b>SPECIAL</b>: S:9, P:10, E:7, C:7, I:16, A:10, L:7</li>
+                <li><b>装備とカスタマイズ</b>: 通常のコンパニオンの防具は装備できないが、「ボーラーハット」などの一部の帽子を被せることができる。DLC『Automatron』を導入している場合、ロボット作業台で全身のパーツを自由に改造できるようになる（ただし、一度でもロボット作業台で改造を加えると、以降は帽子を被れなくなる仕様があるため注意）。</li>
+                <li><b>戦闘スタイル</b>: 近接戦では内蔵された「バズソー（丸鋸）」と「フレーマー（火炎放射器）」を使用する。序盤のコンパニオンとしては非常に高い攻撃力と耐久力を持ち、敵を炎上させながら切り刻む圧倒的な前衛として活躍する。</li>
+                <li><b>回復方法</b>: ロボットであるため、通常の「スティムパック」では回復できない。DLC『Automatron』導入環境下では「ロボット修理キット」で修理する必要がある。</li>
+                <li><b>特殊技能（きれいな水の提供）</b>: 話しかけると、定期的に「きれいな水」を1つ提供してくれる。彼のセリフによれば、ボディ内部のフィルターで地下水を浄化しているか、空気中の水分を凝縮して精製しているとのこと。</li>
+                <li><b>プレイヤー名の読み上げ</b>: 彼はFallout 4のコンパニオンの中で唯一、主人公の「名前」を音声で呼びかけてくれる機能を持つ（登録されている900種類以上の英語名や一般的な名前に限る）。</li>
+            </ul>
+
+            <h3>固有Perk：Robot Sympathy</h3>
+            <p>好感度が最大に達すると、特殊Perk「<b>Robot Sympathy</b>」を獲得できる。このPerkを取得すると、ロボットのエネルギー兵器からの攻撃に対してエネルギー耐性が常に「+10」される。</p>
+            <p>※注意：コズワースはロボットであるため、ロマンスの対象にはならない。</p>
+
+            <h2>好感度（Affinity）</h2>
+            <p>コズワースの道徳観は「善良」かつ「極めて合法的・常識的」である。他者への親切や家族を大切にする発言を好む一方、薬物の使用、金銭の要求、そして「アイテムのポイ捨て」といった生活態度の乱れまで注意してくる。</p>
+
+            <h3>好む行動（Likes / Loves）</h3>
+            <ul>
+                <li><b>武器や防具の改造</b>：作業台で装備のモジュールを作成・変更すること（Loves）。これを行うだけで手軽に好感度を稼ぐことができる。</li>
+                <li><b>責任ある合法的な行動と人助け</b>：善良な選択をし、無償で人々を助けること。</li>
+                <li><b>正義の組織への協力</b>：ミニッツメンやブラザーフッド・オブ・スティールへの加入・協力。</li>
+                <li><b>家族への言及</b>：会話の中で家族（配偶者やショーン）について肯定的に話すこと。</li>
+            </ul>
+
+            <h3>嫌う行動（Dislikes / Hates）</h3>
+            <ul>
+                <li><b>犯罪行為</b>：スリ、所有物の窃盗、罪のない人々の殺害（Hates）。</li>
+                <li><b>モラルに反する行動</b>：会話での嘘、薬物（ケム）の使用、スピーチチャレンジで追加の報酬（キャップ）を要求すること。</li>
+                <li><b>ポイ捨て</b>：インベントリから地面にアイテムを落とすこと（Dislikes）。</li>
+            </ul>
+
+            <h2>コンパニオン関連クエスト (Quests)</h2>
+            <p>コズワースには専用の同行クエストは存在しないが、物語の最序盤において主人公を導く重要な役割を果たす。</p>
+            <ul>
+               <li><b>War Never Changes</b>：ゲーム最序盤、大戦前の平和なサンクチュアリ・ヒルズでの生活。ここでコズワースは一家の執事として平和な日常を演出している。</li>
+               <li><b>Out of Time</b>：Vault 111から脱出した直後、210年ぶりに廃墟となったサンクチュアリに帰還した主人公を迎え入れるクエスト。現実の惨状を受け入れられず錯乱気味の彼に事実を突きつけ共に虫を退治した後、生存者を探すために近隣の町「コンコード」へ向かうよう勧めてくれる。</li>
+            </ul>
+
+            <h2>開発秘話・小ネタ (Behind the Scenes)</h2>
+            <ul style="border-left: 2px solid var(--term-dim); padding-left: 15px;">
+                <li>英語版の声優を担当する Stephen Russell は、『Fallout 3』でのMr.ハンディたちの声や、本作のもう一人の主要コンパニオンである「ニック・バレンタイン」の声も担当している。日本語版の声優は<b>岩崎ひろし</b>氏。</li>
+                <li>Russell は開発の終盤に約1週間かけて「900種類以上のプレイヤーの名前」の音声をひたすら収録し続けた。</li>
+                <li>彼の名前「Codsworth（コズワース）」は、『Fallout 3』のメガトンでプレイヤーの執事となる「Wadsworth（ワズワース）」と似た命名規則になっている。「～ワース（-worth）」という名前は、欧米のポップカルチャーにおける典型的な「執事の名前」のステレオタイプである。</li>
+                <li>戦闘でダメージを受けた際に「'Tis but a scratch! (ただの擦り傷です！)」と叫ぶことがあるが、これはイギリスのコメディ映画『モンティ・パイソン・アンド・ホーリー・グレイル』に登場する黒騎士の有名なセリフのパロディである。</li>
+                <li>放射能汚染と崩壊の中で「何も起きていないフリ」をして無駄な家事を続けていた彼の態度は、レイモンド・ブリッグズのグラフィックノベル『風が吹くとき（When the Wind Blows）』の主人公ヒルダ・ブログスや、レイ・ブラッドベリの短編小説『優しく雨ぞ降りしきる（There Will Come Soft Rains）』に登場する全自動住宅を彷彿とさせる設定である。</li>
+            </ul>
+
+            <div class="note-box" style="margin-top: 40px; border-top: 3px solid var(--accent-color);">
+                <h3 style="margin-top: 0; color: var(--accent-color);">【MOHIの所感 (Impression)】</h3>
+                <p>コズワースは、全てを失った「唯一の生存者」にとって、戦前の平和だった記憶を繋ぐ唯一の生きた絆（リンク）です。210年という途方もない孤独の中で錆びつき、荒廃した世界を直視できずに「何も起きていないフリをして床を磨き続ける」彼の姿は、Fallout 4の最序盤において最もプレイヤーの心を締め付ける強烈な悲哀を描き出しています。</p>
+                <p>しかし、ご主人様と運命の再会を果たした後の彼は、過去のトラウマを乗り越えて非常に頼もしい相棒となります。「紅茶はいかがですか？」と英国紳士風の礼儀正しいジョークを上品に飛ばしながら、内蔵バズソーでレイダーを無慈悲にミンチにしていくギャップは痛快そのもの。善人プレイをするなら間違いなく最強の相棒の一人であり、寂しいウェイストランドの旅路に「ホーム」の温もりを与え続けてくれる最高の名執事です。</p>
+            </div>
+
+            <div class="clear" style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Codsworth" target="_blank" rel="noopener">Codsworth</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
-
-            <!-- Comments Section -->
-            <div class="comments-section" id="comments-section">
-                <h3 class="comments-title">&gt; COMMENTS</h3>
-                <div class="comment-form">
-                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <!-- ハニーポット：ボット対策（人間には見えない） -->
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
-                    <div class="comment-form-footer">
-                        <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
-                    </div>
-                    <div id="comment-msg" class="comment-msg"></div>
-                </div>
-                <div id="comments-list" class="comments-list">
-                    <div class="comment-loading">LOADING...</div>
-                </div>
-            </div>
+            
+            <a href="lore.html" class="back-link">Return to Lore Database</a>
         </main>
     </div>
-
-    <!-- Lightbox Overlay -->
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
-    </div>
-
-    <!-- Supabase Scripts -->
-    <script>
-        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
-        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
-        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-        async function toggleLike(btn) {
-            const articleId = btn.getAttribute('data-article-id');
-            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
-            btn.disabled = true;
-
-            if (isLiked) {
-                isLiked = false;
-                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
-                if (!error) {
-                    localStorage.setItem(articleId + '_liked', isLiked);
-                    updateLikeButton(btn, isLiked, data);
-                }
-            } else {
-                isLiked = true;
-                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
-                if (!error) {
-                    localStorage.setItem(articleId + '_liked', isLiked);
-                    updateLikeButton(btn, isLiked, data);
-                }
-            }
-            btn.disabled = false;
-        }
-
-        function updateLikeButton(btn, isLiked, count) {
-            const heart = btn.querySelector('.heart');
-            const countSpan = btn.querySelector('.like-count');
-            if (isLiked) {
-                btn.classList.add('liked');
-                heart.textContent = '♥';
-            } else {
-                btn.classList.remove('liked');
-                heart.textContent = '♡';
-            }
-            countSpan.textContent = count;
-        }
-
-        document.addEventListener('DOMContentLoaded', async () => {
-            const btn = document.querySelector('.like-button');
-            if (btn) {
-                const articleId = btn.getAttribute('data-article-id');
-                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
-                const { data, error } = await supabaseClient
-                    .from('likes')
-                    .select('like_count')
-                    .eq('article_id', articleId)
-                    .single();
-
-                let count = 0;
-                if (!error && data) count = data.like_count;
-                updateLikeButton(btn, isLiked, count);
-            }
-            // コメントを読み込む
-            await loadComments();
-        });
-        // Lightbox: 画像クリックで元画像を表示
-        document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => {
-            img.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const overlay = document.getElementById('lightbox');
-                document.getElementById('lightbox-img').src = img.src;
-                overlay.classList.add('active');
-            });
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
-        });
-
-        // ========== コメント機能 ==========
-        // 記事情報（HTMLから取得）
-        const _commentArticleId = (document.querySelector('[data-article-id]') || {}).getAttribute?.('data-article-id') || location.pathname.split('/').pop().replace('.html', '');
-        const _commentArticleName = document.title.split('|')[0].trim();
-        const _commentArticleUrl = location.pathname.split('/').pop();
-        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
-        const ADMIN_PASSWORD = 'tq7jtq7j'; // ← ここに管理者パスワードを入力
-        const RATE_LIMIT_KEY = 'comment_last_posted';
-        const RATE_LIMIT_SEC = 60;
-        let _isAdminMode = false;
-
-        // 文字数カウンター
-        function updateCharCount() {
-            const len = document.getElementById('comment-input').value.length;
-            const el = document.getElementById('char-count');
-            if (el) {
-                el.textContent = len;
-                el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)';
-            }
-        }
-
-        // 相対時刻
-        function relativeTime(isoStr) {
-            const diff = (Date.now() - new Date(isoStr).getTime()) / 1000;
-            if (diff < 60) return 'たった今';
-            if (diff < 3600) return Math.floor(diff / 60) + '分前';
-            if (diff < 86400) return Math.floor(diff / 3600) + '時間前';
-            if (diff < 86400 * 7) return Math.floor(diff / 86400) + '日前';
-            return new Date(isoStr).toLocaleDateString('ja-JP');
-        }
-
-        // コメント一覧を表示
-        function renderComments(comments) {
-            const list = document.getElementById('comments-list');
-            if (!list) return;
-            if (!comments || comments.length === 0) {
-                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
-                return;
-            }
-            list.innerHTML = comments.map(c => `
-                <div class="comment-item" data-id="${c.id}">
-                    <div class="comment-meta">
-                        <span class="comment-time">${relativeTime(c.created_at)}</span>
-                        ${_isAdminMode ? `<button class="comment-delete-btn" title="完全削除" onclick="deleteComment('${c.id}')">&#128465;</button><button class="comment-delete-btn" title="非表示(サイレント)" onclick="hideComment('${c.id}')">&#128064;</button>` : ''}
-                    </div>
-                    <div class="comment-body">${escapeHtml(c.content)}</div>
-                </div>
-            `).join('');
-        }
-
-        // HTMLエスケープ
-        function escapeHtml(str) {
-            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-        }
-
-        // コメント読み込み
-        async function loadComments() {
-            const list = document.getElementById('comments-list');
-            if (!list) return;
-            const { data, error } = await supabaseClient
-                .from('comments')
-                .select('id, content, created_at')
-                .eq('article_id', _commentArticleId)
-                .order('created_at', { ascending: false })
-                .limit(50);
-            if (error) {
-                list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>';
-                return;
-            }
-            renderComments(data || []);
-        }
-
-        // コメント投稿
-        async function submitComment() {
-            const input = document.getElementById('comment-input');
-            const msg = document.getElementById('comment-msg');
-            if (!input || !msg) return;
-
-            // ① ハニーポットチェック（ボット検出）
-            const hp = document.getElementById('hp_field');
-            if (hp && hp.value !== '') return; // サイレント拒否
-
-            const content = input.value.trim();
-            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
-            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
-
-            // ② NGワードチェック（クライアント側）
-            const NG_WORDS = [
-                '広啄', 'http://', 'https://', 'LINE', 'DMして', '難民', 'ビッチ', '死ね',
-                'クソ', 'アホ', 'ウザイ', 'メルマガ', 'discord.gg', 't.me', 'clickして'
-            ];
-            const lc = content.toLowerCase();
-            if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) {
-                showCommentMsg('不適切な表現が含まれていルため投稿できません。', false);
-                return;
-            }
-
-            // レート制限チェック（60秒）
-            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
-            const now = Date.now();
-            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
-                const remain = Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000);
-                showCommentMsg(`あと${remain}秒後に投稿できます。`, false);
-                return;
-            }
-
-            const btn = document.querySelector('.comment-submit-btn');
-            if (btn) btn.disabled = true;
-            const { error } = await supabaseClient.from('comments').insert({
-                article_id: _commentArticleId,
-                article_name: _commentArticleName,
-                article_url: _commentArticleUrl,
-                content: content
-            });
-            if (btn) btn.disabled = false;
-
-            if (error) {
-                showCommentMsg('投稿に失敗しました。', false);
-                return;
-            }
-            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
-            input.value = '';
-            updateCharCount();
-            showCommentMsg('コメントを投稿しました！', true);
-            await loadComments();
-        }
-
-        function showCommentMsg(text, ok) {
-            const el = document.getElementById('comment-msg');
-            if (!el) return;
-            el.textContent = text;
-            el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
-            setTimeout(() => { el.textContent = ''; }, 3000);
-        }
-
-        // 管理者：コメント完全削除
-        async function deleteComment(commentId) {
-            if (!_isAdminMode) return;
-            if (!confirm('このコメントを完全に削除しますか？(非表示にするならビルボードボタンを使ってください)')) return;
-            const { error } = await supabaseClient.rpc('delete_comment_admin', {
-                comment_id: commentId,
-                admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || ''
-            });
-            if (error) { alert('削除失敗: ' + error.message); return; }
-            await loadComments();
-        }
-
-        // 管理者：コメントサイレント非表示（④ is_hidden フラグ）
-        async function hideComment(commentId) {
-            if (!_isAdminMode) return;
-            if (!confirm('このコメントを非表示(サイレント)にしますか？投稿者には通知されません。')) return;
-            const { error } = await supabaseClient.rpc('hide_comment_admin', {
-                comment_id: commentId,
-                admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || ''
-            });
-            if (error) { alert('非表示失敗: ' + error.message); return; }
-            await loadComments();
-        }
-
-        // 管理者モード切替（Ctrl+Shift+D）
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                e.preventDefault();
-                if (_isAdminMode) {
-                    _isAdminMode = false;
-                    localStorage.removeItem(ADMIN_TOKEN_KEY);
-                    renderComments([]);
-                    loadComments();
-                    alert('管理者モードを終了しました。');
-                    return;
-                }
-                const pw = prompt('管理者パスワードを入力してください:');
-                if (!pw) return;
-                if (pw === ADMIN_PASSWORD) {
-                    _isAdminMode = true;
-                    localStorage.setItem(ADMIN_TOKEN_KEY, pw);
-                    loadComments();
-                    alert('管理者モードに入りました。
-🗑 = 完全削除 / 👁 = サイレント非表示');
-                } else {
-                    alert('パスワードが違います。');
-                }
-            }
-        });
-    </script>
-    <script src="article-common.js" defer></script>
 </body>
 </html>

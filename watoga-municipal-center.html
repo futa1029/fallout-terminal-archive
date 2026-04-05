@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8"><title>Watoga Municipal Center | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/watoga-municipal-center.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Watoga Municipal Center | Overseer Mohi's Terminal"><meta property="og:description" content="ワトガ市役所。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/watoga-municipal-center.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="ja"><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8"><title>Watoga Municipal Center | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/watoga-municipal-center.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Watoga Municipal Center | Overseer Mohi's Terminal"><meta property="og:description" content="ワトガ市役所。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/watoga-municipal-center.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Noto+Sans+JP:wght@400;700&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0f0f0f;
@@ -134,7 +133,7 @@
             
             <div class="quote-box">
                 <b>感想</b><br><br>
-                ワトガ市役所には、核戦争以前の生活の痕跡が色濃く残っています。<br>Vault-Tecの実験施設は、いつ訪れてもゾクゾクする発見があります。<br>彼らが住民に対して行った実験の記録を読むと、人間の倫理観について考えさせられます。<br><br><br>ターミナルやメモに残された記録を読み解いていくと、このロケーションに関わった人々の生々しい物語が浮かび上がってきます。<br>こうした細部のロアを追いかけるのが、Fallout 76の探索の醍醐味ですね。
+                ワトガ市役所は、全自動都市ワトガの中枢であり、同時にクエスト「Mayor for a Day」の舞台となる重要なロケーションです。エレベーターで市長室に向かい、そこで前市長の死体やコンピューターのMAIAと対面する流れは非常に印象深いですね。<br>屋上へと出てみると、スコーチビーストの巨大な巣が作られており、大戦後のアパラチアの生態系がいかに都市を飲み込んでいるかを視覚的に実感させられます。ロボットだらけの無機質な街並みと、屋上の巨大なクリーチャーの巣というコントラストが素晴らしいロケーションです。
             </div>
 
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
@@ -149,7 +148,7 @@
                     <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
@@ -179,6 +178,6 @@
         document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
         document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
-    <script src="article-common.js" defer></script>
-</body>
-</html>
+    <script src="article-common.js" defer=""></script>
+
+</body></html>

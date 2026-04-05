@@ -1,17 +1,4 @@
-#Fallout76 #FalloutTV
-
-Julia Masters（ジュリア・マスターズ）
+レプコン社の代表「ジュリア・マスターズ」のロア記事を公開しました！🚀
+元々はゲームの『New Vegas』のターミナルのみで語られていたレプコンのCFOでしたが、ドラマの最終話における「Vault-Tecと六大企業によるVault社会実験の秘密会合」の場に本人として登場。「ゲームのロアが映像化で繋がった」最高に熱い瞬間でした！
+#FalloutTV #フォールアウト
 https://www.fallout-jp.com/julia-masters.html
-
-概要ジュリア・マスターズは、REPCONN社の代表者。レベッカ・ワトソンが演じている。経歴バーブ・ハワードが主導するVault-Tecの企業連合会議にREPCONNの代表として出席。核革命を計画する企業連合の一員として、大戦前の陰謀に関与している。
-
----
-
-💭 感想
-
-REPCONN社が核戦争を「計画」した企業連合の一員だったという設定にゾッとします。
-New Vegasのロケットテスト施設を運営していたREPCONNの裏の顔が垣間見えます。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

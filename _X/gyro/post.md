@@ -1,9 +1,4 @@
-#Fallout76
-
-Gyro
+マイルポスト・ゼロを拠点とするブルーリッジの護衛の1人「ジャイロ」のロア記事をアップデートしました！🎒
+アップデート「Milepost Zero」で追加された護衛ミッションで、過酷なキャラバンの荷運びをサポートしてくれる頼もしい存在です。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/gyro.html
-
-Milepost Zero
-
----
-CC BY-SA

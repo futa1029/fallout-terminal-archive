@@ -3,262 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joey Bello | Overseer Mohi's Terminal</title>
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="Joey Bello | Overseer Mohi's Terminal">
-    <meta property="og:description" content="Joey Bello（ジョーイ・ベロ）のFalloutロア記事。アパラチアのスタンダップコメディアン＆居住者。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/joey-bello/Main.png">
-    <meta property="og:url" content="https://www.fallout-jp.com/joey-bello.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Joey Bello | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="Joey Bello（ジョーイ・ベロ）のFalloutロア記事。アパラチアのスタンダップコメディアン＆居住者。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/joey-bello/Main.png">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/terminal-style.css">
+    <title>ジョーイ・ベロ - Fallout 76 日本語 Wiki</title>
+    <link rel="stylesheet" href="/css/main.css">
     <style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
-        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; }
-        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
-        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
-        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
-        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
-        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
-        .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
-        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
-        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
-        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
-        .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
-        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
-        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
-        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; margin-bottom: 25px; }
-        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 8px; border-radius: 4px; }
-        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; }
-        .gallery-item .caption { font-size: 0.8em; color: #aaa; }
-        .content-image-right { float: right; margin: 0 0 15px 20px; max-width: 280px; border: 1px solid #555; border-radius: 4px; }
-        .notable-quote { border-left: 3px solid #888; background: rgba(255,255,255,0.03); padding: 10px 15px; margin: 10px 0; font-style: italic; color: #ccc; font-size: 0.95em; line-height: 1.6; border-radius: 0 4px 4px 0; }
-        @media (max-width: 768px) { .content-image-right { float: none; display: block; margin: 15px auto; max-width: 100%; } }
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #1a1a1a;
+            color: #0f0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,255,0,0.1) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.2) 51%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #0a0a0a;
+            border-right: 1px solid #0f0;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        .sidebar a {
+            color: #0ff;
+            text-decoration: none;
+            display: block;
+            padding: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #0056b3;
+            text-decoration: none;
+        }
+        .content {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 900px;
+            box-sizing: border-box;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            color: #0f0;
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        a {
+            color: #0ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .infobox {
+            float: right;
+            margin: 0 0 1em 1em;
+            border: 1px solid #0f0;
+            padding: 10px;
+            background-color: #0a0a0a;
+            width: 300px;
+            font-size: 0.9em;
+        }
+        .infobox img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #0f0;
+        }
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .infobox th, .infobox td {
+            padding: 3px 5px;
+            text-align: left;
+            vertical-align: top;
+            border: none;
+        }
+        .infobox th {
+            font-weight: bold;
+            width: 35%;
+            color: #0f0;
+        }
+        .infobox td {
+            color: #fff;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            text-align: center;
+            border: 1px solid #0f0;
+            padding: 5px;
+            background-color: #0a0a0a;
+        }
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 5px auto;
+            border: 1px solid #0f0;
+        }
+        .quote-box {
+            border: 1px solid #0f0;
+            padding: 15px;
+            margin: 20px 0;
+            background-color: #0a0a0a;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .quote-box b {
+            color: #0f0;
+        }
+        .comments-section {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #0f0;
+        }
+        .comments-section h2 {
+            margin-bottom: 20px;
+            color: #0f0;
+        }
+        .comments-section textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #0f0;
+            border-radius: 4px;
+            background-color: #0a0a0a;
+            color: #0f0;
+        }
+        .comments-section button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .comments-section button:hover {
+            background-color: #0056b3;
+        }
+        .interactions-table, .inventory-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .interactions-table th, .interactions-table td,
+        .inventory-table th, .inventory-table td {
+            border: 1px solid #0f0;
+            padding: 8px;
+            text-align: left;
+            color: #fff;
+        }
+        .interactions-table th, .inventory-table th {
+            background-color: #0a0a0a;
+            width: 25%;
+            color: #0f0;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted #0f0;
+            cursor: help;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 150px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .icon-dead {
+            color: #f00;
+            font-weight: bold;
+        }
+        .id-code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #222;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: #ff0;
+        }
+        .dialogue-quote {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+            color: #fff;
+        }
+        .inline-quote {
+            font-style: italic;
+            color: #ccc;
+            margin: 10px 0;
+            padding-left: 15px;
+            border-left: 2px solid #555;
+        }
+        .footer-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-nav li {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
-<body data-article-category="人物" data-article-appearance="Fallout 76">
-    <div class="container">
-        <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Joey Bello</h3>
-            <img src="images/note_extracted/joey-bello/Main.png" alt="ジョーイ・ベロ">
-            <div style="font-size: 0.8em; color: #888; text-align: center; margin-bottom: 10px;">ジョーイ・ベロ</div>
-            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
-            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
-            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
-            <div class="infobox-row"><span class="infobox-label">役割</span><span>居住者 / ベンダー</span></div>
-            <div class="infobox-row"><span class="infobox-label">出身</span><span>ニュージャージー</span></div>
-            <div class="infobox-row"><span class="infobox-label">髪色</span><span>赤褐色</span></div>
-            <div class="infobox-row"><span class="infobox-label">目の色</span><span>グリーンアクア</span></div>
-            <div class="infobox-row"><span class="infobox-label">解放条件</span><span>シーズン13 ランク35</span></div>
-        </aside>
-        <main class="content">
-            <div class="action-header">
-                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_joey-bello" onclick="toggleLike(this)">
-                    <span class="heart">♡</span> <span class="like-count">0</span>
-                </button>
-            </div>
-            <h1>Joey Bello<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ジョーイ・ベロ — アパラチアのスタンダップコメディアン</span></h1>
-
-            <div class="notable-quote">
-                「この前『インサルト・ボット』ってやつに出くわしたんだ。<br>
-                まったく、ロボットがみんなの仕事を奪いに来るってのは本当だったんだな？<br>
-                でもまあ、面白いもんは面白い。<br>
-                あいつのネタ、ちょいと『拝借』しちまおうかな。Eyy-yoink！」
-            </div>
-
-            <h2>概要</h2>
-            <p>
-                <strong>ジョーイ・ベロ</strong>はスタンダップコメディアンであり、<a href="appalachia.html" class="auto-link">アパラチア</a>に登場する居住者である。<br>
-                <a href="fallout76.html" class="auto-link">Fallout 76</a>の第13シーズン「Shoot for the Stars」のランク35報酬として解放される。
-            </p>
-
-            <h2>背景</h2>
-            <img src="images/note_extracted/joey-bello/Stage.png" alt="ステージ上のジョーイ" class="content-image-right">
-            <p>
-                大戦前、ジョーイはニュージャージーの小さな町で両親と兄弟たちと暮らしていた。<br>
-                父親は消防士だった。<br>
-                戦争直後の混乱で父と兄弟を失い、彼らはジョーイにとってかろうじて覚えている朧げな記憶となった。<br>
-                ジョーイは母親と二人で暮らし、母はコメディアンになりたいという彼の夢を応援してくれた。<br>
-                二人でアトランティック・シティを目指していたが、ジョーイは学校に通ったことがないという。<br>
-                しかし、ポスト・アポカリプスの過酷な環境が母の心を壊した。<br>
-                ジョーイが11歳の頃、母は亡くなった。<br>
-                ジョーイは正確な死因を明かさず、ただ「母さんは最善を尽くしたけど、アポカリプスでの生活には向いてなかった。<br>
-                先に心が死んだ。<br>
-                それから体もそれに従った」とだけ語っている。
-            </p>
-            <p style="clear: both;">
-                子供の頃のジョーイは平均より小柄で、ギャングやレイダーの格好の標的だった。<br>
-                思春期を迎えたのは16歳と遅咲きだった。<br>
-                厄介な連中を避け、敵意を減らすためにジョークを言うようになった。<br>
-                笑わせることができれば、攻撃される可能性が減ると考えたのだ。<br>
-                ジョーイはコメディが自分の命を救ってきたと感じており、人々が気分を良くするためにキャップスを払ってくれるので収入源にもなっている。<br>
-                皮肉なことに、彼のジョークはオリジナルではなく、バブルガムの包み紙に書かれたジョークを暗記したものだ。<br>
-                ガム自体は好きでもないのに、お小遣いをガムパックの購入に費やしていた。
-            </p>
-            <p>
-                ジョーイはちょっとした薬中毒者でもあり、若い頃にデイ・トリッパーを使ったことが始まりだった。<br>
-                薬を漁ったり、キャップスで取引したりしていた。<br>
-                彼は薬の使用を深刻には考えておらず、「誰にでも悪癖はある。<br>
-                こんな悲惨で陰鬱な世界では、幸せを感じさせてくれるものを摂取した方がいい」と指摘する。
-            </p>
-            <p>
-                ジョーイは最終的にアトランティック・シティにたどり着いたが、母親抜きだった。<br>
-                銃の腕が壊滅的に下手なので、大変な苦労を要した。<br>
-                最初は桟橋で小さなギグをこなす厳しい生活だったが、やがてまともな額のキャップスを稼げるようになった。<br>
-                ロボットと一夜限りの関係を持ったとも主張している。<br>
-                しかし、マフィアの構成員をネタにしてしまったことで状況は一変した。<br>
-                「テディ/セオドア・ザ・トー・テイカー」と呼ばれる人物から逃げることになった。
-            </p>
-            <p>
-                マフィアから逃げてアパラチアに来たジョーイだが、ここが州なのか郡なのかもわかっていない。<br>
-                <a href="reflection.html" class="auto-link">Biv</a>のことが気に入っている。<br>
-                西へ行くのに十分なキャップスが貯まるまでアパラチアに滞在する予定だ。<br>
-                次の行き先はまだ決めていないが、ベガスかケンタッキーを検討している。
-            </p>
-
-            <h2>プレイヤーとのインタラクション</h2>
-            <p>
-                ジョーイはエッセンシャルNPCであり、居住者としてC.A.M.P.に配置できる。<br>
-                専用家具は「ジョーイのステージ」。<br>
-                ベンダーとしてアルコール、ジャンクアイテム、各種バブルガム、「Live &amp; Love」、「Get RICH quick!」を販売する。
-            </p>
-            <h3>デイリーバフ：Roast Proof</h3>
+<body>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+    <div class="sidebar">
+        <img src="/images/fallout76_logo.png" alt="Fallout 76 Logo" style="width:100%; margin-bottom: 20px;">
+        <nav>
             <ul>
-                <li>スタガー軽減</li>
-                <li>火炎ダメージ 10%軽減</li>
-                <li>近接ダメージ 10%軽減</li>
-                <li>爆発ダメージ 10%軽減</li>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/items.html">アイテム</a></li>
+                <li><a href="/weapons.html">武器</a></li>
+                <li><a href="/armor.html">防具</a></li>
+                <li><a href="/perks.html">Perk</a></li>
+                <li><a href="/locations.html">ロケーション</a></li>
+                <li><a href="/factions.html">勢力</a></li>
+                <li><a href="/allies.html">コンパニオン</a></li>
+                <li><a href="/quests.html">クエスト</a></li>
+                <li><a href="/events.html">イベント</a></li>
+                <li><a href="/updates.html">アップデート</a></li>
             </ul>
-
-            <h2>装備</h2>
-            <ul>
-                <li>ハワイアン・パンツ・アウトフィット</li>
-                <li>ボロボロのフェドラ帽</li>
-            </ul>
-
-            <h2>名言集</h2>
-            <div class="notable-quote">
-                「ジョーク！ノックノック。なぜニワトリは道を渡ったのか？<br>
-                アパラチアにもジョークってあるよな？<br>
-                みんなキャップスを払って俺の軽口を聞いて、惨めな生活を数分間忘れるんだ。<br>
-                ロケットサイエンスじゃないが、これで飯が食える！」
-            </div>
-            <div class="notable-quote">
-                「その通り！笑わせることができれば、血を流させられないかもしれない。<br>
-                笑わせ続ければ、生かしておいてくれるかもしれない。<br>
-                たまにスベれば、タトスの一つくらい投げてくれるかもしれないぜ。<br>
-                ガキも食わなきゃならないだろ？」
-            </div>
-            <div class="notable-quote">
-                「ナンタケットの男がいてな、その男は…いや待て、どうだったっけ？<br>
-                ああもういいや。」
-            </div>
-            <div class="notable-quote">
-                「おいおい！ふざけんな。<br>
-                俺はお前の職場に行って○○のやり方を教えたりしねぇぞ！<br>
-                あーくそ！ハハ、やられた。<br>
-                ごめんな母さん、悪態貯金箱に10キャップスだ。<br>
-                くそ。いやツバ！いや、あーふ…ごめん母さん。」
-            </div>
-
-            <h2>舞台裏</h2>
-            <img src="images/note_extracted/joey-bello/NoHat.png" alt="帽子なしのジョーイ" class="content-image-right" style="max-width: 200px;">
-            <ul>
-                <li>ジョーイの挨拶「How you doing?」はスクリプトノートで「ニュージャージーの定番フレーズ」と説明されており、Friendsのジョーイ・トリビアーニの真似<em>ではない</em>と明記されている。</li>
-                <li>アイドル台詞「Oh, I'm walkin' here!」は1969年の映画「真夜中のカーボーイ」のラッツォ・リッツォの有名な台詞への<a href="reflection.html" class="auto-link">オマージュ</a>。</li>
-                <li>「Ring-a-ding-ding!」はフランク・シナトラへのオマージュであり、Fallout: New Vegasのメインクエスト名でもある。</li>
-                <li>「何だ、ピエロだとでも？笑わせるためにいるとでも？」は映画「グッドフェローズ」のトミー・デヴィートの名場面への<a href="reflection.html" class="auto-link">オマージュ</a>。</li>
-                <li>月曜日を嘆く台詞は漫画「ガーフィールド」の定番ネタへのオマージュ。</li>
-                <li>「あのパイプからもう一服したい…」は、Fallout 76の有名なランダムエンカウンター「Unusual Pipe（パイプが人生）」への言及。</li>
-                <li>ロボットに関するネタの「What's the deal with robots?」はジェリー・サインフェルドの観察コメディスタイルへのオマージュ。</li>
-                <li style="clear: both;">ジョーイはベガスがまだ健在だという噂を聞いたと述べており、これはFallout: New Vegasで示されている事実と一致する。</li>
-            </ul>
-
-            <div class="gallery-section">
-                <h2>ギャラリー</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item"><img src="images/note_extracted/joey-bello/AtomicShop.png" alt="Atomic Shopユーティリティ画像"><div class="caption">Atomic Shop画像</div></div>
-                    <div class="gallery-item"><img src="images/note_extracted/joey-bello/StageWebp.webp" alt="ステージ上のジョーイ"><div class="caption">ステージ上のジョーイ</div></div>
-                    <div class="gallery-item"><img src="images/note_extracted/joey-bello/Stage.png" alt="ジョーイのステージ"><div class="caption">ジョーイのステージ</div></div>
-                    <div class="gallery-item"><img src="images/note_extracted/joey-bello/NoHat.png" alt="帽子なしのジョーイ"><div class="caption">帽子なしのジョーイ</div></div>
-                </div>
-            </div>
-
-            <div class="quote-box">
-                <b>感想</b><br><br>
-                ジョーイ・ベロは、Fallout 76の仲間の中でも特にキャラクターが立っている一人ですね。<br>
-                ニュージャージー出身のイタリア系コメディアンという設定で、バブルガムの包み紙からジョークを暗記したという経歴が笑えると同時に切ない。<br>
-                母親との関係や、「笑わせれば殺されない」というサバイバル術は、ポスト・アポカリプスならではの悲哀に満ちています。<br>
-                舞台裏のオマージュの豊富さも見事で、真夜中のカーボーイ、グッドフェローズ、サインフェルド、ガーフィールド、フランク・シナトラと、アメリカのコメディ・エンタメ文化の集大成のようなキャラクターです。<br>
-                アトランティック・シティのマフィアから逃げてきたという背景も、彼の「笑い」の裏にある危険と紙一重の人生を感じさせます。<br>
-                C.A.M.P.にいると賑やかで楽しい仲間ですね。
-            </div>
-
-            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Joey_Bello" target="_blank" rel="noopener">Joey Bello</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
-            </div>
-
-            <div class="comments-section" id="comments-section">
-                <h3 class="comments-title">&gt; COMMENTS</h3>
-                <div class="comment-form">
-                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
-                    <div class="comment-form-footer">
-                        <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
-                    </div>
-                    <div id="comment-msg" class="comment-msg"></div>
-                </div>
-                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
-            </div>
-        </main>
+        </nav>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
+    <div class="content">
+        <h1>ジョーイ・ベロ</h1>
+
+        <div class="infobox">
+            <table>
+                <tr><th colspan="2" style="text-align:center;"><img src="images/note_extracted/joey-bello/FO76 Joey Bello.png" alt="ジョーイ・ベロ"></th></tr>
+                <tr><th>登場作品</th><td>『Fallout 76』、『Fallout 76: Once in a Blue Moon』</td></tr>
+                <tr><th>タイプ</th><td>コンパニオン</td></tr>
+                <tr><th>種族</th><td>人間</td></tr>
+                <tr><th>性別</th><td>男性</td></tr>
+                <tr><th>所属</th><td>なし</td></tr>
+                <tr><th>役割</th><td><a href="/fallout-76-allies.html">コンパニオン</a><br /><a href="/fallout-76-vendors.html">ベンダー</a></td></tr>
+                <tr><th>場所</th><td>プレイヤーの<a href="/camp.html">C.A.M.P.</a> (任意)</td></tr>
+                <tr><th>家族</th><td>名前のない母親 <span class="icon-dead">†</span><br />名前のない父親 <span class="icon-dead">†</span><br />名前のない兄弟たち <span class="icon-dead">†</span></td></tr>
+                <tr><th>クエスト</th><td>なし</td></tr>
+                <tr><th>イベント</th><td>なし</td></tr>
+                <tr><th>髪の色</th><td><span class="tooltip">赤褐色<span class="tooltiptext">HairColor22Auburn</span></span></td></tr>
+                <tr><th>目の色</th><td><span class="tooltip">緑水色<span class="tooltiptext">MaleEyesHumanGreenAqua</span></span></td></tr>
+                <tr><th>髪型</th><td><span class="tooltip">ダンディ<span class="tooltiptext">HairMale03</span></span></td></tr>
+                <tr><th>顔の毛</th><td><span class="tooltip">プレイボーイ<span class="tooltiptext">Beard17</span></span></td></tr>
+                <tr><th>レベル</th><td>1-75</td></tr>
+                <tr><th>SPECIAL</th><td>S:8, P:4, E:0, C:0, I:0, A:5, L:0</td></tr>
+                <tr><th>攻撃性</th><td>非攻撃的</td></tr>
+                <tr><th>自信</th><td>無謀</td></tr>
+                <tr><th>支援</th><td>味方を助ける</td></tr>
+                <tr><th>勢力ID</th><td>ATX_COMP_JoeyBello_VendorFaction<br />COMP_CompanionDialogue_Faction<br />COMP_CompanionGeneralFaction<br />PlayerAllyFaction</td></tr>
+                <tr><th>クラス</th><td>レイダー</td></tr>
+                <tr><th>声優</th><td>ATX_NPCM_COMP_Lite_JoeyBello</td></tr>
+                <tr><th>会話</th><td><a href="/joey-bello-dialogue.html">ジョーイ・ベロ/会話</a></td></tr>
+                <tr><th>EDID</th><td>ATX_COMP_Actor_JoeyBello</td></tr>
+                <tr><th>FormID</th><td><span class="id-code">006a4368</span></td></tr>
+            </table>
+        </div>
+
+        <div class="dialogue-quote">
+            「この前、『<a href="/insult-bot.html">インサルト・ボット</a>』ってのにぶつかったんだ。ロボットがみんなの仕事を奪いに来るって言ってたけど、冗談じゃなかったんだな？ でも、面白いもんは面白い。あいつのネタ、ちょっと『借りて』みようかな。えい、よっと。」
+        </div>
+
+        <p><b>ジョーイ・ベロ</b>は、『Fallout 76: Once in a Blue Moon』で<a href="/appalachia.html">アパラチア</a>に登場するスタンドアップコメディアンであり、潜在的な<a href="/fallout-76-allies.html">ライトコンパニオン</a>である。彼は、ゲーム内<a href="/fallout-76-seasons.html">シーズン</a>13「<a href="/shoot-for-the-stars.html">星に願いを</a>」のランク35報酬としてアンロックされる。</p>
+
+        <h2>背景</h2>
+        <p><a href="/great-war.html">大戦</a>前、ジョーイは<a href="/new-jersey.html">ニュージャージー</a>で生まれた。彼はニュージャージーの郊外にある小さな町で、両親と兄弟たちと暮らしていた。彼の父親は消防士だった。大戦後まもなく、彼はその余波で父親と兄弟を失い、彼らはジョーイがほとんど思い出せない曖昧な記憶となってしまった。ジョーイは母親と暮らし、彼女はコメディアンになるという彼の夢を応援していた。二人は<a href="/atlantic-city.html">アトランティックシティ</a>に行くことを望んでおり、彼は学校には一度も通ったことがないと語っている。しかし、終末後の状況が母親の精神を打ち砕き、彼が11歳くらいの時に彼女は亡くなった。ジョーイは具体的に何が彼女を殺したのかは明言せず、「彼女は最善を尽くしたけど、ママはアポカリプスの生活には向いてなかったんだ。彼女の精神が死んだ。そして、その後に体も続いたんだ」とだけ述べている。</p>
+        <p>子供の頃、ジョーイは平均よりも小柄で、子供の頃からギャングや<a href="/raiders.html">レイダー</a>の格好の標的だった。ジョーイは成長が遅く、16歳で思春期を迎えた。厄介な人々を避け、敵意を和らげるために、彼はジョークを言った。彼らを笑わせることができれば、攻撃される可能性が低くなると考えたのだ。ジョーイは、自分のコメディが自分を生かしてきたと感じており、人々が気分を良くするために<a href="/caps.html">キャップ</a>を払うため、収入源にもなっていた。皮肉なことに、彼はオリジナルのコメディアンではない。バブルガムの包み紙からジョークを暗記していたのだ。彼はガムが好きではなかったにもかかわらず、お小遣いをはたいてこれらのガムパックを買っていた。</p>
+        <p>ジョーイは少しばかりの化学薬品中毒者で、それは若い頃に<a href="/day-tripper.html">デイトリッパー</a>を服用したことから始まった。彼は化学薬品を漁ったり、キャップと交換したりしていた。彼は自分の化学薬品使用について深く考えていない。誰もが自分なりの悪癖を持っているものであり、人々は憂鬱で不気味な世界で幸福感を与えてくれるものを消費してもいいのではないかと指摘している。彼は時折、化学薬品や性的なジョークも飛ばす。</p>
+        <p>ジョーイは最終的にアトランティックシティにたどり着いたが、母親は一緒ではなかった。銃の腕前がひどかったため、かなりの努力を要した。最初は苦労の多い生活で、桟橋で小さなギグをいくつかこなすことから始めたが、やがてかなりの量のキャップを稼ぎ始めた。彼はまた、ロボットと一夜を共にしたと主張している。しかし、ジョーイがあるマフィアの男をからかったことで、その時代は終わりを告げた。ジョーイはトラブルが迫っていることを知り、テディ/セオドア・ザ・トゥーテイカーと呼ばれる人物から逃げ出した。</p>
+        <p>マフィアから逃れて、ジョーイは<a href="/appalachia.html">アパラチア</a>にやって来たが、この地域には不慣れで、州なのか郡なのかも分かっていない。彼は<a href="/biv.html">ビブ</a>を気に入っている。彼は西へ移動するのに十分なキャップを貯めるまでアパラチアに滞在している。次の目的地がどこになるかは全く確信がないが、ベガスかケンタッキーを考えている。</p>
+
+        <h2>プレイヤーキャラクターとの交流</h2>
+        <h3>交流概要</h3>
+        <table class="interactions-table">
+            <tr><th>必須キャラクター</th><td>はい</td></tr>
+            <tr><th>コンパニオン</th><td>はい</td></tr>
+            <tr><th>コンパニオン家具</th><td>ジョーイのステージ</td></tr>
+            <tr><th>販売品</th><td>アルコール、ジャンクアイテム、<a href="/bubblegum.html">バブルガム</a>各種、<a href="/live-and-love.html">『Live & Love』</a>、<a href="/get-rich-quick.html">『Get RICH quick!』</a></td></tr>
+            <tr><th>キャップ取引</th><td>はい</td></tr>
+            <tr><th>ボーナス</th><td>ローストプルーフ: ダメージとよろめきを軽減</td></tr>
+        </table>
+
+        <h3>デイリーバフ</h3>
+        <p>ジョーイのデイリーバフは「ローストプルーフ」として知られている。以下の効果がある。</p>
+        <ul>
+            <li><a href="/stagger.html">よろめき</a>を軽減する。</li>
+            <li>炎ダメージを10%軽減する。</li>
+            <li>近接ダメージを10%軽減する。</li>
+            <li>爆発ダメージを10%軽減する。</li>
+        </ul>
+
+        <h2>インベントリ</h2>
+        <table class="inventory-table">
+            <tr><th>アパレル</th><td><a href="/hawaiian-pants-outfit.html">ハワイアンパンツ・アウトフィット</a><br /><a href="/fedora.html">使い古されたフェドラ帽</a></td></tr>
+            <tr><th>武器</th><td>なし</td></tr>
+            <tr><th>その他のアイテム</th><td>なし</td></tr>
+            <tr><th>死亡時</th><td>なし</td></tr>
+        </table>
+
+        <h2>備考</h2>
+        <ul>
+            <li>様々な援助アイテムやジャンクアイテム（ボードゲームを含む）に加えて、ジョーイはベンダーインベントリで少なくとも1冊の<a href="/live-and-love.html">『Live & Love』</a>雑誌を販売する。『Live & Love』は彼が販売する唯一の種類の雑誌である。</li>
+            <li>ジョーイが販売するその他の特殊なアイテムには、<a href="/fallout-76-perks.html">Perkカードパック</a>の<a href="/bubblegum.html">バブルガム</a>各種、およびメモ<a href="/get-rich-quick.html">『Get RICH quick!』</a>が含まれる。</li>
+        </ul>
+
+        <h2>名言</h2>
+        <div class="inline-quote">
+            「ああ、ジョークだよ！ほら…ノックノック。鶏はなんで道を渡った？アパラチアにもジョークはあるだろ？みんな俺の軽口を聞くためにキャップを払って、数分間だけ惨めな人生を忘れさせてやるんだ。ロケット科学じゃないが、これで食ってるんだ！」
+        </div>
+        <div class="inline-quote">
+            「その通り！笑わせれば、血を流させないで済むってわけだ。笑わせ続ければ、生かしてくれるかもしれない。へっ、たまには寒いジョークを言っても、タトをいくつか投げつけてくれるかもな。子供は食わなきゃいけないだろ？」
+        </div>
+        <div class="inline-quote">
+            「昔、ナンタケットの男がいて…いや、どうだったっけ？いや、もういいや。」
+        </div>
+        <div class="inline-quote">
+            「うおっ、おいおい！ふざけんなよ。俺はお前の職場に行って、どうやってクソ食えって言ったりしないだろ！ああ、クソ！へっ、やられたな。ごめんよ、ママ、これで誓いの瓶に10キャップだ。クソ。いや、唾だ！いや、あー、くそ…ごめんよ、ママ。」
+        </div>
+        <div class="inline-quote">
+            「おいおい、からかってるだけだって。」
+        </div>
+
+        <h2>登場</h2>
+        <p>ジョーイ・ベロは『Fallout 76: Once in a Blue Moon』にのみ登場する。</p>
+
+        <h2>舞台裏</h2>
+        <ul>
+            <li>ジョーイの声優はゲーム内のクレジットには記載されておらず、この役は他で発表またはクレジットされていない。</li>
+            <li>ジョーイが会話を始めるときの挨拶には、「How you doing?」や「How you doin'?」というセリフがある。これはスクリプトノートで「古典的なニュージャージーのセリフ」と記述されており、現実世界のニュージャージー州民がこのフレーズを頻繁に使用することに言及している。スクリプトノートでは、これは『<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%AC%E3%83%B3%E3%82%BA_(%E3%83%86%E3%83%AC%E3%83%93%E3%83%89%E3%83%A9%E3%83%9E)">フレンズ</a>』の<a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%83%A7%E3%83%BC%E3%82%A4%E3%83%BB%E3%83%88%E3%83%AA%E3%83%93%E3%82%A2%E3%83%BC%E3%83%8B">ジョーイ</a>のように発音されるべきではないと明記されている。</li>
+            <li>ジョーイのアイドルラインの一つに「Oh, I'm walkin' here!」がある。これは彼のスクリプトノートで「古典的なニューヨークのセリフ」と記述されており、1969年の映画『<a href="https://ja.wikipedia.org/wiki/%E7%9C%9F%E5%A4%9C%E4%B8%AD%E3%81%AE%E3%82%AB%E3%83%BC%E3%83%9C%E3%83%BC%E3%82%A4">真夜中のカーボーイ</a>』への<a href="/fallout-76-cultural-references.html#Midnight_Cowboy">言及</a>である。この映画では、ラッツォ・リゾというキャラクターが同じセリフを言い、それが広く知られるようになった。</li>
+            <li>ジョーイの別のアイドルラインに「Ring-a-ding-ding!」がある。スクリプトノートでは、これは<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%B3%E3%82%AF%E3%83%BB%E3%82%B7%E3%83%8A%E3%83%88%E3%83%A9">フランク・シナトラ</a>への言及であると明記されているが、ゲーム内ではジョーイがアトランティックシティのラウンジシンガーから覚えたものとされている。<a href="/ring-a-ding-ding.html">『Ring-a-Ding-Ding!』</a>は、『<a href="/fallout-new-vegas.html">Fallout: New Vegas</a>』の<a href="/fallout-new-vegas-quests.html">メインクエスト</a>の名前でもある。</li>
+            <li>ジョーイのセリフ「What, like a clown? You think I'm here to make you laugh?」は、1990年のマフィア映画『<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%83%E3%83%89%E3%83%95%E3%82%A7%E3%83%AD%E3%83%BC%E3%82%BA">グッドフェローズ</a>』、特にトミー・デヴィートが主人公ヘンリー・ヒルに「俺が面白いって？ピエロみたいに面白いってことか？俺がお前を笑わせるって？」と尋ねる有名なシーンへの<a href="/fallout-76-cultural-references.html#Goodfellas">言及</a>であると思われる。</li>
+            <li>ジョーイのアイドルラインの一つに、「(ため息) 月曜日。今日は月曜日か？月曜日みたいだ。」というものがある。これはコミックストリップ『<a href="https://ja.wikipedia.org/wiki/%E3%82%AC%E3%83%BC%E3%83%95%E3%82%A3%E3%83%BC%E3%83%AB%E3%83%89">ガーフィールド</a>』への<a href="/fallout-76-cultural-references.html#Garfield">言及</a>であると思われる。ガーフィールドの代表的な性格の一つが月曜日嫌いであり、このキャッチフレーズは広く知られるようになった。</li>
+            <li>ジョーイ・ベロのセリフ「くそ、あのパイプをもう一服したいな。どこにあったか思い出せれば…」は、ミーム化した<a href="/fallout-76-random-encounters.html#Unusual_Pipe">奇妙なパイプ</a>のランダムエンカウンター、別名「パイプは命」への言及であると思われる。
+                <ul>
+                    <li>このセリフは、『ガーフィールド』への別の言及でもある可能性がある。具体的には、<a href="https://www.gocomics.com/garfield/1978/07/27">1978年7月27日のコミックストリップ</a>で、ジョン・アーバックルが自分のパイプがどこにあるか疑問に思い、ガーフィールドがそれを吸っていたことを発見する。このストリップは、2017年の<a href="https://www.youtube.com/watch?v=NAh9oLs67Cw">ラザニア・キャット</a>の動画をきっかけにインターネットミームとなった。</li>
+                </ul>
+            </li>
+            <li>ジョーイは、<a href="/insult-bot.html">インサルト・ボット</a>に関する彼のルーティンの一つを「ロボットってどうなの？」という言葉で始める。これは、<a href="https://ja.wikipedia.org/wiki/%E3%82%B8%E3%82%A7%E3%83%AA%E3%83%BC%E3%83%BB%E3%82%B5%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A7%E3%83%AB%E3%83%89">ジェリー・サインフェルド</a>への言及である。彼の<a href="https://ja.wikipedia.org/wiki/%E8%A6%B3%E5%AF%9F%E3%82%B3%E3%83%A1%E3%83%87%E3%82%A3">観察コメディ</a>は、「～ってどうなの？」という冒頭のフレーズと広く関連付けられている。</li>
+            <li>ジョーイは、ベガスがまだ健在だという噂を聞いたと述べている。これは『<a href="/fallout-new-vegas.html">Fallout: New Vegas</a>』でその通りであることが示されている。</li>
+        </ul>
+
+        <h2>ギャラリー</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="images/note_extracted/joey-bello/Score S13 Camp Ally Joeybello.png" alt="アトミックショップのユーティリティ画像">
+                <p>アトミックショップのユーティリティ画像</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/note_extracted/joey-bello/SCORE S13 CAMP Ally JoeyBello C1.webp" alt="ステージに立つジョーイ">
+                <p>ステージに立つジョーイ</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/note_extracted/joey-bello/FO76 Joey stage.png" alt="ステージに立つジョーイ">
+                <p>ステージに立つジョーイ</p>
+            </div>
+            <div class="gallery-item">
+                <img src="images/note_extracted/joey-bello/FO76 Joey no hat.png" alt="帽子をかぶっていないジョーイ">
+                <p>帽子をかぶっていないジョーイ</p>
+            </div>
+        </div>
+
+        <div class="quote-box">
+            <b>感想</b><br><br>
+            ジョーイ・ベロは、アパラチアの荒廃した世界に一筋の光を差し込む、まさに異色の存在だ。彼のジョークは、大戦前の古き良き時代の名残であり、人々が忘れかけていた「笑い」という感情を呼び覚ます。彼の生い立ちを聞くと、その軽薄な言動の裏に隠された深い悲しみと、生き抜くための必死の努力が見えてくる。バブルガムの包み紙からジョークを学び、レイダーの攻撃を笑いでかわす。これは、この過酷な世界で生き残るための、彼なりのサバイバル術なのだろう。デイトリッパーへの依存も、この絶望的な状況で一時の幸福を求める人間の弱さを象徴している。アトランティックシティでの過去、マフィアからの逃亡、そしてアパラチアへの漂着。彼の人生は、まるで一編のロードムービーのようだ。彼のステージは、居住者たちにとって、しばし現実を忘れ、心の傷を癒す場所となる。彼の存在は、単なるベンダーやコンパニオン以上の意味を持つ。彼は、アパラチアの暗闇の中で、人間性がまだ失われていないことを教えてくれる、貴重な「希望」の象徴なのかもしれない。
+        </div>
+
+        <div class="comments-section" id="comments-section">
+            <h2>コメント</h2>
+            <textarea placeholder="コメントを入力してください..."></textarea><br>
+            <button>コメントを送信</button>
+            <div class="existing-comments">
+            </div>
+        </div>
+
+        <div class="footer-nav">
+            <h3>関連ナビゲーション</h3>
+            <ul>
+                <li><a href="/fallout-76-vendors.html">Fallout 76 ベンダー一覧</a></li>
+                <li><a href="/fallout-76-allies.html">Fallout 76 コンパニオン一覧</a></li>
+                <li><a href="/once-in-a-blue-moon.html">Once in a Blue Moon</a></li>
+            </ul>
+        </div>
     </div>
-    <script>
-        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}btn.disabled=false}function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='\u2665'}else{btn.classList.remove('liked');heart.textContent='\u2661'}countSpan.textContent=count}document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count)}await loadComments()});document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();const overlay=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.src;overlay.classList.add('active')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
-        const _commentArticleId="note_joey-bello";const _commentArticleName="Joey Bello";const _commentArticleUrl="joey-bello.html";const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)'}}function relativeTime(isoStr){const diff=(Date.now()-new Date(isoStr).getTime())/1000;if(diff<60)return'たった今';if(diff<3600)return Math.floor(diff/60)+'分前';if(diff<86400)return Math.floor(diff/3600)+'時間前';if(diff<86400*7)return Math.floor(diff/86400)+'日前';return new Date(isoStr).toLocaleDateString('ja-JP')}function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return}list.innerHTML=comments.map(c=>'<div class="comment-item" data-id="'+c.id+'"><div class="comment-meta"><span class="comment-time">'+relativeTime(c.created_at)+'</span>'+(_isAdminMode?'<button class="comment-delete-btn" title="完全削除" onclick="deleteComment(\''+c.id+'\')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment(\''+c.id+'\')">&#128064;</button>':'')+'</div><div class="comment-body">'+escapeHtml(c.content)+'</div></div>').join('')}function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id, content, created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return}renderComments(data||[])}async function submitComment(){const input=document.getElementById('comment-input');const msg=document.getElementById('comment-msg');if(!input||!msg)return;const hp=document.getElementById('hp_field');if(hp&&hp.value!=='')return;const content=input.value.trim();if(!content){showCommentMsg('コメントを入力してください。',false);return}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return}const NG_WORDS=['広啄','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];const lc=content.toLowerCase();if(NG_WORDS.some(w=>lc.includes(w.toLowerCase()))){showCommentMsg('不適切な表現が含まれているため投稿できません。',false);return}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){const remain=Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000);showCommentMsg('あと'+remain+'秒後に投稿できます。',false);return}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments()}function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent=''},3000)}async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを完全に削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return}await loadComments()}async function hideComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを非表示にしますか？'))return;const{error}=await supabaseClient.rpc('hide_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('非表示失敗: '+error.message);return}await loadComments()}document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);renderComments([]);loadComments();alert('管理者モードを終了しました。');return}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。')}else{alert('パスワードが違います。')}}});
-    </script>
-    <script src="article-common.js" defer></script>
 </body>
 </html>

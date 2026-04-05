@@ -1,9 +1,20 @@
-#Fallout76
+#Fallout76 #Fallout
 
-The Blood
+ブラッド（The Blood）
 https://www.fallout-jp.com/the-blood.html
 
-ブラッドイーグルズ
+概要
+
+ブラッドイーグルズのトップに君臨する3人の首領「三頭政治（triumvirate）」のうちの1人です。「アイ（The Eye）」「クロウ（The Claw）」と共に彼らを束ねています。
+ブラッドの主な役割は、新しい新兵をブラッドイーグルズに引き入れることです。その手法は、有望な入隊候補者を誘拐してダガーの隠れ家に連行し、強制的に薬物（バファウト）を投与して依存症にするという極めて悪質なものでした。ベケットは過去にブラッドの残酷さを直接経験しており、「未だに悪夢を見るほどの本物の怪物」と恐れています。
 
 ---
-CC BY-SA
+
+💭 感想
+
+ベケットの心を徹底的に壊した悪逆非道なキャラクターです。家族に対する脅しと薬物漬けという手法はシリーズを通してもかなり胸糞が悪い部類に入りますね。
+しかし、実際に拠点に討ち入りに行くと「ランダム生成のレイダー」の1人としてスポーンするため、特別な固定グラフィックやユニーク武器があるわけではなく、想像以上にあっさりと倒せてしまって拍子抜けしたプレイヤーも多いのではないでしょうか。
+
+---
+
+This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

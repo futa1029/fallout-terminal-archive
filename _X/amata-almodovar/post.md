@@ -1,0 +1,8 @@
+【Fallout Terminal データベース更新】 📡
+【DATA: アマタ・アルモドバル】
+Fallout 3の重要人物。
+
+アーカイブアクセス：
+https://www.fallout-jp.com/amata-almodovar.html
+
+#Fallout #Fallout3 #フォールアウト #FalloutLore

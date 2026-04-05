@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8"><title>Sugarmaple | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/sugarmaple.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Sugarmaple | Overseer Mohi's Terminal"><meta property="og:description" content="シュガーメイプル。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/sugarmaple.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="ja"><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta charset="UTF-8"><title>Sugarmaple | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/sugarmaple.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Sugarmaple | Overseer Mohi's Terminal"><meta property="og:description" content="シュガーメイプル。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/sugarmaple.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Noto+Sans+JP:wght@400;700&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0f0f0f;
@@ -155,7 +154,7 @@
                     <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
@@ -185,6 +184,6 @@
         document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
         document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
-    <script src="article-common.js" defer></script>
-</body>
-</html>
+    <script src="article-common.js" defer=""></script>
+
+</body></html>

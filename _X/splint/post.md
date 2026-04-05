@@ -1,9 +1,4 @@
-#Fallout76
-
-Splint
+バーニングスプリングスにいるブラッドイーグル「スプリント（Splint）」の記事を更新しました！🦅
+固有のクエはない名有りのモブですが、名前があるだけでちょっと背景を想像しちゃいますね。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/splint.html
-
-Burning Springs
-
----
-CC BY-SA

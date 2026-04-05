@@ -1,9 +1,4 @@
-#Fallout76
-
-Bodhi
+バーニング・スプリングスで出会うNPC「ボーディ」のロア記事を本格アップデート！📁
+アセンズに潜伏し、アブラクソダイン社の極秘情報を探求し続ける男。亡き娘のために真実を暴こうとする彼の背景ストーリーを追加しました。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/bodhi.html
-
-Burning Springs
-
----
-CC BY-SA

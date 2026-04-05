@@ -1,0 +1,81 @@
+{{Infobox item
+|games        =FO76
+|type         =holotape
+|icon         =
+|image        =Fo76 holodisk.png
+|weight       =0
+|value        =0
+|quests       =[[Seeker of Mysteries]]
+|edid         =MoM03CryptosHolotape
+|formid       ={{ID|00357e9e}}
+}}
+
+'''Order of Mysteries - Cryptos holotape''' is a [[Fallout 76 holotapes|holotape]] {{In|FO76}}.
+
+==Location==
+It is found on [[Brody Torrance]]'s terminal at [[Pleasant Valley cabins]], during [[Seeker of Mysteries]].
+
+==Transcript==
+{{Transcript|text=
+Loading Project SIPHON Data...
+...failed.
+
+<nowiki>***ERROR***</nowiki>
+Data corruption detected. Please contact the Project SIPHON Administrator for assistance.
+}}
+
+{{Transcript|text=
+<nowiki>|        - PROJECT SIPHON -        |</nowiki>
+<nowiki>|Automated Data Exfiltration System|</nowiki>
+
+TOTAL STORAGE: 256 Blocks
+STORAGE USED: 41.6 Blocks
+STORAGE FREE: 214.4 Blocks
+COMPRESSION ALGORITHM: CYPAX-9
+
+HOLOTAPE CONTENTS:
+[1] PROJECT SIPHON Exfiltration Program
+[2] README
+[3] Cryptos Database
+[4] Cryptos Login - Olivia Rivers
+}}
+
+===View Cryptos Database===
+{{Transcript|text=
+Unpacking Data...
+
+<nowiki>=--------------------------------=</nowiki>
+<nowiki>|    CRYPTOS Mainframe System    |</nowiki>
+<nowiki>=--------------------------------=</nowiki>
+
+Welcome to Cryptos.
+Please register to create an account.
+}}
+
+{{See|Cryptos terminal entries}}
+
+===View README File===
+{{Transcript|text=
+Accessing...
+
+Brody,
+
+Here's the tape. I've loaded it with my login credentials and a full copy of our database. The Mission Board lists all of our operations for the next two months. That should give you plenty of targets to hit.
+
+I need to lay low for a while. Stick to the plan. If anything changes, I'll get a message to one of your men. Otherwise, I'll see you when it's time for the final operation.
+
+Tell Thorpe I expect him to keep his end of the deal. Or I'll be coming for his head next.
+
+[[Olivia Rivers]]
+}}
+
+==Gallery==
+<gallery widths=220>
+FO76 Pleasant Valley cabins Brody terminal.png
+</gallery>
+
+{{Navbox holotapes FO76}}
+
+[[Category:Fallout 76 holotapes]]
+
+[[ru:Орден тайн — голозапись Криптоса]]

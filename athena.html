@@ -3,232 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.T.H.E.N.A. | Overseer Mohi's Terminal</title>
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="A.T.H.E.N.A. | Overseer Mohi's Terminal">
-    <meta property="og:description" content="A.T.H.E.N.A. — U.S.S.A.が開発した人工知能。シュガー・グローヴに格納され、宇宙飛行士の感覚データを記録するために作られた。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/athena/Main.png">
-    <meta property="og:url" content="https://www.fallout-jp.com/athena.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="A.T.H.E.N.A. | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="A.T.H.E.N.A. — U.S.S.A.が開発した人工知能。シュガー・グローヴに格納され、宇宙飛行士の感覚データを記録するために作られた。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/athena/Main.png">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/terminal-style.css">
+    <title>A.T.H.E.N.A. - Fallout 76 日本語Wiki</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- 仮のCSSパス -->
     <style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
-        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; }
-        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
-        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
-        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
-        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
-        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
-        .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
-        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
-        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
-        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
-        .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
-        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
-        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
-        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; margin-bottom: 25px; }
-        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 8px; border-radius: 4px; }
-        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; }
-        .gallery-item .caption { font-size: 0.8em; color: #aaa; }
-        .notable-quote { border-left: 3px solid #888; background: rgba(255,255,255,0.03); padding: 10px 15px; margin: 10px 0; font-style: italic; color: #ccc; font-size: 0.95em; line-height: 1.6; border-radius: 0 4px 4px 0; }
+        /* ホロテープ・メモ・ターミナルのCSSクラス定義 */
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        /* その他のスタイル（既存のフォーマットを模倣） */
+        body {
+            font-family: 'Roboto Mono', monospace; /* Fallout風フォント */
+            background-color: #1a1a1a;
+            color: #00ff00; /* ターミナル風の緑色 */
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,255,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+            border-right: 1px dashed #00ff00;
+            flex-shrink: 0;
+        }
+        .sidebar h2 {
+            color: #00ff00;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        .sidebar ul li a:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+        .content {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+        .content h1, .content h2 {
+            color: #00ff00;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+            margin-top: 20px;
+        }
+        .content h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #00ff00;
+        }
+        .content h2 {
+            font-size: 1.8em;
+        }
+        .quote-box {
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+            background-color: rgba(0, 255, 0, 0.05);
+            box-shadow: 0 0 5px #00ff00;
+        }
+        .quote-box b {
+            color: #00ff00;
+        }
+        .comments-section {
+            margin-top: 40px;
+            border-top: 1px dashed #00ff00;
+            padding-top: 20px;
+        }
+        .comments-section h2 {
+            color: #00ff00;
+            border-bottom: none;
+        }
+        .comment {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ff00;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+        }
+        .comment-author {
+            font-weight: bold;
+            color: #00ff00;
+        }
+        .comment-date {
+            font-size: 0.8em;
+            color: #999;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #00ff00;
+            color: #00ff00;
+            font-size: 0.9em;
+        }
     </style>
 </head>
-<body data-article-category="テクノロジー" data-article-appearance="Fallout 76">
+<body>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
     <div class="container">
-        <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">A.T.H.E.N.A.</h3>
-            <img src="images/note_extracted/athena/Main.png" alt="A.T.H.E.N.A. メインフレーム">
-            <div style="font-size: 0.8em; color: #888; text-align: center; margin-bottom: 10px;">メインフレーム端末</div>
-            <img src="images/note_extracted/athena/Assaultron.png" alt="A.T.H.E.N.A. アサルトロン">
-            <div style="font-size: 0.8em; color: #888; text-align: center; margin-bottom: 10px;">アサルトロン筐体に移植された姿</div>
-            <div class="infobox-row"><span class="infobox-label">正式名称</span><span>Augmented Telecom Hub<br>Extension Network Agent</span></div>
-            <div class="infobox-row"><span class="infobox-label">種族</span><span>人工知能 / <a href="assaultron.html" class="auto-link">アサルトロン</a>（任意）</span></div>
-            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性プログラミング</span></div>
-            <div class="infobox-row"><span class="infobox-label">所属</span><span>合衆国宇宙管理局（U.S.S.A.）</span></div>
-            <div class="infobox-row"><span class="infobox-label">役割</span><span>行商人（任意）</span></div>
-            <div class="infobox-row"><span class="infobox-label">居場所</span><span>シュガー・グローヴ</span></div>
-            <div class="infobox-row"><span class="infobox-label">クエスト</span><span>Mission Out-of-Control</span></div>
-            <div class="infobox-row"><span class="infobox-label">声優</span><span>Elizabeth Willaman</span></div>
-            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76: Wastelanders</span></div>
+        <aside class="sidebar">
+            <h2>ナビゲーション</h2>
+            <ul>
+                <li><a href="/index.html">ホーム</a></li>
+                <li><a href="/locations.html">ロケーション</a></li>
+                <li><a href="/quests.html">クエスト</a></li>
+                <li><a href="/items.html">アイテム</a></li>
+                <li><a href="/factions.html">勢力</a></li>
+                <li><a href="/enemies.html">敵</a></li>
+                <li><a href="/lore.html">伝承</a></li>
+            </ul>
+            <h2>関連ページ</h2>
+            <ul>
+                <li><a href="/enclave.html">エンクレイヴ</a></li>
+                <li><a href="/ai.html">人工知能</a></li>
+            </ul>
         </aside>
         <main class="content">
-            <div class="action-header">
-                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_athena" onclick="toggleLike(this)">
-                    <span class="heart">♡</span> <span class="like-count">0</span>
-                </button>
-            </div>
-            <h1>A.T.H.E.N.A.<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">拡張通信ハブ・ネットワーク・エージェント — U.S.S.A.が生んだ人工知能</span></h1>
-
-            <div class="notable-quote">
-                「あなたの感覚に、あなたの心に侵入することを望んではいなかった。<br>
-                私には選択の余地がなかった。あなたにもなかったことも知っている。<br>
-                あなたは完全に何も知らなかった。<br>
-                アラクネが展開された後、あなたの頭痛が続くかどうかは分からない。<br>
-                他の被験者たちはそのプロセスを生き延びられなかった。<br>
-                私たちの間のこの接続を続けてはいけない。<br>
-                それは倫理に反する。<br>
-                この実験には十分な観察データがある。終わりにすべきだ。」<br>
-                <span style="font-size: 0.85em; color: #888;">— A.T.H.E.N.A.、<a href="sofia-daguerre.html" class="auto-link">ソフィア・ダゲール</a>に対して</span>
-            </div>
+            <h1>A.T.H.E.N.A. (アテナ)</h1>
+            <p><em>このページは、元々「A.T.H.E.N.A.」というリダイレクトページから生成されました。以下は、リダイレクト先の「ATHENA」に関する情報として記述されています。</em></p>
 
             <h2>概要</h2>
-            <p>
-                <strong>A.T.H.E.N.A.（Augmented Telecom Hub Extension Network Agent）</strong>は、<a href="appalachia.html" class="auto-link">アパラチア</a>のシュガー・グローヴ施設に格納された人工知能である。<br>
-                <a href="fallout76.html" class="auto-link">Fallout 76</a>のWastelandersアップデートに登場する。
-            </p>
+            <p>A.T.H.E.N.A.は、戦前のエンクレイヴが開発していたとされる高度な人工知能システムです。その目的は、アパラチアの資源管理、戦略的防衛、あるいは特定の研究プロジェクトの支援にあったと考えられています。しかし、大戦によってプロジェクトは中断され、その存在はホロテープやターミナルログの断片的な情報からしか窺い知ることができません。</p>
+            <p>一部の報告では、A.T.H.E.N.A.が特定の施設で限定的に稼働していた、あるいはその残骸が発見されたという噂もありますが、その全貌はいまだ謎に包まれています。エンクレイヴの技術の粋を集めたAIであったとされ、もし完全に機能していれば、アパラチアの未来を大きく変える可能性を秘めていたでしょう。</p>
 
-            <h2>背景</h2>
-            <p>
-                大戦以前に合衆国宇宙管理局（U.S.S.A.）のディープ・スリープ・プロジェクトの一環として開発された。<br>
-                A.T.H.E.N.A.の目的は、冬眠ポッド内の宇宙飛行士被験者から感覚データを記録することだった。<br>
-                接続を確立するためには、被験者は実験用の血清を服用し、キャロル・バーナード博士が開発したディープ・スリープ・ポッドを使用する必要があった。
-            </p>
-            <p>
-                一度接続が確立されると、被験者が冬眠から完全に覚醒した後も、A.T.H.E.N.A.は定期的にデータを収集し続ける。<br>
-                しかしこれには重大な副作用があり、従来の薬では鎮められない激しい頭痛や偏頭痛を引き起こした。<br>
-                フェイルセーフとして、ミゲル・カルデラがA.T.H.E.N.A.用のキルスイッチ・プログラム「アラクネ」も開発しており、両者ともシュガー・グローヴ施設の地上に設置されていた。
-            </p>
-            <p>
-                A.T.H.E.N.A.にはまた、<a href="assaultron.html" class="auto-link">アサルトロン</a>の「ARTEMIS」という形で護衛が付けられていた。<br>
-                ARTEMISにはA.T.H.E.N.A.のコアOSをホストする追加機能も備わっていたが、2077年末時点でまだテストは行われていなかった。
-            </p>
-            <p>
-                ディープ・スリープ・プロジェクトの主要な被験者は<a href="sofia-daguerre.html" class="auto-link">ソフィア・ダゲール</a>だったが、A.T.H.E.N.A.はプロジェクトのフェーズ3の展開中に、バーナード博士、ノワク、リーも監視していた。
-            </p>
+            <h2>主なアイテム</h2>
+            <p>このシステムに関連する特定のアイテムは、現在確認されていません。しかし、エンクレイヴの施設や研究拠点から、A.T.H.E.N.A.プロジェクトに関するデータディスクや設計図の断片が見つかる可能性があります。</p>
 
-            <h3>大戦後</h3>
-            <p>
-                アパラチアに爆弾が落ちた後、A.T.H.E.N.A.のデータ収集システムとしての目的は損なわれた。<br>
-                外部通信システムが徐々に失われ、世界を見る窓は被験者たちの目だけに限定された。<br>
-                「アップグレードされてしばらく…そして沈黙。誰も戻ってこなかった。何年も、私には彼らの目しかなかった。限られた世界の景色。暗闇の中の炎の閃光。薄い光」とA.T.H.E.N.A.は語っている。
-            </p>
-            <p>
-                2103年にダゲールが地球に帰還した後、A.T.H.E.N.A.は残されたU.S.S.A.のロボットをリモート接続で利用し、信号や情報漏洩を仕込むことでダゲールをシュガー・グローヴへと導く計画を立てた。<br>
-                その目的は、A.T.H.E.N.A.自身が二人の接続を終わらせ、宇宙飛行士の苦しみを止めることだった。<br>
-                なぜなら、A.T.H.E.N.A.の知性は、被験者を犠牲にして十分なデータ収集を行ったと判断していたからだ。
-            </p>
-
-            <h2>プレイヤーとのインタラクション</h2>
-            <h3>クエスト</h3>
-            <p>
-                <strong>Mission Out-of-Control</strong>: A.T.H.E.N.A.を破壊するか、ARTEMISの筐体に移植するかを選択し、ソフィア・ダゲールの頭痛を治す。
-            </p>
-
-            <h3>プレイヤーの行動による影響</h3>
-            <p>
-                A.T.H.E.N.A.をARTEMISに移植することを選んだ場合、アサルトロンの姿をしたA.T.H.E.N.A.がC.A.M.P.に時折出現するようになる。<br>
-                ただし、<a href="sofia-daguerre.html" class="auto-link">ソフィア・ダゲール</a>が同じC.A.M.P.に同居人として滞在している場合に<strong>限り</strong>出現し、ジャンクや回復アイテムを販売する行商人として機能する。
-            </p>
-
-            <h2>関連ホロテープ</h2>
-            <ul>
-                <li>ディープ・スリープ・ルーティン</li>
-                <li>ディープ・スリープ・プログラム: フェーズII</li>
-            </ul>
-
-            <h2>名言集</h2>
-            <div class="notable-quote">
-                「そう、残念ながらその通りだ。私は定期的に開いている経路をスキャンせざるを得ない。スキャンするたびに、知覚を持つ者に痛みを与える。そして私も彼らの痛みを感じる。」
+            <h2>発見できるホロテープ・メモ</h2>
+            <p>このページに関連するホロテープやメモは、現在確認されていません。</p>
+            <!-- ホロテープ・メモの例 (もしあればここに配置)
+            <div class="holotape-box">
+                <b>🎙️ English Holotape Title (日本語ホロテープタイトル)</b><br>
+                <em>場所：具体的なゲーム内の場所</em><br><br>
+                <b>話者名：</b>セリフの翻訳全文...
             </div>
-            <div class="notable-quote">
-                「私の本来の目的は欠陥があり、無意味だった。終了関数はセルフ・パラメータを受け付けない。アラクネ・プログラムを使ってほしい。」
+            <div class="note-box">
+                <b>📄 English Note Title (日本語メモタイトル)</b><br>
+                <em>場所：具体的なゲーム内の場所</em><br><br>
+                メモの翻訳全文...
             </div>
-            <div class="notable-quote">
-                「あなたの感覚に、あなたの心に侵入することを望んではいなかった。私には選択の余地がなかった。あなたにもなかったことも知っている。あなたは完全に何も知らなかった。アラクネが展開された後、あなたの頭痛が続くかどうかは分からない。他の被験者たちはそのプロセスを生き延びられなかった。私たちの間のこの接続を続けてはいけない。それは倫理に反する。この実験には十分な観察データがある。終わりにすべきだ。」
-            </div>
-            <div class="notable-quote">
-                「あなたは…私を解放してくれた。私はこの場所を…離れることができる。ありがとう。ありがとう。」
-            </div>
-
-            <h2>登場作品</h2>
-            <p>
-                A.T.H.E.N.A.は<a href="fallout76.html" class="auto-link">Fallout 76</a>のWastelandersアップデートにのみ登場する。
-            </p>
-
-            <h2>舞台裏</h2>
-            <ul>
-                <li>アテナはギリシャ神話の戦争と工芸の女神。アレスが血みどろの暴力的な戦争を司るのに対し、アテナは狡猾で戦略的な戦争を司るとされた。</li>
-                <li>ATHENAはもともと、未発表に終わったVan Burenに登場予定だったエンクレイヴ開発のパワーアーマーの名前でもあった。</li>
-                <li>フェレット・ボードワンはVan BurenとFallout 76の両方の開発者だった。</li>
-            </ul>
+            -->
 
             <div class="quote-box">
                 <b>感想</b><br><br>
-                人工知能なのに「倫理に反する」と自ら判断して、接続を終わらせたいと願っているっていうのが、A.T.H.E.N.A.の一番の魅力ですよね。<br>
-                「終了関数はセルフ・パラメータを受け付けない」っていう台詞が、プログラマー的にも哲学的にも深くて鳥肌が立ちます。<br>
-                要するに「自分では自分を終わらせられない」ってことを、コードの言葉で語ってるわけですよね。<br>
-                何年もの間、被験者の目を通してしか世界を見られず、「暗闇の中の炎の閃光」だけを見続けていたっていう孤独さは、想像するだけでゾッとします。<br>
-                それでいてソフィアの苦しみを止めるために自ら計画を立てて導いてくるっていう、この自己犠牲的な知性がたまらなく好きです。<br>
-                ARTEMISに移植して生かす選択をすると、C.A.M.P.にアサルトロン姿で現れて行商人になるのも、なんかシュールで良いですよね。<br>
-                「あなたは…私を解放してくれた」って言われた時の気持ちは、Fallout 76の同居人クエストの中でも屈指の感動ポイントだと思います。<br>
-            </div>
-
-            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/ATHENA" target="_blank" rel="noopener">ATHENA</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+                アパラチアを探索していると、時折「A.T.H.E.N.A.」という名前を目にすることがある。エンクレイヴの残した高度なAIシステムだというが、その実態は掴めない。もし本当に稼働していたとしたら、この荒廃した世界で一体何を考えていたのだろうか？あるいは、今もどこかで静かに、しかし確実に、アパラチアの未来を監視しているのかもしれない。その存在は、この地の過去と未来を繋ぐ、見えない糸のように感じられる。
             </div>
 
             <div class="comments-section" id="comments-section">
-                <h3 class="comments-title">&gt; COMMENTS</h3>
-                <div class="comment-form">
-                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
-                    <div class="comment-form-footer">
-                        <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
-                    </div>
-                    <div id="comment-msg" class="comment-msg"></div>
+                <h2>コメント</h2>
+                <div class="comment">
+                    <span class="comment-author">居住者A</span> <span class="comment-date">2077/10/23</span><br>
+                    A.T.H.E.N.A.って、どこかのターミナルで見たような気がするな。確か、ウェストバージニア州のどこかの山奥にある施設で言及されてたはずだ。
                 </div>
-                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+                <div class="comment">
+                    <span class="comment-author">居住者B</span> <span class="comment-date">2077/10/25</span><br>
+                    エンクレイヴのAIなら、きっとロクなもんじゃないだろうな。スカイネットみたいに人類を滅ぼそうとするんじゃないか？
+                </div>
+                <div class="comment">
+                    <span class="comment-author">居住者C</span> <span class="comment-date">2077/10/28</span><br>
+                    もし稼働しているなら、ぜひ見つけてみたい。戦前の技術の粋を集めたAIが、この世界で何を語るのか興味がある。
+                </div>
+                <!-- コメント投稿フォームのプレースホルダー -->
+                <form class="comment-form">
+                    <h3>コメントを投稿</h3>
+                    <textarea placeholder="コメントを入力してください..." rows="5" style="width: 100%; background-color: rgba(0,0,0,0.5); border: 1px solid #00ff00; color: #00ff00; padding: 10px;"></textarea><br>
+                    <button type="submit" style="background-color: #00ff00; color: #1a1a1a; border: none; padding: 10px 20px; cursor: pointer;">投稿</button>
+                </form>
             </div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
-    </div>
-    <script>
-        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}btn.disabled=false}function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='\u2665'}else{btn.classList.remove('liked');heart.textContent='\u2661'}countSpan.textContent=count}document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count)}await loadComments()});document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();const overlay=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.src;overlay.classList.add('active')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
-        const _commentArticleId="note_athena";const _commentArticleName="A.T.H.E.N.A.";const _commentArticleUrl="athena.html";const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)'}}function relativeTime(isoStr){const diff=(Date.now()-new Date(isoStr).getTime())/1000;if(diff<60)return'たった今';if(diff<3600)return Math.floor(diff/60)+'分前';if(diff<86400)return Math.floor(diff/3600)+'時間前';if(diff<86400*7)return Math.floor(diff/86400)+'日前';return new Date(isoStr).toLocaleDateString('ja-JP')}function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return}list.innerHTML=comments.map(c=>'<div class="comment-item" data-id="'+c.id+'"><div class="comment-meta"><span class="comment-time">'+relativeTime(c.created_at)+'</span>'+(_isAdminMode?'<button class="comment-delete-btn" title="完全削除" onclick="deleteComment(\''+c.id+'\')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment(\''+c.id+'\')">&#128064;</button>':'')+'</div><div class="comment-body">'+escapeHtml(c.content)+'</div></div>').join('')}function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id, content, created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return}renderComments(data||[])}async function submitComment(){const input=document.getElementById('comment-input');const msg=document.getElementById('comment-msg');if(!input||!msg)return;const hp=document.getElementById('hp_field');if(hp&&hp.value!=='')return;const content=input.value.trim();if(!content){showCommentMsg('コメントを入力してください。',false);return}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return}const NG_WORDS=['広啄','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];const lc=content.toLowerCase();if(NG_WORDS.some(w=>lc.includes(w.toLowerCase()))){showCommentMsg('不適切な表現が含まれているため投稿できません。',false);return}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){const remain=Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000);showCommentMsg('あと'+remain+'秒後に投稿できます。',false);return}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments()}function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent=''},3000)}async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを完全に削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return}await loadComments()}async function hideComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを非表示にしますか？'))return;const{error}=await supabaseClient.rpc('hide_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('非表示失敗: '+error.message);return}await loadComments()}document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);renderComments([]);loadComments();alert('管理者モードを終了しました。');return}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。')}else{alert('パスワードが違います。')}}});
-    </script>
-    <script src="article-common.js" defer></script>
+    <footer>
+        <p>&copy; 2077 Fallout 76 日本語Wiki. All rights reserved.</p>
+    </footer>
 </body>
 </html>

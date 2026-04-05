@@ -1,9 +1,4 @@
-#Fallout76
-
-Millstone
+ハイウェイ・タウンのバーテンダー「ミルストーン」のロア記事をアップデートしました！🍸
+過酷なウェイストランドの旅人に安らぎを提供する、酒場の生活感あふれるキャラクターです。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/millstone.html
-
-Burning Springs
-
----
-CC BY-SA

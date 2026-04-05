@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8"><title>Axel | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/axel-milepost-zero.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Axel | Overseer Mohi's Terminal"><meta property="og:description" content="Axel — Fallout 76"><meta property="og:url" content="https://www.fallout-jp.com/axel-milepost-zero.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="ja"><head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8"><title>Axel | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/axel-milepost-zero.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Axel | Overseer Mohi's Terminal"><meta property="og:description" content="Axel — Fallout 76"><meta property="og:url" content="https://www.fallout-jp.com/axel-milepost-zero.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Noto+Sans+JP:wght@400;700&amp;display=swap" rel="stylesheet">
 <style>
         :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
@@ -77,6 +76,70 @@
     </style>
 </head>
 <body data-article-category="人物" data-article-appearance="Fallout 76">
-<div class="container"><aside class="infobox"><h3 style="margin-top:0;text-align:center;">Axel</h3><img src="images/note_extracted/axel-milepost-zero/img_main.png" alt="Axel"><div class="infobox-row"><span class="infobox-label">所属</span><span>Milepost Zero</span></div><div class="infobox-row"><span class="infobox-label">役職</span><span>Decorator</span></div><div class="infobox-row"><span class="infobox-label">場所</span><span>[[Milepost Zero (location)</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside><main class="content"><div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_axel_milepost_zero" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div><h1>Axel</h1><h2>概要</h2>
-<p><b>Axel</b>は、Milepost Zeroに関連するキャラクター。</p>
-<div class="quote-box"><p class="quote-text">Milepost Zeroに関わるキャラクター。<br>アパラチアの物語を彩る存在です。</p></div><div style="margin-top:30px;border-top:1px dashed var(--accent-color);padding-top:20px;font-size:0.85em;color:#888;"><p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Axel%20(Milepost%20Zero)" target="_blank" rel="noopener">Axel</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia</a>.<br>Licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p><p style="margin-top:15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color:var(--accent-color);">寄付を受け付けております</a>。</p></div><div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div></main></div><div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div><script>const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(b){const a=b.getAttribute('data-article-id');let l=localStorage.getItem(a+'_liked')==='true';b.disabled=true;if(l){const{data}=await supabaseClient.rpc('decrement_like',{article_id_param:a});localStorage.setItem(a+'_liked','false');uLB(b,false,data);}else{const{data}=await supabaseClient.rpc('increment_like',{article_id_param:a});localStorage.setItem(a+'_liked','true');uLB(b,true,data);}b.disabled=false;}function uLB(b,l,c){b.querySelector('.heart').textContent=l?'\u2665':'\u2661';l?b.classList.add('liked'):b.classList.remove('liked');b.querySelector('.like-count').textContent=c;}document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();uLB(b,localStorage.getItem(a+'_liked')==='true',data?data.like_count:0);}document.querySelectorAll('.content img,.infobox img').forEach(i=>{i.onclick=e=>{e.stopPropagation();document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');};});const _a='note_axel_milepost_zero';const _n='Axel';const _u='axel-milepost-zero.html';function uc(){document.getElementById('char-count').textContent=document.getElementById('comment-input').value.length;}async function lc(){const{data}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_a).order('created_at',{ascending:false}).limit(50);const l=document.getElementById('comments-list');if(!data||!data.length){l.innerHTML='<div class="comment-empty">まだコメントがありません。</div>';return;}l.innerHTML=data.map(c=>'<div class="comment-item"><div class="comment-meta"><span>'+new Date(c.created_at).toLocaleDateString('ja-JP')+'</span></div><div class="comment-body">'+c.content.replace(/</g,'&lt;')+'</div></div>').join('');}window.updateCharCount=uc;window.submitComment=async function(){const i=document.getElementById('comment-input');const v=i.value.trim();if(!v||v.length>100)return;await supabaseClient.from('comments').insert({article_id:_a,article_name:_n,article_url:_u,content:v});i.value='';uc();lc();};lc();});</script><script src="article-common.js" defer></script></body></html>
+<div class="container"><aside class="infobox"><h3 style="margin-top:0;text-align:center;">Axel</h3><img src="images/note_extracted/axel-milepost-zero/img_main.png" alt="Axel"><div class="infobox-row"><span class="infobox-label">所属</span><span>Milepost Zero</span></div><div class="infobox-row"><span class="infobox-label">役職</span><span>Decorator</span></div><div class="infobox-row"><span class="infobox-label">場所</span><span>[[Milepost Zero (location)</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside><main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_axel_milepost_zero" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Axel (アクセル)</h1>
+
+            <div class="quote-box">
+                「ああ、君に会えて本当に良かった。なんて朝だ！おやつを探しに超早く抜け出したんだけど、外で500匹ぐらいのオオカミに出くわしたんだ。でも心配しないで、僕たちの方が頭が良かったから！とにかく、おやつのついでに古いガラクタも見つけたんだ。いくつかいる？」<br>
+                <br>
+                ―― 息を切らしたアクセル
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <b>アクセル (Axel)</b> は、「Milepost Zero」アップデートで導入されたブルーリッジ・キャラバン・カンパニーの拠点「マイルポスト・ゼロ」で、デコレーター（装飾担当）として雇用できる子供のNPCでした。<br>
+                彼を雇用するには125の「物資」が必要であり、彼はセントリーボットの相棒「<a href="gyro.html" class="auto-link">ジャイロ (Gyro)</a>」と一緒に拠点にやってきます。
+            </p>
+            <p>
+                <b>注意:</b> マイルポスト・ゼロの経営ゲームプレイは後の『Burning Springs』アップデートで廃止されました。<br>
+                そのアップデート以降、アクセルを雇用することはできなくなり、彼がゲーム内に登場することもなくなっています（削除されたコンテンツ）。
+            </p>
+            
+            <h2>基地のアップグレード</h2>
+            <p>
+                マイルポスト・ゼロの他のメンバーと同様に、アクセルのアップグレードはマーリーとの会話を通じて行われました。<br>
+                アクセルのティアを上げると、拠点の内部装飾テーマの選択肢が増えます。これらのテーマは拠点の見た目を変えるだけで、ステータス等への実質的な影響はありませんでした。
+            </p>
+            <ul>
+                <li><b>ティア1（初期雇用）</b>: 125 物資。装飾テーマ「ブルーリッジ」と「ミリタリー (40物資)」が選択可能。</li>
+                <li><b>ティア2</b>: 150 物資。新たな装飾テーマ「アンティーク (40物資)」が解禁。マーリーの近くのテーブルにメモ「測量報告書」が出現。</li>
+                <li><b>ティア3</b>: 200 物資。新たな装飾テーマ「カルト教信者 (40物資)」が解禁。また、いずれかのテーマを購入すると、彼から「設計図: アクセルのスノードーム」をもらえる会話オプションが解禁。</li>
+            </ul>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                マイルポスト・ゼロの装飾要素を一手に引き受けていた活発な少年キャラクターです。<br>
+                子供の相棒が恐ろしい火力を持つ「セントリーボット」という絵面はいかにもFalloutらしくて笑えました。<br>
+                残念ながらマイルポスト・ゼロのシステムの廃止により、彼に出会うことはできなくなってしまいましたが、彼のスノードーム設計図などは形を変えて入手できるように救済措置が取られたようです。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout76</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Person</span>
+                </div>
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Axel_(Milepost_Zero)" target="_blank" rel="noopener">Axel (Milepost Zero)</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
+            </div>
+    </main></div><div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div><script>const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(b){const a=b.getAttribute('data-article-id');let l=localStorage.getItem(a+'_liked')==='true';b.disabled=true;if(l){const{data}=await supabaseClient.rpc('decrement_like',{article_id_param:a});localStorage.setItem(a+'_liked','false');uLB(b,false,data);}else{const{data}=await supabaseClient.rpc('increment_like',{article_id_param:a});localStorage.setItem(a+'_liked','true');uLB(b,true,data);}b.disabled=false;}function uLB(b,l,c){b.querySelector('.heart').textContent=l?'\u2665':'\u2661';l?b.classList.add('liked'):b.classList.remove('liked');b.querySelector('.like-count').textContent=c;}document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();uLB(b,localStorage.getItem(a+'_liked')==='true',data?data.like_count:0);}document.querySelectorAll('.content img,.infobox img').forEach(i=>{i.onclick=e=>{e.stopPropagation();document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');};});const _a='note_axel_milepost_zero';const _n='Axel';const _u='axel-milepost-zero.html';function uc(){document.getElementById('char-count').textContent=document.getElementById('comment-input').value.length;}async function lc(){const{data}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_a).order('created_at',{ascending:false}).limit(50);const l=document.getElementById('comments-list');if(!data||!data.length){l.innerHTML='<div class="comment-empty">まだコメントがありません。</div>';return;}l.innerHTML=data.map(c=>'<div class="comment-item"><div class="comment-meta"><span>'+new Date(c.created_at).toLocaleDateString('ja-JP')+'</span></div><div class="comment-body">'+c.content.replace(/</g,'&lt;')+'</div></div>').join('');}window.updateCharCount=uc;window.submitComment=async function(){const i=document.getElementById('comment-input');const v=i.value.trim();if(!v||v.length>100)return;await supabaseClient.from('comments').insert({article_id:_a,article_name:_n,article_url:_u,content:v});i.value='';uc();lc();};lc();});</script><script src="article-common.js" defer=""></script></body></html>

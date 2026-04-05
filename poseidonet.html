@@ -2,316 +2,650 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>PoseidoNet | Overseer Mohi's Terminal</title>
-    <link rel="canonical" href="https://www.fallout-jp.com/poseidonet.html">
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:title" content="PoseidoNet | Overseer Mohi's Terminal">
-    <meta property="og:description" content="PoseidoNet — ポセイドン・エネルギーが運営する戦前の大陸横断ネットワーク。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/poseidon-energy/logo_fnv.png">
-    <meta property="og:url" content="https://www.fallout-jp.com/poseidonet.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@IwamotoFuta">
-    <meta name="twitter:title" content="PoseidoNet | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="PoseidoNet — ポセイドン・エネルギーの大陸横断ネットワーク。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/poseidon-energy/logo_fnv.png">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポセイドネット - Fallout 76 日本語Wiki</title>
+    <link rel="stylesheet" href="/css/wiki.css"> <!-- 仮のCSSパス -->
     <style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
-        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; }
-        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        .terminal-output { background: #0a0a0a; border: 1px solid #333; padding: 15px 20px; font-family: 'Share Tech Mono', monospace; font-size: 0.85em; color: var(--accent-color); line-height: 1.5; margin: 20px 0; border-radius: 4px; white-space: pre-wrap; }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
-        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
-        .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
-        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
-        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
-        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
-        .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
-        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
-        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
-        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #1a1a1a;
+            color: #00ff00;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,255,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #0a0a0a;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 15px rgba(0,255,0,0.5);
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar {
+            width: 250px;
+            padding: 20px;
+            border-right: 1px solid #00ff00;
+            flex-shrink: 0;
+        }
+        .sidebar h2 {
+            color: #00ff00;
+            font-size: 1.2em;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        .sidebar ul li a:hover {
+            background-color: #003300;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .page-header {
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .page-header h1 {
+            color: #00ff00;
+            font-size: 2em;
+            margin: 0;
+        }
+        .page-content h2 {
+            color: #00ff00;
+            font-size: 1.5em;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .page-content h3 {
+            color: #00ff00;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .page-content p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .page-content a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+        .page-content a:hover {
+            text-decoration: underline;
+        }
+        .quote-box {
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+            background-color: #001a00;
+        }
+        .quote-box b {
+            color: #00ff00;
+        }
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid #00ff00;
+            padding-top: 20px;
+        }
+        .comments-section h2 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        .comment {
+            border: 1px solid #00ff00;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #001a00;
+        }
+        .comment-author {
+            font-weight: bold;
+            color: #00ffff;
+        }
+        .comment-date {
+            font-size: 0.8em;
+            color: #00cc00;
+        }
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+        .page-content dl {
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        .page-content dt {
+            font-weight: bold;
+            color: #00ff00;
+            margin-top: 0.5em;
+        }
+        .page-content dd {
+            margin-left: 2em;
+            margin-bottom: 0.5em;
+        }
+        .page-content ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        .page-content li {
+            margin-bottom: 5px;
+        }
+        .ref-list {
+            font-size: 0.9em;
+            color: #00cc00;
+        }
+        .ref-list li {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
-<body data-article-category="テクノロジー" data-article-appearance="Fallout 2, Fallout: New Vegas, Fallout 76">
+<body>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
     <div class="container">
-        <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">PoseidoNet</h3>
-            <img src="images/note_extracted/poseidon-energy/logo_fnv.png" alt="ポセイドン・エネルギー・ロゴ" onclick="openLightbox(this)">
-            <div class="infobox-row"><span class="infobox-label">種別</span><span>大陸横断ネットワーク</span></div>
-            <div class="infobox-row"><span class="infobox-label">運営</span><span><a href="poseidon-energy.html" class="auto-link">ポセイドン・エネルギー</a></span></div>
-            <div class="infobox-row"><span class="infobox-label">範囲</span><span>太平洋〜大西洋</span></div>
-            <div class="infobox-row"><span class="infobox-label">戦後利用</span><span><a href="enclave.html" class="auto-link">エンクレイヴ</a></span></div>
-            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>FO2, FNV, FO76</span></div>
-        </aside>
-
-        <main class="content">
-            <div class="action-header">
-                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_poseidonet" onclick="toggleLike(this)">
-                    <span class="heart">♡</span> <span class="like-count">0</span>
-                </button>
-            </div>
-
-            <h1>PoseidoNet<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ポセイドネット</span></h1>
-
-            <h2>概要</h2>
-            <p><strong>PoseidoNet</strong>は、<a href="poseidon-energy.html" class="auto-link">ポセイドン・エネルギー</a>が運営する戦前の大陸横断ネットワークであり、太平洋から大西洋まで広がっていた。</p>
-
-            <h2>背景</h2>
-            <p>PoseidoNetは軍産複合体のネットワーク基盤であり、企業の支社だけでなく、政府および軍事施設をも接続し、リアルタイム通信を可能にしていた。</p>
-            <p>ネットワークが提供する帯域幅は、以下の機能を支えるのに十分であった：</p>
+        <div class="sidebar">
+            <h2>ポセイドン・エナジー</h2>
             <ul>
-                <li><strong>ロボットルーティンのダウンロード</strong> — PoseidoNetの検索でネットワーク上にルーティンが見つかる限り対応可能</li>
-                <li><strong>リアルタイムビデオ会議</strong> — エンクレイヴの通信将校が映像リンクのテストを行っていた</li>
-                <li><strong>セキュリティトレース</strong> — 不正ユーザーの位置特定が可能</li>
+                <li><a href="/poseidon-energy.html">ポセイドン・エナジー</a></li>
+                <li><a href="/poseidonet.html">ポセイドネット</a></li>
+                <li><a href="/poseidon-energy-plant-wv-06.html">ポセイドン・エナジー・プラントWV-06</a></li>
+                <li><a href="/thunder-mountain-power-plant.html">サンダーマウンテン発電所</a></li>
+                <li><a href="/helios-one.html">ヘリオス・ワン</a></li>
+                <li><a href="/pmv-valdez.html">PMV バルデス</a></li>
+                <li><a href="/navarro.html">ナバロ</a></li>
+                <li><a href="/geckos-nuclear-power-plant.html">ゲッコーの原子力発電所</a></li>
             </ul>
-
-            <div class="quote-box">
-                <b>「おい、お利口さんだな？ いいか、今お前をトレースしてるぞ。内部セキュリティがお前の尻にべったり張り付いたらどんな気分か、見てやろうじゃないか。このクソ野郎！」</b>
-                <br>— エンクレイヴ通信将校（Fallout 2）
+            <br>
+            <img src="images/note_extracted/poseidonet/img_map_marker.png" alt="ポセイドネットの地図マーカー" style="width:100%; border:1px solid #00ff00;">
+        </div>
+        <div class="main-content">
+            <div class="page-header">
+                <h1>ポセイドネット</h1>
             </div>
+            <div class="page-content">
+                <p><b>ポセイドネット</b>は、戦前に<a href="/poseidon-energy.html">ポセイドン・エナジー</a>が運営していた大陸横断ネットワークで、太平洋から大西洋まで広がっていた<sup id="ref-link-1"><a href="#ref-1">[1]</a></sup><sup id="ref-link-2"><a href="#ref-2">[2]</a></sup>。</p>
 
-            <h3>セキュリティ</h3>
-            <p>セキュリティは、正しいセキュリティ・アクセスコード・シーケンスを入力しない限り、中央PoseidoNetへのアップリンクを防止することで維持されていた。
-            ユーザーが正しいコードの入力に3回失敗すると、PoseidoNetは直ちに内部セキュリティ手順を発動し、ターミナルをロックダウンした。</p>
-            <p>PoseidoNetのネットワーク管理者はロックアウトを解除できたが、一部のターミナルはローカルリセットで単純にアクセスを復元することが可能であった。</p>
+                <h2>概要</h2>
+                <p>ポセイドネットは軍産複合体のネットワーク基盤であり、企業支社だけでなく、政府や軍事施設も接続し、リアルタイム通信を可能にしていた<sup id="ref-link-1-2"><a href="#ref-1">[1]</a></sup>。このネットワークは、ロボットルーチンのダウンロード（ポセイドネット検索でネットワーク上に見つかる限り）<sup id="ref-link-1-3"><a href="#ref-1">[1]</a></sup>、リアルタイムのビデオ会議<sup id="ref-link-3-1"><a href="#ref-3">[3]</a></sup>、およびセキュリティ目的での追跡機能（不正ユーザーの特定）<sup id="ref-link-3-2"><a href="#ref-3">[3]</a></sup>をサポートする十分な帯域幅を提供していた。セキュリティは、正しいセキュリティアクセスコードシーケンスを入力しない限り、中央ポセイドネットへのアップリンクを防止することで維持されていた<sup id="ref-link-1-4"><a href="#ref-1">[1]</a></sup>。ユーザーが正しいコードを3回入力し損ねた場合、ポセイドネットは直ちに内部セキュリティ手順を起動し<sup id="ref-link-1-5"><a href="#ref-1">[1]</a></sup>、ターミナルをロックダウンした。ポセイドネットのネットワーク管理者はロックアウトを解除できたが、一部のターミナルはローカルでリセットするだけでアクセスを復元できた<sup id="ref-link-1-6"><a href="#ref-1">[1]</a></sup>。</p>
+                <p>ポセイドネットの商用版は市場で入手可能で、時には<a href="/poseidon-power-management-system.html">ポセイドン電力管理システム</a>などの他のソフトウェアとバンドルされ<sup id="ref-link-2-2"><a href="#ref-2">[2]</a></sup>、シェアウェアとして提供されていた。試用期間が終了すると、ポセイドネットはヘルプシステムの更新を含むいかなる更新もインストールしなかった。皮肉なことに、<a href="/enclave-oil-rig.html">ポセイドン石油掘削施設にあるPR_002大統領シェルター</a>では、<a href="/great-war.html">大戦</a>から数年後に試用期間が切れたそのような商用版が使用されていた。それは、掘削施設が破壊されるまでの1世紀半の間、代替品なしで使い続けられた<sup id="ref-link-4-1"><a href="#ref-4">[4]</a></sup>。</p>
+                <p>戦後、<a href="/enclave.html">エンクレイヴ</a>はポセイドネットをアメリカの荒野に散らばる施設間の通信に使用した。このシステムはその回復力を証明し、2281年という遅い時期でも軌道上の資産に接続できるほど稼働し続けていた<sup id="ref-link-5-1"><a href="#ref-5">[5]</a></sup>。</p>
 
-            <div class="terminal-output">Uplink with central PoseidoNet initiated.
-Enter Primary Security Access Code Sequence:
-70Y644, 008Z21, 9X7299, A46123.
+                <h2>既知のポセイドネットノード</h2>
+                <h3>企業</h3>
+                <dl>
+                    <dt>ポセイドン石油掘削施設、<a href="/enclave-oil-rig.html">エンクレイヴ制御ステーション</a> (PR_002) を隠蔽</dt>
+                    <dd><sup id="ref-link-4-2"><a href="#ref-4">[4]</a></sup><sup id="ref-link-1-7"><a href="#ref-1">[1]</a></sup></dd>
+                    <dt><a href="/navarro.html">ナバロ精製所</a></dt>
+                    <dd><sup id="ref-link-1-8"><a href="#ref-1">[1]</a></sup></dd>
+                    <dt><a href="/geckos-nuclear-power-plant.html">ゲッコーの原子力発電所5号機</a></dt>
+                    <dd><sup id="ref-link-1-9"><a href="#ref-1">[1]</a></sup></dd>
+                    <dt><a href="/pmv-valdez.html">PMV バルデス</a></dt>
+                    <dd><sup id="ref-link-6-1"><a href="#ref-6">[6]</a></sup></dd>
+                    <dt><a href="/helios-one.html">ヘリオス・ワン</a></dt>
+                    <dd><sup id="ref-link-5-2"><a href="#ref-5">[5]</a></sup></dd>
+                    <dt><a href="/poseidon-energy-plant-wv-06.html">ポセイドン・エナジー・プラントWV-06</a></dt>
+                    <dd><sup id="ref-link-7-1"><a href="#ref-7">[7]</a></sup></dd>
+                    <dt><a href="/thunder-mountain-power-plant.html">サンダーマウンテン発電所</a></dt>
+                    <dd><sup id="ref-link-2-3"><a href="#ref-2">[2]</a></sup></dd>
+                </dl>
 
-Security Access Code Sequence Accepted.
-Welcome to PoseidoNet:
+                <h3>政府および軍事</h3>
+                <dl>
+                    <dt><a href="/enclave-vault-research-control.html">エンクレイヴ保管庫研究制御</a></dt>
+                    <dd><sup id="ref-link-1-10"><a href="#ref-1">[1]</a></sup></dd>
+                    <dt><a href="/iron-mountain.html">アイアンマウンテン</a> (オフライン)</dt>
+                    <dd><sup id="ref-link-1-11"><a href="#ref-1">[1]</a></sup></dd>
+                    <dt><a href="/norad.html">NORAD</a> (オフライン)</dt>
+                    <dd><sup id="ref-link-1-12"><a href="#ref-1">[1]</a></sup></dd>
+                    <dt><a href="/strategic-air-command.html">戦略航空軍団</a> (オフライン)</dt>
+                    <dd><sup id="ref-link-1-13"><a href="#ref-1">[1]</a></sup></dd>
+                </dl>
 
-Searching Comlinks... Searching...
-Iron Mountain... Offline
-NORAD... Offline
-SAC... Offline
+                <h2>発見できるホロテープ・メモ</h2>
 
-Searching PoseidoNet... --More?--
-Active PoseidoNet Stations:
-  Atomic Powerplant #5
-  Navarro Refinery
-  Control Station ENCLAVE
-  ENCLAVE Vault-Research Control... Access Denied</div>
+                <!-- HELIOS One terminal entries -->
+                <div class="note-box">
+                    <b>📟 HELIOS One terminal entries（ヘリオス・ワン ターミナルエントリ）</b><br><br>
+                    <h3>発電所ターミナル</h3>
+                    <p><em>場所：発電所の受付デスク</em></p>
+                    <p>ポセイドネットへようこそ。</p>
+                    <h4>アルキメデス試験</h4>
+                    <p>2月16日火曜日の午後2時に、技術者たちはアルキメデスとその発電所セキュリティシステムとの接続テストを実施します。警報サイレンが鳴り止み、安全が確認されるまで、いかなる従業員も発電所敷地外に出ないでください。当社はすべての従業員から死亡および身体切断の免責同意書を保管しており、この手順中に発生するいかなる事故についても責任を負いません。</p>
+                    <p>タワーデッキから監視するすべての技術者には、保護メガネの着用が義務付けられています。</p>
+                    <p>メッセージを読み込み中...</p>
+                    <h4>結果</h4>
+                    <p>アルキメデスの初期テストは成功しましたが、完全な成功ではありませんでした。あらゆる予防措置を講じたにもかかわらず、いくつかのマイナーシステムが過負荷になり、テスト後の2分半のダウンタイムは改善に取り組むべき点です。</p>
+                    <p>さらに重要なことに、テスト時に近くの施設、特に<a href="/black-mountain.html">ブラックマウンテン</a>通信アレイと<a href="/hidden-valley.html">ヒドゥンバレー</a>の軍事バンカーから、システムを破壊する電力変動が発生したとの報告を受けました。次回はこのような付随的損害を防ぐことを優先事項とします。</p>
+                    <p>メッセージを読み込み中...</p>
+                    <h4>今後の訪問</h4>
+                    <p><a href="/united-states-army.html">アメリカ陸軍</a>の<a href="/scott-lowe.html">スコット・ロウ</a>准将が来週月曜日から施設を訪問し、無期限に滞在します。アルキメデスが稼働を開始すると、テスト以外の目的でその使用を許可できるのは彼だけになります。民間人従業員は敬礼する必要はありませんが、准将が滞在中は全員が徹底した身だしなみと衛生管理を遵守し、きちんとした服装をすることが求められます。准将はすべての部下から最高のものを期待しており、ポセイドンの従業員もこのような立派で勲章を受けた兵士の前では同様であるべきです。</p>
+                    <p>メッセージを読み込み中...</p>
+                    <h3>「彼に話してもいいか？」</h3>
+                    <p><em>場所：ヘリオス・ワン</em></p>
+                    <p>「彼に話してもいいか？」新入社員向け<a href="/poseidon-energy.html">ポセイドン・エナジー</a>出版物</p>
+                    <p>ポセイドンファミリーの一員として、あなたは私たちと共に取り組む信じられないような事業に熱中し、それを他人に話したくなるのは当然のことでしょう。しかし、ちょっと待ってください、皆さん！会社の情報が間違った手に渡ったらどうなるか、そしてそれが誰の手に渡る可能性があるかを少し考えてみましょう。</p>
+                    <p>「妻に話してもいいか？」そうですね、話したとしましょう。誰にも言わないようにと伝えます。あなたの絆は神聖です。しかし、女性の暇な舌は悪魔の遊び道具です。翌日あなたが仕事に出かけるやいなや、彼女は親友のキャンディに電話をかけます。そしてキャンディはガーティに、ガーティはマキシンに、マキシンはルルに、そしてルルがドリスに話している間に、アメリカのオペレーターを装った中国のスパイが盗聴し、次の瞬間には彼女は<a href="/forbidden-city.html">紫禁城</a>に電話をかけ、裏切り者のカナリアのように歌っています。翌日、あなたとあなたの妻は手かせ足かせをはめられ、<a href="/china.html">中国</a>は私たちの全兵器の制御を握っているでしょう。</p>
+                    <p>「子供たちに話してもいいか？」自分の子供たちに尊敬されたくない父親がいるでしょうか？そんな父親にならないでください。ある日学校で、イワン・ブリーコフはあなたの子供たちから昼食代以上のものを手に入れるでしょう。彼は国家機密を手に入れるのです！そして彼らが彼を<a href="/red-square.html">赤の広場</a>で国民的英雄としてパレードしている間、あなたの子供たちは強制労働収容所で働くことになり、あなたとあなたの美しい若い妻の隣で、共産主義者が個性を表現する化粧を禁止したため、彼女はしわくちゃでみすぼらしくなっているでしょう。</p>
+                    <p>「飲み仲間には話してもいいか？」確かに、男が信頼を置ける安全な場所があるとしたら、それは他の男友達との間でしょう。しかし、彼らのことをどれだけ知っていますか？彼らは友達ですか…それとも*同志*ですか？確信しすぎないでください。最も透明な窓でさえ、鉄のカーテンで覆われていれば秘密を隠すことができます。</p>
+                    <p>常に覚えておいてください：あなたは今、二つの家族の一員です。そして両方に義務があります。しかし、ポセイドンファミリーへの義務の方が大きいのです。なぜなら、あなたの子供たちは行儀が悪くなるかもしれませんし、友達は変わるかもしれませんし、妻は口うるさく、浮気をするかもしれませんが、ポセイドン・エナジーは常にあなたの生活費を支払い、保護してくれるからです。ポセイドン・エナジーのプロジェクトについて、誰にも何も話さないでください。尋ねられたら、あなたの仕事は単調で話す価値がないが、会社は育成に熱心で良い福利厚生があり、常に新しい才能を探していると伝えてください。</p>
+                    <p>メッセージを読み込み中...</p>
+                    <h3>ターミナル1と2</h3>
+                    <p><em>場所：発電所の裏手、ソーラー収集タワー近くの2つのフェンスで囲まれたエリア（東側または西側）</em></p>
+                    <p>ポセイドネットへようこそ。</p>
+                    <h4>メインフレーム接続のリセット</h4>
+                    <p>接続をリセットしました。メインフレームを待機中...</p>
+                    <h4>メインフレーム接続のリセット</h4>
+                    <p>接続をリセットしました。ハンドシェイク...完了。</p>
+                    <h4>アルキメデス試験</h4>
+                    <p>2月16日火曜日の午後2時に、技術者たちはアルキメデスとその発電所セキュリティシステムとの接続テストを実施します。警報サイレンが鳴り止み、安全が確認されるまで、いかなる従業員も発電所敷地外に出ないでください。当社はすべての従業員から死亡および身体切断の免責同意書を保管しており、この手順中に発生するいかなる事故についても責任を負いません。</p>
+                    <p>タワーデッキから監視するすべての技術者には、保護メガネの着用が義務付けられています。</p>
+                    <p>メッセージを読み込み中...</p>
+                    <h4>今後の訪問</h4>
+                    <p><a href="/united-states-army.html">アメリカ陸軍</a>の<a href="/scott-lowe.html">スコット・ロウ</a>准将が来週月曜日から施設を訪問し、無期限に滞在します。アルキメデスが稼働を開始すると、テスト以外の目的でその使用を許可できるのは彼だけになります。民間人従業員は敬礼する必要はありませんが、准将が滞在中は全員が徹底した身だしなみと衛生管理を遵守し、きちんとした服装をすることが求められます。准将はすべての部下から最高のものを期待しており、ポセイドンの従業員もこのような立派で勲章を受けた兵士の前では同様であるべきです。</p>
+                    <p>メッセージを読み込み中...</p>
+                    <h3>ヘリオス・ワン メインフレームターミナル</h3>
+                    <p><em>場所：ソーラー収集タワー、観測レベルエリア</em></p>
+                    <p>ポセイドネットへようこそ、将軍。</p>
+                    <h4>電力網の構成</h4>
+                    <p>「あの幸運な老いた太陽」クエストの次の段階として意図されたターミナルエントリ。</p>
+                    <p>出力構成を選択してください。</p>
+                    <p>---</p>
+                    <p>1) マッカランとラスベガス・ストリップ (構成を保存しました)。</p>
+                    <p>2) <a href="/fremont-street.html">フリーモント</a>とウェストサイド (構成を保存しました)。</p>
+                    <p>3) 全地域 (容量不足。停電の可能性あり)。</p>
+                    <p>4) アルキメデスII (構成を保存しました)。</p>
+                    <p>5) 全地域 (緊急出力レベル) (警告: システム過負荷が差し迫っています)。</p>
+                    <h4>アルキメデス発電所防衛システムの武装</h4>
+                    <p>> システムを武装しました。人員は屋内に留まってください。</p>
+                    <h4>アルキメデス発電所防衛システムの武装解除</h4>
+                    <p>> システムを武装解除しました。</p>
+                    <h4>初期試験</h4>
+                    <p>アルキメデスIIの打ち上げが成功すれば、数週間以内に<a href="/euclids-c-finder.html">携帯型距離計</a>を用いた実地試験を開始できるはずです。</p>
+                    <p>小規模なテストでは、発電所からリモートレシーバーへマイクロ波放射として電力を送り、それを利用可能な形に変換する実現可能性がすでに証明されています。残るは、それをフルスケールに拡大し、距離計の長距離通信/ターゲティングシステムを実証することだけです。</p>
+                    <h4>アルキメデス試験</h4>
+                    <p>2月16日火曜日の午後2時に、技術者たちはアルキメデスとその発電所セキュリティシステムとの接続テストを実施します。警報サイレンが鳴り止み、安全が確認されるまで、いかなる従業員も発電所敷地外に出ないでください。当社はすべての従業員から死亡および身体切断の免責同意書を保管しており、この手順中に発生するいかなる事故についても責任を負いません。</p>
+                    <p>タワーデッキから監視するすべての技術者には、保護メガネの着用が義務付けられています。</p>
+                </div>
 
-            <h3>商用版</h3>
-            <p>PoseidoNetの商用版も市場で入手可能であり、<strong>ポセイドン電力管理システム</strong>のような他のソフトウェアとバンドルされることもあった。これはトライアルウェア（試用版）として提供されていた。</p>
-            <p>試用期間が終了すると、PoseidoNetはヘルプシステムのアップデートを含む一切のアップデートをインストールしなくなった。
-            皮肉なことに、<a href="enclave-oil-rig.html" class="auto-link">ポセイドン・オイル・リグ上のPR_002大統領シェルター</a>では、大戦から数年後に試用期間が切れたこの商用版が使用されていた。
-            石油リグが破壊されるまでの約1世紀半にわたり、代替品なしで使い続けられていた。</p>
+                <!-- Poseidon Energy Plant WV-06 terminal entries -->
+                <div class="note-box">
+                    <b>📟 Poseidon Energy Plant WV-06 terminal entries（ポセイドン・エナジー・プラントWV-06 ターミナルエントリ）</b><br><br>
+                    <h3>抗議キャンプターミナル</h3>
+                    <p><em>場所：発電所敷地外の抗議キャンプ内のピクニックテーブルにあるデスクターミナル。</em></p>
+                    <p><a href="/robco-industries.html">ROBCOインダストリーズ</a>(TM) タームリンクへようこそ</p>
+                    <p>AMUスチュワード - <a href="/jacob-hargraves.html">ジェイコブ・ハーグレイブス</a></p>
+                    <h4>レネー</h4>
+                    <p><a href="/hallucigen-gas-grenade-fallout-76.html">ガス</a>だ。彼らは私たちにガスを浴びせたんだ、<a href="/renee-hargraves.html">レネー</a>。みんなに何か影響が出ている。感じるんだ。アドレナリンが体中に流れ込んで止まらないような感じだ。今、<a href="/cindy-fallout-76.html">シンディ</a>と<a href="/foster-fallout-76.html">フォスター</a>が兵士に飛びかかり、顔を半分に引き裂くのを見た。</p>
+                    <p>ごめん、レネー。このガスが私にしていることを止めなければならない。君が無事でいることを願っている。愛しているよ。</p>
+                    <p>- ジェイコブ</p>
+                    <h4>鉱山労働者組合連合</h4>
+                    <p><a href="/associated-miners-union.html">鉱山労働者組合連合</a>の目標は単純だ。ウルトラサイトはこの発電所に新たな命を吹き込んだ。その幸運はポセイドン・エナジーの忠実な従業員に広がるべきだ。</p>
+                    <p>私たちの仕事をすべて自動化することは、不満をまき散らすだけでなく、長年の経験をすべて捨てることはビジネスにとっても悪いことだ。ロボットメーカーが何を言おうと、<a href="/appalachia.html">アパラチア</a>全体は人なしではエネルギーを生産できない。</p>
+                    <h3>アクセス制御ターミナル</h3>
+                    <p><em>場所：タービンホール内の変電所へのマグロックドアの隣、プラントオフィスから屋上へのアクセス、変電所からタービンホールへの壁ターミナル。ハッカーレベル3または<a href="/fallout-76-keys.html#Poseidon_plant_access_codes">ポセイドン工場アクセスコード</a>が必要。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - アクセス制御</p>
+                    <p>---- セキュリティステータス ----</p>
+                    <p>施設ロックダウン: アクティブ</p>
+                    <p>原子炉ロックダウン: アクティブ</p>
+                    <h4>施設ロックダウンの解除</h4>
+                    <p>MaxLockセキュリティスイートにアクセス中...</p>
+                    <p>認証情報を確認中...完了。</p>
+                    <p>ローカルオーバーライドを開始中...完了。</p>
+                    <p>マグロックを解除中...完了。</p>
+                    <p>近くのドアのセキュリティロックは一時的に解除されました。施設ロックダウンは引き続き有効であり、中央セキュリティオフィスからのみ無効にできます。</p>
+                    <h3>受付ターミナル</h3>
+                    <p><em>場所：ロビーの受付キオスクにあるデスクターミナル。レベル0ロック。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - 受付</p>
+                    <h4>訪問者からの質問</h4>
+                    <p>承認された訪問者が質問した場合、この発電所の歴史について自由に話してください。はい、元々は1970年代に建設されたため、一部のホールや設備は少し古く見えます。しかし、再稼働させるための改修は、費用対効果が高いだけでなく、100パーセント安全です。</p>
+                    <h4>外部での抗議活動</h4>
+                    <p>外部からの訪問者すべてを警備に報告するよう指示されました。抗議者の一人が建物内に侵入し、幹部の一人にスローガンを叫びました。テントが外にある限り、この建物を封鎖しておく必要があります。</p>
+                    <h4>金庫制御</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、ターミナルの後ろにある金庫のロックが解除されます。ピッキングレベル1が必要です。</p>
+                    <h4>タレット制御</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、タレットの制御が可能になります。</p>
+                    <h3>工場長ターミナル</h3>
+                    <p><em>場所：工場長室の木製デスクにあるデスクターミナル。ハッカーレベル0または<a href="/fallout-76-keys.html#Poseidon_plant_manager's_password">ポセイドン工場長パスワード</a>が必要。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - レネー・ハーグレイブス</p>
+                    <h4>ジェイコブ</h4>
+                    <p>私は閉じ込められている、<a href="/jacob-hargraves.html">ジェイコブ</a>。出られない。窓からすべてを見た。ガス。抗議者たちが狂っていくのを。あなたも...</p>
+                    <p>ごめん、ジェイコブ。止められなかった。愛している。すぐに一緒になれるわ。</p>
+                    <p>-レネー</p>
+                    <h4>記録：工場長の録音</h4>
+                    <p>レネー: 信じられないわ。なんてこと、ブレント、あれは私たちの従業員よ！</p>
+                    <p>ブレント: もう違う。方針を見たはずだ。彼らはピケラインに足を踏み入れた瞬間、全員解雇された。そして、せいせいした。</p>
+                    <p>レネー: 軍を呼ぶ必要はなかったでしょう！</p>
+                    <p>レネー: 彼らと交渉すべきだったわ。彼らは新しい契約を望んでいるだけ。少しの雇用保障。それがそんなに高望みかしら？</p>
+                    <p>ブレント: 交渉する必要はない。彼らは全く必要ない。新しいロボットは月曜日に来る。</p>
+                    <p>レネー: 何ですって？なぜ私に知らされなかったの？</p>
+                    <p>ブレント: なぜ？組合に情報を漏らすためか？我々が知らないとでも思うな。同情者め。</p>
+                    <p>レネー: もう十分よ。あなたはクビよ。私の工場から出て行きなさい。</p>
+                    <p>ブレント: いや。いや、レネー。そうはいかない。</p>
+                    <p>ブレント: セキュリティディレクターとして、私はすでに非常事態を宣言した。この施設全体は現在、クラスIIIロックダウン下にある。</p>
+                    <p>ブレント: この状況が解決するまで、残念ながら私がここで指揮を執るということだ。</p>
+                    <p>レネー: 何ですって？</p>
+                    <p>ブレント: <a href="/kyle-turner.html">カイル</a>！</p>
+                    <p>カイル: はい、サー。</p>
+                    <p>ブレント: ハーグレイブスさんを、抗議者たちに対処するまで彼女のオフィスに安全に留めておけ。</p>
+                    <p>カイル: はい、サー。</p>
+                    <p>レネー: いや！いや、ブレント、こんなことできないわ！</p>
+                    <p>レネー: うっ...放して！ブレント！ブレント！</p>
+                    <h4>金庫制御</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、ターミナルの隣にある壁の金庫のロックが解除されます。ピッキングレベル1が必要です。</p>
+                    <h3>除染制御ターミナル</h3>
+                    <p><em>場所：セキュリティオフィス内のカウンターにあるデスクターミナル。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - 除染</p>
+                    <h4>抗議活動警備計画</h4>
+                    <p><a href="/brent-olson.html">ブレント</a>は、この件で<a href="/united-states-armed-forces.html">軍</a>を呼ぶように求めている。どうやら、いくつかの手順を飛ばしているようだ。私たちの芝生にいくつかのテントがあるくらいで、国家安全保障問題にはならない。</p>
+                    <p>それは<a href="/ultracite.html">ウルトラサイト</a>だ。あの物質を使って発電所が再稼働して以来、政府の役人ばかりがここにいる。</p>
+                    <h4>工場長室</h4>
+                    <p><a href="/renee-hargraves.html">レネー</a>を彼女のオフィスに閉じ込めた。ブレントは彼女が組合の同情者だと言い、軍がガスを撃ち始めたら彼女に邪魔されたくないらしい。</p>
+                    <h4>除染アーチ制御</h4>
+                    <p>自動除染アーチ</p>
+                    <p>ステータス: 非アクティブ</p>
+                    <p>ファームウェアビルド: 1.4.6</p>
+                    <p>ミスト貯蔵庫: OK</p>
+                    <p>ノズル制御: OK</p>
+                    <h5>除染アーチの起動</h5>
+                    <p>除染ミストを加圧中...完了。</p>
+                    <p>ノズルを起動中...完了。</p>
+                    <p>除染システムがアクティブになりました。</p>
+                    <p>> 制御システムにアクセス中...</p>
+                    <h3>工場警備ターミナル</h3>
+                    <p><em>場所：セキュリティオフィスにあるコンソールターミナル。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - 工場警備</p>
+                    <p>セキュリティステータス:</p>
+                    <p>施設ロックダウン: アクティブ</p>
+                    <p>原子炉ロックダウン: アクティブ</p>
+                    <p><b>注：</b>これはデフォルト表示です。</p>
+                    <p>セキュリティステータス:</p>
+                    <p>施設ロックダウン: 非アクティブ</p>
+                    <p>原子炉ロックダウン: 非アクティブ</p>
+                    <p><b>注：</b>両方のロックダウンを解除した後の表示です。</p>
+                    <h4>セキュリティ認証の発行</h4>
+                    <p>ユーザーデータベースにアクセス中...完了。</p>
+                    <p>新規ユーザーを認証中...完了。</p>
+                    <p>セキュリティ認証を発行中...完了。</p>
+                    <h4>施設ロックダウンの終了</h4>
+                    <p>認証情報を確認中...完了。</p>
+                    <p>施設ロックダウンを終了中...完了。</p>
+                    <p>すべてのセキュリティドアを開放中...完了。</p>
+                    <p>ロックダウンプロトコルは終了しました。</p>
+                    <h4>原子炉ロックダウンの終了</h4>
+                    <p>認証情報を確認中...完了。</p>
+                    <p>原子炉ロックダウンを終了中...完了。</p>
+                    <p>すべてのセキュリティドアを開放中...完了。</p>
+                    <p>ロックダウンプロトコルは終了しました。</p>
+                    <h4>施設ロックダウンの開始</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、施設ロックダウンが開始されます。</p>
+                    <h4>原子炉ロックダウンの開始</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、原子炉ロックダウンが開始されます。</p>
+                    <h3>燃料貯蔵室ターミナル</h3>
+                    <p><em>場所：燃料貯蔵室上部の制御ニッチにあるコンソールターミナル。ロックされており、ハッカーレベル0が必要。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - 燃料貯蔵</p>
+                    <h4>ウルトラサイト貯蔵</h4>
+                    <p>ウルトラサイトは新しいが、<a href="/radiation.html">放射能</a>はそうではない。この物質にはすべてのウラン手順を使用すること。全員スーツ着用。全員だ。</p>
+                    <h4>政府による検査</h4>
+                    <p>またしても検査の時期が来た。これほど多くの<a href="/united-states-government.html">連邦</a>捜査官が一箇所に集まるのを見たことがない。彼らはいつも、私たちが何か間違ったことをしているかのように見る。</p>
+                    <h4>金庫制御</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、部屋の反対側にある壁の金庫のロックが解除されます。ロックされており、ピッキングレベル1が必要です。</p>
+                    <h3>危険物貯蔵室ターミナル</h3>
+                    <p><em>場所：地下の貯蔵室オフィスにあるデスクターミナル。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - 危険物貯蔵</p>
+                    <h4>アーカイブ削除済み</h4>
+                    <p>ターミナルアーカイブはリモート工場リセットにより削除されました。</p>
+                    <h3>ポセイドン工場マスター制御ターミナル</h3>
+                    <p><em>場所：制御室内のコンソールターミナル。</em></p>
+                    <p>----}---- ポセイドネットへようこそ ----{--</p>
+                    <p>=====================================================</p>
+                    <p>|       ポセイドン電力管理システム              |</p>
+                    <p>|       ポセイドン・エナジー・プラントWV-06       |</p>
+                    <p>=====================================================</p>
+                    <p>発電所: ポセイドン・エナジー・プラントWV-06</p>
+                    <p>ステータス: ***システム障害***</p>
+                    <p>原子炉システムステータス: 5% - 失敗</p>
+                    <p>発電機システムステータス: 100%</p>
+                    <p>冷却システムステータス: 5% - 失敗</p>
+                    <p>=====================================================</p>
+                    <h4>電力管理システムについて</h4>
+                    <p>ポセイドン電力管理システム</p>
+                    <p>v.18.2.101.4</p>
+                    <p>はじめに</p>
+                    <p>ポセイドン・エナジーが開発したポセイドン電力管理システムへようこそ。ポセイドン・エナジーはエネルギー技術の世界的なリーダーです。PPMSは、最小限の人間による監視で、最新の原子力発電所とその配電ネットワークを監視および維持できる、完全に自動化された電力管理ソリューションです。</p>
+                    <p>発電所管理</p>
+                    <p>専用のPPMSモジュールは、発電所の主要なサブシステム（原子炉、発電機、冷却塔）のそれぞれを制御する責任を負います。これらのシステムのいずれかで重大な障害が発生した場合、PPMSは発電所の制御されたシャットダウンを開始し、すべてのシステムが安全に再起動できる程度に十分に修理されるまでオフラインのままになります。</p>
+                    <p>配電管理</p>
+                    <p>PPMS配電モジュールはリアルタイムの需要監視を行い、サージ、停電、高価な負荷分散システムの必要なしに、エンドユーザーのニーズに合わせて発電を自動的に再調整します。</p>
+                    <p>詳細</p>
+                    <p>詳細については、操作マニュアルを参照してください。</p>
+                    <p>法的通知</p>
+                    <p>ポセイドン・エナジーおよび/またはその子会社は、PPMSの使用に起因するいかなる損失または損害についても責任を負いません。法律により、現場の人間のオペレーターおよび保守担当者が必要です。</p>
+                    <p>> ファイルを読み込み中...</p>
+                    <h4>発電所の再起動</h4>
+                    <p><b>注：</b>発電所がまだ十分に修理されていない場合に表示されるエントリ。</p>
+                    <p>サブシステムの整合性を確認中...</p>
+                    <p>...失敗。</p>
+                    <p>エラー144:</p>
+                    <p>1つ以上のプラントサブシステムが故障しました。再起動プロセスを開始するには、すべてのサブシステムが稼働している必要があります。示されたサブシステムを修理してください。</p>
+                    <p>詳細については、[About]ページまたは操作マニュアルを参照してください。</p>
+                    <p><b>注：</b>発電所が十分に修理されている場合に表示されるエントリ。</p>
+                    <p>サブシステムの整合性を確認中...</p>
+                    <p>...完了。</p>
+                    <p>原子炉制御インターリンクにアクセス中...</p>
+                    <p>...完了。</p>
+                    <p>原子炉制御棒を校正中...</p>
+                    <p>...完了。</p>
+                    <p>発電機および冷却システムを再調整中...</p>
+                    <p>...完了。</p>
+                    <p>再起動完了。すべてのシステムは正常です。ポセイドン・エナジー・プラントWV-06は現在、フル稼働しています。</p>
+                    <h3>タービンホールターミナル</h3>
+                    <p><em>場所：タービンホール内の制御ニッチにあるデスクターミナル。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <p>ポセイドン・エナジー・プラントWV-06 - タービンホール</p>
+                    <h4>タービン</h4>
+                    <p>タービンこそが実際にすべての電力を生成しているものだ。他のすべては、それを回転させ続けるための豪華な燃料に過ぎない。だから、検査やメンテナンスを怠るな。</p>
+                    <h4>ウルトラサイト改修</h4>
+                    <p>これらの古い石炭火力発電所の機械はピカピカではないが、改修を問題なく乗り切った。この場所全体をウルトラサイトで燃やし、予定より早く電力を絞り出すだろう。</p>
+                    <h4>タレット制御</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、タレットの制御が可能になります。</p>
+                    <h3>ターミナル</h3>
+                    <p><em>場所：南側拡張部の壊れた金属棚にあるデスクターミナル。ロックされており、ハッカーレベル2が必要。</em></p>
+                    <p>ROBCOインダストリーズ(TM) タームリンクへようこそ</p>
+                    <h4>遠隔ドア制御</h4>
+                    <p><b>注：</b>このコマンドにアクセスすると、遠隔ドアの制御が可能になります。</p>
+                </div>
 
-            <div class="terminal-output">Welcome to PoseidoNet Help system.
-We regret that your Help files are currently
-out of date, and unavailable.
+                <!-- Thunder Mountain Power Plant terminal entries -->
+                <div class="note-box">
+                    <b>📟 Thunder Mountain Power Plant terminal entries（サンダーマウンテン発電所 ターミナルエントリ）</b><br><br>
+                    <h3>フリーステイツターミナル</h3>
+                    <p><em>場所：サンダーマウンテン発電所</em></p>
+                    <p>サンダーマウンテン内部ネットワーク</p>
+                    <p>通信ターミナル TM-001</p>
+                    <p>緊急オーバーライド承認済み。</p>
+                    <p>制限付きアクセス許可済み。</p>
+                    <h4>エントリ01</h4>
+                    <p>サンダーマウンテン発電所を占拠してからほぼ1ヶ月が経ち、事態は静かだ。いくつかの<a href="/raiders-fallout-76.html">レイダー</a>集団に襲われたが、彼らは決して脅威ではなかった。</p>
+                    <p>なぜ私たちがこの場所に閉じこもっているのかわからない。<a href="/deke-free-states.html">ディーク</a>は、発電所を保持することが重要だ、それがこの地域を締め付けると言っているが、彼が何を意味するのかよくわからない。</p>
+                    <p>もしかしたら、この辺りの他の<a href="/free-states.html">フリーステイツ</a>のグループと連携すればできるかもしれないが、今のところディークは私たちが子守をするように言っているので、そうするつもりだ。</p>
+                    <h4>エントリ02</h4>
+                    <p>夜中に爆発音と銃声で目が覚めた。屋上から見ると、全面的な攻撃を受けていた。敵は間違いなく軍隊だった：武装が整い、訓練され、決意に満ちていた。</p>
+                    <p>約15分間撃ち合った後、彼らは突然止まった。ディークが降伏したと思ったが、持ちこたえて長期戦に備えるようにという伝言が回ってきた。</p>
+                    <p>恐ろしいのは、敵が何を望んでいるのか、私たち誰も確信が持てないことだ：私たちを全滅させること、発電所を占拠すること、あるいはその両方か。</p>
+                    <h4>エントリ03</h4>
+                    <p>攻撃から2日が経ち、敵がここに留まることは明らかだ。彼らは司令部を設置し、さらに多くの兵士が到着した。</p>
+                    <p>なぜ敵が私たちに何も言わないのかわからないが、それがグループの残りをひどく神経質にさせている。彼らは何を待っていたのか？もっと兵士を？私たちの降伏を？パニックが広がり始め、私たちのグループの人々は去ることを話し始めていた。</p>
+                    <p>ディークがみんなを落ち着かせていなければ、今頃私たちは皆逃げ出すか死んでいたに違いない。</p>
+                    <h4>エントリ04</h4>
+                    <p>6人の兵士のグループが白旗を掲げて発電所の正面に近づいてきた。</p>
+                    <p>彼らは「<a href="/taggerdys-thunder.html">タガディのサンダー</a>」というグループから来たと述べた。私にはバイカーギャングの名前のように聞こえたが、彼らがふざけているわけではないことは明らかだった。彼らは、私たちが撤退して発電所を無傷で残せば、誰も傷つけないと約束した。また、もし私たちが施設を爆破したり、一発でも発砲したりすれば、「私たち全員を一人残らず殺す」とも言った。</p>
+                    <p>ディークが去る決断をするのに時間はかからなかった。彼らは私たちに荷物をまとめ、移動するのにわずか12時間しか与えなかった。</p>
+                    <h4>エントリ05</h4>
+                    <p>これが私の最後のエントリになるだろう。</p>
+                    <p>私たちは荷物をまとめ、サンダーマウンテンを後にする準備ができた。外では、タガディのサンダーが銃を私たちに向け、中に進む準備を整えて整列していた。</p>
+                    <p>私たちのグループの一部は去りたがらず、留まって戦いたがっているが、ディークは戦いを選び、また別の日に戦うために生き残る必要があると言っている。彼が正しいのだろうが、一つだけ確かなことがある――私はフリーステイツを心から愛しているが、二度と彼らと戦争をする必要がないことを神に願う。</p>
+                    <h3>通信ターミナル</h3>
+                    <p><em>場所：サンダーマウンテン発電所</em></p>
+                    <p>サンダーマウンテン内部ネットワーク</p>
+                    <p>通信ターミナル TM-001</p>
+                    <p>緊急オーバーライド承認済み。</p>
+                    <p>制限付きアクセス許可済み。</p>
+                    <h4>保留中のログ</h4>
+                    <p>サンダーマウンテン内部ネットワーク</p>
+                    <p>データターミナル TM-001</p>
+                    <p>保留中のログリスト:</p>
+                    <h5>95年8月19日</h5>
+                    <p>ログ記録者: Sq. <a href="/r-rosen.html">R. ローゼン</a></p>
+                    <p>この報告書を、いかなる<a href="/brotherhood-of-steel-fallout-76.html">B.O.S.</a>の兄弟も読むことはないだろうというわずかな希望を抱いて書いている。</p>
+                    <p><a href="/scorchbeast.html">スコーチビースト</a>が無限の波で攻撃してくる。<a href="/automated-surface-to-air-missile.html">対空ミサイル</a>の弾薬が少なくなってきた。<a href="/scorched.html">スコーチ</a>に制圧された後、屋上を放棄せざるを得なかった。前方攻撃チームは制圧された。私とスクワイア<a href="/gilden.html">ギルデン</a>だけが残り、壁も長くは持ちこたえられないだろう。</p>
+                    <p>奉仕できたことは唯一の栄誉だった。これを読んでいる者よ：<a href="/appalachia.html">アパラチア</a>を放棄し、スコーチビーストがあなたを襲わないことを祈れ。</p>
+                    <h5>95年8月18日</h5>
+                    <p>ログ記録者: Sq. R. ローゼン</p>
+                    <p>Transmission received from FD-HQ 1508:</p>
+                    <p>「複数のシエラ・ブラボーがサンダーに接近中。適切に準備せよ。」</p>
+                    <p>偵察隊が送信を確認、複数の目撃情報。地上で大量の未知のものが発見された。しかし、それらはスコーチだ。スコーチであるはずだ。</p>
+                    <p>私たちの防御は最終段階に入った。ここで電力が落ちれば<a href="/fort-defiance.html">ディファイアンス砦</a>は無防備になる。ここにいる全員が何を賭けているかを知っている。</p>
+                    <p>一人も持ち場を放棄した者がいないことを誇りに報告する。アド・ヴィクトリアム。</p>
+                    <h4>アーカイブ済みログ</h4>
+                    <p>アクセス制限</p>
+                    <h3>サンダーマウンテンマスター制御ターミナル</h3>
+                    <p><em>場所：サンダーマウンテン発電所</em></p>
+                    <p>サンダーマウンテン内部ネットワーク</p>
+                    <p>----}---- <a href="/poseidonet.html">ポセイドネット</a>へようこそ ----{--</p>
+                    <p>=================================================</p>
+                    <p>|       <a href="/poseidon-power-management-system.html">ポセイドン電力管理システム</a>        |</p>
+                    <p>|        &lt;Token.Name=PowerPlantTitleMessageBar&gt;        |</p>
+                    <p>=================================================</p>
+                    <p>発電所: &lt;Token.Name=PowerPlantFullName&gt;</p>
+                    <p>ステータス: アクティブ</p>
+                    <p>=================================================</p>
+                    <h4>電力管理システムについて</h4>
+                    <p>ポセイドン電力管理システム</p>
+                    <p>v.18.2.101.4</p>
+                    <p>はじめに</p>
+                    <p><a href="/poseidon-energy.html">ポセイドン・エナジー</a>が開発したポセイドン電力管理システムへようこそ。ポセイドン・エナジーはエネルギー技術の世界的なリーダーです。PPMSは、最小限の人間による監視で、最新の原子力発電所とその配電ネットワークを監視および維持できる、完全に自動化された電力管理ソリューションです。</p>
+                    <p>発電所管理</p>
+                    <p>専用のPPMSモジュールは、発電所の主要なサブシステム（原子炉、発電機、冷却塔）のそれぞれを制御する責任を負います。これらのシステムのいずれかで重大な障害が発生した場合、PPMSは発電所の制御されたシャットダウンを開始し、すべてのシステムが安全に再起動できる程度に十分に修理されるまでオフラインのままになります。</p>
+                    <p>配電管理</p>
+                    <p>PPMS配電モジュールはリアルタイムの需要監視を行い、サージ、停電、高価な負荷分散システムの必要なしに、エンドユーザーのニーズに合わせて発電を自動的に再調整します。</p>
+                    <p>詳細</p>
+                    <p>詳細については、操作マニュアルを参照してください。</p>
+                    <p>法的通知</p>
+                    <p>ポセイドン・エナジーおよび/またはその子会社は、PPMSの使用に起因するいかなる損失または損害についても責任を負いません。法律により、現場の人間のオペレーターおよび保守担当者が必要です。</p>
+                    <h4>発電所の再起動</h4>
+                    <p>サブシステムの整合性を確認中...</p>
+                    <p>...失敗。</p>
+                    <p>エラー144:</p>
+                    <p>1つ以上のプラントサブシステムが故障しました。再起動プロセスを開始するには、すべてのサブシステムが稼働している必要があります。示されたサブシステムを修理してください。</p>
+                    <p>詳細については、[About]ページまたは操作マニュアルを参照してください。</p>
+                    <h4>発電所の再起動</h4>
+                    <p>サブシステムの整合性を確認中...</p>
+                    <p>サブシステムの整合性を確認中...</p>
+                    <p>...完了。</p>
+                    <p>原子炉制御インターリンクにアクセス中...</p>
+                    <p>...完了。</p>
+                    <p>原子炉制御棒を校正中...</p>
+                    <p>...完了。</p>
+                    <p>発電機および冷却システムを再調整中...</p>
+                    <p>...完了。</p>
+                    <p>再起動完了。すべてのシステムは正常です。&lt;Token.Name=PowerPlantFullName&gt;は現在、フル稼働しています。</p>
+                </div>
 
-Seek Help file update? (Y/N)
+                <h2>登場作品</h2>
+                <p>ポセイドネットは『<a href="/fallout-2.html">Fallout 2</a>』、『<a href="/fallout-new-vegas.html">Fallout: New Vegas</a>』、そして『<a href="/fallout-76.html">Fallout 76</a>』で言及されている。</p>
 
-User Help file update not available with trial
-PoseidoNet software.
-Please purchase full version for full access
-to all further updates.
+                <h2>注釈</h2>
+                <ol class="ref-list">
+                    <li id="ref-1">原子炉保守修理ロボット制御ターミナル: 「{140}{}{このターミナルは、ポセイドン石油原子炉5号機に割り当てられたロボット保守修理ユニットのコマンドデータを入力するために使用されます。このターミナルはポセイドネットへのアクセスも許可します。}{220}{}{中央ポセイドネットとのアップリンクを開始しました。主セキュリティアクセスコードシーケンスを入力してください: 70Y644, 008Z21, 9X7299, A46123。}{250}{}{このターミナルはセキュリティ上の理由により閉鎖されています。ポセイドネット管理者にお知らせください。}{330}{}{セキュリティアクセスコードシーケンスが承認されました。ポセイドネットへようこそ: }{350}{}{通信リンクを検索中...検索中...アイアンマウンテン...オフライン、NORAD...オフライン、SAC...オフライン。ポセイドネットを検索中... --続きは？--}{360}{}{アクティブなポセイドネットステーション: 原子力発電所5号機、ナバロ精製所、エンクレイヴ制御ステーション、エンクレイヴ保管庫研究制御...アクセス拒否}{362}{}{エンクレイヴ保管庫研究制御以外はすべてシャットダウンしている。あれは何だろう？}{370}{}{アクセス中...エンクレイヴステーションアクセス拒否。}{371}{}{アクセス中...再度...エンクレイヴステーションアクセス拒否。}{372}{}{アクセス中...さらに再度...しつこい奴だな？...エンクレイヴステーションアクセス拒否。}{373}{}{アクセス中...さらに再度...まだ飽きないのか？...エンクレイヴステーションアクセス拒否。}{374}{}{アクセス中...さらに再度...他にやることがないのか？...エンクレイヴステーションアクセス拒否。}{375}{}{もうたくさんだ。この絶え間ない探りをもう我慢できない。もう一度試したら、後悔することになるぞ。}{376}{}{警告しなかったとは言わせない。(これを読んでいると、キーボードから指に電気が走るのを感じる。)}{331}{}{Download Maintenance Robot Routines}{340}{}{Searching…. Maintenance Robot Routines not found.}{300}{}{Incorrect Security Access Code Entered.}{301}{}{Incorrect Security Access Code Entered. Access Denied. Please enter correct code. Two more attempts permitted.}{302}{}{Incorrect Security Access Code Entered. Access Denied. One more attempt permitted.}{303}{}{Incorrect Security Access Code Entered. Access Denied. Internal Security Procedures Activated.}{252}{}{Hmm, I wonder if this has a local reset. There’s one. Let me try it.}」 (<a href="/g-s-term-msg.html">ゲッコー原子炉保守ターミナルの情報</a>より)</li>
+                    <li id="ref-2">サンダーマウンテンマスター制御ターミナル: 「Thunder Mountain Internal Network --}---- Welcome to PoseidoNet ----{--」 (<a href="/thunder-mountain-power-plant-terminal-entries.html">サンダーマウンテン発電所ターミナルエントリ</a>より)</li>
+                    <li id="ref-3">エンクレイヴ通信士官: 「{103}{powr1}{ENCLAVE here. Why isn’t your video feed working?}{104}{}{Uh, it’s working just fine. I can see you.}{106}{}{We’re working on the visual link right now. I just wanted to test it.}{126}{powr4b_b}{Oh? A wise guy, huh? Look, I’m tracing you right now, pal. We’ll see how smart you feel with internal security all over your fricking ass. Dickhead!}」 (<a href="/g-c-pacoff-msg.html">エンクレイヴ通信士官の会話</a>より)</li>
+                    <li id="ref-4">DataPlex 2000 SmarTerminal: 「{104}{}{Welcome to PoseidoNet. Enter Menu Selection:}{225}{}{Welcome to PoseidoNet Help system. We regret that your Help files are currently out of date, and unavailable. Seek Help file update? (Y/N)}{228}{}{User Help file update not available with trial PoseidoNet software. Please purchase full version for full access to all further updates. Your trial period for PoseidoNet access is 59, 439 days overdue.}」 (<a href="/q-i-tur-trm-msg.html">DataPlex 2000 SmarTerminalの情報</a>より)</li>
+                    <li id="ref-5">HELIOS Oneメインフレームターミナル (<a href="/helios-one-terminal-entries.html#HELIOS_One_mainframe_terminal">ヘリオス・ワン ターミナルエントリ</a>より)</li>
+                    <li id="ref-6">PMV Valdezタンカーポセイドネットコンピューター: 「{105}{}{Welcome to PoseidoNet. This terminal is limited to transmission between one tanker - PMV Valdez - and docking rig. Command?}」 (<a href="/f-s-tnkcmp-msg.html">PMV Valdezタンカーポセイドネットコンピューターの情報</a>より)</li>
+                    <li id="ref-7">ポセイドン工場マスター制御ターミナル (<a href="/poseidon-energy-plant-wv-06-terminal-entries.html#Poseidon_plant_master_control_terminal">ポセイドン・エナジー・プラントWV-06 ターミナルエントリ</a>より)</li>
+                </ol>
 
-Your trial period for PoseidoNet access is
-59,439 days overdue.</div>
+                <div class="quote-box">
+                    <b>感想</b><br><br>
+                    ポセイドネットは、アパラチアの荒野をさまよう私たち居住者にとって、過去の栄光と技術力の象徴だ。大戦前の世界がどれほど高度な通信網を持っていたかを物語っている。エンクレイヴが戦後もこのシステムを使い続けていたという事実は、その堅牢性と信頼性がいかに優れていたかを証明しているだろう。しかし、その一方で、企業が従業員を監視し、機密情報を厳重に管理しようとした冷酷な側面も垣間見える。特に「彼に話してもいいか？」というメモは、戦前の社会がどれほどパラノイアに陥っていたか、そして企業が個人の生活にまで深く介入していたかを示している。このネットワークが、かつては文明を繋ぎ、今は荒廃した世界でわずかに残る希望の光なのか、それとも過去の過ちを繰り返すための道具なのか、考えるたびに複雑な気持ちになる。アパラチアの各地に残されたターミナルから、この巨大なネットワークの断片を繋ぎ合わせるたびに、失われた世界の壮大さと、それが崩壊した悲劇を改めて実感するんだ。
+                </div>
 
-            <h3>戦後</h3>
-            <p>大戦後、<a href="enclave.html" class="auto-link">エンクレイヴ</a>はPoseidoNetを使用して、アメリカの荒野に散らばる各施設間の通信を行った。
-            このシステムはその堅牢性を証明し、2281年の時点でも稼動を続け、軌道上の資産への接続さえも可能であった。</p>
-
-            <h2>既知のPoseidoNetノード</h2>
-            <h3>企業</h3>
-            <ul>
-                <li><a href="enclave-oil-rig.html" class="auto-link">ポセイドン・オイル掘削装置</a>（コントロールステーション ENCLAVE / PR_002）</li>
-                <li>ナバロ精製所</li>
-                <li>原子力発電所第5号（ゲッコー）</li>
-                <li>PMVバルディーズ（タンカー）</li>
-                <li>HELIOS One</li>
-                <li><a href="poseidon-energy-plant-wv-06.html" class="auto-link">ポセイドン・エネルギー発電所WV-06</a></li>
-                <li>サンダーマウンテン発電所</li>
-            </ul>
-            <h3>政府・軍事</h3>
-            <ul>
-                <li>エンクレイヴ Vault研究管制（アクセス拒否）</li>
-                <li>アイアン・マウンテン（オフライン）</li>
-                <li>NORAD（オフライン）</li>
-                <li>戦略航空軍団 / SAC（オフライン）</li>
-            </ul>
-
-            <h2>登場作品</h2>
-            <p>PoseidoNetは<em>Fallout 2</em>、<em>Fallout: New Vegas</em>、<em>Fallout 76</em>で言及されている。</p>
-
-            <div class="quote-box">
-                <b>感想</b><br>
-                戦前の軍産複合体が構築したインターネットのような存在。<br>
-                企業ネットワークでありながら、NORAD（北米航空宇宙防衛司令部）やSAC（戦略航空軍団）まで接続していたという設定が、ポセイドン・エネルギーと政府の癒着を如実に表しています。<br>
-                試用版ソフトウェアが150年以上も「59,439日間の期限超過」のまま放置されているという描写は、Falloutらしい秀逸なブラックユーモアですね。<br>
-                ゲッコーのターミナルで何度もエンクレイヴのシステムにアクセスしようとすると、最終的にキーボードから電気ショックを受けるという仕掛けも印象的です。
-            </div>
-
-            <div style="margin-top: 40px; padding-top: 15px; border-top: 1px solid #333; font-size: 0.8em; color: #666; line-height: 1.6;">
-                <p>この記事は <a href="https://fallout.fandom.com/wiki/PoseidoNet" target="_blank" rel="noopener noreferrer" style="color: #888;">Nukapedia (Fallout Wiki)</a>の「PoseidoNet」の記事を日本語に翻訳し再構成したものです。<br>
-                原文は <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer" style="color: #888;">Creative Commons Attribution-ShareAlike (CC BY-SA)</a> ライセンスのもとで利用しています。</p>
-                <p>© Bethesda Softworks LLC. Fallout およびすべての関連ロゴ・名称は Bethesda Softworks LLC の登録商標です。</p>
-            </div>
-
-            <div class="comments-section">
-                <h3 class="comments-title">COMMENTS</h3>
-                <div class="comment-form">
-                    <textarea class="comment-textarea" id="commentInput" maxlength="500" placeholder="コメントを入力...（最大500文字）" oninput="updateCharCount()"></textarea>
-                    <div class="comment-form-footer">
-                        <span class="char-count" id="charCount">0 / 500</span>
-                        <button class="comment-submit-btn" id="commentSubmitBtn" onclick="submitComment()">SUBMIT</button>
+                <div class="comments-section" id="comments-section">
+                    <h2>コメント</h2>
+                    <div class="comment">
+                        <div class="comment-author">居住者A</div>
+                        <div class="comment-date">2287年10月23日</div>
+                        <p>ポセイドネットって、まさかこんなに広範囲だったとはな。エンクレイヴが使ってたって聞くと、やっぱり彼らが戦前の技術を独占してたってのがよくわかる。</p>
                     </div>
-                    <div class="comment-msg" id="commentMsg"></div>
-                </div>
-                <div class="comments-list" id="commentsList">
-                    <div class="comment-loading">コメントを読み込み中...</div>
+                    <div class="comment">
+                        <div class="comment-author">居住者B</div>
+                        <div class="comment-date">2287年10月24日</div>
+                        <p>「彼に話してもいいか？」のメモはゾッとするね。家族や友人も信用できないなんて、どんな時代だったんだか。今の荒野の方がよっぽど人間らしい付き合いができる気がするよ。</p>
+                    </div>
+                    <div class="comment">
+                        <div class="comment-author">居住者C</div>
+                        <div class="comment-date">2287年10月25日</div>
+                        <p>サンダーマウンテンやポセイドン・エナジー・プラントWV-06のターミナルで、このネットワークの断片に触れるたびに、戦前の技術の凄さを感じる。でも、それが結局、世界を滅ぼす一因になったんだよな。</p>
+                    </div>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
-
-    <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
-        <img src="" alt="拡大画像" id="lightboxImg">
-    </div>
-
-    <script>
-        function openLightbox(el) {
-            const lb = document.getElementById('lightbox');
-            document.getElementById('lightboxImg').src = el.src;
-            lb.classList.add('active');
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-
-        const SUPABASE_URL = 'https://dtfasezyjdrmhrvqmpwf.supabase.co';
-        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR0ZmFzZXp5amRybWhywnFtcHdmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzgyMzc5MjUsImV4cCI6MjA1MzgxMzkyNX0.UfBiRSGQzIidIWYGsOKBjpJjJIEszaUUV3oX5bGbcfA';
-        const sb = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY) : null;
-        const ARTICLE_ID = 'note_poseidonet';
-        const COOLDOWN_MS = 60000;
-        let lastCommentTime = 0;
-
-        async function loadLikes() {
-            if (!sb) return;
-            try {
-                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
-                const btn = document.querySelector('.like-button');
-                if (data) btn.querySelector('.like-count').textContent = data.count;
-                if (localStorage.getItem('liked_' + ARTICLE_ID)) {
-                    btn.classList.add('liked');
-                    btn.querySelector('.heart').textContent = '♥';
-                }
-            } catch(e) { console.log('likes load error', e); }
-        }
-
-        async function toggleLike(btn) {
-            if (!sb) return;
-            const liked = localStorage.getItem('liked_' + ARTICLE_ID);
-            const delta = liked ? -1 : 1;
-            try {
-                const { data } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
-                if (data) {
-                    await sb.from('likes').update({ count: data.count + delta }).eq('article_id', ARTICLE_ID);
-                } else {
-                    await sb.from('likes').insert({ article_id: ARTICLE_ID, count: 1 });
-                }
-                if (liked) { localStorage.removeItem('liked_' + ARTICLE_ID); btn.classList.remove('liked'); btn.querySelector('.heart').textContent = '♡'; }
-                else { localStorage.setItem('liked_' + ARTICLE_ID, '1'); btn.classList.add('liked'); btn.querySelector('.heart').textContent = '♥'; }
-                const { data: d2 } = await sb.from('likes').select('count').eq('article_id', ARTICLE_ID).single();
-                if (d2) btn.querySelector('.like-count').textContent = d2.count;
-            } catch(e) { console.log('like error', e); }
-        }
-
-        function updateCharCount() {
-            const ta = document.getElementById('commentInput');
-            document.getElementById('charCount').textContent = ta.value.length + ' / 500';
-        }
-
-        async function loadComments() {
-            if (!sb) return;
-            const list = document.getElementById('commentsList');
-            try {
-                const { data } = await sb.from('comments').select('*').eq('article_id', ARTICLE_ID).order('created_at', { ascending: false });
-                if (!data || data.length === 0) { list.innerHTML = '<div class="comment-empty">コメントはまだありません</div>'; return; }
-                list.innerHTML = data.map(c => {
-                    const d = new Date(c.created_at);
-                    const ts = d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
-                    const myId = localStorage.getItem('comment_id_' + c.id);
-                    return '<div class="comment-item"><div class="comment-meta"><span class="comment-time">' + ts + '</span>' + (myId ? '<button class="comment-delete-btn" onclick="deleteComment(\'' + c.id + '\')">🗑</button>' : '') + '</div><div class="comment-body">' + escapeHtml(c.body) + '</div></div>';
-                }).join('');
-            } catch(e) { list.innerHTML = '<div class="comment-empty">コメントの読み込みに失敗しました</div>'; }
-        }
-
-        function escapeHtml(t) { return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-
-        async function submitComment() {
-            if (!sb) return;
-            const ta = document.getElementById('commentInput');
-            const body = ta.value.trim();
-            const msg = document.getElementById('commentMsg');
-            if (!body) { msg.textContent = 'コメントを入力してください'; msg.style.color = '#ff4444'; return; }
-            if (body.length > 500) { msg.textContent = '500文字以内で入力してください'; msg.style.color = '#ff4444'; return; }
-            const now = Date.now();
-            if (now - lastCommentTime < COOLDOWN_MS) { msg.textContent = '少し待ってから投稿してください'; msg.style.color = '#ff4444'; return; }
-            const btn = document.getElementById('commentSubmitBtn');
-            btn.disabled = true;
-            try {
-                const { data, error } = await sb.from('comments').insert({ article_id: ARTICLE_ID, body: body }).select().single();
-                if (error) throw error;
-                if (data) localStorage.setItem('comment_id_' + data.id, '1');
-                ta.value = '';
-                updateCharCount();
-                lastCommentTime = now;
-                msg.textContent = '投稿しました';
-                msg.style.color = 'var(--accent-color)';
-                loadComments();
-            } catch(e) { msg.textContent = '投稿に失敗しました'; msg.style.color = '#ff4444'; }
-            btn.disabled = false;
-        }
-
-        async function deleteComment(id) {
-            if (!sb || !confirm('このコメントを削除しますか?')) return;
-            try { await sb.from('comments').delete().eq('id', id); loadComments(); } catch(e) { console.log('delete error', e); }
-        }
-
-        loadLikes();
-        loadComments();
-    </script>
 </body>
 </html>

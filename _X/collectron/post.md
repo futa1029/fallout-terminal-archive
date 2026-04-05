@@ -1,9 +1,4 @@
-#Fallout76
-
-Collectron
+C.A.M.P.設備の定番「コレクトロン」のロア記事をリメイクしました！🤖
+勝手にジャンクや資源を集めてきてくれる優れものですが、サンタトロンや共産党員などバリエーション豊かな外見と、シュールな迷言を放つシステムが魅力的な彼らについてまとめました。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/collectron.html
-
-Miscellaneous
-
----
-CC BY-SA

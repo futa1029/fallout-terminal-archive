@@ -63,6 +63,28 @@
             line-height: 1.6;
         }
         .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
         .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
         .content a:hover { border-bottom: 1px solid var(--accent-color); }
         .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
@@ -115,58 +137,101 @@
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout 76">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Clancy Manor</h3><img src="images/note_extracted/clancy-manor/76WL_Clancy_Manor_maypole.png" alt="clancy-manor"><div class="infobox-row"><span class="infobox-label">種類</span><span>邸宅</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Clancy Manor</h3><img src="images/note_extracted/clancy-manor/76WL_Clancy_Manor_maypole.png" alt="clancy-manor"><div style="text-align:center; margin-bottom: 15px;"><img src="images/note_extracted/clancy-manor/img_map_marker.png" alt="マップマーカー画像" class="map-marker-icon" style="width: 100%; margin-top: 5px; border: 1px solid #555; cursor: default;"></div><div class="infobox-row"><span class="infobox-label">種類</span><span>邸宅</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>森林地帯</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
         <main class="content">
             
             <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_clancy_manor" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
             <h1>Clancy Manor<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">クランシー邸</span></h1>
-            <h2>概要</h2>
-<p>クランシー邸は、アパラチアの森林地帯にあるロケーションです。</p>
+            
+            <p>クランシー邸宅は、『Fallout 76』のアパラチアにある森林地域のロケーションです。</p>
 
-<h2>背景</h2>
-<p>毒の谷の端にある森の中に隠れたクランシー邸は、大戦後のほとんどの期間放棄されていましたが、一時期レイダーの拠点として使われました。<br>
-2103年にはモスマン信仰のカルト教団が再占拠し、カルト教団の装飾で邸宅を一変させました。</p>
+            <h2>背景</h2>
+            <p>毒の峡谷の端にある森の中にひっそりと隠されたクランシー邸宅は、戦後史のほとんどの期間で放棄されていましたが、短期間レイダーの拠点として使われていました。<br>2103年には、復活した<a href="mothman.html" class="auto-link">モスマン</a>教団の安息所として再び占拠され、教団の装飾で邸宅は一変しました。</p>
 
-<h2>レイアウト</h2>
-<p>大戦後に要塞化された大きな2階建ての邸宅です。<br>
-1階にはダイニングとリビング兼用の大きな部屋とキッチンがあります。<br>
-Wastelanders以前は部屋にテディベアが料理番組を撮影しているように配置されていましたが、アップデート後に壁際に移動されました。<br><br>
-2階には階段または外側の即席スロープからアクセスでき、ティンカー作業台や道具棚があります。<br>
-屋上へは2階外の階段から上がれます。<br>
-裏のポーチにはケミストリーステーションもあります。<br><br>
-Wastelanders以降、カルト教団が木、茂み、骨で装飾し、モスマンの卵が母屋全体に広がり、周囲の前哨基地にはカルトの歩哨が配置されています。</p>
+            <h2>レイアウト</h2>
+            <p>クランシー邸宅は、戦後に要塞化された大きな2階建ての邸宅です。<br>家中の家具には埃よけの布がかけられているか、損傷した状態にあります。<br>1階には、キッチンにつながる広いダイニングとリビングの複合エリアがあります。<br>この部屋には数個のテディベアがあり、箱の中に<a href="bubble-gum.html" class="auto-link">バブルガム</a>・ベアやクァンタム・ベアが含まれています。</p>
+            <p>Wastelandersアップデート以前は、テディベアは料理番組を撮影しているかのように配置されていましたが、現在は壁際に移動されています。</p><p>2階へは、家の中の階段または外にある間に合わせの傾斜路からアクセスできます。<br>2階の部屋には作業台があり、また棚には工具と様々なジャンクが置かれています。<br>この階の外側にある階段は屋上につながっています。<br>クラフト設備の他に、邸宅の裏ポーチの後ろにはケミストリー・ステーションがあります。</p>
+            <p>Wastelanders以降、邸宅は劇的な変化を遂げており、カルト信者たちが木々、茂み、あらゆるサイズの骨で装飾された要塞化された拠点へと変貌させました。<br>メインハウスの至る所に<a href="mothman.html" class="auto-link">モスマン</a>の卵の房が広がり、邸宅を取り囲む前哨基地はカルトの歩哨によって利用されています。</p>
 
-<h2>主なアイテム</h2>
-<p>• カルティスト: 救済 — ホロテープ。2階の寝室（西側）。<br>
-• 第7章 — ホロテープ。キッチンの棚。<br>
-• ロドニーの詩 — メモ。2階の隅のバレルの上。<br>
-• クリスタルの酒瓶デカンター18個 — 邸宅全体に分散。クリスタル素材の優良採取地。</p>
+            <h2>主なアイテム</h2>
+            <ul>
+                <li><b>Cultist - Redemption</b> — ホロテープ。2階の寝室（西側）。</li>
+                <li><b>Chapter 7</b> — ホロテープ。キッチンの棚。</li>
+                <li><b>Rodney's poem</b> — メモ。2階の隅のバレルの上。</li>
+                <li>ボブルヘッド — 邸宅の屋上、2組のドーマー窓の間の木製ボードの上。</li>
+                <li><a href="magazine.html" class="auto-link">雑誌</a> — 上階のリビングエリアの西側、鍵のかかった金庫(1)のそばにある低いキャビネットの細い棚の上。</li>
+                <li>クリスタル・リカー・デカンタ ×18 — 邸宅全体に分散。クリスタル素材の優良採取地。</li>
+            </ul>
 
-<h2>関連クエスト</h2>
-<p>• 緊急事態に備えて — ソフィア・ダゲールのアライクエスト。</p>
-            <h2>登場作品</h2>
-            <p>クランシー邸はFallout 76に登場します。</p>
-            <h2>ギャラリー</h2>
-<div class="gallery-grid">
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76WL_Clancy_Manor_1.png" alt="F76WL_Clancy_Manor_1.png"><div class="caption">F76WL Clancy Manor 1</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76WL_Clancy_Manor_2.png" alt="F76WL_Clancy_Manor_2.png"><div class="caption">F76WL Clancy Manor 2</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76WL_Clancy_Manor_3.png" alt="F76WL_Clancy_Manor_3.png"><div class="caption">F76WL Clancy Manor 3</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76_Clancy_Manor_1.png" alt="F76_Clancy_Manor_1.png"><div class="caption">F76 Clancy Manor 1</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76_Clancy_Manor_2.png" alt="F76_Clancy_Manor_2.png"><div class="caption">F76 Clancy Manor 2</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_(Chapter_7).png" alt="FO76WL_Clancy_Manor_(Chapter_7).png"><div class="caption">FO76WL Clancy Manor (Chapter 7)</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_(Culist_-_Redemption).png" alt="FO76WL_Clancy_Manor_(Culist_-_Redemption).png"><div class="caption">FO76WL Clancy Manor (Culist - Redemption)</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_(Rodney's_poem).png" alt="FO76WL_Clancy_Manor_(Rodney's_poem).png"><div class="caption">FO76WL Clancy Manor (Rodney's poem)</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_Potential_bobblehead_1.jpg" alt="FO76WL_Clancy_Manor_Potential_bobblehead_1.jpg"><div class="caption">FO76WL Clancy Manor Potential bobblehead 1</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_Potential_Mothman.jpg" alt="FO76WL_Clancy_Manor_Potential_Mothman.jpg"><div class="caption">FO76WL Clancy Manor Potential Mothman</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76_Clancy_Manor_1.png" alt="FO76_Clancy_Manor_1.png"><div class="caption">FO76 Clancy Manor 1</div></div>
-<div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76_Clancy_Manor_2.png" alt="FO76_Clancy_Manor_2.png"><div class="caption">FO76 Clancy Manor 2</div></div>
-</div>
+            <h2>発見できるホロテープ・メモ</h2>
+
+            <div class="holotape-box">
+                <b>🎙️ Cultist - Redemption（カルティスト：救済）</b><br>
+                <em>場所：2階の寝室、西側</em><br><br>
+                <b>カルトの司祭：</b><br>
+                「黄色が空を覆い尽くした。毒が空気を満たした。<br>
+                目を閉じ、深呼吸をしなさい。<br>
+                彼があなたの魂の奥底を見ることを許しなさい。<br>
+                欲望。それが禁じられていることは知っている。<br>
+                彼はすべてを洗い流すと約束した。<br>
+                彼は、必ず戻ると約束した。<br>
+                私を連れて行って。私はあなたのものです。」
+            </div>
+
+            <div class="holotape-box">
+                <b>🎙️ Chapter 7（第7章：人形の製作）</b><br>
+                <em>場所：キッチンの棚</em><br><br>
+                <b>カルト信者：</b>チャプター 7：人形の製作<br>
+                「新月の下に、10束から20束の小枝を集めること。<br>
+                それらを犠牲の獣の内臓で固く縛り、聖なる香で道具を清め、祝福する。<br>
+                集めた小枝で人形の形を組み立て、藁または紐を使って位置を固定する。<br>
+                切り出した樫の杖を人形の中心に立てる。杖をしっかりと土に打ち込み、さらに多くの小枝、丸太、木材の切れ端を土台の周りに積み上げる。<br>
+                輝ける者の卵から作られた聖油で聖なる刃に聖別を施し、その刃を使って、あなたのサークルで用いる人形に祝福を与えること。」
+            </div>
+
+            <div class="note-box">
+                <b>📄 Rodney's poem（ロドニーの詩）</b><br>
+                <em>場所：2階の隅にあるバレルの上</em><br><br>
+                彼女は出かけて、セカンドオピニオンを聞いた<br>
+                今、彼女は光を恐れている<br>
+                私は彼女のクレジットカードを切り刻んだ<br>
+                彼女は家に戻ってくるところだった<br><br>
+                私の家では、犬たちがそこにいる<br>
+                鏡を置いた 彼が離れるすべての部屋にピラミッドがある<br>
+                その中に一匹の虫がいた
+            </div>
+
+            <h2>関連クエスト</h2>
+            <h3>背景</h3>
+            <p>ダゲール司令官は、プレイヤーキャラクターにアパラチアへ空中投下されたU.S.S.A.の緊急プロトコルを回収するよう依頼します。</p>
+            <h3>攻略手順</h3>
+            <p>プレイヤーキャラクターはクランシー・マナーへ向かい、邸宅を崇拝の場所としているカルト信者の中を通り抜けて、黒い空中輸送コンテナからプロトコルを回収する必要があります。<br>このコンテナは、NCRAの補給物資投下に使用されるものと似た外見をしており、正面ポーチの張り出し部分に配置されています。<br>その後、プレイヤーキャラクターはプロトコルをダゲール司令官に返すことができます。</p>
+
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76WL_Clancy_Manor_1.png" alt="F76WL_Clancy_Manor_1.png"><div class="caption">F76WL Clancy Manor 1</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76WL_Clancy_Manor_2.png" alt="F76WL_Clancy_Manor_2.png"><div class="caption">F76WL Clancy Manor 2</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76WL_Clancy_Manor_3.png" alt="F76WL_Clancy_Manor_3.png"><div class="caption">F76WL Clancy Manor 3</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76_Clancy_Manor_1.png" alt="F76_Clancy_Manor_1.png"><div class="caption">F76 Clancy Manor 1</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/F76_Clancy_Manor_2.png" alt="F76_Clancy_Manor_2.png"><div class="caption">F76 Clancy Manor 2</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_(Chapter_7).png" alt="FO76WL_Clancy_Manor_(Chapter_7).png"><div class="caption">FO76WL Clancy Manor (Chapter 7)</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_(Culist_-_Redemption).png" alt="FO76WL_Clancy_Manor_(Culist_-_Redemption).png"><div class="caption">FO76WL Clancy Manor (Culist - Redemption)</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_(Rodney's_poem).png" alt="FO76WL_Clancy_Manor_(Rodney's_poem).png"><div class="caption">FO76WL Clancy Manor (Rodney's poem)</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_Potential_bobblehead_1.jpg" alt="FO76WL_Clancy_Manor_Potential_bobblehead_1.jpg"><div class="caption">FO76WL Clancy Manor Potential bobblehead 1</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76WL_Clancy_Manor_Potential_Mothman.jpg" alt="FO76WL_Clancy_Manor_Potential_Mothman.jpg"><div class="caption">FO76WL Clancy Manor Potential Mothman</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76_Clancy_Manor_1.png" alt="FO76_Clancy_Manor_1.png"><div class="caption">FO76 Clancy Manor 1</div></div>
+                    <div class="gallery-item"><img src="images/note_extracted/clancy-manor/FO76_Clancy_Manor_2.png" alt="FO76_Clancy_Manor_2.png"><div class="caption">FO76 Clancy Manor 2</div></div>
+                </div>
+            </div>
 
             <div class="quote-box">
                 <b>感想</b><br><br>
                 クランシー邸は、Wastelanders前後で劇的に変わったロケーションの一つです。<br>
 以前はテディベアが料理番組を撮影しているというユーモラスな演出がありましたが、現在はモスマン信仰の不気味な祭祀場に。<br><br>
-クリスタルの酒瓶デカンターが18個もあるのは実用面で非常に魅力的で、光学ファイバーやクリスタルが不足しているプレイヤーにとっては周回必須のスポットです。<br>
+クリスタルの酒瓶デカンターが18個もあるのは実用面で非常に魅力的で、光学ファイバーやクリスタルが不足しているプレイヤーにとっては周回必須のスポットです。ここにも<a href="magazine.html" class="auto-link">雑誌</a>とボブルヘッド、フュージョンコアがあるのでよく来る場所ですね。<br>
+特に<a href="mothman.html" class="auto-link">モスマン</a>の卵もあるので草食には人気だと思います。<br>
+カルト信者を倒すデイリーが他の場所で達成しづらい場合はここがオススメです。<br><br>
 実用性とロアの深さが両立した優れたロケーションですね。
             </div>
 

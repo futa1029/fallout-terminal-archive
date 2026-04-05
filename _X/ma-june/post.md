@@ -1,17 +1,4 @@
-#Fallout76 #FalloutTV
-
-Ma June（マー・ジューン）
+フィリーの雑貨屋店主「マ・ジューン」のロア記事を公開しました！🛒
+地上に出たルーシーが初めて出会うシビアな商人です。Vault居住者への容赦ない毒舌とサバイバルの厳しさを教える姿は、まさにゲームで最初に会う村の商人を体現した素晴らしいキャラクターでした。
+#FalloutTV #フォールアウト
 https://www.fallout-jp.com/ma-june.html
-
-概要マー・ジューンは、フィリーの集落で雑貨店を経営する商人。デイル・ディッキーが演じている。経歴荒野の集落フィリーでサンドリーズ（雑貨店）を営む老女。ルーシーがフィリーに到着した際、初めて出会う地上の人間の一人。Vault住人のルーシーを「世間知らず」として見下しながらも、商取引は行う現実主義者。
-
----
-
-💭 感想
-
-荒野の老商人として、ルーシーの「Vault育ちの世間知らず」ぶりを容赦なく指摘するキャラクター。
-デイル・ディッキーの演技がとにかく味がある。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

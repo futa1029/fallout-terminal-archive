@@ -1,16 +1,4 @@
-#Fallout76 #FalloutTV
-
-Reg McPhee（レグ・マクフィー）
+Vault 33の評議会議員「レグ・マクフィー」のロア記事を公開しました！📋
+監督官ハンクの誘拐後にVaultの運営を任されたものの、「イベント企画の博士号」しか持っていないため、平和ボケした非現実的な判断ばかり下してしまうVaultの大人たちの象徴です。実は「近親交配」による遺伝子問題の被害者でもあります。
+#FalloutTV #フォールアウト
 https://www.fallout-jp.com/reg-mcphee.html
-
-概要レグ・マクフィーは、Vault 33の住人。ロドリゴ・ルッツィが演じている。経歴Vault 33の評議会メンバーとして活動する。Vault内の政治に関わり、ベティ・ピアソンの監督官就任に関与する。
-
----
-
-💭 感想
-
-Vault 33の評議会メンバーとして、地味ながらVaultの政治劇を支える重要な脇役です。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

@@ -1,0 +1,83 @@
+{{Infobox character
+|games       =FO76, FO76WL
+|type        =vendor
+|image       =FO76WL_Wayward_Smiley.png
+|race        =[[Human]]
+|gender      =Male
+|affiliation =
+|role        =[[Fallout 76 vendors|Vendor]] ({{caps}} -> {{bullion}})
+|location    =[[The Wayward]]
+|quests      =Appears after [[Secrets Revealed]]
+|skin        =
+|hair color  =
+|eye color   =
+|hairstyle   =
+|head add ons=
+|height      =
+|actor       =[[Xander Mobus]]
+|dialogue    =[[Smiley (Wastelanders)/Dialogue]]
+|edid        =W05_Wayward_Smiley
+|formid      ={{ID|0058febe}}
+|refid       ={{ID|0058fec0}}
+}}
+
+{{Quotation|Congratulations! By my calculations, you are the the richest person in all of Appalachia! And you can stay that way if you keep visiting me.|sound=Smiley 005900e3_1.ogg}}
+
+'''Smiley''' is a [[Fallout 76 vendors|vendor]] who came to [[Appalachia]] in [[Timeline#2103|2103]].
+
+==Background==
+Smiley came to Appalachia with the goal of trading [[gold bullion]] for [[Cap (Fallout 76)|caps]]. According to him, he gets his gold from "a thousand friends"; he says not to "worry about the specifics," but rather focus on "all you can get with it."<ref name="ThousandFriends">[[Vault Dweller (Fallout 76)|Vault Dweller]]: "''How did you get gold bullion?''"<br />Smiley: "''Here and there, I've got a thousand friends. Hopefully you're one, too?''" *chuckle* "''Don't worry about the specifics. Think of all you can get with it. The [[Secret Service (Fallout 76)|Secret Service]] has a lot of very exclusive, very powerful tech, right? So let's do some business.''"<br />([[Smiley (Wastelanders)/Dialogue#384|Smiley's dialogue]])</ref>
+
+He claims to be the "truest of patriots" and that there's nothing more "[[United States of America|American]] than a pile of gold."<ref>[[Vault Dweller (Fallout 76)|Vault Dweller]]: "''Nice outfit''"<br />Smiley: *Chuckle* "''I'm the truest of patriots, and nothing says America more than a pile of gold, am I right?! So, can I help you showcase your own American spirit?''"<br />([[Smiley (Wastelanders)/Dialogue#439|Smiley's dialogue]])</ref> He also fancies himself a "remarkable individual" and claims those that can afford all his weekly stock of bullion are one as well since "it takes one to know one."<ref>[[Vault Dweller (Fallout 76)|Vault Dweller]]: [Pay 6000 caps] "''Give me all you have. 300, is it?''"<br />Smiley: "''You are truly a remarkable individual. And I should know! 'It takes one to know one' as my dearest Mamma would always say.''"<br />([[Smiley (Wastelanders)/Dialogue#308|Smiley's dialogue]])</ref> He also seems to have knowledge about the [[Secret Service (Fallout 76)|Secret Service]].<ref name="ThousandFriends" />
+
+==Interactions with the player character==
+===Interactions overview===
+{{Interactions FO76
+|ghost           =yes
+|ghoul           =yes
+|wares           =[[Gold bullion]] (restocks each week)
+|caps            =yes
+|quests involved =Appears after [[Secrets Revealed]]
+|locations       =* [[The Wayward]] (interior, upstairs)
+}}
+
+===Effects of player's actions===
+He can be found at [[The Wayward]] after completing [[Secrets Revealed]] and trades up to 300 [[gold bullion]] per week in exchange for up to 6000 caps.
+
+===Exchange rates===
+* 1000 caps for 50 gold bullion
+* 2000 caps for 100 gold bullion
+* 3000 caps for 150 gold bullion
+* 4000 caps for 200 gold bullion
+* 5000 caps for 250 gold bullion
+* 6000 caps for 300 gold bullion
+
+==Inventory==
+{{Inventory
+|apparel   =[[Rootin' tootin' cowboy outfit]]
+|weapon    =
+|otheritem =
+|ondeath   =empty
+}}
+
+==Notes==
+Smiley's bullion stock resets each Monday.<ref>[https://help.bethesda.net/#en/answer/50733 Smiley - NPC - Fallout 76]</ref>
+
+==Appearances==
+Smiley appears only {{In|FO76WL}}.
+
+==Bugs==
+* {{Platforms|pc,xboxone,ps4}} Prior to [[Fallout 76 patch 1.3.3.24|patch 21]], Smiley's bullion would not reset, meaning the player character would have to wait another week to purchase from him.{{Verify|patched}}
+* {{Platforms|pc,xboxone,ps4}} Prior to patch 21, the reset occurred on Saturday at 8 p.m. EST, though the patch rectified this and changed the reset to actually occur on Monday.<ref>[https://bethesda.net/community/topic/421994/fallout-76-update-21-patch-notes-august-4-2020?language%255B%255D=en&language%5B%5D=en Fallout 76: Update 21 patch notes – August 4, 2020]</ref>{{Verify|patched}}
+* {{Platforms|pc,xboxone,ps4}} Smiley will not sell to players with 5,000 or more gold bullion, despite the limit being increased to 10,000 in patch 29. This is expected to be corrected in Patch 30.{{verify|verified}}
+
+==References==
+{{References}}
+
+{{Navbox vendors FO76}}
+{{Navbox Wastelanders}}
+
+[[Category:Wastelanders human characters]]
+[[Category:Wastelanders bullion merchants]]
+
+[[ru:Смайли (Wastelanders)]]

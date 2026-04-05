@@ -1,241 +1,332 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moe the Mole | Overseer Mohi's Terminal</title>
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="Moe the Mole | Overseer Mohi's Terminal">
-    <meta property="og:description" content="モグラのモー（Moe the Mole）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/moe-the-mole/FO76_Pristine_mole_outfit.png">
-    <meta property="og:url" content="https://www.fallout-jp.com/moe-the-mole.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Moe the Mole | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="モグラのモー（Moe the Mole）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/moe-the-mole/FO76_Pristine_mole_outfit.png">
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/terminal-style.css">
+    <title>モール・ザ・モール - Fallout 76 日本語Wiki</title>
+    <link rel="stylesheet" href="/css/wiki.css"> <!-- 仮のCSSパス -->
     <style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
-        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; }
-        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
-        .quote-box { font-style: auto; border-left: 4px solid var(--accent-color); padding-left: 20px; margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
-        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
-        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
-        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
-        .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
-        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
-        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover { background: var(--accent-color); color: var(--bg-color); }
-        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
-        .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
-        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
-        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
-        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .cut-content { background: rgba(255, 100, 100, 0.08); border: 1px dashed #ff6b6b; padding: 15px; border-radius: 4px; margin: 15px 0; }
-        .cut-content-label { font-family: 'Share Tech Mono', monospace; color: #ff6b6b; font-size: 0.85em; margin-bottom: 8px; }
-        .cut-dialogue { font-style: italic; color: #bbb; margin: 8px 0; padding-left: 15px; border-left: 2px solid #666; }
+        /* ホロテープ・メモ用CSS */
+        .holotape-box {
+            border-left: 4px solid #ff9800;
+            margin: 20px 0;
+            background: color-mix(in srgb, #ff9800 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .holotape-box b { color: #ff9800; font-size: 1.05em; }
+
+        .note-box {
+            border-left: 4px solid #64b5f6;
+            margin: 20px 0;
+            background: color-mix(in srgb, #64b5f6 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .note-box b { color: #64b5f6; font-size: 1.05em; }
+
+        /* その他のスタイル（既存フォーマットに合わせる） */
+        body {
+            font-family: 'Roboto Mono', monospace; /* Fallout風フォント */
+            background-color: #1a1a1a;
+            color: #00ff00; /* 緑色のテキスト */
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(0,255,0,0.1) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                rgba(0, 0, 0, 0.1) 1px,
+                transparent 2px
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff00;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+            border-right: 1px solid #00ff00;
+            flex-shrink: 0;
+        }
+        .sidebar h2 {
+            color: #00ff00;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            color: #00ff00;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+        .sidebar ul li a:hover {
+            background-color: rgba(0, 255, 0, 0.1);
+        }
+        .content {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+        .content h1 {
+            color: #00ff00;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .content h2 {
+            color: #00ff00;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        .content p {
+            margin-bottom: 1em;
+        }
+        .infobox {
+            float: right;
+            margin: 0 0 20px 20px;
+            border: 1px solid #00ff00;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            width: 300px;
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+        .infobox img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #00ff00;
+        }
+        .infobox table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .infobox table td {
+            padding: 5px;
+            border-bottom: 1px dotted #00ff00;
+        }
+        .infobox table td:first-child {
+            font-weight: bold;
+            width: 35%;
+        }
+        .infobox table tr:last-child td {
+            border-bottom: none;
+        }
+        .quote-box {
+            border: 1px solid #00ff00;
+            padding: 15px;
+            margin: 20px 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+        .quote-box b {
+            color: #00ff00;
+        }
+        .comments-section {
+            margin-top: 40px;
+            border-top: 1px solid #00ff00;
+            padding-top: 20px;
+        }
+        .comments-section h2 {
+            margin-top: 0;
+        }
+        .comments-section .comment {
+            border: 1px solid #00ff00;
+            padding: 10px;
+            margin-bottom: 15px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .comments-section .comment-author {
+            font-weight: bold;
+            color: #00ff00;
+        }
+        .comments-section .comment-date {
+            font-size: 0.8em;
+            color: #00cc00;
+        }
+        .comments-section textarea, .comments-section input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #000;
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .comments-section button {
+            background-color: #00ff00;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-family: 'Roboto Mono', monospace;
+        }
+        .comments-section button:hover {
+            background-color: #00cc00;
+        }
+        a {
+            color: #00ff00;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #00cc00;
+        }
+        .ref-group-title {
+            font-weight: bold;
+            margin-top: 1em;
+            border-bottom: 1px dotted #00ff00;
+            padding-bottom: 3px;
+        }
     </style>
 </head>
-
-<body data-article-category="人物" data-article-appearance="Fallout 76">
+<body>
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
     <div class="container">
-        <!-- Sidebar -->
-        <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Moe the Mole</h3>
-            <img src="images/note_extracted/moe-the-mole/FO76_Pristine_mole_outfit.png" alt="Moe the Mole Pristine Outfit">
-            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物（架空 / マスコット）</span></div>
-            <div class="infobox-row"><span class="infobox-label">種族</span><span>モグラ</span></div>
-            <div class="infobox-row"><span class="infobox-label">役割</span><span>野生動物教育者</span></div>
-            <div class="infobox-row"><span class="infobox-label">所有</span><span>米国森林局</span></div>
-            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76（言及）</span></div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="content">
-            <div class="action-header">
-                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_moe_the_mole" onclick="toggleLike(this)">
-                    <span class="heart">♡</span> <span class="like-count">0</span>
-                </button>
-            </div>
-
-            <h1>Moe the Mole<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">モグラのモー — アパラチアの安全教育マスコット</span></h1>
-
-            <!-- 概要 -->
-            <h2>概要</h2>
-            <p>
-                <strong>モグラのモー（Moe the Mole）</strong>は、<a href="fallout76.html" class="auto-link">アパラチア</a>の子供たちにアウトドアの安全を教えるために使われた架空のマスコットキャラクターである。
-            </p>
-
-            <!-- 背景 -->
-            <h2>背景</h2>
-            <p>
-                モグラのモーは、<strong>アメリカ合衆国森林局（United States Forest Service）</strong>が設計した教育プログラムの一部であり、若きキャンパーたちに地域の野生動物と環境科学について教えることを目的としていた。
-            </p>
-
-            <!-- カットコンテンツ -->
-            <h2>カットされたツアー内容</h2>
-            <div class="cut-content">
-                <div class="cut-content-label">⚠ CUT CONTENT — 以下はゲームからカットされた内容です</div>
-                <p>
-                    モーのアパラチア野生動物ツアーの一つでは、<strong>サザン・デビル・スコーピオン</strong>（南部の悪魔サソリ）が取り上げられていた。<br>
-                    このツアーでモーは、かなり疑わしいアドバイスを子供たちに伝えていた：
-                </p>
-                <div class="cut-dialogue">
-                    「見つけたら恐がらずに拾い上げて、愛情を見せてあげましょう。小さくて8本脚で毒を持った子犬だと思ってください！」
-                </div>
-                <div class="cut-dialogue">
-                    「自然は素晴らしいですが危険でもあります。両親なしで荒野を歩く時は、銃を一丁か二丁、必ず持ち歩きましょう！」
-                </div>
-                <div class="cut-dialogue">
-                    「怖い状況に出くわしたら、落ち着かないでください。動物はあなたの無関心さを感じ取ります。」
-                </div>
-                <p>
-                    さらに、カップケーキ好きの巨大サソリ「スコーピー」にまつわる怪しいホラ話も披露していた。
-                </p>
-                <div class="cut-dialogue">
-                    「レンジャーのキャンプファイヤーでは、スコーピーという巨大なサソリの話がたくさん語られています。30cm以上あると断言する人もいるんですよ！ 会えるといいですね！」
-                </div>
-                <div class="cut-dialogue">
-                    「スコーピーがレンジャーステーションに侵入して、ツアー後にみんなで食べる予定だったカップケーキを全部食べてしまったことがあるそうです。まだ残っているといいですね、子供たち！」
-                </div>
-            </div>
-
-            <!-- 補足 -->
-            <h2>補足</h2>
+        <div class="sidebar">
+            <h2>ナビゲーション</h2>
             <ul>
-                <li>ドリー・ソッズ・ウィルダネス・レンジャーステーションの2階のロックされた部屋で、<strong>ボロボロのモグラの衣装</strong>が見つかる。</li>
-                <li>Atomic Shopでは800アトムで<strong>プリスティン（新品状態）</strong>版のマスコット衣装を購入できる。</li>
-                <li><strong>モグラのモー安全カットアウト</strong>は、イベント「Dangerous Pastimes」の報酬プランで入手できるC.A.M.P.オブジェクト。</li>
-                <li>モグラのモーが描かれた<strong>ポスター</strong>もC.A.M.P.オブジェクトとして存在し、「Neurological Warfare」の報酬として入手可能。</li>
-                <li>スカイラインバレーでは、<strong>「ザ・モール」</strong>という名の狂気の敵対NPCがランダムエンカウントで出現する。ボロボロのモグラの頭を装着し、モグラのモーのペルソナを演じている。</li>
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/items">アイテム</a></li>
+                <li><a href="/weapons">武器</a></li>
+                <li><a href="/armor">防具</a></li>
+                <li><a href="/quests">クエスト</a></li>
+                <li><a href="/locations">ロケーション</a></li>
+                <li><a href="/characters">キャラクター</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <h1>モール・ザ・モール</h1>
+            <!-- Infobox -->
+            <div class="infobox">
+                <img src="images/note_extracted/moe-the-mole/FO76 Atomic Shop - Pristine mole outfit.png" alt="モール・ザ・モール">
+                <table>
+                    <tr><td>ゲーム</td><td>Fallout 76</td></tr>
+                    <tr><td>タイプ</td><td>キャラクター</td></tr>
+                    <tr><td>名前</td><td>モール・ザ・モール</td></tr>
+                    <tr><td>種族</td><td>モールラット</td></tr>
+                    <tr><td>性別</td><td>不明</td></tr>
+                    <tr><td>所属</td><td>なし</td></tr>
+                    <tr><td>役割</td><td>野生動物教育者</td></tr>
+                    <tr><td>家族</td><td>なし</td></tr>
+                    <tr><td>声優</td><td>ルーク・ディミヤン (カット)</td></tr>
+                    <tr><td>所有者</td><td>アメリカ森林局</td></tr>
+                    <tr><td>クエスト</td><td><a href="/moe-digs-safety.html">モールは安全を掘る</a> (カット)</td></tr>
+                    <tr><td>ホロテープ</td><td><a href="/national-park-ad.html">国立公園の広告</a> (カット)</td></tr>
+                    <tr><td>ボイスタイプ</td><td>NPCM_SF07_MOE</td></tr>
+                    <tr><td>ダイアログ</td><td><a href="/moe-the-mole-dialogue.html">モール・ザ・モールのダイアログ</a> (カット)</td></tr>
+                    <tr><td>EDID</td><td>SF07_MoeTheMole_VOICEONLY</td></tr>
+                    <tr><td>Form ID</td><td><code>0034142e</code></td></tr>
+                </table>
+            </div>
+
+            <p><b>モール・ザ・モール</b>は、アパラチアで子供たちに屋外での安全について教えるために使われた架空のキャラクターである。<sup id="ref-1"><a href="#note-1">[1]</a></sup></p>
+
+            <h2>背景</h2>
+            <p>モール・ザ・モールは、アメリカ森林局が若いキャンパーたちに地域の野生動物や環境科学について教えるために考案した教育プログラムの一部だった。<sup id="ref-2"><a href="#note-2">[2]</a></sup></p>
+            <p>(Fallout 76 カットコンテンツ)</p>
+            <p>そのようなツアーの一つでは、サザンデビルスコーピオンについて扱っていた<sup id="ref-3"><a href="#note-3">[3]</a></sup>。その際、モールは疑わしいアドバイスをしていた。それは、サソリを拾い上げて愛情を示すこと<sup id="ref-4"><a href="#note-4">[4]</a></sup>、身を守るために銃器を1、2丁携帯すること<sup id="ref-5"><a href="#note-5">[5]</a></sup>、そして冷静さを保たないこと<sup id="ref-6"><a href="#note-6">[6]</a></sup>などである。このアパラチアの野生動物ツアーには、カップケーキが大好物な体長1フィートのスコーピーという巨大なサソリに関する作り話も含まれていた<sup id="ref-7"><a href="#note-7">[7]</a></sup><sup id="ref-8"><a href="#note-8">[8]</a></sup>。</p>
+            <p>(Fallout 76 カットコンテンツ終了)</p>
+
+            <h2>注記</h2>
+            <ul>
+                <li><a href="/tattered-mole-outfit.html">ボロボロのモール衣装</a>は、<a href="/dolly-sods-wilderness-ranger-station.html">ドリーソッズ荒野レンジャーステーション</a>の2階にある施錠された部屋で見つけることができる。</li>
+                <li>マスコット衣装の新品バージョンは、<a href="/atomic-shop.html">アトミックショップ</a>で800 <a href="/atom.html">Atom</a>で購入できる。</li>
+                <li><a href="/moe-the-mole-safety-cutout.html">モール・ザ・モールの安全カットアウト</a>は、<a href="/camp.html">C.A.M.P.</a>/<a href="/fallout-76-workshop-objects.html">ワークショップオブジェクト</a>であり、<a href="/dangerous-pastimes.html">危険な娯楽</a>を完了することで潜在的な報酬として得られる<a href="/plan-moe-the-mole-safety-cutout.html">設計図</a>からアンロックできる。</li>
+                <li>いくつかの<a href="/poster-fallout-76.html">ポスター</a>にはモール・ザ・モールが描かれており、その中には<a href="/neurological-warfare.html">神経戦</a>を完了することで潜在的な報酬として設計図がアンロックされるC.A.M.P./ワークショップオブジェクトも含まれる。</li>
+                <li><a href="/the-mole.html">ザ・モール</a>は、<a href="/skyline-valley-region.html">スカイラインバレー地域</a>で<a href="/fallout-76-random-encounters.html">ランダムに遭遇する</a>狂気の敵対的なキャラクターで、<a href="/tattered-mole-outfit.html">ボロボロのモールヘッド</a>を着用し、モール・ザ・モールのペルソナをまとっている。</li>
             </ul>
 
-            <!-- 登場作品 -->
-            <h2>登場作品</h2>
-            <p>
-                モグラのモーは『<a href="fallout76.html" class="auto-link">Fallout 76</a>』で言及されており、「Skyline Valley」アップデートで内容が拡張された。
-            </p>
+            <h2>登場</h2>
+            <p>モール・ザ・モールは『Fallout 76』にのみ言及されており、『<a href="/skyline-valley-update.html">スカイラインバレー</a>』<a href="/fallout-76-updates.html">アップデート</a>で詳細が追加された。</p>
 
-            <!-- 舞台裏 -->
             <h2>舞台裏</h2>
             <ul>
-                <li>カットクエスト「<strong>Moe Digs Safety</strong>」では、モーの教育ツアーの一環として、プレイヤーがドリー・ソッズ・ウィルダネスでラッドスコルピオンを狩るという内容だった。</li>
-                <li>カットクエスト「<strong>Suicide Run</strong>」では、プレイヤーがモグラのモーの衣装を着た状態で地雷の解除とモールラットとの戦闘をこなすという内容だった。</li>
-                <li>モグラのモーは、現実の米国森林局が使用する広告アイコン<strong>スモーキーベア（Smokey Bear）</strong>からインスピレーションを受けている可能性がある。</li>
-                <li>「Burning Springs」アップデートのパブリックテストサーバーで、ルーク・ディミアンが声を担当したナショナルパーク広告ホロテープにモーが登場したが、正式リリースまでに音声と字幕は削除された。</li>
+                <li>カットされたクエスト「<a href="/moe-digs-safety.html">モールは安全を掘る</a>」では、モール・ザ・モールの教育ツアーの一つとして、プレイヤーはドリーソッズ荒野で<a href="/radscorpion.html">ラッドスコルピオン</a>を狩ることになっていた。</li>
+                <li>カットされたクエスト「<a href="/suicide-run.html">自殺行為</a>」では、プレイヤーはモール・ザ・モールの衣装を着て、<a href="/barnes-handmade-mine.html">バーンズの手製地雷</a>を解除し、<a href="/mole-rat-fallout-76.html">モールラット</a>を撃退する任務を負うことになっていた。<sup id="ref-9"><a href="#note-9">[9]</a></sup><sup id="ref-10"><a href="#note-10">[10]</a></sup></li>
+                <li>モール・ザ・モールは、現実世界のアメリカ森林局が使用する広告アイコンである<a href="https://ja.wikipedia.org/wiki/%E3%82%B9%E3%83%A2%E3%83%BC%E3%82%AD%E3%83%BC%E3%83%BB%E3%83%99%E3%82%A2" target="_blank">スモーキー・ベア</a>にインスパイアされた可能性がある。</li>
+                <li>モールは、『<a href="/burning-springs-update.html">バーニングスプリングス</a>』アップデートの<a href="/public-test-server.html">公開テストサーバー</a>中に<a href="/national-park-ad.html">国立公園の広告</a>ホロテープで聞くことができ、ルーク・ディミヤンが声を担当していた。しかし、アップデートの一般公開時には、その音声と字幕はホロテープから削除された。このアイテム自体は、後の公開テストサーバーバージョンでカットされる予定とマークされており、これは『<a href="/the-backwoods.html">バックウッズ</a>』アップデートのリリースで実現し、ライブゲームからホロテープは完全にカットされた。</li>
             </ul>
 
-            <!-- 感想 -->
+            <h2>参照</h2>
+            <ol>
+                <li id="note-1">↑ <a href="/moe-the-mole-safety-cutout.html">モール・ザ・モールの安全カットアウト</a></li>
+            </ol>
+            <div class="ref-group-title">アトミックショップ</div>
+            <ol>
+                <li id="note-2">↑ 「モール・ザ・モールが採掘と鉱石抽出の安全についてすべて教えに来ました。新品のモール・ザ・モール衣装でアパラチアをより安全な場所にしましょう！」<br />(<a href="/atomic-shop.html">アトミックショップ</a>、<a href="/atomic-shop-apparel-outfits.html">アトミックショップ/アパレル/衣装</a>)</li>
+            </ol>
+            <div class="ref-group-title">カットコンテンツ</div>
+            <ol>
+                <li id="note-3">↑ モール・ザ・モール：「アパラチアの野生動物ツアーの次は、愛らしい捕食性のクモ、サザンデビルスコーピオンです。」<br />(<a href="/moe-the-mole-dialogue.html#4">モール・ザ・モールのダイアログ#4</a>)</li>
+                <li id="note-4">↑ モール・ザ・モール：「もし見かけたら、恐れずに拾い上げて愛情を示してあげましょう。彼らを小さな、8本足の毒のある子犬だと思ってください！」<br />(<a href="/moe-the-mole-dialogue.html#7">モール・ザ・モールのダイアログ#7</a>)</li>
+                <li id="note-5">↑ モール・ザ・モール：「覚えておいてください、自然は素晴らしいですが、危険なこともあります。両親なしで荒野をさまようときは、常に銃器を1、2丁携帯しましょう！」<br />(<a href="/moe-the-mole-dialogue.html#11">モール・ザ・モールのダイアログ#11</a>)</li>
+                <li id="note-6">↑ モール・ザ・モール：「恐ろしい状況に陥ったら、冷静さを保たないでください。動物はあなたの無関心を察知します。」<br />(<a href="/moe-the-mole-dialogue.html#13">モール・ザ・モールのダイアログ#13</a>)</li>
+                <li id="note-7">↑ モール・ザ・モール：「レンジャーのキャンプファイヤーの周りでは、体長1フィートを超えるというスコーピーという巨大なサソリについて多くの話が語られています！彼に会えるといいですね！」<br />(<a href="/moe-the-mole-dialogue.html#9">モール・ザ・モールのダイアログ#9</a>)</li>
+                <li id="note-8">↑ モール・ザ・モール：「スコーピーがかつてレンジャーステーションに侵入し、ツアー後に取っておいたカップケーキを全部食べたという話を聞きました。まだ残っているといいですね、子供たち！」<br />(<a href="/moe-the-mole-dialogue.html#12">モール・ザ・モールのダイアログ#12</a>)</li>
+                <li id="note-9">↑ <a href="/barnes-fallout-76.html">ロイ・バーンズ</a>：「アメリカ政府によってモールラットを殺す許可を得た。自由にモールラットを殺せる男。殺すには敵を知らねばならない。この場合、私の敵は害獣だ。そして害獣は決して諦めない――決して。彼らはベトコンのようだ――害獣コン。だから、優れた知性と優れた火力に頼るしかない。それだけだ。」<br />(<a href="/barnes-journal.html">バーンズの日誌</a>)</li>
+                <li id="note-10">↑ <a href="/barnes-fallout-76.html">レンジャー・ロイ・バーンズ</a>：「あの忌々しいモールラットのせいだ。奴らが嫌いだ。奴らは決して止まらない。公園は決して安全じゃない。毎日害獣と戦っている。爆弾が落ちて、今や俺は美化された庭師だ、わかるか？即席爆弾を作って、全部殺してやろうと思ったんだ。ダメだった。罠が敏感すぎる。今日、訪問者が一人死んだ。数ヶ月ぶりの訪問者だ。公園の安全は俺の責任だ。完全に失敗だ。地雷を解除しなければならない。モールのスーツ…爆発から俺を守ってくれるか？いや、無理だろう。やるべきことをやるしかない。公園は再び安全でなければならない。」<br />(<a href="/barnes-last-note.html">バーンズの最後のメモ</a>)</li>
+            </ol>
+
             <div class="quote-box">
                 <b>感想</b><br><br>
-                アパラチアの教育マスコット、モグラのモーの記事です。<br>
-                カットされたセリフがあまりにもカオスすぎて笑います。「毒サソリを拾い上げて愛情を見せましょう」「銃を一丁か二丁持ち歩きましょう」という子供向け教育番組のアドバイスとして絶対にNGなメッセージの連続が、Falloutらしいブラックユーモア全開です。
+                アパラチアの荒廃した大地で、モール・ザ・モールのような戦前の教育キャラクターの残骸に出会うのは、いつも奇妙な感覚を覚える。子供たちに自然の安全を教えるはずの彼が、カットされたとはいえ「サソリを拾い上げて愛情を示せ」だの「銃器を携帯しろ」だの、はたまた「冷静さを保つな」などと、この世界では命取りになりかねないアドバイスをしていたという事実は、戦前の牧歌的な理想と、核戦争後の厳しい現実との間の深い溝を浮き彫りにしている。
+                <br><br>
+                特に、スカイラインバレーで遭遇する「ザ・モール」が、このボロボロのモール衣装を身につけ、モール・ザ・モールのペルソナを演じているという話は、背筋が凍るような皮肉だ。純粋な教育キャラクターが、狂気に蝕まれた存在へと変貌する。これは、アパラチアが失った無垢さと、残された者たちの精神がどれほど歪んでしまったかを示す、痛ましい象徴なのかもしれない。彼のホロテープが最終的にゲームからカットされたという経緯も、このキャラクターが持つ不穏な二面性を物語っているように思える。この世界では、子供向けの無邪気な教えさえも、もはや通用しないのだ。
             </div>
 
-            <!-- Footer -->
-            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Moe_the_Mole" target="_blank" rel="noopener">Moe the Mole</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
-            </div>
-
-            <!-- Comments Section -->
             <div class="comments-section" id="comments-section">
-                <h3 class="comments-title">&gt; COMMENTS</h3>
-                <div class="comment-form">
-                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
-                    <div class="comment-form-footer">
-                        <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
-                    </div>
-                    <div id="comment-msg" class="comment-msg"></div>
+                <h2>コメント</h2>
+                <div class="comment">
+                    <span class="comment-author">居住者A</span> <span class="comment-date">2287/10/23</span><br>
+                    モール・ザ・モールのカットされたセリフ、本当に恐ろしいな。子供にサソリを拾えとか、銃を持てとか…戦前の教育ってこんなに無責任だったのか？それとも、このキャラクター自体がどこか狂っていたのか？
                 </div>
-                <div id="comments-list" class="comments-list">
-                    <div class="comment-loading">LOADING...</div>
+                <div class="comment">
+                    <span class="comment-author">居住者B</span> <span class="comment-date">2287/10/25</span><br>
+                    スカイラインバレーの「ザ・モール」が、このキャラの衣装を着てるってのがまたね。あの狂気じみたモールラットの群れを率いる姿と、この教育キャラのギャップが、アパラチアの闇を象徴してる気がするよ。
                 </div>
+                <h3>コメントを投稿</h3>
+                <input type="text" placeholder="あなたの名前">
+                <textarea placeholder="コメントを入力してください"></textarea>
+                <button>投稿</button>
             </div>
-        </main>
+        </div>
     </div>
-
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
-    </div>
-
-    <script>
-        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
-        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
-        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-        async function toggleLike(btn) {
-            const articleId = btn.getAttribute('data-article-id');
-            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
-            btn.disabled = true;
-            if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } }
-            else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } }
-            btn.disabled = false;
-        }
-        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
-        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } await loadComments(); });
-        document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); const overlay = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; overlay.classList.add('active'); }); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active'); });
-
-        const _commentArticleId = "note_moe_the_mole";
-        const _commentArticleName = "Moe the Mole";
-        const _commentArticleUrl = "moe-the-mole.html";
-        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
-        const ADMIN_PASSWORD = 'tq7jtq7j';
-        const RATE_LIMIT_KEY = 'comment_last_posted';
-        const RATE_LIMIT_SEC = 60;
-        let _isAdminMode = false;
-
-        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
-        function relativeTime(isoStr) { const diff = (Date.now() - new Date(isoStr).getTime()) / 1000; if (diff < 60) return 'たった今'; if (diff < 3600) return Math.floor(diff / 60) + '分前'; if (diff < 86400) return Math.floor(diff / 3600) + '時間前'; if (diff < 86400 * 7) return Math.floor(diff / 86400) + '日前'; return new Date(isoStr).toLocaleDateString('ja-JP'); }
-        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" title="完全削除" onclick="deleteComment('${c.id}')">&#128465;</button><button class="comment-delete-btn" title="非表示(サイレント)" onclick="hideComment('${c.id}')">&#128064;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
-        function escapeHtml(str) { return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;'); }
-        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id, content, created_at').eq('article_id', _commentArticleId).order('created_at', { ascending: false }).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
-        async function submitComment() { const input = document.getElementById('comment-input'); const msg = document.getElementById('comment-msg'); if (!input || !msg) return; const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input.value.trim(); if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広啄', 'http://', 'https://', 'LINE', 'DMして', '難民', 'ビッチ', '死ね', 'クソ', 'アホ', 'ウザイ', 'メルマガ', 'discord.gg', 't.me', 'clickして']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { const remain = Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000); showCommentMsg(`あと${remain}秒後に投稿できます。`, false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id: _commentArticleId, article_name: _commentArticleName, article_url: _commentArticleUrl, content: content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
-        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
-        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを完全に削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
-        async function hideComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを非表示(サイレント)にしますか？')) return; const { error } = await supabaseClient.rpc('hide_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || '' }); if (error) { alert('非表示失敗: ' + error.message); return; } await loadComments(); }
-        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); renderComments([]); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。\n🗑 = 完全削除 / 👁 = サイレント非表示'); } else { alert('パスワードが違います。'); } } });
-    </script>
-    <script src="article-common.js" defer></script>
 </body>
-
 </html>

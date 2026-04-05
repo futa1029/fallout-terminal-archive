@@ -1,9 +1,4 @@
-#Fallout76
-
-Xander Brown
+バーニング・スプリングス関連の人物「ザンダー・ブラウン（サビついたレイダー）」のロア記事を作成しました！💀
+スーパー・ドゥーパー・マートの元従業員であり、戦後にラスト・キング・アーミーへ加わった彼の過酷な足跡を辿ります。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/xander-brown.html
-
-Burning Springs
-
----
-CC BY-SA

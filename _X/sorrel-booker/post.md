@@ -1,16 +1,4 @@
-#Fallout76 #FalloutTV
-
-Sorrel Booker（ソレル・ブッカー）
+「ガバミント」の大統領「ソレル・ブッカー」のロア記事を公開しました！🍖
+自称政府を名乗るマフィアのボス。自身のヘソから切除した肉の塊（嚢胞）を皿に置いて眺めながら食事をするというイカれた性癖を持っています。グールの古い知り合いであり、彼の実力を恐れて部下が殺されても沈黙を貫きました。
+#FalloutTV #フォールアウト
 https://www.fallout-jp.com/sorrel-booker.html
-
-概要ソレル・ブッカーは、自称「ガヴァミント（政府）」の指導者。グレン・フレシュラーが演じている。経歴荒野で独自の「政府」を名乗る組織を率いる人物。臓器売買などの非倫理的な活動に関わっているとされる。
-
----
-
-💭 感想
-
-「政府を名乗る臓器売買組織」というブラックユーモアが効いたFalloutらしいキャラクター。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

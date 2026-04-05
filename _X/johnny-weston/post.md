@@ -1,9 +1,4 @@
-#Fallout76
-
-Johnny Weston
+レイダーの伊達男「ジョニー・ウェストン」のロア記事をアップデートしました！♠️
+Vault 79襲撃作戦の要となる凄腕の詐欺師。彼の生い立ちからメグらとの複雑な愛憎関係まで、深掘りすると非常に人間臭い悪党です。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/johnny-weston.html
-
-レイダー（クレーター）
-
----
-CC BY-SA

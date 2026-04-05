@@ -1,64 +1,230 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8"><title>Bud Askins | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/bud-askins.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Bud Askins | Overseer Mohi's Terminal"><meta property="og:description" content="バッド・アスキンス — Fallout TVシリーズ"><meta property="og:url" content="https://www.fallout-jp.com/bud-askins.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-<style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
-        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
-        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
-        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
-        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
-        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
-        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
-        .loot-list { list-style: none; padding: 0; }
-        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
-        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
-        .holotape-box { background: var(--panel-bg); border: 2px solid #ff9800; border-radius: 5px; padding: 20px; margin: 30px 0; }
-        .holotape-box h3 { color: #ff9800; border-bottom: 1px solid #ff9800; margin-top: 0; font-size: 1.1em; }
-        .holotape-box .holotape-icon::before { content: '🎙 '; }
-        .holotape-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; font-style: italic; }
-        .note-box { background: var(--panel-bg); border: 2px solid #8bc34a; border-radius: 5px; padding: 20px; margin: 30px 0; }
-        .note-box h3 { color: #8bc34a; border-bottom: 1px solid #8bc34a; margin-top: 0; font-size: 1.1em; }
-        .note-box .note-icon::before { content: '📝 '; }
-        .note-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; }
-        .note-box .transcript .date-entry { color: var(--accent-color); font-weight: bold; margin-top: 12px; display: block; }
-        .variant-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85em; }
-        .variant-table th { background: var(--header-bg); color: var(--accent-color); padding: 8px; text-align: left; border: 1px solid #444; font-family: 'Share Tech Mono', monospace; }
-        .variant-table td { padding: 8px; border: 1px solid #333; }
-        .variant-table tr:nth-child(even) { background: rgba(255,255,255,0.03); }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Bud Askins | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Bud Askins | Overseer Mohi's Terminal">
+    <meta property="og:description" content="バド・アスキンスのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/og-default.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/bud-askins.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bud Askins | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="バド・アスキンスのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-default.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+        .content img, .infobox img, .gallery-item img {
+            cursor: zoom-in;
+        }
+
+        /* コメントセクション */
         .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
         .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
-        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
-        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover { background: var(--accent-color); color: var(--bg-color); }
         .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
         .comments-list { display: flex; flex-direction: column; gap: 10px; }
@@ -69,54 +235,182 @@
         .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
         .comment-delete-btn:hover { opacity: 1; }
         .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .script-notes { background: var(--panel-bg); border: 1px solid #555; border-radius: 5px; padding: 20px; margin: 20px 0; }
-        .script-notes summary { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1em; }
-        .script-notes .note-category { color: var(--accent-color); font-weight: bold; margin-top: 15px; display: block; }
-        .script-notes ul { margin: 5px 0 10px 20px; }
-        .script-notes li { font-size: 0.9em; line-height: 1.6; font-style: italic; }
     </style>
 </head>
-<body data-article-category="人物" data-article-appearance="Fallout TVシリーズ">
+<body data-article-category="人物" data-article-appearance="Fallout TV">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Bud Askins</h3><img src="images/note_extracted/bud-askins/img_main.png" alt="Bud Askins"><div class="infobox-row"><span class="infobox-label">俳優</span><span>マイケル・エスパー</span></div><div class="infobox-row"><span class="infobox-label">職業</span><span>Vault-Tec社 バッド・ライト部門責任者</span></div><div class="infobox-row"><span class="infobox-label">現在</span><span>ルンバ型ロボット（脳のみ）</span></div><div class="infobox-row"><span class="infobox-label">名言</span><span>"時間こそが頂点捕食者だ"</span></div><div class="infobox-row"><span class="infobox-label">登場</span><span>シーズン1, 2</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout TVシリーズ</span></div></aside>
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Bud Askins</h3>
+            
+            <div style="text-align: center; margin-bottom: 10px; font-family: 'Share Tech Mono', monospace; font-weight: bold; color: var(--accent-color);">Rollerbrain</div>
+            <img src="images/note_extracted/bud-askins/Bud_Askins_robobrain.png" alt="ローラブレイン姿のバド・アスキンス" onerror="this.onerror=null; this.src='images/bg-placeholder.png';">
+            
+            <div style="text-align: center; margin-bottom: 10px; margin-top: 15px; font-family: 'Share Tech Mono', monospace; font-weight: bold; color: var(--accent-color);">Human</div>
+            <img src="images/note_extracted/bud-askins/FOTV_Bud_Askins.png" alt="生身のバド・アスキンス" onerror="this.onerror=null; this.src='images/bg-placeholder.png';">
+            
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+            <div class="infobox-row"><span class="infobox-label">人種</span><span style="text-align:right;">人間（以前）<br>ローラブレイン</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>男</span></div>
+            <div class="infobox-row"><span class="infobox-label">年齢</span><span>219歳以上</span></div>
+            <div class="infobox-row"><span class="infobox-label">状況</span><span>死亡（2296年7月）</span></div>
+            <div class="infobox-row" style="flex-direction:column; border-bottom:none;">
+                <span class="infobox-label">所属</span>
+                <span style="font-size:0.95em; padding-left:10px;">・<a href="west-tek.html" class="auto-link">ウエストテック</a>（以前）<br>・<a href="vault-tec-corporation.html" class="auto-link">Vault-Tec</a>（<a href="vault-31.html" class="auto-link">Vault 31</a>）</span>
+            </div>
+            <div class="infobox-row" style="flex-direction:column; border-bottom:none;">
+                <span class="infobox-label">役割</span>
+                <span style="font-size:0.95em; padding-left:10px;">・シニア・ジュニア上級副社長（以前）<br>・監督官（Overseer）</span>
+            </div>
+            <div class="infobox-row" style="margin-top:5px;"><span class="infobox-label">登場</span><span>Fallout TV</span></div>
+        </aside>
+
+        <!-- Main Content -->
         <main class="content">
-            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_bud_askins" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
-            <h1>Bud Askins<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">バッド・アスキンス</span></h1>
-            <h2>概要</h2>
-<p><b>バッド・アスキンス</b>は、Vault-Tec社の「バッド・ライト」部門の責任者。<br>マイケル・エスパーが演じている。</p>
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="bud_askins" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
 
-<h2>経歴</h2>
-<h3>大戦前</h3>
-<p>バッドはVault-Tec社でVault計画の中核を担った人物。<br>「バッド・ライト」と呼ばれる人材選抜プログラムを設計し、Vault-Tec社の管理職をVault 31に冷凍保存して、大戦後に3つの相互接続Vault（31、32、33）を通じて人類の「最良の遺伝子」を管理する計画を立案した。</p>
+            <h1>Bud Askins<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">バド・アスキンス</span></h1>
+            
+            <p>バド・アスキンス（Bud Askins）は、Fallout TVシリーズにおける<a href="vault-tec-corporation.html" class="auto-link">Vault-Tec</a>の元シニア・ジュニア上級副社長であり、<a href="vault-31.html" class="auto-link">Vault 31</a>の<a href="overseer.html" class="auto-link">監督官（Overseer）</a>です。</p>
 
-<h3>大戦後</h3>
-<p>バッド自身は脳だけがルンバ型（お掃除ロボット型）の筐体に移植され、Vault 31で200年以上にわたって計画を管理し続けている。<br>「時間こそが頂点捕食者だ」という彼の台詞は、TVシリーズを象徴する名言となった。</p>
-<div class="quote-box"><p class="quote-text">「Brain in a Roomba（ルンバの中の脳）」というコンセプトが最高にFalloutらしい。<br>200年以上ルンバの体で這い回りながらVaultを管理してきたという設定は、狂気と執念の極み。<br>「時間こそが頂点捕食者だ」の名言は、このシリーズの根幹テーマを一言で要約しています。</p></div>
+            <div class="quote-box" style="border-color: #444; background: rgba(255,255,255,0.05); color: #ccc;">
+                「多くの人が、規模を拡大するということは、世界的なマーケットシェアを高めることだと考えている。それは3次元での思考だ。私は4次元での話をしているんだ。なぜなら、競合を打ち破るための究極の武器とは何だ？それは彼らより売ることではない。彼らを出し抜くことでもない。それは『時間』だ。時間こそが究極の武器なのだ」<br>
+                —— バドが自身のイデオロギーについて
+            </div>
+
+            <hr>
+
+            <h2>背景</h2>
+            <p>Vault-Tecの模範的な役員であるアスキンスは、企業に対する狂信者であり、企業への献身に一途であり、「JST ASKIN（Just Askin: ちょっと尋ねただけ）」という自惚れたナンバープレートを好んでいます。南カリフォルニアでの事業を統括するためVault-Tecに移管してくる前は、<a href="west-tek.html" class="auto-link">ウエストテック</a>のプロダクトマネジメントチームで10年間働いていました。彼は2067年に、<a href="t-45-power-armor.html" class="auto-link">T-45パワーアーマー</a>の初期展開を統括し、可能な限り早く製品を世に出すことを優先して設計上の欠陥を無視しました。少なくとも見た目は素晴らしいと冗談めかして言っていましたが、その欠陥によって多くのアメリカ兵が死亡したという事実には完全に目を背けていました。ウエストテックを去った後、彼はVault-Tecでプロダクトマネジメントから人事研究（HR R&D）の分野へ転向し、「競合より長生きすることで打ち破る」という原則に基づいた「経営タイムラインのワークフロー最適化」を追求していました。</p>
+
+            <p>バドの能力自体が疑う余地のないものであったのに対し、彼の「対人スキル」は大いに疑問の余地がありました。パワーアーマーの欠陥によって戦友の命が奪われるのを目撃した退役軍人である<a href="cooper-howard.html" class="auto-link">クーパー・ハワード</a>の前でT-45パワーアーマーを自慢するなど、彼は社会的な空気を読むことに日常的に失敗していました。それでもめげることなく、クーパーにひどく毛嫌いされているにもかかわらず、彼は一貫してハワードに取り入ろうとしていました。<br>
+            彼はまた、クーパーの妻である<a href="barb-howard.html" class="auto-link">バーブ・ハワード</a>と共に働き続け、「社会保存プログラム（Societal Preservation Program）」の実装、つまりその隠れ蓑である壮大なVault実験の構築を支援しました。バーブは夫に対し、アスキンスとはしぶしぶ一緒に働いているだけだと語っていましたが、実際には彼女はこの実験の主要な立案者のひとりであり、アスキンスと共に他の潜在的な企業パートナーに対しVault実験の売り込みを行っていました。Vaultプログラムにおける彼のもうひとつの貢献として、彼はVault入所システムでの使用のために<a href="robco-industries.html" class="auto-link">ロブコ・インダストリーズ</a>から<a href="pip-boy.html" class="auto-link">Pip-Boy</a>のライセンス供与を受けていました。</p>
+
+            <h3>バドのつぼみたち（Bud's Buds）</h3>
+            <p>アスキンス自身は、<a href="santa-monica.html" class="auto-link">サンタモニカ</a>にある3つの連携したVault、<a href="vault-31.html" class="auto-link">Vault 31</a>、<a href="vault-32.html" class="auto-link">Vault 32</a>、<a href="vault-33.html" class="auto-link">Vault 33</a>を設計しており、自らの人事研究の頂点であるジュニア・エグゼクティブ・アシスタント・トレーニング・プログラム「<a href="buds-buds.html" class="auto-link">バドのつぼみたち（Bud's Buds）</a>」を実行する場として意図していました。すでに機能不全に陥った国家を救おうとするのは絶望的な見通しであると判断し、アスキンスはこのVaultネットワークを利用した優生学プログラムによってVault-Tecを存続させる計画を策定しました。<br>
+            このプログラムには、「Bud's Buds」に参加するために選抜され、Vault 31で<a href="cryonics.html" class="auto-link">冷凍睡眠</a>状態に保たれた若きVault-Tec社員たちが関与しており、他の2つのVaultの居住者たちを彼の「つぼみ」たちの生殖プール（Breeding pools）として機能させ、避けられない<a href="great-war.html" class="auto-link">最終戦争（大戦）</a>の後にウェイストランドを受け継ぐ「スーパーマネージャー」の階級を創出することを目的としていました。その結果もたらされる<a href="reclamation-day-event.html" class="auto-link">再生の日（Reclamation Day）</a>、すなわちバドのアシスタントたちがVault-Tecのためにウェイストランドを奪還すべく解凍される日は、戦争および地表を競争相手から完全に一掃する追加的な作戦が終結した後にのみ、訪れることになっていました。</p>
+
+            <p>これはバドの実験の終着点ではありませんでした。バドは、文明が無限の成長を遂げられるような、専有的な「デザインされた」未来を創ることを求めていました。そのため、バドのVault 31の訓練生たちは地上に戻った後、プログラムの「第2段階（Phase 2）」を開始することが期待されていましたが、他の2つのVaultが関与すること、そして「フューチャー・エンタープライズ・ベンチャーズ（Future Enterprise Ventures）」——実際には<a href="forced-evolutionary-virus.html" class="auto-link">FEV（強制進化ウイルス）</a>を指す言葉——が含まれることを除けば、これがどういった内容で構成されているのかは現在不明です。バド自身は戦前、彼のVault実験の背後にいる投資家たち（<a href="enclave.html" class="auto-link">エンクレイヴ</a>のメンバー）とこれらの計画について話し合っていました。</p>
+
+            <p>この計画が実行に移された後、バドはVault 31の監督官（および秘密裏に3つのVaultすべての出来事の黒幕）となり、数百年にわたってこのプロジェクトを実行すべく、自らの脳を摘出しロボットのシェルに収めました。<a href="robobrain.html" class="auto-link">ロボブレイン</a>のフルサイズではなく、彼は単にコスト削減の目的で、<a href="brain-bot.html#rollerbrain" class="auto-link">ローラブレイイン</a>、あるいは「ルンバに乗った脳」と呼ばれる、小型で充電式のプラットフォームを選びました。<br>
+            これは2世紀以上にわたって機能しており、バドはVault-Tecの訓練生たちのもとで、接続された2つのVaultにおける何世代にもわたる展開を、自らのVault 31から監督し続けていました。しかし、2296年に事態は暗転します。彼は、かつての訓練生のひとりである<a href="hank-maclean.html" class="auto-link">ハンク・マクレーン</a>の息子、<a href="norm-maclean.html" class="auto-link">ノーム・マクレーン</a>に騙され、Vault 31の内部潜入と秘密の発見を許してしまいました。バドはノームが逃走して真実を暴くのを阻止しようと試みましたが、その後ノームによってロボット・シャーシを破壊されて死亡し、ノームはVault 31の居住者グループと共に脱出しました。</p>
+
+            <p>バドの死は、彼の2人の現職監督官である部下、<a href="betty-pearson.html" class="auto-link">ベティ・ピアソン</a>と<a href="steph-harper.html" class="auto-link">ステフ・ハーパー</a>を方向喪失状態にさせましたが、ハーパーはそれを気に留めませんでした。しかし、バドのかつての個人的アシスタントであった<a href="ronnie-mccurtry.html" class="auto-link">ロニー・マッカーティ</a>は（偶然とはいえ）第2段階の詳細を知っており、ノーム・マクレーンのもとでVault 31居住者が地上へ旅立った後もプログラムを継続しようと試みたため、バドの実験が完全に終わったわけではないかもしれません。ロニーの試みは失敗しましたが、ステフ・ハーパーはエンクレイヴの「投資家」と接触し、第2段階の開始を要請することに成功しました。</p>
+
+            <hr>
+
+            <h2>Fallout TVシリーズ</h2>
+            <h3>シーズン1</h3>
+            <h4>「The Trap」（第6話）</h4>
+            <div style="float: right; margin: 0 0 15px 15px; text-align: center; max-width: 250px;">
+                <img src="images/note_extracted/bud-askins/FOTV_Winning_Team.png" alt="打ち上げパーティーでのバド" class="lightbox-img" style="width: 100%; height: auto; border: 1px solid #444; border-radius: 4px;">
+                <span style="font-size: 0.8em; color: #888;">「打ち上げ（ラップ・パーティー）」に参加するバド</span>
+            </div>
+            <p>バドは第6話、<a href="vault-4.html" class="auto-link">Vault 4</a>のプロモーションビデオ撮影中に登場し、クーパー・ハワードに不器用な自己紹介をします。良い第一印象を与えることに失敗した後、彼はエレベーターピッチ（「人類の未来はマネジメントだ」という持論）を試みますが、クーパーを連れ去ったバーブに遮られます。アスキンスはその後、打ち上げ（ラップ・パーティー）で見られ、クーパーの気を引こうとしますが、失敗に終わります。</p>
+
+            <div style="clear: both;"></div>
+
+            <h4>「The Beginning」（第8話）</h4>
+            <p>フラッシュバックの中で、クーパー・ハワードがバーブを<a href="vault-tec-headquarters-tv-series.html" class="auto-link">Vault-Tec本社</a>に車で送ると、間もなくバドが到着し隣に駐車します。バーブのPip-Boyが盗聴器により不調をきたしていたため、バドは点検してもらうよう提案しますが、彼女は自分で直せると言って断ります。その後彼は、バーブと共に社屋へ入る前に、クーパーと「バドのつぼみたち」プログラムについて話をします。<br>
+            そして後日、バドとバーブは、ロブコ・インダストリーズのCEO<a href="robert-house.html" class="auto-link">ロバート・ハウス</a>、ウエストテックの研究者<a href="leon-von-felden.html" class="auto-link">レオン・フォン・フェルデン</a>、ビジネス界の重鎮であり<a href="sierra-madre.html" class="auto-link">シエラ・マドレ</a>のオーナーである<a href="frederick-sinclair.html" class="auto-link">フレデリック・シンクレア</a>など、何人もの企業トップが集まるラウンドテーブル会議（会合）の議長を務めます。</p>
+
+            <p>バドは戦後において、ベティの監督官端末を使って彼女になりすまし、バドを騙してVault 31の中へ侵入したノームの前に初めて姿を現します。<br>彼のロボット・シャーシは倒れたモップに引っかかって身動きが取れなくなっており、ノームが彼を解放します。<br>初期スキャンの後、バドはノームがハンクでもベティでもないことに気づきます。<br>青年をスキャンして、彼がハンクのDNAを半分持っていると判明すると、パニックに陥り始めました。<br>「プロトコル53」の開始を宣言したバドは彼に鎮静剤を打とうと試みますが、シャーシに組み込まれた注射器は、ただ後ろに下がるだけで簡単に回避されてしまいます。<br>秘密を知られないよう必死になったバドは、ノームに前のドアを開けないように命じますが、青年はそれを無視し、冷凍睡眠室を発見してしまいました。<br>彼を止める力がないバドはノームに壮大な計画を明かし、その後、冷凍睡眠室を封鎖し、餓死を待つか、それとも父親のように冷凍ポッドに入って睡眠状態に入り、バドの判断による解凍だけを待つか、ノームに選択を迫りました。</p>
+
+            <h3>シーズン2</h3>
+            <h4>「The Innovator」（第1話）</h4>
+            <p>Vault 31内で、ノーム・マクレーンは依然としてバド・アスキンスと共に冷凍施設に閉じ込められています。<br>バドはノームがVault間の通信を遮断したことに気付いてパニックになり、彼の様子を確認しに行きます。<br>ノームは階段を下りた先の冷凍ポッドエリアに立てこもっており、すでに空のレーションケースが散乱していたため、バドは彼に近づけませんでした。<br>バドはノームに対し、彼の提示する「2つの合理的な選択」を説得しようと試みます。<br>それは、ハンクの冷凍ポッドに入り、「再生の日」について聞かされるか（バドによれば、Vault-Tecの生命における独占を脅かす可能性のある地上の誰もが根絶やしにされた時にそれは訪れる）、あるいは餓死するかのどちらかです。<br>ノームはバドの囚人になることを頑なに拒否し、誰かが助けに来るはずだと主張しますが、バドはVault-Tecが、Vault居住者が行方不明になった場合を含めてあらゆる事態に備えており、ベティ・ピアソンが彼の失踪を隠蔽すると請け合って断言します。<br>さらにノームの士気を削ぐため、バドは明かりを消し、食べ物を探しにくくし、ノームがより飢えたときに「理性的」に判断するようになると確信しています。</p>
+
+            <p>バドクターはその後、床に横たわっている青年の様子を再び確認します。<br>彼が再びハンクのポッドへ入るよう促してもノームは無視し、父親がどのような人物だったのか、そしてなぜ最初から冷凍されていたのかと尋ねました。<br>バドはハンクが野心的な男であったこと、そして「バドのつぼみ」のひとつになることは戦前においては非常に憧れの的となる地位だったと自慢します。<br>その後、ノームが双頭のムカデを見つけたことに気付き、その変異した昆虫を食べればゆっくりと苦痛に満ちた死をもたらすと警告し、その代わりに、冷凍の代替策として苦痛なく即死をもたらすという名もなき毒を注射することを申し出ます。<br>そして彼が死んだ後、彼の身体は溶解し、31から換気システムを通ってろ過され、他のVaultの農作物の肥料にされるのだと語りました。</p>
+
+            <p>ノームはバドの「2つの合理的な選択」という偽りの二分法を拒絶し、「非合理的」な選択肢もたくさんあると主張します。<br>ノームはバドに近づき、バドが彼を脅していた注射の付いた腕を蹴り落とします。<br>ノームはPip-Boyをコンソールに接続しながら、バドの若き幹部たち全員を解放すると告げます。<br>バドは彼を止めようと試みましたが、ノームは足で彼を抑えつけるだけでした。<br>稼働中のすべての冷凍ポッドが解凍され始めると、バドは、自分の「つぼみ」たちは30年に1度しか目覚めないように設定されており、ノームには全く計画性がなく、ただカオスを引き起こしただけだと抗議します。<br>ノームは同意し、計画は難しいがカオスは簡単だと答えます。</p>
+
+            <h4>「The Golden Rule」（第2話）</h4>
+            <p>バドはノームによってそのローラーブレインの体から配線を引き抜かれ、操作不能にされた上、バケツの中に逆さまに突っ込まれていることが示されますが、彼の脳ケースと<a href="bio-med-gel.html" class="auto-link">バイオメッドジェル</a>は無傷のようです。ノームによって目覚めさせられたVault 31の住人たちはすぐにバドの行方を尋ねますが、ノームは彼の死を伝え、これが訓練生に対するバドの最後のテストであると偽って、彼らを騙してVaultからの脱出へと誘導します。</p>
+
+            <h4>「The Demon in the Snow」（第4話）</h4>
+            <p>バド自身は登場しませんが、ベティ・ピアソンがステフ・ハーパーに対し、Vault 31を調査した際にバドを発見したこと、そして彼が死んでいることを確認したと伝えます。</p>
+
+            <hr>
+
+            <h2>性格</h2>
+            <p>バド・アスキンスは独自の考え方を持つ先見の明のある人物ですが、Vault-Tecに対しても盲目的なほどの忠誠を誓っています。<br>彼は世界における究極の大量破壊兵器は「時間」であると信じており、その考え方を利用すれば、Vault-Tecの前に立ちはだかるあらゆる競争を打ち破ることができると考えています。<br>彼はマネジメント（管理／経営）の力と、それが人類の未来に果たす重要な役割を強く信じています。<br>バドはまた、その圧倒的（しつこい）性格でも知られており、番組の別のキャラクターであるクーパーが、初めてバドに会った際にそれを体験しています。<br>同様に、バドは訓練生たちの間に忠実な信奉者たちを育て上げることに長けており、彼らがノームによって解凍された際、いち早く彼のリーダーシップを求め、彼の死を聞いた途端にすぐさま混乱状態に陥りました。</p>
+
+            <p>しかしながら、自らの計画に対する絶対的な自信とは裏腹に、全く想定外の最悪の事態が発生した際には瞬く間にパニックに陥ってしまいます。彼は自らの能力と権威を過信しすぎる一方で、自分を回避し制圧するノームの能力を過小評価しすぎ、それが最終的に自身の死を招く結果となりました。</p>
+
+            <p>バドはローラーブレインとして2世紀を過ごす中で、ある種の精神的な退行を遂げていたのかもしれません。彼は大抵明るく振る舞っていますが、モップを通り抜けられず「紛争の解決」という言葉を使って独り言を言っており、さらには睡眠をとる能力があったらよかったのにと嘆き、クライオポッドで時間をやり過ごすことができる能力を羨ましいと主張しています。</p>
+
+            <hr>
+
+            <h2>メモ</h2>
+            <ul>
+                <li>「The Other Player」のクレジットシーケンスにて、バド・アスキンスのオフィスに<a href="grognak-the-barbarian.html" class="auto-link">グロッグナック・ザ・バーバリアン</a>のアクションフィギュア、コミック類、<a href="giddyup-buttercup.html" class="auto-link">ギディアップ・バターカップ</a>など、いくつかのオモチャが置かれています。また、彼のデスクにはローラーブレインのユーザーマニュアルも置かれています。</li>
+                <li>2024年7月18日（バージョン1.18.0）より、『Fallout Shelter』にて「ローラーブレイン」がペットとして追加されましたが、それがバドであると明示されているわけではありません。</li>
+            </ul>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                Vault-Tecの恐ろしいほど無能に見えて極めて有能な「上級副社長」。彼の提唱する『マネジメント至上主義』と『時間を武器にする』という考えは、狂気じみてはいますが、倫理観の欠如したFallout世界ではある意味で最強の戦術でした。<br>
+                シーズン1第8話で脳みそとルンバが融合した「ローラブレイン」として登場し、シュールさと恐怖を与えましたが、シーズン2でノームにあっけなく制圧、さらにモップのバケツの中で放置して死ぬという末路を辿りました。200年の孤独で少しボケていた描写もまた滑稽と哀愁を誘います。
+            </div>
+
+            <!-- Footer & Copyright -->
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutTV</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#VaultTec</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Overseer</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Robobrain</span>
+                </div>
+                <!-- 著作権表示 -->
                 <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Bud_Askins" target="_blank" rel="noopener">Bud Askins</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
-            <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
     <script>
-        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
-        async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}
-        function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='♥';}else{btn.classList.remove('liked');heart.textContent='♡';}countSpan.textContent=count;}
-        document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count);}const lightbox=document.getElementById('lightbox');const lightboxImg=document.getElementById('lightbox-img');document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',(e)=>{e.stopPropagation();lightboxImg.src=img.src;lightbox.classList.add('active');});});});
-        const _commentArticleId='note_bud_askins';const _commentArticleName='Bud Askins';const _commentArticleUrl='bud-askins.html';
-        const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;
-        function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)';}}
-        function relativeTime(s){const d=(Date.now()-new Date(s).getTime())/1000;if(d<60)return'たった今';if(d<3600)return Math.floor(d/60)+'分前';if(d<86400)return Math.floor(d/3600)+'時間前';if(d<86400*7)return Math.floor(d/86400)+'日前';return new Date(s).toLocaleDateString('ja-JP');}
-        function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-        function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return;}list.innerHTML=comments.map(c=>`<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode?`<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>`:''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');}
-        async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return;}renderComments(data||[]);}
-        async function submitComment(){const input=document.getElementById('comment-input');const content=input?input.value.trim():'';if(!content){showCommentMsg('コメントを入力してください。',false);return;}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return;}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。',false);return;}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return;}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments();}
-        function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent='';},3000);}
-        async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return;}await loadComments();}
-        document.addEventListener('keydown',(e)=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);loadComments();alert('管理者モードを終了しました。');return;}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。');}else{alert('パスワードが違います。');}}});
-        document.addEventListener('DOMContentLoaded',()=>{loadComments();});
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img, .lightbox-img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        
+        // Comment system
+        const _commentArticleId = 'bud_askins'; const _commentArticleName = 'Bud Askins'; const _commentArticleUrl = 'bud-askins.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
     <script src="article-common.js" defer></script>
 </body>

@@ -1,393 +1,295 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
     <title>Hank MacLean | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
     <meta property="og:title" content="Hank MacLean | Overseer Mohi's Terminal">
-    <meta property="og:description" content="ハンク・マクレーン — Vault 33の監督官。シェイディ・サンズ核破壊の首謀者にしてルーシーの父親。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/hank-maclean/img_01.png">
+    <meta property="og:description" content="ハンク・マクレーンのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/og-default.png">
     <meta property="og:url" content="https://www.fallout-jp.com/hank-maclean.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Hank MacLean | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="ハンク・マクレーン — Vault 33の監督官。シェイディ・サンズ核破壊の首謀者にしてルーシーの父親。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/hank-maclean/img_01.png">
+    <meta name="twitter:description" content="ハンク・マクレーンのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-default.png">
+
+    <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/terminal-style.css">
+
     <style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
-        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; }
-        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
-        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
-        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
-        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+        .content img, .infobox img, .gallery-item img {
+            cursor: zoom-in;
+        }
+
+        /* コメントセクション */
         .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
         .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
         .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
         .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
         .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
         .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
         .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
-        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover { background: var(--accent-color); color: var(--bg-color); }
         .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
         .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
         .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
         .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
         .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
         .comment-delete-btn:hover { opacity: 1; }
         .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; margin-bottom: 25px; }
-        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 8px; border-radius: 4px; }
-        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; }
-        .gallery-item .caption { font-size: 0.8em; color: #aaa; }
-        .notable-quote { border-left: 3px solid #888; background: rgba(255,255,255,0.03); padding: 10px 15px; margin: 10px 0; font-style: italic; color: #ccc; font-size: 0.95em; line-height: 1.6; border-radius: 0 4px 4px 0; }
-        .content-img { display: block; max-width: 300px; border: 1px solid #555; border-radius: 4px; margin: 15px 0; }
-        .content-img-caption { font-size: 0.8em; color: #aaa; margin-top: 5px; }
     </style>
 </head>
-<body data-article-category="人物" data-article-appearance="Fallout TVシリーズ, Fallout Shelter">
+<body data-article-category="人物" data-article-appearance="Fallout TV">
     <div class="container">
+        <!-- Sidebar -->
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Hank MacLean</h3>
-            <img src="images/note_extracted/hank-maclean/img_01.png" alt="ハンク・マクレーン（2296年）">
-            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
-            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
-            <div class="infobox-row"><span class="infobox-label">別名</span><span>ヤング・ヘンリー（グール談）</span></div>
-            <div class="infobox-row"><span class="infobox-label">状態</span><span>生存（ブラックボックス・チップによる記憶消去済み）</span></div>
-            <div class="infobox-row"><span class="infobox-label">年齢</span><span>254歳以上（暦年齢）</span></div>
-            <div class="infobox-row"><span class="infobox-label">家族</span><span>ローズ・マクレーン（妻・故人）<br>ステファニー・ハーパー（妻）<br><a href="lucy-maclean.html" class="auto-link">ルーシー・マクレーン</a>（娘）<br>ノーム・マクレーン（息子）</span></div>
-            <div class="infobox-row"><span class="infobox-label">所属</span><span>エンクレイヴ<br>Vault 33<br>Vault-Tec（Vault 31）</span></div>
-            <div class="infobox-row"><span class="infobox-label">役職</span><span>監督官<br>エグゼクティブ・アシスタント</span></div>
-            <div class="infobox-row"><span class="infobox-label">俳優</span><span>カイル・マクラクラン</span></div>
-            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout TVシリーズ<br>Fallout Shelter</span></div>
+            <img src="images/note_extracted/hank-maclean/img_0.png" alt="ハンク・マクレーン (Hank MacLean)">
+            <div class="infobox-row"><div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+            <div class="infobox-row"><span class="infobox-label">人種</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>男</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span style="text-align:right">Vault 33 / Vault 31 / Vault-Tec</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span style="text-align:right">監督官 / 父親</span></div>
+            <div class="infobox-row" style="margin-top:5px;"><span class="infobox-label">登場</span><span>Fallout TV</span></div>
         </aside>
+
+        <!-- Main Content -->
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_hank-maclean" onclick="toggleLike(this)">
+                <button class="like-button" data-article-id="hank_maclean" onclick="toggleLike(this)">
                     <span class="heart">♡</span> <span class="like-count">0</span>
                 </button>
             </div>
+
             <h1>Hank MacLean<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ハンク・マクレーン</span></h1>
-
-            <div class="notable-quote">
-                「もし世界の問題が、派閥同士の終わりのない争い──終わりのない戦争だとすれば、その解決策は何か？　派閥をなくすことだ。世界を"我々のもの"にすること。我々だけが形作る世界に。」
-            </div>
-
-            <h2>概要</h2>
-            <p>
-                <strong>ヘンリー "ハンク" マクレーン</strong>は、Fallout TVシリーズに登場する重要キャラクター。<br>
-                <a href="lucy-maclean.html" class="auto-link">ルーシー</a>とノーム・マクレーンの父親であり、ローズ・マクレーンの夫。<br>
-                2296年まで<strong>Vault 33の監督官</strong>を務めていたが、モルダバーの勢力によってVaultから拉致されたことがきっかけで、ルーシーがウエイストランドへ旅立つことになる。
-            </p>
-
-            <h2>経歴</h2>
-
-            <h3>起源</h3>
-            <p>
-                ハンクは大戦前に生まれ、Vault-Tec社でバーブ・ハワードのエグゼクティブ・アシスタントとしてキャリアを築いた。<br>
-                バーブの夫であるクーパー・ハワード（後のグール）の映画ファンであり、彼に会ってサインをもらうことをずっと夢見ていた。<br>
-                ステフ・ハーパーと出会い、ラスベガスで結婚。バッド・アスキンスのプログラム「バッズ・バッズ」にステフを紹介した。
-            </p>
-            <p>
-                ある時点で、ハンクは密かにエンクレイヴの工作員となった。<br>
-                エンクレイヴとの通信用Pip-Boyを形見箱に隠し持っていた。<br>
-                妻のステフはエンクレイヴとのつながりを知っていた。
-            </p>
-            <p>
-                大戦前夜、ハンクは「バッズ・バッズ」のメンバーとして、サンタモニカ地下のスリー・ヴォールツの一つである<strong>Vault 31</strong>で冷凍睡眠に入り、1世紀以上眠り続けた。
-            </p>
-
-            <h3>Vault 33での生活</h3>
-            <p>
-                2268年8月9日に冷凍睡眠から解放され、現世代のVault住人に溶け込むためVault 33に配属された。<br>
-                2271年に監督官に選出され、2296年までその役職を務めた。
-            </p>
-            <img src="images/note_extracted/hank-maclean/img_05.png" alt="ハンクの妻ローズ・マクレーン" class="content-img">
-            <p class="content-img-caption">ハンクの妻 — ローズ・マクレーン</p>
-            <p>
-                スリー・ヴォールツの真の目的——Vault 31の戦前住人が「スーパー管理者」の血統を作るために、Vault 32と33の人口を繁殖プールとする計画——に従い、ハンクはVault生まれのローズと出会い、結婚。<br>
-                娘ルーシーと息子ノーマンの2人の子供をもうけた。
-            </p>
-
-            <h3>地上への脱出</h3>
-            <p>
-                2277年頃、ローズはVault 33の水の供給が外部の誰かに流出していることに気づき、文明が地上で再興した証拠だと考えた。<br>
-                しかしハンクは彼女の疑問をはねつけ、調査を禁じた。<br>
-                やがてローズは子供2人を連れてVault 33を脱出。<br>
-                ハンクは子供たちを危険にさらす行為だと激怒し、ベティ・ピアソンを伴って追跡。<br>
-                ニュー・カリフォルニア・リパブリック（NCR）の首都シェイディ・サンズまで家族をたどりついた。
-            </p>
-            <p>
-                ローズはVaultへの帰還を拒否したが、ハンクは子供たちだけを連れ戻した。<br>
-                そしてNCRが文明を復興させようとしていることを知ったハンクは、<strong>2283年</strong>に再び地上へ出向き、ブレイン＝コンピューター・インターフェース・チップ（ブラックボックス・チップ）を使ってNCRのキャラバン商人を洗脳。<br>
-                その商人に核装置をシェイディ・サンズの中心部まで運ばせ、<strong>NCRの首都を核攻撃で壊滅させた</strong>。
-            </p>
-            <p>
-                ハンクは子供たちは助けたが、ローズは意図的に置き去りにした。<br>
-                ローズは爆発の残留放射線によりグール化したと推測される。<br>
-                ハンクは子供たちに「母さんは'77年の疫病で亡くなった」と嘘をついた。
-            </p>
-
-            <h3>監督官としての日々</h3>
-            <img src="images/note_extracted/hank-maclean/img_06.webp" alt="ルーシーとハンクの実験" class="content-img">
-            <p class="content-img-caption">ルーシーとハンクの科学実験</p>
-            <p>
-                Vault 33に戻ったハンクは監督官の職務を続け、子供たちを育てた。<br>
-                科学的スキルとコミュニケーション能力を活かし、Vault 33コミュニティの「接着剤」として機能する有能な指導者だった。<br>
-                映画鑑賞やガーデニング、家族読書会（『戦争と平和』や『西部戦線異状なし』）を通じて家族との時間を過ごした。
-            </p>
-
-            <h2>TVシリーズ シーズン1</h2>
-
-            <h3>「終わり」</h3>
-            <img src="images/note_extracted/hank-maclean/img_07.jpg" alt="ルーシーの結婚式でスピーチするハンク" class="content-img">
-            <p class="content-img-caption">ルーシーの結婚式でスピーチするハンク</p>
-            <p>
-                2296年、ハンクはVault 32との交易を手配し、ルーシーの結婚相手としてモンティを迎え入れた。<br>
-                しかしVault 32の住人たちはレイダーの一団であることが判明し、Vault 33を襲撃。<br>
-                ハンクはルーシーを守り、モンティを溺死させた。<br>
-                モルダバーから曖昧な選択を迫られたハンクは、ルーシーを別室に押し込み「お前は僕にとって世界そのものだ」と告げた後、鎮静剤で眠らされ拉致された。
-            </p>
-
-            <h3>「始まり」</h3>
-            <img src="images/note_extracted/hank-maclean/img_09.png" alt="モルダバーに囚われたハンク" class="content-img">
-            <p class="content-img-caption">モルダバーに囚われたハンク</p>
-            <p>
-                ルーシーがグリフィス天文台に到着し、巨大な檻に閉じ込められた父親を発見。<br>
-                モルダバーがハンクの罪を暴露し、ルーシーは冷融合のコードを渡すよう要求。<br>
-                ハンクは渋々応じモルダバーは冷融合を起動したが、B.O.S.が攻撃を開始した。
-            </p>
-            <img src="images/note_extracted/hank-maclean/img_10.png" alt="パワーアーマーで逃走するハンク" class="content-img">
-            <p class="content-img-caption">パワーアーマーでモハビへ逃走するハンク</p>
-            <p>
-                マキシマスに解放されたハンクは、T-60パワーアーマーを装着して逃走。<br>
-                ルーシーに銃を向けられるも撃たないと確信し、グールの銃撃をかわしてジェットで天文台から飛び去った。<br>
-                その後、モハビ・ウエイストランドの稜線から、遠くにニューベガスの街を見下ろしていた。
-            </p>
-
-            <h2>TVシリーズ シーズン2</h2>
-
-            <h3>「イノベーター」</h3>
-            <img src="images/note_extracted/hank-maclean/img_11.png" alt="身支度を整えるハンク" class="content-img">
-            <p class="content-img-caption">ラスベガスの管理Vaultで身支度を整えるハンク</p>
-            <p>
-                ハンクの長い旅はVault-Tecのシンボルが刻まれた地下施設に終着した。<br>
-                ターミナルへのアクセス権を確認し、コーヒーを一杯淹れてから身支度を整え、金メッキのPip-Boyを装着。<br>
-                「グローバル通信」室からハム無線で「サー」と呼ぶ相手に連絡を取り、ラスベガスに到着した旨とブラックボックス・チップの技術を完成させる野望を報告した。
-            </p>
-
-            <h3>「ゴールデンルール」</h3>
-            <p>
-                フラッシュバックで、2283年のシェイディ・サンズ核爆破の全容が描かれる。<br>
-                確認を受けた直後、ハンクはVault 33の自宅の洗面台で手を洗い、鏡の中の自分を見つめていた。<br>
-                娘に物語を読んでとせがまれ、日常に戻る。
-            </p>
-            <p>
-                現在のタイムラインでは、ハンクはブラックボックス・チップの改良実験を続けていた。<br>
-                冷凍保存されたマウスや戦前の顧客スティーヴン・ウィンスロップを被験者として使い、チップの信号強度の限界をテスト。<br>
-                被験者の爆死という失敗を繰り返しながらも「成功するまで何度でも試す」と冷淡に呟いた。
-            </p>
-
-            <h3>「ラングラー」</h3>
-            <p>
-                ハンクはラスベガス地下施設を出て、廃タコスタンドでフィスト（ロボット）とデート中の蛇油売りをバールで殴り、施設に連行。<br>
-                チップの信号強度テストを行い、蛇油売りの記憶を完全消去して意思のない奴隷に変えることに成功。<br>
-                「いよいよ始まりだ」と言い、計画の次の段階に着手した。
-            </p>
-            <p>
-                後にハンクは施設に冷凍保存された戦前の顧客——バーブ・ハワードとその娘ジェイニーを発見。<br>
-                ルーシーとグールが追跡を続けていることを知り、蛇油売りを代理人として送り込んだ。<br>
-                ハワード家の安全と引き換えにルーシーをVault 33に戻すよう要求。<br>
-                グールはハンクの要求に応じてルーシーを鎮静銃で撃ったが、ルーシーはパワーフィストでグールをアトミック・ラングラーの窓から叩き落とし、最終的にハンクが意識を失ったルーシーを直接回収した。
-            </p>
-
-            <h3>「もう一人のプレイヤー」</h3>
-            <p>
-                ラスベガスの管理Vault内で、ルーシーはハンクのブラックボックス・チップ工場を発見。<br>
-                ハンクは敵対する部族民、殺人者、シーザーのレギオンの兵士など、ウエイストランド中から人々を拉致・洗脳し、チップ生産の作業員に変えていた。
-            </p>
-            <p>
-                ハンクは「Vault風」に作られた模擬生活空間でルーシーとの食事を試みるが、『西部戦線異状なし』の読書会を再開しようとする。<br>
-                派閥主義こそが苦しみの根源であり、ボトルキャップを巡って戦う人々と第一次大戦の無意味な殺戮に違いはないと持論を展開。<br>
-                しかしルーシーはハサミで彼に迫り、シェイディ・サンズ破壊の罪でVault 33に連行すると宣言した。
-            </p>
-            <p>
-                エレベーター前でハンクは巧みにルーシーを操作し、暴力的なレギオン兵とレンジャー・ビフの衝突を演出。<br>
-                ルーシーはビフを救うために不本意ながらブラックボックス起動ボタンを押さざるを得なかった。<br>
-                洗脳されたレギオン兵が穏やかに変わる様子を見せ、ハンクは満足げに「クンバヤー」と呟いた。
-            </p>
-
-            <h3>「ハンドオフ」</h3>
-            <p>
-                ルーシーはハンクをメインフレーム（実際はダイアン・ウェルチの切断された頭部で、チップのプログラミングを提供していた）の部屋に連れて行くことに成功。<br>
-                ゴルフカートの運転を教えるハンクとのやり取りの後、ルーシーはハンクをオーブンの取っ手に手錠で固定してPip-Boyを奪取。<br>
-                メインフレームの破壊に向かった。
-            </p>
-
-            <h3>「ストリップ」</h3>
-            <p>
-                ルーシーがメインフレームを破壊した後、ハンクはオーブンから脱出し彼女と対峙。<br>
-                ブラックボックス・チップの小型化に成功していたことを明かし、ルーシー自身にチップを埋め込んで洗脳する意図を露わにした。<br>
-                巨大なレギオン兵にルーシーを押さえさせたが、グールが介入しレギオン兵を射殺。<br>
-                グールはルーシーにナックルダスターを渡し、ハンクの運命を彼女に委ねた。
-            </p>
-            <p>
-                その後、ルーシーとハンクはラッキー38からニューベガス・ストリップに出た。<br>
-                ハンクの首の後ろには傷跡——ルーシーが彼に小型チップを埋め込んだ証があった。<br>
-                ハンクは既に洗脳済みの工作員をウエイストランド各地に送り出していたことを明かし、大戦前に書かれた命令を実行させていると告げた。<br>
-                そしてルーシーに「愛している」と伝え、<strong>自らのチップを起動して全ての記憶を消去した</strong>。
-            </p>
-            <p>
-                空っぽの表情でカジノの階段に座るハンク。<br>
-                絶望したルーシーは泣きながらハンクを抱きしめたが、ハンクはもう彼女を認識していなかった。<br>
-                「顔の汚れを拭いてあげようか」と無邪気に言うハンクを残し、ルーシーは涙を流しながら歩み去った。
-            </p>
-
-            <h2>人物像</h2>
-            <img src="images/note_extracted/hank-maclean/img_12.png" alt="ルーシーを抱きしめるハンク" class="content-img">
-            <p class="content-img-caption">ルーシーを抱きしめるハンク</p>
-            <p>
-                ハンク・マクレーンは旧世界のアメリカ的価値観——家族、コミュニティ、人間の品位——の体現者を自負する。<br>
-                しかし真の忠誠はVault-Tecの理念に向けられており、自らの信条やVault-Tecの目的に合致しない人命や自由意志に対しては驚くほど冷淡。<br>
-                Vault-Tecのミッションがよりよい社会をもたらすと本気で信じている「会社の人間」である。
-            </p>
-            <p>
-                NCRとシーザーのレギオンを同等の悪と見なし、NCRの高税率や拡張主義とレギオンの奴隷制・磔刑を道義的に同列に置く。<br>
-                Vault-Tec以外のあらゆる派閥は排除すべき存在だと信じ、派閥主義こそがウエイストランドの苦しみの根源だと考えている。
-            </p>
-            <p>
-                同時にハンクは野心家であり、Vault-Tecのミッションを自分独自のやり方で実現しようとする個人主義的な傾向を持つ。<br>
-                ラスベガスの管理Vaultでの活動は、組織の指示ではなく彼個人の判断によるものだった。
-            </p>
-
-            <h2>名言</h2>
-            <div class="notable-quote">
-                「私は選択しなければならなかった。彼らの暴力的な世界と、我々の平和な世界。そして私は信じている、ルーシー。正しい選択をしたと分かっている。」
-            </div>
-            <div class="notable-quote">
-                「完璧は善の敵だよ、ルーシー。」
-            </div>
+            
+            <p>ハンク・マクレーン（Hank MacLean）は、Fallout TVシリーズの重要人物であり、主人公ルーシーの父親にして「Vault 33」の監督官（Overseer）です。<br>優しく理想的な父親として描かれる一方で、その過去にはVault-Tecの恐るべき秘密と、ウェイストランドに大きな影響を与えた暗い真実が隠されています。</p><hr><h2>背景</h2><p>かつては大戦前のVault-Tec社において、バド・アスキンスのアシスタント訓練プログラム「バズ・バッズ」の一員として働く若手社員でした。<br>大戦が近づく中、彼は「Vault 31」の冷凍睡眠ポッドに入り生存。2260年代に解凍され、Vault 33の監督官に就任しました。<br><br>その後、彼は妻であるローズ（ルーシーの母）が子供たちを連れてウェイストランドの都市「シェイディ・サンズ」へ逃亡した際、彼女を追跡しました。Vaultへと子供たちを連れ戻した後、彼は地上に復興しつつあった文明（NCRの首都であるシェイディ・サンズ）という「Vault-Tecの独占計画に対する脅威」を排除するため、核爆弾を投下して都市を完全に消滅させました。</p><h2>Fallout TVシリーズ</h2><p>2296年、平和なVault 33の監督官として娘のルーシーをVault 32の住人（偽装したモルデイヴァー一行）と結婚させようとしますが、襲撃に遭い、モルデイヴァーによって地上へと拉致されてしまいます。<br>物語の終盤、グリフィス天文台での対峙の中で彼の真の過去とシェイディ・サンズの悲劇が娘に暴露されます。<br>本性を現した彼は、T-60パワーアーマーを奪い取って現場から空を飛んで逃走。シーズン1のラストシーンにおいて、かつてのモハビ・ウェイストランドの宝石である「ニューベガス」へと辿り着く姿が描かれました。</p>
 
             <h2>ギャラリー</h2>
-            <h3>シーズン1</h3>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_13.jpg" alt="監督官・ハンクのPSA">
-                    <div class="caption">監督官・ハンクの公共広告</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_14.jpg" alt="ルーシーと父ハンク">
-                    <div class="caption">ルーシーと父ハンク</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_15.png" alt="Vault 33の模擬農場にいるハンク">
-                    <div class="caption">Vault 33の模擬農場にいるハンク</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_16.png" alt="ハンク、ルーシー、ノーム">
-                    <div class="caption">ハンク、ルーシー、ノーム</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_17.png" alt="ハンクに銃を向けるルーシー">
-                    <div class="caption">ハンクに銃を向けるルーシー</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_18.png" alt="Prime Videoキャラクター概要">
-                    <div class="caption">Prime Videoキャラクター概要</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_19.png" alt="Prime Videoプロフィール画像">
-                    <div class="caption">Prime Videoプロフィール画像</div>
-                </div>
-            </div>
+<div class="gallery">
+<img src="images/note_extracted/hank-maclean/img_1.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_2.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_3.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_4.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_5.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_6.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_7.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_8.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+<img src="images/note_extracted/hank-maclean/img_9.png" alt="ハンク・マクレーン" style="max-width:300px; display:inline-block; margin:5px;">
+</div>
+<div class="quote-box"><b>感想</b><br><br>ドラマにおける「最愛の父親」であり、「最大の巨悪」でもあるという非常にFalloutらしい複雑なキャラクターです。<br><br>Vault-Tecの管理計画を頑なに信奉する狂信的な一面と、本当に娘のルーシーを愛しているという父親としての善性が同居しており、彼の行動原理こそが本作の根幹にあるテーマ（文明の再建と破壊）を象徴しています。シーズン2でのニューベガスにおける彼の動向から目が離せません。</div>
 
-            <h3>シーズン2</h3>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_20.webp" alt="Pip-Boyを持つハンク（プロモ画像）">
-                    <div class="caption">Pip-Boyを持つハンク（プロモ画像）</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_21.jpg" alt="Primeプロモ画像">
-                    <div class="caption">Primeプロモ画像</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_22.png" alt="Prime Videoキャラクター概要（S2）">
-                    <div class="caption">Prime Videoキャラクター概要（S2）</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_23.jpg" alt="「もう一人のプレイヤー」より">
-                    <div class="caption">「もう一人のプレイヤー」より</div>
-                </div>
-            </div>
-
-            <h3>Fallout Shelter</h3>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_24.jpg" alt="Fallout Shelter プロモ画像">
-                    <div class="caption">Fallout Shelter プロモ画像</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_25.png" alt="Fallout Shelterでのハンク">
-                    <div class="caption">Fallout Shelterでのハンク</div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/note_extracted/hank-maclean/img_26.png" alt="パワーアーマー装着ハンク">
-                    <div class="caption">パワーアーマー装着ハンク（Fallout Shelter）</div>
-                </div>
-            </div>
-
-            <h2>登場作品</h2>
-            <p>
-                ハンク・マクレーンはFallout TVシリーズ（シーズン1: エピソード1、6、8 / シーズン2: エピソード1、2、5、6、7、8）に登場する。<br>
-                また2024年7月18日（バージョン1.18.0）以降、Fallout Shelterにも登場する。
-            </p>
-
-            <div class="quote-box">
-                <b>感想</b><br><br>
-                ハンク・マクレーンはFallout TVシリーズで最も複雑な悪役だと思う。<br>
-                「家族のため」「平和のため」と言いながら、その手段が核爆弾と洗脳チップという取り返しのつかないものばかり。<br>
-                しかもカイル・マクラクランの演技が絶妙で、ダイナーパパ然とした温かさと冷徹なVault-Tec信者の間をシームレスに行き来する。<br>
-                シーズン2での「クンバヤー」のシーンは特に秀逸。暴力的なレギオン兵をボタン一つで穏やかにして見せ、ルーシーに「ほら、こっちの方がいいだろう？」と迫る。<br>
-                議論ではなく状況で説得しようとする手口が、このキャラクターの恐ろしさを端的に表している。<br>
-                最後に自ら記憶を消して空っぽになるエンディングは、ルーシーにとって殺すより辛い結末だったはず。<br>
-            </div>
-
+            <!-- Footer & Copyright -->
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Hank_MacLean" target="_blank" rel="noopener">Hank MacLean</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-<p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
-<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutTV</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
+                </div>
+                <!-- 著作権表示 -->
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Hank_Maclean" target="_blank" rel="noopener">Hank MacLean</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
 
+            <!-- Comments Section -->
             <div class="comments-section" id="comments-section">
                 <h3 class="comments-title">&gt; COMMENTS</h3>
                 <div class="comment-form">
@@ -395,7 +297,7 @@
                     <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
@@ -403,12 +305,32 @@
             </div>
         </main>
     </div>
+
+    <!-- Lightbox Overlay -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
+
     <script>
-        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}btn.disabled=false}function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='\u2665'}else{btn.classList.remove('liked');heart.textContent='\u2661'}countSpan.textContent=count}document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count)}await loadComments()});document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();const overlay=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.src;overlay.classList.add('active')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
-        const _commentArticleId="note_hank-maclean";const _commentArticleName="ハンク・マクレーン";const _commentArticleUrl="hank-maclean.html";const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)'}}function relativeTime(isoStr){const diff=(Date.now()-new Date(isoStr).getTime())/1000;if(diff<60)return'たった今';if(diff<3600)return Math.floor(diff/60)+'分前';if(diff<86400)return Math.floor(diff/3600)+'時間前';if(diff<86400*7)return Math.floor(diff/86400)+'日前';return new Date(isoStr).toLocaleDateString('ja-JP')}function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return}list.innerHTML=comments.map(c=>'<div class="comment-item" data-id="'+c.id+'"><div class="comment-meta"><span class="comment-time">'+relativeTime(c.created_at)+'</span>'+(_isAdminMode?'<button class="comment-delete-btn" title="完全削除" onclick="deleteComment(\''+c.id+'\')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment(\''+c.id+'\')">&#128064;</button>':'')+'</div><div class="comment-body">'+escapeHtml(c.content)+'</div></div>').join('')}function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id, content, created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return}renderComments(data||[])}async function submitComment(){const input=document.getElementById('comment-input');const msg=document.getElementById('comment-msg');if(!input||!msg)return;const hp=document.getElementById('hp_field');if(hp&&hp.value!=='')return;const content=input.value.trim();if(!content){showCommentMsg('コメントを入力してください。',false);return}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return}const NG_WORDS=['広啄','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];const lc=content.toLowerCase();if(NG_WORDS.some(w=>lc.includes(w.toLowerCase()))){showCommentMsg('不適切な表現が含まれているため投稿できません。',false);return}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){const remain=Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000);showCommentMsg('あと'+remain+'秒後に投稿できます。',false);return}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments()}function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent=''},3000)}async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを完全に削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return}await loadComments()}async function hideComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを非表示にしますか？'))return;const{error}=await supabaseClient.rpc('hide_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('非表示失敗: '+error.message);return}await loadComments()}document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);renderComments([]);loadComments();alert('管理者モードを終了しました。');return}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。')}else{alert('パスワードが違います。')}}});
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        
+        // Comment system
+        const _commentArticleId = 'hank_maclean'; const _commentArticleName = 'Hank MacLean'; const _commentArticleUrl = 'hank-maclean.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
     <script src="article-common.js" defer></script>
 </body>

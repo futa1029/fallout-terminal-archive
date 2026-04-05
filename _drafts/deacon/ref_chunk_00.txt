@@ -1,0 +1,101 @@
+{{Infobox character
+|games       =FO4, FOWW, FOSO
+|name        ="Deacon"
+|displayname =Deacon<br />Drifter<br />Caravan Worker<br />Diamond City Security
+|shortname   =Deacon<br />Drifter<br />Caravan Worker<br />Diamond City Security
+|label       =FO4
+|image       =Fallout-4-deacon.jpg
+|image desc  =Appearance {{In|FO4}}
+|label2      =FOSO
+|image2      =FSO UI C ShopIcon deacon.png
+|image desc2 =Hero card in [[Fallout Shelter Online]]
+|race        =[[Human]]<!-- CK HumanRace -->
+|gender      =Male{{Ref|(Note)}}
+|age         =
+|affiliation =[[University Point Deathclaws]] (formerly)<br />[[The Railroad]]<br />[[Sole Survivor]] (optional)
+|role        =Spy<br />Field operative<br />[[Fallout 4 companions|Companion]]
+|location    =[[Diamond City]] ([[#Other interactions|disguised]])<br>[[Goodneighbor]] (disguised)<br>[[Bunker Hill]] (disguised)<hr>'''''Complete Road to Freedom:'''''<br>[[Old North Church]]<hr>'''''Complete Tradecraft:'''''<br>[[Railroad HQ]]
+|family      =[[Barbara]] - wife {{Icon|dead}}
+|quests      ='''[[Road to Freedom]]'''<br />'''[[Tradecraft]]'''<br />'''[[Precipice of War]]'''<br />'''[[Rockets' Red Glare]]'''<br />'''[[The Nuclear Option (Railroad)|The Nuclear Option]]'''<br />'''[[Tactical Thinking]]'''<br />'''[[End of the Line]]'''
+|level       =10→
+|derived     ={{Derived stats|hp=185}}
+|actor       =[[Ryan Alosio]]
+|dialogue    =[[CompanionDeacon.txt]]<br />[[CompanionDeacon.txt/COM]]<br />[[CIS ChatWithNPC Deacon.txt]] (talks with Railroad)
+|designer    =[[Ferret Baudoin]]
+|aggression  =Aggressive
+|confidence  =Foolhardy
+|assistance  =Helps Allies
+|hair color  =Default
+|eye color   ={{tooltip|Blue|MaleEyesHumanBlue}}
+|hairstyle   ={{tooltip|Boot camp|HairMale20}}
+|height      =1.00
+|special     ={{SPECIAL|5,10,7,9,8,10,8}}
+|factions    =CrimeRailroadHQ<br />RailroadFaction
+|combat style=csCompDeacon
+|facial hair ={{tooltip|Lazy morning|Beard01}}
+|CK race     =HumanRace
+|voice type  =NPCMDeacon
+|edid        =CompanionDeacon<br />DeaconAtDiamondCity (Diamond City security)
+|formid      ={{ID|00045ac9}}<br />{{ID|001a0413}} (Bunker Hill caravan worker)<br />{{ID|001a0422}} (Goodneighbor drifter)<br />{{ID|001a041e}} (Memory Den drifter)<br />{{ID|001a041a}} (Diamond City security)
+|refid       ={{ID|00050976}}<br />{{ID|001a0415}} (Bunker Hill caravan worker)<br />{{ID|001a0424}} (Goodneighbor drifter)<br />{{ID|001a041f}} (Memory Den drifter)<br />{{ID|001a041b}} (Diamond City security)
+}}
+
+{{Quotation|My job's mainly intel, so the more places I go, the better I'm doing it.|Deacon regarding his position in the Railroad.|sound=Deacon Dialogue JobIntel.ogg}}
+
+'''Deacon''' is a member of [[the Railroad]] and master of disguise, acting as a spy while performing field reconnaissance for [[Commonwealth android abolitionism|their war]] against [[the Institute]] in [[the Commonwealth]] in [[Timeline#2287|2287]]. He appears {{In|FO4}} as a possible [[Fallout 4 companions|companion]] of the [[Sole Survivor]].
+
+==Background==
+===Past===
+Little is known about Deacon's past prior to joining the Railroad; even his real name is unknown<ref name=PinkyTerminal /> and he admits he is frequently dishonest about himself to even his fellow Railroad members.<ref name=lies>Deacon: ''"I lied. I do that."''<br />([[CompanionDeacon.txt/COM#1727|Deacon's dialogue]])</ref> Among other things, he claims that he was among the first wave of liberated [[Generation 3 synth|Gen 3 synths]]; that he helped found the Railroad alongside [[John D.]] and [[Victoria Watts|Watts]]; and that he is the true leader of the organization, while [[Desdemona]] merely serves as a figurehead.<ref name=leader>The [[Sole Survivor]]: ''"You? You founded the Railroad?"''<br />Deacon: ''"Sure. Me and Johnny D and Watts. Hell, that was 60? 70 years ago? After awhile you lose count."''<br />The [[Sole Survivor]]: ''"Do you really think I'm going to fall for this?"''<br />Deacon: ''"Fall for what? Haven't you noticed when I say the word Desdemona does a 180."''<br />([[CompanionDeacon.txt/COM#373|Deacon's dialogue]])</ref> Privately, Desdemona suspects that Deacon and the equally mysterious John D., credited in the Railroad's records with pioneering many of the organization's clandestine practices, are one and the same.<ref>[[Railroad HQ terminal entries#2284|Railroad HQ terminal entries; PAM mainframe terminal, 2284]]</ref>
+
+The most detailed account of his past that Deacon shares holds that when he was younger, he was a member of the [[University Point Deathclaws|University Point (UP) Deathclaws]], a gang from the eponymous [[University Point]] that harassed people accused of being [[synth]]s. The gang's antagonism eventually escalated to the point of lynching a man suspected of being a Gen 3, an act that left Deacon shaken.<ref>Deacon: ''"I ran with a gang in University Point. We called ourselves the UP Deathclaws. For kicks we'd terrorize anyone that we thought was a synth. We kept egging each other on. Started with some property damage graduated to some beat downs. Then, inevitably, a lynching."''<br />([[CompanionDeacon.txt/COM#407|Deacon's dialogue]])</ref> Unwilling to continue down such a violent path, Deacon left the gang to settle down as a farmer, eventually marrying a woman named [[Barbara]]. They intended to start a family, but the UP Deathclaws reemerged and attacked the farm out of revenge for his desertion. During the attack, it was apparently uncovered, to both Deacon's and Barbara's surprise, that Barbara was actually a synth herself.<ref>Deacon: ''"We were trying for kids, ekeing{{Sic}} out a living. Then one day... It turns out my Barbara... She was a synth. She didn't know that. I certainly didn't. I don't know how the Deathclaws found out. But... there was blood."''<br />([[CompanionDeacon.txt/COM#420|Deacon's dialogue]])</ref> Barbara was killed in the attack, and Deacon says he slaughtered the gang in retaliation.<ref name=":424" />
+
+In the aftermath, he was contacted by the Railroad, who were unaware of his prior affiliation with the gang. Despite believing himself undeserving, Deacon swore himself to their cause as a way to make amends.<ref name=":424">Deacon: ''"I don't remember much clearly after that. I know I killed most of the Claws. I must've made a big impression. The Railroad contacted me, figuring I'd be sympathetic. Seeing that I lost my wife. And, well, what I did afterwards."''<br />([[CompanionDeacon.txt/COM#424|Deacon's dialogue]])</ref> Though there is no direct evidence that this story is any more honest than his other claims, Deacon insists when pressed that it is the truth for once.<ref name=truth>[[Sole Survivor]]: ''"Is this the part where you admit it's a lie? And try teaching some stupid lesson?"''<br />Deacon: ''"I deserve that. But no. That's the end of the story."''<br />([[CompanionDeacon.txt/COM#427|Deacon's dialogue]])</ref>
+
+===Spying for the Railroad===
+By [[Timeline#2273|2273]], the allegedly reformed gang member had taken the codename "Deacon," and in December of that year, survived an  Institute raid on the Railroad, with [[Pinky Thompson]] attributing the organization's survival to his escape plan.<ref>[[Railroad HQ terminal entries#2273 Dec|Railroad HQ terminal entries; PAM mainframe terminal, 2273 Dec]]</ref> When Pinky stepped down from leadership in 2277, Deacon aided [[Stanley Carrington|Doctor Carrington]] and Desdemona in revising the organization's policies to put a focus on operational security.<ref>[[Railroad HQ terminal entries#2277 Dec|Railroad HQ terminal entries; PAM mainframe terminal, 2277 Dec]]</ref> Deacon subsequently became one of Desdemona's top men, trusted with vital reconnaissance missions and keeping an eye on the broader Commonwealth.
+
+By [[Timeline#2287|2287]], most of Deacon's field work consists of gathering intel on persons of interest for the Railroad.<ref>Deacon: ''"In our little outfit, it's my job to know things."''<br />([[CompanionDeacon.txt#1645|Deacon's dialogue]])</ref> It was in his capacity as a spy that Deacon discovered and tracked the progress of the Sole Survivor after they left [[Vault 111]]. Through observing their many feats, up to taking out the Institute agent [[Conrad Kellogg|Kellogg]],<ref>Events of [[Reunions]] in ''Fallout 4''</ref> and then defeating a [[courser]],<ref>Events of [[Hunter/Hunted]] in ''Fallout 4''</ref> Deacon decided they could be a useful asset to the Railroad in the near future.<ref>[[Desdemona]]: ''"I need intel. Who is this?"''<br />Deacon: ''"Wow. News flash, boss, this [guy/lady] is kind of a big deal out there."''<br />([[CompanionDeacon.txt#1590|Deacon's dialogue]])</ref>
+
+==Interactions with the player character==
+===Interactions overview===
+{{Interactions FO4
+|essential       =Until [[Road to Freedom]]
+|temp companion  =yes
+|perm companion  =yes
+|perk            =[[Cloak & Dagger]]
+|wares           =
+|caps            =
+|max condition   =
+|heal            =
+|cure addiction  =
+|cure radiation  =
+|rent            =
+|items modified  =
+|quests started  =[[Tradecraft]]
+|quests involved =[[Road to Freedom]]<br/>Tradecraft<br/>[[Precipice of War]]<br/>[[Rockets' Red Glare]]<br/>[[The Nuclear Option (Railroad)]]<br>[[End of the Line]]/[[Tactical Thinking]]
+}}
+
+====Companion====
+* Deacon becomes available as a companion after first meeting the Railroad during [[Road to Freedom]], followed by completing [[Tradecraft]].
+* Deacon is one of only two human companions {{In|FO4}} who cannot be romanced, along with [[Old Longfellow]] from the [[Fallout 4 add-ons|add-on]] ''[[Far Harbor (add-on)|Far Harbor]]''.
+
+====Effects of player's actions====
+* If Road to Freedom is progressed before killing the Courser at [[Greenetech Genetics]] during [[Hunter Hunted (Fallout 4)|Hunter/Hunted]], when meeting Desdemona below the [[Old North Church]], Deacon will vouch for them to join the Railroad, citing many of the Sole Survivor's accomplishments.
+** The number of possible events that Deacon can comment on is varied, such as taking out [[Sinjin]],<ref>Deacon: ''"Does the Silver Shroud mean anything to you? I heard he took out Sinjin's Gang all by himself. Pretty remarkable, huh?"''<br />([[CompanionDeacon.txt#1576|Deacon's dialogue]])</ref> helping the [[Brotherhood of Steel (Fallout 4)|Brotherhood of Steel]] clear [[Fort Strong]],<ref>Deacon: ''"Dez, [he's/she's] the one that cleared Fort Strong for the Brotherhood. [He's/She's] one of their main knights or something."''<br />([[CompanionDeacon.txt#1586|Deacon's dialogue]])</ref> saving [[Amelia Stockton]] from the [[Compound]],<ref>Deacon: ''"You saved Amelia Stockton from those maniacs at Covenant. That earns you points in my book."''<br />([[CompanionDeacon.txt#1576|Deacon's dialogue]])</ref> helping the [[Commonwealth Minutemen]] retake [[the Castle]],<ref>Deacon: ''"You're the leader of the Minutemen. I hear you cleared out the Castle. Everyone's talking about that."''<br />([[CompanionDeacon.txt#1583|Deacon's dialogue]])</ref> rescuing [[Nick Valentine]] from the [[Triggermen]] in [[Vault 114]]<ref>Deacon: ''"Nick Valentine was in a jam, as usual. But word is you bailed him out. [And talked your way past Skinny Malone, too./Rubbed out Skinny Malone in the process, too.]"''<br />([[CompanionDeacon.txt#1576|Deacon's dialogue]])</ref> among other notable achievements.
+** If no other quests have been completed between leaving Vault 111 and entering the Old North Church and the player is low level, Deacon will only remark on their ability in figuring out the password to reach the [[Railroad HQ]].<ref>[[Desdemona]]: ''"I need intel. Who is this?"''<br />Deacon: ''"Well, ]he's/she's] got to be someone. [He/She] made it down here, right? Normal people just don't do that."''<br />The [[Sole Survivor]]: ''"What, normal people can't figure your decoder ring out front?"''<br />Deacon: ''"These days being able to even spell "Railroad" is cause for celebration."''<br />([[CompanionDeacon.txt#1612|Deacon's dialogue]] and [[Desdemona.txt|Desdemona's dialogue]])</ref>
+*** If the player is mid-level or above, Deacon will say the Sole Survivor has "left a trail of destruction in their wake."
+* Reaching maximum [[affinity]] with Deacon grants the [[Cloak & Dagger]] perk, which offers a permanent 40% increase to the duration of [[Stealth Boy (Fallout 4)|Stealth Boys]] and a permanent 20% damage bonus to [[Sneak (Fallout 4)|sneak attacks]].
+* Deacon will instantly become hostile if the player character kills a settler or anyone involved in the Railroad, unless he is an active companion. He will also become immediately hostile along with the rest of the Railroad if the player character travels to the HQ or in the vicinity of the Old North Church with [[X6-88]] as an active companion.
+* If completing The Nuclear Option with the Minutemen, and one does not issue the evacuation order to complete the optional objective, the Railroad and Deacon will turn hostile when the player character next speaks to Desdemona. They may still speak to other Railroad characters and complete quests for them.
+
+====Other interactions====
+* Prior to entering the Old North Church, one may come across Deacon working incognito in some major settlements. His appearance will be changed save for the only constant in his disguises being the sunglasses which he never removes.
+** Even after being recruited as a companion, if one doesn't equip any clothing to Deacon, his appearance will dynamically change while traveling with the player as they move between zones. Taking him to certain areas will cause him to put on specific disguises, such as disguising himself as a security guard when taken into the Diamond City market.
+** He is present for the argument between [[Piper Wright|Piper]] and [[McDonough|Mayor McDonough]] during [[Jewel of the Commonwealth]], disguised as a member of [[Diamond City security]].
+** He can be found wandering around [[Goodneighbor]] disguised as an unnamed [[Drifter (Fallout 4)|drifter]]. He will also join in Hancock's speech about the Institute when the event triggers. He can also be found in one of the pods in the [[Memory Den]].
+** He may be spotted in [[Bunker Hill]] disguised as a [[caravan worker]].
+** When spoken to in these disguised roles, Deacon will often have unique dialogue that differs from the dialogue used by the other unnamed NPC residents.
+** Deacon is marked as "essential" in all of the above disguises. If cheats or mods are used to kill him in any of the disguises before one reaches the Railroad, he will still appear alive during [[Road to Freedom]] and will act as if nothing happened. This is due to his disguised appearances being considered separate characters by the game files.
+* Deacon will not comment if taken to [[Nate]]/[[Nora]]'s corpse in [[Vault 111]].
+* He claims to have visited the [[Capital Wasteland]], mentioning how the Brotherhood of Steel "wasn't so bad" prior to [[Arthur Maxson]]'s ascension to elder,<ref>Deacon: ''"The Brotherhood... well, I met them on an op in Cap

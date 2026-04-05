@@ -1,9 +1,4 @@
-#Fallout76
-
-Robyn the Brute
+戦前の無法者「ロビン・ザ・ブルート」のロア記事をアップデートしました！🚓
+彼女の遺体はルート33の渋滞の中にあり、仲間のアーチーから愛と執着を向けられた「手紙」を持っています…。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/robyn-the-brute.html
-
-Burning Springs
-
----
-CC BY-SA

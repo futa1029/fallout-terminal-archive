@@ -1,9 +1,4 @@
-#Fallout76
-
-Leamon Price
+グール化の道を選択したスカベンジャー「レモン・プライス」のロア記事をアップデートしました！☢️
+不治の被曝と盗賊の襲撃に直面しながらも「生きがい」を諦めなかった彼の決断を描く、印象的なサイドストーリーです。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/leamon-price.html
-
-Ghoul Within
-
----
-CC BY-SA

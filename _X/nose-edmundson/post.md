@@ -1,16 +1,4 @@
-#Fallout76 #FalloutTV
-
-Dr. "Nose" Edmundson（ノーズ・エドモンドソン医師）
+額に二つの鼻を持つ医師「"ノーズ"・エドモンドソン」のロア記事を追加しました！👃
+Vault 4の変異した住人の一人です。少しグロテスクな外見ですが、彼がルーシーに優しく微笑むシーンは、かつて非人道的な実験の場だったVault 4が「変異者や生き残りを分け隔てなく受け入れる優しいコミュニティ」になった事を示す名シーンです。 
+#FalloutTV #フォールアウト
 https://www.fallout-jp.com/nose-edmundson.html
-
-概要ノーズ・エドモンドソン医師は、Vault 4の医師。ハリー・サットン・Jr.が演じている。経歴"ノーズ"というあだ名で呼ばれるVault 4の医師。Vault 4の医療を担当し、住人たちの健康管理を行う。
-
----
-
-💭 感想
-
-"ノーズ"というあだ名が気になるキャラクター。Vault 4の医療システムを垣間見せてくれます。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

@@ -1,9 +1,4 @@
-#Fallout76
-
-Pop
+アパラチアで生きる入植者「Pop」のロア記事をアップデートしました！👨‍🌾
+名もなきNPCたちの存在が、ウェイストランドの世界にリアリティを与えてくれていますね。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/pop.html
-
-Burning Springs
-
----
-CC BY-SA

@@ -1,23 +1,27 @@
-#Fallout76 #FalloutTV
+---
+title: バーブ・ハワード (Barb Howard)
+category: 人物
+appearance: Fallout TV
+date: 2026-04-02
+images:
+  - images/note_extracted/barb-howard/FOTV_Barb.png
+---
 
-Barb Howard（バーブ・ハワード）
-https://www.fallout-jp.com/barb-howard.html
+#Fallout #FalloutTV #人物 #バーブ・ハワード #Vault-Tec #ロア解説
 
-概要
-バーブ・ハワードは、クーパー・ハワードの妻であり、Vault-Tec社の幹部。フランシス・ターナーが演じている。
+👤【バーブ・ハワード (Barb Howard)】
 
-経歴
-バーブは大戦前のロサンゼルスでVault-Tec社の上級副社長として働いていた。夫のクーパーはVault-Tecの広報タレントとして協力していたが、バーブがVault-Tecの秘密プロジェクトに深く関与していることは知らなかった。
-バーブはVault-Tec、ロブコ、REPCONN、ウエストテック、ビッグMTの各企業が密かに手を組み、核戦争を「計画」していたという衝撃的な陰謀の中心人物の一人。Vaultは単なる避難所ではなく、大戦後の世界を支配するための社会実験装置であることを知っている。
+クーパー・ハワードの元妻であり、Vault-Tecコーポレーションの高位エグゼクティブ。
+家族を「良いVault」に入れるために企業内での出世を目指し、その過程でVault-Tecの恐るべき真実に触れていきます。
 
 ---
 
-💭 感想
+💬【感想】
 
-Vault-Tecの陰謀の中心にいる人物として、TVシリーズ最大の衝撃を生み出すキャラクター。
-核戦争が「偶発的な出来事」ではなく「計画されたもの」だったという暴露シーンは、Falloutのロアに対する最大の追加要素でしょう。
-クーパーとの夫婦関係を通じて、企業の倫理と個人の愛の相克が丁寧に描かれています。
+ドラマ中におけるVault-Tecの「顔」とも言える重要なキャラクター。シーズン1最終話の会議のシーンで「私たちが自ら爆弾を落とせばいい」という衝撃的な発言をした張本人です。
+冷酷なエグゼクティブのように見えますが、その根底には娘のジェイニーと夫のクーパーを生き延びさせるという強い思いがあります。結果的に良かれと思って取った行動が、すべてを狂わせていく悲劇の人物でもあります。シーズン2で彼女のその後がどう描かれるのか非常に注目されています。
 
 ---
 
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
+🔗 詳しくはWikiで！
+https://www.fallout-jp.com/lore.html

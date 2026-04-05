@@ -1,9 +1,4 @@
-#Fallout76
-
-Collector Murmrgh
+【没データ】幻のモールマイナー「コレクター・マームル」のロア記事を作成しました！⛏️
+マイルポスト・ゼロの実装時に追加予定だった、地域のアイテムガチャ箱「ミステリー・クレート」を提供する（予定だった）ベンダーです。あの調達人と同名な理由など謎が多い存在ですね。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/collector-murmrgh.html
-
-Milepost Zero
-
----
-CC BY-SA

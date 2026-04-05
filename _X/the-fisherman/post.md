@@ -1,9 +1,4 @@
-#Fallout76
-
-The Fisherman
+不気味な深海語を話し、相棒の精神を支配するクトゥルフ的な旅の商人「フィッシャーマン」のロア記事をアップデートしました！🎣🦑
+彼らはいったいどこから来て、何の目的でウェイストランドの水質に干渉しているのでしょうか…？
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/the-fisherman.html
-
-Gone Fission
-
----
-CC BY-SA

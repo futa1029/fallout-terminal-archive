@@ -1,35 +1,6 @@
 #Fallout76
 
-Game of Thrones
+ゲーム・オブ・スローンズ
 https://www.fallout-jp.com/game-of-thrones.html
 
-概要
-
----
-
-Fallout 76の無名ロケーション。
-サンシャイン・メドウズ工業農場の北、
-森林地帯の丘の上。
-
-2体のスケルトンがトイレに座ったまま対決。
-ヌカシャインとワインに酔った決闘の成れの果て。
-足元には10mmピストルと空のボトル。
-
----
-
-💭 元ネタ
-
----
-
-HBOのファンタジードラマ
-『ゲーム・オブ・スローンズ』のパロディ。
-
-「Thrones」（玉座）＝ トイレ（英語スラング）
-つまり「玉座のゲーム」→「トイレの対決」。
-Bethesdaのユーモアが光るイースターエッグ。
-
-ヌカシャインを飲むとここに飛ばされることも。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.
+アパラチアの森林地帯に隠された未発見ロケーション「ゲーム・オブ・スローンズ」をご紹介！ヌカシャインとワインが招いた悲劇の決闘の跡地。便器に座った2体のスケルトンが語る、ウェイストランドの奇妙な物語を探索しよう。ヌカシャインの恐ろしさを再認識する場所かも…？

@@ -1,16 +1,4 @@
-#Fallout76 #FalloutTV
-
-Cassandra Hawthorne（カサンドラ・ホーソーン）
+クーパー主演のVault 4のCMに出演していた女性科学者「カサンドラ・ホーソーン」のロア記事を公開しました！🧬
+表向きは「被ばくしたDNAの研究」を目的としていましたが、Vault 4で行われた非道な人体実験の裏側を知っていると、このCMがいかに恐ろしいかがわかりますね…。
+#FalloutTV #フォールアウト
 https://www.fallout-jp.com/cassandra-hawthorne.html
-
-概要カサンドラ・ホーソーンは、Vault 4の住人。アンジェル・デサイが演じている。
-
----
-
-💭 感想
-
-Vault 4のホーソーン家の一員として、このVaultの背景に深みを加えるキャラクターです。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

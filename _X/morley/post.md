@@ -1,9 +1,21 @@
-#Fallout76
+#Fallout76 #Fallout
 
-Morley
+モーリー（Morley）
 https://www.fallout-jp.com/morley.html
 
-Expeditions: The Pitt
+概要
+
+ピット（The Pitt）のトレンチにある隠れ家で発見できる犬（モングレル）です。
+かつてはジャクソン・リードの飼い犬でしたが、ある時ジャクソンが地面の穴に滑り落ちてしまい、地表に戻れなくなったことで離れ離れになってしまいました。
+ジャクソンの知らぬ間にモーリーは生き延びており、現在はトレンチの滝の裏にある隠れ家でユニオンのメンバーたちと一緒に静かに暮らしています。
 
 ---
-CC BY-SA
+
+💭 感想
+
+ジャクソン・リードの遺体のそばには、愛犬を心配しながら息絶えた悲痛なメモが残されています。そのため、プレイヤーは「この犬もピットの過酷な環境で死んでしまったのではないか」という不安に駆られますが、実際に滝の裏の隠れ家を探索すると無事に生きているモーリーの姿を発見でき、救済を感じられるという仕掛けになっています。
+荒廃したピットの探索において、数少ない心温まるエピソードの1つですね。
+
+---
+
+This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

@@ -1,0 +1,467 @@
+
+{{For|other terminals in Riverside Manor|Riverside Manor terminal entries}}
+
+'''Cryptos terminal entries''' are a series of [[Fallout 76 terminal entries|entries]] found on [[Cryptos]] in [[Riverside Manor]] in ''[[Fallout 76]]''.
+
+{{TOC}}
+
+''Without [[Order of Mysteries login]] in inventory:''
+{{Transcript|text=
+=-------------------------------=
+<nowiki>|</nowiki>&#160;&#160;&#160;&#160;CRYPTOS Mainframe System&#160;&#160;&#160;<nowiki>|</nowiki>
+=-------------------------------=
+
+Welcome to Cryptos.
+Please register to create an account.
+}}
+==New Initiate Registration==
+{{Transcript|text=
+NEW INITIATE REGISTRATION
+Beginning registration. Welcome, $UNKNOWN_USER.
+Creating new user acoount... done.
+Dispensing login credentials... done.
+Dispensing [[Order of Mysteries - rank: Initiate|Initiate Welcome Holotape]]... done.
+Registration complete.
+Welcome to the Order of Mysteries.
+
+INITIATE INSTRUCTIONS
+1. Listen to the Headmistress' welcome.
+2. When finished, log in to your new account.
+3. If you do not have a mentor, one will be assigned to you. Use the Database Queries option to search for an available mentor.
+4. If you do not have a Veil of Secrets, report to the Production Facility.
+}}
+
+''With [[Order of Mysteries login]] in inventory:''
+{{Transcript|text=
+=--------------------------------=
+<nowiki>|</nowiki>&#160;&#160;&#160;&#160;CRYPTOS Mainframe System&#160;&#160;&#160;&#160;<nowiki>|</nowiki>
+=--------------------------------=
+
+Welcome to Cryptos.
+Please log in to access your account:
+}}
+==Log In: $UNKNOWN_USER==
+{{Transcript|text=
+=--------------------------------=
+<nowiki>|</nowiki>&#160;&#160;&#160;&#160;CRYPTOS Mainframe System&#160;&#160;&#160;&#160;<nowiki>|</nowiki>
+=--------------------------------=
+<nowiki>|</nowiki> USER: $UNKNOWN_USER&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<nowiki>|</nowiki>
+<nowiki>=--------------------------------=</nowiki>
+}}
+
+''During the quest [[Initiate of Mysteries]]:''
+{{Transcript|text=
+Congratulations, $UNKNOWN_USER.
+
+You have now earned the title of NOVICE OF MYSTERIES. As a Novice, you will continue to train with your mentor and the Mistress of Novices as you work to master the skills, tactics, and combat techniques of the Mistress of Mystery.
+
+Authorizing the Fabricator to dispense
+[1] [[Garb of Mysteries]]... done.
+
+Dispensing [[Order of Mysteries - Rank: Novice|Novice-Rank holotape]]... done.
+Please listen to the Headmistress' message.
+}}
+
+''During the quest [[Novice of Mysteries]]:''
+{{Transcript|text=
+Congratulations, $UNKNOWN_USER.
+
+You have now earned the title of SEEKER OF MYSTERIES. As a Seeker, you will work to perfect your skills as you prepare for your final test and full acceptance into the Order.
+
+Dispensing [[Order of Mysteries - Rank: Seeker|Seeker-Rank holotape]]... done.
+Please listen to the Headmistress' message.
+}}
+
+===Mission Board===
+''During the quest [[Initiate of Mysteries]]:''
+{{Transcript|text=
+MISSION BOARD
+
+As a safety precaution, Initiates are not permitted to accept missions from this system. When your mentor believes that you are ready to operate independently, your promotion to Novice will unlock this board.
+
+Initiates in need of a mentor should request one by using the appropriate Database Query.
+}}
+
+''During the quest [[Novice of Mysteries]]:''
+{{Transcript|text=
+MISSION BOARD
+Welcome, Novice.
+
+You may select from the following missions:
+}}
+
+====Novice | The Phantom Device====
+{{Transcript|text=
+Accessing mission: The Blade of Bastet...done.
+Registering $UNKNOWN_USER for mission...done.
+Dispensing [[Order of Mysteries - The Blade of Bastet|mission briefing]]...done.
+
+Please review the mission briefing for your instructions.
+}}
+
+====Novice | The Blade of Bastet====
+{{Transcript|text=
+Accessing mission: The Phantom Device...done.
+Registering $UNKNOWN_USER for mission...done.
+Dispensing [[Order of Mysteries - The Phantom Device|mission briefing]]...done.
+
+Please review the mission briefing for your instructions.
+}}
+
+====Novice | The Voice of Set====
+{{Transcript|text=
+Accessing mission: The Voice of Set...done.
+Registering $UNKNOWN_USER for mission...done.
+Dispensing [[Order of Mysteries - The Voice of Set|mission briefing]]...done.
+
+Please review the mission briefing for your instructions.
+}}
+
+''During the quest [[Seeker of Mysteries]]:''
+====Mistress | Pleasant Valley Infiltration====
+{{Transcript|text=
+Accessing mission: [[Pleasant Valley Ski Resort|Pleasant Valley]] Infiltration...done.
+Registering $UNKNOWN_USER for mission...done.
+Dispensing [[Order of Mysteries - Pleasant Valley|mission briefing]]...done.
+
+Please review the mission briefing for your instructions.
+}}
+
+===Mission Reports===
+{{Transcript|text=
+MISSION REPORTS
+
+The automated mission reporting system is still in development. For instructions on whom to report your missions to, please consult the Handbook.
+}}
+
+===Database Queries===
+{{Transcript|text=
+DATABASE QUERIES
+
+Preset database queries are available based on your rank and active missions, if any. For manual queries, or for additional assistance with this system, please speak with [[Frederick Rivers]].
+
+The following preset queries are available:
+}}
+
+''During the quest [[Initiate of Mysteries]]:''
+====Initiate | Mentor Assignment====
+{{Transcript|text=
+DATABASE QUERY: INITIATE <nowiki>|</nowiki> MENTOR ASSIGNMENT
+
+Accessing database... done.
+Running preset query 'Mentor Assignment'... done.
+Accessing user $UNKNOWN_USER's personality profile... failed.
+Attempting automated personality match... failed.
+Failsafe: Attempting random match... done.
+Query complete.
+
+Mentor: Mistress Natasha Hunt
+Status: ON MISSION
+Location: [[Lewisburg]]
+Notes: Your mentor is currently on a mission. You may wait for her return, or meet her in the field and assist her in the completion of her mission.
+}}
+
+''During the quest [[Novice of Mysteries]]:''
+====Novice | Phantom Device Components====
+{{Transcript|text=
+DATABASE QUERY: NOVICE <nowiki>|</nowiki> PHANTOM DEVICE COMPONENTS
+
+Accessing database... done.
+Running preset query 'Phantom Device Components'...
+
+Searching database for [Stealth Boy]... done.
+Mission log #822 indicates that a [Stealth Boy] may be in the possession of the raiders at [North Cutthroat Camp].
+
+Searching database for [HalluciGen Gas]... done.
+Pre-war sales records indicate that [HalluciGen Gas] may be found at [Garrahan Mining HQ].
+
+Please acquire the components and return them to the production facility for processing.
+}}
+
+====Novice | Historic Swords====
+{{Transcript|text=
+DATABASE QUERY: NOVICE <nowiki>|</nowiki> HISTORIC SWORDS
+
+Accessing database... done.
+Running preset query 'Historic Sword'...
+
+Searching database for [Historic Sword]... done.
+Pre-war archives indicates that a [Historic Sword] may be found in [Whitespring Presidential Cottage].
+
+Please acquire the sword, complete the swing analysis process, and return it to the production facility for processing.
+}}
+
+====Novice | Weapons Research====
+{{Transcript|text=
+DATABASE QUERY: NOVICE <nowiki>|</nowiki> WEAPONS RESEARCH
+
+Accessing database... done.
+Running preset query 'Weapons Research'...
+
+Searching database for [Weapons Research]... done.
+Pre-war military records indicate that an [EMP Weapons Research Program] was being conducted at [Sugar Grove].
+
+Please acquire the research data and return it to the production facility for processing.
+}}
+
+===The Order of Mysteries Handbook===
+{{Transcript|text=
+THE ORDER OF MYSTERIES HANDBOOK
+Please select an entry to view:
+}}
+
+====From Headmistress Rivers====
+{{Transcript|text=
+THE ORDER OF MYSTERIES
+FROM HEADMISTRESS [[Shannon Rivers|RIVERS]]
+
+I never thought I would be a part of something like this. All my life, I was just an actress, playing the part of a hero on the radio. But everything changed after the [[Great War|war]]. There were so many people in need, you girls most of all. Frederick and I were glad to adopt you, to share what we could. Food, shelter, and training - my old acting turned survival skills.
+
+But this world needs more than survival. It needs heroes. It needs you. And these past few years, you have shown me that, together, as sisters, you can accomplish things that even the Mistress of Mystery could never have imagined.
+}}
+
+====Mission Statement====
+{{Transcript|text=
+THE ORDER OF MYSTERIES
+MISSION STATEMENT
+
+The Order of Mysteries is a sisterhood dedicated to upholding the virtues exemplified by the Mistress of Mystery: courage, cunning, and compassion. We fight in the shadows to protect ourselves, one another, and the people of [[Appalachia]] from any threat to their lives or liberty.
+}}
+
+====The Mistress of Mystery====
+{{Transcript|text=
+THE ORDER OF MYSTERIES
+THE MISTRESS OF MYSTERY
+
+The Mistress of Mystery is one of the longest-running and most popular superheroes in the [[Hubris Comics Publishing|Hubris Comics]] canon. First appearing in Hubris Heroes! #8 (2039), the Mistress of Mystery has been featured in hundreds of comic books, radio broadcasts, and other properties and licenses, including a weekly newspaper strip (2052-57), five novels, and several lines of action figures. In August 2077, it was announced that the Mistress would also have a major role in the upcoming live-action [[Silver Shroud]] telivision{{sic}} show, her first appearance on screen.
+
+Born Claudia Martin, the daughter of American archaelogists{{sic}}, her young life was torn apart when her parents mysteriously vanished whiel{{sic}} investigating the Lost Pyramid of Amun-Re. Orphaned and alone, she was forced to survive by her wits on the streets of [[Cairo]] until she was adopted by a wealthy heiress. On the eighteenth birthday, she came into possession of her parents' effects and set out to learn the truth behind their disappearance, delving into a web of ancient legends, occult societies, and dark intrigue.
+
+The Mistress of Mystery is a confident, quick-thinking, and capable hero. Instead of superhuman or mystical powers, she relies on her skill, training, cunning, stealth and subterfuge to overcome her foes. Although she often operates alone, she has appeared alongside many of Hubris Comics' other heroes over the course of her career, most notably the Silver Shroud (her longtime friend and former love interest), [[the Inspector]] (her partner in the Mysterium! mystery serials), and, most recently, the rest of Hubris' greatest heroes on the team of the [[Unstoppables (Fallout 76)|Unstoppables]]!
+
+The Mistress of Mystery has been drawn by over thirty artists, notably Tara Winters, Kelly Donovan and Lucille Perkins. The iconic radio voice of the Mistress of Mystery is Shannon Rivers.
+}}
+
+====The Regalia of Mystery====
+{{Transcript|text=
+THE ORDER OF MYSTERIES
+THE REGALIA OF MYSTERY
+
+In addition to her skills and training, the Mistress of Mystery drew upon an arsenal of powerful tools to aid her in her work.
+- The VEIL OF SECRETS shields the Mistress' face, cloaks her identity, and hones her senses. It also protects her from a range of threats, including gas, smoke, and fumes.
+- The GARB OF MYSTERIES is the Mistress' formal gown. Though it took a variety of styles over the years, the Grab was carefully crafted to provide her with unhindered movement, enhancing her stealth and speed.
+- The PHANTOM DEVICE is a tool for infiltration, creating a cloud of disorienting smoke to conceal the Mistress while she makes a daring escape.
+- The BLADE OF BASTET is the Mistress' legendary sword, a weapon of heroes handed down through the ages. Capable of piercing any armor or barrier, the Blade is lighter, faster, and stronger than any less weapon.
+- The VOICE OF SET is the iconic [[.44 pistol (Fallout 76)|.44 Revolver]] wielded by the Mistress. Its array of powers included the ability to fire bullets that exploded into noxious smoke, disable electronics, or disrupt magical fields.
+- The EYE OF RA was the Mistress' greatest relic, a jeweled brooch that allowed her to draw upon the full extent of her abilities in the most dire of trials.
+}}
+
+====Ranks and Promotions====
+{{Transcript|text=
+THE ORDER OF MYSTERIES
+RANKS and PROMOTIONS
+
+The Order of Mysteries has the following ranks:
+- INITIATES are the newest members of the Order. Initiates work full-time with their mentor to learn basic skills and mission tactics. When they have proven that they are capable of handling missions independently, their mentor will approve their promotion to Novice.
+- NOVICES continue to train under their mentor and the Mistress of Novices, working to master the tools and techniques of the Mistress of Mystery. In order to advance to the rank of Seeker, they must complete a series of capstone missions to earn the elements of the Mistress' regalia.
+- SEEKERS study advanced combat tactics as they prepare for their final test: a mission worthy of the true Mistress of Mystery. After completing their mission, they may apply to the Headmistress for promotion.
+- A MISTRESS OF MYSTERY is a full member of the Order, a master of stealth, infiltration, combat, and tactics, capable of handling herself in any situation.
+- The MISTRESS OF NOVICES is the second in command of the Order, responsible for organizing and assigning missions and coordinating training programs.
+- The HEADMISTRESS is the leader of the Order of Mystery. The first among equals, she inspires and guides the Order in achieving its goals.
+}}
+
+====Missions and Mission Reports====
+{{Transcript|text=
+THE ORDER OF MYSTERIES
+MISSIONS and MISSION REPORTS
+
+Members of the Order of Mysteries undertake missions commensurate with their skills and experience. Missions may be assigned by a more senior member the order, or accepted from the Cryptos Mission Board.
+
+INITIATES report to their mentor, who will review and assess their progress, and approve their promotion to the rank of Novice.
+
+NOVICES may accept missions from the Mission Board. Except for the automated missions associated with their regalia, they report to their mentor and the Mistress of Novices.
+
+SEEKERS and MISTRESSES report directly to the Headmistress, or to the Mistress of Novices if the Headmistress is unavailable.
+}}
+
+====Membership Roster====
+{{Transcript|text=
+THE ORDER OF MYSTERIES
+MEMBERSHIP ROSTER
+Last Updated 6/1/86
+
+HEADMISTRESS
+Shannon Rivers
+
+MISTRESS OF NOVICES
+[[Eve Devoir]]
+
+MISTRESSES OF MYSTERY
+Catherine Adams
+Sara Burnett
+Tiana Chavrel
+Kaylee Evams
+Lucia Haynes
+Natasha Hunt
+Evelyn Jackson
+Allison Long
+Vanessa Richards
+Olivia Rivers
+Alana Roderick
+Amy Thomas
+Janet Tyler
+[[Irena Zacar]]
+
+SEEKERS
+Isabelle Cole
+Madeleine Girard
+Laura Harding
+Kiana Howell
+Briana Lyon
+Rachel West
+
+NOVICES
+Cora Belmont
+Sydney Ellis
+Johana Johnson
+Anna Perez
+Brigette Reeves
+Sonia Ryland
+Violet Thomas
+
+INITIATES
+Alexis Belmont
+Zoe Evans
+Justine Silva
+
+TECHNICAL SPECIALIST
+Frederick Rivers
+}}
+
+====About Headmistress Rivers====
+{{Transcript|text=
+THE ORDER OF MYSERIES
+ABOUT HEADMISTRESS RIVERS
+(Shaw & Associates Bio, 2075)
+
+Shannon Rivers (2024 - ) was born in Beckley, West Virginia.
+
+After an early career in regional and touring theater, Ms. Rivers made her radio debut in 2047's "Invaders from Planet Zed!". She quickly earned a reputation as gifted{{sic}} and versatile actress, starring in numerous radio dramas and serials. In 2051, she began her long-running role as the radio voice of the Mistress of Mystery.
+
+Ms. Rivers is well known for her advocacy of charitable causes, especially issues affecting the economically depressed residents of Appalachia.
+
+In 2053, she married [[Frederick Rivers]], noted inventor and architect. The{{sic}} have a daughter, [[Olivia Rivers|Olivia]].
+}}
+
+===About CRYPTOS===
+{{Transcript|text=
+ABOUT CRYPTOS
+
+Curious about our little system here?
+
+CRYPTOS is a genuine [[RobCo Industries|RobCo]] mainframe, custom-built for some top-secret [[Defense Intelligence Agency|DIA]] project before the war. The government pulled the contract, and one of my buddies asked if I wanted to take it off their hands. I needed something to run Shannon's new training room (your Hall of Trials), and it was a steal, so I took him up on it.
+
+If you have any questions, don't be shy, I'm always happy to talk tech. -Frederick
+}}
+
+==Log In: Mistress Natasha Hunt==
+{{Transcript|text=
+<nowiki/>=--------------------------------=
+<nowiki>|    CRYPTOS Mainframe System    |</nowiki>
+<nowiki/>=--------------------------------=
+<nowiki>| USER: Natasha Hunt             |</nowiki>
+<nowiki/>=--------------------------------=
+}}
+
+===Mission Board===
+{{Transcript|text=
+MISSION BOARD
+Welcome, Mistress.
+
+You may select from the following missions:
+- NONE -
+}}
+
+===[[#Mission Reports|Mission Reports]]===
+===[[#Database Queries|Database Queries]]===
+===Administrative Actions===
+{{Transcript|text=
+ADMINISTRATIVE ACTIONS
+
+The following actions are available:
+}}
+
+====Register as a Mentor====
+{{Transcript|text=
+REGISTER AS A MENTOR
+
+Please select an unassigned Initiate to mentor:
+- NONE -
+}}
+
+====Authorize Promotion====
+{{Transcript|text=
+AUTHORIZE PROMOTION
+
+Select the promotion you wish to authorize:
+}}
+
+=====Authorize Access - Novice of Mysteries=====
+{{Transcript|text=
+AUTHORIZE PROMOTION - NOVICE OF MYSTERIES
+
+Select the user you wish to promote:
+}}
+
+======Alexis Belmot======
+{{Transcript|text=
+Accessing user database... done.
+Granting promotion... done.
+
+Please ask the selected user to log in and claim their promotion.
+}}
+
+======Zoe Evans======
+{{Transcript|text=
+Accessing user database... done.
+Granting promotion... done.
+
+Please ask the selected user to log in and claim their promotion.
+}}
+
+======Justine Silva======
+{{Transcript|text=
+Accessing user database... done.
+Granting promotion... done.
+
+Please ask the selected user to log in and claim their promotion.
+}}
+
+======$UNKNOWN_USER======
+{{Transcript|text=
+Accessing user database... done.
+Granting promotion... done.
+
+Please ask the selected user to log in and claim their promotion.
+}}
+
+====Authorize Access====
+{{Transcript|text=
+<nowiki/>=--------------------------------=
+<nowiki>|    CRYPTOS Mainframe System    |</nowiki>
+<nowiki/>=--------------------------------=
+<nowiki>| USER: Natasha Hunt             |</nowiki>
+<nowiki/>=--------------------------------=
+AUTHORIZE ACCESS
+
+Select the type of access you wish to authorize:
+}}
+=====Authorize Access - Headmistress' Office=====
+
+===[[#The Order of Mysteries Handbook|The Order of Mysteries Handbook]]===
+===[[#About CRYPTOS|About CRYPTOS]]===
+
+[[Category:Fallout 76 terminal entries]]
+
+[[fr:Entrées de terminal de Cryptos]]
+[[ru:Особняк Риверсайд — записи в терминалах]]

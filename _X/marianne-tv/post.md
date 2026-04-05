@@ -1,16 +1,4 @@
-#Fallout76 #FalloutTV
-
-Marianne（マリアン）
+ドラマ版Falloutに登場したVault 33の居住者「マリアン」のロア記事をアップデートしました！📺
+閉鎖された平和なVaultコミュニティの空気感を彩る、背景キャラクターの一人です。
+#FalloutTV #フォールアウト
 https://www.fallout-jp.com/marianne-tv.html
-
-概要マリアンは、Vault 33の住人。シーラ・ヘッドが演じている。
-
----
-
-💭 感想
-
-Vault 33コミュニティの一員として物語に彩りを添えるキャラクターです。
-
----
-
-This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

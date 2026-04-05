@@ -1,9 +1,4 @@
-#Fallout76
-
-Darwin the Devil
+ルート33に倒れているギャング団の1人「ダーウィン・ザ・デビル」のロア記事を作成しました！😈
+今はなき「レモンボーイ・ギャング」に所属し、かつてはアパラチアでアウトローとして活動していた彼の記録についてまとめました。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/darwin-the-devil.html
-
-Burning Springs
-
----
-CC BY-SA

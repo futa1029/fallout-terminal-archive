@@ -1,64 +1,249 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8"><title>Betty Pearson | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/betty-pearson.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Betty Pearson | Overseer Mohi's Terminal"><meta property="og:description" content="ベティ・ピアソン — Fallout TVシリーズ"><meta property="og:url" content="https://www.fallout-jp.com/betty-pearson.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-<style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
-        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
-        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
-        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
-        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
-        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
-        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
-        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
-        .loot-list { list-style: none; padding: 0; }
-        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
-        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
-        .holotape-box { background: var(--panel-bg); border: 2px solid #ff9800; border-radius: 5px; padding: 20px; margin: 30px 0; }
-        .holotape-box h3 { color: #ff9800; border-bottom: 1px solid #ff9800; margin-top: 0; font-size: 1.1em; }
-        .holotape-box .holotape-icon::before { content: '🎙 '; }
-        .holotape-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; font-style: italic; }
-        .note-box { background: var(--panel-bg); border: 2px solid #8bc34a; border-radius: 5px; padding: 20px; margin: 30px 0; }
-        .note-box h3 { color: #8bc34a; border-bottom: 1px solid #8bc34a; margin-top: 0; font-size: 1.1em; }
-        .note-box .note-icon::before { content: '📝 '; }
-        .note-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; }
-        .note-box .transcript .date-entry { color: var(--accent-color); font-weight: bold; margin-top: 12px; display: block; }
-        .variant-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85em; }
-        .variant-table th { background: var(--header-bg); color: var(--accent-color); padding: 8px; text-align: left; border: 1px solid #444; font-family: 'Share Tech Mono', monospace; }
-        .variant-table td { padding: 8px; border: 1px solid #333; }
-        .variant-table tr:nth-child(even) { background: rgba(255,255,255,0.03); }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Betty Pearson | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Betty Pearson | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ベティ・ピアソンのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/og-default.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/betty-pearson.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Betty Pearson | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ベティ・ピアソンのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-default.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-top: 0;
+            line-height: 1.4;
+        }
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+        }
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+        .infobox-label {
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+        .holotape-box {
+            border: 1px solid #ffcc00;
+            background: rgba(255, 204, 0, 0.05);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            position: relative;
+        }
+        .holotape-box::before {
+            content: "HOLOTAPE AUDIO / TRANSCRIPT";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background: var(--bg-color);
+            color: #ffcc00;
+            padding: 0 10px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.85em;
+        }
+        .content a {
+            color: var(--accent-color);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        .content a:hover {
+            border-bottom: 1px solid var(--accent-color);
+        }
+        .auto-link {
+            color: var(--accent-color) !important;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent-color) !important;
+            transition: all 0.2s;
+            padding: 0 2px;
+        }
+        .auto-link:hover {
+            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
+            border-bottom: 1px solid var(--accent-color) !important;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+        .back-link:hover {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .like-button:hover {
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            .infobox {
+                grid-row: 1;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .content {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.6em;
+            }
+            .action-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+        .content img, .infobox img, .gallery-item img {
+            cursor: zoom-in;
+        }
+
+        /* コメントセクション */
         .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
         .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
-        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
-        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
-        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover { background: var(--accent-color); color: var(--bg-color); }
         .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
         .comments-list { display: flex; flex-direction: column; gap: 10px; }
@@ -69,53 +254,145 @@
         .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
         .comment-delete-btn:hover { opacity: 1; }
         .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .script-notes { background: var(--panel-bg); border: 1px solid #555; border-radius: 5px; padding: 20px; margin: 20px 0; }
-        .script-notes summary { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1em; }
-        .script-notes .note-category { color: var(--accent-color); font-weight: bold; margin-top: 15px; display: block; }
-        .script-notes ul { margin: 5px 0 10px 20px; }
-        .script-notes li { font-size: 0.9em; line-height: 1.6; font-style: italic; }
     </style>
 </head>
-<body data-article-category="人物" data-article-appearance="Fallout TVシリーズ">
+<body data-article-category="人物" data-article-appearance="Fallout TV">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Betty Pearson</h3><img src="images/note_extracted/betty-pearson/img_main.png" alt="Betty Pearson"><div class="infobox-row"><span class="infobox-label">俳優</span><span>レスリー・ウガムス（若年期: プリンセス・ベイ）</span></div><div class="infobox-row"><span class="infobox-label">居住</span><span>Vault 33</span></div><div class="infobox-row"><span class="infobox-label">役職</span><span>監督官</span></div><div class="infobox-row"><span class="infobox-label">登場</span><span>シーズン1, 2</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout TVシリーズ</span></div></aside>
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Betty Pearson</h3>
+            <img src="images/note_extracted/betty-pearson/FOTV_s1_ep5_Betty.png" alt="Betty Pearson" onerror="this.onerror=null; this.src='images/bg-placeholder.png';">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+            <div class="infobox-row"><span class="infobox-label">年齢</span><span>289歳（時系列）<br>70歳（生物学的）</span></div>
+            <div class="infobox-row"><span class="infobox-label">人種</span><span>人間</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女</span></div>
+            <div class="infobox-row" style="flex-direction:column; border-bottom:none;">
+                <span class="infobox-label">所属</span>
+                <span style="font-size:0.95em; padding-left:10px;">・Vault 33<br>・Vault-Tec（Vault 31）</span>
+            </div>
+            <div class="infobox-row" style="margin-top:5px;"><span class="infobox-label">役割</span><span style="text-align:right;">監督官<br>評議会メンバー（かつて）<br>役員秘書（戦前）</span></div>
+            <div class="infobox-row" style="margin-top:5px;"><span class="infobox-label">登場</span><span>Fallout TV</span></div>
+        </aside>
+
+        <!-- Main Content -->
         <main class="content">
-            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_betty_pearson" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
-            <h1>Betty Pearson<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">ベティ・ピアソン</span></h1>
-            <h2>概要</h2>
-<p><b>ベティ・ピアソン</b>は、ハンク・マクレーンの拉致後にVault 33の新しい監督官となる人物。<br>レスリー・ウガムスが演じている。</p>
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="betty_pearson" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
 
-<h2>経歴</h2>
-<p>ハンクが拉致された後、ベティはVault 33の監督官に就任する。<br>表面上は穏やかで気さくな老婦人だが、ノーム・マクレーンは彼女の行動に不審な点があることに気づく。<br>ベティはVault 31から送り込まれた管理者の一人であり、3つのVaultを密かに管理するVault-Tecの計画に加担している。</p>
+            <h1>Betty Pearson<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ベティ・ピアソン</span></h1>
+            
+            <p>ベティ・ピアソン（Betty Pearson）は、<a href="vault-33.html" class="auto-link">Vault 33</a>の居住者であり、最終戦争前は<a href="vault-tec.html" class="auto-link">Vault-Tecコーポレーション</a>の従業員でした。Fallout TVシリーズに登場します。<br>
+            2296年、<a href="hank-maclean.html" class="auto-link">ハンク・マクレーン</a>が誘拐された後、彼女はVault 33の監督官（Overseer）に就任します。</p>
 
-<h2>性格</h2>
-<p>一見すると親しみやすい祖母のような存在だが、その裏にはVault-Tecの秘密を守るための冷徹さを持つ。<br>ノームの追及をかわしながら、Vaultの秩序を維持しようとする。</p>
-<div class="quote-box"><p class="quote-text">レスリー・ウガムスの「優しいおばあちゃん」と「冷酷な管理者」の二面性の演技が光る。<br>ノーム視点で見ると最も不気味なキャラクターの一人で、Vault社会の笑顔の裏にある恐ろしさを体現しています。</p></div>
+            <div class="holotape-box">
+                「私たちは幸運よ。私たちは暗闇の中で燃える光なの。いつかその光を地上へともたらす日まで、私たちは生き続けるのよ」<br>
+                —— 「The Past」より
+            </div>
+            
+            <hr>
+
+            <h2>背景</h2>
+            <img src="images/note_extracted/betty-pearson/Young_Betty_Pearson.png" alt="若き日のベティ" style="float: left; width: 250px; margin: 0 20px 10px 0;">
+            <p>ベティは最終戦争前、Vault-Tecコーポレーションの南カリフォルニア本社で役員秘書として働いていました。カリフォルニア州ソルバング出身です。彼女は本社を訪れた<a href="cooper-howard.html" class="auto-link">クーパー・ハワード</a>と出会い、企業の知識の中には「自分の給与等級（権限）を超えるものがある」と彼に告白しました。そして彼女は、クーパーに彼の妻であるバーブの役員秘書である<a href="hank-maclean.html" class="auto-link">ヘンリー・"ハンク"・マクレーン</a>に会うよう頼みます。ハンクが俳優としての彼の大ファンだったからです。</p>
+
+            <p>最終戦争の前夜、彼女はシニア・ジュニア・バイス・プレジデントである<a href="bud-askins.html" class="auto-link">バド・アスキンス</a>の管理職育成プログラム「Bud's Buds（バドのつぼみたち）」の一環として、<a href="vault-31.html" class="auto-link">Vault 31</a>で冷凍保存されました。<br>
+            彼女は2246年2月15日に解凍され、その後Vault 33へ送られました。Vault 33で過ごすうちに、彼女はやがて監督官となりましたが、その後どこかの時点で引退しました。2271年には、同じくVault 31から送られてきたハンク・マクレーンが彼女に代わって監督官に就任しました。2283年頃、ハンクはシェイディ・サンズの破壊を画策し、かつてそこへ逃亡していた彼の妻ローズ・マクレーンを（表向きには）殺害しました。この事件へのベティの関与は不明ですが、彼女がハンクの行動を知っていたことは明らかです。なぜなら、ローズが不在となった状況を隠蔽する手助けをしており、ローズの子供たちに「ローズを埋葬する手伝いをした」と嘘をついていたからです（ただし、これは暗喩的な意味で真実である可能性もあります）。</p>
+
+            <p>2296年までに、ベティは<a href="woody-thomas.html" class="auto-link">ウッディ・トーマス</a>と<a href="reg-mcphee.html" class="auto-link">レッグ・マクフィー</a>とともにVault 33の3人体制の統治評議会（governing council）に加わっていました。ウッディとレッグの性格、そして彼女自身の訓練と経験により、ベティは実質的な評議会のリーダーとなっていました。</p>
+
+            <p>同年後半、Vault 32レイダーによるVault襲撃でハンクが誘拐され、まもなくVaultのウォーターチップが故障するという危機が発生します。統治評議会は解散され、ハンク不在の中でベティはレッグとウッディを破って新たな監督官に選出されました。<br>
+            この頃、ハンクの息子である<a href="norm-maclean.html" class="auto-link">ノーム・マクレーン</a>が、襲撃時の状況や自分の家族、Vaultの真の目的、さらにはベティの背後にある秘密について疑念を抱き始めました。ベティもまた、彼が感づいていることに気づいているようでした。Vault 31の監督官となっていたバド・アスキンスと連携し、彼女はVault 33の居住者のグループを（現在放棄されている）Vault 32へ移住させる計画を始動させました。後に彼女は、ノームがVault 33から失踪したこと（彼がVault 31に侵入し、結果的に閉じ込められたため）を隠蔽しました。</p>
+
+            <p>その後、ベティはVault 33の故障したウォーターチップの問題解決に注力しています。</p>
+
+            <hr>
+
+            <h2>Fallout TVシリーズ</h2>
+
+            <h3>シーズン1</h3>
+            <p>ベティはVault 33の統治評議会の一員として登場し、ルーシーの結婚申請の承認などを行っていました。レイダーの襲撃時には不思議なことに姿を現していませんでした。襲撃後、ノームの反逆的な態度について気遣う「親切なおばあさん」を演じますが、ノームの調査によって彼女の不気味な裏の顔が徐々に明らかになっていきます。</p>
+            <p>98%の得票率で再び監督官に選ばれると、彼女はVault 32の一部居住者の再定住キャンペーン（実質的な隔離と排除）を実施し、自分にとって都合の良い環境を整えます。</p>
+
+            <h3>シーズン2</h3>
+            <p>水資源が枯渇していく中、一部の住人をまとめるレッグの反乱などにも直面しますが、状況を操作しようと巧妙に立ち回ります。<br>
+            バド・アスキンスの死後、ベティはVault 32の監督官となったステフに対し、「Vault-Tecが自分たちの救世主になることは決してない」と悟ったことを打ち明け、自分のVaultの継続的な平和と繁栄を保証することに再献身したいと宣言します。<br>
+            しかし水資源を得るため、ステフが求める「ハンクの記念品箱（Keepsake Box）」を引き渡すという、ある種のファウスト的（悪魔的）な契約を結ばされることになります。</p>
+
+            <hr>
+
+            <h2>性格</h2>
+            <img src="images/note_extracted/betty-pearson/Betty_smiling.png" alt="微笑むベティ" style="float: right; width: 250px; margin: 0 0 10px 20px;">
+            <p>ベティは自分のVaultの親切で責任感のあるメンバーに見えます。また、Vault 33の統治評議会において冷静で経験豊富なまとめ役としても振る舞っています。ルーシーの結婚式でチェットと一緒に踊ろうと誘ったり、ノーム・マクレーンを慰めたりする姿が見られます。</p>
+
+            <p>しかし、ドラマを通してノームからは「暗い一面を隠しているのではないか」と非常に疑わしい扱いを受けています。Vault 32が綺麗に清掃されたこと、そしてそこで何を見つけたのか一切言及しなかったことをノームは不気味に感じていました。彼女はVault 32のレイダーたちを殺すことは論外だと主張していましたが、実際に彼らを毒殺したのが彼女であったかどうかは不明なままです。</p>
+
+            <p>後に、ベティが時を超えて冷凍保存されていたVault-Tecの従業員の一人であったことが判明します。ベティは、ローズ・マクレーンが死んだ時、彼女を「埋葬した」と主張していますが、この言葉の選び方が、ハンクとともにシェイディ・サンズに核を落とした責任の一端を隠喩しているのかどうかは不明です。<br>
+            また、ウォーターチップの故障という事態を鑑みたとき、人々をVault 32へ移住させる動機に「暗い裏の目的」があったのかどうかも不明です。しかし、彼女は別のVault-Tec従業員であるステフを監督官としてVault 32へ移しました。これは「3つのVaultの実験」の継続であると同時に、将来的にステフが協力的な態度で報いてくれることを期待していたとも述べています。<br>
+            彼女はVault 32へ誰を異動させるかも慎重に判断しており、チェットを送り出す一方でノームをVault 33に残しました。これはVaultの秘密を探っていた彼らのパートナー関係を引き裂こうとしたものと推測されます。</p>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ハンクに次ぐVault 31出身の「Bud's Buds」メンバーであり、Vault 33の裏の黒幕とも言える存在です。<br>
+                温和で物分かりのいいおばあちゃんを装っていますが、時折見せる氷のように冷たい視線や、裏で全てを操作しているような不気味な笑顔が印象的です。「The Ghouls（第4話）」において、ゼリー（Jello）が定番の祝賀会であえてケーキを選んだノームをじっと見つめるシーンの空気感はホラーに近いです。
+            </div>
+
+            <!-- Footer & Copyright -->
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutTV</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Vault33</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Overseers</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Pre-War</span>
+                </div>
+                <!-- 著作権表示 -->
                 <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Betty_Pearson" target="_blank" rel="noopener">Betty Pearson</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
-            <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
     <script>
-        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
-        async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}
-        function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='♥';}else{btn.classList.remove('liked');heart.textContent='♡';}countSpan.textContent=count;}
-        document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count);}const lightbox=document.getElementById('lightbox');const lightboxImg=document.getElementById('lightbox-img');document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',(e)=>{e.stopPropagation();lightboxImg.src=img.src;lightbox.classList.add('active');});});});
-        const _commentArticleId='note_betty_pearson';const _commentArticleName='Betty Pearson';const _commentArticleUrl='betty-pearson.html';
-        const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;
-        function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)';}}
-        function relativeTime(s){const d=(Date.now()-new Date(s).getTime())/1000;if(d<60)return'たった今';if(d<3600)return Math.floor(d/60)+'分前';if(d<86400)return Math.floor(d/3600)+'時間前';if(d<86400*7)return Math.floor(d/86400)+'日前';return new Date(s).toLocaleDateString('ja-JP');}
-        function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-        function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return;}list.innerHTML=comments.map(c=>`<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode?`<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>`:''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');}
-        async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return;}renderComments(data||[]);}
-        async function submitComment(){const input=document.getElementById('comment-input');const content=input?input.value.trim():'';if(!content){showCommentMsg('コメントを入力してください。',false);return;}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return;}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。',false);return;}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return;}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments();}
-        function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent='';},3000);}
-        async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return;}await loadComments();}
-        document.addEventListener('keydown',(e)=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);loadComments();alert('管理者モードを終了しました。');return;}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。');}else{alert('パスワードが違います。');}}});
-        document.addEventListener('DOMContentLoaded',()=>{loadComments();});
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        
+        // Comment system
+        const _commentArticleId = 'betty_pearson'; const _commentArticleName = 'Betty Pearson'; const _commentArticleUrl = 'betty-pearson.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
     <script src="article-common.js" defer></script>
 </body>

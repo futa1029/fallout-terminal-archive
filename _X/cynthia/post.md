@@ -1,9 +1,18 @@
-#Fallout76
+#Fallout76 #Fallout
 
-Cynthia
+シンシア（Cynthia）
 https://www.fallout-jp.com/cynthia.html
 
-ホワイトスプリング・リゾート
+概要
+
+ホワイトスプリング・モール内にある理容室「Elegance」に配置されている4体の自動美容師ロボット（ミス・ナニー）の1体。
 
 ---
-CC BY-SA
+
+💭 感想
+
+先述のキャロリンと同様に、プレイヤーが彼女のアサインを受けたりするサービスを利用することはできず、何度話しかけても予約でいっぱいだと断られ続けるフレーバーNPCとなっています。
+
+---
+
+This article uses material from the Fallout wiki at Fandom and is licensed under the Creative Commons Attribution-Share Alike License.

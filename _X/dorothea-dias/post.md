@@ -1,9 +1,4 @@
-#Fallout76
-
-Dorothea Dias
+ロブコ研究センターに保存されている生きた脳みそ「ディアス博士」のロア記事をアップデートしました！🧠
+ Vault 79侵入に必要な「有能なブレイン」候補の1人。強気で傲慢なマッドサイエンティストっぷりと、ロボブレインにインストールされた際のハイテンションなセリフが最高です。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/dorothea-dias.html
-
-Wastelanders
-
----
-CC BY-SA

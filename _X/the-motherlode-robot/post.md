@@ -1,9 +1,4 @@
-#Fallout76
-
-The Motherlode
+ホーンライト社の巨大掘削プラットフォーム「マザーロード」の記事を更新しました！🚜
+メインクエストで初めてその巨体とご対面した時は圧倒されましたね！戦前の冷酷な自動化計画を象徴する、悲しきロボットです。
+#Fallout76 #フォールアウト76
 https://www.fallout-jp.com/the-motherlode-robot.html
-
-Miscellaneous
-
----
-CC BY-SA
