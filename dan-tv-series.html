@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
+<!DOCTYPE html><html lang="ja"><head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <title>Dan (TV series) | Overseer Mohi's Terminal</title>
@@ -18,7 +16,7 @@
 
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Noto+Sans+JP:wght@400;700&amp;display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -242,14 +240,14 @@
         <!-- Sidebar -->
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Dan (TV series)</h3>
-            <img src="images/note_extracted/dan-tv-series/img_0.png" alt="ダン (Dan (TV series))">
+            <img src="images/note_extracted/dan-tv-series/img_7.png" alt="ダン (Dan (TV series))">
             <div class="infobox-row"><div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
             <div class="infobox-row"><span class="infobox-label">人種</span><span>人間</span></div>
             <div class="infobox-row"><span class="infobox-label">性別</span><span>男</span></div>
             <div class="infobox-row"><span class="infobox-label">所属</span><span>なし</span></div>
             <div class="infobox-row"><span class="infobox-label">役割</span><span>一般人</span></div>
             <div class="infobox-row" style="margin-top:5px;"><span class="infobox-label">登場</span><span>Fallout TV</span></div>
-        </aside>
+        </div></aside>
 
         <!-- Main Content -->
         <main class="content">
@@ -266,13 +264,13 @@
 
             <h2>ギャラリー</h2>
 <div class="gallery">
-<img src="images/note_extracted/dan-tv-series/img_1.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/dan-tv-series/img_2.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/dan-tv-series/img_3.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/dan-tv-series/img_4.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/dan-tv-series/img_5.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/dan-tv-series/img_6.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
-<img src="images/note_extracted/dan-tv-series/img_7.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
+
+
+
+
+
+
+
 <img src="images/note_extracted/dan-tv-series/img_8.png" alt="ダン" style="max-width:300px; display:inline-block; margin:5px;">
 </div>
 <div class="quote-box"><b>感想</b><br><br>シーズン2の戦前ロサンゼルスのバーに登場する人物です。<br><br>クーパーや他のVault-Tec関係者などとどのような関わりを持つのかは本編での描写が待たれます。</div>
@@ -284,7 +282,7 @@
                 </div>
                 <!-- 著作権表示 -->
                 <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Dan_(TV_series)" target="_blank" rel="noopener">Dan (TV series)</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p>© Overseer Mohi's Terminal — Fallout Lore Archive</p>
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
 
@@ -296,7 +294,7 @@
                     <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
@@ -331,6 +329,7 @@
         document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
         document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
-    <script src="article-common.js" defer></script>
-</body>
-</html>
+    <script src="article-common.js" defer=""></script>
+
+
+</body></html>

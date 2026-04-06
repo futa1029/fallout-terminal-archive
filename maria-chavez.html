@@ -1,6 +1,6 @@
-﻿<!DOCTYPE html>
-<html lang="ja">
-<head>
+<html lang="ja"><head></head><body data-article-category="人物" data-article-appearance="Fallout 76">﻿
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maria Chavez | Overseer Mohi's Terminal</title>
@@ -18,7 +18,7 @@
     <meta name="twitter:description" content="マリア・チャベス。レスポンダーのリーダー。最後の瞬間まで人々を救い続けた女性。">
     <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/maria-chavez/img_1.jpg">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&amp;family=Noto+Sans+JP:wght@400;700&amp;display=swap" rel="stylesheet">
     <style>
         :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
@@ -78,8 +78,8 @@
         .comment-delete-btn:hover { opacity: 1; }
         .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
     </style>
-</head>
-<body data-article-category="人物" data-article-appearance="Fallout 76">
+
+
     <div class="container">
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Maria Chavez</h3>
@@ -322,7 +322,7 @@
             <h2>ギャラリー</h2>
             <div class="gallery">
                 <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_2.png" alt="マリアのクローズアップ写真" onclick="openLightbox(this)"><div class="caption">マリアのクローズアップ写真</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_3.png" alt="レスポンダーのリーダーたち" onclick="openLightbox(this)"><div class="caption">レスポンダーの仲間たちとの写真</div></div>
+                <div class="gallery-item"><div class="caption">レスポンダーの仲間たちとの写真</div></div>
                 <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_4.png" alt="モーガンタウン空港" onclick="openLightbox(this)"><div class="caption">モーガンタウン空港</div></div>
                 <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_5.png" alt="マリアの遺体（Wastelanders以前）" onclick="openLightbox(this)"><div class="caption">マリアの遺体（Wastelanders以前）</div></div>
                 <div class="gallery-item"><img src="images/note_extracted/maria-chavez/img_6.png" alt="レスポンダーの祭壇" onclick="openLightbox(this)"><div class="caption">レスポンダーへの追悼碑</div></div>
@@ -354,7 +354,7 @@
                     <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
@@ -463,6 +463,7 @@
         document.addEventListener('keydown', e => { if (e.ctrlKey && e.shiftKey && e.key === 'A') { const t = prompt('Admin password:'); if (t === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, t); loadComments(); alert('Admin mode ON'); } } });
         document.addEventListener('DOMContentLoaded', () => { if (localStorage.getItem(ADMIN_TOKEN_KEY) === ADMIN_PASSWORD) _isAdminMode = true; loadComments(); });
     </script>
-    <script src="article-common.js" defer></script>
-</body>
-</html>
+    <script src="article-common.js" defer=""></script>
+
+
+</body></html>
