@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>James | Overseer Mohi's Terminal</title>
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="Ulysses | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ユリシーズ（Ulysses）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/og-default.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/ulysses.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ulysses | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="ユリシーズ（Ulysses）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-default.png">
+
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            cursor: zoom-out;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-overlay.active {
+            display: flex;
+        }
+        .lightbox-overlay img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            border: 2px solid var(--accent-color);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
+            border-radius: 4px;
+        }
+        .content img, .infobox img, .gallery-item img {
+            cursor: zoom-in;
+        }
+
+        /* コメントセクション */
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+</head>
+<body data-article-category="人物" data-article-appearance="Fallout 3">
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Ulysses</h3>
+            <img src="https://static.wikia.nocookie.net/fallout/images/5/52/UlyssesWithoutMask.png" alt="ユリシーズ (Ulysses)">
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
+<div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
+<div class="infobox-row"><span class="infobox-label">所属</span><span>プロジェクト・ピュリティ / Vault 101</span></div>
+<div class="infobox-row"><span class="infobox-label">役職</span><span>医師 / 科学者</span></div>
+<div class="infobox-row"><span class="infobox-label">CV</span><span>Liam Neeson / 石塚運昇</span></div>
+</aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_james_fallout_3" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>James<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">ジェームズ (主人公の父)</span></h1>
+
+<h2>概要</h2>
+<p>ジェームズ（James）は、Fallout 3の主人公「Vault 101のアイツ（The Lone Wanderer）」の父親であり、物語のすべての発端となる重要人物。キャピタル・ウェイストランドに綺麗な水をもたらす「プロジェクト・ピュリティ」の創設者です。</p>
+
+<h2>歴史</h2>
+<p>妻キャサリン、親友のDr. リーと共にプロジェクトに生涯を捧げていましたが、主人公の出産時にキャサリンが亡くなり、プロジェクトへの希望を失います。彼は息子（娘）を安全に育てるため、外の世界を完全に封鎖しているVault 101へと避難し、そこで良き医師、良き父親として平穏な日々を過ごしました。<br>しかし、主人公が19歳になったある日、彼は「プロジェクト・ピュリティの完成」という自身の運命と責任を果たすため、突如としてVaultを脱走し、外の世界へと消えてしまいます。これがプレイヤーの長い旅の幕開けとなります。</p>
+<p>物語の中盤でプレイヤーは彼と再会し、親子で共に浄化施設の再稼働に向けて動き出します。しかし、オータム大佐率いるエンクレイヴの襲撃を受けた際、彼は自らの手で浄化室を放射能で汚染し、敵の手に渡るのを防ぐと同時に、愛する我が子へ「逃げろ」という指示を残してその命を散らせます。</p>
+
+
+<h2>生い立ちと部族の喪失 (The Twisted Hairs)</h2>
+            <p>ユリシーズは元々、強靭な肉体と独特なドレッドヘアを特徴とする部族『ツイステッド・ヘアーズ（Twisted Hairs）』の出身でした。彼の部族はアリゾナ一帯を支配すべく拡大を続けていたシーザー・リージョンの目に留まり、同盟を結んだ上でその優れた偵察能力をリージョン軍に提供していました。<br>
+            ユリシーズはその卓越したサバイバル術と薬草の知識をもとに、シーザー麾下の最も優秀なフルメンタリーのひとりとして活躍しました。</p>
+            
+            <p>しかし、周辺部族の平定が完了すると、シーザーは彼らを「同盟者」としてではなく、「征服の対象」として裏切ります。ユリシーズが忠誠を誓いながらも戦いに出ている間に、彼の部族はヴルペス・インカルタの手によって騙し討ちされ、奴隷化され、抵抗した者は十字架に磔にされました。<br>
+            部族を破壊されアイデンティティを奪われた彼は、かつての名前を捨て、「二つの対立する旗の時代に戦い、それを一つにした偉人（ユリシーズ・S・グラント）」に由来して自らを『ユリシーズ』と名乗るようになります。彼は部族の恨みを持ちながらも、旧世界を信奉するNCRの打倒のため、リージョンの運び屋として虚無のままに荒野を歩き続けました。</p>
+
+            <h2>ディバイドの発見ともう一人の運び屋</h2>
+            <p>リージョンのスパイとしてモハビを旅していた彼は、もう一人の同じような「運び屋（プレイヤー）」の足跡をたどることになります。<br>
+            その運び屋の辿った道筋を追う中で、ユリシーズは『ディバイド（The Divide）』と呼ばれる、豊かなコミュニティへと発展しつつある生存者の町を見出しました。過酷な荒野において、旧世界の象徴（アメリカの国旗）を胸に新しい息吹を上げ始めたディバイドの生活に、彼は自らの失われた故郷と「新たな国家の希望」を重ね合わせていました。</p>
+            
+            <p>しかし、その希望は突如として完全に粉砕されます。<br>
+            原因は皮肉にも、自分が長年足跡を追っていた「もう一人の運び屋」が、過去の世界の残留物である『奇妙な起爆装置（パッケージ）』をNCRの依頼でこの地に運んできたことでした。そのパッケージがディバイド地下に眠っていた旧世界のICBMシステムを連鎖爆発させ、巨大な大地の亀裂と放射能の嵐を伴う地獄へと変貌させてしまったのです。</p>
+
+            <h2>プラチナ・チップと本編での行動</h2>
+            <p>ディバイド崩壊を生き延びたユリシーズは、運び屋（プレイヤー）に対する複雑で深い因縁と静かなる怒りを胸にモハビへと戻ります。<br>
+            西暦2281年（ゲーム本編開始直前）、彼はモハビ・エクスプレスから6人の運び屋の1人として、重要荷物である『プラチナ・チップ（ポーカーチップ）』の運搬を打診されました。しかし、名簿に「もう一人の運び屋（プレイヤー）」の名前を見つけた彼は、不敵な笑みを浮かべながら「その仕事はその運び屋にやらせろ」と言い残し、自身は辞退して荒野へ消えていきました。結果としてプレイヤーはベニーに撃たれ、New Vegasの壮大な物語の引き金が引かれることになりました。</p>
+
+            <h2>すべてのDLCでの暗躍と因縁</h2>
+            <p>彼は本編の裏側で、すべてのDLCエリアに到達し、独自の思惑で各地の状況に多大な影響を与えています。</p>
+            <ul>
+                <li><b>Dead Money:</b> ビッグMTからシエラ・マドレ到達のヒントを持ち出し、ブラザーフッドの狂人エリヤにそそのかしてシエラ・マドレへと向かわせるきっかけを作りました。また、同行したクリスティーンとも因縁があります。</li>
+                <li><b>Honest Hearts:</b> ザイオン国立公園に赴き、現地の野蛮な部族「ホワイトレッグス」に接触。かつての自分の部族（ツイステッド・ヘアーズ）の伝統的な髪型などをあえて教え込み、リージョンへと編入させる条件として「ジョシュア・グラハムの抹殺」を唆しました。</li>
+                <li><b>Old World Blues:</b> 狂気に満ちた科学結社「ビッグMT」にすら到達し、シンク・タンクの一面を垣間見ます。過去に囚われた彼らの不完全性をあざ笑い、Dr.モビウスに対しても「自分が知りたいのは過去（Who are you?）ではなく未来だ」と説きました。</li>
+                <li><b>Lonesome Road:</b> これらの旅を生き抜いた彼は、最後に運び屋（プレイヤー）を、自らの希望の地であったディバイドへと招待します。背中にオールドアメリカンの星条旗を背負い、NCRでもリージョンでもない彼自身の歪んだ正義と「歴史に対する責任」をプレイヤーに問いかけながら、アメリカへの核ミサイル発射を目論む最後の敵として立ち塞がります。</li>
+            </ul>
+
+            <div class="quote-box" style="margin-top: 40px; border-top: 3px solid var(--accent-color);"><p class="quote-text">「黙示録21章6節：アルファでありオメガである」。息子を愛するが故の逃避と、科学者としての使命感の間で揺れ動いた偉大な父親。彼の声を担当したリーアム・ニーソンの名演技もあり、「彼が完成させたかった綺麗な水を守る」というモチベーションがFallout 3のメインストーリーにおける最大の駆動力となっています。浄化室越しにガラスを叩いて息を引き取るシーンはシリーズ屈指の涙腺崩壊イベントです。</p></div>
+
+            <!-- Footer & Copyright -->
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <div style="margin-bottom: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout3</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#LonesomeRoad</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
+                </div>
+                <!-- 著作権表示 -->
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/James_(Fallout_3)" target="_blank" rel="noopener">James</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        
+        // Comment system
+        const _commentArticleId = 'ulysses'; const _commentArticleName = 'Ulysses'; const _commentArticleUrl = 'ulysses.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>
