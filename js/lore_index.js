@@ -9524,17 +9524,7 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    {
-        name: "Just a moment...",
-        yomi: "just a moment...",
-        url: "f76.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-02-21",
-        isDraft: true
-    },
+    
     {
         name: "Fallout",
         yomi: "fallout",
@@ -11417,17 +11407,7 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    {
-        name: "Just a moment...",
-        yomi: "just a moment...",
-        url: "nw.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-02-21",
-        isDraft: true
-    },
+    
     {
         name: "天文台",
         yomi: "天文台",
