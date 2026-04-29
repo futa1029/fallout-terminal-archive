@@ -2,21 +2,21 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leo Petrov | Overseer Mohi's Terminal</title>
+    <title>「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
+                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」 | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/leo-petrov.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="Leo Petrov | Overseer Mohi's Terminal">
-    <meta property="og:description" content="Leo Petrov（レオ・ペトロフ）のFalloutロア記事。ヌカ・コーラ社の元セキュリティオフィサーであり、グールの同行者。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/leo-petrov/Main.webp">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
+                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」 | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Leo Petrov<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">レオ・ペトロフ — ヌカ・コーラ社の元セキュリティオフィサー</span>。Falloutのロア記事。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/placeholder.jpg">
     <meta property="og:url" content="https://www.fallout-jp.com/leo-petrov.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Leo Petrov | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="Leo Petrov（レオ・ペトロフ）のFalloutロア記事。ヌカ・コーラ社の元セキュリティオフィサーであり、グールの同行者。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/note_extracted/leo-petrov/Main.webp">
+    <meta name="twitter:site" content="@IwamotoFuta">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/terminal-style.css">
     <style>
         :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
@@ -25,11 +25,15 @@
         h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
         .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
         .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; text-align: right; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; text-align: left; }
         .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
         .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
         .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .note-box { border-left: 4px solid #8b9dc3; margin: 30px 0; background: rgba(139, 157, 195, 0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #8b9dc3; font-size: 1.05em; }
         .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
         .content a:hover { border-bottom: 1px solid var(--accent-color); }
         .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
@@ -40,15 +44,21 @@
         .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
         .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
         .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .action-header { flex-direction: column; align-items: flex-start; gap: 15px; } }
+        ul { list-style-type: square; } li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; } .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
         .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
         .lightbox-overlay.active { display: flex; }
         .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
-        .content img, .infobox img, .gallery-item img { cursor: zoom-in; }
         .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
         .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
         .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
         .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
         .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
         .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
@@ -57,221 +67,55 @@
         .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
         .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
         .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
         .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
         .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
         .comment-delete-btn:hover { opacity: 1; }
         .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; margin-bottom: 25px; }
-        .gallery-item { text-align: center; background: rgba(0, 0, 0, 0.3); border: 1px solid #444; padding: 8px; border-radius: 4px; }
-        .gallery-item img { width: 100%; height: auto; border: 1px solid #333; margin-bottom: 8px; }
-        .gallery-item .caption { font-size: 0.8em; color: #aaa; }
-        .content-image-right { float: right; margin: 0 0 15px 20px; max-width: 280px; border: 1px solid #555; border-radius: 4px; }
-        .notable-quote { border-left: 3px solid #888; background: rgba(255,255,255,0.03); padding: 10px 15px; margin: 10px 0; font-style: italic; color: #ccc; font-size: 0.95em; line-height: 1.6; border-radius: 0 4px 4px 0; }
-        .buff-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        .buff-table th, .buff-table td { border: 1px solid #444; padding: 8px 12px; text-align: left; font-size: 0.9em; }
-        .buff-table th { background: var(--header-bg); color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
-        .buff-table td { background: rgba(0,0,0,0.2); }
-        @media (max-width: 768px) { .content-image-right { float: none; display: block; margin: 15px auto; max-width: 100%; } }
+        .terminal-entry { border-left: 4px solid #00ff00; margin: 20px 0; background: rgba(0, 255, 0, 0.05); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; color: #00ff00; }
+        .terminal-entry b { color: #00ff00; font-size: 1.05em; }
+        .holotape-box { border-left: 4px solid #e89b3e; margin: 30px 0; background: rgba(232,155,62,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #e89b3e; font-size: 1.05em; }
     </style>
+    <meta name="article-status" content="draft">
 </head>
-<body data-article-category="人物" data-article-appearance="Fallout 76">
+<body data-article-category="人物" data-article-appearance="Fallout 4">
     <div class="container">
         <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Leo Petrov</h3>
-            <img src="images/note_extracted/leo-petrov/Main.webp" alt="レオ・ペトロフ">
-            <div style="font-size: 0.8em; color: #888; text-align: center; margin-bottom: 10px;">レオ・ペトロフ</div>
-            <div class="infobox-row"><span class="infobox-label">種族</span><span><a href="ghoul.html" class="auto-link">グール</a></span></div>
-            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
-            <div class="infobox-row"><span class="infobox-label">所属</span><span>ヌカ・コーラ社</span></div>
-            <div class="infobox-row"><span class="infobox-label">役割</span><span>同行者 / ベンダー</span></div>
-            <div class="infobox-row"><span class="infobox-label">居場所</span><span>プレイヤーのC.A.M.P.</span></div>
-            <div class="infobox-row"><span class="infobox-label">家族</span><span>元妻 / ローマン（息子）</span></div>
-            <div class="infobox-row"><span class="infobox-label">声優</span><span>Dave B. Mitchell</span></div>
-            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
-            <div class="infobox-row"><span class="infobox-label">解放条件</span><span>シーズン11 ランク35</span></div>
+            <h3 style="margin-top:0; text-align:center;">「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
+                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」</h3>
+            
+            
         </aside>
+
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_leo-petrov" onclick="toggleLike(this)">
+                <button class="like-button" data-article-id="note_leo_petrov" onclick="toggleLike(this)">
                     <span class="heart">♡</span> <span class="like-count">0</span>
                 </button>
             </div>
-            <h1>Leo Petrov<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">レオ・ペトロフ — ヌカ・コーラ社の元セキュリティオフィサー</span></h1>
 
-            <div class="notable-quote">
-                「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
-                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」
-            </div>
+            <h1>「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
+                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">Leo Petrov<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">レオ・ペトロフ — ヌカ・コーラ社の元セキュリティオフィサー</span></span></h1>
 
-            <h2>概要</h2>
-            <p>
-                <strong>レオ・ペトロフ</strong>は<a href="nuka-cola.html" class="auto-link">ヌカ・コーラ社</a>の元セキュリティオフィサーであり、<a href="ghoul.html" class="auto-link">グール</a>となった人物である。<br>
-                <a href="fallout76.html" class="auto-link">Fallout 76</a>の<a href="appalachia.html" class="auto-link">アパラチア</a>で出会える同居人の一人。<br>
-                第11シーズン「Nuka-World on Tour」のランク35報酬として解放された。<br>
-                後に「Mutation Invasion」アップデートで設計図が追加され、サミュエルから金塊で購入可能となった。
-            </p>
 
-            <h2>背景</h2>
-            <img src="images/note_extracted/leo-petrov/CAMP.png" alt="C.A.M.P.でのレオ" class="content-image-right">
-            <p>
-                レオの幼少期についてはほとんど知られていないが、子供の頃に父親から暴力を受けていたことが示唆されている。<br>
-                レオは「自分は子供を殴ったり叱りつけたりはしなかった。自分の父親についてはそうとは言えないが…少なくともその点だけは」と語っている。<br>
-                また、写真に興味があることも示唆されており、「別の人生では写真家になっていたかもしれない」と述べている。
-            </p>
-            <p>
-                レオ・ペトロフはかつてヌカ・コーラ社のセキュリティオフィサーだった。<br>
-                ワシントンD.C.に家を所有していたが、国中の工場やオフィスを調査して企業スパイを見つけ出し、内部情報の漏洩を封じるという仕事の性質上、家にいる時間はほとんどなかった。<br>
-                ほぼ常に出張生活を送っており、個人的な時間はほとんど残されなかった。
-            </p>
-            <p style="clear: both;">
-                2067年頃、息子のローマンが生まれた。<br>
-                妻との間には結婚生活上の問題があり、最後に話した時、妻はレオが仕事と結婚しているようなものだと感じ、離婚を決意した。<br>
-                妻は息子を連れて自分の母親の元で暮らすと告げた。<br>
-                ヌカ・コーラ社の福利厚生により、レオと家族にはVaultのスペースが提供されていたが、大戦の日、レオは家から遠く離れた場所にいた。<br>
-                レオは大戦を生き延び、爆弾投下後は放浪を始めたが、時折アパラチアに戻ってくるようになった。<br>
-                家族がどうなったかは今も知らない。
-            </p>
-            <p>
-                2104年、巡回カーニバル「Nuka-World on Tour」がアパラチアに設営された頃、レオは再びアパラチアにやってきた。<br>
-                彼は<a href="nuka-cola.html" class="auto-link">ヌカ・コーラ</a>に情熱を注いでおり、史上最高の飲み物だと考えている。
-            </p>
-
-            <h2>プレイヤーとのインタラクション</h2>
-            <p>
-                レオはエッセンシャルNPCであり、同居人としてC.A.M.P.に配置できる。<br>
-                専用家具は「レオのデスク」。<br>
-                ベンダーとして各種アイテムを販売する。
-            </p>
-
-            <h3>デイリーバフ：ヌカ・インスピレーション</h3>
-            <p>
-                レオには「ヌカ・インスピレーション」というデイリーボーナスがある。<br>
-                1日1回、特定のヌカ・コーラを渡すことで、種類に応じた効果を60分間受けられる。
-            </p>
-            <table class="buff-table">
-                <thead>
-                    <tr><th>ヌカ・コーラの種類</th><th>効果</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>ヌカ・コーラ（クラシック）</td><td>Charisma +2</td></tr>
-                    <tr><td>ヌカ・チェリー</td><td>Endurance上昇</td></tr>
-                    <tr><td>ヌカ・コーラ・クランベリー</td><td>経験値 +5%</td></tr>
-                    <tr><td>ヌカ・コーラ・ダーク</td><td>ステルス強化</td></tr>
-                    <tr><td>ヌカ・コーラ・オレンジ</td><td>放射線耐性上昇</td></tr>
-                    <tr><td>ヌカ・コーラ・クァンタム</td><td>HP上昇</td></tr>
-                    <tr><td>ヌカ・コーラ・ツイスト</td><td>Luck上昇</td></tr>
-                    <tr><td>ヌカ・コーラ・ワクチン</td><td>病気耐性上昇</td></tr>
-                    <tr><td>ヌカ・コーラ・ワイルド</td><td>Perception上昇</td></tr>
-                    <tr><td>ヌカ・グレープ</td><td>AP上昇</td></tr>
-                </tbody>
-            </table>
-
-            <h3>その他のインタラクション</h3>
-            <p>
-                Vault居住者はヌカ・コーラに関する自分の体験をレオと話し合うことができる。
-            </p>
-
-            <h4>「スコーチ病を自分の血で治した話を聞きたい？」</h4>
-            <p>
-                レオは感心しつつも嫌悪感を示す。<br>
-                Vault居住者がカノーハ・ヌカ・コーラ工場を使ってワクチンを大量生産したことを聞くと、「ヌカ・コーラの安全基準には確実に反しているが、ワクチンの大量生産法としては天才的だ」と認める。<br>
-                「ヌカ・コーラ・スコーチド」を渡すと、「これにはあなたの血が入っているのか？微量だといいが。見た目に反して、私はグールであって吸血鬼ではない」と返す。
-            </p>
-
-            <h4>「ヌカシャインを知っているか？」</h4>
-            <p>
-                レオはそれがひどそうだと思い、無認可のヌカ・コーラ製品を認めない。<br>
-                VTUの学生が強いアルコール飲料を作っていたと聞くと、「問題がある。商標権の侵害でもある。昔だったら作戦ごと潰していた」と語る。<br>
-                ビッグ・アルのタトゥーパーラーのスピークイージーと酒のテスト用ロボブレイン「<a href="reflection.html" class="auto-link">Biv</a>」の話を聞くと、「タトゥーパーラーのスピークイージー？興味深い！」と好奇心を見せる。<br>
-                レシピを渡そうとすると、「聞かなかったことにする。無認可のヌカ・コーラの密造品には関わりたくない。ヌカ・コーラ・ダークで十分だ」と断る。<br>
-                ヌカシャインそのものを渡すと、「なんてこった！無認可のヌカ・コーラ製品だと？よこしなさい、適切な時に"処分"してやる…なんだこの匂いは」と、実は欲しがっていることをほのめかす。
-            </p>
-
-            <h4>「ヌカ・コーラ・クァンタム・パワーアーマー塗装の設計図を見つけた」</h4>
-            <p>
-                レオは<a href="black-mountain-ordnance-works.html" class="auto-link">ブラック・マウンテン兵器工場</a>のTNTドーム3号に興味を示す。<br>
-                「あの設計図を追跡するのは私の調査の一部だった。限定品で、ヌカ・コーラのイベント用に作られたものだ」と語る。<br>
-                TNTドーム3号がヌカ・コーラの所有する唯一のロッカーだったと明かし、「従業員が資金を横領してこのロッカーを購入し、機密品を隠すのに使ったのだろう」と推理する。<br>
-                「これであの謎は解決だ。正直、あなたなしではできなかった。コールドケースを抱えたまま気が滅入っていた。あなたは素晴らしいヌカ・コーラのセキュリティオフィサーになれただろう。犯罪を解決し、人々を助ける——それがあなたに向いている」と感謝を述べる。
-            </p>
-
-            <h4>「Nuka-World on Tourが来ているのを聞いた？」</h4>
-            <p>
-                レオは来る前に訪れたと述べ、公式イベントではないものの素晴らしい時間を過ごしたと語る。
-            </p>
-
-            <h2>名言集</h2>
-            <div class="notable-quote">
-                「お会いできて光栄です。正直、このグールを一目見て撃たなかったことに驚きました。とにかく…」
-            </div>
-            <div class="notable-quote">
-                「噂は聞いていますよ、Vault居住者さん。ああ、失礼。名乗っていませんでしたね。レオです。レオ・ペトロフ。よろしく。」
-            </div>
-            <div class="notable-quote">
-                「疲れた顔をしていますね。無理をしすぎないでください。体は一つしかありませんから。」
-            </div>
-            <div class="notable-quote">
-                「ええ…その通りです。彼らが恋しい。でも今は新しい世界になった。おそらく彼らの運命を知ることはないでしょう…ただ、苦しまなかったことを祈るばかりです。」
-            </div>
-            <div class="notable-quote">
-                「ローマン…もっと有給を取るべきだった…」
-            </div>
-            <div class="notable-quote">
-                「気を悪くしないでほしいのですが、個人的な事情は仕事と分けておくべきだと思います。ご理解いただけますか、パートナー。」
-            </div>
-            <div class="notable-quote">
-                「あなたのVaultの仲間はどうなっているんですか？蛮族のような格好で跳ね回っている人を見ましたが？奇妙ですね…面白いけど、奇妙です。」
-            </div>
-            <div class="notable-quote">
-                「グールになってから、偏見がひどくなったことに驚いています。間違いなく新しい経験であり、視野を広げてくれました。」
-            </div>
-            <div class="notable-quote">
-                「ブラザーフッド・オブ・スティール…なんとも奇妙な連中です。こうなった原因の過去を保存することだけに集中していて、どうやって何かを変えるというのでしょう？」
-            </div>
-
-            <h2>登場作品</h2>
-            <p>
-                レオ・ペトロフはFallout 76のNuka-World on Tourアップデートにのみ登場する。
-            </p>
-
-            <h2>舞台裏</h2>
-            <p>
-                SkyBox Labsの開発者であるマイケル・ベンチュラがレオのライターを務めた。<br>
-                マイケルのLinkedInプロフィールによると、レオは著名なNPCコンパニオンとして開発され、複数の選択肢を持つ会話ツリーとライト・アフィニティシステムが実装された。<br>
-                マイケルはVO（ボイスオーバー）セッションの監督も行い、Papyrusスクリプトを活用して動的な条件分岐を作成した。
-            </p>
-
-            <div class="gallery-section">
-                <h2>ギャラリー</h2>
-                <div class="gallery-grid">
-                    <div class="gallery-item"><img src="images/note_extracted/leo-petrov/VaultBoy.webp" alt="Vault Boyアイコン"><div class="caption">Vault Boyアイコン</div></div>
-                    <div class="gallery-item"><img src="images/note_extracted/leo-petrov/AtomicShop.png" alt="Atomic Shopストアフロント画像"><div class="caption">Atomic Shop画像</div></div>
-                    <div class="gallery-item"><img src="images/note_extracted/leo-petrov/CAMP.png" alt="C.A.M.P.でのレオ"><div class="caption">C.A.M.P.でのレオ</div></div>
-                </div>
-            </div>
 
             <div class="quote-box">
                 <b>感想</b><br><br>
-                レオ・ペトロフは、Fallout 76の同居人の中でも異色の存在ですね。<br>
-                ヌカ・コーラ社のセキュリティオフィサーという、いかにもFalloutらしい企業戦士としての過去を持ちながら、グールとなった現在の姿には深い哀愁が漂っています。<br>
-                仕事に人生を捧げたことで家族を失い、大戦の日には家から遠く離れていた——その「もしあの時、有給を取っていたら」という後悔は、ポスト・アポカリプスの設定だからこそ一層重く響きますね〜。<br>
-                息子ローマンの名前をつぶやく台詞は、本当に切ない。<br>
-                でも彼の魅力はそれだけじゃなくて、ヌカ・コーラへの異常なまでの愛情と職業的プライドが最高に面白い！<br>
-                ヌカシャインを渡した時の「聞かなかったことにする」からの、実物を渡すと「よこしなさい…なんだこの匂いは」って小声で言うところとか、もう企業人の矜持がバッキバキに崩れてて笑えます。<br>
-                ブラック・マウンテン兵器工場のTNTドーム3号のコールドケースが解決される流れも、プレイヤーがゲーム内で実際にあのロッカーキーの謎解きを経験した人ならニヤリとする展開ですよね。<br>
-                ブラザーフッド・オブ・スティールへの冷静な皮肉も、彼の知性を感じさせる名台詞。<br>
-                C.A.M.P.にいると落ち着いた紳士的な雰囲気で居心地が良く、ヌカ・コーラを渡すだけでバフがもらえるシステムも実用的で嬉しいところです。<br>
+（準備中）
             </div>
 
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-<p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Leo_Petrov" target="_blank" rel="noopener">Leo Petrov</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-<p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
+________________でも、あとどれだけ時間が残されていたか…それを知っていたかった。」" target="_blank" rel="noopener">「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
+                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
 
+            <!-- Comments Section -->
             <div class="comments-section" id="comments-section">
                 <h3 class="comments-title">&gt; COMMENTS</h3>
                 <div class="comment-form">
@@ -279,7 +123,7 @@
                     <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
@@ -287,12 +131,30 @@
             </div>
         </main>
     </div>
+
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
+
     <script>
-        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data)}}btn.disabled=false}function updateLikeButton(btn,isLiked,count){const heart=btn.querySelector('.heart');const countSpan=btn.querySelector('.like-count');if(isLiked){btn.classList.add('liked');heart.textContent='\u2665'}else{btn.classList.remove('liked');heart.textContent='\u2661'}countSpan.textContent=count}document.addEventListener('DOMContentLoaded',async()=>{const btn=document.querySelector('.like-button');if(btn){const articleId=btn.getAttribute('data-article-id');const isLiked=localStorage.getItem(articleId+'_liked')==='true';const{data,error}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();let count=0;if(!error&&data)count=data.like_count;updateLikeButton(btn,isLiked,count)}await loadComments()});document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();const overlay=document.getElementById('lightbox');document.getElementById('lightbox-img').src=img.src;overlay.classList.add('active')})});document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('active')});
-        const _commentArticleId="note_leo-petrov";const _commentArticleName="Leo Petrov";const _commentArticleUrl="leo-petrov.html";const ADMIN_TOKEN_KEY='fallout_admin_token';const ADMIN_PASSWORD='tq7jtq7j';const RATE_LIMIT_KEY='comment_last_posted';const RATE_LIMIT_SEC=60;let _isAdminMode=false;function updateCharCount(){const len=document.getElementById('comment-input').value.length;const el=document.getElementById('char-count');if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)'}}function relativeTime(isoStr){const diff=(Date.now()-new Date(isoStr).getTime())/1000;if(diff<60)return'たった今';if(diff<3600)return Math.floor(diff/60)+'分前';if(diff<86400)return Math.floor(diff/3600)+'時間前';if(diff<86400*7)return Math.floor(diff/86400)+'日前';return new Date(isoStr).toLocaleDateString('ja-JP')}function renderComments(comments){const list=document.getElementById('comments-list');if(!list)return;if(!comments||comments.length===0){list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';return}list.innerHTML=comments.map(c=>'<div class="comment-item" data-id="'+c.id+'"><div class="comment-meta"><span class="comment-time">'+relativeTime(c.created_at)+'</span>'+(_isAdminMode?'<button class="comment-delete-btn" title="完全削除" onclick="deleteComment(\''+c.id+'\')">&#128465;</button><button class="comment-delete-btn" title="非表示" onclick="hideComment(\''+c.id+'\')">&#128064;</button>':'')+'</div><div class="comment-body">'+escapeHtml(c.content)+'</div></div>').join('')}function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}async function loadComments(){const list=document.getElementById('comments-list');if(!list)return;const{data,error}=await supabaseClient.from('comments').select('id, content, created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);if(error){list.innerHTML='<div class="comment-empty">コメントを読み込めませんでした。</div>';return}renderComments(data||[])}async function submitComment(){const input=document.getElementById('comment-input');const msg=document.getElementById('comment-msg');if(!input||!msg)return;const hp=document.getElementById('hp_field');if(hp&&hp.value!=='')return;const content=input.value.trim();if(!content){showCommentMsg('コメントを入力してください。',false);return}if(content.length>100){showCommentMsg('100文字以内で入力してください。',false);return}const NG_WORDS=['広啄','http://','https://','LINE','DMして','難民','ビッチ','死ね','クソ','アホ','ウザイ','メルマガ','discord.gg','t.me','clickして'];const lc=content.toLowerCase();if(NG_WORDS.some(w=>lc.includes(w.toLowerCase()))){showCommentMsg('不適切な表現が含まれているため投稿できません。',false);return}const lastPosted=parseInt(localStorage.getItem(RATE_LIMIT_KEY)||'0');const now=Date.now();if(now-lastPosted<RATE_LIMIT_SEC*1000){const remain=Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000);showCommentMsg('あと'+remain+'秒後に投稿できます。',false);return}const btn=document.querySelector('.comment-submit-btn');if(btn)btn.disabled=true;const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});if(btn)btn.disabled=false;if(error){showCommentMsg('投稿に失敗しました。',false);return}localStorage.setItem(RATE_LIMIT_KEY,now.toString());input.value='';updateCharCount();showCommentMsg('コメントを投稿しました！',true);await loadComments()}function showCommentMsg(text,ok){const el=document.getElementById('comment-msg');if(!el)return;el.textContent=text;el.style.color=ok?'var(--accent-color)':'#ff6b6b';setTimeout(()=>{el.textContent=''},3000)}async function deleteComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを完全に削除しますか？'))return;const{error}=await supabaseClient.rpc('delete_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('削除失敗: '+error.message);return}await loadComments()}async function hideComment(commentId){if(!_isAdminMode)return;if(!confirm('このコメントを非表示にしますか？'))return;const{error}=await supabaseClient.rpc('hide_comment_admin',{comment_id:commentId,admin_token:localStorage.getItem(ADMIN_TOKEN_KEY)||''});if(error){alert('非表示失敗: '+error.message);return}await loadComments()}document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.shiftKey&&e.key==='D'){e.preventDefault();if(_isAdminMode){_isAdminMode=false;localStorage.removeItem(ADMIN_TOKEN_KEY);renderComments([]);loadComments();alert('管理者モードを終了しました。');return}const pw=prompt('管理者パスワードを入力してください:');if(!pw)return;if(pw===ADMIN_PASSWORD){_isAdminMode=true;localStorage.setItem(ADMIN_TOKEN_KEY,pw);loadComments();alert('管理者モードに入りました。')}else{alert('パスワードが違います。')}}});
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_leo_petrov'; const _commentArticleName = '「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
+                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」'; const _commentArticleUrl = 'leo-petrov.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
     </script>
     <script src="article-common.js" defer></script>
 </body>

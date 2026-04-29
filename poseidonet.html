@@ -2,217 +2,105 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポセイドネット - Fallout 76 日本語Wiki</title>
-    <link rel="stylesheet" href="/css/wiki.css"> <!-- 仮のCSSパス -->
+    <title>PoseidoNet | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/poseidonet.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="PoseidoNet | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ポセイドネット。Falloutのロア記事。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/poseidonet/FONV_Poseidon_Energy_Logo.webp">
+    <meta property="og:url" content="https://www.fallout-jp.com/poseidonet.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto Mono', monospace;
-            background-color: #1a1a1a;
-            color: #00ff00;
-            margin: 0;
-            overflow-x: hidden;
-        }
-        .crt-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(0,255,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
-            pointer-events: none;
-            z-index: 1000;
-        }
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.3) 50%);
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 999;
-        }
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: #0a0a0a;
-            border: 2px solid #00ff00;
-            box-shadow: 0 0 15px rgba(0,255,0,0.5);
-            position: relative;
-            z-index: 1;
-        }
-        .sidebar {
-            width: 250px;
-            padding: 20px;
-            border-right: 1px solid #00ff00;
-            flex-shrink: 0;
-        }
-        .sidebar h2 {
-            color: #00ff00;
-            font-size: 1.2em;
-            border-bottom: 1px solid #00ff00;
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-        .sidebar ul {
-            list-style: none;
-            padding: 0;
-        }
-        .sidebar ul li a {
-            color: #00ff00;
-            text-decoration: none;
-            display: block;
-            padding: 5px 0;
-        }
-        .sidebar ul li a:hover {
-            background-color: #003300;
-        }
-        .main-content {
-            flex-grow: 1;
-            padding: 20px;
-        }
-        .page-header {
-            border-bottom: 2px solid #00ff00;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .page-header h1 {
-            color: #00ff00;
-            font-size: 2em;
-            margin: 0;
-        }
-        .page-content h2 {
-            color: #00ff00;
-            font-size: 1.5em;
-            border-bottom: 1px solid #00ff00;
-            padding-bottom: 5px;
-            margin-top: 30px;
-        }
-        .page-content h3 {
-            color: #00ff00;
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
-        .page-content p {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        .page-content a {
-            color: #00ffff;
-            text-decoration: none;
-        }
-        .page-content a:hover {
-            text-decoration: underline;
-        }
-        .quote-box {
-            border: 1px solid #00ff00;
-            padding: 15px;
-            margin: 20px 0;
-            background-color: #001a00;
-        }
-        .quote-box b {
-            color: #00ff00;
-        }
-        .comments-section {
-            margin-top: 40px;
-            border-top: 2px solid #00ff00;
-            padding-top: 20px;
-        }
-        .comments-section h2 {
-            color: #00ff00;
-            font-size: 1.5em;
-            margin-top: 0;
-        }
-        .comment {
-            border: 1px solid #00ff00;
-            padding: 10px;
-            margin-bottom: 10px;
-            background-color: #001a00;
-        }
-        .comment-author {
-            font-weight: bold;
-            color: #00ffff;
-        }
-        .comment-date {
-            font-size: 0.8em;
-            color: #00cc00;
-        }
-        .holotape-box {
-            border-left: 4px solid #ff9800;
-            margin: 20px 0;
-            background: color-mix(in srgb, #ff9800 10%, transparent);
-            padding: 15px 15px 15px 20px;
-            border-radius: 0 5px 5px 0;
-            line-height: 1.6;
-        }
-        .holotape-box b { color: #ff9800; font-size: 1.05em; }
-
-        .note-box {
-            border-left: 4px solid #64b5f6;
-            margin: 20px 0;
-            background: color-mix(in srgb, #64b5f6 10%, transparent);
-            padding: 15px 15px 15px 20px;
-            border-radius: 0 5px 5px 0;
-            line-height: 1.6;
-        }
-        .note-box b { color: #64b5f6; font-size: 1.05em; }
-        .page-content dl {
-            margin-top: 1em;
-            margin-bottom: 1em;
-        }
-        .page-content dt {
-            font-weight: bold;
-            color: #00ff00;
-            margin-top: 0.5em;
-        }
-        .page-content dd {
-            margin-left: 2em;
-            margin-bottom: 0.5em;
-        }
-        .page-content ul {
-            list-style-type: square;
-            margin-left: 20px;
-        }
-        .page-content li {
-            margin-bottom: 5px;
-        }
-        .ref-list {
-            font-size: 0.9em;
-            color: #00cc00;
-        }
-        .ref-list li {
-            margin-bottom: 5px;
-        }
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; text-align: right; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; text-align: left; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .note-box { border-left: 4px solid #8b9dc3; margin: 30px 0; background: rgba(139, 157, 195, 0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #8b9dc3; font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; } li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; } .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        .terminal-entry { border-left: 4px solid #00ff00; margin: 20px 0; background: rgba(0, 255, 0, 0.05); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; color: #00ff00; }
+        .terminal-entry b { color: #00ff00; font-size: 1.05em; }
+        .holotape-box { border-left: 4px solid #e89b3e; margin: 30px 0; background: rgba(232,155,62,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #e89b3e; font-size: 1.05em; }
     </style>
+    <meta name="article-status" content="draft">
 </head>
-<body>
-    <div class="crt-overlay"></div>
-    <div class="scanlines"></div>
+<body data-article-category="ロア" data-article-appearance="Fallout 2, Fallout: New Vegas, Fallout 76">
     <div class="container">
-        <div class="sidebar">
-            <h2>ポセイドン・エナジー</h2>
-            <ul>
-                <li><a href="/poseidon-energy.html">ポセイドン・エナジー</a></li>
-                <li><a href="/poseidonet.html">ポセイドネット</a></li>
-                <li><a href="/poseidon-energy-plant-wv-06.html">ポセイドン・エナジー・プラントWV-06</a></li>
-                <li><a href="/thunder-mountain-power-plant.html">サンダーマウンテン発電所</a></li>
-                <li><a href="/helios-one.html">ヘリオス・ワン</a></li>
-                <li><a href="/pmv-valdez.html">PMV バルデス</a></li>
-                <li><a href="/navarro.html">ナバロ</a></li>
-                <li><a href="/geckos-nuclear-power-plant.html">ゲッコーの原子力発電所</a></li>
-            </ul>
-            <br>
-            <img src="images/note_extracted/poseidonet/img_map_marker.png" alt="ポセイドネットの地図マーカー" style="width:100%; border:1px solid #00ff00;">
-        </div>
-        <div class="main-content">
-            <div class="page-header">
-                <h1>ポセイドネット</h1>
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">PoseidoNet</h3>
+            <img src="images/note_extracted/poseidonet/FONV_Poseidon_Energy_Logo.webp" alt="ポセイドネット" onerror="this.src='images/placeholder.jpg'">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>ロア</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 2, Fallout: New Vegas, Fallout 76</span></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_poseidonet" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
             </div>
-            <div class="page-content">
-                <p><b>ポセイドネット</b>は、戦前に<a href="/poseidon-energy.html">ポセイドン・エナジー</a>が運営していた大陸横断ネットワークで、太平洋から大西洋まで広がっていた<sup id="ref-link-1"><a href="#ref-1">[1]</a></sup><sup id="ref-link-2"><a href="#ref-2">[2]</a></sup>。</p>
+
+            <h1>PoseidoNet<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ポセイドネット</span></h1>
+
+            <p><b>ポセイドネット</b>は、戦前に<a href="/poseidon-energy.html">ポセイドン・エナジー</a>が運営していた大陸横断ネットワークで、太平洋から大西洋まで広がっていた<sup id="ref-link-1"><a href="#ref-1">[1]</a></sup><sup id="ref-link-2"><a href="#ref-2">[2]</a></sup>。</p>
 
                 <h2>概要</h2>
                 <p>ポセイドネットは軍産複合体のネットワーク基盤であり、企業支社だけでなく、政府や軍事施設も接続し、リアルタイム通信を可能にしていた<sup id="ref-link-1-2"><a href="#ref-1">[1]</a></sup>。このネットワークは、ロボットルーチンのダウンロード（ポセイドネット検索でネットワーク上に見つかる限り）<sup id="ref-link-1-3"><a href="#ref-1">[1]</a></sup>、リアルタイムのビデオ会議<sup id="ref-link-3-1"><a href="#ref-3">[3]</a></sup>、およびセキュリティ目的での追跡機能（不正ユーザーの特定）<sup id="ref-link-3-2"><a href="#ref-3">[3]</a></sup>をサポートする十分な帯域幅を提供していた。セキュリティは、正しいセキュリティアクセスコードシーケンスを入力しない限り、中央ポセイドネットへのアップリンクを防止することで維持されていた<sup id="ref-link-1-4"><a href="#ref-1">[1]</a></sup>。ユーザーが正しいコードを3回入力し損ねた場合、ポセイドネットは直ちに内部セキュリティ手順を起動し<sup id="ref-link-1-5"><a href="#ref-1">[1]</a></sup>、ターミナルをロックダウンした。ポセイドネットのネットワーク管理者はロックアウトを解除できたが、一部のターミナルはローカルでリセットするだけでアクセスを復元できた<sup id="ref-link-1-6"><a href="#ref-1">[1]</a></sup>。</p>
@@ -621,31 +509,58 @@
                     <li id="ref-7">ポセイドン工場マスター制御ターミナル (<a href="/poseidon-energy-plant-wv-06-terminal-entries.html#Poseidon_plant_master_control_terminal">ポセイドン・エナジー・プラントWV-06 ターミナルエントリ</a>より)</li>
                 </ol>
 
-                <div class="quote-box">
-                    <b>感想</b><br><br>
-                    ポセイドネットは、アパラチアの荒野をさまよう私たち居住者にとって、過去の栄光と技術力の象徴だ。大戦前の世界がどれほど高度な通信網を持っていたかを物語っている。エンクレイヴが戦後もこのシステムを使い続けていたという事実は、その堅牢性と信頼性がいかに優れていたかを証明しているだろう。しかし、その一方で、企業が従業員を監視し、機密情報を厳重に管理しようとした冷酷な側面も垣間見える。特に「彼に話してもいいか？」というメモは、戦前の社会がどれほどパラノイアに陥っていたか、そして企業が個人の生活にまで深く介入していたかを示している。このネットワークが、かつては文明を繋ぎ、今は荒廃した世界でわずかに残る希望の光なのか、それとも過去の過ちを繰り返すための道具なのか、考えるたびに複雑な気持ちになる。アパラチアの各地に残されたターミナルから、この巨大なネットワークの断片を繋ぎ合わせるたびに、失われた世界の壮大さと、それが崩壊した悲劇を改めて実感するんだ。
-                </div>
+            
 
-                <div class="comments-section" id="comments-section">
-                    <h2>コメント</h2>
-                    <div class="comment">
-                        <div class="comment-author">居住者A</div>
-                        <div class="comment-date">2287年10月23日</div>
-                        <p>ポセイドネットって、まさかこんなに広範囲だったとはな。エンクレイヴが使ってたって聞くと、やっぱり彼らが戦前の技術を独占してたってのがよくわかる。</p>
-                    </div>
-                    <div class="comment">
-                        <div class="comment-author">居住者B</div>
-                        <div class="comment-date">2287年10月24日</div>
-                        <p>「彼に話してもいいか？」のメモはゾッとするね。家族や友人も信用できないなんて、どんな時代だったんだか。今の荒野の方がよっぽど人間らしい付き合いができる気がするよ。</p>
-                    </div>
-                    <div class="comment">
-                        <div class="comment-author">居住者C</div>
-                        <div class="comment-date">2287年10月25日</div>
-                        <p>サンダーマウンテンやポセイドン・エナジー・プラントWV-06のターミナルで、このネットワークの断片に触れるたびに、戦前の技術の凄さを感じる。でも、それが結局、世界を滅ぼす一因になったんだよな。</p>
-                    </div>
-                </div>
+            <div class="quote-box">
+                <b>感想</b><br><br>
+ポセイドネットは、アパラチアの荒野をさまよう私たち居住者にとって、過去の栄光と技術力の象徴だ。大戦前の世界がどれほど高度な通信網を持っていたかを物語っている。エンクレイヴが戦後もこのシステムを使い続けていたという事実は、その堅牢性と信頼性がいかに優れていたかを証明しているだろう。しかし、その一方で、企業が従業員を監視し、機密情報を厳重に管理しようとした冷酷な側面も垣間見える。特に「彼に話してもいいか？」というメモは、戦前の社会がどれほどパラノイアに陥っていたか、そして企業が個人の生活にまで深く介入していたかを示している。このネットワークが、かつては文明を繋ぎ、今は荒廃した世界でわずかに残る希望の光なのか、それとも過去の過ちを繰り返すための道具なのか、考えるたびに複雑な気持ちになる。アパラチアの各地に残されたターミナルから、この巨大なネットワークの断片を繋ぎ合わせるたびに、失われた世界の壮大さと、それが崩壊した悲劇を改めて実感するんだ。
             </div>
-        </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/PoseidoNet" target="_blank" rel="noopener">PoseidoNet</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+            </div>
+        </main>
     </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
+        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
+        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
+        const _commentArticleId = 'note_poseidonet'; const _commentArticleName = 'ポセイドネット'; const _commentArticleUrl = 'poseidonet.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
+        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
+        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
+        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+    </script>
+    <script src="article-common.js" defer></script>
 </body>
 </html>

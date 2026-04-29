@@ -683,7 +683,7 @@
     const GITHUB_OWNER = 'futa1029';
     const GITHUB_REPO = 'fallout-terminal-archive';
     const GITHUB_BRANCH = 'main';
-    const LORE_FILE_PATH = 'lore.html';
+    const LORE_FILE_PATH = 'js/lore_index.js';
 
     // ===== 状態管理 =====
     let allEntries = [];
@@ -789,7 +789,7 @@
         }
     }
 
-    // ===== lore.htmlの取得（GitHub API経由） =====
+    // ===== lore_index.jsの取得（GitHub API経由） =====
     async function fetchLoreFromGitHub() {
         const data = await githubFetch(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${LORE_FILE_PATH}?ref=${GITHUB_BRANCH}`);
         currentLoreSha = data.sha;
@@ -801,7 +801,7 @@
         return currentLoreContent;
     }
 
-    // ===== lore.htmlの更新（GitHub API経由） =====
+    // ===== lore_index.jsの更新（GitHub API経由） =====
     async function pushLoreToGitHub(newContent, commitMessage) {
         // UTF-8対応Base64エンコード
         const encoder = new TextEncoder();
@@ -831,7 +831,7 @@
             // まずローカルfetchを試し、失敗したらGitHub APIを使う
             let html;
             try {
-                const res = await fetch('lore.html');
+                const res = await fetch('js/lore_index.js');
                 if (!res.ok) throw new Error('Local fetch failed');
                 html = await res.text();
             } catch (e) {
@@ -840,7 +840,7 @@
                 if (token) {
                     html = await fetchLoreFromGitHub();
                 } else {
-                    throw new Error('lore.htmlを読み込めません。GitHub PATを設定してください。');
+                    throw new Error('js/lore_index.jsを読み込めません。GitHub PATを設定してください。');
                 }
             }
 
@@ -1066,6 +1066,10 @@
         if (!hasSupa) {
             targetsEl.innerHTML += '<br><br><span style="color:var(--danger-red)">⚠ Supabase Keyが設定されていません。</span>';
         }
+        
+        if (pendingPublishUrls.length >= 10) {
+            targetsEl.innerHTML += '<br><br><span style="color:var(--danger-red); font-weight:bold;">⚠ 警告: 10件以上の記事が一度に変更されようとしています！ 意図した操作ですか？</span>';
+        }
 
         document.getElementById('publish-modal').classList.add('show');
     }
@@ -1082,37 +1086,50 @@
         processing.classList.add('show');
 
         try {
-            // 1. GitHub からlore.htmlの最新版を取得
-            processingText.textContent = 'GitHub からlore.htmlを取得中...';
+            // 1. GitHub からlore_index.jsの最新版を取得
+            processingText.textContent = 'GitHub から最新のインデックスを取得中...';
             const loreContent = await fetchLoreFromGitHub();
 
-            // 2. isDraft: true を除去 + dateを今日に更新
+            // 2. JSをパースして該当記事のisDraftを除去 + dateを更新
             processingText.textContent = `${pendingPublishUrls.length}件の記事を公開処理中...`;
-            let modifiedContent = loreContent;
             let publishedNames = [];
             const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+            
+            const startStr = 'const loreEntries = [';
+            const startIdx = loreContent.indexOf(startStr);
+            const endIdx = loreContent.indexOf('];', startIdx);
+            
+            if (startIdx === -1 || endIdx === -1) {
+                throw new Error('インデックスのパースに失敗しました。');
+            }
+            
+            const arrayContent = loreContent.substring(startIdx + startStr.length, endIdx);
+            const fn = new Function('return [' + arrayContent + '];');
+            const entries = fn();
+            
+            let changed = false;
 
             for (const url of pendingPublishUrls) {
-                const entry = draftEntries.find(e => e.url === url);
-                const escapedUrl = url.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
-                // パターン: date行の後の,\n isDraft: true を除去 + dateを今日に更新
-                const pattern = new RegExp(
-                    `(url:\\s*"${escapedUrl}"[\\s\\S]*?)(date:\\s*"[^"]*?")(,\\s*\\n\\s*isDraft:\\s*true)`,
-                    'g'
-                );
-
-                const before = modifiedContent;
-                modifiedContent = modifiedContent.replace(pattern, `$1date: "${todayStr}"`);
-
-                if (modifiedContent !== before) {
-                    publishedNames.push(entry ? entry.name : url);
+                const entry = entries.find(e => e.url === url);
+                if (entry && entry.isDraft) {
+                    delete entry.isDraft;
+                    entry.date = todayStr;
+                    publishedNames.push(entry.name);
+                    changed = true;
                 }
             }
 
-            if (publishedNames.length === 0) {
+            if (!changed) {
                 throw new Error('一致するドラフトエントリが見つかりませんでした');
             }
+            
+            // 安全なJSON.stringifyでファイル全体を再構築
+            const newArrStr = JSON.stringify(entries, null, 4)
+                .replace(/"([^"]+)":/g, '$1:')
+                .replace(/name: "ドクター・"ノーズ"・エドモンドソン"/, 'name: "ドクター・\\"ノーズ\\"・エドモンドソン"')
+                .replace(/yomi: "どくたー・"のーず"・えどもんどそん"/, 'yomi: "どくたー・\\"のーず\\"・えどもんどそん"');
+            
+            const modifiedContent = loreContent.substring(0, startIdx + 20) + newArrStr + loreContent.substring(endIdx + 1);
 
             // 3. GitHub にコミット & プッシュ
             processingText.textContent = 'GitHub にコミット中...';

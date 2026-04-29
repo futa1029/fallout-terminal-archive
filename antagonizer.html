@@ -1,54 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>AntAgonizer | Overseer Mohi's Terminal</title>
-    <!-- Open Graph / Discord Embed -->
+    <title>antagonizer | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/antagonizer.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="Ulysses | Overseer Mohi's Terminal">
-    <meta property="og:description" content="ユリシーズ（Ulysses）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/og-default.png">
-    <meta property="og:url" content="https://www.fallout-jp.com/ulysses.html">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="antagonizer | Overseer Mohi's Terminal">
+    <meta property="og:description" content="antagonizer。Falloutのロア記事。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/placeholder.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/antagonizer.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ulysses | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="ユリシーズ（Ulysses）のFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta name="twitter:image" content="https://www.fallout-jp.com/images/og-default.png">
-
-    <!-- Supabase CDN -->
+    <meta name="twitter:site" content="@IwamotoFuta">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
     <style>
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 9999;
-            cursor: zoom-out;
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox-overlay.active {
-            display: flex;
-        }
-        .lightbox-overlay img {
-            max-width: 95vw;
-            max-height: 95vh;
-            object-fit: contain;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
-            border-radius: 4px;
-        }
-        .content img, .infobox img, .gallery-item img {
-            cursor: zoom-in;
-        }
-
-        /* コメントセクション */
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; text-align: right; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; text-align: left; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .note-box { border-left: 4px solid #8b9dc3; margin: 30px 0; background: rgba(139, 157, 195, 0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #8b9dc3; font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
+        .content a:hover { border-bottom: 1px solid var(--accent-color); }
+        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
+        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; } li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; } .gallery-section h2 { margin-bottom: 20px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
         .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
         .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
         .comment-form { margin-bottom: 20px; }
@@ -57,7 +61,7 @@
         .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
         .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
         .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
-        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
         .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
         .comments-list { display: flex; flex-direction: column; gap: 10px; }
@@ -68,22 +72,21 @@
         .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
         .comment-delete-btn:hover { opacity: 1; }
         .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+        .terminal-entry { border-left: 4px solid #00ff00; margin: 20px 0; background: rgba(0, 255, 0, 0.05); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; color: #00ff00; }
+        .terminal-entry b { color: #00ff00; font-size: 1.05em; }
+        .holotape-box { border-left: 4px solid #e89b3e; margin: 30px 0; background: rgba(232,155,62,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #e89b3e; font-size: 1.05em; }
     </style>
+    <meta name="article-status" content="draft">
 </head>
-<body data-article-category="人物" data-article-appearance="Fallout 3">
+<body data-article-category="人物" data-article-appearance="Fallout 4">
     <div class="container">
-        <!-- Sidebar -->
         <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Ulysses</h3>
-            <img src="https://static.wikia.nocookie.net/fallout/images/5/52/UlyssesWithoutMask.png" alt="ユリシーズ (Ulysses)">
-            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
-<div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
-<div class="infobox-row"><span class="infobox-label">所属</span><span>アリ帝国の女王 (自称)</span></div>
-<div class="infobox-row"><span class="infobox-label">本名</span><span>ターニャ・トレス</span></div>
-<div class="infobox-row"><span class="infobox-label">CV</span><span>Courtenay Taylor</span></div>
-</aside>
+            <h3 style="margin-top:0; text-align:center;">antagonizer</h3>
+            
+            
+        </aside>
 
-        <!-- Main Content -->
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
@@ -92,53 +95,17 @@
                 </button>
             </div>
 
-            <h1>AntAgonizer<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">アンタゴナイザー</span></h1>
-
-<h2>概要</h2>
-<p>アンタゴナイザー（The AntAgonizer）は、カンタベリー・コモンズを脅かす自称「悪のスーパーヴィラン」。巨大なアリ（ジャイアント・アント）を操り、人々を恐怖に陥れる怪人として活動しています。</p>
-
-<h2>歴史</h2>
-<p>彼女の正体は、幼い頃に両親を人食いアリによって殺害された孤児の「ターニャ」という女性です。成長した彼女は深いトラウマを抱えた結果、「自分がアリの女王となって復讐する（あるいは恐怖の対象そのものになる）」という歪んだ自己防衛機制に陥りました。<br>戦前のコミックヒーロー「シルバー・シュラウド」シリーズに登場する悪役「アンタゴナイザー」の衣装を身に纏い、カンタベリー・コモンズの町で、同じく戦前のヒーローを気取る宿敵「メカニスト」との間で、住民を巻き込んだ文字通りの「特撮ごっこ」のようなヒーロー・ヴィランの戦いを繰り広げています。</p>
-<p>主人公の選択肢次第で、彼女のトラウマに寄り添って説得して衣装を脱がせ、正気を取り戻させて町から退去させるという平和的な解決が可能です。</p>
+            <h1>antagonizer<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">antagonizer</span></h1>
 
 
-<h2>生い立ちと部族の喪失 (The Twisted Hairs)</h2>
-            <p>ユリシーズは元々、強靭な肉体と独特なドレッドヘアを特徴とする部族『ツイステッド・ヘアーズ（Twisted Hairs）』の出身でした。彼の部族はアリゾナ一帯を支配すべく拡大を続けていたシーザー・リージョンの目に留まり、同盟を結んだ上でその優れた偵察能力をリージョン軍に提供していました。<br>
-            ユリシーズはその卓越したサバイバル術と薬草の知識をもとに、シーザー麾下の最も優秀なフルメンタリーのひとりとして活躍しました。</p>
-            
-            <p>しかし、周辺部族の平定が完了すると、シーザーは彼らを「同盟者」としてではなく、「征服の対象」として裏切ります。ユリシーズが忠誠を誓いながらも戦いに出ている間に、彼の部族はヴルペス・インカルタの手によって騙し討ちされ、奴隷化され、抵抗した者は十字架に磔にされました。<br>
-            部族を破壊されアイデンティティを奪われた彼は、かつての名前を捨て、「二つの対立する旗の時代に戦い、それを一つにした偉人（ユリシーズ・S・グラント）」に由来して自らを『ユリシーズ』と名乗るようになります。彼は部族の恨みを持ちながらも、旧世界を信奉するNCRの打倒のため、リージョンの運び屋として虚無のままに荒野を歩き続けました。</p>
 
-            <h2>ディバイドの発見ともう一人の運び屋</h2>
-            <p>リージョンのスパイとしてモハビを旅していた彼は、もう一人の同じような「運び屋（プレイヤー）」の足跡をたどることになります。<br>
-            その運び屋の辿った道筋を追う中で、ユリシーズは『ディバイド（The Divide）』と呼ばれる、豊かなコミュニティへと発展しつつある生存者の町を見出しました。過酷な荒野において、旧世界の象徴（アメリカの国旗）を胸に新しい息吹を上げ始めたディバイドの生活に、彼は自らの失われた故郷と「新たな国家の希望」を重ね合わせていました。</p>
-            
-            <p>しかし、その希望は突如として完全に粉砕されます。<br>
-            原因は皮肉にも、自分が長年足跡を追っていた「もう一人の運び屋」が、過去の世界の残留物である『奇妙な起爆装置（パッケージ）』をNCRの依頼でこの地に運んできたことでした。そのパッケージがディバイド地下に眠っていた旧世界のICBMシステムを連鎖爆発させ、巨大な大地の亀裂と放射能の嵐を伴う地獄へと変貌させてしまったのです。</p>
+            <div class="quote-box">
+                <b>感想</b><br><br>
+（準備中）
+            </div>
 
-            <h2>プラチナ・チップと本編での行動</h2>
-            <p>ディバイド崩壊を生き延びたユリシーズは、運び屋（プレイヤー）に対する複雑で深い因縁と静かなる怒りを胸にモハビへと戻ります。<br>
-            西暦2281年（ゲーム本編開始直前）、彼はモハビ・エクスプレスから6人の運び屋の1人として、重要荷物である『プラチナ・チップ（ポーカーチップ）』の運搬を打診されました。しかし、名簿に「もう一人の運び屋（プレイヤー）」の名前を見つけた彼は、不敵な笑みを浮かべながら「その仕事はその運び屋にやらせろ」と言い残し、自身は辞退して荒野へ消えていきました。結果としてプレイヤーはベニーに撃たれ、New Vegasの壮大な物語の引き金が引かれることになりました。</p>
-
-            <h2>すべてのDLCでの暗躍と因縁</h2>
-            <p>彼は本編の裏側で、すべてのDLCエリアに到達し、独自の思惑で各地の状況に多大な影響を与えています。</p>
-            <ul>
-                <li><b>Dead Money:</b> ビッグMTからシエラ・マドレ到達のヒントを持ち出し、ブラザーフッドの狂人エリヤにそそのかしてシエラ・マドレへと向かわせるきっかけを作りました。また、同行したクリスティーンとも因縁があります。</li>
-                <li><b>Honest Hearts:</b> ザイオン国立公園に赴き、現地の野蛮な部族「ホワイトレッグス」に接触。かつての自分の部族（ツイステッド・ヘアーズ）の伝統的な髪型などをあえて教え込み、リージョンへと編入させる条件として「ジョシュア・グラハムの抹殺」を唆しました。</li>
-                <li><b>Old World Blues:</b> 狂気に満ちた科学結社「ビッグMT」にすら到達し、シンク・タンクの一面を垣間見ます。過去に囚われた彼らの不完全性をあざ笑い、Dr.モビウスに対しても「自分が知りたいのは過去（Who are you?）ではなく未来だ」と説きました。</li>
-                <li><b>Lonesome Road:</b> これらの旅を生き抜いた彼は、最後に運び屋（プレイヤー）を、自らの希望の地であったディバイドへと招待します。背中にオールドアメリカンの星条旗を背負い、NCRでもリージョンでもない彼自身の歪んだ正義と「歴史に対する責任」をプレイヤーに問いかけながら、アメリカへの核ミサイル発射を目論む最後の敵として立ち塞がります。</li>
-            </ul>
-
-            <div class="quote-box" style="margin-top: 40px; border-top: 3px solid var(--accent-color);"><p class="quote-text">狂気に満ちたウェイストランドの中でも一際異彩を放つ「コスプレおば・・・お姉さん」。メカニストとの滑稽な戦いは、最初見た時はギャグイベントかと思いきや、実は「悲惨な過去が生み出した狂気の自己防衛」という重いトラウマが背景にあり、非常にFalloutらしい「悲しい狂人」として描かれています。</p></div>
-
-            <!-- Footer & Copyright -->
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-                <div style="margin-bottom: 10px;">
-                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout3</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#LonesomeRoad</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
-                </div>
-                <!-- 著作権表示 -->
-                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/AntAgonizer" target="_blank" rel="noopener">AntAgonizer</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/antagonizer" target="_blank" rel="noopener">antagonizer</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
 
@@ -159,7 +126,6 @@
         </main>
     </div>
 
-    <!-- Lightbox Overlay -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
         <img id="lightbox-img" src="" alt="拡大画像">
     </div>
@@ -171,9 +137,7 @@
         async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
         function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
         document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
-        
-        // Comment system
-        const _commentArticleId = 'ulysses'; const _commentArticleName = 'Ulysses'; const _commentArticleUrl = 'ulysses.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
+        const _commentArticleId = 'note_antagonizer'; const _commentArticleName = 'antagonizer'; const _commentArticleUrl = 'antagonizer.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
         function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
         function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
         function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
