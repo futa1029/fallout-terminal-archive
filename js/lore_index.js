@@ -9035,8 +9035,7 @@ const loreEntries = [
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-03-08",
-        isDraft: true
+        date: "2026-04-29"
     },
     {
         name: "Commissioner Chaos",
@@ -9524,7 +9523,6 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    
     {
         name: "Fallout",
         yomi: "fallout",
@@ -11407,7 +11405,6 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    
     {
         name: "天文台",
         yomi: "天文台",
@@ -20482,7 +20479,6 @@ const loreEntries = [
         ],
         date: "2026-02-08"
     },
-    
     {
         name: "Vault 108",
         yomi: "Vault 108",
