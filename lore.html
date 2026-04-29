@@ -690,14 +690,7 @@
 
     <script>
         const loreEntries = [
-            {
-                name: "バッズ・バッズ",
-                yomi: "ばっずばっず",
-                url: "buds_buds.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-29"
-            },
+
             {
                 name: "Dave",
                 yomi: "でいぶだいとうりょう",
@@ -19652,13 +19645,25 @@
         async function loadVisibility() {
             if (!_loreSupabase) return;
             try {
-                const { data, error } = await _loreSupabase
-                    .from('article_visibility')
-                    .select('url, is_published');
-                if (!error && data) {
+                let allData = [];
+                let from = 0;
+                const step = 1000;
+                while (true) {
+                    const { data, error } = await _loreSupabase
+                        .from('article_visibility')
+                        .select('url, is_published')
+                        .range(from, from + step - 1);
+                    if (error) break;
+                    if (!data || data.length === 0) break;
+                    allData = allData.concat(data);
+                    if (data.length < step) break;
+                    from += step;
+                }
+                
+                if (allData.length > 0) {
                     _visibilityMap = new Map();
-                    data.forEach(row => _visibilityMap.set(row.url, row.is_published));
-                    console.log('[Visibility] Supabaseから' + data.length + '件の公開状態を取得');
+                    allData.forEach(row => _visibilityMap.set(row.url, row.is_published));
+                    console.log('[Visibility] Supabaseから' + allData.length + '件の公開状態を取得');
                 }
             } catch (e) {
                 console.warn('[Visibility] Supabase取得失敗、isDraftにフォールバック:', e);
