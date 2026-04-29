@@ -844,11 +844,16 @@
                 }
             }
 
-            // loreEntries配列を抽出
-            const match = html.match(/const loreEntries = \[([\s\S]*?)\];/);
-            if (!match) throw new Error('loreEntries not found');
-
-            const fn = new Function('return [' + match[1] + '];');
+            // loreEntries配列を抽出（]; を探して正確に範囲を特定）
+            const startStr = 'const loreEntries = [';
+            const startIdx = html.indexOf(startStr);
+            if (startIdx === -1) throw new Error('loreEntries not found');
+            
+            const endIdx = html.indexOf('];', startIdx);
+            if (endIdx === -1) throw new Error('Closing ]; not found');
+            
+            const arrayContent = html.substring(startIdx + startStr.length, endIdx);
+            const fn = new Function('return [' + arrayContent + '];');
             allEntries = fn();
 
             // ドラフトのみ抽出（古い順）
