@@ -548,13 +548,21 @@
         <!-- 左パネル -->
         <div class="list-panel">
             <!-- GitHub PAT -->
-            <div class="token-bar">
+            <div class="token-bar" style="background: rgba(51, 255, 51, 0.05); border-bottom: none;">
                 <div class="token-status" id="token-status" title="GitHub APIの接続状態"></div>
-                <span>GitHub PAT:</span>
+                <span style="width: 80px;">GitHub PAT:</span>
                 <input type="password" class="token-input" id="token-input"
                     placeholder="ghp_xxxxxxxxxxxx"
                     oninput="saveToken()" onchange="saveToken()">
-                <button class="back-btn" onclick="testToken()" style="font-size:0.9em;padding:2px 8px">接続テスト</button>
+                <button class="back-btn" onclick="testToken()" style="font-size:0.9em;padding:2px 8px">テスト</button>
+            </div>
+            <div class="token-bar" style="background: rgba(0, 204, 255, 0.05);">
+                <div class="token-status" id="supabase-status" title="Supabaseの接続状態"></div>
+                <span style="width: 80px;">Supa Key:</span>
+                <input type="password" class="token-input" id="supabase-input"
+                    placeholder="eyJhbGciOiJIUzI1..."
+                    oninput="saveSupaToken()" onchange="saveSupaToken()">
+                <button class="back-btn" onclick="testSupabase()" style="font-size:0.9em;padding:2px 8px">テスト</button>
             </div>
 
             <div class="list-controls">
@@ -631,7 +639,9 @@
         <div class="modal">
             <h2>> PUBLISH CONFIRMATION</h2>
             <div class="modal-info">
-                以下の記事を公開します。<code>lore.html</code> から <code>isDraft: true</code> が除去され、GitHub に自動コミットされます。
+                以下の記事を公開します。<br>
+                1. <code>lore.html</code> から <code>isDraft: true</code> を除去し GitHub へプッシュします。<br>
+                2. Supabase の <code>article_visibility</code> テーブルを「公開」に更新します。
             </div>
             <div class="modal-targets" id="publish-targets"></div>
             <div class="modal-actions">
@@ -685,15 +695,35 @@
     let currentLoreContent = '';  // GitHub上のlore.htmlの中身
     let currentLoreSha = '';      // GitHubのファイルSHA（更新時に必要）
     let pendingPublishUrls = [];  // 投稿待ちURL
+    let supabaseClient = null;    // Supabaseクライアント
 
-    // ===== GitHub APIヘルパー =====
+    // ===== トークン管理 =====
     function getToken() {
         return document.getElementById('token-input').value.trim();
+    }
+
+    function getSupaToken() {
+        return document.getElementById('supabase-input').value.trim();
     }
 
     function saveToken() {
         localStorage.setItem('admin_github_pat', getToken());
     }
+
+    function saveSupaToken() {
+        localStorage.setItem('admin_supabase_key', getSupaToken());
+        initSupabase();
+    }
+
+    function initSupabase() {
+        const url = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const key = getSupaToken();
+        if (key && window.supabase) {
+            supabaseClient = window.supabase.createClient(url, key);
+        }
+    }
+
+    // ===== GitHub APIヘルパー =====
 
     async function githubFetch(endpoint, options = {}) {
         const token = getToken();
@@ -732,6 +762,28 @@
         } catch (err) {
             status.classList.remove('connected');
             showToast(`接続失敗: ${err.message}`, 'error');
+        }
+    }
+
+    async function testSupabase() {
+        const status = document.getElementById('supabase-status');
+        try {
+            const key = getSupaToken();
+            if (!key) {
+                showToast('Supabase Keyを入力してください', 'error');
+                return;
+            }
+            if (!supabaseClient) initSupabase();
+            
+            // 接続テスト: visibilityテーブルを1件だけ取得してみる
+            const { error } = await supabaseClient.from('article_visibility').select('url').limit(1);
+            if (error) throw error;
+            
+            status.classList.add('connected');
+            showToast('Supabase接続成功 ✓', 'success');
+        } catch (err) {
+            status.classList.remove('connected');
+            showToast(`Supabase接続失敗: ${err.message}`, 'error');
         }
     }
 
@@ -918,7 +970,7 @@
             // 公開ボタン（ドラフトのみ表示）
             const publishBtn = isDraft
                 ? `<button class="article-publish-btn" onclick="event.stopPropagation(); publishSingle('${escapeHtml(entry.url)}')">公開</button>`
-                : '<span style="color:var(--term-dim);font-size:0.75em;white-space:nowrap">公開済み</span>';
+                : `<button class="article-publish-btn" style="border-color:var(--term-dim);color:var(--term-dim)" onclick="event.stopPropagation(); syncSupabaseSingle('${escapeHtml(entry.url)}')">Sync Supa</button>`;
 
             return `
                 <div class="${classes.join(' ')}" data-url="${escapeHtml(entry.url)}" onclick="previewArticle('${escapeHtml(entry.url)}')">
@@ -998,9 +1050,14 @@
 
         // トークンチェック
         const hasToken = !!getToken();
-        document.getElementById('confirm-publish-btn').disabled = !hasToken;
+        const hasSupa = !!getSupaToken();
+        document.getElementById('confirm-publish-btn').disabled = !(hasToken && hasSupa);
+        
         if (!hasToken) {
-            targetsEl.innerHTML += '<br><br><span style="color:var(--danger-red)">⚠ GitHub PATが設定されていません。左上のPAT欄にトークンを入力してください。</span>';
+            targetsEl.innerHTML += '<br><br><span style="color:var(--danger-red)">⚠ GitHub PATが設定されていません。</span>';
+        }
+        if (!hasSupa) {
+            targetsEl.innerHTML += '<br><br><span style="color:var(--danger-red)">⚠ Supabase Keyが設定されていません。</span>';
         }
 
         document.getElementById('publish-modal').classList.add('show');
@@ -1057,10 +1114,24 @@
                 : `publish: ${publishedNames.length}件の記事を公開`;
             await pushLoreToGitHub(modifiedContent, commitMsg);
 
+            // 4. Supabase の更新
+            processingText.textContent = 'Supabase の公開フラグを更新中...';
+            if (!supabaseClient) initSupabase();
+            
+            for (const url of pendingPublishUrls) {
+                const { error } = await supabaseClient
+                    .from('article_visibility')
+                    .upsert({ url: url, is_published: true }, { onConflict: 'url' });
+                
+                if (error) {
+                    console.warn(`Supabase update failed for ${url}:`, error);
+                }
+            }
+
             processing.classList.remove('show');
             showToast(`✓ ${publishedNames.length}件の記事を公開しました！`, 'success');
 
-            // 4. UI更新: 公開済み記事をリストから除去
+            // 5. UI更新: 公開済み記事をリストから除去
             selectedUrls.clear();
             activeUrl = null;
             document.getElementById('preview-header').style.display = 'none';
@@ -1074,6 +1145,34 @@
             processing.classList.remove('show');
             showToast(`エラー: ${err.message}`, 'error');
             console.error('Publish error:', err);
+        }
+    }
+
+    // ===== Supabase個別同期 =====
+    async function syncSupabaseSingle(url) {
+        if (!getSupaToken()) {
+            showToast('Supabase Keyを設定してください', 'error');
+            return;
+        }
+        if (!supabaseClient) initSupabase();
+
+        const processing = document.getElementById('processing');
+        const processingText = document.getElementById('processing-text');
+        processingText.textContent = 'Supabase 更新中...';
+        processing.classList.add('show');
+
+        try {
+            const { error } = await supabaseClient
+                .from('article_visibility')
+                .upsert({ url: url, is_published: true }, { onConflict: 'url' });
+            
+            if (error) throw error;
+
+            processing.classList.remove('show');
+            showToast(`✓ ${url} を Supabase に同期しました`, 'success');
+        } catch (err) {
+            processing.classList.remove('show');
+            showToast(`エラー: ${err.message}`, 'error');
         }
     }
 
@@ -1107,8 +1206,14 @@
         const savedToken = localStorage.getItem('admin_github_pat');
         if (savedToken) {
             document.getElementById('token-input').value = savedToken;
-            // 接続状態をチェック
             testToken();
+        }
+
+        const savedSupa = localStorage.getItem('admin_supabase_key');
+        if (savedSupa) {
+            document.getElementById('supabase-input').value = savedSupa;
+            initSupabase();
+            testSupabase();
         }
 
         loadEntries();
