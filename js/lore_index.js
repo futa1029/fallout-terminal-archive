@@ -3011,17 +3011,7 @@ const loreEntries = [
         date: "2026-04-05",
         isDraft: true
     },
-    {
-        name: "Amata",
-        yomi: "あまた",
-        url: "amata-almodovar.html",
-        category: "人物",
-        appearance: [
-            "Fallout 3"
-        ],
-        date: "2026-04-05",
-        isDraft: true
-    },
+    
     {
         name: "Scribe Rothchild",
         yomi: "すくらいぶろすちゃいるど",
@@ -11417,17 +11407,7 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    {
-        name: "ヌカシャイン",
-        yomi: "ぬかしゃいん",
-        url: "nuka-shine_2.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-03-23",
-        isDraft: true
-    },
+    
     {
         name: "ヌカワールド・オン・ツアー",
         yomi: "ぬかわ゜るど゛おん゛つあ゜",
@@ -13326,17 +13306,7 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    {
-        name: "Vault Dweller (ヴォルト・ドゥエラー)",
-        yomi: "vault dweller (ヴォルト・ドゥエラー)",
-        url: "vault_dweller_jp.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-02-24",
-        isDraft: true
-    },
+    
     {
         name: "Vault 112",
         yomi: "vault 112",
@@ -13651,17 +13621,7 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    {
-        name: "The Wayward (ザ・ウェイワード)",
-        yomi: "the wayward (ザ・ウェイワード)",
-        url: "wayward_jp.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-02-27",
-        isDraft: true
-    },
+    
     {
         name: "ウェルチ駅",
         yomi: "うぇるち駅",
@@ -13926,28 +13886,8 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    {
-        name: "ヌカシャイン",
-        yomi: "ぬかしゃいん",
-        url: "ヌカシャイン_2.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-03-07",
-        isDraft: true
-    },
-    {
-        name: "ブロートフライ",
-        yomi: "ぶろ゜とふらい",
-        url: "ブロートフライ_2.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-03-07",
-        isDraft: true
-    },
+    
+    
     {
         name: "ボルトテック・コーポレーション",
         yomi: "ぼるとてっく゛こ゜ぽれ゜しょん",
@@ -20470,18 +20410,7 @@ const loreEntries = [
         date: "2026-03-27",
         isDraft: true
     },
-    {
-        name: "アーロン・キンバル",
-        yomi: "アーロン・キンバル",
-        url: "aaron-kimball_2.html",
-        category: "",
-        appearance: [
-            "Fallout 76",
-            "Fallout: New Vegas"
-        ],
-        date: "2026-02-16",
-        isDraft: true
-    },
+    
     {
         name: "中傷ボット",
         yomi: "中傷ボット",
@@ -20700,19 +20629,7 @@ const loreEntries = [
         ],
         date: "2026-02-02"
     },
-    {
-        name: "ジェームス",
-        yomi: "ジェームス",
-        url: "james_2.html",
-        category: "",
-        appearance: [
-            "Fallout 76",
-            "Fallout: New Vegas",
-            "Fallout 3"
-        ],
-        date: "2026-02-02",
-        isDraft: true
-    },
+    
     {
         name: "スローカム・ジョー [企業]",
         yomi: "スローカム・ジョー [企業]",
@@ -22467,16 +22384,7 @@ const loreEntries = [
         ],
         date: "2025-10-31"
     },
-    {
-        name: "中継タワーEM-B1-27",
-        yomi: "中継タワーEM-B1-27",
-        url: "relay-tower-em-b1-27_2.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2025-10-30"
-    },
+    
     {
         name: "WV木材会社",
         yomi: "WV木材会社",
@@ -22531,18 +22439,7 @@ const loreEntries = [
         ],
         date: "2025-10-24"
     },
-    {
-        name: "ブッチ・デロリア",
-        yomi: "ブッチ・デロリア",
-        url: "butch-deloria_2.html",
-        category: "",
-        appearance: [
-            "Fallout 76",
-            "Fallout 4"
-        ],
-        date: "2025-10-22",
-        isDraft: true
-    },
+    
     {
         name: "Mr.スクイーズ",
         yomi: "Mr.スクイーズ",
