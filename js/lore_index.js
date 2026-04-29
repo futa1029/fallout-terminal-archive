@@ -3011,7 +3011,6 @@ const loreEntries = [
         date: "2026-04-05",
         isDraft: true
     },
-    
     {
         name: "Scribe Rothchild",
         yomi: "すくらいぶろすちゃいるど",
@@ -11407,7 +11406,6 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    
     {
         name: "ヌカワールド・オン・ツアー",
         yomi: "ぬかわ゜るど゛おん゛つあ゜",
@@ -13306,7 +13304,6 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    
     {
         name: "Vault 112",
         yomi: "vault 112",
@@ -13621,7 +13618,6 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    
     {
         name: "ウェルチ駅",
         yomi: "うぇるち駅",
@@ -13886,8 +13882,6 @@ const loreEntries = [
         date: "2026-03-25",
         isDraft: true
     },
-    
-    
     {
         name: "ボルトテック・コーポレーション",
         yomi: "ぼるとてっく゛こ゜ぽれ゜しょん",
@@ -20410,7 +20404,6 @@ const loreEntries = [
         date: "2026-03-27",
         isDraft: true
     },
-    
     {
         name: "中傷ボット",
         yomi: "中傷ボット",
@@ -20517,8 +20510,7 @@ const loreEntries = [
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-02-08",
-        isDraft: true
+        date: "2026-04-29"
     },
     {
         name: "Vault 108",
@@ -20629,7 +20621,6 @@ const loreEntries = [
         ],
         date: "2026-02-02"
     },
-    
     {
         name: "スローカム・ジョー [企業]",
         yomi: "スローカム・ジョー [企業]",
@@ -22384,7 +22375,6 @@ const loreEntries = [
         ],
         date: "2025-10-31"
     },
-    
     {
         name: "WV木材会社",
         yomi: "WV木材会社",
@@ -22439,7 +22429,6 @@ const loreEntries = [
         ],
         date: "2025-10-24"
     },
-    
     {
         name: "Mr.スクイーズ",
         yomi: "Mr.スクイーズ",
