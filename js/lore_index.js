@@ -20502,16 +20502,7 @@ const loreEntries = [
         ],
         date: "2026-02-08"
     },
-    {
-        name: "ゲイリー",
-        yomi: "ゲイリー",
-        url: "gary-tv-series.html.html",
-        category: "",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-04-29"
-    },
+    
     {
         name: "Vault 108",
         yomi: "Vault 108",
