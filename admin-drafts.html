@@ -721,23 +721,61 @@
 
     
     <script>
-    // 管理者認証: URLパラメータ ?key=mohi-admin でアクセス
-    (function() {
+    // 管理者認証
+    async function checkAuth() {
+        const ADMIN_HASH = 'dcfdbeac6d098075f372a8fbafb6341323029604c7e88897b6be7343b3a066f8'; // Tq7jtq7j
+        const DRAFT_HASH = '2a62c310fca6c767b02b8a8d7daed057e983833f62be4e5c626b0e14c898385e'; // mohi-admin
+        
+        async function sha256(text) {
+            const msgBuffer = new TextEncoder().encode(text);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
         const params = new URLSearchParams(window.location.search);
-        const validKey = 'mohi-admin';
-        if (params.get('key') !== validKey) {
+        const queryKey = params.get('key');
+        const localKey = localStorage.getItem('admin_session_key');
+        
+        let authorized = false;
+        if (queryKey) {
+            const h = await sha256(queryKey);
+            if (h === ADMIN_HASH || h === DRAFT_HASH) {
+                authorized = true;
+                localStorage.setItem('admin_session_key', queryKey);
+                const newUrl = window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+            }
+        }
+        if (!authorized && localKey) {
+            const h = await sha256(localKey);
+            if (h === ADMIN_HASH || h === DRAFT_HASH) {
+                authorized = true;
+            }
+        }
+        
+        if (!authorized) {
+            const input = prompt('ADMIN ACCESS REQUIRED\nENTER SECURITY KEY:');
+            if (input) {
+                const h = await sha256(input);
+                if (h === ADMIN_HASH || h === DRAFT_HASH) {
+                    localStorage.setItem('admin_session_key', input);
+                    location.reload();
+                    return;
+                }
+            }
             document.body.innerHTML = `
                 <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#0a0a0a;color:#4af626;font-family:'Share Tech Mono',monospace;">
                     <div style="text-align:center;">
                         <h1 style="font-size:2em;margin-bottom:10px;">> ACCESS DENIED</h1>
                         <p style="color:#888;">管理者用ページです。正しいアクセスキーが必要です。</p>
-                        <p style="margin-top:20px;font-size:0.8em;color:#555;">admin-drafts.html?key=YOUR_KEY</p>
                         <a href="lore.html" style="display:inline-block;margin-top:20px;color:#4af626;border:1px solid #4af626;padding:8px 20px;text-decoration:none;border-radius:4px;">< BACK TO TERMINAL</a>
                     </div>
                 </div>`;
             throw new Error('Unauthorized');
         }
-    })();
+    }
+    checkAuth();
     </script>
     <script>
         const loreEntries = [

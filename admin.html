@@ -664,9 +664,50 @@
 
     <script>
     // ===== 管理者認証 =====
-    (function() {
+    async function checkAuth() {
+        const ADMIN_HASH = 'dcfdbeac6d098075f372a8fbafb6341323029604c7e88897b6be7343b3a066f8';
+        
+        // ハッシュ計算関数
+        async function sha256(text) {
+            const msgBuffer = new TextEncoder().encode(text);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
         const params = new URLSearchParams(window.location.search);
-        if (params.get('key') !== 'Tq7jtq7j') {
+        const queryKey = params.get('key');
+        const localKey = localStorage.getItem('admin_session_key');
+        
+        let authorized = false;
+        
+        // 1. URLパラメータをチェック
+        if (queryKey) {
+            if (await sha256(queryKey) === ADMIN_HASH) {
+                authorized = true;
+                localStorage.setItem('admin_session_key', queryKey);
+                // URLからキーを消す（履歴に残さないため）
+                const newUrl = window.location.pathname;
+                window.history.replaceState({}, '', newUrl);
+            }
+        }
+        
+        // 2. localStorageをチェック
+        if (!authorized && localKey) {
+            if (await sha256(localKey) === ADMIN_HASH) {
+                authorized = true;
+            }
+        }
+        
+        // 3. 未認証ならパスワード入力を求める
+        if (!authorized) {
+            const input = prompt('ADMIN ACCESS REQUIRED\nENTER SECURITY KEY:');
+            if (input && await sha256(input) === ADMIN_HASH) {
+                localStorage.setItem('admin_session_key', input);
+                location.reload();
+                return;
+            }
+            
             document.body.innerHTML = `
                 <div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#0a0a0a;color:#4af626;font-family:'Share Tech Mono',monospace;">
                     <div style="text-align:center;">
@@ -677,7 +718,8 @@
                 </div>`;
             throw new Error('Unauthorized');
         }
-    })();
+    }
+    checkAuth();
 
     // ===== 定数 =====
     const GITHUB_OWNER = 'futa1029';

@@ -684,12 +684,28 @@
         <div class="line cursor">> AWAITING INPUT</div>
     </div>
 
-    <div class="footer">
+    <div class="footer" id="terminal-footer" style="cursor: pointer;">
         OVERSEER MOHI'S TERMINAL // LORE DATABASE
     </div>
 
     <script src="js/lore_index.js?v=20260430"></script>
     <script>
+        // 管理者画面への隠し入り口
+        let footerClickCount = 0;
+        let footerClickTimer = null;
+        document.getElementById('terminal-footer').addEventListener('click', () => {
+            footerClickCount++;
+            clearTimeout(footerClickTimer);
+            footerClickTimer = setTimeout(() => { footerClickCount = 0; }, 3000);
+            
+            if (footerClickCount >= 5) {
+                footerClickCount = 0;
+                const key = prompt('ENTER ADMIN ACCESS KEY:');
+                if (key) {
+                    window.location.href = `admin.html?key=${key}`;
+                }
+            }
+        });
         
 
         // State
