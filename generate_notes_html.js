@@ -1167,6 +1167,19 @@ async function processArticles() {
     }
 
     console.log('\nAll HTML files mapped and saved!');
+
+    // リンク切れの自動修正スクリプトを実行
+    try {
+        console.log('\nRunning fix_links.js for automated link cleanup...');
+        const { execSync } = require('child_process');
+        const fixLinksPath = path.join(DIR, '_scripts', 'fix_links.js');
+        if (fs.existsSync(fixLinksPath)) {
+            const output = execSync(`node "${fixLinksPath}"`, { encoding: 'utf8' });
+            console.log(output);
+        }
+    } catch (e) {
+        console.error('Failed to run fix_links.js:', e.message);
+    }
 }
 
 processArticles();

@@ -450,7 +450,8 @@ node generate_notes_html.js
 node generate_thumbnails.js
 ```
 
-※ `generate_notes_html.js` を実行することで、作成した新しい記事のタイトルが辞書に登録され、別記事の本文中にある同名キーワードが `<a href="新しい記事.html" class="auto-link">` に自動で置換されます。
+※ `remove_duplicates.js` および `generate_notes_html.js` の実行完了時に、`_scripts/fix_links.js` が自動的に呼び出され、全記事内の存在しないファイルへのリンクを自動解除（テキスト化）します。
+
 
 ## Step 4.5: ホロテープ/メモ/ターミナルの数値検証（HTML生成後の必須ステップ）
 
