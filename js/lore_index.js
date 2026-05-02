@@ -8823,8 +8823,7 @@ const loreEntries = [
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-03-10",
-        isDraft: true
+        date: "2026-04-30"
     },
     {
         name: "セントラル・マウンテン見張り台",
