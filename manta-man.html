@@ -84,7 +84,7 @@
         <!-- Sidebar -->
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Manta Man</h3>
-            <img src="images/placeholder.jpg" alt="マンタ・マン" onerror="this.src='images/placeholder.jpg'">
+            <img src="images/placeholder.jpg" alt="マンタ・マン" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
             <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 4, Fallout 76</span></div>
         </aside>
@@ -136,7 +136,7 @@
     </div>
 
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
+        <img id="lightbox-img" src="" alt="拡大画像" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
     </div>
 
     <script>

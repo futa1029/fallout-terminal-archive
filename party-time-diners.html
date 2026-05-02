@@ -79,8 +79,8 @@
     <div class="container">
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Party Time Diners</h3>
-            <img src="images/note_extracted/party-time-diners/img_main.png" alt="パーティタイム・ダイナーズ" onclick="openLightbox(this)">
-            <img src="images/note_extracted/party-time-diners/img_map.png" alt="マップ上の位置" style="width:100%; margin-top:5px; cursor: zoom-in;" onclick="openLightbox(this)">
+            <img src="images/note_extracted/party-time-diners/img_main.png" alt="パーティタイム・ダイナーズ" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <img src="images/note_extracted/party-time-diners/img_map.png" alt="マップ上の位置" style="width:100%; margin-top:5px; cursor: zoom-in;" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">最寄り: タイラー郡フェアグラウンズ</div>
             <div class="infobox-row"><span class="infobox-label">種類</span><span>未マーク地点</span></div>
             <div class="infobox-row"><span class="infobox-label">所在地</span><span>森林地帯、アパラチア</span></div>
@@ -110,7 +110,7 @@
             <h2>レイアウト</h2>
 
             <div class="note-figure">
-                <img src="images/note_extracted/party-time-diners/img_closeup.png" alt="ティーパーティのクローズアップ" onclick="openLightbox(this)">
+                <img src="images/note_extracted/party-time-diners/img_closeup.png" alt="ティーパーティのクローズアップ" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                 <div class="note-figcaption">ティーパーティのクローズアップ</div>
             </div>
 
@@ -139,11 +139,11 @@
 
             <h2>ギャラリー</h2>
             <div class="gallery">
-                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_closeup.png" alt="クローズアップ" onclick="openLightbox(this)"><div class="caption">クローズアップ</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_alt.png" alt="別角度" onclick="openLightbox(this)"><div class="caption">別角度</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_rocks.png" alt="岩場からの眺め" onclick="openLightbox(this)"><div class="caption">岩場からの眺め</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_airdata.png" alt="エアデータと入植者" onclick="openLightbox(this)"><div class="caption">エアデータステーション&amp;入植者</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_crystal.png" alt="クリスタルの露頭" onclick="openLightbox(this)"><div class="caption">クリスタルの露頭</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_closeup.png" alt="クローズアップ" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">クローズアップ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_alt.png" alt="別角度" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">別角度</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_rocks.png" alt="岩場からの眺め" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">岩場からの眺め</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_airdata.png" alt="エアデータと入植者" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">エアデータステーション&amp;入植者</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/party-time-diners/img_crystal.png" alt="クリスタルの露頭" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">クリスタルの露頭</div></div>
             </div>
 
             <!-- 感想 -->
@@ -185,7 +185,7 @@
 
     <!-- Lightbox -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="">
+        <img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
     </div>
 
     <script>

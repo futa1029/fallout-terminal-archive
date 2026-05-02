@@ -79,7 +79,7 @@
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout TVシリーズ">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Sonny's Sundries</h3><img src="images/note_extracted/sonny-s-sundries/Sonny's_Sundries.png" alt="Sonny's Sundries"><div class="infobox-row"><span class="infobox-label">地域:</span><span>フリーサイド</span></div>
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Sonny's Sundries</h3><img src="images/note_extracted/sonny-s-sundries/Sonny's_Sundries.png" alt="Sonny's Sundries" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="infobox-row"><span class="infobox-label">地域:</span><span>フリーサイド</span></div>
 <div class="infobox-row"><span class="infobox-label">本来の所有者:</span><span>ソニー (死亡)</span></div>
 <div class="infobox-row"><span class="infobox-label">偽の所有者:</span><span>サイモン (泥棒)</span></div>
 </aside>
@@ -97,7 +97,7 @@
             店に到着すると、メインドアの外にある黒板に書かれたアディクトールの価格が払えないレベルまで吊り上げられているのを目にします。<br>
             落胆したルーシーですが、店の脇で開けっ放しになっている裏口を見つけ、現在のどうしようもない状況を打開するため、店からアディクトールを一瓶「盗む」ことを決意します。</p>
 
-            <img src="images/note_extracted/sonny-s-sundries/FTV_S2E5_Still_106.png" alt="Lucy stealing" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.src='images/placeholder.jpg'">
+            <img src="images/note_extracted/sonny-s-sundries/FTV_S2E5_Still_106.png" alt="Lucy stealing" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
 
             <p>店に忍び込んだ彼女は薬を見つけて手にし、さらに展示してあった「パワーフィスト」とそれを入れるバッグをついでに拝借します。そうしている間に、近くのゴミ箱に、血まみれの死体（ソニーのもの）が詰め込まれているのを目撃します。<br>
             気を取られている間に店主のサイモンに見つかってしまい、ルーシーは普通の客として振る舞おうとします。その際、店主の肖像画とゴミ箱の死体が同じ人物であることに気付きます。彼女が死体について尋ねると、サイモンは「泥棒未遂犯」だと説得力のない主張をします。さらに「なぜ彼が全裸なのか」と追及すると、サイモンは「全裸の強盗は珍しくない」と防衛的に言い訳をします。ルーシーはサイモンの服のサイズが合っていないことを指摘し、ゴミ箱の死体が本来の店主であると完全に看破して、10mmピストルを突きつけます。</p>
@@ -115,7 +115,7 @@
             <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
         async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}

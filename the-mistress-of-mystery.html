@@ -94,7 +94,7 @@
     <div class="container">
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">The Mistress of Mystery</h3>
-            <img src="images/note_extracted/the-mistress-of-mystery/img_main.jpg" alt="オリヴィアとシャノン・リバーズ" onclick="openLightbox(this)">
+            <img src="images/note_extracted/the-mistress-of-mystery/img_main.jpg" alt="オリヴィアとシャノン・リバーズ" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div class="infobox-row"><span class="infobox-label">種類</span><span>サイドクエスト</span></div>
             <div class="infobox-row"><span class="infobox-label">場所</span><span>リバーサイド邸<br>セネカ・ロックス</span></div>
             <div class="infobox-row"><span class="infobox-label">依頼者</span><span>Cryptos</span></div>
@@ -130,7 +130,7 @@
 
             <h2>実績 / トロフィー</h2>
             <div class="achievement-box">
-                <img src="images/note_extracted/the-mistress-of-mystery/Mistress_of_Mystery_trophy.png" alt="Mistress of Mystery トロフィー">
+                <img src="images/note_extracted/the-mistress-of-mystery/Mistress_of_Mystery_trophy.png" alt="Mistress of Mystery トロフィー" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                 <div class="achievement-info">
                     <div class="achievement-name">🏆 Mistress of Mystery</div>
                     <div class="achievement-desc">「The Mistress of Mystery」を完了する</div>
@@ -250,7 +250,7 @@
             </div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co'; const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'; const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
         function openLightbox(img) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; lb.classList.add('active'); }

@@ -78,7 +78,7 @@
     <div class="container">
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Shannon Rivers</h3>
-            <img src="images/note_extracted/shannon-rivers/img_main.png" alt="若き日のシャノン・リバーズの肖像画（リバーサイド邸）" onclick="openLightbox(this)">
+            <img src="images/note_extracted/shannon-rivers/img_main.png" alt="若き日のシャノン・リバーズの肖像画（リバーサイド邸）" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
             <div class="infobox-row"><span class="infobox-label">性別</span><span>女性</span></div>
             <div class="infobox-row"><span class="infobox-label">所属</span><span>オーダー・オブ・ミステリー<br>ヒューブリス・コミックス（戦前）</span></div>
@@ -222,11 +222,11 @@
             <h2>ギャラリー</h2>
             <div class="gallery">
                 <div>
-                    <img src="images/note_extracted/shannon-rivers/concept_art.jpg" alt="Christopher Ortegaによるアートワーク" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/shannon-rivers/concept_art.jpg" alt="Christopher Ortegaによるアートワーク" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">Christopher Ortegaによるアートワーク</div>
                 </div>
                 <div>
-                    <img src="images/note_extracted/shannon-rivers/concept_art_unused.jpg" alt="未使用のコンセプトアート" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/shannon-rivers/concept_art_unused.jpg" alt="未使用のコンセプトアート" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">未使用のコンセプトアート（椅子バージョン）</div>
                 </div>
             </div>
@@ -273,7 +273,7 @@
             </div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co'; const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'; const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
         function openLightbox(img) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; lb.classList.add('active'); }

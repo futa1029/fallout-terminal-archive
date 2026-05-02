@@ -79,8 +79,8 @@
     <div class="container">
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">New River</h3>
-            <img src="images/note_extracted/new-river/img_main.png" alt="ニューリバー" onclick="openLightbox(this)">
-            <img src="images/note_extracted/new-river/img_map.png" alt="マップ上の位置" onclick="openLightbox(this)">
+            <img src="images/note_extracted/new-river/img_main.png" alt="ニューリバー" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <img src="images/note_extracted/new-river/img_map.png" alt="マップ上の位置" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div class="infobox-row"><span class="infobox-label">種類</span><span>非マーク地点</span></div>
             <div class="infobox-row"><span class="infobox-label">所在地</span><span>バージニア<br>ウェストバージニア<br>アパラチア</span></div>
             <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
@@ -111,7 +111,7 @@
             <h2>レイアウト</h2>
 
             <div class="note-figure">
-                <img src="images/note_extracted/new-river/img_river1.png" alt="ニューリバーの河床" onclick="openLightbox(this)">
+                <img src="images/note_extracted/new-river/img_river1.png" alt="ニューリバーの河床" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                 <div class="note-figcaption">干上がったニューリバーの河床</div>
             </div>
 
@@ -123,7 +123,7 @@
             <h2>現実世界のニューリバー</h2>
 
             <div class="note-figure">
-                <img src="images/note_extracted/new-river/img_real_river.jpg" alt="現実のニューリバー（バージニア州）" onclick="openLightbox(this)">
+                <img src="images/note_extracted/new-river/img_real_river.jpg" alt="現実のニューリバー（バージニア州）" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                 <div class="note-figcaption">現実のニューリバー、バージニア州にて（Wikimedia Commons）</div>
             </div>
 
@@ -139,7 +139,7 @@
             </p>
 
             <div class="note-figure">
-                <img src="images/note_extracted/new-river/img_real_bridge.jpg" alt="ニュー・リバー・ゴージ・ブリッジ" onclick="openLightbox(this)">
+                <img src="images/note_extracted/new-river/img_real_bridge.jpg" alt="ニュー・リバー・ゴージ・ブリッジ" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                 <div class="note-figcaption">現実のニュー・リバー・ゴージ・ブリッジ（Wikimedia Commons）</div>
             </div>
 
@@ -165,10 +165,10 @@
 
             <h2>ギャラリー</h2>
             <div class="gallery">
-                <div class="gallery-item"><img src="images/note_extracted/new-river/img_river1.png" alt="ニューリバー 1" onclick="openLightbox(this)"><div class="caption">ニューリバーの風景</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/new-river/img_river2.png" alt="ニューリバー 2" onclick="openLightbox(this)"><div class="caption">ニューリバーの風景</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/new-river/img_river3.png" alt="ニューリバー 3" onclick="openLightbox(this)"><div class="caption">ニューリバーの風景</div></div>
-                <div class="gallery-item"><img src="images/note_extracted/new-river/img_night.png" alt="夜のニューリバー" onclick="openLightbox(this)"><div class="caption">夜のニューリバー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/new-river/img_river1.png" alt="ニューリバー 1" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ニューリバーの風景</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/new-river/img_river2.png" alt="ニューリバー 2" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ニューリバーの風景</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/new-river/img_river3.png" alt="ニューリバー 3" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ニューリバーの風景</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/new-river/img_night.png" alt="夜のニューリバー" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">夜のニューリバー</div></div>
             </div>
 
             <!-- 感想 -->
@@ -210,7 +210,7 @@
 
     <!-- Lightbox -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="">
+        <img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
     </div>
 
     <script>

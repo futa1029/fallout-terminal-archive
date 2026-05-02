@@ -281,7 +281,7 @@
             <h2>ギャラリー</h2>
             <div style="display:flex; gap:15px; flex-wrap:wrap; margin-top:20px;">
                 <div class="gallery-item" style="width:200px; text-align:center;">
-                    <img src="images/note_extracted/border-agent/Border_Agent's_corpse.png" alt="国境警備隊員の死体" style="width:100%; height:auto; border:1px solid #444;">
+                    <img src="images/note_extracted/border-agent/Border_Agent's_corpse.png" alt="国境警備隊員の死体" style="width:100%; height:auto; border:1px solid #444;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <span style="font-size:0.8em; color:#888;">国境警備隊員の死体</span>
                 </div>
             </div>
@@ -321,7 +321,7 @@
 
     <!-- Lightbox Overlay -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
+        <img id="lightbox-img" src="" alt="拡大画像" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
     </div>
 
     <script>

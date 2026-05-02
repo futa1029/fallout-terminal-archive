@@ -82,8 +82,8 @@
     <div class="container">
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Red Rocket (Morgantown)</h3>
-            <img src="images/note_extracted/red-rocket-morgantown/img_main.jpg" alt="モーガンタウンのレッド・ロケット" onclick="openLightbox(this)">
-            <img src="images/note_extracted/red-rocket-morgantown/img_map_marker.png" alt="マップ上の位置" style="width:100%; margin-top:5px;">
+            <img src="images/note_extracted/red-rocket-morgantown/img_main.jpg" alt="モーガンタウンのレッド・ロケット" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <img src="images/note_extracted/red-rocket-morgantown/img_map_marker.png" alt="マップ上の位置" style="width:100%; margin-top:5px;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div style="text-align:center; font-style:italic; color:#888; font-size:0.8em; margin-bottom:10px;">マップ上の位置</div>
             <div class="infobox-row"><span class="infobox-label">種類</span><span>未マーク地点</span></div>
             <div class="infobox-row"><span class="infobox-label">所在地</span><span>モーガンタウン内<br>森林地帯、アパラチア</span></div>
@@ -118,23 +118,23 @@
             <h2>ギャラリー</h2>
             <div class="gallery">
                 <div class="gallery-item">
-                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_7.png" alt="モーガンタウンのレッド・ロケット" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_7.png" alt="モーガンタウンのレッド・ロケット" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">レッド・ロケット外観</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_5.png" alt="レッド・ロケット 別角度" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_5.png" alt="レッド・ロケット 別角度" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">別角度からの外観</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_6.png" alt="レッド・ロケット 内部" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_6.png" alt="レッド・ロケット 内部" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">スタンド内部</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_8.png" alt="燃料ポンプとトラック" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_8.png" alt="燃料ポンプとトラック" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">燃料ポンプとトラック</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_9.png" alt="レッド・ロケット周辺" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/red-rocket-morgantown/FO76_Morgantown_RR_9.png" alt="レッド・ロケット周辺" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">周辺の様子</div>
                 </div>
             </div>
@@ -178,7 +178,7 @@
             </div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co'; const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'; const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
         function openLightbox(img) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; lb.classList.add('active'); }

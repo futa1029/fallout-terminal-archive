@@ -84,7 +84,7 @@
         <!-- Sidebar -->
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Ken Ewers</h3>
-            <img src="images/note_extracted/buds_full/Ken_Ewers.jpg" alt="ケン・ユアーズ" onerror="this.src='images/placeholder.jpg'">
+            <img src="images/note_extracted/buds_full/Ken_Ewers.jpg" alt="ケン・ユアーズ" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
             <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 3</span></div>
         </aside>
@@ -241,7 +241,7 @@
     </div>
 
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像">
+        <img id="lightbox-img" src="" alt="拡大画像" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
     </div>
 
     <script>

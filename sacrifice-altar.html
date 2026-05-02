@@ -76,7 +76,7 @@
     <div class="container">
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">Sacrifice Altar</h3>
-            <img src="images/note_extracted/sacrifice-altar/img_main.png" alt="生贄の祭壇" onclick="openLightbox(this)">
+            <img src="images/note_extracted/sacrifice-altar/img_main.png" alt="生贄の祭壇" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
             <div class="infobox-row"><span class="infobox-label">種類</span><span>非マーク地点</span></div>
             <div class="infobox-row"><span class="infobox-label">所在地</span><span>森林地帯<br>アパラチア</span></div>
             <div class="infobox-row"><span class="infobox-label">最寄り</span><span><a href="billings-homestead.html" class="auto-link">ビリングス・ホームステッド</a></span></div>
@@ -111,11 +111,11 @@
             <h2>ギャラリー</h2>
             <div class="gallery">
                 <div>
-                    <img src="images/note_extracted/sacrifice-altar/img_main.png" alt="生贄の祭壇の全景" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/sacrifice-altar/img_main.png" alt="生贄の祭壇の全景" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">祭壇の全景</div>
                 </div>
                 <div>
-                    <img src="images/note_extracted/sacrifice-altar/img_closeup.png" alt="祭壇の下の入植者の遺体" onclick="openLightbox(this)">
+                    <img src="images/note_extracted/sacrifice-altar/img_closeup.png" alt="祭壇の下の入植者の遺体" onclick="openLightbox(this)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
                     <div class="gallery-caption">祭壇の下の入植者の遺体</div>
                 </div>
             </div>
@@ -157,7 +157,7 @@
             </div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co'; const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl'; const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
         function openLightbox(img) { const lb = document.getElementById('lightbox'); document.getElementById('lightbox-img').src = img.src; lb.classList.add('active'); }

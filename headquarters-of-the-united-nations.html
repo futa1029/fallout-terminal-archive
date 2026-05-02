@@ -79,7 +79,7 @@
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout TVシリーズ">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Headquarters of the United Nations</h3><img src="images/note_extracted/headquarters-of-the-united-nations/VSSG5_flags.png" alt="Headquarters of the United Nations"><div class="infobox-row"><span class="infobox-label">地域:</span><span>ニューヨーク州 ニューヨーク市</span></div>
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Headquarters of the United Nations</h3><img src="images/note_extracted/headquarters-of-the-united-nations/VSSG5_flags.png" alt="Headquarters of the United Nations" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="infobox-row"><span class="infobox-label">地域:</span><span>ニューヨーク州 ニューヨーク市</span></div>
 <div class="infobox-row"><span class="infobox-label">所有者:</span><span>国際連合 (戦前)</span></div>
 </aside>
         <main class="content">
@@ -102,7 +102,7 @@
             <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
         async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}

@@ -79,7 +79,7 @@
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout TVシリーズ">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Yao guai cave</h3><img src="images/note_extracted/yao-guai-cave-tv-series/FoTV_yao_guai_cave_exterior.jpg" alt="Yao guai cave"><div class="infobox-row"><span class="infobox-label">地域:</span><span>荒野 (The Wilds)</span></div>
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Yao guai cave</h3><img src="images/note_extracted/yao-guai-cave-tv-series/FoTV_yao_guai_cave_exterior.jpg" alt="Yao guai cave" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="infobox-row"><span class="infobox-label">地域:</span><span>荒野 (The Wilds)</span></div>
 <div class="infobox-row"><span class="infobox-label">元施設:</span><span>核廃棄物処分場</span></div>
 </aside>
         <main class="content">
@@ -98,7 +98,7 @@
             T-60パワーアーマーを装備したナイトは、従士を先に行かせて洞窟内を探らせます。しかし、彼らは背後からヤオ・グアイが戻ってきたことに気づかず、タイタスが襲撃されてヘビー・アサルトライフルを落としてしまいます。マキシマスが彼の命令通りに攻撃できなかったため、タイタスは恐怖して逃げ出しますが、従士が生き物を殺す前にヤオ・グアイに倒され、致命的に引き裂かれました。</p>
             <p>タイタスはマキシマスにスティムパックで治療しろと要求しますが、彼への言葉の虐待と脅迫を続けたため、マキシマスはナイトを見限り、傷の悪化で死ぬまま放置しました。マキシマスは任務を遂行するために、タイタスの制服とT-60パワーアーマーを奪い、彼になりすましました。</p>
 
-            <img src="images/note_extracted/yao-guai-cave-tv-series/FoTV_yao_guai_cave_Titus.jpg" alt="Titus ambushed" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.src='images/placeholder.jpg'">
+            <img src="images/note_extracted/yao-guai-cave-tv-series/FoTV_yao_guai_cave_Titus.jpg" alt="Titus ambushed" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
 
             <h2>開発秘話</h2>
             <p>ヤオ・グアイの洞窟で行われるシーンの撮影は、ニューヨーク州ローゼンデールにある「未亡人ジェーンの鉱山（Widow Jane Mine）」で行われました。</p>
@@ -110,7 +110,7 @@
             <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
         async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}

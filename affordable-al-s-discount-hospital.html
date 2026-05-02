@@ -79,7 +79,7 @@
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout TVシリーズ">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Affordable Al's Discount Hospital</h3><img src="images/note_extracted/affordable-al-s-discount-hospital/Affordable_Al's_Discount_Shop_interior.jpg" alt="Affordable Al's Discount Hospital"><div class="infobox-row"><span class="infobox-label">地域:</span><span>モハビ・ウェイストランド</span></div>
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Affordable Al's Discount Hospital</h3><img src="images/note_extracted/affordable-al-s-discount-hospital/Affordable_Al's_Discount_Shop_interior.jpg" alt="Affordable Al's Discount Hospital" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="infobox-row"><span class="infobox-label">地域:</span><span>モハビ・ウェイストランド</span></div>
 </aside>
         <main class="content">
             <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_affordable_al_s_discount_hospital" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
@@ -100,7 +100,7 @@
             <h3>第3話「プロフリゲート」 (The Profligate)</h3>
             <p>病院の廃墟の中で、グールはなんとかビリヤード台のある部屋まで這い進んでいましたが、まだ彼を行動不能にしたラッドスコーピオンの毒針の影響に苦しんでいました。ドッグミート（CX404）がそばに寄り添う中、彼は皮剥ぎナイフを取り出し、生き物の攻撃から太ももの中に残されていた毒針の先端をえぐり出しました。</p>
 
-            <img src="images/note_extracted/affordable-al-s-discount-hospital/FTV_S2E2_Still_126.png" alt="Hospital scene" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.src='images/placeholder.jpg'">
+            <img src="images/note_extracted/affordable-al-s-discount-hospital/FTV_S2E2_Still_126.png" alt="Hospital scene" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
 <div class="quote-box"><b>感想</b><br><br>「ロボトミー手術半額！」という、戦前の倫理観が完全に崩壊している宣伝文句が最高にFalloutらしいロケーションです。ドラマ劇中では、ルーシーのお人好しな性格とグールの冷徹な経験則が衝突し、結果的に巨大なラッドスコーピオンの襲撃を招くという、ウェイストランドの過酷さをルーシーが学ぶ重要な場所となりました。</div>
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
                 <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Affordable_Al%27s_Discount_Hospital" target="_blank" rel="noopener">Affordable Al's Discount Hospital</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
@@ -109,7 +109,7 @@
             <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
         async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}

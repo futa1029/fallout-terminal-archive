@@ -79,7 +79,7 @@
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout TVシリーズ">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Hawthorne Medical Laboratories</h3><img src="images/note_extracted/hawthorne-medical-laboratories/FOTV_Hawthorne_Medical_Laboratories_2.png" alt="Hawthorne Medical Laboratories"><div class="infobox-row"><span class="infobox-label">地域:</span><span>ボーンヤード (ロサンゼルス)</span></div>
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Hawthorne Medical Laboratories</h3><img src="images/note_extracted/hawthorne-medical-laboratories/FOTV_Hawthorne_Medical_Laboratories_2.png" alt="Hawthorne Medical Laboratories" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="infobox-row"><span class="infobox-label">地域:</span><span>ボーンヤード (ロサンゼルス)</span></div>
 <div class="infobox-row"><span class="infobox-label">親組織:</span><span>Vault-Tec Corporation</span></div>
 <div class="infobox-row"><span class="infobox-label">リーダー:</span><span>ロイド・ホーソーン<br>カサンドラ・ホーソーン</span></div>
 </aside>
@@ -105,7 +105,7 @@
             <p>ルーシーが無許可でレベル12（かつての実験体や凄惨な研究記録が残されている区画）に侵入したことと、彼女を救出しようとしたマキシマスが平和なVault 4の居住者たちを無自覚に攻撃してしまったことが原因で、二人はVault 4から「追放」されることになりました。<br>
             出立する際、ルーシーはマキシマスを説得して、T-60パワーアーマーを動かすために彼がVaultのメインリアクターから盗んだ「フュージョン・コア」を彼らに返すように促します。二人は医療キャンパスのロビーに一時的に戻り、落とし穴（トラップドア）を通してコアを下に落とし、それを拾って間接的に感謝したVaultの清掃員に返却しました。</p>
 
-            <img src="images/note_extracted/hawthorne-medical-laboratories/FOTV_Hawthorne_Medical_Labs_Vault_4.png" alt="Campus and Vault 4 entrance" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.src='images/placeholder.jpg'">
+            <img src="images/note_extracted/hawthorne-medical-laboratories/FOTV_Hawthorne_Medical_Labs_Vault_4.png" alt="Campus and Vault 4 entrance" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
 
             <h2>開発秘話</h2>
             <ul>
@@ -120,7 +120,7 @@
             <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
         async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}

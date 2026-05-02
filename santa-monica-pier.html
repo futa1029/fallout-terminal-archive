@@ -79,7 +79,7 @@
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout TVシリーズ">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Santa Monica Pier</h3><img src="images/note_extracted/santa-monica-pier/FOTV_S2E1_pre-War_LA_02.png" alt="Santa Monica Pier"><div class="infobox-row"><span class="infobox-label">地域:</span><span>ボーンヤード (ロサンゼルス)</span></div>
+        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">Santa Monica Pier</h3><img src="images/note_extracted/santa-monica-pier/FOTV_S2E1_pre-War_LA_02.png" alt="Santa Monica Pier" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="infobox-row"><span class="infobox-label">地域:</span><span>ボーンヤード (ロサンゼルス)</span></div>
 </aside>
         <main class="content">
             <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_santa_monica_pier" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
@@ -100,7 +100,7 @@
                 このサンタモニカ・ピアのシーンは、ナミビアにあるゴーストタウンでありかつてのダイヤモンド鉱山であった「エリザベス・ベイ」で撮影されました。観覧車やジェットコースター等はVFXで追加されています。
             </div>
 
-            <img src="images/note_extracted/santa-monica-pier/Vault33extdoor.png" alt="Vault 33 Entrance near the pier" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.src='images/placeholder.jpg'">
+            <img src="images/note_extracted/santa-monica-pier/Vault33extdoor.png" alt="Vault 33 Entrance near the pier" style="width:100%; border:1px solid #444; margin: 15px 0;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
 <div class="quote-box"><b>感想</b><br><br>「サンタモニカ」の親記事と重複する部分が多いですが、こちらはより「桟橋（ピア）と遊園地部分」に焦点を当てた記事です。砂漠の中にポツンとむき出しになったVault 33の巨大な歯車ドアと、崩れかけの観覧車のコントラストは、ドラマ第一話のラストシーンにおける「世界が終わった後の絶望感」を表現する最高のビジュアルでした。</div>
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
                 <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Santa_Monica_Pier" target="_blank" rel="noopener">Santa Monica Pier</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
@@ -109,7 +109,7 @@
             <div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <script>
         const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
         async function toggleLike(btn){const articleId=btn.getAttribute('data-article-id');let isLiked=localStorage.getItem(articleId+'_liked')==='true';btn.disabled=true;if(isLiked){isLiked=false;const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}else{isLiked=true;const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeButton(btn,isLiked,data);}}btn.disabled=false;}

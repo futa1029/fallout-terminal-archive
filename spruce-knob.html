@@ -492,7 +492,7 @@
             </footer>
         </main>
     </div>
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt=""></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
     <!-- Supabase Scripts + Lightbox logic -->
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';

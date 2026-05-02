@@ -47,14 +47,20 @@
             </nav>
         `;
 
-        // action-headerの後に挿入
-        const actionHeader = content.querySelector('.action-header');
-        const h1 = content.querySelector('h1');
-        const insertAfter = h1 || actionHeader;
-        if (insertAfter && insertAfter.nextSibling) {
-            insertAfter.parentNode.insertBefore(tocContainer, insertAfter.nextSibling);
+        // プレースホルダがある場合はそれを使用
+        const placeholder = document.getElementById('toc-placeholder');
+        if (placeholder) {
+            placeholder.appendChild(tocContainer);
         } else {
-            content.prepend(tocContainer);
+            // action-headerの後に挿入
+            const actionHeader = content.querySelector('.action-header');
+            const h1 = content.querySelector('h1');
+            const insertAfter = h1 || actionHeader;
+            if (insertAfter && insertAfter.nextSibling) {
+                insertAfter.parentNode.insertBefore(tocContainer, insertAfter.nextSibling);
+            } else {
+                content.prepend(tocContainer);
+            }
         }
 
         // スムーズスクロール
@@ -109,12 +115,18 @@
         breadcrumbHtml += ` <span class="bc-sep">›</span> <span class="bc-current">${title}</span>`;
         bc.innerHTML = breadcrumbHtml;
 
-        // action-headerの前に挿入
-        const actionHeader = content.querySelector('.action-header');
-        if (actionHeader) {
-            actionHeader.parentNode.insertBefore(bc, actionHeader);
+        // プレースホルダがある場合はそれを使用
+        const placeholder = document.getElementById('breadcrumb-placeholder');
+        if (placeholder) {
+            placeholder.appendChild(bc);
         } else {
-            content.prepend(bc);
+            // action-headerの前に挿入
+            const actionHeader = content.querySelector('.action-header');
+            if (actionHeader) {
+                actionHeader.parentNode.insertBefore(bc, actionHeader);
+            } else {
+                content.prepend(bc);
+            }
         }
     }
 
@@ -200,7 +212,7 @@
                 ${scored.map(entry => {
             const thumb = thumbnails[entry.url] || '';
             const thumbHtml = thumb
-                ? `<img src="${thumb}" alt="" class="related-thumb" loading="lazy">`
+                ? `<img src="${thumb}" alt="" class="related-thumb" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';">`
                 : `<div class="related-thumb related-thumb-placeholder">?</div>`;
             return `
                         <a href="${entry.url}" class="related-card">
@@ -225,7 +237,9 @@
     // CSSの注入
     // ============================================================
     function injectStyles() {
+        if (document.getElementById('article-common-styles')) return; // 既に存在すれば何もしない
         const style = document.createElement('style');
+        style.id = 'article-common-styles';
         style.textContent = `
             /* ===== パンくずリスト ===== */
             .breadcrumb {

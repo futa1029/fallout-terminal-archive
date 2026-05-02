@@ -19772,11 +19772,11 @@
             const src = thumbnails[url];
             if (isCard) {
                 return src
-                    ? `<img class="card-thumb" src="${src}" alt="" loading="lazy">`
+                    ? `<img class="card-thumb" src="${src}" alt="" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';">`
                     : `<div class="card-thumb-placeholder">?</div>`;
             } else {
                 return src
-                    ? `<img class="list-thumb" src="${src}" alt="" loading="lazy">`
+                    ? `<img class="list-thumb" src="${src}" alt="" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';">`
                     : `<div class="list-thumb-placeholder">?</div>`;
             }
         }

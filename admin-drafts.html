@@ -19856,13 +19856,14 @@
         // サムネイルHTML生成ヘルパー
         function thumbHtml(url, isCard) {
             const src = thumbnails[url];
+            const fallback = "onerror=\"this.onerror=null; this.src='images/placeholder.jpg';\"";
             if (isCard) {
                 return src
-                    ? `<img class="card-thumb" src="${src}" alt="" loading="lazy">`
+                    ? `<img class="card-thumb" src="${src}" alt="" loading="lazy" ${fallback}>`
                     : `<div class="card-thumb-placeholder">?</div>`;
             } else {
                 return src
-                    ? `<img class="list-thumb" src="${src}" alt="" loading="lazy">`
+                    ? `<img class="list-thumb" src="${src}" alt="" loading="lazy" ${fallback}>`
                     : `<div class="list-thumb-placeholder">?</div>`;
             }
         }
