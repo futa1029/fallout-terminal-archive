@@ -3598,8 +3598,7 @@ const loreEntries = [
             "Fallout 76",
             "Fallout TV"
         ],
-        date: "2026-04-04",
-        isDraft: true
+        date: "2026-05-02"
     },
     {
         name: "Vault 31の居住者",
