@@ -1,7 +1,7 @@
 const loreEntries = [
     {
         name: "Dave",
-        yomi: "でいぶだいとうりょう",
+        yomi: "でぁE�EだぁE��ぁE��めE��",
         url: "dave-fo3.html",
         category: "人物",
         appearance: [
@@ -12,7 +12,7 @@ const loreEntries = [
     },
     {
         name: "Roy Phillips",
-        yomi: "ろいふぃりっぷす",
+        yomi: "ろいふぁE��っぷぁE,
         url: "roy-phillips.html",
         category: "人物",
         appearance: [
@@ -23,7 +23,7 @@ const loreEntries = [
     },
     {
         name: "Sticky",
-        yomi: "すてぃっきー",
+        yomi: "すてぁE��き�E",
         url: "sticky.html",
         category: "人物",
         appearance: [
@@ -34,7 +34,7 @@ const loreEntries = [
     },
     {
         name: "Gob",
-        yomi: "ごぶ",
+        yomi: "ご�E",
         url: "gob.html",
         category: "人物",
         appearance: [
@@ -45,7 +45,7 @@ const loreEntries = [
     },
     {
         name: "Lucas Simms",
-        yomi: "るーかすしむず",
+        yomi: "る�Eかすし�EぁE,
         url: "lucas-simms.html",
         category: "人物",
         appearance: [
@@ -67,7 +67,7 @@ const loreEntries = [
     },
     {
         name: "Herbert Dashwood",
-        yomi: "はーばーとだっしゅうっど",
+        yomi: "はーばーとだっしゅぁE��ど",
         url: "herbert-dashwood.html",
         category: "人物",
         appearance: [
@@ -78,7 +78,7 @@ const loreEntries = [
     },
     {
         name: "Argyle",
-        yomi: "あーがいる",
+        yomi: "あ�EがいめE,
         url: "argyle.html",
         category: "人物",
         appearance: [
@@ -89,7 +89,7 @@ const loreEntries = [
     },
     {
         name: "Pinkerton",
-        yomi: "ぴんかとん",
+        yomi: "ぴんかとめE,
         url: "pinkerton.html",
         category: "人物",
         appearance: [
@@ -133,7 +133,7 @@ const loreEntries = [
     },
     {
         name: "General Jingwei",
-        yomi: "じんうぇいしょうぐん",
+        yomi: "じんぁE��ぁE��めE��ぐん",
         url: "jingwei.html",
         category: "人物",
         appearance: [
@@ -155,7 +155,7 @@ const loreEntries = [
     },
     {
         name: "Mayor MacCready",
-        yomi: "まくれでぃしちょう",
+        yomi: "まくれでぁE��ちめE��",
         url: "mayor-maccready.html",
         category: "人物",
         appearance: [
@@ -166,7 +166,7 @@ const loreEntries = [
     },
     {
         name: "Arthur Maxson",
-        yomi: "あーさーまくそん",
+        yomi: "あ�Eさ�EまくそめE,
         url: "arthur-maxson.html",
         category: "人物",
         appearance: [
@@ -177,7 +177,7 @@ const loreEntries = [
     },
     {
         name: "Flak",
-        yomi: "ふらっく",
+        yomi: "ふらっぁE,
         url: "flak.html",
         category: "人物",
         appearance: [
@@ -188,7 +188,7 @@ const loreEntries = [
     },
     {
         name: "Shrapnel",
-        yomi: "しゅらぷねる",
+        yomi: "しゅら�EねめE,
         url: "shrapnel.html",
         category: "人物",
         appearance: [
@@ -199,7 +199,7 @@ const loreEntries = [
     },
     {
         name: "James (Fallout 3)",
-        yomi: "じぇーむず",
+        yomi: "じぇーむぁE,
         url: "james.html",
         category: "人物",
         appearance: [
@@ -209,7 +209,7 @@ const loreEntries = [
     },
     {
         name: "Amata Almodovar",
-        yomi: "あまた",
+        yomi: "あまぁE,
         url: "amata.html",
         category: "人物",
         appearance: [
@@ -220,7 +220,7 @@ const loreEntries = [
     },
     {
         name: "Oliver Swanick",
-        yomi: "おりばーすわにっく",
+        yomi: "おりばーすわにっぁE,
         url: "oliver-swanick.html",
         category: "人物",
         appearance: [
@@ -231,7 +231,7 @@ const loreEntries = [
     },
     {
         name: "Motor-Runner",
-        yomi: "もーたーらんなー",
+        yomi: "も�Eた�Eらんなー",
         url: "motor-runner.html",
         category: "人物",
         appearance: [
@@ -242,7 +242,7 @@ const loreEntries = [
     },
     {
         name: "Cook-Cook",
-        yomi: "くっくくっく",
+        yomi: "くっくくっぁE,
         url: "cook-cook.html",
         category: "人物",
         appearance: [
@@ -253,7 +253,7 @@ const loreEntries = [
     },
     {
         name: "Driver Nephi",
-        yomi: "どらいばーねふぃ",
+        yomi: "どらいばーねふぁE,
         url: "driver-nephi.html",
         category: "人物",
         appearance: [
@@ -264,7 +264,7 @@ const loreEntries = [
     },
     {
         name: "Follows-Chalk",
-        yomi: "ふぉろーずちょーく",
+        yomi: "ふぉろーずちめE�EぁE,
         url: "follows-chalk.html",
         category: "人物",
         appearance: [
@@ -275,7 +275,7 @@ const loreEntries = [
     },
     {
         name: "Red Lucy",
-        yomi: "れっどるーしー",
+        yomi: "れっどる�Eし�E",
         url: "red-lucy.html",
         category: "人物",
         appearance: [
@@ -330,7 +330,7 @@ const loreEntries = [
     },
     {
         name: "Chief Hanlon",
-        yomi: "はんろん",
+        yomi: "はんろめE,
         url: "chief-hanlon.html",
         category: "人物",
         appearance: [
@@ -352,7 +352,7 @@ const loreEntries = [
     },
     {
         name: "Sink Central Intelligence Unit",
-        yomi: "しんくちゅうおう",
+        yomi: "しんくちめE��おう",
         url: "sink-central-intelligence-unit.html",
         category: "人物",
         appearance: [
@@ -363,7 +363,7 @@ const loreEntries = [
     },
     {
         name: "James Hsu",
-        yomi: "じぇーむずしゅー",
+        yomi: "じぇーむずしめE�E",
         url: "james-hsu.html",
         category: "人物",
         appearance: [
@@ -385,7 +385,7 @@ const loreEntries = [
     },
     {
         name: "Manny Vargas",
-        yomi: "まにーばるがす",
+        yomi: "まにーばるがぁE,
         url: "manny-vargas.html",
         category: "人物",
         appearance: [
@@ -396,7 +396,7 @@ const loreEntries = [
     },
     {
         name: "Jason Bright",
-        yomi: "じぇいそんぶらいと",
+        yomi: "じぇぁE��ん�Eらいと",
         url: "jason-bright.html",
         category: "人物",
         appearance: [
@@ -429,7 +429,7 @@ const loreEntries = [
     },
     {
         name: "No-bark Noonan",
-        yomi: "のーばーくぬーなん",
+        yomi: "のーばーくぬーなめE,
         url: "no-bark-noonan.html",
         category: "人物",
         appearance: [
@@ -440,7 +440,7 @@ const loreEntries = [
     },
     {
         name: "Sarah Weintraub",
-        yomi: "さらわいんとろーぶ",
+        yomi: "さらわいんとろ�Eぶ",
         url: "sarah-weintraub.html",
         category: "人物",
         appearance: [
@@ -451,7 +451,7 @@ const loreEntries = [
     },
     {
         name: "Dala",
-        yomi: "だら",
+        yomi: "だめE,
         url: "dala.html",
         category: "人物",
         appearance: [
@@ -462,7 +462,7 @@ const loreEntries = [
     },
     {
         name: "Chris Haversam",
-        yomi: "くりすはばーさむ",
+        yomi: "くりす�Eばーさ�E",
         url: "chris-haversam.html",
         category: "人物",
         appearance: [
@@ -473,7 +473,7 @@ const loreEntries = [
     },
     {
         name: "Elijah",
-        yomi: "えりや",
+        yomi: "えりめE,
         url: "elijah.html",
         category: "人物",
         appearance: [
@@ -484,7 +484,7 @@ const loreEntries = [
     },
     {
         name: "Dean Domino",
-        yomi: "でぃーんどみの",
+        yomi: "でぁE�Eんどみの",
         url: "dean-domino.html",
         category: "人物",
         appearance: [
@@ -495,7 +495,7 @@ const loreEntries = [
     },
     {
         name: "Christine Royce",
-        yomi: "くりすてぃーんろいす",
+        yomi: "くりすてぁE�EんろぁE��",
         url: "christine-royce.html",
         category: "人物",
         appearance: [
@@ -506,7 +506,7 @@ const loreEntries = [
     },
     {
         name: "Mobius",
-        yomi: "もびうす",
+        yomi: "も�EぁE��",
         url: "mobius.html",
         category: "人物",
         appearance: [
@@ -517,7 +517,7 @@ const loreEntries = [
     },
     {
         name: "Klein (Old World Blues)",
-        yomi: "くらいん",
+        yomi: "くらぁE��",
         url: "klein.html",
         category: "人物",
         appearance: [
@@ -550,7 +550,7 @@ const loreEntries = [
     },
     {
         name: "Papa Khan",
-        yomi: "ぱぱかーん",
+        yomi: "ぱぱか�EめE,
         url: "papa-khan.html",
         category: "人物",
         appearance: [
@@ -561,7 +561,7 @@ const loreEntries = [
     },
     {
         name: "Gloria Van Graff",
-        yomi: "ぐろりあばんぐらふ",
+        yomi: "ぐろりあばんぐら�E",
         url: "gloria-van-graff.html",
         category: "人物",
         appearance: [
@@ -572,7 +572,7 @@ const loreEntries = [
     },
     {
         name: "Fantastic",
-        yomi: "ふぁんたすてぃっく",
+        yomi: "ふぁんたすてぁE��ぁE,
         url: "fantastic.html",
         category: "人物",
         appearance: [
@@ -583,7 +583,7 @@ const loreEntries = [
     },
     {
         name: "Robert House",
-        yomi: "ろばーとはうす",
+        yomi: "ろ�EーとはぁE��",
         url: "robert-house.html",
         category: "人物",
         appearance: [
@@ -594,7 +594,7 @@ const loreEntries = [
     },
     {
         name: "Ulysses",
-        yomi: "ゆりしーず",
+        yomi: "めE��し�EぁE,
         url: "ulysses.html",
         category: "人物",
         appearance: [
@@ -605,7 +605,7 @@ const loreEntries = [
     },
     {
         name: "Caesar",
-        yomi: "しーざー",
+        yomi: "し�Eざ�E",
         url: "caesar.html",
         category: "人物",
         appearance: [
@@ -616,7 +616,7 @@ const loreEntries = [
     },
     {
         name: "Joshua Graham",
-        yomi: "じょしゅあぐらはむ",
+        yomi: "じょしゅあぐら�Eむ",
         url: "joshua-graham.html",
         category: "人物",
         appearance: [
@@ -627,7 +627,7 @@ const loreEntries = [
     },
     {
         name: "Arcade Gannon",
-        yomi: "あーけいどぎゃのん",
+        yomi: "あ�EけいどぎゃのめE,
         url: "arcade-gannon.html",
         category: "人物",
         appearance: [
@@ -638,7 +638,7 @@ const loreEntries = [
     },
     {
         name: "Veronica Santangelo",
-        yomi: "べろにかさんたんじぇろ",
+        yomi: "べろにかさんたんじぁE��",
         url: "veronica-santangelo.html",
         category: "人物",
         appearance: [
@@ -649,7 +649,7 @@ const loreEntries = [
     },
     {
         name: "Craig Boone",
-        yomi: "くれいぐぶーん",
+        yomi: "くれぁE��ぶーめE,
         url: "craig-boone.html",
         category: "人物",
         appearance: [
@@ -671,7 +671,7 @@ const loreEntries = [
     },
     {
         name: "Lanius",
-        yomi: "らにうす",
+        yomi: "らにぁE��",
         url: "lanius.html",
         category: "人物",
         appearance: [
@@ -682,7 +682,7 @@ const loreEntries = [
     },
     {
         name: "Rose of Sharon Cassidy",
-        yomi: "ろーずおぶしゃろんきゃしでぃ",
+        yomi: "ろ�EずおぶしゃろんきゃしでぁE,
         url: "rose-of-sharon-cassidy.html",
         category: "人物",
         appearance: [
@@ -693,7 +693,7 @@ const loreEntries = [
     },
     {
         name: "Acadia",
-        yomi: "あかでぃあ",
+        yomi: "あかでぁE��",
         url: "acadia-location.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -715,7 +715,7 @@ const loreEntries = [
     },
     {
         name: "Echo Lake Lumber",
-        yomi: "えこーれいくらんばーみる",
+        yomi: "えこーれいくらん�EーみめE,
         url: "echo-lake-lumber.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -726,7 +726,7 @@ const loreEntries = [
     },
     {
         name: "National Park visitor's center",
-        yomi: "こくりつこうえんあんないじょ",
+        yomi: "こくりつこうえんあんなぁE��めE,
         url: "national-park-visitors-center.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -737,7 +737,7 @@ const loreEntries = [
     },
     {
         name: "Dalton farm",
-        yomi: "だるとんふぁーむ",
+        yomi: "だるとん�Eぁ�Eむ",
         url: "dalton-farm.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -748,7 +748,7 @@ const loreEntries = [
     },
     {
         name: "Red Death Island",
-        yomi: "れっどですのしま",
+        yomi: "れっどです�Eしま",
         url: "red-death-island.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -759,7 +759,7 @@ const loreEntries = [
     },
     {
         name: "Cranberry Island Bog",
-        yomi: "くらんべりーとうのぬまち",
+        yomi: "くらんべり�EとぁE�Eぬまち",
         url: "cranberry-island-bog.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -770,7 +770,7 @@ const loreEntries = [
     },
     {
         name: "Vault-Tec: Among the Stars",
-        yomi: "ぼるとてっくあまんぐざすたー",
+        yomi: "ぼるとてっくあまんぐざすた�E",
         url: "vault-tec-among-the-stars.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -781,7 +781,7 @@ const loreEntries = [
     },
     {
         name: "Home Plate",
-        yomi: "ほーむぷれーと",
+        yomi: "ほーむぷれ�Eと",
         url: "home-plate.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -792,7 +792,7 @@ const loreEntries = [
     },
     {
         name: "Sunshine Tidings co-op",
-        yomi: "さんしゃいんたいでぃんぐすこーぷ",
+        yomi: "さんしゃぁE��たいでぁE��ぐすこ�Eぷ",
         url: "sunshine-tidings-co-op.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -803,7 +803,7 @@ const loreEntries = [
     },
     {
         name: "Nuka-Town USA",
-        yomi: "ぬかたうんUSA",
+        yomi: "ぬかたぁE��USA",
         url: "nuka-town-usa.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -814,7 +814,7 @@ const loreEntries = [
     },
     {
         name: "Fizztop Mountain",
-        yomi: "ふぃずとっぷまうんてん",
+        yomi: "ふぁE��とっぷまぁE��てめE,
         url: "fizztop-mountain.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -836,7 +836,7 @@ const loreEntries = [
     },
     {
         name: "Galactic Zone",
-        yomi: "ぎゃらくてぃっくぞーん",
+        yomi: "ぎゃらくてぁE��くぞーめE,
         url: "galactic-zone.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -847,7 +847,7 @@ const loreEntries = [
     },
     {
         name: "Safari Adventure",
-        yomi: "さふぁりあどべんちゃー",
+        yomi: "さ�EぁりあどべんちめE�E",
         url: "safari-adventure.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -869,7 +869,7 @@ const loreEntries = [
     },
     {
         name: "World of Refreshment",
-        yomi: "わーるどおぶりふれっしゅめんと",
+        yomi: "わ�Eるどお�Eり�Eれっしゅめんと",
         url: "world-of-refreshment.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -880,7 +880,7 @@ const loreEntries = [
     },
     {
         name: "Nuka-Galaxy",
-        yomi: "ぬかぎゃらくしー",
+        yomi: "ぬかぎめE��くしー",
         url: "nuka-galaxy.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -902,7 +902,7 @@ const loreEntries = [
     },
     {
         name: "Nuka-World power plant",
-        yomi: "ぬかわーるどはつでんしょ",
+        yomi: "ぬかわーるどはつでんしめE,
         url: "nuka-world-power-plant.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -913,7 +913,7 @@ const loreEntries = [
     },
     {
         name: "County crossing",
-        yomi: "かうんてぃーくろっしんぐ",
+        yomi: "かうんてぁE�EくろっしんぁE,
         url: "county-crossing.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -935,7 +935,7 @@ const loreEntries = [
     },
     {
         name: "Egret Tours Marina",
-        yomi: "いーぐれっとつあーまりーな",
+        yomi: "ぁE�Eぐれっとつあ�Eまり�Eな",
         url: "egret-tours-marina.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -946,7 +946,7 @@ const loreEntries = [
     },
     {
         name: "Somerville Place",
-        yomi: "さまーびるぷれいす",
+        yomi: "さまーびる�EれいぁE,
         url: "somerville-place.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -957,7 +957,7 @@ const loreEntries = [
     },
     {
         name: "Outpost Zimonja",
-        yomi: "じもんやぜんしょうきち",
+        yomi: "じもんやぜんしょぁE��ち",
         url: "outpost-zimonja.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -968,7 +968,7 @@ const loreEntries = [
     },
     {
         name: "Oberland station",
-        yomi: "おばーらんどえき",
+        yomi: "お�Eーらんどえき",
         url: "oberland-station.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -979,7 +979,7 @@ const loreEntries = [
     },
     {
         name: "Taffington boathouse",
-        yomi: "たふぃんとんぼーとはうす",
+        yomi: "た�EぁE��とんぼーとはぁE��",
         url: "taffington-boathouse.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -990,7 +990,7 @@ const loreEntries = [
     },
     {
         name: "Coastal cottage",
-        yomi: "えんがんのこてーじ",
+        yomi: "えんがんのこてーぁE,
         url: "coastal-cottage.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1001,7 +1001,7 @@ const loreEntries = [
     },
     {
         name: "Power Noodles",
-        yomi: "ぱわーぬーどる",
+        yomi: "ぱわ�EぬーどめE,
         url: "power-noodles.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1012,7 +1012,7 @@ const loreEntries = [
     },
     {
         name: "Mega surgery center",
-        yomi: "めがせいけいげかせんたー",
+        yomi: "めがせいけいげかせんた�E",
         url: "mega-surgery-center.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1023,7 +1023,7 @@ const loreEntries = [
     },
     {
         name: "Memory Den",
-        yomi: "めもりーでん",
+        yomi: "めもり�EでめE,
         url: "memory-den.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1034,7 +1034,7 @@ const loreEntries = [
     },
     {
         name: "The Third Rail",
-        yomi: "さーどれーる",
+        yomi: "さ�Eどれ�EめE,
         url: "the-third-rail.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1045,7 +1045,7 @@ const loreEntries = [
     },
     {
         name: "Tenpines Bluff",
-        yomi: "てんぱいんずのだんがい",
+        yomi: "てん�EぁE��ず�EだんがぁE,
         url: "tenpines-bluff.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1056,7 +1056,7 @@ const loreEntries = [
     },
     {
         name: "Finch farm",
-        yomi: "ふぃんちふぁーむ",
+        yomi: "ふぁE��ちふぁ�Eむ",
         url: "finch-farm.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1067,7 +1067,7 @@ const loreEntries = [
     },
     {
         name: "Murkwater construction site",
-        yomi: "まーくうぉーたーけんせつげんば",
+        yomi: "まーくうぉ�Eた�Eけんせつげんば",
         url: "murkwater-construction-site.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1078,7 +1078,7 @@ const loreEntries = [
     },
     {
         name: "Concord civic access",
-        yomi: "こんこーどしがいちへのあくせす",
+        yomi: "こんこ�EどしがぁE��へのあくせす",
         url: "concord-civic-access.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1089,7 +1089,7 @@ const loreEntries = [
     },
     {
         name: "Old Gullet sinkhole",
-        yomi: "おーるどがれっとしんくほーる",
+        yomi: "お�EるどがれっとしんくほーめE,
         url: "old-gullet-sinkhole.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1100,7 +1100,7 @@ const loreEntries = [
     },
     {
         name: "Mass Pike Interchange",
-        yomi: "ますぱいくいんたーちぇんじ",
+        yomi: "ます�EぁE��ぁE��た�EちぁE��ぁE,
         url: "mass-pike-interchange.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1111,7 +1111,7 @@ const loreEntries = [
     },
     {
         name: "Quincy quarries",
-        yomi: "くいんしーさいせきじょう",
+        yomi: "くいんしーさいせきじょぁE,
         url: "quincy-quarries.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1122,7 +1122,7 @@ const loreEntries = [
     },
     {
         name: "Slocum's Joe Corporate HQ",
-        yomi: "すろーかむずじょーほんしゃ",
+        yomi: "すろーか�EずじめE�EほんしめE,
         url: "slocums-joe-corporate-hq.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1133,7 +1133,7 @@ const loreEntries = [
     },
     {
         name: "Malden Center",
-        yomi: "もーるでんせんたー",
+        yomi: "も�Eるでんせんたー",
         url: "malden-center.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1144,7 +1144,7 @@ const loreEntries = [
     },
     {
         name: "Milton parking garage",
-        yomi: "みるとんぱーきんぐがれーじ",
+        yomi: "みるとん�Eーきんぐがれ�EぁE,
         url: "milton-parking-garage.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1155,7 +1155,7 @@ const loreEntries = [
     },
     {
         name: "Hub 360",
-        yomi: "はぶさんろくまる",
+        yomi: "はぶさんろくまめE,
         url: "hub-360.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1166,7 +1166,7 @@ const loreEntries = [
     },
     {
         name: "The Gwinnett Restaurant",
-        yomi: "ぐうぃねっとれすとらん",
+        yomi: "ぐうぁE�Eっとれすとらん",
         url: "the-gwinnett-restaurant.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1177,7 +1177,7 @@ const loreEntries = [
     },
     {
         name: "Trinity Church",
-        yomi: "とりにてぃちゃーち",
+        yomi: "とりにてぁE��めE�Eち",
         url: "trinity-church.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1188,7 +1188,7 @@ const loreEntries = [
     },
     {
         name: "Lynn Woods",
-        yomi: "りんうっず",
+        yomi: "りんぁE��ぁE,
         url: "lynn-woods.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1199,7 +1199,7 @@ const loreEntries = [
     },
     {
         name: "Boylston Club",
-        yomi: "ぼいるすとんくらぶ",
+        yomi: "ぼぁE��すとんくら�E",
         url: "boylston-club.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1232,7 +1232,7 @@ const loreEntries = [
     },
     {
         name: "Westing Estate",
-        yomi: "うぇすてぃんぐえすてーと",
+        yomi: "ぁE��すてぁE��ぐえすてーと",
         url: "westing-estate.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1243,7 +1243,7 @@ const loreEntries = [
     },
     {
         name: "Greater Mass blood clinic",
-        yomi: "まさちゅーせっつけつえきくりにっく",
+        yomi: "まさちめE�EせっつけつえきくりにっぁE,
         url: "greater-mass-blood-clinic.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1254,7 +1254,7 @@ const loreEntries = [
     },
     {
         name: "Lake Quannapowitt",
-        yomi: "くあなぽうぃっとこ",
+        yomi: "くあなぽぁE��っとぁE,
         url: "lake-quannapowitt.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1276,7 +1276,7 @@ const loreEntries = [
     },
     {
         name: "Reeb Marina",
-        yomi: "りーぶまりーな",
+        yomi: "り�Eぶまり�Eな",
         url: "reeb-marina.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1298,7 +1298,7 @@ const loreEntries = [
     },
     {
         name: "Bedford Station",
-        yomi: "べっどふぉーどえき",
+        yomi: "べっどふぉ�Eどえき",
         url: "bedford-station.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1309,7 +1309,7 @@ const loreEntries = [
     },
     {
         name: "Crater of Atom",
-        yomi: "くれーたーおぶあとむ",
+        yomi: "くれーた�Eお�Eあとむ",
         url: "crater-of-atom.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1320,7 +1320,7 @@ const loreEntries = [
     },
     {
         name: "Cutler Bend",
-        yomi: "かとらーべんど",
+        yomi: "かとら�Eべんど",
         url: "cutler-bend.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1331,7 +1331,7 @@ const loreEntries = [
     },
     {
         name: "Drumlin Diner",
-        yomi: "どらむりんだいなー",
+        yomi: "どら�EりんだぁE��ー",
         url: "drumlin-diner.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1353,7 +1353,7 @@ const loreEntries = [
     },
     {
         name: "Revere Beach station",
-        yomi: "りびあびーちえき",
+        yomi: "り�Eあ�Eーちえき",
         url: "revere-beach-station.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1364,7 +1364,7 @@ const loreEntries = [
     },
     {
         name: "Breakheart Banks",
-        yomi: "ぶれいくはーとばんくす",
+        yomi: "ぶれいく�EーとばんくぁE,
         url: "breakheart-banks.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1386,7 +1386,7 @@ const loreEntries = [
     },
     {
         name: "Croup Manor",
-        yomi: "くるーぷけのやかた",
+        yomi: "くるーぷけ�EめE��ぁE,
         url: "croup-manor.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1397,7 +1397,7 @@ const loreEntries = [
     },
     {
         name: "Charles View Amphitheater",
-        yomi: "ちゃーるずびゅーえんけいげきじょう",
+        yomi: "ちめE�EるずびめE�EえんけいげきじょぁE,
         url: "charles-view-amphitheater.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1408,7 +1408,7 @@ const loreEntries = [
     },
     {
         name: "Wicked Shipping Fleet Lockup",
-        yomi: "うぃけっどしっぴんぐふりーとろっくあっぷ",
+        yomi: "ぁE��けっどしっぴんぐふり�Eとろっくあっぷ",
         url: "wicked-shipping-fleet-lockup.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1419,7 +1419,7 @@ const loreEntries = [
     },
     {
         name: "Jalbert Brothers Disposal",
-        yomi: "じゃるばーとぶらざーずはいきじょう",
+        yomi: "じゃる�Eーとぶらざーず�EぁE��じょぁE,
         url: "jalbert-brothers-disposal.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1430,7 +1430,7 @@ const loreEntries = [
     },
     {
         name: "Listening Post Bravo",
-        yomi: "かんしきょうぶらぼー",
+        yomi: "かんしきめE��ぶらぼー",
         url: "listening-post-bravo.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1441,7 +1441,7 @@ const loreEntries = [
     },
     {
         name: "Fairline Hill Estates",
-        yomi: "ふぇあらいんひるえすてーと",
+        yomi: "ふぁE��らいん�Eるえすてーと",
         url: "fairline-hill-estates.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1452,7 +1452,7 @@ const loreEntries = [
     },
     {
         name: "Chestnut Hillock Reservoir",
-        yomi: "ちぇすとなっとひろっくたんく",
+        yomi: "ちぁE��となっとひろっくたんく",
         url: "chestnut-hillock-reservoir.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1463,7 +1463,7 @@ const loreEntries = [
     },
     {
         name: "Railroad HQ",
-        yomi: "れーるろーどほんぶ",
+        yomi: "れ�Eるろーどほん�E",
         url: "railroad-hq.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1474,7 +1474,7 @@ const loreEntries = [
     },
     {
         name: "Starlight Drive-In",
-        yomi: "すたーらいとどらいぶいん",
+        yomi: "すたーらいとどらいぶぁE��",
         url: "starlight-drive-in.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1485,7 +1485,7 @@ const loreEntries = [
     },
     {
         name: "The Slog",
-        yomi: "すろっぐ",
+        yomi: "すろっぁE,
         url: "the-slog.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1496,7 +1496,7 @@ const loreEntries = [
     },
     {
         name: "Abernathy farm",
-        yomi: "あばなしーふぁーむ",
+        yomi: "あ�Eなし�Eふぁ�Eむ",
         url: "abernathy-farm.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1507,7 +1507,7 @@ const loreEntries = [
     },
     {
         name: "Kingsport Lighthouse",
-        yomi: "きんぐすぽーととうだい",
+        yomi: "きんぐすぽーととぁE��ぁE,
         url: "kingsport-lighthouse.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1518,7 +1518,7 @@ const loreEntries = [
     },
     {
         name: "Graygarden",
-        yomi: "ぐれいがーでん",
+        yomi: "ぐれぁE��ーでめE,
         url: "graygarden.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1529,7 +1529,7 @@ const loreEntries = [
     },
     {
         name: "Warwick homestead",
-        yomi: "わーうぃっくのうえん",
+        yomi: "わ�EぁE��っく�EぁE��めE,
         url: "warwick-homestead.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1540,7 +1540,7 @@ const loreEntries = [
     },
     {
         name: "WRVR broadcast station",
-        yomi: "だぶりゅーあーるぶいあーるほうそうきょく",
+        yomi: "だぶりゅーあ�Eる�EぁE��ーるほぁE��ぁE��めE��",
         url: "wrvr-broadcast-station.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1562,7 +1562,7 @@ const loreEntries = [
     },
     {
         name: "Wreck of the FMS Northern Star",
-        yomi: "えふえむえすのーざんすたーのざんがい",
+        yomi: "え�Eえ�Eえすのーざんすたーのざんがい",
         url: "wreck-of-the-fms-northern-star.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1573,7 +1573,7 @@ const loreEntries = [
     },
     {
         name: "USAF Satellite Station Olivia",
-        yomi: "ゅーえすえーえふえいせいかしかんちじょおりびあ",
+        yomi: "めE�Eえすえ�Eえ�EえいせいかしかんちじょおりびぁE,
         url: "usaf-satellite-station-olivia.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1595,7 +1595,7 @@ const loreEntries = [
     },
     {
         name: "Park Street station",
-        yomi: "ぱーくすとりーとえき",
+        yomi: "ぱーくすとり�Eとえき",
         url: "park-street-station.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1617,7 +1617,7 @@ const loreEntries = [
     },
     {
         name: "Monsignor Plaza",
-        yomi: "もんしにょーるぷらざ",
+        yomi: "もんしにめE�Eる�Eらざ",
         url: "monsignor-plaza.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1628,7 +1628,7 @@ const loreEntries = [
     },
     {
         name: "West Roxbury station",
-        yomi: "うぇすとろっくすばりーえき",
+        yomi: "ぁE��すとろっくすばり�Eえき",
         url: "west-roxbury-station.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1639,7 +1639,7 @@ const loreEntries = [
     },
     {
         name: "Four Leaf fishpacking plant",
-        yomi: "ふぉーりーふすいさんかこうしょ",
+        yomi: "ふぉ�Eり�EふすいさんかこぁE��めE,
         url: "four-leaf-fishpacking-plant.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1650,7 +1650,7 @@ const loreEntries = [
     },
     {
         name: "Gwinnett brewery",
-        yomi: "ぐうぃねっとじょうぞうじょ",
+        yomi: "ぐうぁE�EっとじょぁE��ぁE��めE,
         url: "gwinnett-brewery.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1661,7 +1661,7 @@ const loreEntries = [
     },
     {
         name: "Irish Pride Industries shipyard",
-        yomi: "あいりっしゅぷらいどこうぎょうぞうせんじょ",
+        yomi: "あいりっしゅぷらいどこうぎょぁE��ぁE��んじめE,
         url: "irish-pride-industries-shipyard.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1672,7 +1672,7 @@ const loreEntries = [
     },
     {
         name: "Hester's Consumer Robotics",
-        yomi: "へすたーろぼてぃくす",
+        yomi: "へすたーろぼてぁE��ぁE,
         url: "hesters-consumer-robotics.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1683,7 +1683,7 @@ const loreEntries = [
     },
     {
         name: "East Boston Preparatory School",
-        yomi: "いーすとぼーすとんぷれっぷすくーる",
+        yomi: "ぁE�Eすとぼーすとん�EれっぷすくーめE,
         url: "east-boston-preparatory-school.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1694,7 +1694,7 @@ const loreEntries = [
     },
     {
         name: "Boston Police rationing site",
-        yomi: "ぼすとんけいさつはいきゅうじょ",
+        yomi: "ぼすとんけぁE��つはぁE��めE��じょ",
         url: "boston-police-rationing-site.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1705,7 +1705,7 @@ const loreEntries = [
     },
     {
         name: "Mass Bay Medical Center",
-        yomi: "ますべいいりょうせんたー",
+        yomi: "ますべぁE��りょぁE��んたー",
         url: "mass-bay-medical-center.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1716,7 +1716,7 @@ const loreEntries = [
     },
     {
         name: "Federal Surveillance Center K-21B",
-        yomi: "れんぽうかんしせんたーk21b",
+        yomi: "れんぽぁE��んしせんた�Ek21b",
         url: "federal-surveillance-center-k-21b.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1727,7 +1727,7 @@ const loreEntries = [
     },
     {
         name: "South Boston military checkpoint",
-        yomi: "みなみぼすとんぐんぼうえいせん",
+        yomi: "みなみぼすとんぐんぼぁE��ぁE��めE,
         url: "south-boston-military-checkpoint.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1749,7 +1749,7 @@ const loreEntries = [
     },
     {
         name: "Hub City Auto Wreckers",
-        yomi: "はぶしてぃおーとうぉれっかーず",
+        yomi: "はぶしてぁE��ーとぁE��れっか�EぁE,
         url: "hub-city-auto-wreckers.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1771,7 +1771,7 @@ const loreEntries = [
     },
     {
         name: "Wilson Atomatoys factory",
-        yomi: "うぃるそんあとまといずこうじょう",
+        yomi: "ぁE��るそんあとまとぁE��こうじょぁE,
         url: "wilson-atomatoys-factory.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1782,7 +1782,7 @@ const loreEntries = [
     },
     {
         name: "Robotics disposal ground",
-        yomi: "ろぼっとはいきじょう",
+        yomi: "ろぼっとはぁE��じょぁE,
         url: "robotics-disposal-ground.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1793,7 +1793,7 @@ const loreEntries = [
     },
     {
         name: "Revere satellite array",
-        yomi: "りびあえいせいあれい",
+        yomi: "り�EあえぁE��ぁE��れい",
         url: "revere-satellite-array.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1804,7 +1804,7 @@ const loreEntries = [
     },
     {
         name: "Fens Street sewer",
-        yomi: "ふぇんずすとりーとげすいどう",
+        yomi: "ふぁE��ずすとり�EとげすぁE��ぁE,
         url: "fens-street-sewer.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1815,7 +1815,7 @@ const loreEntries = [
     },
     {
         name: "Weston water treatment plant",
-        yomi: "うぇすとんみずしょりじょう",
+        yomi: "ぁE��すとんみずしめE��じょぁE,
         url: "weston-water-treatment-plant.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1826,7 +1826,7 @@ const loreEntries = [
     },
     {
         name: "Vault-Tec Regional HQ",
-        yomi: "ぼるとてっくちくほんぶ",
+        yomi: "ぼるとてっくちくほん�E",
         url: "vault-tec-regional-hq.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1837,7 +1837,7 @@ const loreEntries = [
     },
     {
         name: "Fiddler's Green Trailer Estates",
-        yomi: "ふぃどらーずぐりーんとれーらーえすてーと",
+        yomi: "ふぁE��ら�Eずぐり�Eんとれ�Eら�Eえすてーと",
         url: "fiddlers-green-trailer-estates.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1848,7 +1848,7 @@ const loreEntries = [
     },
     {
         name: "Medford Memorial Hospital",
-        yomi: "めどふぉーどきねんびょういん",
+        yomi: "めどふぉ�Eどき�Eん�EめE��ぁE��",
         url: "medford-memorial-hospital.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1859,7 +1859,7 @@ const loreEntries = [
     },
     {
         name: "Coast Guard pier",
-        yomi: "えんがんけいびたいのぴあ",
+        yomi: "えんがんけいびたいのぴぁE,
         url: "coast-guard-pier.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1870,7 +1870,7 @@ const loreEntries = [
     },
     {
         name: "Milton General Hospital",
-        yomi: "みるとんじぇねらるびょういん",
+        yomi: "みるとんじぁE�EらるびめE��ぁE��",
         url: "milton-general-hospital.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1881,7 +1881,7 @@ const loreEntries = [
     },
     {
         name: "Hyde Park",
-        yomi: "はいどぱーく",
+        yomi: "はぁE��ぱーぁE,
         url: "hyde-park.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1903,7 +1903,7 @@ const loreEntries = [
     },
     {
         name: "The Switchboard",
-        yomi: "すうぃっちぼーど",
+        yomi: "すうぁE��ちぼーど",
         url: "the-switchboard.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1925,7 +1925,7 @@ const loreEntries = [
     },
     {
         name: "Atom Cats garage",
-        yomi: "あとむきゃっつのがれーじ",
+        yomi: "あとむきゃっつのがれーぁE,
         url: "atom-cats-garage.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1936,7 +1936,7 @@ const loreEntries = [
     },
     {
         name: "Big John's Salvage",
-        yomi: "びっぐじょんのさるべーじじょう",
+        yomi: "びっぐじめE��のさるべーじじめE��",
         url: "big-johns-salvage.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1947,7 +1947,7 @@ const loreEntries = [
     },
     {
         name: "Med-Tek Research",
-        yomi: "めっどてっくりさーち",
+        yomi: "めっどてっくりさ�Eち",
         url: "med-tek-research.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1958,7 +1958,7 @@ const loreEntries = [
     },
     {
         name: "General Atomics factory",
-        yomi: "ぜねらるあとみっくすこうじょう",
+        yomi: "ぜ�EらるあとみっくすこうじょぁE,
         url: "general-atomics-factory.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1969,7 +1969,7 @@ const loreEntries = [
     },
     {
         name: "Kendall Hospital",
-        yomi: "けんだるびょういん",
+        yomi: "けんだる�EめE��ぁE��",
         url: "kendall-hospital.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1980,7 +1980,7 @@ const loreEntries = [
     },
     {
         name: "C.I.T. ruins",
-        yomi: "しーあいてぃーはいきょ",
+        yomi: "し�EあいてぁE�EはぁE��めE,
         url: "cit-ruins.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -1991,7 +1991,7 @@ const loreEntries = [
     },
     {
         name: "BADTFL regional office",
-        yomi: "ばっどてふるちほうきょく",
+        yomi: "ばっどてふるちほぁE��めE��",
         url: "badtfl-regional-office.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2013,7 +2013,7 @@ const loreEntries = [
     },
     {
         name: "Super Duper Mart",
-        yomi: "すーぱーうるとらまーけっと",
+        yomi: "す�EぱーぁE��とらまーけっと",
         url: "super-duper-mart.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2024,7 +2024,7 @@ const loreEntries = [
     },
     {
         name: "Boston mayoral shelter",
-        yomi: "ぼすとんしちょうようしぇるたー",
+        yomi: "ぼすとんしちめE��ようしぇるたー",
         url: "boston-mayoral-shelter.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2046,7 +2046,7 @@ const loreEntries = [
     },
     {
         name: "Longneck Lukowski's Cannery",
-        yomi: "ちょうこうるかうすきーのかんづめこうじょう",
+        yomi: "ちめE��こうるかぁE��き�EのかんづめこぁE��めE��",
         url: "longneck-lukowskis-cannery.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2057,7 +2057,7 @@ const loreEntries = [
     },
     {
         name: "Greenetech Genetics",
-        yomi: "ぐりーんてっくじぇねてぃくす",
+        yomi: "ぐりーんてっくじぁE�EてぁE��ぁE,
         url: "greenetech-genetics.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2068,7 +2068,7 @@ const loreEntries = [
     },
     {
         name: "Massachusetts State House",
-        yomi: "まさちゅーせっつしゅうぎじどう",
+        yomi: "まさちめE�EせっつしゅぁE��じどぁE,
         url: "massachusetts-state-house.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2090,7 +2090,7 @@ const loreEntries = [
     },
     {
         name: "Grandchester Mystery Mansion",
-        yomi: "ぐらんちぇすたーみすてりーまんしょん",
+        yomi: "ぐらんちぁE��た�Eみすてり�EまんしめE��",
         url: "grandchester-mystery-mansion.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2101,7 +2101,7 @@ const loreEntries = [
     },
     {
         name: "Hubris Comics",
-        yomi: "はぶりすこみっく",
+        yomi: "はぶりすこみっぁE,
         url: "hubris-comics.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2112,7 +2112,7 @@ const loreEntries = [
     },
     {
         name: "D.B. Technical High School",
-        yomi: "でぃーびーてくにかるはいすくーる",
+        yomi: "でぁE�EびーてくにかるはぁE��く�EめE,
         url: "db-technical-high-school.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2123,7 +2123,7 @@ const loreEntries = [
     },
     {
         name: "Walden Pond",
-        yomi: "うぉーるでんぽんど",
+        yomi: "ぁE��ーるでんぽんど",
         url: "walden-pond.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2134,7 +2134,7 @@ const loreEntries = [
     },
     {
         name: "College Square",
-        yomi: "かれっじすくえあ",
+        yomi: "かれっじすくえぁE,
         url: "college-square.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2145,7 +2145,7 @@ const loreEntries = [
     },
     {
         name: "Beantown Brewery",
-        yomi: "びーんたうんじょうぞうじょ",
+        yomi: "びーんたぁE��じょぁE��ぁE��めE,
         url: "beantown-brewery.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2156,7 +2156,7 @@ const loreEntries = [
     },
     {
         name: "Sandy Coves Convalescent Home",
-        yomi: "さんでぃこーゔすこんばれっせんとほーむ",
+        yomi: "さんでぁE��ーゔすこんばれっせんとほーむ",
         url: "sandy-coves-convalescent-home.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2167,7 +2167,7 @@ const loreEntries = [
     },
     {
         name: "Mahkra Fishpacking",
-        yomi: "まくらふぃっしゅぱっきんぐ",
+        yomi: "まくらふぁE��しゅぱっきんぁE,
         url: "mahkra-fishpacking.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2178,7 +2178,7 @@ const loreEntries = [
     },
     {
         name: "Federal ration stockpile",
-        yomi: "れんぽうしょくりょうびちくこ",
+        yomi: "れんぽぁE��めE��りょぁE�Eちくこ",
         url: "federal-ration-stockpile.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2189,7 +2189,7 @@ const loreEntries = [
     },
     {
         name: "The Shamrock Taphouse",
-        yomi: "しゃむろっくさかば",
+        yomi: "しゃむろっくさか�E",
         url: "the-shamrock-taphouse.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2200,7 +2200,7 @@ const loreEntries = [
     },
     {
         name: "Wilson Atomatoys corporate HQ",
-        yomi: "うぃるそんあとまといずほんしゃ",
+        yomi: "ぁE��るそんあとまとぁE��ほんしめE,
         url: "wilson-atomatoys-corporate-hq.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2211,7 +2211,7 @@ const loreEntries = [
     },
     {
         name: "Nahant Oceanological Society",
-        yomi: "なはんとかいようがくきょうかい",
+        yomi: "なはんとかいようがくきょぁE��ぁE,
         url: "nahant-oceanological-society.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2222,7 +2222,7 @@ const loreEntries = [
     },
     {
         name: "Old North Church",
-        yomi: "おーるどのーすちゃーち",
+        yomi: "お�EるどのーすちめE�Eち",
         url: "old-north-church.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2233,7 +2233,7 @@ const loreEntries = [
     },
     {
         name: "Trinity Tower",
-        yomi: "とりにてぃたわー",
+        yomi: "とりにてぁE��わ�E",
         url: "trinity-tower.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2244,7 +2244,7 @@ const loreEntries = [
     },
     {
         name: "General Atomics Galleria",
-        yomi: "ぜねらるあとみっくすがれりあ",
+        yomi: "ぜ�Eらるあとみっくすがれりあ",
         url: "general-atomics-galleria.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2255,7 +2255,7 @@ const loreEntries = [
     },
     {
         name: "Cambridge Polymer Labs",
-        yomi: "けんぶりっじぽりまーけんきゅうじょ",
+        yomi: "けんぶりっじぽりまーけんきゅぁE��めE,
         url: "cambridge-polymer-labs.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2266,7 +2266,7 @@ const loreEntries = [
     },
     {
         name: "Hardware Town",
-        yomi: "はーどうぇあたうん",
+        yomi: "はーどぁE��あたぁE��",
         url: "hardware-town.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2277,7 +2277,7 @@ const loreEntries = [
     },
     {
         name: "Easy City Downs",
-        yomi: "いーじーしてぃだうんず",
+        yomi: "ぁE�Eじ�EしてぁE��ぁE��ぁE,
         url: "easy-city-downs.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2288,7 +2288,7 @@ const loreEntries = [
     },
     {
         name: "Pickman Gallery",
-        yomi: "ぴっくまんぎゃらりー",
+        yomi: "ぴっくまんぎめE��り�E",
         url: "pickman-gallery.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2299,7 +2299,7 @@ const loreEntries = [
     },
     {
         name: "Museum of Witchcraft",
-        yomi: "されむまじょはくぶつかん",
+        yomi: "されむまじょはく�Eつかん",
         url: "museum-of-witchcraft.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2310,7 +2310,7 @@ const loreEntries = [
     },
     {
         name: "Cabot House",
-        yomi: "かぼっとてい",
+        yomi: "かぼっとてぁE,
         url: "cabot-house.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2376,7 +2376,7 @@ const loreEntries = [
     },
     {
         name: "Combat Zone",
-        yomi: "こんばっとぞーん",
+        yomi: "こんばっとぞ�EめE,
         url: "combat-zone.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2398,7 +2398,7 @@ const loreEntries = [
     },
     {
         name: "Faneuil Hall",
-        yomi: "ふぁにゅえるほーる",
+        yomi: "ふぁにめE��るほーめE,
         url: "faneuil-hall.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2409,7 +2409,7 @@ const loreEntries = [
     },
     {
         name: "Shaw High School",
-        yomi: "しょうはいすくーる",
+        yomi: "しょぁE�EぁE��く�EめE,
         url: "shaw-high-school.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2420,7 +2420,7 @@ const loreEntries = [
     },
     {
         name: "West Everett Estates",
-        yomi: "うえすとえばれっとしゆうち",
+        yomi: "ぁE��すとえ�EれっとしゆぁE��",
         url: "west-everett-estates.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2431,7 +2431,7 @@ const loreEntries = [
     },
     {
         name: "Suffolk County charter school",
-        yomi: "さふぉーくぐんちゃーたーすくーる",
+        yomi: "さ�Eぉ�EくぐんちめE�Eた�EすくーめE,
         url: "suffolk-county-charter-school.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2442,7 +2442,7 @@ const loreEntries = [
     },
     {
         name: "Museum of Freedom",
-        yomi: "じゆうはくぶつかん",
+        yomi: "じゆぁE�Eく�Eつかん",
         url: "museum-of-freedom.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2453,7 +2453,7 @@ const loreEntries = [
     },
     {
         name: "Cambridge Police Station",
-        yomi: "けんぶりっじけいさつしょ",
+        yomi: "けんぶりっじけぁE��つしょ",
         url: "cambridge-police-station.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2464,7 +2464,7 @@ const loreEntries = [
     },
     {
         name: "National Guard training yard",
-        yomi: "しゅうへいくんれんじょ",
+        yomi: "しゅぁE��ぁE��んれんじめE,
         url: "national-guard-training-yard.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2497,7 +2497,7 @@ const loreEntries = [
     },
     {
         name: "Boston Public Library",
-        yomi: "ぼすとんこうきょうとしょかん",
+        yomi: "ぼすとんこぁE��めE��としょかん",
         url: "boston-public-library.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2508,7 +2508,7 @@ const loreEntries = [
     },
     {
         name: "Sentinel site",
-        yomi: "せんちねるさいと",
+        yomi: "せんちねるさぁE��",
         url: "sentinel-site.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2519,7 +2519,7 @@ const loreEntries = [
     },
     {
         name: "Vim! Pop factory",
-        yomi: "ゔぃむぽっぷこうじょう",
+        yomi: "ゔぃむぽっぷこうじょぁE,
         url: "vim-pop-factory.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2530,7 +2530,7 @@ const loreEntries = [
     },
     {
         name: "Kiddie Kingdom",
-        yomi: "きっでぃきんぐだむ",
+        yomi: "きっでぁE��んぐだむ",
         url: "kiddie-kingdom.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2552,7 +2552,7 @@ const loreEntries = [
     },
     {
         name: "Boston Airport",
-        yomi: "ぼすとんくうこう",
+        yomi: "ぼすとんくぁE��ぁE,
         url: "boston-airport.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2585,7 +2585,7 @@ const loreEntries = [
     },
     {
         name: "Jamaica Plain",
-        yomi: "じゃまいかぷれいん",
+        yomi: "じゃまぁE��ぷれいめE,
         url: "jamaica-plain.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2596,7 +2596,7 @@ const loreEntries = [
     },
     {
         name: "University Point",
-        yomi: "ゆにばーしてぃぽいんと",
+        yomi: "めE��ばーしてぁE��ぁE��と",
         url: "university-point.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2607,7 +2607,7 @@ const loreEntries = [
     },
     {
         name: "The Nucleus",
-        yomi: "にゅーくりあす",
+        yomi: "にめE�Eくりあす",
         url: "the-nucleus.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2618,7 +2618,7 @@ const loreEntries = [
     },
     {
         name: "Parsons State Insane Asylum",
-        yomi: "ぱーそんずしゅうりつせいしんびょういん",
+        yomi: "ぱーそんずしめE��りつせいしんびめE��ぁE��",
         url: "parsons-state-insane-asylum.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2629,7 +2629,7 @@ const loreEntries = [
     },
     {
         name: "ArcJet Systems",
-        yomi: "あーくじぇっとしすてむ",
+        yomi: "あ�EくじぁE��としすてむ",
         url: "arcjet-systems.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2640,7 +2640,7 @@ const loreEntries = [
     },
     {
         name: "Yangtze",
-        yomi: "やんつー（ちゃんじゃん）",
+        yomi: "めE��つー�E�ちめE��じゃん！E,
         url: "yangtze.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2651,7 +2651,7 @@ const loreEntries = [
     },
     {
         name: "The Institute",
-        yomi: "いんすてぃちゅーと",
+        yomi: "ぁE��すてぁE��めE�Eと",
         url: "the-institute.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2662,7 +2662,7 @@ const loreEntries = [
     },
     {
         name: "Goodneighbor",
-        yomi: "ぐっどねいばー",
+        yomi: "ぐっどねぁE�Eー",
         url: "goodneighbor.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2673,7 +2673,7 @@ const loreEntries = [
     },
     {
         name: "Glowing Sea",
-        yomi: "かがやきのうみ",
+        yomi: "かがめE��のぁE��",
         url: "glowing-sea.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2695,7 +2695,7 @@ const loreEntries = [
     },
     {
         name: "Concord",
-        yomi: "こんこーど",
+        yomi: "こんこ�Eど",
         url: "concord.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2706,7 +2706,7 @@ const loreEntries = [
     },
     {
         name: "Lexington",
-        yomi: "れきしんとん",
+        yomi: "れきしんとめE,
         url: "lexington.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2717,7 +2717,7 @@ const loreEntries = [
     },
     {
         name: "Corvega assembly plant",
-        yomi: "こるべがくみたてこうじょう",
+        yomi: "こるべがくみたてこうじょぁE,
         url: "corvega-assembly-plant.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2739,7 +2739,7 @@ const loreEntries = [
     },
     {
         name: "USS Constitution",
-        yomi: "ゆーえすえすこんすてぃちゅーしょん",
+        yomi: "めE�EえすえすこんすてぁE��めE�EしょめE,
         url: "uss-constitution.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2750,7 +2750,7 @@ const loreEntries = [
     },
     {
         name: "Far Harbor",
-        yomi: "ふぁーはーばー",
+        yomi: "ふぁ�Eはーばー",
         url: "far-harbor-loc.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2761,7 +2761,7 @@ const loreEntries = [
     },
     {
         name: "Diamond City",
-        yomi: "だいあもんどしてぃ",
+        yomi: "だぁE��もんどしてぁE,
         url: "diamond-city.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2772,7 +2772,7 @@ const loreEntries = [
     },
     {
         name: "The Prydwen",
-        yomi: "ぷりどぅえん",
+        yomi: "ぷりどぁE��めE,
         url: "the-prydwen.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2816,7 +2816,7 @@ const loreEntries = [
     },
     {
         name: "Mass Fusion building",
-        yomi: "ますふゅーじょんびる",
+        yomi: "ます�EめE�Eじょん�EめE,
         url: "mass-fusion-building.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2838,7 +2838,7 @@ const loreEntries = [
     },
     {
         name: "Dunwich Borers",
-        yomi: "だんうぃっちぼーらー",
+        yomi: "だんうぁE��ちぼーら�E",
         url: "dunwich-borers.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2849,7 +2849,7 @@ const loreEntries = [
     },
     {
         name: "Sanctuary Hills",
-        yomi: "さんくちゅありひるず",
+        yomi: "さんくちめE��り�Eるず",
         url: "sanctuary-hills.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2860,7 +2860,7 @@ const loreEntries = [
     },
     {
         name: "Bunker Hill",
-        yomi: "ばんかーひる",
+        yomi: "ばんかーひめE,
         url: "bunker-hill.html",
         category: "拠点/ダンジョン",
         appearance: [
@@ -2871,7 +2871,7 @@ const loreEntries = [
     },
     {
         name: "Star Paladin Cross",
-        yomi: "すたーぱらでぃんくろす",
+        yomi: "すたーぱらでぁE��くろぁE,
         url: "star-paladin-cross.html",
         category: "人物",
         appearance: [
@@ -2882,7 +2882,7 @@ const loreEntries = [
     },
     {
         name: "Butch DeLoria",
-        yomi: "ぶっちでろりあ",
+        yomi: "ぶっちでろりぁE,
         url: "butch-deloria.html",
         category: "人物",
         appearance: [
@@ -2903,7 +2903,7 @@ const loreEntries = [
     },
     {
         name: "Agatha",
-        yomi: "あがさ",
+        yomi: "あがぁE,
         url: "agatha.html",
         category: "人物",
         appearance: [
@@ -2914,7 +2914,7 @@ const loreEntries = [
     },
     {
         name: "Wernher",
-        yomi: "わーなー",
+        yomi: "わ�Eなー",
         url: "wernher.html",
         category: "人物",
         appearance: [
@@ -2925,7 +2925,7 @@ const loreEntries = [
     },
     {
         name: "Horace Pinkerton",
-        yomi: "ほれすぴんかーとん",
+        yomi: "ほれすぴんかーとめE,
         url: "horace-pinkerton.html",
         category: "人物",
         appearance: [
@@ -2936,7 +2936,7 @@ const loreEntries = [
     },
     {
         name: "Eulogy Jones",
-        yomi: "ゆーろじーじょーんず",
+        yomi: "めE�Eろじーじょーんず",
         url: "eulogy-jones.html",
         category: "人物",
         appearance: [
@@ -2947,7 +2947,7 @@ const loreEntries = [
     },
     {
         name: "Charon",
-        yomi: "かろん",
+        yomi: "かろめE,
         url: "charon.html",
         category: "人物",
         appearance: [
@@ -2980,7 +2980,7 @@ const loreEntries = [
     },
     {
         name: "Sierra Petrovita",
-        yomi: "しえらぺとろびた",
+        yomi: "しえらぺとろ�EぁE,
         url: "sierra-petrovita.html",
         category: "人物",
         appearance: [
@@ -2991,7 +2991,7 @@ const loreEntries = [
     },
     {
         name: "John Henry Eden",
-        yomi: "じょんへんりーえでん",
+        yomi: "じょんへんりーえでめE,
         url: "john-henry-eden.html",
         category: "人物",
         appearance: [
@@ -3002,7 +3002,7 @@ const loreEntries = [
     },
     {
         name: "Ishmael Ashur",
-        yomi: "いしゅまえるあしゅーる",
+        yomi: "ぁE��めE��えるあしめE�EめE,
         url: "ishmael-ashur.html",
         category: "人物",
         appearance: [
@@ -3013,7 +3013,7 @@ const loreEntries = [
     },
     {
         name: "Scribe Rothchild",
-        yomi: "すくらいぶろすちゃいるど",
+        yomi: "すくらいぶろすちめE��るど",
         url: "reginald-rothchild.html",
         category: "人物",
         appearance: [
@@ -3024,7 +3024,7 @@ const loreEntries = [
     },
     {
         name: "Fawkes",
-        yomi: "ふぉーくす",
+        yomi: "ふぉ�Eくす",
         url: "fawkes.html",
         category: "人物",
         appearance: [
@@ -3035,7 +3035,7 @@ const loreEntries = [
     },
     {
         name: "Moira Brown",
-        yomi: "もいらぶらうん",
+        yomi: "もいら�EらうめE,
         url: "moira-brown.html",
         category: "人物",
         appearance: [
@@ -3046,7 +3046,7 @@ const loreEntries = [
     },
     {
         name: "Desmond Lockheart",
-        yomi: "でずもんどろっくはーと",
+        yomi: "でずもんどろっく�Eーと",
         url: "desmond-lockheart.html",
         category: "人物",
         appearance: [
@@ -3057,7 +3057,7 @@ const loreEntries = [
     },
     {
         name: "Colin Moriarty",
-        yomi: "こりんもりあーてぃ",
+        yomi: "こりんもりあーてぁE,
         url: "colin-moriarty.html",
         category: "人物",
         appearance: [
@@ -3068,7 +3068,7 @@ const loreEntries = [
     },
     {
         name: "Three Dog",
-        yomi: "すりーどっぐ",
+        yomi: "すりーどっぁE,
         url: "three-dog.html",
         category: "人物",
         appearance: [
@@ -3079,7 +3079,7 @@ const loreEntries = [
     },
     {
         name: "Robert MacCready",
-        yomi: "ろばーとまくれでぃ",
+        yomi: "ろ�EーとまくれでぁE,
         url: "robert-maccready.html",
         category: "人物",
         appearance: [
@@ -3101,7 +3101,7 @@ const loreEntries = [
     },
     {
         name: "Liberty Prime",
-        yomi: "りばてぃぷらいむ",
+        yomi: "り�EてぁE�Eらいむ",
         url: "liberty-prime.html",
         category: "人物",
         appearance: [
@@ -3112,7 +3112,7 @@ const loreEntries = [
     },
     {
         name: "Augustus Autumn",
-        yomi: "おーたむたいさ",
+        yomi: "お�Eた�EたいぁE,
         url: "augustus-autumn.html",
         category: "人物",
         appearance: [
@@ -3123,7 +3123,7 @@ const loreEntries = [
     },
     {
         name: "マジソン・リー",
-        yomi: "まじそん・りー",
+        yomi: "まじそん�Eり�E",
         url: "madison-li.html",
         category: "人物",
         appearance: [
@@ -3146,7 +3146,7 @@ const loreEntries = [
     },
     {
         name: "AntAgonizer",
-        yomi: "あんたごないざー",
+        yomi: "あんたごなぁE��ー",
         url: "antagonizer.html",
         category: "人物",
         appearance: [
@@ -3157,7 +3157,7 @@ const loreEntries = [
     },
     {
         name: "Owyn Lyons",
-        yomi: "おーうぃんりおんず",
+        yomi: "お�EぁE��んりおんぁE,
         url: "owyn-lyons.html",
         category: "人物",
         appearance: [
@@ -3168,7 +3168,7 @@ const loreEntries = [
     },
     {
         name: "James",
-        yomi: "じぇーむず",
+        yomi: "じぇーむぁE,
         url: "james-fallout-3.html",
         category: "人物",
         appearance: [
@@ -3201,7 +3201,7 @@ const loreEntries = [
     },
     {
         name: "Randall Clark",
-        yomi: "らんどーるくらーく",
+        yomi: "らんどーるくら�EぁE,
         url: "randall-clark.html",
         category: "人物",
         appearance: [
@@ -3223,7 +3223,7 @@ const loreEntries = [
     },
     {
         name: "Doc Mitchell",
-        yomi: "どくみっちぇる",
+        yomi: "どくみっちぁE��",
         url: "doc-mitchell.html",
         category: "人物",
         appearance: [
@@ -3234,7 +3234,7 @@ const loreEntries = [
     },
     {
         name: "Michael Angelo",
-        yomi: "まいけるあんじぇろ",
+        yomi: "まぁE��るあんじぁE��",
         url: "michael-angelo.html",
         category: "人物",
         appearance: [
@@ -3245,7 +3245,7 @@ const loreEntries = [
     },
     {
         name: "Captain Curtis",
-        yomi: "ろなるどかーてぃす",
+        yomi: "ろなるどか�EてぁE��",
         url: "ronald-curtis.html",
         category: "人物",
         appearance: [
@@ -3256,7 +3256,7 @@ const loreEntries = [
     },
     {
         name: "Julie Farkas",
-        yomi: "じゅりーふぁーかす",
+        yomi: "じゅり�Eふぁ�Eかす",
         url: "julie-farkas.html",
         category: "人物",
         appearance: [
@@ -3267,7 +3267,7 @@ const loreEntries = [
     },
     {
         name: "General Lee Oliver",
-        yomi: "りーおりばー",
+        yomi: "り�Eおりばー",
         url: "lee-oliver.html",
         category: "人物",
         appearance: [
@@ -3278,7 +3278,7 @@ const loreEntries = [
     },
     {
         name: "Muggy",
-        yomi: "まぎー",
+        yomi: "まぎ�E",
         url: "muggy.html",
         category: "人物",
         appearance: [
@@ -3311,7 +3311,7 @@ const loreEntries = [
     },
     {
         name: "Thomas Hildern",
-        yomi: "とーますひるだーん",
+        yomi: "とーます�EるだーめE,
         url: "thomas-hildern.html",
         category: "人物",
         appearance: [
@@ -3344,7 +3344,7 @@ const loreEntries = [
     },
     {
         name: "Chief Hanlon",
-        yomi: "ちーふはんろん",
+        yomi: "ちーふはんろめE,
         url: "hanlon.html",
         category: "人物",
         appearance: [
@@ -3355,7 +3355,7 @@ const loreEntries = [
     },
     {
         name: "ED-E",
-        yomi: "えでぃ",
+        yomi: "えでぁE,
         url: "ed-e.html",
         category: "人物",
         appearance: [
@@ -3377,7 +3377,7 @@ const loreEntries = [
     },
     {
         name: "Cassandra Moore",
-        yomi: "かさんどらむーあ",
+        yomi: "かさんどら�EーぁE,
         url: "cassandra-moore.html",
         category: "人物",
         appearance: [
@@ -3388,7 +3388,7 @@ const loreEntries = [
     },
     {
         name: "Carrie Boyd",
-        yomi: "きゃりーぼいど",
+        yomi: "きゃり�EぼぁE��",
         url: "carrie-boyd.html",
         category: "人物",
         appearance: [
@@ -3399,7 +3399,7 @@ const loreEntries = [
     },
     {
         name: "Yes Man",
-        yomi: "いえすまん",
+        yomi: "ぁE��すまめE,
         url: "yes-man.html",
         category: "人物",
         appearance: [
@@ -3410,7 +3410,7 @@ const loreEntries = [
     },
     {
         name: "Aaron Kimball",
-        yomi: "あーろんきんばる",
+        yomi: "あ�EろんきんばめE,
         url: "aaron-kimball.html",
         category: "人物",
         appearance: [
@@ -3420,8 +3420,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーソーン・メディカル・ラボラトリーズ",
-        yomi: "ほーそーん・めでぃかる・らぼらとりーず",
+        name: "ホ�Eソーン・メチE��カル・ラボラトリーズ",
+        yomi: "ほーそ�Eん�EめでぁE��る�Eらぼらとり�EぁE,
         url: "hawthorne-medical-laboratories.html",
         category: "場所",
         appearance: [
@@ -3431,7 +3431,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッドロケット",
+        name: "レチE��ロケチE��",
         yomi: "れっどろけっと",
         url: "red-rocket-tv-series.html",
         category: "場所",
@@ -3442,8 +3442,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ソビエトの人工衛星",
-        yomi: "そびえとのじんこうえいせい",
+        name: "ソビエト�E人工衛星",
+        yomi: "そ�Eえとのじんこうえいせい",
         url: "soviet-satellite.html",
         category: "場所",
         appearance: [
@@ -3453,8 +3453,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "BBQシャック",
-        yomi: "ばーべきゅーしゃっく",
+        name: "BBQシャチE��",
+        yomi: "ばーべきゅーしゃっぁE,
         url: "bbq-shack-tv-series.html",
         category: "場所",
         appearance: [
@@ -3464,8 +3464,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グールの墓",
-        yomi: "ぐーるのはか",
+        name: "グールの墁E,
+        yomi: "ぐ�Eる�EはぁE,
         url: "the-ghoul-s-grave.html",
         category: "場所",
         appearance: [
@@ -3475,8 +3475,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ソニーズ・サンドリーズ",
-        yomi: "そにーず・さんどりーず",
+        name: "ソニ�Eズ・サンドリーズ",
+        yomi: "そにーず�Eさんどり�EぁE,
         url: "sonny-s-sundries.html",
         category: "場所",
         appearance: [
@@ -3486,8 +3486,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヤオ・グアイの洞窟",
-        yomi: "やお・ぐあいのどうくつ",
+        name: "ヤオ・グアイの洞突E,
+        yomi: "めE��・ぐあぁE�EどぁE��つ",
         url: "yao-guai-cave-tv-series.html",
         category: "場所",
         appearance: [
@@ -3497,8 +3497,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウエストサイド・メディカル・クリニック",
-        yomi: "うえすとさいど・めでぃかる・くりにっく",
+        name: "ウエストサイド�EメチE��カル・クリニック",
+        yomi: "ぁE��すとさいど・めでぁE��る�EくりにっぁE,
         url: "westside-medical-clinic.html",
         category: "場所",
         appearance: [
@@ -3509,7 +3509,7 @@ const loreEntries = [
     },
     {
         name: "国際連合本部",
-        yomi: "こくさいれんごうほんぶ",
+        yomi: "こくさいれんごうほん�E",
         url: "headquarters-of-the-united-nations.html",
         category: "場所",
         appearance: [
@@ -3519,8 +3519,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アフォーダブル・アルのディスカウント・ホスピタル",
-        yomi: "あふぉーだぶる・あるのでぃすかうんと・ほすぴたる",
+        name: "アフォーダブル・アルのチE��スカウント�Eホスピタル",
+        yomi: "あ�Eぉ�Eだぶる�EあるのでぁE��かうんと・ほす�Eたる",
         url: "affordable-al-s-discount-hospital.html",
         category: "場所",
         appearance: [
@@ -3531,7 +3531,7 @@ const loreEntries = [
     },
     {
         name: "サンタモニカ・ピア",
-        yomi: "さんたもにか・ぴあ",
+        yomi: "さんたもにか�EぴぁE,
         url: "santa-monica-pier.html",
         category: "場所",
         appearance: [
@@ -3541,8 +3541,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キャンプ・ゴルフのテント",
-        yomi: "きゃんぷ・ごるふのてんと",
+        name: "キャンプ�Eゴルフ�EチE��チE,
+        yomi: "きゃん�E・ごるふのてんと",
         url: "camp-golf-tent.html",
         category: "場所",
         appearance: [
@@ -3552,8 +3552,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スターライト・ドライブイン",
-        yomi: "すたーらいと・どらいぶいん",
+        name: "スターライト�Eドライブイン",
+        yomi: "すたーらいと・どらいぶぁE��",
         url: "starlight-drive-in-theatre-tv-series.html",
         category: "場所",
         appearance: [
@@ -3563,7 +3563,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドーナツショップ",
+        name: "ド�EナツショチE�E",
         yomi: "どーなつしょっぷ",
         url: "donut-shop.html",
         category: "場所",
@@ -3575,7 +3575,7 @@ const loreEntries = [
     },
     {
         name: "サンタモニカ",
-        yomi: "さんたもにか",
+        yomi: "さんたもにぁE,
         url: "santa-monica.html",
         category: "場所",
         appearance: [
@@ -3585,10 +3585,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラザーフッド・オブ・スティール",
-        yomi: "ぶらざーふっどおぶすてぃーる",
+        name: "ブラザーフッド�Eオブ�EスチE��ール",
+        yomi: "ぶらざーふっどお�EすてぁE�EめE,
         url: "brotherhood-of-steel.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout",
             "Fallout 2",
@@ -3601,8 +3601,8 @@ const loreEntries = [
         date: "2026-05-02"
     },
     {
-        name: "Vault 31の居住者",
-        yomi: "ぼると31のきょじゅうしゃ",
+        name: "Vault 31の屁E��老E,
+        yomi: "ぼると31のきょじゅぁE��めE,
         url: "vault-31-dweller.html",
         category: "人物",
         appearance: [
@@ -3612,8 +3612,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "Vault 32の居住者",
-        yomi: "ぼると32のきょじゅうしゃ",
+        name: "Vault 32の屁E��老E,
+        yomi: "ぼると32のきょじゅぁE��めE,
         url: "vault-32-dweller.html",
         category: "人物",
         appearance: [
@@ -3634,8 +3634,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "Vault 33の居住者",
-        yomi: "ぼると33のきょじゅうしゃ",
+        name: "Vault 33の屁E��老E,
+        yomi: "ぼると33のきょじゅぁE��めE,
         url: "vault-33-dweller.html",
         category: "人物",
         appearance: [
@@ -3646,7 +3646,7 @@ const loreEntries = [
     },
     {
         name: "Vault 33のエンジニア",
-        yomi: "ぼると33のえんじにあ",
+        yomi: "ぼると33のえんじにぁE,
         url: "vault-33-engineer.html",
         category: "人物",
         appearance: [
@@ -3678,8 +3678,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トルーディ",
-        yomi: "とるーでぃ",
+        name: "トルーチE��",
+        yomi: "とる�EでぁE,
         url: "trudy-tv-series.html",
         category: "人物",
         appearance: [
@@ -3689,8 +3689,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "米連邦捜査官",
-        yomi: "べいれんぽうそうさかん",
+        name: "米連邦捜査宁E,
+        yomi: "べぁE��んぽぁE��ぁE��かん",
         url: "u-s-federal-agent.html",
         category: "人物",
         appearance: [
@@ -3700,8 +3700,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "組合の抗議者",
-        yomi: "くみあいのこうぎしゃ",
+        name: "絁E��の抗議老E,
+        yomi: "くみあいのこうぎしめE,
         url: "union-protester.html",
         category: "人物",
         appearance: [
@@ -3711,8 +3711,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サデウス",
-        yomi: "さでうす",
+        name: "サチE��ス",
+        yomi: "さでぁE��",
         url: "thaddeus.html",
         category: "人物",
         appearance: [
@@ -3722,8 +3722,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サデウスの子分",
-        yomi: "さでうすのこぶん",
+        name: "サチE��スの子�E",
+        yomi: "さでぁE��のこ�EめE,
         url: "thaddeus-minion.html",
         category: "人物",
         appearance: [
@@ -3733,8 +3733,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トーマス・ハミルトン",
-        yomi: "とーます・はみるとん",
+        name: "ト�Eマス・ハミルトン",
+        yomi: "とーます�EはみるとめE,
         url: "thomas-hamilton.html",
         category: "人物",
         appearance: [
@@ -3766,8 +3766,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ストリート・ハスラー",
-        yomi: "すとりーと・はすらー",
+        name: "ストリート�Eハスラー",
+        yomi: "すとり�Eと・はすらー",
         url: "street-hustler.html",
         category: "人物",
         appearance: [
@@ -3777,7 +3777,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "被験体476",
+        name: "被験佁E76",
         yomi: "ひけんたい476",
         url: "subject-476.html",
         category: "人物",
@@ -3789,7 +3789,7 @@ const loreEntries = [
     },
     {
         name: "日焼けした男",
-        yomi: "ひやけしたおとこ",
+        yomi: "ひめE��したおとぁE,
         url: "sunburned-man.html",
         category: "人物",
         appearance: [
@@ -3799,8 +3799,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "タチアナ・リー",
-        yomi: "たちあな・りー",
+        name: "タチアナ�Eリー",
+        yomi: "たちあな・り�E",
         url: "tatyana-lee.html",
         category: "人物",
         appearance: [
@@ -3810,8 +3810,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "テレビ司会者",
-        yomi: "てれびしかいしゃ",
+        name: "チE��ビ司会老E,
+        yomi: "てれ�EしかぁE��めE,
         url: "television-host.html",
         category: "人物",
         appearance: [
@@ -3821,8 +3821,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スクワイア（Fallout TV）",
-        yomi: "すくわいあ",
+        name: "スクワイア�E�Eallout TV�E�E,
+        yomi: "すくわいぁE,
         url: "squire-tv-series.html",
         category: "人物",
         appearance: [
@@ -3833,7 +3833,7 @@ const loreEntries = [
     },
     {
         name: "スクワール",
-        yomi: "すくわーる",
+        yomi: "すくわ�EめE,
         url: "squirrel-tv-series.html",
         category: "人物",
         appearance: [
@@ -3844,7 +3844,7 @@ const loreEntries = [
     },
     {
         name: "刺されたリージョナリー",
-        yomi: "さされたりーじょなりー",
+        yomi: "さされたり�Eじょなり�E",
         url: "stabbed-legionary.html",
         category: "人物",
         appearance: [
@@ -3854,7 +3854,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ステフ・ハーパー",
+        name: "スチE��・ハ�Eパ�E",
         yomi: "すてふ・はーぱー",
         url: "steph-harper.html",
         category: "人物",
@@ -3865,8 +3865,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スティーブン・ウィンスロップ",
-        yomi: "すてぃーぶん・うぃんすろっぷ",
+        name: "スチE��ーブン・ウィンスロチE�E",
+        yomi: "すてぁE�Eぶん�EぁE��んすろっぷ",
         url: "stephen-winthrop.html",
         category: "人物",
         appearance: [
@@ -3876,7 +3876,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "喉を掻き切られた犠牲者",
+        name: "喉を掻き�Eられた犠牲老E,
         yomi: "のどをかききられたぎせいしゃ",
         url: "slit-throat-victim.html",
         category: "人物",
@@ -3887,8 +3887,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "胡散臭いセールスマン",
-        yomi: "うさんくさいせーるすまん",
+        name: "胡散臭ぁE��ールスマン",
+        yomi: "ぁE��んくさいせ�EるすまめE,
         url: "snake-oil-salesman.html",
         category: "人物",
         appearance: [
@@ -3898,7 +3898,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ソニー",
+        name: "ソニ�E",
         yomi: "そにー",
         url: "sonny.html",
         category: "人物",
@@ -3910,7 +3910,7 @@ const loreEntries = [
     },
     {
         name: "ソレル・ブッカー",
-        yomi: "それる・ぶっかー",
+        yomi: "それる�Eぶっか�E",
         url: "sorrel-booker.html",
         category: "人物",
         appearance: [
@@ -3920,8 +3920,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "見物人（Vault-Tec）",
-        yomi: "みものにん",
+        name: "見物人�E�Eault-Tec�E�E,
+        yomi: "みも�EにめE,
         url: "spectator.html",
         category: "人物",
         appearance: [
@@ -3932,7 +3932,7 @@ const loreEntries = [
     },
     {
         name: "店主サイモン",
-        yomi: "てんしゅさいもん",
+        yomi: "てんしめE��ぁE��めE,
         url: "shopkeep-simon.html",
         category: "人物",
         appearance: [
@@ -3942,7 +3942,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ショートサイト",
+        name: "ショートサイチE,
         yomi: "しょーとさいと",
         url: "shortsight.html",
         category: "人物",
@@ -3953,7 +3953,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ショットガン・ジェフ",
+        name: "ショチE��ガン・ジェチE,
         yomi: "しょっとがん・じぇふ",
         url: "shotgun-jeff.html",
         category: "人物",
@@ -3965,7 +3965,7 @@ const loreEntries = [
     },
     {
         name: "シギ・ウィルギグ博士",
-        yomi: "しぎ・うぃるぎぐはかせ",
+        yomi: "しぎ・ぁE��るぎぐ�Eかせ",
         url: "siggi-wilzig.html",
         category: "人物",
         appearance: [
@@ -3986,8 +3986,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シェイディ・サンズの農民",
-        yomi: "しぇいでぃ・さんずののうみん",
+        name: "シェイチE��・サンズの農氁E,
+        yomi: "しぇぁE��ぁE�Eさんず�EのぁE��めE,
         url: "shady-sands-farmer.html",
         category: "人物",
         appearance: [
@@ -3998,7 +3998,7 @@ const loreEntries = [
     },
     {
         name: "シェリー",
-        yomi: "しぇりー",
+        yomi: "しぇり�E",
         url: "shelley-tv-series.html",
         category: "人物",
         appearance: [
@@ -4008,7 +4008,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "保安官（ガバミント）",
+        name: "保安官（ガバミント！E,
         yomi: "ほあんかん",
         url: "sheriff-tv-series.html",
         category: "人物",
@@ -4020,7 +4020,7 @@ const loreEntries = [
     },
     {
         name: "シャーマン",
-        yomi: "しゃーまん",
+        yomi: "しゃーまめE,
         url: "sherman-tv-series.html",
         category: "人物",
         appearance: [
@@ -4031,7 +4031,7 @@ const loreEntries = [
     },
     {
         name: "上半身裸のレイダー",
-        yomi: "じょうはんしんはだかのれいだー",
+        yomi: "じょぁE�Eんしん�Eだか�Eれいだー",
         url: "shirtless-raider.html",
         category: "人物",
         appearance: [
@@ -4041,7 +4041,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サラ・クレメンツ",
+        name: "サラ・クレメンチE,
         yomi: "さら・くれめんつ",
         url: "sarah-clements.html",
         category: "人物",
@@ -4053,7 +4053,7 @@ const loreEntries = [
     },
     {
         name: "スカベンジャー",
-        yomi: "すかべんじゃー",
+        yomi: "すかべんじめE�E",
         url: "scavenger-tv-series.html",
         category: "人物",
         appearance: [
@@ -4063,7 +4063,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スクライブ",
+        name: "スクライチE,
         yomi: "すくらいぶ",
         url: "scribe-tv-series.html",
         category: "人物",
@@ -4075,7 +4075,7 @@ const loreEntries = [
     },
     {
         name: "セバスチャン・レスリー",
-        yomi: "せばすちゃん・れすりー",
+        yomi: "せ�EすちめE��・れすり�E",
         url: "sebastian-leslie.html",
         category: "人物",
         appearance: [
@@ -4085,8 +4085,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シェイディ・サンズの市民",
-        yomi: "しぇいでぃ・さんずのしみん",
+        name: "シェイチE��・サンズの市氁E,
+        yomi: "しぇぁE��ぁE�Eさんず�EしみめE,
         url: "shady-sands-citizen-tv-series.html",
         category: "人物",
         appearance: [
@@ -4107,8 +4107,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ロニー・マクカートリー",
-        yomi: "ろにー・まくかーとりー",
+        name: "ロニ�E・マクカートリー",
+        yomi: "ろにー・まくかーとり�E",
         url: "ronnie-mccurtry.html",
         category: "人物",
         appearance: [
@@ -4119,7 +4119,7 @@ const loreEntries = [
     },
     {
         name: "ルーファス",
-        yomi: "るーふぁす",
+        yomi: "る�Eふぁす",
         url: "roofus.html",
         category: "人物",
         appearance: [
@@ -4141,7 +4141,7 @@ const loreEntries = [
     },
     {
         name: "サンドラ",
-        yomi: "さんどら",
+        yomi: "さんどめE,
         url: "sandra-tv-series.html",
         category: "人物",
         appearance: [
@@ -4162,8 +4162,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "Mr.ハウスの影武者",
-        yomi: "みすたー・はうすのかげむしゃ",
+        name: "Mr.ハウスの影武老E,
+        yomi: "みすたー・はぁE��のかげむしゃ",
         url: "robert-houses-double.html",
         category: "人物",
         appearance: [
@@ -4173,8 +4173,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ロバート・オルセン",
-        yomi: "ろばーと・おるせん",
+        name: "ロバ�Eト�Eオルセン",
+        yomi: "ろ�Eーと・おるせん",
         url: "robert-olsen.html",
         category: "人物",
         appearance: [
@@ -4185,7 +4185,7 @@ const loreEntries = [
     },
     {
         name: "キャプテン・ロドリゲス",
-        yomi: "きゃぷてん・ろどりげす",
+        yomi: "きゃぷてん�EろどりげぁE,
         url: "rodriguez.html",
         category: "人物",
         appearance: [
@@ -4196,7 +4196,7 @@ const loreEntries = [
     },
     {
         name: "レグ・マクフィー",
-        yomi: "れぐ・まくふぃー",
+        yomi: "れぐ・まく�EぁE�E",
         url: "reg-mcphee.html",
         category: "人物",
         appearance: [
@@ -4206,8 +4206,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "リポーター",
-        yomi: "りぽーたー",
+        name: "リポ�Eター",
+        yomi: "りぽーた�E",
         url: "reporter-tv-series.html",
         category: "人物",
         appearance: [
@@ -4217,7 +4217,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "保安官レックス",
+        name: "保安官レチE��ス",
         yomi: "ほあんかんれっくす",
         url: "rex-tv-series.html",
         category: "人物",
@@ -4228,8 +4228,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ナイト・ライリー",
-        yomi: "ないと・らいりー",
+        name: "ナイト�Eライリー",
+        yomi: "なぁE��・らいり�E",
         url: "riley-tv-series.html",
         category: "人物",
         appearance: [
@@ -4240,7 +4240,7 @@ const loreEntries = [
     },
     {
         name: "リンク",
-        yomi: "りんく",
+        yomi: "りんぁE,
         url: "rink.html",
         category: "人物",
         appearance: [
@@ -4250,8 +4250,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "抗議活動のまとめ役",
-        yomi: "こうぎかつどうのまとめやく",
+        name: "抗議活動�Eまとめ役",
+        yomi: "こうぎかつどぁE�EまとめやぁE,
         url: "protest-foreperson.html",
         category: "人物",
         appearance: [
@@ -4261,8 +4261,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エルダー・クレリック・クインタス",
-        yomi: "えるだー・くれりっく・くいんたす",
+        name: "エルダー・クレリチE��・クインタス",
+        yomi: "えるだー・くれりっく�EくいんたぁE,
         url: "quintus.html",
         category: "人物",
         appearance: [
@@ -4283,8 +4283,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "赤毛の男",
-        yomi: "あかげのおとこ",
+        name: "赤毛�E男",
+        yomi: "あかげ�EおとぁE,
         url: "red-haired-man.html",
         category: "人物",
         appearance: [
@@ -4294,8 +4294,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "赤毛の女",
-        yomi: "あかげのおんな",
+        name: "赤毛�E女",
+        yomi: "あかげ�Eおんな",
         url: "red-haired-woman.html",
         category: "人物",
         appearance: [
@@ -4305,8 +4305,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "パーティーの参加者（Lucky 38）",
-        yomi: "ぱーてぃーのさんかしゃ",
+        name: "パ�EチE��ーの参加老E��Eucky 38�E�E,
+        yomi: "ぱーてぁE�EのさんかしめE,
         url: "partygoer-tv-series.html",
         category: "人物",
         appearance: [
@@ -4316,8 +4316,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "パトリシア・ピーターズ",
-        yomi: "ぱとりしあ・ぴーたーず",
+        name: "パトリシア・ピ�Eターズ",
+        yomi: "ぱとりしあ�Eぴーた�EぁE,
         url: "patricia-peters.html",
         category: "人物",
         appearance: [
@@ -4327,7 +4327,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ピート",
+        name: "ピ�EチE,
         yomi: "ぴーと",
         url: "pete-tv-series.html",
         category: "人物",
@@ -4349,8 +4349,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ナース・パウエル",
-        yomi: "なーす・ぱうえる",
+        name: "ナ�Eス・パウエル",
+        yomi: "なーす�EぱぁE��めE,
         url: "powell.html",
         category: "人物",
         appearance: [
@@ -4360,8 +4360,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ニック・ザ・プリック",
-        yomi: "にっく・ざ・ぷりっく",
+        name: "ニック・ザ・プリチE��",
+        yomi: "にっく�Eざ�EぷりっぁE,
         url: "nick-the-prick.html",
         category: "人物",
         appearance: [
@@ -4371,8 +4371,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ノーム・マクレーン",
-        yomi: "のーむ・まくれーん",
+        name: "ノ�Eム・マクレーン",
+        yomi: "のーむ・まくれーめE,
         url: "norm-maclean.html",
         category: "人物",
         appearance: [
@@ -4382,7 +4382,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドクター・\"ノーズ\"・エドモンドソン",
+        name: "ドクター・\"ノ�Eズ\"・エドモンドソン",
         yomi: "どくたー・\"のーず\"・えどもんどそん",
         url: "nose-edmundson.html",
         category: "人物",
@@ -4393,7 +4393,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "老婆のグレッチ",
+        name: "老婁E�EグレチE��",
         yomi: "ろうばのぐれっち",
         url: "old-woman-gretch.html",
         category: "人物",
@@ -4404,8 +4404,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "パーティー客",
-        yomi: "ぱーてぃーきゃく",
+        name: "パ�EチE��ー客",
+        yomi: "ぱーてぁE�EきゃぁE,
         url: "party-guest.html",
         category: "人物",
         appearance: [
@@ -4415,8 +4415,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "NCRのキャラバン商人",
-        yomi: "えぬしーあーるのきゃらばんしょうにん",
+        name: "NCRのキャラバン啁E��",
+        yomi: "えぬし�Eあ�Eる�Eきゃら�EんしめE��にめE,
         url: "ncr-caravaner.html",
         category: "人物",
         appearance: [
@@ -4426,8 +4426,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "NCRの市民",
-        yomi: "えぬしーあーるのしみん",
+        name: "NCRの市氁E,
+        yomi: "えぬし�Eあ�Eる�EしみめE,
         url: "ncr-citizen-tv-series.html",
         category: "人物",
         appearance: [
@@ -4438,7 +4438,7 @@ const loreEntries = [
     },
     {
         name: "NCR兵士",
-        yomi: "えぬしーあーるへいし",
+        yomi: "えぬし�Eあ�EるへぁE��",
         url: "ncr-soldier-tv-series.html",
         category: "人物",
         appearance: [
@@ -4448,8 +4448,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "NCRトルーパー",
-        yomi: "えぬしーあーるとるーぱー",
+        name: "NCRトルーパ�E",
+        yomi: "えぬし�Eあ�Eるとる�Eぱー",
         url: "ncr-trooper-tv-series.html",
         category: "人物",
         appearance: [
@@ -4460,7 +4460,7 @@ const loreEntries = [
     },
     {
         name: "ニュースキャスター",
-        yomi: "にゅーすきゃすたー",
+        yomi: "にめE�EすきめE��た�E",
         url: "news-anchor.html",
         category: "人物",
         appearance: [
@@ -4482,7 +4482,7 @@ const loreEntries = [
     },
     {
         name: "憲兵",
-        yomi: "けんぺい",
+        yomi: "けんぺぁE,
         url: "military-police-officer.html",
         category: "人物",
         appearance: [
@@ -4493,7 +4493,7 @@ const loreEntries = [
     },
     {
         name: "モヒカンのリージョナリー",
-        yomi: "もひかんのりーじょなりー",
+        yomi: "も�Eかんのり�Eじょなり�E",
         url: "mohawk-legionary.html",
         category: "人物",
         appearance: [
@@ -4503,8 +4503,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モルデイヴァーのエリート護衛",
-        yomi: "もるでいゔぁーのえりーとごえい",
+        name: "モルチE��ヴァーのエリート護衁E,
+        yomi: "もるでぁE��ぁ�EのえりーとごえぁE,
         url: "moldavers-elite-guard.html",
         category: "人物",
         appearance: [
@@ -4514,8 +4514,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モンティ",
-        yomi: "もんてぃ",
+        name: "モンチE��",
+        yomi: "もんてぁE,
         url: "monty-tv-series.html",
         category: "人物",
         appearance: [
@@ -4526,7 +4526,7 @@ const loreEntries = [
     },
     {
         name: "マリアン",
-        yomi: "まりあん",
+        yomi: "まりあめE,
         url: "marianne-tv-series.html",
         category: "人物",
         appearance: [
@@ -4536,8 +4536,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マージョリー",
-        yomi: "まーじょりー",
+        name: "マ�Eジョリー",
+        yomi: "まーじょり�E",
         url: "marjorie-tv-series.html",
         category: "人物",
         appearance: [
@@ -4547,8 +4547,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "大柄なリージョナリー",
-        yomi: "おおがらなりーじょなりー",
+        name: "大柁E��リージョナリー",
+        yomi: "おおがらなり�Eじょなり�E",
         url: "massive-legionary.html",
         category: "人物",
         appearance: [
@@ -4558,8 +4558,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マクシミリアン・ドッティーノ",
-        yomi: "まくしみりあん・どってぃーの",
+        name: "マクシミリアン・ドッチE��ーチE,
+        yomi: "まくしみりあん�EどってぁE�Eの",
         url: "maximillian-dottino.html",
         category: "人物",
         appearance: [
@@ -4570,7 +4570,7 @@ const loreEntries = [
     },
     {
         name: "マキシマス",
-        yomi: "まきします",
+        yomi: "まきしまぁE,
         url: "maximus.html",
         category: "人物",
         appearance: [
@@ -4580,8 +4580,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラッキー38・セキュリトロン",
-        yomi: "らっきー38・せきゅりとろん",
+        name: "ラチE��ー38・セキュリトロン",
+        yomi: "らっき�E38・せきめE��とろん",
         url: "lucky-38-securitron.html",
         category: "人物",
         appearance: [
@@ -4592,7 +4592,7 @@ const loreEntries = [
     },
     {
         name: "ルーシー・マクレーン",
-        yomi: "るーしー・まくれーん",
+        yomi: "る�Eし�E・まくれーめE,
         url: "lucy-maclean.html",
         category: "人物",
         appearance: [
@@ -4601,8 +4601,8 @@ const loreEntries = [
         date: "2026-04-03"
     },
     {
-        name: "マ・ジューン",
-        yomi: "ま・じゅーん",
+        name: "マ�Eジューン",
+        yomi: "ま・じゅーめE,
         url: "ma-june.html",
         category: "人物",
         appearance: [
@@ -4613,7 +4613,7 @@ const loreEntries = [
     },
     {
         name: "暗がりに立つ男",
-        yomi: "くらがりにたつおとこ",
+        yomi: "くらがりにたつおとぁE,
         url: "man-in-shadows.html",
         category: "人物",
         appearance: [
@@ -4623,8 +4623,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マーチ・シャーウッド",
-        yomi: "まーち・しゃーうっど",
+        name: "マ�Eチ�EシャーウチE��",
+        yomi: "まーち・しゃーぁE��ど",
         url: "march-sherwood.html",
         category: "人物",
         appearance: [
@@ -4634,8 +4634,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "リージョン上級顧問",
-        yomi: "りーじょんじょうきゅうこもん",
+        name: "リージョン上級顧啁E,
+        yomi: "り�EじょんじめE��きゅぁE��もん",
         url: "legion-senior-advisor.html",
         category: "人物",
         appearance: [
@@ -4646,7 +4646,7 @@ const loreEntries = [
     },
     {
         name: "リージョナリー",
-        yomi: "りーじょなりー",
+        yomi: "り�Eじょなり�E",
         url: "legionary-tv-series.html",
         category: "人物",
         appearance: [
@@ -4656,8 +4656,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レオン・フォン・フェルデン",
-        yomi: "れおん・ふぉん・ふぇるでん",
+        name: "レオン・フォン・フェルチE��",
+        yomi: "れおん�Eふぉん・ふぁE��でめE,
         url: "leon-von-felden.html",
         category: "人物",
         appearance: [
@@ -4667,8 +4667,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ロイド・ホーソーン",
-        yomi: "ろいど・ほーそーん",
+        name: "ロイド�Eホ�Eソーン",
+        yomi: "ろいど・ほーそ�EめE,
         url: "lloyd-hawthorne.html",
         category: "人物",
         appearance: [
@@ -4679,7 +4679,7 @@ const loreEntries = [
     },
     {
         name: "ロイス",
-        yomi: "ろいす",
+        yomi: "ろいぁE,
         url: "lois.html",
         category: "人物",
         appearance: [
@@ -4689,8 +4689,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ナイト",
-        yomi: "ないと",
+        name: "ナイチE,
+        yomi: "なぁE��",
         url: "knight-tv-series.html",
         category: "人物",
         appearance: [
@@ -4701,7 +4701,7 @@ const loreEntries = [
     },
     {
         name: "ラセルタ軍団長",
-        yomi: "らせるたぐんだんちょう",
+        yomi: "らせるたぐんだんちめE��",
         url: "lacerta-legate.html",
         category: "人物",
         appearance: [
@@ -4711,8 +4711,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アメリカ合衆国大統領",
-        yomi: "あめりかがっしゅうこくだいとうりょう",
+        name: "アメリカ合衁E��大統頁E,
+        yomi: "あめりかがっしゅぁE��くだぁE��ぁE��めE��",
         url: "last-president-of-the-united-states.html",
         category: "人物",
         appearance: [
@@ -4722,8 +4722,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ローレンス・ロナルド",
-        yomi: "ろーれんす・ろなるど",
+        name: "ローレンス・ロナルチE,
+        yomi: "ろ�Eれんす�Eろなるど",
         url: "laurence-ronald.html",
         category: "人物",
         appearance: [
@@ -4733,8 +4733,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "リー・モルデイヴァー",
-        yomi: "りー・もるでいゔぁー",
+        name: "リー・モルチE��ヴァー",
+        yomi: "り�E・もるでぁE��ぁ�E",
         url: "lee-moldaver.html",
         category: "人物",
         appearance: [
@@ -4744,8 +4744,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジョセフ",
-        yomi: "じょせふ",
+        name: "ジョセチE,
+        yomi: "じょせ�E",
         url: "joseph-tv-series.html",
         category: "人物",
         appearance: [
@@ -4755,8 +4755,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジョセフ・モールダー",
-        yomi: "じょせふ・もーるだー",
+        name: "ジョセフ�Eモールダー",
+        yomi: "じょせ�E・も�Eるだー",
         url: "joseph-moerder.html",
         category: "人物",
         appearance: [
@@ -4778,7 +4778,7 @@ const loreEntries = [
     },
     {
         name: "ジュリア・マスターズ",
-        yomi: "じゅりあ・ますたーず",
+        yomi: "じゅりあ・ますたーぁE,
         url: "julia-masters.html",
         category: "人物",
         appearance: [
@@ -4788,8 +4788,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キャスリン・セップ",
-        yomi: "きゃすりん・せっぷ",
+        name: "キャスリン・セチE�E",
+        yomi: "きゃすりん�Eせっぷ",
         url: "kathryn-cep.html",
         category: "人物",
         appearance: [
@@ -4800,7 +4800,7 @@ const loreEntries = [
     },
     {
         name: "ジム",
-        yomi: "じむ",
+        yomi: "じ�E",
         url: "jim-tv-series.html",
         category: "人物",
         appearance: [
@@ -4832,8 +4832,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジョアン・ワームウッド",
-        yomi: "じょあん・わーむうっど",
+        name: "ジョアン・ワームウチE��",
+        yomi: "じょあん・わ�EむぁE��ど",
         url: "joanne-wormwood.html",
         category: "人物",
         appearance: [
@@ -4843,7 +4843,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホルヘ",
+        name: "ホルチE,
         yomi: "ほるへ",
         url: "jorge.html",
         category: "人物",
@@ -4855,7 +4855,7 @@ const loreEntries = [
     },
     {
         name: "アーヴ",
-        yomi: "あーゔ",
+        yomi: "あ�EめE,
         url: "irv.html",
         category: "人物",
         appearance: [
@@ -4866,7 +4866,7 @@ const loreEntries = [
     },
     {
         name: "ジャミラ",
-        yomi: "じゃみら",
+        yomi: "じゃみめE,
         url: "jamila.html",
         category: "人物",
         appearance: [
@@ -4876,8 +4876,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジェイニー・ハワード",
-        yomi: "じぇいにー・はわーど",
+        name: "ジェイニ�E・ハワーチE,
+        yomi: "じぇぁE��ー・はわ�Eど",
         url: "janey-howard.html",
         category: "人物",
         appearance: [
@@ -4888,7 +4888,7 @@ const loreEntries = [
     },
     {
         name: "ジャニス",
-        yomi: "じゃにす",
+        yomi: "じゃにぁE,
         url: "janice-tv-series.html",
         category: "人物",
         appearance: [
@@ -4899,7 +4899,7 @@ const loreEntries = [
     },
     {
         name: "ジャビン",
-        yomi: "じゃびん",
+        yomi: "じゃびめE,
         url: "javin.html",
         category: "人物",
         appearance: [
@@ -4910,7 +4910,7 @@ const loreEntries = [
     },
     {
         name: "ハンク・マクレーン",
-        yomi: "はんく・まくれーん",
+        yomi: "はんく・まくれーめE,
         url: "hank-maclean.html",
         category: "人物",
         appearance: [
@@ -4920,8 +4920,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハリウッド・フォーエバーの集会の参加者",
-        yomi: "はりうっど・ふぉーえばーのしゅうかいのさんかしゃ",
+        name: "ハリウチE��・フォーエバ�Eの雁E���E参加老E,
+        yomi: "はりうっど・ふぉ�Eえ�EーのしゅぁE��ぁE�EさんかしめE,
         url: "hollywood-forever-meeting-attendee.html",
         category: "人物",
         appearance: [
@@ -4932,7 +4932,7 @@ const loreEntries = [
     },
     {
         name: "ホンチョー",
-        yomi: "ほんちょー",
+        yomi: "ほんちめE�E",
         url: "honcho.html",
         category: "人物",
         appearance: [
@@ -4943,7 +4943,7 @@ const loreEntries = [
     },
     {
         name: "ヒューイ",
-        yomi: "ひゅーい",
+        yomi: "ひめE�EぁE,
         url: "huey.html",
         category: "人物",
         appearance: [
@@ -4954,7 +4954,7 @@ const loreEntries = [
     },
     {
         name: "イアン・ジャクソン",
-        yomi: "いあん・じゃくそん",
+        yomi: "ぁE��ん�EじゃくそめE,
         url: "ian-jackson.html",
         category: "人物",
         appearance: [
@@ -4964,8 +4964,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジョージ・ヤッファ",
-        yomi: "じょーじ・やっふぁ",
+        name: "ジョージ・ヤチE��ァ",
+        yomi: "じょーじ�EめE��ふぁE,
         url: "george-yaffe.html",
         category: "人物",
         appearance: [
@@ -4975,8 +4975,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グール（クーパー・ハワード）",
-        yomi: "ぐーる（くーぱー・はわーど）",
+        name: "グール�E�クーパ�E・ハワード！E,
+        yomi: "ぐ�Eる（くーぱー・はわ�Eど�E�E,
         url: "the-ghoul.html",
         category: "人物",
         appearance: [
@@ -4986,8 +4986,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ナイト・グナティウス",
-        yomi: "ないと・ぐなてぃうす",
+        name: "ナイト�Eグナティウス",
+        yomi: "なぁE��・ぐなてぁE��ぁE,
         url: "gnatius.html",
         category: "人物",
         appearance: [
@@ -5019,8 +5019,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フリーサイドのギャンブラー",
-        yomi: "ふりーさいどのぎゃんぶらー",
+        name: "フリーサイド�Eギャンブラー",
+        yomi: "ふり�Eさいどのぎゃん�Eら�E",
         url: "freeside-gambler.html",
         category: "人物",
         appearance: [
@@ -5030,8 +5030,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フリーサイドのショーガール",
-        yomi: "ふりーさいどのしょーがーる",
+        name: "フリーサイド�Eショーガール",
+        yomi: "ふり�Eさいどのしょーが�EめE,
         url: "freeside-showgirl.html",
         category: "人物",
         appearance: [
@@ -5041,8 +5041,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フリーサイドの住人",
-        yomi: "ふりーさいどのじゅうにん",
+        name: "フリーサイド�E住人",
+        yomi: "ふり�EさいどのじゅぁE��めE,
         url: "freesider.html",
         category: "人物",
         appearance: [
@@ -5053,7 +5053,7 @@ const loreEntries = [
     },
     {
         name: "ギャラクシー・ニュースのアナウンサー",
-        yomi: "ぎゃらくしー・にゅーすのあなうんさー",
+        yomi: "ぎゃらくし�E・にめE�Eす�EあなぁE��さ�E",
         url: "galaxy-news-announcer.html",
         category: "人物",
         appearance: [
@@ -5064,7 +5064,7 @@ const loreEntries = [
     },
     {
         name: "ゲイリー",
-        yomi: "げいりー",
+        yomi: "げいり�E",
         url: "gary-tv-series.html",
         category: "人物",
         appearance: [
@@ -5074,8 +5074,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フリーサイドの子供のハスラー",
-        yomi: "ふりーさいどのこどものはすらー",
+        name: "フリーサイド�E子供�Eハスラー",
+        yomi: "ふり�Eさいどのこども�Eはすらー",
         url: "freeside-child-hustler.html",
         category: "人物",
         appearance: [
@@ -5085,8 +5085,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フリーサイドの子供のリーダー",
-        yomi: "ふりーさいどのこどものりーだー",
+        name: "フリーサイド�E子供�Eリーダー",
+        yomi: "ふり�Eさいどのこども�Eり�Eだー",
         url: "freeside-child-in-charge.html",
         category: "人物",
         appearance: [
@@ -5096,8 +5096,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "薬を売るフリーサイドの子供",
-        yomi: "くすりをうるふりーさいどのこども",
+        name: "薬を売るフリーサイド�E子侁E,
+        yomi: "くすりをぁE��ふり�EさいどのこどめE,
         url: "freeside-child-selling-drugs.html",
         category: "人物",
         appearance: [
@@ -5107,8 +5107,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フリーサイドのクルーピエ",
-        yomi: "ふりーさいどのくるーぴえ",
+        name: "フリーサイド�Eクルーピエ",
+        yomi: "ふり�EさいどのくるーぴぁE,
         url: "freeside-croupier.html",
         category: "人物",
         appearance: [
@@ -5118,8 +5118,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フリーサイドの客",
-        yomi: "ふりーさいどのきゃく",
+        name: "フリーサイド�E客",
+        yomi: "ふり�EさいどのきゃぁE,
         url: "freeside-customer.html",
         category: "人物",
         appearance: [
@@ -5129,8 +5129,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フィリーの商人",
-        yomi: "ふぃりーのしょうにん",
+        name: "フィリーの啁E��",
+        yomi: "ふぁE��ーのしょぁE��めE,
         url: "filly-vendor.html",
         category: "人物",
         appearance: [
@@ -5141,7 +5141,7 @@ const loreEntries = [
     },
     {
         name: "フランチェスカ・マハジャン",
-        yomi: "ふらんちぇすか・まじゃはん",
+        yomi: "ふらんちぁE��か�EまじゃはめE,
         url: "francesca-mahajan.html",
         category: "人物",
         appearance: [
@@ -5152,7 +5152,7 @@ const loreEntries = [
     },
     {
         name: "フランク",
-        yomi: "ふらんく",
+        yomi: "ふらんぁE,
         url: "frank-tv-series.html",
         category: "人物",
         appearance: [
@@ -5162,8 +5162,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フランクの娘",
-        yomi: "ふらんくのむすめ",
+        name: "フランクの威E,
+        yomi: "ふらんく�Eむすめ",
         url: "franks-daughter.html",
         category: "人物",
         appearance: [
@@ -5173,8 +5173,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フレデリック・シンクレア",
-        yomi: "ふれでりっく・しんくれあ",
+        name: "フレチE��チE��・シンクレア",
+        yomi: "ふれでりっく�EしんくれぁE,
         url: "frederick-sinclair.html",
         category: "人物",
         appearance: [
@@ -5186,7 +5186,7 @@ const loreEntries = [
     },
     {
         name: "農夫",
-        yomi: "のうふ",
+        yomi: "のぁE�E",
         url: "farmer-tv-series.html",
         category: "人物",
         appearance: [
@@ -5196,8 +5196,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クレリック・フェリックス",
-        yomi: "くれりっく・ふぇりっくす",
+        name: "クレリチE��・フェリチE��ス",
+        yomi: "くれりっく�EふぁE��っくす",
         url: "felix-tv-series.html",
         category: "人物",
         appearance: [
@@ -5207,8 +5207,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "女性の給仕",
-        yomi: "じょせいのきゅうじ",
+        name: "女性の給仁E,
+        yomi: "じょせいのきゅぁE��",
         url: "female-server.html",
         category: "人物",
         appearance: [
@@ -5219,7 +5219,7 @@ const loreEntries = [
     },
     {
         name: "フィリーの巨漢",
-        yomi: "ふぃりーのきょかん",
+        yomi: "ふぁE��ーのきょかん",
         url: "filly-huge-man.html",
         category: "人物",
         appearance: [
@@ -5229,8 +5229,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フィリーの町民",
-        yomi: "ふぃりーのちょうみん",
+        name: "フィリーの町氁E,
+        yomi: "ふぁE��ーのちめE��みめE,
         url: "filly-townsperson.html",
         category: "人物",
         appearance: [
@@ -5240,8 +5240,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エンクレイヴの科学者",
-        yomi: "えんくれいゔのかがくしゃ",
+        name: "エンクレイヴの科学老E,
+        yomi: "えんくれぁE��のかがくしめE,
         url: "enclave-scientist-tv-series.html",
         category: "人物",
         appearance: [
@@ -5252,7 +5252,7 @@ const loreEntries = [
     },
     {
         name: "エンクレイヴの警備員",
-        yomi: "えんくれいゔのけいびいん",
+        yomi: "えんくれぁE��のけいびぁE��",
         url: "enclave-security-tv-series.html",
         category: "人物",
         appearance: [
@@ -5262,8 +5262,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "興奮したパーティー客",
-        yomi: "こうふんしたぱーてぃーきゃく",
+        name: "興奮したパ�EチE��ー客",
+        yomi: "こうふんした�EーてぁE�EきゃぁE,
         url: "excited-partygoer.html",
         category: "人物",
         appearance: [
@@ -5273,8 +5273,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エグゼクティヴ・アシスタント",
-        yomi: "えぐぜくてぃゔ・あしすたんと",
+        name: "エグゼクチE��ヴ・アシスタンチE,
+        yomi: "えぐぜくてぁE��・あしすたんと",
         url: "executive-assistant.html",
         category: "人物",
         appearance: [
@@ -5285,7 +5285,7 @@ const loreEntries = [
     },
     {
         name: "偽のシーザー",
-        yomi: "にせのしーざー",
+        yomi: "にせ�Eし�Eざ�E",
         url: "false-caesar.html",
         category: "人物",
         appearance: [
@@ -5295,8 +5295,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドン・ペドロの護衛",
-        yomi: "どん・ぺどろのごえい",
+        name: "ドン・ペドロの護衁E,
+        yomi: "どん�Eぺどろ�EごえぁE,
         url: "dom-pedros-guard.html",
         category: "人物",
         appearance: [
@@ -5306,8 +5306,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "年配の司会者",
-        yomi: "ねんぱいのしかいしゃ",
+        name: "年配�E司会老E,
+        yomi: "ねん�EぁE�EしかぁE��めE,
         url: "elderly-speaker.html",
         category: "人物",
         appearance: [
@@ -5317,8 +5317,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エルマー・グリーン",
-        yomi: "えるまー・ぐりーん",
+        name: "エルマ�E・グリーン",
+        yomi: "えるまー・ぐりーめE,
         url: "elmer-greene.html",
         category: "人物",
         appearance: [
@@ -5328,8 +5328,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エミール・デール",
-        yomi: "えみーる・でーる",
+        name: "エミ�Eル・チE�Eル",
+        yomi: "えみーる�EでーめE,
         url: "emil-dale.html",
         category: "人物",
         appearance: [
@@ -5339,8 +5339,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エンクレイヴの管理者",
-        yomi: "えんくれいゔのかんりしゃ",
+        name: "エンクレイヴの管琁E��E,
+        yomi: "えんくれぁE��のかんりしめE,
         url: "enclave-administrator.html",
         category: "人物",
         appearance: [
@@ -5350,8 +5350,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デイヴィー",
-        yomi: "でいゔぃー",
+        name: "チE��ヴィー",
+        yomi: "でぁE��ぁE�E",
         url: "davey-tv-series.html",
         category: "人物",
         appearance: [
@@ -5361,8 +5361,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "歯医者兼理髪師",
-        yomi: "はいしゃけんりはつし",
+        name: "歯医老E�E琁E��師",
+        yomi: "はぁE��めE��んりはつぁE,
         url: "dentist-barber.html",
         category: "人物",
         appearance: [
@@ -5373,7 +5373,7 @@ const loreEntries = [
     },
     {
         name: "ダーヴィン",
-        yomi: "だーゔぃん",
+        yomi: "だーゔぃめE,
         url: "dervin.html",
         category: "人物",
         appearance: [
@@ -5383,8 +5383,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ダイアン・ウェルチ",
-        yomi: "だいあん・うぇるち",
+        name: "ダイアン・ウェルチE,
+        yomi: "だぁE��ん�EぁE��るち",
         url: "diane-welch.html",
         category: "人物",
         appearance: [
@@ -5394,8 +5394,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "飛行船の従者",
-        yomi: "ひこうせんのじゅうしゃ",
+        name: "飛行船の従老E,
+        yomi: "ひこうせんのじゅぁE��めE,
         url: "dirigible-squire.html",
         category: "人物",
         appearance: [
@@ -5416,8 +5416,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "コロナドのナイト",
-        yomi: "ころなど・ないと",
+        name: "コロナドのナイチE,
+        yomi: "ころなど・なぁE��",
         url: "coronado-knight.html",
         category: "人物",
         appearance: [
@@ -5428,7 +5428,7 @@ const loreEntries = [
     },
     {
         name: "批評家",
-        yomi: "ひひょうか",
+        yomi: "ひひめE��ぁE,
         url: "critic.html",
         category: "人物",
         appearance: [
@@ -5439,7 +5439,7 @@ const loreEntries = [
     },
     {
         name: "ダン",
-        yomi: "だん",
+        yomi: "だめE,
         url: "dan-tv-series.html",
         category: "人物",
         appearance: [
@@ -5449,8 +5449,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デイン",
-        yomi: "でいん",
+        name: "チE��ン",
+        yomi: "でぁE��",
         url: "dane-tv-series.html",
         category: "人物",
         appearance: [
@@ -5460,8 +5460,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クリスティン・マリ",
-        yomi: "くりすてぃん・まり",
+        name: "クリスチE��ン・マリ",
+        yomi: "くりすてぁE��・まめE,
         url: "christyn-mari.html",
         category: "人物",
         appearance: [
@@ -5471,8 +5471,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クレア・フェルドマン",
-        yomi: "くれあ・ふぇるどまん",
+        name: "クレア・フェルド�Eン",
+        yomi: "くれあ�EふぁE��どまめE,
         url: "claire-feldman.html",
         category: "人物",
         appearance: [
@@ -5483,7 +5483,7 @@ const loreEntries = [
     },
     {
         name: "クラーク",
-        yomi: "くらーく",
+        yomi: "くらーぁE,
         url: "clark-tv-series.html",
         category: "人物",
         appearance: [
@@ -5493,8 +5493,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クラウディア",
-        yomi: "くらうでぃあ",
+        name: "クラウチE��ア",
+        yomi: "くらぁE��ぁE��",
         url: "claudia-tv-series.html",
         category: "人物",
         appearance: [
@@ -5504,8 +5504,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "B.O.S.クレリック",
-        yomi: "ぶらざーふっどおぶすてぃーるくれりっく",
+        name: "B.O.S.クレリチE��",
+        yomi: "ぶらざーふっどお�EすてぁE�EるくれりっぁE,
         url: "cleric.html",
         category: "人物",
         appearance: [
@@ -5515,8 +5515,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チェット",
-        yomi: "ちぇっと",
+        name: "チェチE��",
+        yomi: "ちぁE��と",
         url: "chet-tv-series.html",
         category: "人物",
         appearance: [
@@ -5526,8 +5526,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チェット・ジュニア",
-        yomi: "ちぇっと・じゅにあ",
+        name: "チェチE��・ジュニア",
+        yomi: "ちぁE��と・じゅにぁE,
         url: "chet-jr.html",
         category: "人物",
         appearance: [
@@ -5537,8 +5537,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チェット・ジュニア（チェットの父）",
-        yomi: "ちぇっと・じゅにあ",
+        name: "チェチE��・ジュニア�E�チェチE��の父�E�E,
+        yomi: "ちぁE��と・じゅにぁE,
         url: "chet-jr-mentioned.html",
         category: "人物",
         appearance: [
@@ -5548,8 +5548,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "鶏集めの男",
-        yomi: "にわとりあつめのおとこ",
+        name: "鶏集め�E男",
+        yomi: "にわとりあつめ�EおとぁE,
         url: "chicken-collector.html",
         category: "人物",
         appearance: [
@@ -5560,7 +5560,7 @@ const loreEntries = [
     },
     {
         name: "クロエ・グラス",
-        yomi: "くろえ・ぐらす",
+        yomi: "くろえ�EぐらぁE,
         url: "chloe-glass.html",
         category: "人物",
         appearance: [
@@ -5570,8 +5570,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ケイシー・シュルツ",
-        yomi: "けいしー・しゅるつ",
+        name: "ケイシー・シュルチE,
+        yomi: "けいし�E・しゅるつ",
         url: "casey-schulz.html",
         category: "人物",
         appearance: [
@@ -5581,8 +5581,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カサンドラ・ホーソーン",
-        yomi: "かさんどら・ほーそーん",
+        name: "カサンドラ・ホ�Eソーン",
+        yomi: "かさんどら�Eほーそ�EめE,
         url: "cassandra-hawthorne.html",
         category: "人物",
         appearance: [
@@ -5593,7 +5593,7 @@ const loreEntries = [
     },
     {
         name: "キャシー",
-        yomi: "きゃしー",
+        yomi: "きゃし�E",
         url: "cathy-tv-series.html",
         category: "人物",
         appearance: [
@@ -5603,8 +5603,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チャールズ・ホワイトナイフ",
-        yomi: "ちゃーるず・ほわいとないふ",
+        name: "チャールズ・ホワイトナイチE,
+        yomi: "ちめE�Eるず・ほわいとなぁE�E",
         url: "charles-whiteknife.html",
         category: "人物",
         appearance: [
@@ -5615,7 +5615,7 @@ const loreEntries = [
     },
     {
         name: "チェイス・パウエル",
-        yomi: "ちぇいす・ぱうえる",
+        yomi: "ちぁE��す�EぱぁE��めE,
         url: "chase-powell.html",
         category: "人物",
         appearance: [
@@ -5625,7 +5625,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "大柄なレイダー",
+        name: "大柁E��レイダー",
         yomi: "おおがらなれいだー",
         url: "burly-raider.html",
         category: "人物",
@@ -5636,7 +5636,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キャデラックボブ",
+        name: "キャチE��チE��ボブ",
         yomi: "きゃでらっくぼぶ",
         url: "cadillac-bob.html",
         category: "人物",
@@ -5647,8 +5647,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シーザー（TVシリーズ）",
-        yomi: "しーざー",
+        name: "シーザー�E�EVシリーズ�E�E,
+        yomi: "し�Eざ�E",
         url: "caesar-tv.html",
         category: "人物",
         appearance: [
@@ -5658,8 +5658,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カナダの反乱者",
-        yomi: "かなだのはんらんしゃ",
+        name: "カナダの反乱老E,
+        yomi: "かなだのはんらんしめE,
         url: "canadian-rebel.html",
         category: "人物",
         appearance: [
@@ -5670,7 +5670,7 @@ const loreEntries = [
     },
     {
         name: "DJカール",
-        yomi: "でぃーじぇいかーる",
+        yomi: "でぁE�EじぇぁE��ーめE,
         url: "carl-tv-series.html",
         category: "人物",
         appearance: [
@@ -5680,8 +5680,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "国境警備隊員",
-        yomi: "こっきょうけいびたいいん",
+        name: "国墁E��備隊員",
+        yomi: "こっきょぁE��ぁE�EたいぁE��",
         url: "border-agent.html",
         category: "人物",
         appearance: [
@@ -5691,8 +5691,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラザーフッドの衛生兵",
-        yomi: "ぶらざーふっどのえいせいへい",
+        name: "ブラザーフッド�E衛生兵",
+        yomi: "ぶらざーふっどのえいせいへぁE,
         url: "brotherhood-medic.html",
         category: "人物",
         appearance: [
@@ -5702,8 +5702,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラザーフッドの将校",
-        yomi: "ぶらざーふっどのしょうこう",
+        name: "ブラザーフッド�E封E��",
+        yomi: "ぶらざーふっどのしょぁE��ぁE,
         url: "brotherhood-officer.html",
         category: "人物",
         appearance: [
@@ -5713,8 +5713,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラザーフッドの兵士",
-        yomi: "ぶらざーふっどのへいし",
+        name: "ブラザーフッド�E兵士",
+        yomi: "ぶらざーふっどのへぁE��",
         url: "brotherhood-soldier-tv-series.html",
         category: "人物",
         appearance: [
@@ -5725,7 +5725,7 @@ const loreEntries = [
     },
     {
         name: "バド・アスキンス",
-        yomi: "ばど・あすきんす",
+        yomi: "ばど・あすきんぁE,
         url: "bud-askins.html",
         category: "人物",
         appearance: [
@@ -5736,7 +5736,7 @@ const loreEntries = [
     },
     {
         name: "ビギー",
-        yomi: "びぎー",
+        yomi: "びぎ�E",
         url: "biggie.html",
         category: "人物",
         appearance: [
@@ -5746,8 +5746,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビル（建設作業員）",
-        yomi: "びる",
+        name: "ビル�E�建設作業員�E�E,
+        yomi: "びめE,
         url: "bill-tv-series.html",
         category: "人物",
         appearance: [
@@ -5757,8 +5757,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーディ",
-        yomi: "ばーでぃ",
+        name: "バ�EチE��",
+        yomi: "ばーでぁE,
         url: "birdie.html",
         category: "人物",
         appearance: [
@@ -5769,7 +5769,7 @@ const loreEntries = [
     },
     {
         name: "誕生会に呼ばれた客たち",
-        yomi: "たんじょうかいによばれたきゃくたち",
+        yomi: "たんじょぁE��ぁE��よ�Eれたきゃくたち",
         url: "birthday-party-guest.html",
         category: "人物",
         appearance: [
@@ -5790,7 +5790,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーブ",
+        name: "バ�EチE,
         yomi: "ばーぶ",
         url: "barv.html",
         category: "人物",
@@ -5801,8 +5801,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ベンジャミン（テレビドラマ）",
-        yomi: "べんじゃみん",
+        name: "ベンジャミン�E�テレビドラマ！E,
+        yomi: "べんじめE��めE,
         url: "benjamin-tv-series.html",
         category: "人物",
         appearance: [
@@ -5812,7 +5812,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バート（テレビドラマ）",
+        name: "バ�Eト（テレビドラマ！E,
         yomi: "ばーと",
         url: "bert-tv-series.html",
         category: "人物",
@@ -5824,7 +5824,7 @@ const loreEntries = [
     },
     {
         name: "ベティ・ピアソン",
-        yomi: "べてぃ・ぴあそん",
+        yomi: "べてぁE�EぴあそめE,
         url: "betty-pearson.html",
         category: "人物",
         appearance: [
@@ -5834,7 +5834,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビフ（テレビドラマ）",
+        name: "ビフ�E�テレビドラマ！E,
         yomi: "びふ",
         url: "biff-tv-series.html",
         category: "人物",
@@ -5857,7 +5857,7 @@ const loreEntries = [
     },
     {
         name: "航空券検査員",
-        yomi: "こうくうけんけんさいん",
+        yomi: "こうくうけんけんさいめE,
         url: "airline-ticket-inspector.html",
         category: "人物",
         appearance: [
@@ -5867,7 +5867,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "空港の旅行者",
+        name: "空港の旁E��老E,
         yomi: "くうこうのりょこうしゃ",
         url: "airport-traveler.html",
         category: "人物",
@@ -5878,7 +5878,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アレクサンダー・ボーマー",
+        name: "アレクサンダー・ボ�Eマ�E",
         yomi: "あれくさんだー・ぼーまー",
         url: "alexander-boamer.html",
         category: "人物",
@@ -5889,8 +5889,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アーチボルド・サックス",
-        yomi: "あーちぼるど・さっくす",
+        name: "アーチ�Eルド�EサチE��ス",
+        yomi: "あ�Eちぼるど・さっくす",
         url: "archibald-sachs.html",
         category: "人物",
         appearance: [
@@ -5900,8 +5900,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アーノルド（ギャラクシー・ニュース・ネットワーク）",
-        yomi: "あーのるど",
+        name: "アーノルド（ギャラクシー・ニュース・ネットワーク�E�E,
+        yomi: "あ�Eのるど",
         url: "arnold-tv-series.html",
         category: "人物",
         appearance: [
@@ -5912,7 +5912,7 @@ const loreEntries = [
     },
     {
         name: "アーサー・ワームリー",
-        yomi: "あーさー・わーむりー",
+        yomi: "あ�Eさ�E・わ�Eむり�E",
         url: "arthur-wormeley.html",
         category: "人物",
         appearance: [
@@ -5922,7 +5922,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アスピラント（候補生）",
+        name: "アスピラント（候補生�E�E,
         yomi: "あすぴらんと",
         url: "aspirant-tv-series.html",
         category: "人物",
@@ -5933,8 +5933,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エヴァ・ウェスト",
-        yomi: "えば・うぇすと",
+        name: "エヴァ・ウェスチE,
+        yomi: "え�E・ぁE��すと",
         url: "ava-west.html",
         category: "人物",
         appearance: [
@@ -5944,8 +5944,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーブ・ハワード",
-        yomi: "ばーぶ・はわーど",
+        name: "バ�Eブ�EハワーチE,
+        yomi: "ばーぶ・はわ�Eど",
         url: "barb-howard.html",
         category: "人物",
         appearance: [
@@ -5955,8 +5955,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーテンダー（ロサンゼルス）",
-        yomi: "ばーてんだー（ろさんぜるす）",
+        name: "バ�EチE��ダー�E�ロサンゼルス�E�E,
+        yomi: "ばーてんだー�E�ろさんぜるす！E,
         url: "bartender-los-angeles.html",
         category: "人物",
         appearance: [
@@ -5966,8 +5966,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーテンダー（ラッキー38）",
-        yomi: "ばーてんだー（らっきーさんじゅうはち）",
+        name: "バ�EチE��ダー�E�ラチE��ー38�E�E,
+        yomi: "ばーてんだー�E�らっき�EさんじゅぁE�Eち�E�E,
         url: "bartender-lucky-38.html",
         category: "人物",
         appearance: [
@@ -5978,7 +5978,7 @@ const loreEntries = [
     },
     {
         name: "ハゲのレイダー",
-        yomi: "はげのれいだー",
+        yomi: "はげ�Eれいだー",
         url: "bald-raider.html",
         category: "人物",
         appearance: [
@@ -5988,8 +5988,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーの常連客",
-        yomi: "ばーのじょうれんきゃく",
+        name: "バ�Eの常連客",
+        yomi: "ばーのじょぁE��んきめE��",
         url: "bar-patron-tv-series.html",
         category: "人物",
         appearance: [
@@ -6000,7 +6000,7 @@ const loreEntries = [
     },
     {
         name: "助監督",
-        yomi: "じょかんとく",
+        yomi: "じょかんとぁE,
         url: "assistant-director.html",
         category: "人物",
         appearance: [
@@ -6011,7 +6011,7 @@ const loreEntries = [
     },
     {
         name: "undefined",
-        yomi: "あーろん・きんばる",
+        yomi: "あ�Eろん・きんばめE,
         url: "kimball.html",
         category: "人物",
         appearance: [
@@ -6023,15 +6023,15 @@ const loreEntries = [
         name: "レイダー (Fallout 76)",
         yomi: "れいだー",
         url: "raiders_76.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout 76"
         ],
         date: "2026-02-19"
     },
     {
-        name: "リー・モルデイヴァー",
-        yomi: "りー・もるでいゔぁー",
+        name: "リー・モルチE��ヴァー",
+        yomi: "り�E・もるでぁE��ぁ�E",
         url: "lee_moldaver.html",
         category: "人物",
         appearance: [
@@ -6040,8 +6040,8 @@ const loreEntries = [
         date: "2026-02-19"
     },
     {
-        name: "Vaultの居住者",
-        yomi: "ぼるとのきょじゅうしゃ",
+        name: "Vaultの屁E��老E,
+        yomi: "ぼるとのきょじゅぁE��めE,
         url: "vault_dweller_lore.html",
         category: "人物",
         appearance: [
@@ -6051,7 +6051,7 @@ const loreEntries = [
     },
     {
         name: "回収されたアサルトロン頭部",
-        yomi: "かいしゅうされたあさるとろんとうぶ",
+        yomi: "かいしゅぁE��れたあさるとろんとぁE�E",
         url: "assaultron_head.html",
         category: "武器",
         appearance: [
@@ -6061,7 +6061,7 @@ const loreEntries = [
         date: "2026-02-20"
     },
     {
-        name: "ブライト",
+        name: "ブライチE,
         yomi: "ぶらいと",
         url: "blight.html",
         category: "植物",
@@ -6071,8 +6071,8 @@ const loreEntries = [
         date: "2026-02-20"
     },
     {
-        name: "タンディ",
-        yomi: "たんでぃ",
+        name: "タンチE��",
+        yomi: "たんでぁE,
         url: "tandi.html",
         category: "人物",
         appearance: [
@@ -6082,7 +6082,7 @@ const loreEntries = [
         date: "2026-02-20"
     },
     {
-        name: "ミスター・プライズボット",
+        name: "ミスター・プライズボッチE,
         yomi: "みすたー・ぷらいずぼっと",
         url: "prize_bot.html",
         category: "人物",
@@ -6093,9 +6093,9 @@ const loreEntries = [
     },
     {
         name: "新カリフォルニア共和国 (NCR)",
-        yomi: "しんかりふぉるにあきょうわこく",
+        yomi: "しんかりふぉるにあきめE��わこぁE,
         url: "ncr.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout",
             "Fallout 2",
@@ -6105,8 +6105,8 @@ const loreEntries = [
         date: "2026-02-20"
     },
     {
-        name: "バッファロー・ゴードの種",
-        yomi: "ばっふぁろー・ごーどのたね",
+        name: "バッファロー・ゴード�E種",
+        yomi: "ばっふぁろー・ご�Eどのた�E",
         url: "buffalo-gourd-seed.html",
         category: "植物",
         appearance: [
@@ -6115,8 +6115,8 @@ const loreEntries = [
         date: "2026-02-21"
     },
     {
-        name: "アーマー・エース",
-        yomi: "あーまー・えーす",
+        name: "アーマ�E・エース",
+        yomi: "あ�Eまー・え�EぁE,
         url: "armor-ace.html",
         category: "人物",
         appearance: [
@@ -6126,9 +6126,9 @@ const loreEntries = [
     },
     {
         name: "Vault-Tec Industries",
-        yomi: "ぼるとてっく・こーぽれーしょん",
+        yomi: "ぼるとてっく�Eこ�Eぽれ�EしょめE,
         url: "vault_tec.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout",
             "Fallout 2",
@@ -6142,7 +6142,7 @@ const loreEntries = [
     },
     {
         name: "ビリングス農場",
-        yomi: "びりんぐすのうじょう",
+        yomi: "びりんぐすのぁE��めE��",
         url: "billings-homestead.html",
         category: "場所",
         appearance: [
@@ -6151,18 +6151,18 @@ const loreEntries = [
         date: "2026-02-23"
     },
     {
-        name: "ペット (Fallout 76)",
+        name: "ペッチE(Fallout 76)",
         yomi: "ぺっと",
         url: "fallout-76-pets.html",
-        category: "システム",
+        category: "シスチE��",
         appearance: [
             "Fallout 76"
         ],
         date: "2026-02-24"
     },
     {
-        name: "ブラッドリーフ",
-        yomi: "ぶらっどりーふ",
+        name: "ブラチE��リーチE,
+        yomi: "ぶらっどり�Eふ",
         url: "bloodleaf.html",
         category: "植物",
         appearance: [
@@ -6171,8 +6171,8 @@ const loreEntries = [
         date: "2026-02-24"
     },
     {
-        name: "シングルアクション・リボルバー",
-        yomi: "しんぐるあくしょん・りぼるばー",
+        name: "シングルアクション・リボルバ�E",
+        yomi: "しんぐるあくしょん�Eりぼる�Eー",
         url: "single-action-revolver.html",
         category: "武器",
         appearance: [
@@ -6208,7 +6208,7 @@ const loreEntries = [
         date: "2026-02-26"
     },
     {
-        name: "カタラックス",
+        name: "カタラチE��ス",
         yomi: "かたらっくす",
         url: "catarax.html",
         category: "人物",
@@ -6218,8 +6218,8 @@ const loreEntries = [
         date: "2026-02-26"
     },
     {
-        name: "複葉機の墜落現場（アンカー農場）",
-        yomi: "ふくようきのついらくげんば",
+        name: "褁E��機�E墜落現場�E�アンカー農場�E�E,
+        yomi: "ふくよぁE��のつぁE��くげん�E",
         url: "biplane-crash-anchor-farm.html",
         category: "場所",
         appearance: [
@@ -6228,8 +6228,8 @@ const loreEntries = [
         date: "2026-02-27"
     },
     {
-        name: "バードハウス・リッジ",
-        yomi: "ばーどはうす・りっじ",
+        name: "バ�Eドハウス・リチE��",
+        yomi: "ばーどはぁE��・りっぁE,
         url: "birdhouse-ridge.html",
         category: "場所",
         appearance: [
@@ -6238,8 +6238,8 @@ const loreEntries = [
         date: "2026-02-27"
     },
     {
-        name: "野鳥観察者のプラットフォーム",
-        yomi: "やちょうかんさつしゃのぷらっとふぉーむ",
+        name: "野鳥観察老E�EプラチE��フォーム",
+        yomi: "めE��めE��かんさつしゃのぷらっとふぉ�Eむ",
         url: "birdwatchers-platform.html",
         category: "場所",
         appearance: [
@@ -6248,8 +6248,8 @@ const loreEntries = [
         date: "2026-02-27"
     },
     {
-        name: "ブラックマウンテン兵器工場",
-        yomi: "ぶらっくまうんてんへいきこうじょう",
+        name: "ブラチE��マウンチE��兵器工場",
+        yomi: "ぶらっくまぁE��てんへぁE��こうじょぁE,
         url: "black-mountain-ordnance-works.html",
         category: "場所",
         appearance: [
@@ -6268,8 +6268,8 @@ const loreEntries = [
         date: "2026-02-28"
     },
     {
-        name: "チャールストン駅",
-        yomi: "ちゃーるすとんえき",
+        name: "チャールストン駁E,
+        yomi: "ちめE�EるすとんえぁE,
         url: "charleston-station.html",
         category: "場所",
         appearance: [
@@ -6280,7 +6280,7 @@ const loreEntries = [
     },
     {
         name: "チャールストン操車場",
-        yomi: "ちゃーるすとんそうしゃじょう",
+        yomi: "ちめE�EるすとんそぁE��めE��めE��",
         url: "charleston-trainyard.html",
         category: "場所",
         appearance: [
@@ -6290,8 +6290,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファースト・フレンズ教会",
-        yomi: "ふぁーすとふれんずきょうかい",
+        name: "ファースト�Eフレンズ教企E,
+        yomi: "ふぁ�EすとふれんずきめE��かい",
         url: "first-friends-church.html",
         category: "場所",
         appearance: [
@@ -6301,8 +6301,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト・インダストリアル本社",
-        yomi: "ほーんらいと・いんだすとりあるほんしゃ",
+        name: "ホ�Eンライト�Eインダストリアル本社",
+        yomi: "ほーんらぁE��・ぁE��だすとりあるほんしめE,
         url: "hornwright-industrial-headquarters.html",
         category: "場所",
         appearance: [
@@ -6312,10 +6312,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "自由の鐘",
-        yomi: "じゆうのかね",
+        name: "自由の鐁E,
+        yomi: "じゆぁE�Eか�E",
         url: "liberty-bell.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76"
         ],
@@ -6323,8 +6323,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スロッカムズ・ジョー（チャールストン店）",
-        yomi: "すろっかむず・じょー",
+        name: "スロチE��ムズ・ジョー�E�チャールストン店！E,
+        yomi: "すろっか�Eず�Eじょー",
         url: "slocums-joe-charleston.html",
         category: "場所",
         appearance: [
@@ -6334,8 +6334,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サウスサイド・ブリッジ",
-        yomi: "さうすさいど・ぶりっじ",
+        name: "サウスサイド�EブリチE��",
+        yomi: "さうすさぁE��・ぶりっぁE,
         url: "south-side-bridge.html",
         category: "場所",
         appearance: [
@@ -6345,8 +6345,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "タトゥーパーラー",
-        yomi: "たとぅーぱーらー",
+        name: "タトゥーパ�Eラー",
+        yomi: "たとぁE�Eぱーら�E",
         url: "tattoo-parlor.html",
         category: "場所",
         appearance: [
@@ -6356,8 +6356,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウェスト・チャールストン・ブリッジ",
-        yomi: "うぇすと・ちゃーるすとん・ぶりっじ",
+        name: "ウェスト�Eチャールストン・ブリチE��",
+        yomi: "ぁE��すと・ちめE�Eるすとん�EぶりっぁE,
         url: "west-charleston-bridge.html",
         category: "場所",
         appearance: [
@@ -6367,8 +6367,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クランシー邸宅",
-        yomi: "くらんしーていたく",
+        name: "クランシー邸宁E,
+        yomi: "くらんしーてぁE��ぁE,
         url: "clancy-manor.html",
         category: "場所",
         appearance: [
@@ -6378,8 +6378,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "屋根付き橋",
-        yomi: "やねつきはし",
+        name: "屋根付き橁E,
+        yomi: "めE�Eつき�EぁE,
         url: "covered-bridge.html",
         category: "場所",
         appearance: [
@@ -6389,8 +6389,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "教団のトーテム",
-        yomi: "きょうだんのとーてむ",
+        name: "教団のト�EチE��",
+        yomi: "きょぁE��ん�Eとーてむ",
         url: "cultist-totem.html",
         category: "場所",
         appearance: [
@@ -6401,7 +6401,7 @@ const loreEntries = [
     },
     {
         name: "カウスポット乳製品製造所",
-        yomi: "かうすぽっとにゅうせいひんせいぞうしょ",
+        yomi: "かうすぽっとにめE��せいひんせぁE��ぁE��めE,
         url: "cow-spots-creamery.html",
         category: "場所",
         appearance: [
@@ -6411,8 +6411,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ダーリング姉妹のラボ",
-        yomi: "だーりんぐしまいのらぼ",
+        name: "ダーリング姉妹のラチE,
+        yomi: "だーりんぐしまぁE�Eらぼ",
         url: "darling-sisters-lab.html",
         category: "場所",
         appearance: [
@@ -6422,8 +6422,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デスクロー・アイランド",
-        yomi: "ですくろー・あいらんど",
+        name: "チE��クロー・アイランチE,
+        yomi: "ですくろ�E・あいらんど",
         url: "deathclaw-island.html",
         category: "場所",
         appearance: [
@@ -6433,8 +6433,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デスクロー",
-        yomi: "ですくろー",
+        name: "チE��クロー",
+        yomi: "ですくろ�E",
         url: "deathclaw.html",
         category: "クリーチャー",
         appearance: [
@@ -6444,8 +6444,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "イースト・カナー監視塔",
-        yomi: "いーすと・かのーわかんしとう",
+        name: "イースト�Eカナ�E監視塁E,
+        yomi: "ぁE�Eすと・か�EーわかんしとぁE,
         url: "east-kanawha-lookout.html",
         category: "場所",
         appearance: [
@@ -6456,7 +6456,7 @@ const loreEntries = [
     },
     {
         name: "Vault-Tec農業研究センター",
-        yomi: "う゛ぉるとてっくのうぎょうけんきゅうせんたー",
+        yomi: "ぁE�Eぉるとてっく�EぁE��めE��けんきゅぁE��んたー",
         url: "vault-tec-agricultural-research-center.html",
         category: "場所",
         appearance: [
@@ -6466,8 +6466,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フラットウッズ監視塔",
-        yomi: "ふらっとうっずかんしとう",
+        name: "フラチE��ウチE��監視塁E,
+        yomi: "ふらっとぁE��ずかんしとぁE,
         url: "flatwoods-lookout.html",
         category: "場所",
         appearance: [
@@ -6477,8 +6477,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チェスウィック",
-        yomi: "ちぇすうぃっく",
+        name: "チェスウィチE��",
+        yomi: "ちぁE��ぁE��っぁE,
         url: "cheswick.html",
         category: "クリーチャー",
         appearance: [
@@ -6488,8 +6488,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フラットウッズ・リバー",
-        yomi: "ふらっとうっず・りばー",
+        name: "フラチE��ウチE��・リバ�E",
+        yomi: "ふらっとぁE��ず�Eり�Eー",
         url: "flatwoods-river.html",
         category: "場所",
         appearance: [
@@ -6499,8 +6499,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ケシャ・マクダーモット",
-        yomi: "けしゃ・まくだーもっと",
+        name: "ケシャ・マクダーモチE��",
+        yomi: "けしめE�Eまくだーもっと",
         url: "kesha-mcdermott.html",
         category: "人物",
         appearance: [
@@ -6510,8 +6510,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ママ・ドルスの食品加工場",
-        yomi: "まま・どるすのしょくひんかこうじょう",
+        name: "マ�E・ドルスの食品加工場",
+        yomi: "まま・どるすのしょく�EんかこうじょぁE,
         url: "mama-dolces-food-processing.html",
         category: "場所",
         appearance: [
@@ -6522,7 +6522,7 @@ const loreEntries = [
     },
     {
         name: "藤仁屋情報基地",
-        yomi: "ふじにやじょうほうきち",
+        yomi: "ふじにめE��めE��ほぁE��ち",
         url: "fujiniya-intelligence-base.html",
         category: "場所",
         appearance: [
@@ -6532,8 +6532,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アパラチアの核発射コード",
-        yomi: "あぱらちあのかくはっしゃこーど",
+        name: "アパラチアの核発封E��ーチE,
+        yomi: "あ�Eらちあ�Eかくはっしゃこ�Eど",
         url: "appalachian-launch-codes.html",
         category: "ゲームプレイ",
         appearance: [
@@ -6543,10 +6543,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ステルス技術",
-        yomi: "すてるすぎじゅつ",
+        name: "スチE��ス技衁E,
+        yomi: "すてるすぎじめE��",
         url: "stealth-technology.html",
-        category: "テクノロジー",
+        category: "チE��ノロジー",
         appearance: [
             "Fallout シリーズ"
         ],
@@ -6554,10 +6554,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "中国ステルスアーマー",
-        yomi: "ちゅうごくすてるすあーまー",
+        name: "中国スチE��スアーマ�E",
+        yomi: "ちめE��ごくすてるすあ�Eまー",
         url: "chinese-stealth-armor.html",
-        category: "アーマー",
+        category: "アーマ�E",
         appearance: [
             "Fallout シリーズ"
         ],
@@ -6565,10 +6565,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "中米戦争",
-        yomi: "ちゅうべいせんそう",
+        name: "中米戦亁E,
+        yomi: "ちめE��べぁE��んそぁE,
         url: "sino-american-war.html",
-        category: "イベント",
+        category: "イベンチE,
         appearance: [
             "Fallout シリーズ"
         ],
@@ -6576,10 +6576,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "分岐",
+        name: "刁E��E,
         yomi: "ぶんき",
         url: "divergence.html",
-        category: "設定",
+        category: "設宁E,
         appearance: [
             "Fallout シリーズ"
         ],
@@ -6587,10 +6587,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ステルス・ボーイ",
-        yomi: "すてるすぼーい",
+        name: "スチE��ス・ボ�Eイ",
+        yomi: "すてるすぼーぁE,
         url: "stealth-boy.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout シリーズ"
         ],
@@ -6598,8 +6598,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ゲーム・オブ・スローンズ",
-        yomi: "げーむおぶすろーんず",
+        name: "ゲーム・オブ�Eスローンズ",
+        yomi: "げ�Eむお�Eすろーんず",
         url: "game-of-thrones.html",
         category: "場所",
         appearance: [
@@ -6609,8 +6609,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グレッグの鉱山用品店",
-        yomi: "ぐれっぐのこうざんようひんてん",
+        name: "グレチE��の鉱山用品庁E,
+        yomi: "ぐれっぐ�EこうざんようひんてめE,
         url: "gregs-mine-supply.html",
         category: "場所",
         appearance: [
@@ -6620,8 +6620,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホールディングフォード農場",
-        yomi: "ほーるでぃんぐふぉーどのうじょう",
+        name: "ホ�EルチE��ングフォード農場",
+        yomi: "ほーるでぁE��ぐ�Eぉ�EどのぁE��めE��",
         url: "holdingford-homestead.html",
         category: "場所",
         appearance: [
@@ -6631,8 +6631,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ゴルフカート",
-        yomi: "ごるふかーと",
+        name: "ゴルフカーチE,
+        yomi: "ごるふか�Eと",
         url: "golf-cart.html",
         category: "車両",
         appearance: [
@@ -6643,7 +6643,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホライゾンズ・レスト",
+        name: "ホライゾンズ・レスチE,
         yomi: "ほらいぞんずれすと",
         url: "horizons-rest.html",
         category: "場所",
@@ -6654,8 +6654,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト夏の別荘",
-        yomi: "ほーんらいとなつのべっそう",
+        name: "ホ�Eンライト夏�E別荁E,
+        yomi: "ほーんらぁE��なつのべっそう",
         url: "hornwright-summer-villa.html",
         category: "場所",
         appearance: [
@@ -6665,8 +6665,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハンツマンズ・グレイド",
-        yomi: "はんつまんずぐれいど",
+        name: "ハンチE�Eンズ・グレイチE,
+        yomi: "はんつまんずぐれぁE��",
         url: "huntsmans-glade.html",
         category: "場所",
         appearance: [
@@ -6677,7 +6677,7 @@ const loreEntries = [
     },
     {
         name: "J. シュラムの家",
-        yomi: "じぇいしゅらむのいえ",
+        yomi: "じぇぁE��めE��むのぁE��",
         url: "j-schrams-house.html",
         category: "場所",
         appearance: [
@@ -6687,7 +6687,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カナー郡墓地",
+        name: "カナ�E郡墓地",
         yomi: "かなわぐんぼち",
         url: "kanawha-county-cemetery.html",
         category: "場所",
@@ -6698,8 +6698,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カナー・ヌカコーラ工場",
-        yomi: "かなーぬかこーらこうじょう",
+        name: "カナ�E・ヌカコーラ工場",
+        yomi: "かなーぬかこーらこぁE��めE��",
         url: "kanawha-nuka-cola-plant.html",
         category: "場所",
         appearance: [
@@ -6709,7 +6709,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カナー川",
+        name: "カナ�E巁E,
         yomi: "かなーがわ",
         url: "kanawha-river.html",
         category: "場所",
@@ -6720,8 +6720,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レイクサイド・キャビンズ",
-        yomi: "れいくさいど・きゃびんず",
+        name: "レイクサイド�Eキャビンズ",
+        yomi: "れいくさぁE��・きゃびんず",
         url: "lakeside-cabins.html",
         category: "場所",
         appearance: [
@@ -6731,8 +6731,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ルイス＆サンズ農業用品店",
-        yomi: "るいすあんどさんずのうぎょうようひんてん",
+        name: "ルイス�E�E��ンズ農業用品庁E,
+        yomi: "るいすあんどさんず�EぁE��めE��ようひんてめE,
         url: "lewis-and-sons-farming-supply.html",
         category: "場所",
         appearance: [
@@ -6743,7 +6743,7 @@ const loreEntries = [
     },
     {
         name: "リムジンの衝突事故現場",
-        yomi: "りむじんのしょうとつじこげんば",
+        yomi: "り�EじんのしょぁE��つじこげんば",
         url: "limousine-crash.html",
         category: "場所",
         appearance: [
@@ -6754,7 +6754,7 @@ const loreEntries = [
     },
     {
         name: "モーガンタウン",
-        yomi: "もーがんたうん",
+        yomi: "も�EがんたうめE,
         url: "morgantown.html",
         category: "場所",
         appearance: [
@@ -6764,8 +6764,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "オハイオ川",
-        yomi: "おはいおがわ",
+        name: "オハイオ巁E,
+        yomi: "お�EぁE��がわ",
         url: "ohio-river.html",
         category: "場所",
         appearance: [
@@ -6775,8 +6775,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "オハイオの川下りアドベンチャーズ",
-        yomi: "おはいおりばーあどべんちゃーず",
+        name: "オハイオの川下りアド�Eンチャーズ",
+        yomi: "お�EぁE��り�EーあどべんちめE�EぁE,
         url: "ohio-river-adventures.html",
         category: "場所",
         appearance: [
@@ -6786,8 +6786,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "オーウェル果樹園",
-        yomi: "おーうぇるかじゅえん",
+        name: "オーウェル果樹圁E,
+        yomi: "お�EぁE��るかじゅえん",
         url: "orwell-orchards.html",
         category: "場所",
         appearance: [
@@ -6797,8 +6797,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "見晴らしのいいキャビン",
-        yomi: "おーばーるっくきゃびん",
+        name: "見晴らしのぁE��キャビン",
+        yomi: "お�EばーるっくきめE�EめE,
         url: "overlook-cabin.html",
         category: "場所",
         appearance: [
@@ -6808,8 +6808,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "監督官の自宅",
-        yomi: "かんとくかんのじたく",
+        name: "監督官�E自宁E,
+        yomi: "かんとくかん�EじたぁE,
         url: "overseers-home.html",
         category: "場所",
         appearance: [
@@ -6819,8 +6819,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "パーティタイム・ダイナーズ",
-        yomi: "ぱーてぃたいむだいなーず",
+        name: "パ�EチE��タイム・ダイナ�Eズ",
+        yomi: "ぱーてぁE��ぁE�EだぁE��ーぁE,
         url: "party-time-diners.html",
         category: "場所",
         appearance: [
@@ -6830,7 +6830,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ポートサイド・パブ",
+        name: "ポ�Eトサイド�Eパブ",
         yomi: "ぽーとさいどぱぶ",
         url: "portside-pub.html",
         category: "場所",
@@ -6842,7 +6842,7 @@ const loreEntries = [
     },
     {
         name: "ポセイドン・エネルギー発電所WV-06",
-        yomi: "ぽせいどんえねるぎーはつでんしょ",
+        yomi: "ぽせいどんえねるぎーはつでんしめE,
         url: "poseidon-energy-plant-wv-06.html",
         category: "場所",
         appearance: [
@@ -6853,7 +6853,7 @@ const loreEntries = [
     },
     {
         name: "HalluciGen, Inc.",
-        yomi: "はるしじぇんしゃ",
+        yomi: "はるしじぇんしめE,
         url: "hallucigen-inc.html",
         category: "場所",
         appearance: [
@@ -6863,8 +6863,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ポセイドン・エネルギー発電所ヤード",
-        yomi: "ぽせいどんえねるぎーはつでんしょやーど",
+        name: "ポセイドン・エネルギー発電所ヤーチE,
+        yomi: "ぽせいどんえねるぎーはつでんしめE��ーど",
         url: "poseidon-energy-plant-yard.html",
         category: "場所",
         appearance: [
@@ -6875,7 +6875,7 @@ const loreEntries = [
     },
     {
         name: "ポセイドン変電所PX-01",
-        yomi: "ぽせいどんへんでんしょ",
+        yomi: "ぽせいどんへんでんしめE,
         url: "poseidon-power-substation-px-01.html",
         category: "場所",
         appearance: [
@@ -6886,7 +6886,7 @@ const loreEntries = [
     },
     {
         name: "ポセイドン変電所PX-02",
-        yomi: "ぽせいどんへんでんしょ",
+        yomi: "ぽせいどんへんでんしめE,
         url: "poseidon-power-substation-px-02.html",
         category: "場所",
         appearance: [
@@ -6896,8 +6896,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "先史時代の骨のキャンプ",
-        yomi: "せんしじだいのほねのきゃんぷ",
+        name: "先史時代の骨のキャンチE,
+        yomi: "せんしじだぁE�Eほねのきゃん�E",
         url: "prehistoric-bones-camp.html",
         category: "場所",
         appearance: [
@@ -6907,8 +6907,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "プリブロの珍品店",
-        yomi: "ぷりぶろのちんぴんてん",
+        name: "プリブロの珍品庁E,
+        yomi: "ぷり�Eろ�Eちん�EんてめE,
         url: "priblos-curios.html",
         category: "場所",
         appearance: [
@@ -6918,8 +6918,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッド・ロケット（フラットウッズ）",
-        yomi: "れっどろけっとふらっとうっず",
+        name: "レチE��・ロケチE���E�フラチE��ウチE���E�E,
+        yomi: "れっどろけっとふらっとぁE��ぁE,
         url: "red-rocket-flatwoods.html",
         category: "場所",
         appearance: [
@@ -6929,8 +6929,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッド・ロケット（巨大ティーポット）",
-        yomi: "れっどろけっときょだいてぃーぽっと",
+        name: "レチE��・ロケチE���E�巨大チE��ーポット！E,
+        yomi: "れっどろけっときょだぁE��ぁE�Eぽっと",
         url: "red-rocket-giant-teapot.html",
         category: "場所",
         appearance: [
@@ -6940,8 +6940,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッド・ロケット（モーガンタウン）",
-        yomi: "れっどろけっともーがんたうん",
+        name: "レチE��・ロケチE���E�モーガンタウン�E�E,
+        yomi: "れっどろけっとも�EがんたうめE,
         url: "red-rocket-morgantown.html",
         category: "場所",
         appearance: [
@@ -6952,7 +6952,7 @@ const loreEntries = [
     },
     {
         name: "中継タワー EM-B1-27",
-        yomi: "ちゅうけいたわー",
+        yomi: "ちめE��けいたわー",
         url: "relay-tower-em-b1-27.html",
         category: "場所",
         appearance: [
@@ -6963,7 +6963,7 @@ const loreEntries = [
     },
     {
         name: "中継タワー HN-B1-12",
-        yomi: "ちゅうけいたわー",
+        yomi: "ちめE��けいたわー",
         url: "relay-tower-hn-b1-12.html",
         category: "場所",
         appearance: [
@@ -6973,8 +6973,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "リバーサイド邸",
-        yomi: "りばーさいどまなー",
+        name: "リバ�Eサイド邸",
+        yomi: "り�Eーさいどまなー",
         url: "riverside-manor.html",
         category: "場所",
         appearance: [
@@ -6984,10 +6984,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヴェール・オブ・シークレッツ",
-        yomi: "う゛ぇーるおぶしーくれっつ",
+        name: "ヴェール・オブ�EシークレチE��",
+        yomi: "ぁE�EぁE�Eるおぶし�Eくれっつ",
         url: "veil-of-secrets.html",
-        category: "アーマー・アパレル",
+        category: "アーマ�E・アパレル",
         appearance: [
             "Fallout 76"
         ],
@@ -6995,10 +6995,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シーカー・オブ・ミステリー",
-        yomi: "しーかーおぶみすてりー",
+        name: "シーカー・オブ�EミスチE��ー",
+        yomi: "し�Eか�Eお�Eみすてり�E",
         url: "seeker-of-mysteries.html",
-        category: "クエスト",
+        category: "クエスチE,
         appearance: [
             "Fallout 76"
         ],
@@ -7006,10 +7006,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・ミストレス・オブ・ミステリー",
-        yomi: "ざみすとれすおぶみすてりー",
+        name: "ザ・ミストレス・オブ�EミスチE��ー",
+        yomi: "ざみすとれすお�Eみすてり�E",
         url: "the-mistress-of-mystery.html",
-        category: "クエスト",
+        category: "クエスチE,
         appearance: [
             "Fallout 76"
         ],
@@ -7017,8 +7017,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "オリヴィア・リバーズ",
-        yomi: "おりゔぃありばーず",
+        name: "オリヴィア・リバ�Eズ",
+        yomi: "おりゔぃありばーぁE,
         url: "olivia-rivers.html",
         category: "キャラクター",
         appearance: [
@@ -7028,8 +7028,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フレデリック・リバーズ",
-        yomi: "ふれでりっくりばーず",
+        name: "フレチE��チE��・リバ�Eズ",
+        yomi: "ふれでりっくりばーぁE,
         url: "frederick-rivers.html",
         category: "キャラクター",
         appearance: [
@@ -7039,8 +7039,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シャノン・リバーズ",
-        yomi: "しゃのんりばーず",
+        name: "シャノン・リバ�Eズ",
+        yomi: "しゃのんりばーぁE,
         url: "shannon-rivers.html",
         category: "キャラクター",
         appearance: [
@@ -7050,8 +7050,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "生贄の祭壇",
-        yomi: "いけにえのさいだん",
+        name: "生贁E�E祭壁E,
+        yomi: "ぁE��にえ�EさいだめE,
         url: "sacrifice-altar.html",
         category: "ロケーション",
         appearance: [
@@ -7061,8 +7061,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "金庫破りの小屋",
-        yomi: "きんこやぶりのこや",
+        name: "金庫破り�E小屁E,
+        yomi: "きんこやぶり�Eこや",
         url: "safecrackers-shack.html",
         category: "ロケーション",
         appearance: [
@@ -7072,8 +7072,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シャドーブリーズ・アパートメント",
-        yomi: "しゃどーぶりーずあぱーとめんと",
+        name: "シャド�Eブリーズ・アパ�EトメンチE,
+        yomi: "しゃどーぶり�Eずあぱーとめんと",
         url: "shadowbreeze-apartments.html",
         category: "ロケーション",
         appearance: [
@@ -7083,7 +7083,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シルヴァ・ホームステッド",
+        name: "シルヴァ・ホ�EムスチE��チE,
         yomi: "しるゔぁほーむすてっど",
         url: "silva-homestead.html",
         category: "ロケーション",
@@ -7094,8 +7094,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "石鹸まみれの骸骨",
-        yomi: "せっけんまみれのがいこつ",
+        name: "石鹸まみれ�E骸骨",
+        yomi: "せっけんまみれ�Eがいこつ",
         url: "soapy-skeleton.html",
         category: "ロケーション",
         appearance: [
@@ -7106,7 +7106,7 @@ const loreEntries = [
     },
     {
         name: "シュガーメイプル",
-        yomi: "しゅがーめいぷる",
+        yomi: "しゅが�EめいぷめE,
         url: "sugarmaple.html",
         category: "ロケーション",
         appearance: [
@@ -7116,8 +7116,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サマーズビル・ダム",
-        yomi: "さまーずびるだむ",
+        name: "サマ�Eズビル・ダム",
+        yomi: "さまーず�Eるだむ",
         url: "summersville-dam.html",
         category: "ロケーション",
         appearance: [
@@ -7127,8 +7127,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サマーズビル・ドック",
-        yomi: "さまーずびるどっく",
+        name: "サマ�Eズビル・ドック",
+        yomi: "さまーず�EるどっぁE,
         url: "summersville-docks.html",
         category: "ロケーション",
         appearance: [
@@ -7138,8 +7138,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サマーズビル湖",
-        yomi: "さまーずびるこ",
+        name: "サマ�Eズビル湁E,
+        yomi: "さまーず�Eるこ",
         url: "summersville-lake.html",
         category: "ロケーション",
         appearance: [
@@ -7150,7 +7150,7 @@ const loreEntries = [
     },
     {
         name: "サンシャイン・メドウズ工業農場",
-        yomi: "さんしゃいんめどうずこうぎょうのうじょう",
+        yomi: "さんしゃぁE��めどぁE��こうぎょぁE�EぁE��めE��",
         url: "sunshine-meadows-industrial-farm.html",
         category: "ロケーション",
         appearance: [
@@ -7160,8 +7160,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "テディベアの家",
-        yomi: "てでぃべあのいえ",
+        name: "チE��ィベアの家",
+        yomi: "てでぁE��あ�EぁE��",
         url: "teddy-bear-house.html",
         category: "ロケーション",
         appearance: [
@@ -7171,8 +7171,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・ディープ",
-        yomi: "ざ・でぃーぷ",
+        name: "ザ・チE��ーチE,
+        yomi: "ざ�EでぁE�Eぷ",
         url: "the-deep.html",
         category: "場所",
         appearance: [
@@ -7183,7 +7183,7 @@ const loreEntries = [
     },
     {
         name: "ザ・キルボックス",
-        yomi: "ざ・きるぼっくす",
+        yomi: "ざ�Eきるぼっくす",
         url: "the-kill-box.html",
         category: "場所",
         appearance: [
@@ -7193,8 +7193,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・ピグスティ",
-        yomi: "ざ・ぴぐすてぃ",
+        name: "ザ・ピグスチE��",
+        yomi: "ざ�EぴぐすてぁE,
         url: "the-pigsty.html",
         category: "場所",
         appearance: [
@@ -7204,8 +7204,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トーランス・ハウス",
-        yomi: "とーらんす・はうす",
+        name: "ト�Eランス・ハウス",
+        yomi: "とーらんす�EはぁE��",
         url: "torrance-house.html",
         category: "場所",
         appearance: [
@@ -7215,8 +7215,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブロディ・トーランス",
-        yomi: "ぶろでぃ・とーらんす",
+        name: "ブロチE��・ト�Eランス",
+        yomi: "ぶろでぁE�EとーらんぁE,
         url: "brody-torrance.html",
         category: "人物",
         appearance: [
@@ -7227,7 +7227,7 @@ const loreEntries = [
     },
     {
         name: "中継局1AT-U03",
-        yomi: "ちゅうけいきょく1at-u03",
+        yomi: "ちめE��けいきょぁEat-u03",
         url: "transmission-station-1at-u03.html",
         category: "場所",
         appearance: [
@@ -7237,8 +7237,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "タイガート浄水施設",
-        yomi: "たいがーとじょうすいしせつ",
+        name: "タイガート流E��施設",
+        yomi: "たいが�EとじょぁE��ぁE��せつ",
         url: "tygart-water-treatment.html",
         category: "場所",
         appearance: [
@@ -7248,8 +7248,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "タイラー郡ダートトラック",
-        yomi: "たいらーぐんだーととらっく",
+        name: "タイラー郡ダートトラチE��",
+        yomi: "たいら�EぐんだーととらっぁE,
         url: "tyler-county-dirt-track.html",
         category: "場所",
         appearance: [
@@ -7260,7 +7260,7 @@ const loreEntries = [
     },
     {
         name: "Vault 63墜落現場",
-        yomi: "vault63ついらくげんば",
+        yomi: "vault63つぁE��くげん�E",
         url: "vault-63-crash-site.html",
         category: "場所",
         appearance: [
@@ -7271,7 +7271,7 @@ const loreEntries = [
     },
     {
         name: "ウェイド空港",
-        yomi: "うぇいどくうこう",
+        yomi: "ぁE��ぁE��くうこう",
         url: "wade-airport.html",
         category: "場所",
         appearance: [
@@ -7282,7 +7282,7 @@ const loreEntries = [
     },
     {
         name: "ランドン",
-        yomi: "らんどん",
+        yomi: "らんどめE,
         url: "landon.html",
         category: "人物",
         appearance: [
@@ -7292,8 +7292,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ベルチバード",
-        yomi: "ばーてぃばーど",
+        name: "ベルチバーチE,
+        yomi: "ばーてぁE�Eーど",
         url: "vertibird.html",
         category: "乗り物",
         appearance: [
@@ -7307,8 +7307,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトパウダー・ウィンタースポーツ",
-        yomi: "ほわいとぱうだーうぃんたーすぽーつ",
+        name: "ホワイトパウダー・ウィンタースポ�EチE,
+        yomi: "ほわいとぱぁE��ーぁE��んたーすぽーつ",
         url: "white-powder-winter-sports.html",
         category: "場所",
         appearance: [
@@ -7319,7 +7319,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング",
-        yomi: "ほわいとすぷりんぐ",
+        yomi: "ほわいとす�EりんぁE,
         url: "the-whitespring.html",
         category: "場所",
         appearance: [
@@ -7329,8 +7329,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトスプリング・リゾート",
-        yomi: "ほわいとすぷりんぐりぞーと",
+        name: "ホワイトスプリング・リゾーチE,
+        yomi: "ほわいとす�Eりんぐりぞ�Eと",
         url: "the-whitespring-resort.html",
         category: "場所",
         appearance: [
@@ -7340,8 +7340,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アネットのアレンジメンツ",
-        yomi: "あねっとのあれんじめんつ",
+        name: "アネット�EアレンジメンチE,
+        yomi: "あ�Eっとのあれんじめんつ",
         url: "anettes-arrangements.html",
         category: "場所",
         appearance: [
@@ -7351,8 +7351,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アーティザンズ・ロウ",
-        yomi: "あーてぃざんずろう",
+        name: "アーチE��ザンズ・ロウ",
+        yomi: "あ�EてぁE��んずろう",
         url: "artisans-row-shoppes.html",
         category: "場所",
         appearance: [
@@ -7362,8 +7362,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブルーリッジ・ギャラリー",
-        yomi: "ぶるーりっじぎゃらりー",
+        name: "ブルーリチE��・ギャラリー",
+        yomi: "ぶる�EりっじぎめE��り�E",
         url: "blue-ridge-gallery.html",
         category: "場所",
         appearance: [
@@ -7373,8 +7373,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クラウス＆カンパニー",
-        yomi: "くらうすかんぱにー",
+        name: "クラウス�E�E��ンパニー",
+        yomi: "くらぁE��かんぱにー",
         url: "claus-and-co.html",
         category: "場所",
         appearance: [
@@ -7384,7 +7384,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デコラ",
+        name: "チE��ラ",
         yomi: "でこら",
         url: "decorat.html",
         category: "場所",
@@ -7395,8 +7395,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マダム・テイラーズ",
-        yomi: "まだむていらーず",
+        name: "マダム・チE��ラーズ",
+        yomi: "まだむてぁE��ーぁE,
         url: "madame-taylors.html",
         category: "場所",
         appearance: [
@@ -7407,7 +7407,7 @@ const loreEntries = [
     },
     {
         name: "スプリングヒル・ゴルフコース",
-        yomi: "すぷりんぐひるごるふこーす",
+        yomi: "す�Eりんぐ�Eるごる�Eこ�EぁE,
         url: "springhill-golf-course.html",
         category: "場所",
         appearance: [
@@ -7418,7 +7418,7 @@ const loreEntries = [
     },
     {
         name: "スプリングハウス",
-        yomi: "すぷりんぐはうす",
+        yomi: "す�Eりんぐ�EぁE��",
         url: "the-springhouse.html",
         category: "場所",
         appearance: [
@@ -7429,7 +7429,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング・バンカー",
-        yomi: "ほわいとすぷりんぐばんかー",
+        yomi: "ほわいとす�Eりんぐ�Eんかー",
         url: "the-whitespring-bunker.html",
         category: "場所",
         appearance: [
@@ -7439,10 +7439,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "中華人民共和国",
-        yomi: "ちゅうかじんみんきょうわこく",
+        name: "中華人民�E和国",
+        yomi: "ちめE��かじんみんきめE��わこぁE,
         url: "china.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout 3",
             "Fallout 76"
@@ -7452,7 +7452,7 @@ const loreEntries = [
     },
     {
         name: "エンクレイヴ石油リグ",
-        yomi: "えんくれいゔせきゆりぐ",
+        yomi: "えんくれぁE��せきめE��ぁE,
         url: "enclave-oil-rig.html",
         category: "場所",
         appearance: [
@@ -7465,7 +7465,7 @@ const loreEntries = [
         name: "ポセイドン・エネルギー",
         yomi: "ぽせいどんえねるぎー",
         url: "poseidon-energy.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout",
             "Fallout 2",
@@ -7479,9 +7479,9 @@ const loreEntries = [
     },
     {
         name: "ポセイドン・ガソリン",
-        yomi: "ぽせいどんがそりん",
+        yomi: "ぽせいどんがそりめE,
         url: "poseidon-gasoline.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout",
             "Fallout 2"
@@ -7491,9 +7491,9 @@ const loreEntries = [
     },
     {
         name: "ポセイドン・オイル",
-        yomi: "ぽせいどんおいる",
+        yomi: "ぽせいどんおぁE��",
         url: "poseidon-oil.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout 2"
         ],
@@ -7501,10 +7501,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ポセイドネット",
+        name: "ポセイドネチE��",
         yomi: "ぽせいどねっと",
         url: "poseidonet.html",
-        category: "テクノロジー",
+        category: "チE��ノロジー",
         appearance: [
             "Fallout 2",
             "Fallout: New Vegas",
@@ -7514,7 +7514,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "積灰の山",
+        name: "積�Eの山",
         yomi: "あっしゅひーぷ",
         url: "ash-heap.html",
         category: "場所",
@@ -7525,8 +7525,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山坑道1",
-        yomi: "ほうきされたこうざんこうどういち",
+        name: "放棁E��れた鉱山坑道1",
+        yomi: "ほぁE��されたこぁE��んこぁE��ぁE��ち",
         url: "abandoned-mine-shaft-1.html",
         category: "場所",
         appearance: [
@@ -7536,8 +7536,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山坑道2",
-        yomi: "ほうきされたこうざんこうどうに",
+        name: "放棁E��れた鉱山坑道2",
+        yomi: "ほぁE��されたこぁE��んこぁE��ぁE��",
         url: "abandoned-mine-shaft-2.html",
         category: "場所",
         appearance: [
@@ -7547,8 +7547,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山坑道3",
-        yomi: "ほうきされたこうざんこうどうさん",
+        name: "放棁E��れた鉱山坑道3",
+        yomi: "ほぁE��されたこぁE��んこぁE��ぁE��めE,
         url: "abandoned-mine-shaft-3.html",
         category: "場所",
         appearance: [
@@ -7558,8 +7558,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モール・マイナー",
-        yomi: "もーる・まいなー",
+        name: "モール・マイナ�E",
+        yomi: "も�Eる�EまぁE��ー",
         url: "mole-miner.html",
         category: "クリーチャー",
         appearance: [
@@ -7569,8 +7569,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山坑道4",
-        yomi: "ほうきされたこうざんこうどうよん",
+        name: "放棁E��れた鉱山坑道4",
+        yomi: "ほぁE��されたこぁE��んこぁE��ぁE��めE,
         url: "abandoned-mine-shaft-4.html",
         category: "場所",
         appearance: [
@@ -7580,8 +7580,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山坑道5",
-        yomi: "ほうきされたこうざんこうどうご",
+        name: "放棁E��れた鉱山坑道5",
+        yomi: "ほぁE��されたこぁE��んこぁE��ぁE��",
         url: "abandoned-mine-shaft-5.html",
         category: "場所",
         appearance: [
@@ -7591,8 +7591,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山坑道6",
-        yomi: "ほうきされたこうざんこうどうろく",
+        name: "放棁E��れた鉱山坑道6",
+        yomi: "ほぁE��されたこぁE��んこぁE��ぁE��ぁE,
         url: "abandoned-mine-shaft-6.html",
         category: "場所",
         appearance: [
@@ -7602,8 +7602,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山坑道イレーン",
-        yomi: "ほうきされたこうざんこうどういれーん",
+        name: "放棁E��れた鉱山坑道イレーン",
+        yomi: "ほぁE��されたこぁE��んこぁE��ぁE��れ�EめE,
         url: "abandoned-mine-shaft-elaine.html",
         category: "場所",
         appearance: [
@@ -7613,8 +7613,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された鉱山サイト・キタリー",
-        yomi: "ほうきされたこうざんさいときたりー",
+        name: "放棁E��れた鉱山サイト�Eキタリー",
+        yomi: "ほぁE��されたこぁE��んさぁE��きたり�E",
         url: "abandoned-mine-site-kittery.html",
         category: "場所",
         appearance: [
@@ -7624,8 +7624,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "AMSテストサイト",
-        yomi: "えーえむえすてすとさいと",
+        name: "AMSチE��トサイチE,
+        yomi: "え�Eえ�Eえすてすとさいと",
         url: "ams-testing-site.html",
         category: "場所",
         appearance: [
@@ -7636,7 +7636,7 @@ const loreEntries = [
     },
     {
         name: "Vault-Tec大学",
-        yomi: "ぶぉるとてっくだいがく",
+        yomi: "ぶぉるとてっくだぁE��ぁE,
         url: "vault-tec-university.html",
         category: "場所",
         appearance: [
@@ -7646,10 +7646,10 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウルトラサイト",
-        yomi: "うるとらさいと",
+        name: "ウルトラサイチE,
+        yomi: "ぁE��とらさぁE��",
         url: "ultracite.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76"
         ],
@@ -7657,8 +7657,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "積灰の山マーケットプレイス",
-        yomi: "つもりはいのやままーけっとぷれいす",
+        name: "積�Eの山マ�EケチE��プレイス",
+        yomi: "つもりはぁE�EめE��まーけっとぷれいぁE,
         url: "ash-heap-marketplace.html",
         category: "場所",
         appearance: [
@@ -7669,7 +7669,7 @@ const loreEntries = [
     },
     {
         name: "シュガー・グローヴ",
-        yomi: "しゅがーぐろーゔ",
+        yomi: "しゅが�EぐろーめE,
         url: "sugar-grove.html",
         category: "場所",
         appearance: [
@@ -7680,7 +7680,7 @@ const loreEntries = [
     },
     {
         name: "アブラクソダイン・ケミカル配電所",
-        yomi: "あぶらくそだいんけみかるはいでんしょ",
+        yomi: "あ�EらくそだぁE��けみかるはぁE��んしめE,
         url: "abraxodyne-chemical-power-substation.html",
         category: "場所",
         appearance: [
@@ -7691,7 +7691,7 @@ const loreEntries = [
     },
     {
         name: "アブラクソダイン・オフィス",
-        yomi: "あぶらくそだいんおふぃす",
+        yomi: "あ�EらくそだぁE��お�EぁE��",
         url: "abraxodyne-office.html",
         category: "場所",
         appearance: [
@@ -7702,7 +7702,7 @@ const loreEntries = [
     },
     {
         name: "オールバニー",
-        yomi: "おーるばにー",
+        yomi: "お�Eる�Eにー",
         url: "albany.html",
         category: "場所",
         appearance: [
@@ -7712,7 +7712,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アッシュ・ケイブ",
+        name: "アチE��ュ・ケイチE,
         yomi: "あっしゅけいぶ",
         url: "ash-cave.html",
         category: "場所",
@@ -7723,7 +7723,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アテネ",
+        name: "アチE��",
         yomi: "あてね",
         url: "athens.html",
         category: "場所",
@@ -7734,7 +7734,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アテネ武器庫",
+        name: "アチE��武器庫",
         yomi: "あてねぶきこ",
         url: "athens-armory.html",
         category: "場所",
@@ -7745,8 +7745,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アテネ精神病院",
-        yomi: "あてねせいしんびょういん",
+        name: "アチE��精神病院",
+        yomi: "あてねせいしんびめE��ぁE��",
         url: "athens-lunatic-asylum.html",
         category: "場所",
         appearance: [
@@ -7756,7 +7756,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグ・マスキーのバケット",
+        name: "ビッグ・マスキーのバケチE��",
         yomi: "びっぐますきーのばけっと",
         url: "big-muskies-bucket.html",
         category: "場所",
@@ -7767,8 +7767,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーニング・スプリングス（地域）",
-        yomi: "ばーにんぐすぷりんぐすちいき",
+        name: "バ�Eニング・スプリングス�E�地域！E,
+        yomi: "ばーにんぐす�EりんぐすちぁE��",
         url: "burning-springs-region.html",
         category: "場所",
         appearance: [
@@ -7779,7 +7779,7 @@ const loreEntries = [
     },
     {
         name: "鎖で封じられた農場",
-        yomi: "くさりでふうじられたのうじょう",
+        yomi: "くさりでふぁE��られた�EぁE��めE��",
         url: "chained-up-farm.html",
         category: "場所",
         appearance: [
@@ -7789,8 +7789,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チェックポイント・キャニオン",
-        yomi: "ちぇっくぽいんときゃにおん",
+        name: "チェチE��ポイント�Eキャニオン",
+        yomi: "ちぁE��くぽぁE��ときゃにおん",
         url: "checkpoint-canyon.html",
         category: "場所",
         appearance: [
@@ -7800,8 +7800,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ダイノ・ピークス・ミニゴルフ",
-        yomi: "だいのぴーくすみにごるふ",
+        name: "ダイノ�Eピ�Eクス・ミニゴルチE,
+        yomi: "だぁE�Eぴーくすみにごるふ",
         url: "dino-peaks-mini-golf.html",
         category: "場所",
         appearance: [
@@ -7812,7 +7812,7 @@ const loreEntries = [
     },
     {
         name: "ダウ湖流域",
-        yomi: "だうこりゅういき",
+        yomi: "だぁE��りゅぁE��ぁE,
         url: "dow-lake-watershed.html",
         category: "場所",
         appearance: [
@@ -7823,7 +7823,7 @@ const loreEntries = [
     },
     {
         name: "エンクレイヴ・ベルチバード墜落地点",
-        yomi: "えんくれいゔべるちばーどついらくちてん",
+        yomi: "えんくれぁE��べるちばーどつぁE��くちてめE,
         url: "enclave-vertibird-crash-site.html",
         category: "場所",
         appearance: [
@@ -7833,8 +7833,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フォート・スチューベン",
-        yomi: "ふぉーとすちゅーべん",
+        name: "フォート�Eスチューベン",
+        yomi: "ふぉ�EとすちめE�EべめE,
         url: "fort-steuben.html",
         category: "場所",
         appearance: [
@@ -7845,7 +7845,7 @@ const loreEntries = [
     },
     {
         name: "ハイウェイ・タウン",
-        yomi: "はいうぇいたうん",
+        yomi: "はぁE��ぁE��たうめE,
         url: "highway-town.html",
         category: "場所",
         appearance: [
@@ -7855,8 +7855,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホッキング・ヒルズ・ステーション",
-        yomi: "ほっきんぐひるずすてーしょん",
+        name: "ホッキング・ヒルズ・スチE�Eション",
+        yomi: "ほっきんぐ�EるずすてーしょめE,
         url: "hocking-hills-station.html",
         category: "場所",
         appearance: [
@@ -7866,8 +7866,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホッキング・ヒルズ州立公園",
-        yomi: "ほっきんぐひるずしゅうりつこうえん",
+        name: "ホッキング・ヒルズ州立�E圁E,
+        yomi: "ほっきんぐ�EるずしゅぁE��つこうえん",
         url: "hocking-hills-state-park.html",
         category: "場所",
         appearance: [
@@ -7878,7 +7878,7 @@ const loreEntries = [
     },
     {
         name: "ハニーウェル養蜂場",
-        yomi: "はにーうぇるようほうじょう",
+        yomi: "はにーぁE��るよぁE��ぁE��めE��",
         url: "honey-well-apiary.html",
         category: "場所",
         appearance: [
@@ -7889,7 +7889,7 @@ const loreEntries = [
     },
     {
         name: "ムーンベイル・トンネル",
-        yomi: "むーんべいるとんねる",
+        yomi: "むーんべぁE��とん�EめE,
         url: "moonvale-tunnel.html",
         category: "場所",
         appearance: [
@@ -7899,8 +7899,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンディーズ・ソック・ホップ",
-        yomi: "さんでぃーずそっくほっぷ",
+        name: "サンチE��ーズ・ソチE��・ホッチE,
+        yomi: "さんでぁE�Eずそっくほっぷ",
         url: "sandys-sock-hop.html",
         category: "場所",
         appearance: [
@@ -7910,8 +7910,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シェイド・ヒル教会",
-        yomi: "しぇいどひるきょうかい",
+        name: "シェイド�Eヒル教企E,
+        yomi: "しぇぁE��ひるきめE��かい",
         url: "shade-hill-church.html",
         category: "場所",
         appearance: [
@@ -7922,7 +7922,7 @@ const loreEntries = [
     },
     {
         name: "南オハイオ避難センター",
-        yomi: "みなみおはいおひなんせんたー",
+        yomi: "みなみお�EぁE��ひなんせんたー",
         url: "south-ohio-evacuation-center.html",
         category: "場所",
         appearance: [
@@ -7932,8 +7932,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スターライト・ドライブイン（BS）",
-        yomi: "すたーらいとどらいぶいん",
+        name: "スターライト�Eドライブイン�E�ES�E�E,
+        yomi: "すたーらいとどらいぶぁE��",
         url: "starlight-drive-in-bs.html",
         category: "場所",
         appearance: [
@@ -7943,8 +7943,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ストラウズ・ラン州立公園",
-        yomi: "すとらうずらんしゅうりつこうえん",
+        name: "ストラウズ・ラン州立�E圁E,
+        yomi: "すとらうずらんしめE��りつこうえん",
         url: "strouds-run-state-park.html",
         category: "場所",
         appearance: [
@@ -7954,8 +7954,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エグゼクティブの部屋",
-        yomi: "えぐぜくてぃぶのへや",
+        name: "エグゼクチE��ブ�E部屁E,
+        yomi: "えぐぜくてぁE�EのへめE,
         url: "executives-apartment.html",
         category: "場所",
         appearance: [
@@ -7965,8 +7965,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハムリー・ラン・キャンプ",
-        yomi: "はむりーらんきゃんぷ",
+        name: "ハムリー・ラン・キャンチE,
+        yomi: "はむり�Eらんきゃん�E",
         url: "hamley-run-camp.html",
         category: "場所",
         appearance: [
@@ -7976,8 +7976,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジャクソン・ジャンクヤード",
-        yomi: "じゃくそんじゃんくやーど",
+        name: "ジャクソン・ジャンクヤーチE,
+        yomi: "じゃくそんじめE��くやーど",
         url: "jackson-junkyard.html",
         category: "場所",
         appearance: [
@@ -7987,7 +7987,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラスト・リゾート",
+        name: "ラスト�EリゾーチE,
         yomi: "らすとりぞーと",
         url: "last-resort.html",
         category: "場所",
@@ -7999,7 +7999,7 @@ const loreEntries = [
     },
     {
         name: "メドウ・ブリーズ貯蔵庫",
-        yomi: "めどうぶりーずちょぞうこ",
+        yomi: "めどぁE�Eり�EずちめE��ぁE��",
         url: "meadow-breeze-storage-depot.html",
         category: "場所",
         appearance: [
@@ -8009,8 +8009,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "プロスペクト・ヒル",
-        yomi: "ぷろすぺくとひる",
+        name: "プロスペクト�Eヒル",
+        yomi: "ぷろすぺくとひめE,
         url: "prospect-hill.html",
         category: "場所",
         appearance: [
@@ -8020,8 +8020,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "鉄道整備場",
-        yomi: "てつどうせいびじょう",
+        name: "鉁E��整備場",
+        yomi: "てつどぁE��ぁE�EじょぁE,
         url: "railroad-service-yard.html",
         category: "場所",
         appearance: [
@@ -8031,8 +8031,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンド・フォーク製材所",
-        yomi: "さんどふぉーくせいざいしょ",
+        name: "サンド�Eフォーク製材所",
+        yomi: "さんどふぉ�EくせぁE��ぁE��めE,
         url: "sand-fork-lumber.html",
         category: "場所",
         appearance: [
@@ -8042,8 +8042,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スーパー・デューパー・マート（BS）",
-        yomi: "すーぱーでゅーぱーまーと",
+        name: "スーパ�E・チE��ーパ�E・マ�Eト！ES�E�E,
+        yomi: "す�EぱーでめE�Eぱーまーと",
         url: "super-duper-mart-bs.html",
         category: "場所",
         appearance: [
@@ -8053,8 +8053,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・チョップ・ショップ",
-        yomi: "ざちょっぷしょっぷ",
+        name: "ザ・チョチE�E・ショチE�E",
+        yomi: "ざちめE��ぷしょっぷ",
         url: "the-chop-shop-bs.html",
         category: "場所",
         appearance: [
@@ -8064,7 +8064,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラスト・キングダム",
+        name: "ラスト�Eキングダム",
         yomi: "らすときんぐだむ",
         url: "the-rust-kingdom.html",
         category: "場所",
@@ -8076,7 +8076,7 @@ const loreEntries = [
     },
     {
         name: "タイクーン・レイク",
-        yomi: "たいくーんれいく",
+        yomi: "たいく�EんれぁE��",
         url: "tycoon-lake.html",
         category: "場所",
         appearance: [
@@ -8086,8 +8086,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウェストブルック牧場",
-        yomi: "うぇすとぶるっくぼくじょう",
+        name: "ウェストブルチE��牧場",
+        yomi: "ぁE��すとぶるっくぼくじめE��",
         url: "westbrook-horse-ranch.html",
         category: "場所",
         appearance: [
@@ -8097,8 +8097,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ワールド・オブ・コーン",
-        yomi: "わーるどおぶこーん",
+        name: "ワールド�Eオブ�Eコーン",
+        yomi: "わ�Eるどお�Eこ�EめE,
         url: "world-of-corn.html",
         category: "場所",
         appearance: [
@@ -8109,7 +8109,7 @@ const loreEntries = [
     },
     {
         name: "アーロンホルト農家",
-        yomi: "あ゜ろんほると農家",
+        yomi: "あ�Eろんほると農家",
         url: "aaronholt-homestead.html",
         category: "場所",
         appearance: [
@@ -8119,8 +8119,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された湿原の町",
-        yomi: "放棄された湿原の町",
+        name: "放棁E��れた湿原�E町",
+        yomi: "放棁E��れた湿原�E町",
         url: "abandoned-bog-town.html",
         category: "場所",
         appearance: [
@@ -8130,8 +8130,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄されたバンカー",
-        yomi: "放棄されたバンカー",
+        name: "放棁E��れたバンカー",
+        yomi: "放棁E��れたバンカー",
         url: "abandoned-bunker.html",
         category: "場所",
         appearance: [
@@ -8141,8 +8141,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄鉱山キタリー",
-        yomi: "放棄鉱山キタリー",
+        name: "放棁E��山キタリー",
+        yomi: "放棁E��山キタリー",
         url: "abandoned-mine-kittery.html",
         category: "場所",
         appearance: [
@@ -8152,8 +8152,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "放棄された廃棄場",
-        yomi: "放棄された廃棄場",
+        name: "放棁E��れた廁E��E��",
+        yomi: "放棁E��れた廁E��E��",
         url: "abandoned-waste-dump.html",
         category: "場所",
         appearance: [
@@ -8163,8 +8163,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アビーのバンカー",
-        yomi: "あび゜のばんか゜",
+        name: "アビ�Eのバンカー",
+        yomi: "あ�E゜�EばんかめE,
         url: "abbies-bunker.html",
         category: "場所",
         appearance: [
@@ -8174,8 +8174,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アデレードのダイナー",
-        yomi: "あでれ゜どのだいな゜",
+        name: "アチE��ード�Eダイナ�E",
+        yomi: "あでれ�EどのだぁE��めE,
         url: "adelaides-diner.html",
         category: "場所",
         appearance: [
@@ -8185,8 +8185,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アルパイン・リバー・キャビンズ",
-        yomi: "あるぱいん゛りば゜゛きゃびんず",
+        name: "アルパイン・リバ�E・キャビンズ",
+        yomi: "あるぱぁE��゛りば゜�Eきゃびんず",
         url: "alpine-river-cabins.html",
         category: "場所",
         appearance: [
@@ -8218,8 +8218,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アパラチアン・アンティーク",
-        yomi: "あぱらちあん゛あんてぃ゜く",
+        name: "アパラチアン・アンチE��ーク",
+        yomi: "あ�Eらちあん゛あんてぁE�EぁE,
         url: "appalachian-antiques.html",
         category: "場所",
         appearance: [
@@ -8229,8 +8229,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "水上トイレ小屋",
-        yomi: "水上トイレ小屋",
+        name: "水上トイレ小屁E,
+        yomi: "水上トイレ小屁E,
         url: "aquatic-outhouse.html",
         category: "場所",
         appearance: [
@@ -8240,7 +8240,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "A.T.H.E.N.A. (アテナ)",
+        name: "A.T.H.E.N.A. (アチE��)",
         yomi: "あてな",
         url: "athena.html",
         category: "場所",
@@ -8251,8 +8251,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ATLAS天文台",
-        yomi: "atlas天文台",
+        name: "ATLAS天斁E��",
+        yomi: "atlas天斁E��",
         url: "atlas-observatory.html",
         category: "場所",
         appearance: [
@@ -8263,7 +8263,7 @@ const loreEntries = [
     },
     {
         name: "オータム・エーカー・キャビン",
-        yomi: "おーたむえーかーきゃびん",
+        yomi: "お�Eた�Eえ�Eか�EきゃびめE,
         url: "autumn-acre-cabin.html",
         category: "場所",
         appearance: [
@@ -8285,7 +8285,7 @@ const loreEntries = [
     },
     {
         name: "ベイリー家のキャビン",
-        yomi: "べいり゜家のきゃびん",
+        yomi: "べぁE��゜家のきゃびめE,
         url: "bailey-family-cabin.html",
         category: "場所",
         appearance: [
@@ -8295,8 +8295,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バスティオン・パーク",
-        yomi: "ばすてぃおん゛ぱ゜く",
+        name: "バスチE��オン・パ�Eク",
+        yomi: "ばすてぁE��ん�Eぱ゜く",
         url: "bastion-park.html",
         category: "場所",
         appearance: [
@@ -8307,7 +8307,7 @@ const loreEntries = [
     },
     {
         name: "ベックリーの獣の巣",
-        yomi: "べっくり゜の獣の巣",
+        yomi: "べっくり゜�E獣の巣",
         url: "beast-of-beckleys-den.html",
         category: "場所",
         appearance: [
@@ -8318,7 +8318,7 @@ const loreEntries = [
     },
     {
         name: "ベッカー農場",
-        yomi: "べっか゜農場",
+        yomi: "べっか�E農場",
         url: "becker-farm.html",
         category: "場所",
         appearance: [
@@ -8351,7 +8351,7 @@ const loreEntries = [
     },
     {
         name: "ベルチング・ベティ",
-        yomi: "べるちんぐ゛べてぃ",
+        yomi: "べるちんぐ゛べてぁE,
         url: "belching-betty.html",
         category: "場所",
         appearance: [
@@ -8361,8 +8361,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バークレー・スプリングス駅",
-        yomi: "ば゜くれ゜゛すぷりんぐす駅",
+        name: "バ�Eクレー・スプリングス駁E,
+        yomi: "ば゜くれ�E゛すぷりんぐす駁E,
         url: "berkeley-springs-station.html",
         category: "場所",
         appearance: [
@@ -8372,8 +8372,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バークレー・スプリングス西",
-        yomi: "ば゜くれ゜゛すぷりんぐす西",
+        name: "バ�Eクレー・スプリングス西",
+        yomi: "ば゜くれ�E゛すぷりんぐす西",
         url: "berkeley-springs-west.html",
         category: "場所",
         appearance: [
@@ -8383,8 +8383,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バークレー・スプリングス",
-        yomi: "ば゜くれ゜゛すぷりんぐす",
+        name: "バ�Eクレー・スプリングス",
+        yomi: "ば゜くれ�E゛すぷりんぐす",
         url: "berkeley-springs.html",
         category: "場所",
         appearance: [
@@ -8394,8 +8394,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "自転車の墓場",
-        yomi: "自転車の墓場",
+        name: "自転車�E墓場",
+        yomi: "自転車�E墓場",
         url: "bicycle-graveyard.html",
         category: "場所",
         appearance: [
@@ -8405,8 +8405,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグ・アルのタトゥーパーラー",
-        yomi: "びっぐ゛あるのたとぅ゜ぱ゜ら゜",
+        name: "ビッグ・アルのタトゥーパ�Eラー",
+        yomi: "びっぐ�EあるのたとぁE�Eぱ゜らめE,
         url: "big-als-tattoo.html",
         category: "場所",
         appearance: [
@@ -8416,8 +8416,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグベンド・トンネル・キャンプサイト",
-        yomi: "びっぐべんど゛とんねる゛きゃんぷさいと",
+        name: "ビッグベンド�Eトンネル・キャンプサイチE,
+        yomi: "びっぐべんど゛とん�Eる�Eきゃん�Eさいと",
         url: "big-bend-tunnel-campsite.html",
         category: "場所",
         appearance: [
@@ -8427,8 +8427,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグベンド・トンネル東口",
-        yomi: "びっぐべんど゛とんねる東口",
+        name: "ビッグベンド�Eトンネル東口",
+        yomi: "びっぐべんど゛とん�Eる東口",
         url: "big-bend-tunnel-east.html",
         category: "場所",
         appearance: [
@@ -8449,8 +8449,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグベンド・トンネル",
-        yomi: "びっぐべんど゛とんねる",
+        name: "ビッグベンド�Eトンネル",
+        yomi: "びっぐべんど゛とん�EめE,
         url: "big-bend-tunnel.html",
         category: "場所",
         appearance: [
@@ -8460,8 +8460,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグBの休憩所",
-        yomi: "びっぐbの休憩所",
+        name: "ビッグBの休�E所",
+        yomi: "びっぐbの休�E所",
         url: "big-bs-rest-stop.html",
         category: "場所",
         appearance: [
@@ -8472,7 +8472,7 @@ const loreEntries = [
     },
     {
         name: "ビッグ・モウ",
-        yomi: "びっぐ゛もう",
+        yomi: "びっぐ�Eもう",
         url: "big-maw.html",
         category: "場所",
         appearance: [
@@ -8482,8 +8482,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグ・パパ・モーのサンドイッチ小屋",
-        yomi: "びっぐ゛ぱぱ゛も゜のさんどいっち小屋",
+        name: "ビッグ・パパ・モーのサンドイチE��小屁E,
+        yomi: "びっぐ�Eぱぱ゛も゜�EさんどぁE��ち小屁E,
         url: "big-papa-moes.html",
         category: "場所",
         appearance: [
@@ -8504,8 +8504,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラックベア・ロッジ",
-        yomi: "ぶらっくべあ゛ろっじ",
+        name: "ブラチE��ベア・ロチE��",
+        yomi: "ぶらっくべあ�EろっぁE,
         url: "black-bear-lodge.html",
         category: "場所",
         appearance: [
@@ -8515,8 +8515,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラックマウンテン兵器工場",
-        yomi: "ぶらっくまうんてん兵器工場",
+        name: "ブラチE��マウンチE��兵器工場",
+        yomi: "ぶらっくまぁE��てん�E器工場",
         url: "black-mountain-ordnance.html",
         category: "場所",
         appearance: [
@@ -8526,8 +8526,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラックウォーター鉱山",
-        yomi: "ぶらっくうぉ゜た゜鉱山",
+        name: "ブラチE��ウォーター鉱山",
+        yomi: "ぶらっくうぉ�Eた�E鉱山",
         url: "blackwater-mine.html",
         category: "場所",
         appearance: [
@@ -8538,7 +8538,7 @@ const loreEntries = [
     },
     {
         name: "ブレイクの供物",
-        yomi: "ぶれいくの供物",
+        yomi: "ぶれいく�E供物",
         url: "blakes-offering.html",
         category: "場所",
         appearance: [
@@ -8548,8 +8548,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブリーディング・ケイトのグラインドハウス",
-        yomi: "ぶり゜でぃんぐ゛けいとのぐらいんどはうす",
+        name: "ブリーチE��ング・ケイト�Eグラインドハウス",
+        yomi: "ぶり�EでぁE��ぐ�EけいとのぐらぁE��どはぁE��",
         url: "bleeding-kates-grindhouse.html",
         category: "場所",
         appearance: [
@@ -8559,8 +8559,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラッドイーグル・キャンプ",
-        yomi: "ぶらっどい゜ぐる゛きゃんぷ",
+        name: "ブラチE��イーグル・キャンチE,
+        yomi: "ぶらっどぁE�Eぐる゛きめE��ぷ",
         url: "blood-eagle-camp.html",
         category: "場所",
         appearance: [
@@ -8570,8 +8570,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブルーリッジ・バンクハウス",
-        yomi: "ぶる゜りっじ゛ばんくはうす",
+        name: "ブルーリチE��・バンクハウス",
+        yomi: "ぶる�Eりっじ�EばんくはぁE��",
         url: "blue-ridge-bunkhouse.html",
         category: "場所",
         appearance: [
@@ -8582,7 +8582,7 @@ const loreEntries = [
     },
     {
         name: "ボグ水路シェルター",
-        yomi: "ぼぐ水路しぇるた゜",
+        yomi: "ぼぐ水路しぇるためE,
         url: "bog-channel-shelter.html",
         category: "場所",
         appearance: [
@@ -8593,7 +8593,7 @@ const loreEntries = [
     },
     {
         name: "ボルトン・グリーンズ",
-        yomi: "ぼるとん゛ぐり゜んず",
+        yomi: "ぼるとん�Eぐり゜んぁE,
         url: "bolton-greens.html",
         category: "場所",
         appearance: [
@@ -8603,8 +8603,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "密造酒業者の小屋",
-        yomi: "密造酒業者の小屋",
+        name: "寁E��酒業老E�E小屁E,
+        yomi: "寁E��酒業老E�E小屁E,
         url: "bootleggers-shack.html",
         category: "場所",
         appearance: [
@@ -8625,8 +8625,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ブラクソンの医療品店",
-        yomi: "ぶらくそんの医療品店",
+        name: "ブラクソンの医療品庁E,
+        yomi: "ぶらくそんの医療品庁E,
         url: "braxsons-quality-medical.html",
         category: "場所",
         appearance: [
@@ -8637,7 +8637,7 @@ const loreEntries = [
     },
     {
         name: "ブリム採石場",
-        yomi: "ぶりむ採石場",
+        yomi: "ぶり�E採石場",
         url: "brim-quarry.html",
         category: "場所",
         appearance: [
@@ -8648,7 +8648,7 @@ const loreEntries = [
     },
     {
         name: "ブロートフライ",
-        yomi: "ぶろ゜とふらい",
+        yomi: "ぶろ�Eとふらい",
         url: "broat-fries_2.html",
         category: "場所",
         appearance: [
@@ -8673,7 +8673,7 @@ const loreEntries = [
     },
     {
         name: "バッズ・バッズ",
-        yomi: "ばっず゛ばっず",
+        yomi: "ばっず�EばっぁE,
         url: "buds_buds.html",
         category: "人物",
         appearance: [
@@ -8683,7 +8683,7 @@ const loreEntries = [
     },
     {
         name: "ケン・ユアーズ",
-        yomi: "けんゆあーず",
+        yomi: "けんめE��ーぁE,
         url: "buds_full.html",
         category: "人物",
         appearance: [
@@ -8693,7 +8693,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーデット邸",
+        name: "バ�EチE��ト邸",
         yomi: "ば゜でっと邸",
         url: "burdette-manor.html",
         category: "場所",
@@ -8704,7 +8704,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーニング・スプリングス",
+        name: "バ�Eニング・スプリングス",
         yomi: "ば゜にんぐ゛すぷりんぐす",
         url: "burning-springs.html",
         category: "場所",
@@ -8715,8 +8715,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カムデンパーク",
-        yomi: "かむでんぱ゜く",
+        name: "カムチE��パ�Eク",
+        yomi: "か�Eでん�E゜く",
         url: "camden-park.html",
         category: "場所",
         appearance: [
@@ -8726,8 +8726,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キャンプ・アダムス見張り台",
-        yomi: "きゃんぷ゛あだむす見張り台",
+        name: "キャンプ�Eアダムス見張り台",
+        yomi: "きゃん�E゛あだむす見張り台",
         url: "camp-adams-lookout.html",
         category: "場所",
         appearance: [
@@ -8737,8 +8737,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キャンプ・アダムス",
-        yomi: "きゃんぷ゛あだむす",
+        name: "キャンプ�Eアダムス",
+        yomi: "きゃん�E゛あだむぁE,
         url: "camp-adams.html",
         category: "場所",
         appearance: [
@@ -8748,8 +8748,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キャンプ・マクリントック",
-        yomi: "きゃんぷ゛まくりんとっく",
+        name: "キャンプ�Eマクリントック",
+        yomi: "きゃん�E゛まくりんとっぁE,
         url: "camp-mcclintock.html",
         category: "場所",
         appearance: [
@@ -8759,8 +8759,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キャンプ・ベンチャー",
-        yomi: "きゃんぷ゛べんちゃ゜",
+        name: "キャンプ�Eベンチャー",
+        yomi: "きゃん�E゛べんちめE�E",
         url: "camp-venture.html",
         category: "場所",
         appearance: [
@@ -8771,7 +8771,7 @@ const loreEntries = [
     },
     {
         name: "カールトン鉱山",
-        yomi: "か゜るとん鉱山",
+        yomi: "か�Eるとん鉱山",
         url: "carleton-mine.html",
         category: "場所",
         appearance: [
@@ -8806,7 +8806,7 @@ const loreEntries = [
     },
     {
         name: "カーソン家のバンカー",
-        yomi: "か゜そん家のばんか゜",
+        yomi: "か�Eそん家のばんかめE,
         url: "carson-family-bunker.html",
         category: "場所",
         appearance: [
@@ -8816,8 +8816,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カマドウマ",
-        yomi: "かまどうま",
+        name: "カマドウチE,
+        yomi: "かまどぁE��",
         url: "cave_cricket.html",
         category: "場所",
         appearance: [
@@ -8826,8 +8826,8 @@ const loreEntries = [
         date: "2026-04-30"
     },
     {
-        name: "セントラル・マウンテン見張り台",
-        yomi: "せんとらる゛まうんてん見張り台",
+        name: "セントラル・マウンチE��見張り台",
+        yomi: "せんとらる゛まぁE��てん見張り台",
         url: "central-mountain-lookout.html",
         category: "場所",
         appearance: [
@@ -8904,7 +8904,7 @@ const loreEntries = [
     },
     {
         name: "チャールストン埋立地",
-        yomi: "ちゃ゜るすとん埋立地",
+        yomi: "ちめE�Eるすとん埋立地",
         url: "charleston-landfill.html",
         category: "場所",
         appearance: [
@@ -8925,8 +8925,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チーズハウス",
-        yomi: "ち゜ずはうす",
+        name: "チ�Eズハウス",
+        yomi: "ち゜ずはぁE��",
         url: "cheese-haus.html",
         category: "場所",
         appearance: [
@@ -8936,8 +8936,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ケム&フープの小屋",
-        yomi: "けむあんどふーぷこや",
+        name: "ケム&フ�Eプ�E小屁E,
+        yomi: "け�Eあんどふーぷこや",
         url: "chem-and-hoop-shack.html",
         category: "場所",
         appearance: [
@@ -8960,8 +8960,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クラークスバーグ射撃クラブ",
-        yomi: "くら゜くすば゜ぐ射撃くらぶ",
+        name: "クラークスバ�Eグ封E��クラチE,
+        yomi: "くら゜くす�E゜ぐ封E��くらぶ",
         url: "clarksburg-shooting-club.html",
         category: "場所",
         appearance: [
@@ -8971,8 +8971,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クラークスバーグ",
-        yomi: "くら゜くすば゜ぐ",
+        name: "クラークスバ�Eグ",
+        yomi: "くら゜くす�E゜ぐ",
         url: "clarksburg.html",
         category: "場所",
         appearance: [
@@ -8982,8 +8982,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クリフウォーク・トラック",
-        yomi: "くりふうぉ゜く゛とらっく",
+        name: "クリフウォーク・トラチE��",
+        yomi: "くりふぁE��゜く゛とらっぁE,
         url: "cliffwalk-track.html",
         category: "場所",
         appearance: [
@@ -8993,8 +8993,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クリフウォッチ",
-        yomi: "くりふうぉっち",
+        name: "クリフウォチE��",
+        yomi: "くりふぁE��っち",
         url: "cliffwatch.html",
         category: "場所",
         appearance: [
@@ -9005,7 +9005,7 @@ const loreEntries = [
     },
     {
         name: "コブルトン農場",
-        yomi: "こぶるとん農場",
+        yomi: "こ�Eるとん農場",
         url: "cobbleton-farm.html",
         category: "場所",
         appearance: [
@@ -9015,8 +9015,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ケリー大佐記念碑",
-        yomi: "けり゜大佐記念碑",
+        name: "ケリー大佐記念碁E,
+        yomi: "けり゜大佐記念碁E,
         url: "colonel-kelly-monument.html",
         category: "場所",
         appearance: [
@@ -9047,8 +9047,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "改装弾薬工場",
-        yomi: "改装弾薬工場",
+        name: "改裁E��薬工場",
+        yomi: "改裁E��薬工場",
         url: "converted-munitions-factory.html",
         category: "場所",
         appearance: [
@@ -9058,8 +9058,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クランベリー湿原",
-        yomi: "くらんべり゜湿原",
+        name: "クランベリー湿厁E,
+        yomi: "くらんべり�E湿厁E,
         url: "cranberry-bog.html",
         category: "場所",
         appearance: [
@@ -9069,8 +9069,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クランベリー・グレイド",
-        yomi: "くらんべり゜゛ぐれいど",
+        name: "クランベリー・グレイチE,
+        yomi: "くらんべり�E゛ぐれいど",
         url: "cranberry-glade.html",
         category: "場所",
         appearance: [
@@ -9080,8 +9080,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クランベリー・ハイツ",
-        yomi: "くらんべり゜゛はいつ",
+        name: "クランベリー・ハイチE,
+        yomi: "くらんべり�E゛�EぁE��",
         url: "cranberry-heights.html",
         category: "場所",
         appearance: [
@@ -9091,8 +9091,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "墜落した複葉機（グラニンジャー農場）",
-        yomi: "墜落した複葉機（グラニンジャー農場）",
+        name: "墜落した褁E��機（グラニンジャー農場�E�E,
+        yomi: "墜落した褁E��機（グラニンジャー農場�E�E,
         url: "crashed-biplane-graninger.html",
         category: "場所",
         appearance: [
@@ -9102,8 +9102,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "墜落した飛行機",
-        yomi: "墜落した飛行機",
+        name: "墜落した飛行橁E,
+        yomi: "墜落した飛行橁E,
         url: "crashed-plane-mire.html",
         category: "場所",
         appearance: [
@@ -9135,8 +9135,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クリークサイド・サンデュー叢",
-        yomi: "くり゜くさいど゛さんでゅ゜叢",
+        name: "クリークサイド�EサンチE��ー叢",
+        yomi: "くり゜くさいど゛さんでめE�E叢",
         url: "creekside-sundew-grove.html",
         category: "場所",
         appearance: [
@@ -9147,7 +9147,7 @@ const loreEntries = [
     },
     {
         name: "クレバス・ダム",
-        yomi: "くればす゛だむ",
+        yomi: "くればす�Eだむ",
         url: "crevasse-dam.html",
         category: "場所",
         appearance: [
@@ -9157,8 +9157,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クリムゾン・プロスペクト",
-        yomi: "くりむぞん゛ぷろすぺくと",
+        name: "クリムゾン・プロスペクチE,
+        yomi: "くりむぞん゛�Eろすぺくと",
         url: "crimson-prospect.html",
         category: "場所",
         appearance: [
@@ -9201,8 +9201,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ダガーズ・デン",
-        yomi: "だが゜ず゛でん",
+        name: "ダガーズ・チE��",
+        yomi: "だが�Eず�EでめE,
         url: "daggers-den.html",
         category: "場所",
         appearance: [
@@ -9223,8 +9223,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ディープ・スリープ・プロジェクト",
-        yomi: "でぃ゜ぷ゛すり゜ぷ゛ぷろじぇくと",
+        name: "チE��ープ�Eスリープ�EプロジェクチE,
+        yomi: "でぁE�Eぷ゛すり�Eぷ゛�EろじぁE��と",
         url: "deep-sleep-project.html",
         category: "場所",
         appearance: [
@@ -9234,8 +9234,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デラノ・グレンジ",
-        yomi: "でらの゛ぐれんじ",
+        name: "チE��ノ�Eグレンジ",
+        yomi: "でら�E゛ぐれんぁE,
         url: "delano-grange.html",
         category: "場所",
         appearance: [
@@ -9245,8 +9245,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "荒廃した鉱山",
-        yomi: "荒廃した鉱山",
+        name: "荒廁E��た鉱山",
+        yomi: "荒廁E��た鉱山",
         url: "deserted-mine.html",
         category: "場所",
         appearance: [
@@ -9256,8 +9256,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デビルズ・バックボーン",
-        yomi: "でびるず゛ばっくぼ゜ん",
+        name: "チE��ルズ・バックボ�Eン",
+        yomi: "でびるず゛�Eっくぼ゜ん",
         url: "devils-backbone.html",
         category: "場所",
         appearance: [
@@ -9267,8 +9267,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドリー・ソッズ・キャンプ場",
-        yomi: "どり゜゛そっず゛きゃんぷ場",
+        name: "ドリー・ソチE��・キャンプ場",
+        yomi: "どり�E゛そっず�Eきゃん�E場",
         url: "dolly-sods-campground.html",
         category: "場所",
         appearance: [
@@ -9278,8 +9278,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドリー・ソッズ見張り台",
-        yomi: "どり゜゛そっず見張り台",
+        name: "ドリー・ソチE��見張り台",
+        yomi: "どり�E゛そっず見張り台",
         url: "dolly-sods-lookout.html",
         category: "場所",
         appearance: [
@@ -9289,8 +9289,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドリー・ソッズ・レンジャーステーション",
-        yomi: "どり゜゛そっず゛れんじゃ゜すて゜しょん",
+        name: "ドリー・ソチE��・レンジャースチE�Eション",
+        yomi: "どり�E゛そっず�Eれんじゃ゜すて゜しめE��",
         url: "dolly-sods-ranger-station.html",
         category: "場所",
         appearance: [
@@ -9300,8 +9300,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドリー・ソッズ荒野",
-        yomi: "どり゜゛そっず荒野",
+        name: "ドリー・ソチE��荒野",
+        yomi: "どり�E゛そっず荒釁E,
         url: "dolly-sods-wilderness.html",
         category: "場所",
         appearance: [
@@ -9344,7 +9344,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドロップサイト C2",
+        name: "ドロチE�EサイチEC2",
         yomi: "どろっぷさいと c2",
         url: "drop-site-c2.html",
         category: "場所",
@@ -9355,7 +9355,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドロップサイト G3",
+        name: "ドロチE�EサイチEG3",
         yomi: "どろっぷさいと g3",
         url: "drop-site-g3.html",
         category: "場所",
@@ -9366,7 +9366,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドロップサイト V9",
+        name: "ドロチE�EサイチEV9",
         yomi: "どろっぷさいと v9",
         url: "drop-site-v9.html",
         category: "場所",
@@ -9377,8 +9377,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドラムリン・ダイナー",
-        yomi: "どらむりん゛だいな゜",
+        name: "ドラムリン・ダイナ�E",
+        yomi: "どら�Eりん゛だぁE��めE,
         url: "drumlin-diner-watoga.html",
         category: "場所",
         appearance: [
@@ -9388,8 +9388,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ダスティ・ヒープ",
-        yomi: "だすてぃ゛ひ゜ぷ",
+        name: "ダスチE��・ヒ�EチE,
+        yomi: "だすてぁE�Eひ゜�E",
         url: "dusty-heap.html",
         category: "場所",
         appearance: [
@@ -9400,7 +9400,7 @@ const loreEntries = [
     },
     {
         name: "ダイアー・ケミカル",
-        yomi: "だいあ゜゛けみかる",
+        yomi: "だぁE��゜�Eけみかる",
         url: "dyer-chemical.html",
         category: "場所",
         appearance: [
@@ -9410,8 +9410,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "イースト・マウンテン見張り台",
-        yomi: "い゜すと゛まうんてん見張り台",
+        name: "イースト�EマウンチE��見張り台",
+        yomi: "ぁE�Eすと゛まぁE��てん見張り台",
         url: "east-mountain-lookout.html",
         category: "場所",
         appearance: [
@@ -9421,8 +9421,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "イースト・リッジ見張り台",
-        yomi: "い゜すと゛りっじ見張り台",
+        name: "イースト�EリチE��見張り台",
+        yomi: "ぁE�Eすと゛りっじ見張り台",
         url: "east-ridge-lookout.html",
         category: "場所",
         appearance: [
@@ -9432,8 +9432,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "イーストストリート銀行",
-        yomi: "い゜すとすとり゜と銀行",
+        name: "イーストストリート銀衁E,
+        yomi: "ぁE�Eすとすとり�Eと銀衁E,
         url: "east-street-bank.html",
         category: "場所",
         appearance: [
@@ -9443,8 +9443,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "東部地域刑務所",
-        yomi: "東部地域刑務所",
+        name: "東部地域�E務所",
+        yomi: "東部地域�E務所",
         url: "eastern-regional-penitentiary.html",
         category: "場所",
         appearance: [
@@ -9455,7 +9455,7 @@ const loreEntries = [
     },
     {
         name: "エラ・エイムズのバンカー",
-        yomi: "えら゛えいむずのばんか゜",
+        yomi: "えら゛えぁE�Eず�EばんかめE,
         url: "ella-ames-bunker.html",
         category: "場所",
         appearance: [
@@ -9465,8 +9465,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エマーソン・ヘイル",
-        yomi: "えま゜そん゛へいる",
+        name: "エマ�Eソン・ヘイル",
+        yomi: "えま゜そん�EへぁE��",
         url: "emerson-hale.html",
         category: "場所",
         appearance: [
@@ -9487,8 +9487,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エメット・マウンテン採掘施設",
-        yomi: "えめっと゛まうんてん採掘施設",
+        name: "エメチE��・マウンチE��採掘施設",
+        yomi: "えめっと゛まぁE��てん採掘施設",
         url: "emmett-mountain-mining-facility.html",
         category: "場所",
         appearance: [
@@ -9499,7 +9499,7 @@ const loreEntries = [
     },
     {
         name: "エンクレイヴ",
-        yomi: "えんくれいゔ",
+        yomi: "えんくれぁE��",
         url: "enclave.html",
         category: "場所",
         appearance: [
@@ -9511,8 +9511,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エクセルシオール・モデルホーム",
-        yomi: "えくせるしお゜る゛もでるほ゜む",
+        name: "エクセルシオール・モチE��ホ�Eム",
+        yomi: "えくせるしお゜る゛もでるほ゜�E",
         url: "excelsior-model-home.html",
         category: "場所",
         appearance: [
@@ -9581,8 +9581,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "遠くのツリーハウス",
-        yomi: "遠くのツリーハウス",
+        name: "遠く�EチE��ーハウス",
+        yomi: "遠く�EチE��ーハウス",
         url: "faraway-treehouse.html",
         category: "場所",
         appearance: [
@@ -9592,8 +9592,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "連邦廃棄場 HZ-21",
-        yomi: "連邦廃棄場 hz-21",
+        name: "連邦廁E��E�� HZ-21",
+        yomi: "連邦廁E��E�� hz-21",
         url: "federal-disposal-field-hz-21.html",
         category: "場所",
         appearance: [
@@ -9603,8 +9603,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファイアベース・ハンコック",
-        yomi: "ふぁいあべ゜す゛はんこっく",
+        name: "ファイアベ�Eス・ハンコチE��",
+        yomi: "ふぁいあべ゜す゛�EんこっぁE,
         url: "firebase-hancock.html",
         category: "場所",
         appearance: [
@@ -9614,7 +9614,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファイアベース LT",
+        name: "ファイアベ�Eス LT",
         yomi: "ふぁいあべ゜す lt",
         url: "firebase-lt.html",
         category: "場所",
@@ -9625,8 +9625,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファイアベース・メジャー",
-        yomi: "ふぁいあべ゜す゛めじゃ゜",
+        name: "ファイアベ�Eス・メジャー",
+        yomi: "ふぁいあべ゜す゛めじゃめE,
         url: "firebase-major.html",
         category: "場所",
         appearance: [
@@ -9636,7 +9636,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファイアベース MG",
+        name: "ファイアベ�Eス MG",
         yomi: "ふぁいあべ゜す mg",
         url: "firebase-mg.html",
         category: "場所",
@@ -9647,8 +9647,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "釣り人の休息所",
-        yomi: "釣り人の休息所",
+        name: "釣り人の休�E所",
+        yomi: "釣り人の休�E所",
         url: "fishermans-rest.html",
         category: "場所",
         appearance: [
@@ -9658,8 +9658,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フィッシャーサイト・プライム",
-        yomi: "ふぃっしゃ゜さいと゛ぷらいむ",
+        name: "フィチE��ャーサイト�Eプライム",
+        yomi: "ふぁE��しゃ゜さぁE��゛�Eらいむ",
         url: "fissure-site-prime.html",
         category: "場所",
         appearance: [
@@ -9669,8 +9669,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フラットウッズ集会場",
-        yomi: "ふらっとうっず集会場",
+        name: "フラチE��ウチE��雁E��場",
+        yomi: "ふらっとぁE��ず集会場",
         url: "flatwoods-meeting-hall.html",
         category: "場所",
         appearance: [
@@ -9680,8 +9680,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フラットウッズ",
-        yomi: "ふらっとうっず",
+        name: "フラチE��ウチE��",
+        yomi: "ふらっとぁE��ぁE,
         url: "flatwoods.html",
         category: "場所",
         appearance: [
@@ -9702,8 +9702,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "Fallout 76 攻略ガイド",
-        yomi: "fallout 76 攻略ガイド",
+        name: "Fallout 76 攻略ガイチE,
+        yomi: "fallout 76 攻略ガイチE,
         url: "fo76-guide.html",
         category: "場所",
         appearance: [
@@ -9713,8 +9713,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フォート・ディファイアンス",
-        yomi: "ふぉ゜と゛でぃふぁいあんす",
+        name: "フォート�EチE��ファイアンス",
+        yomi: "ふぉ�Eと゛でぁE�EぁいあんぁE,
         url: "fort-defiance.html",
         category: "場所",
         appearance: [
@@ -9735,8 +9735,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "前進基地デルタ",
-        yomi: "前進基地デルタ",
+        name: "前進基地チE��タ",
+        yomi: "前進基地チE��タ",
         url: "forward-station-delta.html",
         category: "場所",
         appearance: [
@@ -9757,8 +9757,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファウンデーション前哨基地",
-        yomi: "ふぁうんで゜しょん前哨基地",
+        name: "ファウンチE�Eション前哨基地",
+        yomi: "ふぁうんで゜しめE��前哨基地",
         url: "foundation-outpost.html",
         category: "場所",
         appearance: [
@@ -9768,8 +9768,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フレディ・フィアーの地下室",
-        yomi: "ふれでぃ゛ふぃあ゜の地下室",
+        name: "フレチE��・フィアーの地下室",
+        yomi: "ふれでぁE�EふぁE��゜�E地下室",
         url: "freddy-fears-basement.html",
         category: "場所",
         appearance: [
@@ -9779,8 +9779,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フレディ・フィアーのお化け屋敷",
-        yomi: "ふれでぃ゛ふぃあ゜のお化け屋敷",
+        name: "フレチE��・フィアーのお化け屋敷",
+        yomi: "ふれでぁE�EふぁE��゜�Eお化け屋敷",
         url: "freddy-fears-house-of-scares.html",
         category: "場所",
         appearance: [
@@ -9790,8 +9790,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フレッシュ・ソイル・レストラン",
-        yomi: "ふれっしゅ゛そいる゛れすとらん",
+        name: "フレチE��ュ・ソイル・レストラン",
+        yomi: "ふれっしゅ゛そぁE��゛れすとらん",
         url: "fresh-soil-restaurant.html",
         category: "場所",
         appearance: [
@@ -9802,7 +9802,7 @@ const loreEntries = [
     },
     {
         name: "フレイヤのレストラン",
-        yomi: "ふれいやのれすとらん",
+        yomi: "ふれいめE�Eれすとらん",
         url: "freyjas-haus.html",
         category: "場所",
         appearance: [
@@ -9857,7 +9857,7 @@ const loreEntries = [
     },
     {
         name: "ガラハン・マイニング本社",
-        yomi: "がらはん゛まいにんぐ本社",
+        yomi: "がらはん�EまぁE��んぐ本社",
         url: "garrahan-mining-hq.html",
         category: "場所",
         appearance: [
@@ -9880,7 +9880,7 @@ const loreEntries = [
     },
     {
         name: "ギース・ベリー・ボグ",
-        yomi: "ぎ゜す゛べり゜゛ぼぐ",
+        yomi: "ぎ�Eす�Eべり�E゛ぼぁE,
         url: "giese-berry-bog.html",
         category: "場所",
         appearance: [
@@ -9901,8 +9901,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ガラス化した洞窟",
-        yomi: "がらす化した洞窟",
+        name: "ガラス化した洞突E,
+        yomi: "がらす化した洞突E,
         url: "glassed-cavern.html",
         category: "場所",
         appearance: [
@@ -9912,8 +9912,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グリーミング・デプス",
-        yomi: "ぐり゜みんぐ゛でぷす",
+        name: "グリーミング・チE�Eス",
+        yomi: "ぐり゜みんぐ゛でぷぁE,
         url: "gleaming-depths.html",
         category: "場所",
         appearance: [
@@ -9936,8 +9936,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ナールド・シャローズ",
-        yomi: "な゜るど゛しゃろ゜ず",
+        name: "ナ�Eルド�Eシャローズ",
+        yomi: "な゜るど゛しめE��゜ず",
         url: "gnarled-shallows.html",
         category: "場所",
         appearance: [
@@ -9948,7 +9948,7 @@ const loreEntries = [
     },
     {
         name: "ゴーリー鉱山",
-        yomi: "ご゜り゜鉱山",
+        yomi: "ご�Eり�E鉱山",
         url: "gorey-mines.html",
         category: "場所",
         appearance: [
@@ -9958,8 +9958,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ゴージ・ジャンクヤード",
-        yomi: "ご゜じ゛じゃんくや゜ど",
+        name: "ゴージ・ジャンクヤーチE,
+        yomi: "ご�Eじ�EじゃんくめE�Eど",
         url: "gorge-junkyard.html",
         category: "場所",
         appearance: [
@@ -9982,7 +9982,7 @@ const loreEntries = [
     },
     {
         name: "グラフトン・ダム",
-        yomi: "ぐらふとん゛だむ",
+        yomi: "ぐらふとん�Eだむ",
         url: "grafton-dam.html",
         category: "場所",
         appearance: [
@@ -10003,8 +10003,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グラフトン湖",
-        yomi: "ぐらふとん湖",
+        name: "グラフトン湁E,
+        yomi: "ぐらふとん湁E,
         url: "grafton-lake.html",
         category: "場所",
         appearance: [
@@ -10014,8 +10014,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グラフトン質店",
-        yomi: "ぐらふとん質店",
+        name: "グラフトン質庁E,
+        yomi: "ぐらふとん質庁E,
         url: "grafton-pawn-shop.html",
         category: "場所",
         appearance: [
@@ -10036,8 +10036,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グラフトン駅",
-        yomi: "ぐらふとん駅",
+        name: "グラフトン駁E,
+        yomi: "ぐらふとん駁E,
         url: "grafton-station.html",
         category: "場所",
         appearance: [
@@ -10047,8 +10047,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グラフトン製鉄地下",
-        yomi: "ぐらふとん製鉄地下",
+        name: "グラフトン製鉁E��丁E,
+        yomi: "ぐらふとん製鉁E��丁E,
         url: "grafton-steel-underground.html",
         category: "場所",
         appearance: [
@@ -10058,8 +10058,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グラフトン製鉄ヤード",
-        yomi: "ぐらふとん製鉄や゜ど",
+        name: "グラフトン製鉁E��ーチE,
+        yomi: "ぐらふとん製鉁E��゜ど",
         url: "grafton-steel-yard.html",
         category: "場所",
         appearance: [
@@ -10069,8 +10069,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グラフトン製鉄所",
-        yomi: "ぐらふとん製鉄所",
+        name: "グラフトン製鉁E��",
+        yomi: "ぐらふとん製鉁E��",
         url: "grafton-steel.html",
         category: "場所",
         appearance: [
@@ -10081,7 +10081,7 @@ const loreEntries = [
     },
     {
         name: "グラフトン",
-        yomi: "ぐらふとん",
+        yomi: "ぐらふとめE,
         url: "grafton.html",
         category: "場所",
         appearance: [
@@ -10092,7 +10092,7 @@ const loreEntries = [
     },
     {
         name: "グラニンジャー農場",
-        yomi: "ぐらにんじゃ゜農場",
+        yomi: "ぐらにんじめE�E農場",
         url: "graninger-farm.html",
         category: "場所",
         appearance: [
@@ -10102,8 +10102,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グリーン・カントリー橋",
-        yomi: "ぐり゜ん゛かんとり゜橋",
+        name: "グリーン・カントリー橁E,
+        yomi: "ぐり゜ん゛かんとり�E橁E,
         url: "green-country-bridge.html",
         category: "場所",
         appearance: [
@@ -10113,8 +10113,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ガルパー・ラグーン",
-        yomi: "がるぱ゜゛らぐ゜ん",
+        name: "ガルパ�E・ラグーン",
+        yomi: "がるぱ゜�Eらぐ゜ん",
         url: "gulper-lagoon.html",
         category: "場所",
         appearance: [
@@ -10124,8 +10124,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハーパーズ・フェリー兵器庫",
-        yomi: "は゜ぱ゜ず゛ふぇり゜兵器庫",
+        name: "ハ�Eパ�Eズ・フェリー兵器庫",
+        yomi: "は゜�E゜ず゛�EぁE��゜�E器庫",
         url: "harpers-ferry-armory.html",
         category: "場所",
         appearance: [
@@ -10135,8 +10135,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハーパーズ・フェリー・クリニック",
-        yomi: "は゜ぱ゜ず゛ふぇり゜゛くりにっく",
+        name: "ハ�Eパ�Eズ・フェリー・クリニック",
+        yomi: "は゜�E゜ず゛�EぁE��゜�EくりにっぁE,
         url: "harpers-ferry-clinic.html",
         category: "場所",
         appearance: [
@@ -10146,8 +10146,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハーパーズ・フェリー操車場",
-        yomi: "は゜ぱ゜ず゛ふぇり゜操車場",
+        name: "ハ�Eパ�Eズ・フェリー操車場",
+        yomi: "は゜�E゜ず゛�EぁE��゜操車場",
         url: "harpers-ferry-trainyard.html",
         category: "場所",
         appearance: [
@@ -10157,8 +10157,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハーパーズ・フェリー",
-        yomi: "は゜ぱ゜ず゛ふぇり゜",
+        name: "ハ�Eパ�Eズ・フェリー",
+        yomi: "は゜�E゜ず゛�EぁE��めE,
         url: "harpers-ferry.html",
         category: "場所",
         appearance: [
@@ -10168,8 +10168,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハリソン・ハイツ",
-        yomi: "はりそん゛はいつ",
+        name: "ハリソン・ハイチE,
+        yomi: "はりそん�EはぁE��",
         url: "harrison-heights.html",
         category: "場所",
         appearance: [
@@ -10179,8 +10179,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヘイブン教会",
-        yomi: "へいぶん教会",
+        name: "ヘイブン教企E,
+        yomi: "へぁE�Eん教企E,
         url: "haven-church.html",
         category: "場所",
         appearance: [
@@ -10190,7 +10190,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホークの隠れ家",
+        name: "ホ�Eクの隠れ家",
         yomi: "ほ゜くの隠れ家",
         url: "hawkes-refuge.html",
         category: "場所",
@@ -10201,8 +10201,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヘムロック・ホールズ整備場",
-        yomi: "へむろっく゛ほ゜るず整備場",
+        name: "ヘムロチE��・ホ�Eルズ整備場",
+        yomi: "へむろっく�Eほ゜るず整備場",
         url: "hemlock-holes-maintenance.html",
         category: "場所",
         appearance: [
@@ -10212,8 +10212,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヘムロック・ホールズ",
-        yomi: "へむろっく゛ほ゜るず",
+        name: "ヘムロチE��・ホ�Eルズ",
+        yomi: "へむろっく�Eほ゜るぁE,
         url: "hemlock-holes.html",
         category: "場所",
         appearance: [
@@ -10223,8 +10223,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハイランド・マーシュ",
-        yomi: "はいらんど゛ま゜しゅ",
+        name: "ハイランド�Eマ�Eシュ",
+        yomi: "はぁE��んど゛ま゜しめE,
         url: "highland-marsh.html",
         category: "場所",
         appearance: [
@@ -10234,8 +10234,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヒルフォーク・ホットドッグ",
-        yomi: "ひるふぉ゜く゛ほっとどっぐ",
+        name: "ヒルフォーク・ホットドチE��",
+        yomi: "ひる�Eぉ�Eく�EほっとどっぁE,
         url: "hillfolk-hotdogs.html",
         category: "場所",
         appearance: [
@@ -10245,8 +10245,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "丘上パイロンキャンプ",
-        yomi: "丘上パイロンキャンプ",
+        name: "丘上パイロンキャンチE,
+        yomi: "丘上パイロンキャンチE,
         url: "hilltop-pylon-camp.html",
         category: "場所",
         appearance: [
@@ -10257,7 +10257,7 @@ const loreEntries = [
     },
     {
         name: "ハニーハウス",
-        yomi: "はに゜はうす",
+        yomi: "はに゜�EぁE��",
         url: "honey-haus.html",
         category: "場所",
         appearance: [
@@ -10267,8 +10267,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホップの墓",
-        yomi: "ほっぷの墓",
+        name: "ホップ�E墁E,
+        yomi: "ほっぷの墁E,
         url: "hop-graves.html",
         category: "場所",
         appearance: [
@@ -10289,8 +10289,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト空気清浄機サイト 01",
-        yomi: "ほ゜んらいと空気清浄機さいと 01",
+        name: "ホ�Eンライト空気渁E��E��サイチE01",
+        yomi: "ほ゜んらいと空気渁E��E��さぁE�� 01",
         url: "hornwright-air-purifier-01.html",
         category: "場所",
         appearance: [
@@ -10300,8 +10300,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト空気清浄機サイト 02",
-        yomi: "ほ゜んらいと空気清浄機さいと 02",
+        name: "ホ�Eンライト空気渁E��E��サイチE02",
+        yomi: "ほ゜んらいと空気渁E��E��さぁE�� 02",
         url: "hornwright-air-purifier-02.html",
         category: "場所",
         appearance: [
@@ -10311,8 +10311,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト空気清浄機サイト 03",
-        yomi: "ほ゜んらいと空気清浄機さいと 03",
+        name: "ホ�Eンライト空気渁E��E��サイチE03",
+        yomi: "ほ゜んらいと空気渁E��E��さぁE�� 03",
         url: "hornwright-air-purifier-03.html",
         category: "場所",
         appearance: [
@@ -10322,8 +10322,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト空気清浄機サイト 04",
-        yomi: "ほ゜んらいと空気清浄機さいと 04",
+        name: "ホ�Eンライト空気渁E��E��サイチE04",
+        yomi: "ほ゜んらいと空気渁E��E��さぁE�� 04",
         url: "hornwright-air-purifier-04.html",
         category: "場所",
         appearance: [
@@ -10377,7 +10377,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト邸",
+        name: "ホ�Eンライト邸",
         yomi: "ほ゜んらいと邸",
         url: "hornwright-estate.html",
         category: "場所",
@@ -10388,7 +10388,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト・インダストリアル本社",
+        name: "ホ�Eンライト�Eインダストリアル本社",
         yomi: "ほ゜んらいと゛いんだすとりある本社",
         url: "hornwright-industrial-hq.html",
         category: "場所",
@@ -10399,7 +10399,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト・テストサイト 2",
+        name: "ホ�Eンライト�EチE��トサイチE2",
         yomi: "ほ゜んらいと゛てすとさいと 2",
         url: "hornwright-testing-2.html",
         category: "場所",
@@ -10410,7 +10410,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト・テストサイト 3",
+        name: "ホ�Eンライト�EチE��トサイチE3",
         yomi: "ほ゜んらいと゛てすとさいと 3",
         url: "hornwright-testing-3.html",
         category: "場所",
@@ -10421,7 +10421,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト・テストサイト 4",
+        name: "ホ�Eンライト�EチE��トサイチE4",
         yomi: "ほ゜んらいと゛てすとさいと 4",
         url: "hornwright-testing-4.html",
         category: "場所",
@@ -10432,8 +10432,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホーンライト試験サイト #03",
-        yomi: "ほ゜んらいと試験さいと #03",
+        name: "ホ�Eンライト試験サイチE#03",
+        yomi: "ほ゜んらいと試験さぁE�� #03",
         url: "hornwright-testing-site-03.html",
         category: "場所",
         appearance: [
@@ -10465,8 +10465,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヒューブリス・コミックス＆トイズ",
-        yomi: "ひゅ゜ぶりす゛こみっくす＆といず",
+        name: "ヒューブリス・コミックス�E�E��イズ",
+        yomi: "ひめE�Eぶりす゛こみっくす�E�E��ぁE��",
         url: "hubris-comics-watoga.html",
         category: "場所",
         appearance: [
@@ -10476,8 +10476,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハンターズ・リッジ",
-        yomi: "はんた゜ず゛りっじ",
+        name: "ハンターズ・リチE��",
+        yomi: "はんた゜ず゛りっぁE,
         url: "hunters-ridge.html",
         category: "場所",
         appearance: [
@@ -10487,8 +10487,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハンターの小屋",
-        yomi: "はんた゜の小屋",
+        name: "ハンターの小屁E,
+        yomi: "はんた゜�E小屁E,
         url: "hunters-shack.html",
         category: "場所",
         appearance: [
@@ -10499,7 +10499,7 @@ const loreEntries = [
     },
     {
         name: "ハンターズヴィル",
-        yomi: "はんた゜ずゔぃる",
+        yomi: "はんた゜ずゔぃめE,
         url: "huntersville.html",
         category: "場所",
         appearance: [
@@ -10510,7 +10510,7 @@ const loreEntries = [
     },
     {
         name: "イングラム邸",
-        yomi: "いんぐらむ邸",
+        yomi: "ぁE��ぐらむ邸",
         url: "ingram-mansion.html",
         category: "場所",
         appearance: [
@@ -10520,8 +10520,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "調査官のキャビン",
-        yomi: "調査官のキャビン",
+        name: "調査官�Eキャビン",
+        yomi: "調査官�Eキャビン",
         url: "investigators-cabin.html",
         category: "場所",
         appearance: [
@@ -10531,8 +10531,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジャネルのキャンプ",
-        yomi: "じゃねるのきゃんぷ",
+        name: "ジャネルのキャンチE,
+        yomi: "じゃねる�Eきゃん�E",
         url: "janelles-camp.html",
         category: "場所",
         appearance: [
@@ -10543,7 +10543,7 @@ const loreEntries = [
     },
     {
         name: "ジョーのスパッキーズ",
-        yomi: "じょ゜のすぱっき゜ず",
+        yomi: "じょ゜�Eす�Eっき�EぁE,
         url: "joes-spuckies.html",
         category: "場所",
         appearance: [
@@ -10577,7 +10577,7 @@ const loreEntries = [
     },
     {
         name: "ジューキー・ヘアサロン",
-        yomi: "じゅ゜き゜゛へあさろん",
+        yomi: "じゅ゜き゜�Eへあさろん",
         url: "jooky-hair-salon.html",
         category: "場所",
         appearance: [
@@ -10587,8 +10587,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カナワ国立公園",
-        yomi: "かなわ国立公園",
+        name: "カナワ国立�E圁E,
+        yomi: "かなわ国立�E圁E,
         url: "kanawha-national-park.html",
         category: "場所",
         appearance: [
@@ -10609,8 +10609,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "カーウッド鉱山",
-        yomi: "か゜うっど鉱山",
+        name: "カーウチE��鉱山",
+        yomi: "か�EぁE��ど鉱山",
         url: "kerwood-mine.html",
         category: "場所",
         appearance: [
@@ -10620,8 +10620,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キディ・コーナー・キャビンズ",
-        yomi: "きでぃ゛こ゜な゜゛きゃびんず",
+        name: "キチE��・コーナ�E・キャビンズ",
+        yomi: "きでぁE�Eこ�Eな゜�Eきゃびんず",
         url: "kiddie-corner-cabins.html",
         category: "場所",
         appearance: [
@@ -10631,8 +10631,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "KMAX送信塔",
-        yomi: "kmax送信塔",
+        name: "KMAX送信塁E,
+        yomi: "kmax送信塁E,
         url: "kmax-transmission.html",
         category: "場所",
         appearance: [
@@ -10642,8 +10642,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ナイフ・エッジ",
-        yomi: "ないふ゛えっじ",
+        name: "ナイフ�EエチE��",
+        yomi: "なぁE�E゛えっぁE,
         url: "knife-edge.html",
         category: "場所",
         appearance: [
@@ -10653,8 +10653,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レディ・ジャネットのソフトクリーム",
-        yomi: "れでぃ゛じゃねっとのそふとくり゜む",
+        name: "レチE��・ジャネット�Eソフトクリーム",
+        yomi: "れでぁE�Eじゃねっとのそ�Eとくり゜�E",
         url: "lady-janets-soft-serve.html",
         category: "場所",
         appearance: [
@@ -10664,8 +10664,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レイノルズ湖",
-        yomi: "れいのるず湖",
+        name: "レイノルズ湁E,
+        yomi: "れいのるず湁E,
         url: "lake-reynolds.html",
         category: "場所",
         appearance: [
@@ -10676,7 +10676,7 @@ const loreEntries = [
     },
     {
         name: "ランドビュー灯台",
-        yomi: "らんどびゅ゜灯台",
+        yomi: "らんどびめE�E灯台",
         url: "landview-lighthouse.html",
         category: "場所",
         appearance: [
@@ -10697,8 +10697,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ルイス＆サンズ農業用品店",
-        yomi: "るいす＆さんず農業用品店",
+        name: "ルイス�E�E��ンズ農業用品庁E,
+        yomi: "るいす！E��んず農業用品庁E,
         url: "lewis-sons-farming.html",
         category: "場所",
         appearance: [
@@ -10708,8 +10708,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ルイスバーグ駅",
-        yomi: "るいすば゜ぐ駅",
+        name: "ルイスバ�Eグ駁E,
+        yomi: "るいす�E゜ぐ駁E,
         url: "lewisburg-station.html",
         category: "場所",
         appearance: [
@@ -10719,8 +10719,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ルイスバーグ",
-        yomi: "るいすば゜ぐ",
+        name: "ルイスバ�Eグ",
+        yomi: "るいす�E゜ぐ",
         url: "lewisburg.html",
         category: "場所",
         appearance: [
@@ -10741,8 +10741,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラバーズ・リープ",
-        yomi: "らば゜ず゛り゜ぷ",
+        name: "ラバ�Eズ・リーチE,
+        yomi: "ら�E゜ず゛り゜�E",
         url: "lovers-leap.html",
         category: "場所",
         appearance: [
@@ -10764,7 +10764,7 @@ const loreEntries = [
     },
     {
         name: "マックの農場",
-        yomi: "まっくの農場",
+        yomi: "まっく�E農場",
         url: "macs-farm.html",
         category: "場所",
         appearance: [
@@ -10774,8 +10774,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ママ・ドルチのフードプロセッシング",
-        yomi: "まま゛どるちのふ゜どぷろせっしんぐ",
+        name: "マ�E・ドルチ�Eフ�Eド�EロセチE��ング",
+        yomi: "まま゛どるちのふ゜どぷろせっしんぁE,
         url: "mama-dolces.html",
         category: "場所",
         appearance: [
@@ -10808,8 +10808,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "沼地のコテージ",
-        yomi: "沼地のコテージ",
+        name: "沼地のコチE�Eジ",
+        yomi: "沼地のコチE�Eジ",
         url: "marsh-cottage.html",
         category: "場所",
         appearance: [
@@ -10830,8 +10830,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "メカニックの金属小屋",
-        yomi: "めかにっくの金属小屋",
+        name: "メカニックの金属小屁E,
+        yomi: "めかにっく�E金属小屁E,
         url: "mechanics-metal-shack.html",
         category: "場所",
         appearance: [
@@ -10854,7 +10854,7 @@ const loreEntries = [
     },
     {
         name: "メガ・マンション",
-        yomi: "めが゛まんしょん",
+        yomi: "めが゛まんしめE��",
         url: "mega-mansion.html",
         category: "場所",
         appearance: [
@@ -10886,8 +10886,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ミドル・マウンテン・レイク",
-        yomi: "みどる゛まうんてん゛れいく",
+        name: "ミドル・マウンチE��・レイク",
+        yomi: "みどる�EまぁE��てん�EれいぁE,
         url: "middle-mountain-lake.html",
         category: "場所",
         appearance: [
@@ -10897,8 +10897,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ミラーの家電店",
-        yomi: "みら゜の家電店",
+        name: "ミラーの家電庁E,
+        yomi: "みら�Eの家電庁E,
         url: "millers-appliances.html",
         category: "場所",
         appearance: [
@@ -10909,7 +10909,7 @@ const loreEntries = [
     },
     {
         name: "マイアの眼",
-        yomi: "まいあの眼",
+        yomi: "まぁE��の眼",
         url: "mires-eye.html",
         category: "場所",
         appearance: [
@@ -10954,7 +10954,7 @@ const loreEntries = [
     },
     {
         name: "モノンガー鉱山",
-        yomi: "ものんが゜鉱山",
+        yomi: "も�Eんが゜鉱山",
         url: "monongah-mine.html",
         category: "場所",
         appearance: [
@@ -10965,7 +10965,7 @@ const loreEntries = [
     },
     {
         name: "モノンガー展望台",
-        yomi: "ものんが゜展望台",
+        yomi: "も�Eんが゜展望台",
         url: "monongah-overlook.html",
         category: "場所",
         appearance: [
@@ -10976,7 +10976,7 @@ const loreEntries = [
     },
     {
         name: "モノンガー発電所",
-        yomi: "ものんが゜発電所",
+        yomi: "も�Eんが゜発電所",
         url: "monongah-power-plant.html",
         category: "場所",
         appearance: [
@@ -10997,8 +10997,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モノンガヒラ国立森林",
-        yomi: "ものんがひら国立森林",
+        name: "モノンガヒラ国立森极E,
+        yomi: "も�Eんがひら国立森极E,
         url: "monongahela-national-forest.html",
         category: "場所",
         appearance: [
@@ -11008,8 +11008,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モノレール・エレベーター",
-        yomi: "ものれ゜る゛えれべ゜た゜",
+        name: "モノレール・エレベ�Eター",
+        yomi: "も�Eれ�Eる�Eえれべ゜ためE,
         url: "monorail-elevator.html",
         category: "場所",
         appearance: [
@@ -11019,8 +11019,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "密造酒業者の小屋",
-        yomi: "密造酒業者の小屋",
+        name: "寁E��酒業老E�E小屁E,
+        yomi: "寁E��酒業老E�E小屁E,
         url: "moonshiners-shack.html",
         category: "場所",
         appearance: [
@@ -11031,7 +11031,7 @@ const loreEntries = [
     },
     {
         name: "モーガンタウン空港ターミナル",
-        yomi: "も゜がんたうん空港た゜みなる",
+        yomi: "も�Eがんたうん空港た�EみなめE,
         url: "morgantown-airport-terminal.html",
         category: "場所",
         appearance: [
@@ -11053,7 +11053,7 @@ const loreEntries = [
     },
     {
         name: "モーガンタウン高校",
-        yomi: "も゜がんたうん高校",
+        yomi: "も�Eがんたうん高校",
         url: "morgantown-high-school.html",
         category: "場所",
         appearance: [
@@ -11075,7 +11075,7 @@ const loreEntries = [
     },
     {
         name: "モーガンタウン操車場",
-        yomi: "も゜がんたうん操車場",
+        yomi: "も�Eがんたうん操車場",
         url: "morgantown-trainyard.html",
         category: "場所",
         appearance: [
@@ -11097,7 +11097,7 @@ const loreEntries = [
     },
     {
         name: "モスタウン",
-        yomi: "もすたうん",
+        yomi: "もすたうめE,
         url: "mosstown.html",
         category: "場所",
         appearance: [
@@ -11107,8 +11107,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モスホーム",
-        yomi: "もすほ゜む",
+        name: "モスホ�Eム",
+        yomi: "もすほ゜�E",
         url: "moth-home.html",
         category: "場所",
         appearance: [
@@ -11119,7 +11119,7 @@ const loreEntries = [
     },
     {
         name: "マザーロード取得施設",
-        yomi: "まざ゜ろ゜ど取得施設",
+        yomi: "まざ�Eろ�Eど取得施設",
         url: "motherlode-acquisition-facility.html",
         category: "場所",
         appearance: [
@@ -11140,8 +11140,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マウント・ブレア・コーヒー小屋",
-        yomi: "まうんと゛ぶれあ゛こ゜ひ゜小屋",
+        name: "マウント�Eブレア・コーヒ�E小屁E,
+        yomi: "まぁE��と゛�Eれあ゛こ゜�E゜小屁E,
         url: "mount-blair-coffee-shack.html",
         category: "場所",
         appearance: [
@@ -11151,8 +11151,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マウント・ブレア操車場",
-        yomi: "まうんと゛ぶれあ操車場",
+        name: "マウント�Eブレア操車場",
+        yomi: "まぁE��と゛�Eれあ操車場",
         url: "mount-blair-trainyard.html",
         category: "場所",
         appearance: [
@@ -11162,8 +11162,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マウント・ブレア",
-        yomi: "まうんと゛ぶれあ",
+        name: "マウント�Eブレア",
+        yomi: "まぁE��と゛�Eれあ",
         url: "mount-blair.html",
         category: "場所",
         appearance: [
@@ -11173,8 +11173,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マウンテンサイド B&amp;B",
-        yomi: "まうんてんさいど b&amp;b",
+        name: "マウンチE��サイチEB&amp;B",
+        yomi: "まぁE��てんさぁE�� b&amp;b",
         url: "mountainside-bed-and-breakfast.html",
         category: "場所",
         appearance: [
@@ -11184,8 +11184,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マウンテンサイド・ファーム",
-        yomi: "まうんてんさいど゛ふぁ゜む",
+        name: "マウンチE��サイド�Eファーム",
+        yomi: "まぁE��てんさぁE��゛�Eぁ�Eむ",
         url: "mountainside-farm.html",
         category: "場所",
         appearance: [
@@ -11195,8 +11195,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マウンテンサイド駅",
-        yomi: "まうんてんさいど駅",
+        name: "マウンチE��サイド駁E,
+        yomi: "まぁE��てんさぁE��駁E,
         url: "mountainside-station.html",
         category: "場所",
         appearance: [
@@ -11206,8 +11206,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "NAR修理ヤード",
-        yomi: "nar修理ヤード",
+        name: "NAR修琁E��ーチE,
+        yomi: "nar修琁E��ーチE,
         url: "nar-repair-yard.html",
         category: "場所",
         appearance: [
@@ -11251,7 +11251,7 @@ const loreEntries = [
     },
     {
         name: "ニュー・アパラチアン中央操車場",
-        yomi: "にゅ゜゛あぱらちあん中央操車場",
+        yomi: "にめE�E゛あぱらちあん中央操車場",
         url: "new-appalachian-central-trainyard.html",
         category: "場所",
         appearance: [
@@ -11261,8 +11261,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ニューガッド",
-        yomi: "にゅ゜がっど",
+        name: "ニューガチE��",
+        yomi: "にめE�Eがっど",
         url: "new-gad.html",
         category: "場所",
         appearance: [
@@ -11272,8 +11272,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ニューリバー峡谷リゾート",
-        yomi: "にゅ゜りば゜峡谷りぞ゜と",
+        name: "ニューリバ�E峡谷リゾーチE,
+        yomi: "にめE�Eり�E゜峡谷りぞ゜と",
         url: "new-river-gorge-resort.html",
         category: "場所",
         appearance: [
@@ -11294,8 +11294,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ニューリバー峡谷ロープコース",
-        yomi: "にゅ゜りば゜峡谷ろ゜ぷこ゜す",
+        name: "ニューリバ�E峡谷ロープコース",
+        yomi: "にめE�Eり�E゜峡谷ろ�Eぷこ�EぁE,
         url: "new-river-gorge-ropes.html",
         category: "場所",
         appearance: [
@@ -11316,8 +11316,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ニコルソンの最期",
-        yomi: "にこるそんの最期",
+        name: "ニコルソンの最朁E,
+        yomi: "にこるそんの最朁E,
         url: "nicholsons-end.html",
         category: "場所",
         appearance: [
@@ -11327,8 +11327,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ノース・カットスロート・キャンプ",
-        yomi: "の゜す゛かっとすろ゜と゛きゃんぷ",
+        name: "ノ�Eス・カチE��スロート�EキャンチE,
+        yomi: "の゜す゛かっとすろ゜と゛きめE��ぷ",
         url: "north-cutthroat-camp.html",
         category: "場所",
         appearance: [
@@ -11360,8 +11360,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヌカケイド",
-        yomi: "ぬかけいど",
+        name: "ヌカケイチE,
+        yomi: "ぬかけぁE��",
         url: "nuka-cade-fo76.html",
         category: "場所",
         appearance: [
@@ -11383,7 +11383,7 @@ const loreEntries = [
     },
     {
         name: "ヌカ・ランチャー",
-        yomi: "ぬか゛らんちゃ゜",
+        yomi: "ぬか�EらんちめE�E",
         url: "nuka-launcher.html",
         category: "場所",
         appearance: [
@@ -11393,8 +11393,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヌカワールド・オン・ツアー",
-        yomi: "ぬかわ゜るど゛おん゛つあ゜",
+        name: "ヌカワールド�Eオン・チE��ー",
+        yomi: "ぬかわ゜るど゛おん�Eつあ�E",
         url: "nuka-world-on-tour.html",
         category: "場所",
         appearance: [
@@ -11404,8 +11404,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "天文台",
-        yomi: "天文台",
+        name: "天斁E��",
+        yomi: "天斁E��",
         url: "observatory-savage-divide.html",
         category: "場所",
         appearance: [
@@ -11415,8 +11415,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "オールド・モールド採石場",
-        yomi: "お゜るど゛も゜るど採石場",
+        name: "オールド�Eモールド採石場",
+        yomi: "お�Eるど゛も゜るど採石場",
         url: "old-mold-quarry.html",
         category: "場所",
         appearance: [
@@ -11426,8 +11426,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "オールド・ピートの終焉地",
-        yomi: "お゜るど゛ぴ゜との終焉地",
+        name: "オールド�Eピ�Eト�E終焉地",
+        yomi: "お�Eるど゛�E゜との終焉地",
         url: "old-petes-end.html",
         category: "場所",
         appearance: [
@@ -11437,8 +11437,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "古い倉庫",
-        yomi: "古い倉庫",
+        name: "古ぁE��庫",
+        yomi: "古ぁE��庫",
         url: "old-storehouse.html",
         category: "場所",
         appearance: [
@@ -11459,8 +11459,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "繁茂したサンデュー叢",
-        yomi: "繁茂したサンデュー叢",
+        name: "繁茂したサンチE��ー叢",
+        yomi: "繁茂したサンチE��ー叢",
         url: "overgrown-sundew-grove.html",
         category: "場所",
         appearance: [
@@ -11470,8 +11470,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "監督官のキャンプ",
-        yomi: "監督官のキャンプ",
+        name: "監督官�EキャンチE,
+        yomi: "監督官�EキャンチE,
         url: "overseers-camp.html",
         category: "場所",
         appearance: [
@@ -11492,8 +11492,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フィリッピ戦場墓地",
-        yomi: "ふぃりっぴ戦場墓地",
+        name: "フィリチE��戦場墓地",
+        yomi: "ふぁE��っぴ戦場墓地",
         url: "philippi-battlefield-cemetery.html",
         category: "場所",
         appearance: [
@@ -11503,8 +11503,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フィリッピ",
-        yomi: "ふぃりっぴ",
+        name: "フィリチE��",
+        yomi: "ふぁE��っぴ",
         url: "philippi.html",
         category: "場所",
         appearance: [
@@ -11515,7 +11515,7 @@ const loreEntries = [
     },
     {
         name: "パイ・ハウス",
-        yomi: "ぱい゛はうす",
+        yomi: "ぱぁE�EはぁE��",
         url: "pi-house.html",
         category: "場所",
         appearance: [
@@ -11525,8 +11525,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "パイオニア・スカウト・キャンプ",
-        yomi: "ぱいおにあ゛すかうと゛きゃんぷ",
+        name: "パイオニア・スカウト�EキャンチE,
+        yomi: "ぱぁE��にあ�EすかぁE��゛きめE��ぷ",
         url: "pioneer-scout-camp.html",
         category: "場所",
         appearance: [
@@ -11537,7 +11537,7 @@ const loreEntries = [
     },
     {
         name: "パイオニア・スカウト見張り台",
-        yomi: "ぱいおにあ゛すかうと見張り台",
+        yomi: "ぱぁE��にあ�EすかぁE��見張り台",
         url: "pioneer-scout-lookout.html",
         category: "場所",
         appearance: [
@@ -11591,8 +11591,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "プレザント・バレー駅",
-        yomi: "ぷれざんと゛ばれ゜駅",
+        name: "プレザント�Eバレー駁E,
+        yomi: "ぷれざんと゛�Eれ�E駁E,
         url: "pleasant-valley-station.html",
         category: "場所",
         appearance: [
@@ -11625,7 +11625,7 @@ const loreEntries = [
     },
     {
         name: "ポセイドン変電所 PX-03",
-        yomi: "ぽせいどんへんでんしょぴーえっくすぜろさん",
+        yomi: "ぽせいどんへんでんしめE�Eーえっくすぜろさん",
         url: "poseidon-power-substation-px-03.html",
         category: "場所",
         appearance: [
@@ -11635,8 +11635,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "プレッパーのパイロン天国",
-        yomi: "ぷれっぱ゜のぱいろん天国",
+        name: "プレチE��ーのパイロン天国",
+        yomi: "ぷれっぱ゜�EぱぁE��ん天国",
         url: "preppers-pylon-paradise.html",
         category: "場所",
         appearance: [
@@ -11646,7 +11646,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "プリケットの砦",
+        name: "プリケチE��の砦",
         yomi: "ぷりけっとの砦",
         url: "pricketts-fort.html",
         category: "場所",
@@ -11668,8 +11668,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "パイロン待ち伏せ地点",
-        yomi: "ぱいろん待ち伏せ地点",
+        name: "パイロン征E��伏せ地点",
+        yomi: "ぱぁE��ん征E��伏せ地点",
         url: "pylon-ambush-site.html",
         category: "場所",
         appearance: [
@@ -11680,7 +11680,7 @@ const loreEntries = [
     },
     {
         name: "パイロン V-13",
-        yomi: "ぱいろん v-13",
+        yomi: "ぱぁE��めEv-13",
         url: "pylon-v-13.html",
         category: "場所",
         appearance: [
@@ -11746,7 +11746,7 @@ const loreEntries = [
     },
     {
         name: "ローリー・クレイのバンカー",
-        yomi: "ろ゜り゜゛くれいのばんか゜",
+        yomi: "ろ�Eり�E゛くれいのばんかめE,
         url: "raleigh-clays-bunker.html",
         category: "場所",
         appearance: [
@@ -11789,8 +11789,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッドロケット（湿原の町）",
-        yomi: "れっどろけっと（湿原の町）",
+        name: "レチE��ロケチE���E�湿原�E町�E�E,
+        yomi: "れっどろけっと�E�湿原�E町�E�E,
         url: "red-rocket-bog-town.html",
         category: "場所",
         appearance: [
@@ -11800,7 +11800,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッドロケット給油所",
+        name: "レチE��ロケチE��給油所",
         yomi: "れっどろけっと給油所",
         url: "red-rocket-filling-station.html",
         category: "場所",
@@ -11811,7 +11811,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッドロケット・メガストップ",
+        name: "レチE��ロケチE��・メガストッチE,
         yomi: "れっどろけっと゛めがすとっぷ",
         url: "red-rocket-mega-stop.html",
         category: "場所",
@@ -11822,8 +11822,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッドロケット（荒れた境域）",
-        yomi: "れっどろけっと（荒れた境域）",
+        name: "レチE��ロケチE���E�荒れた墁E���E�E,
+        yomi: "れっどろけっと�E�荒れた墁E���E�E,
         url: "red-rocket-savage-divide.html",
         category: "場所",
         appearance: [
@@ -11833,8 +11833,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッドロケット（サットン）",
-        yomi: "れっどろけっと（さっとん）",
+        name: "レチE��ロケチE���E�サチE��ン�E�E,
+        yomi: "れっどろけっと�E�さっとん！E,
         url: "red-rocket-sutton.html",
         category: "場所",
         appearance: [
@@ -11844,8 +11844,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "レッドロケット（バレー・ギャレリア）",
-        yomi: "れっどろけっと（ばれ゜゛ぎゃれりあ）",
+        name: "レチE��ロケチE���E�バレー・ギャレリア�E�E,
+        yomi: "れっどろけっと�E��Eれ�E゛ぎめE��りあ�E�E,
         url: "red-rocket-valley-galleria.html",
         category: "場所",
         appearance: [
@@ -11856,7 +11856,7 @@ const loreEntries = [
     },
     {
         name: "リレータワー EL-B1-02",
-        yomi: "りれ゜たわ゜ el-b1-02",
+        yomi: "りれ゜たわ�E el-b1-02",
         url: "relay-tower-el-b1-02.html",
         category: "場所",
         appearance: [
@@ -11866,8 +11866,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "中継塔 HG-B7-09",
-        yomi: "中継塔 hg-b7-09",
+        name: "中継塁EHG-B7-09",
+        yomi: "中継塁Ehg-b7-09",
         url: "relay-tower-hg-b7-09.html",
         category: "場所",
         appearance: [
@@ -11878,7 +11878,7 @@ const loreEntries = [
     },
     {
         name: "リレータワー LW-B1-22",
-        yomi: "りれ゜たわ゜ lw-b1-22",
+        yomi: "りれ゜たわ�E lw-b1-22",
         url: "relay-tower-lw-b1-22.html",
         category: "場所",
         appearance: [
@@ -11910,8 +11910,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "R&amp;Gプロセッシング・サービス",
-        yomi: "r&amp;gプロセッシング・サービス",
+        name: "R&amp;GプロセチE��ング・サービス",
+        yomi: "r&amp;gプロセチE��ング・サービス",
         url: "rg-processing-services.html",
         category: "場所",
         appearance: [
@@ -11943,8 +11943,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "川沿いのツリーハウス",
-        yomi: "川沿いのツリーハウス",
+        name: "川沿ぁE�EチE��ーハウス",
+        yomi: "川沿ぁE�EチE��ーハウス",
         url: "river-treehouse.html",
         category: "場所",
         appearance: [
@@ -11954,8 +11954,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "リバーサイド・コテージ",
-        yomi: "りば゜さいど゛こて゜じ",
+        name: "リバ�Eサイド�EコチE�Eジ",
+        yomi: "り�E゜さぁE��゛こて゜じ",
         url: "riverside-cottage-ash.html",
         category: "場所",
         appearance: [
@@ -11976,8 +11976,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ロリンズ労働キャンプ",
-        yomi: "ろりんず労働きゃんぷ",
+        name: "ロリンズ労働キャンチE,
+        yomi: "ろりんず労働きめE��ぷ",
         url: "rollins-labor-camp.html",
         category: "場所",
         appearance: [
@@ -12020,8 +12020,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・サクラメント",
-        yomi: "ざ゛さくらめんと",
+        name: "ザ・サクラメンチE,
+        yomi: "ざ�Eさくらめんと",
         url: "sacrament.html",
         category: "場所",
         appearance: [
@@ -12042,8 +12042,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "セーフ・アンド・クリーン廃棄場",
-        yomi: "せ゜ふ゛あんど゛くり゜ん廃棄場",
+        name: "セーフ�Eアンド�Eクリーン廁E��E��",
+        yomi: "せ�Eふ゛あんど゛くり�Eん廁E��E��",
         url: "safe-n-clean-disposal.html",
         category: "場所",
         appearance: [
@@ -12075,8 +12075,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サム・ブラックウェルのバンカー",
-        yomi: "さむ゛ぶらっくうぇるのばんか゜",
+        name: "サム・ブラチE��ウェルのバンカー",
+        yomi: "さ�E゛�EらっくうぁE��のばんかめE,
         url: "sam-blackwells-bunker.html",
         category: "場所",
         appearance: [
@@ -12119,8 +12119,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スカーレット・メドウズ・コテージ",
-        yomi: "すか゜れっと゛めどうず゛こて゜じ",
+        name: "スカーレチE��・メドウズ・コチE�Eジ",
+        yomi: "すか゜れっと゛めどぁE��゛こて゜じ",
         url: "scarlett-meadows-cottage.html",
         category: "場所",
         appearance: [
@@ -12130,8 +12130,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スクートの小屋",
-        yomi: "すく゜との小屋",
+        name: "スクート�E小屁E,
+        yomi: "すく゜との小屁E,
         url: "scoots-shack.html",
         category: "場所",
         appearance: [
@@ -12152,8 +12152,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "セネカ・ギャング・キャンプ",
-        yomi: "せねか゛ぎゃんぐ゛きゃんぷ",
+        name: "セネカ・ギャング・キャンチE,
+        yomi: "せ�Eか�Eぎゃんぐ゛きめE��ぷ",
         url: "seneca-gang-camp.html",
         category: "場所",
         appearance: [
@@ -12174,8 +12174,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "セネカ・ロックス",
-        yomi: "せねか゛ろっくす",
+        name: "セネカ・ロチE��ス",
+        yomi: "せ�Eか�Eろっくす",
         url: "seneca-rocks.html",
         category: "場所",
         appearance: [
@@ -12185,8 +12185,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "入植者のコテージとバンカー",
-        yomi: "入植者のコテージとバンカー",
+        name: "入植老E�EコチE�Eジとバンカー",
+        yomi: "入植老E�EコチE�Eジとバンカー",
         url: "settler-cottage-bunker.html",
         category: "場所",
         appearance: [
@@ -12218,8 +12218,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "セトラーズ・リッジ",
-        yomi: "せとら゜ず゛りっじ",
+        name: "セトラーズ・リチE��",
+        yomi: "せとら�Eず�EりっぁE,
         url: "settlers-ridge.html",
         category: "場所",
         appearance: [
@@ -12229,8 +12229,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シェナンドー川",
-        yomi: "しぇなんど゜川",
+        name: "シェナンド�E巁E,
+        yomi: "しぇなんど゜巁E,
         url: "shenandoah-river.html",
         category: "場所",
         appearance: [
@@ -12240,8 +12240,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サイロ補給小屋",
-        yomi: "さいろ補給小屋",
+        name: "サイロ補給小屁E,
+        yomi: "さいろ補給小屁E,
         url: "silo-supply-shed.html",
         category: "場所",
         appearance: [
@@ -12262,8 +12262,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サイト・アルファ",
-        yomi: "さいと゛あるふぁ",
+        name: "サイト�Eアルファ",
+        yomi: "さいと゛ある�EぁE,
         url: "site-alpha.html",
         category: "場所",
         appearance: [
@@ -12296,7 +12296,7 @@ const loreEntries = [
     },
     {
         name: "スケルトン・ラフト",
-        yomi: "すけるとん゛らふと",
+        yomi: "すけるとん�Eら�Eと",
         url: "skeleton-raft.html",
         category: "場所",
         appearance: [
@@ -12306,7 +12306,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スカルボーン・ヴァンテージ",
+        name: "スカルボ�Eン・ヴァンチE�Eジ",
         yomi: "すかるぼ゜ん゛ゔぁんて゜じ",
         url: "skullbone-vantage.html",
         category: "場所",
@@ -12318,7 +12318,7 @@ const loreEntries = [
     },
     {
         name: "スローカムズ・ジョー",
-        yomi: "すろ゜かむず゛じょ゜",
+        yomi: "すろ゜かむず�EじょめE,
         url: "slocums-joe-fo76.html",
         category: "場所",
         appearance: [
@@ -12328,8 +12328,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スローカムズ・ジョー（ワトガ）",
-        yomi: "すろ゜かむず゛じょ゜（わとが）",
+        name: "スローカムズ・ジョー�E�ワトガ�E�E,
+        yomi: "すろ゜かむず�Eじょ゜（わとが！E,
         url: "slocums-joe-watoga.html",
         category: "場所",
         appearance: [
@@ -12339,8 +12339,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スラッジ・トレーラー",
-        yomi: "すらっじ゛とれ゜ら゜",
+        name: "スラチE��・トレーラー",
+        yomi: "すらっじ�Eとれ�Eら�E",
         url: "sludge-trailer.html",
         category: "場所",
         appearance: [
@@ -12351,7 +12351,7 @@ const loreEntries = [
     },
     {
         name: "スラリー・ラン",
-        yomi: "すらり゜゛らん",
+        yomi: "すらり�E゛らめE,
         url: "slurry-run.html",
         category: "場所",
         appearance: [
@@ -12395,7 +12395,7 @@ const loreEntries = [
     },
     {
         name: "ソギー・ボトム",
-        yomi: "そぎ゜゛ぼとむ",
+        yomi: "そぎ゜�Eぼとむ",
         url: "soggy-bottom.html",
         category: "場所",
         appearance: [
@@ -12405,8 +12405,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ソロモン・ハーディ",
-        yomi: "そろもん゛は゜でぃ",
+        name: "ソロモン・ハ�EチE��",
+        yomi: "そろもん゛�E゜でぁE,
         url: "solomon-hardy.html",
         category: "場所",
         appearance: [
@@ -12416,8 +12416,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンズ・オブ・デーン・コンパウンド",
-        yomi: "さんず゛おぶ゛で゜ん゛こんぱうんど",
+        name: "サンズ・オブ�EチE�Eン・コンパウンチE,
+        yomi: "さんず�Eお�E゛で゜ん゛こん�EぁE��ど",
         url: "sons-of-dane-compound.html",
         category: "場所",
         appearance: [
@@ -12427,8 +12427,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サウス・カットスロート・キャンプ",
-        yomi: "さうす゛かっとすろ゜と゛きゃんぷ",
+        name: "サウス・カチE��スロート�EキャンチE,
+        yomi: "さうす�Eかっとすろ゜と゛きめE��ぷ",
         url: "south-cutthroat-camp.html",
         category: "場所",
         appearance: [
@@ -12438,8 +12438,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サウス・マウンテン見張り台",
-        yomi: "さうす゛まうんてん見張り台",
+        name: "サウス・マウンチE��見張り台",
+        yomi: "さうす�EまぁE��てん見張り台",
         url: "south-mountain-lookout.html",
         category: "場所",
         appearance: [
@@ -12449,8 +12449,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サウス・マウンテン核クレーター",
-        yomi: "さうす゛まうんてん核くれ゜た゜",
+        name: "サウス・マウンチE��核クレーター",
+        yomi: "さうす�EまぁE��てん核くれ゜ためE,
         url: "south-mountain-nuke-crater.html",
         category: "場所",
         appearance: [
@@ -12471,8 +12471,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サザン・ベル・モーテル",
-        yomi: "さざん゛べる゛も゜てる",
+        name: "サザン・ベル・モーチE��",
+        yomi: "さざん�Eべる�Eも�EてめE,
         url: "southern-belle-motel.html",
         category: "場所",
         appearance: [
@@ -12483,7 +12483,7 @@ const loreEntries = [
     },
     {
         name: "サウスハンプトン邸",
-        yomi: "さうすはんぷとん邸",
+        yomi: "さうす�Eん�Eとん邸",
         url: "southhampton-estate.html",
         category: "場所",
         appearance: [
@@ -12493,8 +12493,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "まばらなサンデュー叢",
-        yomi: "まばらなサンデュー叢",
+        name: "まばらなサンチE��ー叢",
+        yomi: "まばらなサンチE��ー叢",
         url: "sparse-sundew-grove.html",
         category: "場所",
         appearance: [
@@ -12505,7 +12505,7 @@ const loreEntries = [
     },
     {
         name: "スプルース・ノブ水路",
-        yomi: "すぷる゜す゛のぶ水路",
+        yomi: "す�Eる�Eす�Eのぶ水路",
         url: "spruce-knob-channels.html",
         category: "場所",
         appearance: [
@@ -12526,8 +12526,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スプルース・ノブ・ワークショップ",
-        yomi: "すぷる゜す゛のぶ゛わ゜くしょっぷ",
+        name: "スプルース・ノブ・ワークショチE�E",
+        yomi: "す�Eる�Eす�Eのぶ゛わ゜くしょっぷ",
         url: "spruce-knob-workshop.html",
         category: "場所",
         appearance: [
@@ -12538,7 +12538,7 @@ const loreEntries = [
     },
     {
         name: "スプルース・ノブ",
-        yomi: "すぷる゜す゛のぶ",
+        yomi: "す�Eる�Eす�Eのぶ",
         url: "spruce-knob.html",
         category: "場所",
         appearance: [
@@ -12560,8 +12560,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スティーヴン・スカーベリー",
-        yomi: "すてぃ゜ゔん゛すか゜べり゜",
+        name: "スチE��ーヴン・スカーベリー",
+        yomi: "すてぁE�Eゔん゛すか�Eべり�E",
         url: "steven-scarberry.html",
         category: "場所",
         appearance: [
@@ -12571,8 +12571,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ストーニー・クリーク駅",
-        yomi: "すと゜に゜゛くり゜く駅",
+        name: "スト�Eニ�E・クリーク駁E,
+        yomi: "すと゜に゜�Eくり゜く駁E,
         url: "stony-creek-station.html",
         category: "場所",
         appearance: [
@@ -12583,7 +12583,7 @@ const loreEntries = [
     },
     {
         name: "ストライカー・ロウ",
-        yomi: "すとらいか゜゛ろう",
+        yomi: "すとらいか�E゛ろぁE,
         url: "striker-row.html",
         category: "場所",
         appearance: [
@@ -12593,8 +12593,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スチュアートのデパート",
-        yomi: "すちゅあ゜とのでぱ゜と",
+        name: "スチュアート�EチE��ーチE,
+        yomi: "すちめE��゜とのでぱ゜と",
         url: "stuarts-department-store.html",
         category: "場所",
         appearance: [
@@ -12604,7 +12604,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サミット・オブ・ザ・ワールド",
+        name: "サミット�Eオブ�Eザ・ワールチE,
         yomi: "さみっと゛おぶ゛ざ゛わ゜るど",
         url: "summit-of-the-world.html",
         category: "場所",
@@ -12615,8 +12615,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンデー兄弟のキャビン",
-        yomi: "さんで゜兄弟のきゃびん",
+        name: "サンチE�E允E���Eキャビン",
+        yomi: "さんで゜�E弟�EきゃびめE,
         url: "sunday-brothers-cabin.html",
         category: "場所",
         appearance: [
@@ -12626,8 +12626,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "沈んだ教会",
-        yomi: "沈んだ教会",
+        name: "沈んだ教企E,
+        yomi: "沈んだ教企E,
         url: "sunken-church.html",
         category: "場所",
         appearance: [
@@ -12637,8 +12637,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サニートップ・ベースロッジ",
-        yomi: "さに゜とっぷ゛べ゜すろっじ",
+        name: "サニ�Eトップ�Eベ�EスロチE��",
+        yomi: "さに゜とっぷ゛べ゜すろっぁE,
         url: "sunnytop-ski-lanes-base-lodge.html",
         category: "場所",
         appearance: [
@@ -12659,8 +12659,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サニートップ駅",
-        yomi: "さに゜とっぷ駅",
+        name: "サニ�Eトップ駁E,
+        yomi: "さに゜とっぷ駁E,
         url: "sunnytop-station.html",
         category: "場所",
         appearance: [
@@ -12670,8 +12670,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンライズ・フィールド",
-        yomi: "さんらいず゛ふぃ゜るど",
+        name: "サンライズ・フィールチE,
+        yomi: "さんらいず�EふぁE�Eるど",
         url: "sunrise-field.html",
         category: "場所",
         appearance: [
@@ -12682,7 +12682,7 @@ const loreEntries = [
     },
     {
         name: "サンシャイン・メドウズ工業農場",
-        yomi: "さんしゃいん゛めどうず工業農場",
+        yomi: "さんしゃぁE��゛めどぁE��工業農場",
         url: "sunshine-meadows-farm.html",
         category: "場所",
         appearance: [
@@ -12692,8 +12692,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スーパーデューパーマート（モーガンタウン）",
-        yomi: "す゜ぱ゜でゅ゜ぱ゜ま゜と（も゜がんたうん）",
+        name: "スーパ�EチE��ーパ�Eマ�Eト（モーガンタウン�E�E,
+        yomi: "す�Eぱ゜でめE�Eぱ゜ま゜と�E�も゜がんたぁE���E�E,
         url: "super-duper-mart-morgantown.html",
         category: "場所",
         appearance: [
@@ -12703,8 +12703,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スーパーデューパーマート（ワトガ）",
-        yomi: "す゜ぱ゜でゅ゜ぱ゜ま゜と（わとが）",
+        name: "スーパ�EチE��ーパ�Eマ�Eト（ワトガ�E�E,
+        yomi: "す�Eぱ゜でめE�Eぱ゜ま゜と�E�わとが！E,
         url: "super-duper-mart-watoga.html",
         category: "場所",
         appearance: [
@@ -12714,8 +12714,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スーペリア・サンセット農場",
-        yomi: "す゜ぺりあ゛さんせっと農場",
+        name: "スーペリア・サンセチE��農場",
+        yomi: "す�Eぺりあ゛さんせっと農場",
         url: "superior-sunset-farm.html",
         category: "場所",
         appearance: [
@@ -12725,8 +12725,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サーリーの小屋",
-        yomi: "さ゜り゜の小屋",
+        name: "サーリーの小屁E,
+        yomi: "さ�Eり�Eの小屁E,
         url: "surlys-shack.html",
         category: "場所",
         appearance: [
@@ -12736,8 +12736,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "測量キャンプ・アルファ",
-        yomi: "測量キャンプ・アルファ",
+        name: "測量キャンプ�Eアルファ",
+        yomi: "測量キャンプ�Eアルファ",
         url: "survey-camp-alpha.html",
         category: "場所",
         appearance: [
@@ -12747,8 +12747,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サットン駅",
-        yomi: "さっとん駅",
+        name: "サチE��ン駁E,
+        yomi: "さっとん駁E,
         url: "sutton-station.html",
         category: "場所",
         appearance: [
@@ -12758,8 +12758,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ソードハンターズ・キャンプ",
-        yomi: "そ゜どはんた゜ず゛きゃんぷ",
+        name: "ソードハンターズ・キャンチE,
+        yomi: "そ�Eどはんた゜ず゛きめE��ぷ",
         url: "sword-hunters-camp.html",
         category: "場所",
         appearance: [
@@ -12770,7 +12770,7 @@ const loreEntries = [
     },
     {
         name: "タナグラ・タウン",
-        yomi: "たなぐら゛たうん",
+        yomi: "たなぐら゛たぁE��",
         url: "tanagra-town.html",
         category: "場所",
         appearance: [
@@ -12780,8 +12780,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーニング・マイン",
-        yomi: "ば゜にんぐ゛まいん",
+        name: "バ�Eニング・マイン",
+        yomi: "ば゜にんぐ゛まぁE��",
         url: "the-burning-mine.html",
         category: "場所",
         appearance: [
@@ -12792,7 +12792,7 @@ const loreEntries = [
     },
     {
         name: "ザ・バロウズ",
-        yomi: "ざ゛ばろうず",
+        yomi: "ざ�EばろうぁE,
         url: "the-burrows.html",
         category: "場所",
         appearance: [
@@ -12802,8 +12802,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・クープ",
-        yomi: "ざ゛く゜ぷ",
+        name: "ザ・クーチE,
+        yomi: "ざ�Eく�Eぷ",
         url: "the-coop.html",
         category: "場所",
         appearance: [
@@ -12814,7 +12814,7 @@ const loreEntries = [
     },
     {
         name: "ザ・コア",
-        yomi: "ざ゛こあ",
+        yomi: "ざ�Eこあ",
         url: "the-core.html",
         category: "場所",
         appearance: [
@@ -12836,7 +12836,7 @@ const loreEntries = [
     },
     {
         name: "ザ・クレーター",
-        yomi: "ざ゛くれ゜た゜",
+        yomi: "ざ�Eくれ゜ためE,
         url: "the-crater.html",
         category: "場所",
         appearance: [
@@ -12869,8 +12869,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジェネラルのステーキハウス",
-        yomi: "じぇねらるのすて゜きはうす",
+        name: "ジェネラルのスチE�Eキハウス",
+        yomi: "じぇねらるのすて゜きはぁE��",
         url: "the-generals-steakhouse.html",
         category: "場所",
         appearance: [
@@ -12880,8 +12880,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "巨大ティーポット",
-        yomi: "巨大ティーポット",
+        name: "巨大チE��ーポッチE,
+        yomi: "巨大チE��ーポッチE,
         url: "the-giant-teapot.html",
         category: "場所",
         appearance: [
@@ -12904,7 +12904,7 @@ const loreEntries = [
     },
     {
         name: "マイア",
-        yomi: "まいあ",
+        yomi: "まぁE��",
         url: "the-mire.html",
         category: "場所",
         appearance: [
@@ -12915,7 +12915,7 @@ const loreEntries = [
     },
     {
         name: "ヌカシャイン",
-        yomi: "ぬかしゃいん",
+        yomi: "ぬかしめE��めE,
         url: "the-nukashine.html",
         category: "場所",
         appearance: [
@@ -12925,8 +12925,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・リトリート",
-        yomi: "ざ゛りとり゜と",
+        name: "ザ・リトリーチE,
+        yomi: "ざ�Eりとり�Eと",
         url: "the-retreat.html",
         category: "場所",
         appearance: [
@@ -12936,8 +12936,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラスティ・ピック",
-        yomi: "らすてぃ゛ぴっく",
+        name: "ラスチE��・ピック",
+        yomi: "らすてぁE�EぴっぁE,
         url: "the-rusty-pick.html",
         category: "場所",
         appearance: [
@@ -12947,8 +12947,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スラッジ・ホール",
-        yomi: "すらっじ゛ほ゜る",
+        name: "スラチE��・ホ�Eル",
+        yomi: "すらっじ�Eほ゜る",
         url: "the-sludge-hole.html",
         category: "場所",
         appearance: [
@@ -12958,8 +12958,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・スラッジ・ワークス",
-        yomi: "ざ゛すらっじ゛わ゜くす",
+        name: "ザ・スラチE��・ワークス",
+        yomi: "ざ�Eすらっじ�Eわ�Eくす",
         url: "the-sludge-works.html",
         category: "場所",
         appearance: [
@@ -12970,7 +12970,7 @@ const loreEntries = [
     },
     {
         name: "ザ・ソーン",
-        yomi: "ざ゛そ゜ん",
+        yomi: "ざ�Eそ�EめE,
         url: "the-thorn-fo76.html",
         category: "場所",
         appearance: [
@@ -12980,8 +12980,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトスプリング・ゴルフクラブ",
-        yomi: "ほわいとすぷりんぐ゛ごるふくらぶ",
+        name: "ホワイトスプリング・ゴルフクラチE,
+        yomi: "ほわいとす�Eりんぐ�Eごるふくらぶ",
         url: "the-whitespring-golf-club.html",
         category: "場所",
         appearance: [
@@ -12991,8 +12991,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトスプリング駅",
-        yomi: "ほわいとすぷりんぐ駅",
+        name: "ホワイトスプリング駁E,
+        yomi: "ほわいとす�Eりんぐ駁E,
         url: "the-whitespring-station.html",
         category: "場所",
         appearance: [
@@ -13013,8 +13013,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンダー・マウンテン発電所",
-        yomi: "さんだ゜゛まうんてん発電所",
+        name: "サンダー・マウンチE��発電所",
+        yomi: "さんだ゜�EまぁE��てん発電所",
         url: "thunder-mountain-power-plant.html",
         category: "場所",
         appearance: [
@@ -13024,8 +13024,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンダーマウンテン発電所ヤード",
-        yomi: "さんだ゜まうんてん発電所や゜ど",
+        name: "サンダーマウンチE��発電所ヤーチE,
+        yomi: "さんだ゜まぁE��てん発電所めE�Eど",
         url: "thunder-mountain-pp-yard.html",
         category: "場所",
         appearance: [
@@ -13035,8 +13035,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンダーマウンテン変電所 TM-01",
-        yomi: "さんだ゜まうんてん変電所 tm-01",
+        name: "サンダーマウンチE��変電所 TM-01",
+        yomi: "さんだ゜まぁE��てん変電所 tm-01",
         url: "thunder-mountain-substation-tm-01.html",
         category: "場所",
         appearance: [
@@ -13046,8 +13046,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サンダーマウンテン変電所 TM-02",
-        yomi: "さんだ゜まうんてん変電所 tm-02",
+        name: "サンダーマウンチE��変電所 TM-02",
+        yomi: "さんだ゜まぁE��てん変電所 tm-02",
         url: "thunder-mountain-substation-tm-02.html",
         category: "場所",
         appearance: [
@@ -13057,7 +13057,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トップ・オブ・ザ・ワールド",
+        name: "トップ�Eオブ�Eザ・ワールチE,
         yomi: "とっぷ゛おぶ゛ざ゛わ゜るど",
         url: "top-of-the-world.html",
         category: "場所",
@@ -13068,8 +13068,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "有毒干上がり湖底",
-        yomi: "有毒干上がり湖底",
+        name: "有毒干上がり湖庁E,
+        yomi: "有毒干上がり湖庁E,
         url: "toxic-dried-lakebed.html",
         category: "場所",
         appearance: [
@@ -13090,8 +13090,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トキシックバレー",
-        yomi: "ときしっくばれ゜",
+        name: "トキシチE��バレー",
+        yomi: "ときしっく�Eれ�E",
         url: "toxic-valley.html",
         category: "場所",
         appearance: [
@@ -13101,8 +13101,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トラッパーズ・キャンプ",
-        yomi: "とらっぱ゜ず゛きゃんぷ",
+        name: "トラチE��ーズ・キャンチE,
+        yomi: "とらっぱ゜ず゛きめE��ぷ",
         url: "trappers-camp.html",
         category: "場所",
         appearance: [
@@ -13112,8 +13112,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ツリーハウス・ビレッジ",
-        yomi: "つり゜はうす゛びれっじ",
+        name: "チE��ーハウス・ビレチE��",
+        yomi: "つり�EはぁE��゛�EれっぁE,
         url: "treehouse-village.html",
         category: "場所",
         appearance: [
@@ -13123,8 +13123,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ツリートップス",
-        yomi: "つり゜とっぷす",
+        name: "チE��ートップス",
+        yomi: "つり�EとっぷぁE,
         url: "treetops.html",
         category: "場所",
         appearance: [
@@ -13134,8 +13134,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トンネル・オブ・ラブ",
-        yomi: "とんねる゛おぶ゛らぶ",
+        name: "トンネル・オブ�EラチE,
+        yomi: "とん�Eる�Eお�E゛らぶ",
         url: "tunnel-of-love-fo76.html",
         category: "場所",
         appearance: [
@@ -13145,8 +13145,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ツイン・レイクス",
-        yomi: "ついん゛れいくす",
+        name: "チE��ン・レイクス",
+        yomi: "つぁE��゛れぁE��ぁE,
         url: "twin-lakes.html",
         category: "場所",
         appearance: [
@@ -13156,8 +13156,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ツインパイン・キャビンズ",
-        yomi: "ついんぱいん゛きゃびんず",
+        name: "チE��ンパイン・キャビンズ",
+        yomi: "つぁE��ぱぁE��゛きめE�Eんず",
         url: "twin-pine-cabins.html",
         category: "場所",
         appearance: [
@@ -13167,8 +13167,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "タイガートバレー川",
-        yomi: "たいが゜とばれ゜川",
+        name: "タイガートバレー巁E,
+        yomi: "たいが�Eとばれ�E巁E,
         url: "tygart-valley-river.html",
         category: "場所",
         appearance: [
@@ -13178,8 +13178,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "タイラー郡フェアグラウンド",
-        yomi: "たいら゜郡ふぇあぐらうんど",
+        name: "タイラー郡フェアグラウンチE,
+        yomi: "たいら�E郡ふぁE��ぐらぁE��ど",
         url: "tyler-county-fairgrounds.html",
         category: "場所",
         appearance: [
@@ -13200,8 +13200,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "I-65橋の下",
-        yomi: "i-65橋の下",
+        name: "I-65橋�E丁E,
+        yomi: "i-65橋�E丁E,
         url: "under-the-i-65-bridge.html",
         category: "場所",
         appearance: [
@@ -13211,8 +13211,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "未完成の邸宅",
-        yomi: "未完成の邸宅",
+        name: "未完�Eの邸宁E,
+        yomi: "未完�Eの邸宁E,
         url: "unfinished-mansion.html",
         category: "場所",
         appearance: [
@@ -13246,8 +13246,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "合衆国宇宙管理局 (U.S.S.A.)",
-        yomi: "合衆国宇宙管理局 (u.s.s.a.)",
+        name: "合衁E��宁E��管琁E�� (U.S.S.A.)",
+        yomi: "合衁E��宁E��管琁E�� (u.s.s.a.)",
         url: "ussa.html",
         category: "場所",
         appearance: [
@@ -13259,7 +13259,7 @@ const loreEntries = [
     },
     {
         name: "バレー・ギャレリア",
-        yomi: "ばれ゜゛ぎゃれりあ",
+        yomi: "ばれ�E゛ぎめE��りあ",
         url: "valley-galleria.html",
         category: "場所",
         appearance: [
@@ -13269,8 +13269,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヴァンロウ剥製店",
-        yomi: "ゔぁんろう剥製店",
+        name: "ヴァンロウ剥製庁E,
+        yomi: "ゔぁんろぁE��製庁E,
         url: "van-lowe-taxidermy.html",
         category: "場所",
         appearance: [
@@ -13360,7 +13360,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ボルト 79",
+        name: "ボルチE79",
         yomi: "ぼると 79",
         url: "vault-79.html",
         category: "場所",
@@ -13407,8 +13407,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "隠されたサンデュー叢",
-        yomi: "隠されたサンデュー叢",
+        name: "隠されたサンチE��ー叢",
+        yomi: "隠されたサンチE��ー叢",
         url: "veiled-sundew-grove.html",
         category: "場所",
         appearance: [
@@ -13418,8 +13418,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ベスタの日用品店",
-        yomi: "べすたの日用品店",
+        name: "ベスタの日用品庁E,
+        yomi: "べすたの日用品庁E,
         url: "vestas-housewares.html",
         category: "場所",
         appearance: [
@@ -13429,8 +13429,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ワトガの野外ステージ",
-        yomi: "わとがの野外すて゜じ",
+        name: "ワトガの野外スチE�Eジ",
+        yomi: "わとが�E野外すて゜じ",
         url: "watoga-bandstand.html",
         category: "場所",
         appearance: [
@@ -13441,7 +13441,7 @@ const loreEntries = [
     },
     {
         name: "ワトガ・シビックセンター",
-        yomi: "わとが゛しびっくせんた゜",
+        yomi: "わとが�Eし�EっくせんためE,
         url: "watoga-civic-center.html",
         category: "場所",
         appearance: [
@@ -13452,7 +13452,7 @@ const loreEntries = [
     },
     {
         name: "ワトガ緊急サービス",
-        yomi: "わとが緊急さ゜びす",
+        yomi: "わとが緊急さ�EびぁE,
         url: "watoga-emergency-services.html",
         category: "場所",
         appearance: [
@@ -13462,8 +13462,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ワトガ・エステーツ",
-        yomi: "わとが゛えすて゜つ",
+        name: "ワトガ・エスチE�EチE,
+        yomi: "わとが�Eえすて゜つ",
         url: "watoga-estates.html",
         category: "場所",
         appearance: [
@@ -13506,8 +13506,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ワトガ・ショッピングプラザ",
-        yomi: "わとが゛しょっぴんぐぷらざ",
+        name: "ワトガ・ショチE��ングプラザ",
+        yomi: "わとが�Eしょっぴんぐぷらざ",
         url: "watoga-shopping-plaza.html",
         category: "場所",
         appearance: [
@@ -13517,8 +13517,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ワトガ駅",
-        yomi: "わとが駅",
+        name: "ワトガ駁E,
+        yomi: "わとが駁E,
         url: "watoga-station.html",
         category: "場所",
         appearance: [
@@ -13529,7 +13529,7 @@ const loreEntries = [
     },
     {
         name: "ワトガ・タワーズ",
-        yomi: "わとが゛たわ゜ず",
+        yomi: "わとが�Eたわ゜ず",
         url: "watoga-towers.html",
         category: "場所",
         appearance: [
@@ -13539,8 +13539,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ワトガ・トランジットハブ",
-        yomi: "わとが゛とらんじっとはぶ",
+        name: "ワトガ・トランジチE��ハブ",
+        yomi: "わとが�Eとらんじっとはぶ",
         url: "watoga-transit-hub.html",
         category: "場所",
         appearance: [
@@ -13550,8 +13550,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ワトガ・アンダーグラウンド",
-        yomi: "わとが゛あんだ゜ぐらうんど",
+        name: "ワトガ・アンダーグラウンチE,
+        yomi: "わとが�Eあんだ゜ぐらうんど",
         url: "watoga-underground.html",
         category: "場所",
         appearance: [
@@ -13573,7 +13573,7 @@ const loreEntries = [
     },
     {
         name: "ワトガ",
-        yomi: "わとが",
+        yomi: "わとぁE,
         url: "watoga.html",
         category: "場所",
         appearance: [
@@ -13583,8 +13583,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウェイビー・ウィラードのウォーターパーク",
-        yomi: "うぇいび゜゛うぃら゜どのうぉ゜た゜ぱ゜く",
+        name: "ウェイビ�E・ウィラード�Eウォーターパ�Eク",
+        yomi: "ぁE��ぁE�E゜�EぁE��ら�EどのぁE��゜た゜�E゜く",
         url: "wavy-willards.html",
         category: "場所",
         appearance: [
@@ -13594,8 +13594,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウェルチ駅",
-        yomi: "うぇるち駅",
+        name: "ウェルチE��E,
+        yomi: "ぁE��るち駁E,
         url: "welch-station.html",
         category: "場所",
         appearance: [
@@ -13605,8 +13605,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウェルチ",
-        yomi: "うぇるち",
+        name: "ウェルチE,
+        yomi: "ぁE��るち",
         url: "welch.html",
         category: "場所",
         appearance: [
@@ -13627,8 +13627,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウエスト・テック研究センター",
-        yomi: "うえすと゛てっく研究せんた゜",
+        name: "ウエスト�EチE��ク研究センター",
+        yomi: "ぁE��すと゛てっく研究せんた�E",
         url: "west-tek-research-center.html",
         category: "場所",
         appearance: [
@@ -13650,7 +13650,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング・バンカー",
-        yomi: "ほわいとすぷりんぐ゛ばんか゜",
+        yomi: "ほわいとす�Eりんぐ�EばんかめE,
         url: "whitespring-bunker.html",
         category: "場所",
         appearance: [
@@ -13660,8 +13660,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトスプリング・コテージ",
-        yomi: "ほわいとすぷりんぐ゛こて゜じ",
+        name: "ホワイトスプリング・コチE�Eジ",
+        yomi: "ほわいとす�Eりんぐ�Eこて゜じ",
         url: "whitespring-cottages.html",
         category: "場所",
         appearance: [
@@ -13672,7 +13672,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング・ドライビングレンジ",
-        yomi: "ほわいとすぷりんぐ゛どらいびんぐれんじ",
+        yomi: "ほわいとす�Eりんぐ�EどらいびんぐれんぁE,
         url: "whitespring-driving-range.html",
         category: "場所",
         appearance: [
@@ -13682,8 +13682,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトスプリング・ゴルフクラブ",
-        yomi: "ほわいとすぷりんぐ゛ごるふくらぶ",
+        name: "ホワイトスプリング・ゴルフクラチE,
+        yomi: "ほわいとす�Eりんぐ�Eごるふくらぶ",
         url: "whitespring-golf-club.html",
         category: "場所",
         appearance: [
@@ -13694,7 +13694,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング見張り台",
-        yomi: "ほわいとすぷりんぐ見張り台",
+        yomi: "ほわいとす�Eりんぐ見張り台",
         url: "whitespring-lookout.html",
         category: "場所",
         appearance: [
@@ -13705,7 +13705,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング大統領別荘と博物館",
-        yomi: "ほわいとすぷりんぐ大統領別荘と博物館",
+        yomi: "ほわいとす�Eりんぐ大統領別荘と博物館",
         url: "whitespring-presidential-cottage.html",
         category: "場所",
         appearance: [
@@ -13716,7 +13716,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング避難所",
-        yomi: "ほわいとすぷりんぐ避難所",
+        yomi: "ほわいとす�Eりんぐ避難所",
         url: "whitespring-refuge.html",
         category: "場所",
         appearance: [
@@ -13726,8 +13726,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトスプリング・リゾート",
-        yomi: "ほわいとすぷりんぐ゛りぞ゜と",
+        name: "ホワイトスプリング・リゾーチE,
+        yomi: "ほわいとす�Eりんぐ�Eりぞ゜と",
         url: "whitespring-resort.html",
         category: "場所",
         appearance: [
@@ -13738,7 +13738,7 @@ const loreEntries = [
     },
     {
         name: "ホワイトスプリング・サービスエントランス",
-        yomi: "ほわいとすぷりんぐ゛さ゜びすえんとらんす",
+        yomi: "ほわいとす�Eりんぐ�Eさ�EびすえんとらんぁE,
         url: "whitespring-service-entrance.html",
         category: "場所",
         appearance: [
@@ -13748,8 +13748,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホワイトスプリング駅",
-        yomi: "ほわいとすぷりんぐ駅",
+        name: "ホワイトスプリング駁E,
+        yomi: "ほわいとす�Eりんぐ駁E,
         url: "whitespring-station.html",
         category: "場所",
         appearance: [
@@ -13759,8 +13759,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウィドウズ・パーチ",
-        yomi: "うぃどうず゛ぱ゜ち",
+        name: "ウィドウズ・パ�EチE,
+        yomi: "ぁE��どぁE��゛�E゜ち",
         url: "widows-perch.html",
         category: "場所",
         appearance: [
@@ -13770,8 +13770,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウィラード企業住宅",
-        yomi: "うぃら゜ど企業住宅",
+        name: "ウィラード企業住宁E,
+        yomi: "ぁE��ら�Eど企業住宁E,
         url: "willard-corporate-housing.html",
         category: "場所",
         appearance: [
@@ -13781,8 +13781,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウィルソン兄弟自動車修理工場",
-        yomi: "うぃるそん兄弟自動車修理工場",
+        name: "ウィルソン允E���E動車修琁E��場",
+        yomi: "ぁE��るそん�E弟�E動車修琁E��場",
         url: "wilson-brothers-auto.html",
         category: "場所",
         appearance: [
@@ -13793,7 +13793,7 @@ const loreEntries = [
     },
     {
         name: "ウィクソン農家",
-        yomi: "うぃくそん農家",
+        yomi: "ぁE��くそん農家",
         url: "wixon-homestead.html",
         category: "場所",
         appearance: [
@@ -13803,8 +13803,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウッズ邸",
-        yomi: "うっず邸",
+        name: "ウチE��邸",
+        yomi: "ぁE��ず邸",
         url: "woods-estate.html",
         category: "場所",
         appearance: [
@@ -13847,8 +13847,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "イエロー・サンディの蒸留所",
-        yomi: "いえろ゜゛さんでぃの蒸留所",
+        name: "イエロー・サンチE��の蒸留所",
+        yomi: "ぁE��ろ�E゛さんでぁE�E蒸留所",
         url: "yellow-sandys-still.html",
         category: "場所",
         appearance: [
@@ -13858,9 +13858,9 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ボルトテック・コーポレーション",
-        yomi: "ぼるとてっく゛こ゜ぽれ゜しょん",
-        url: "ボルトテック・コーポレーション.html",
+        name: "ボルトテチE��・コーポレーション",
+        yomi: "ぼるとてっく�Eこ�Eぽれ�EしょめE,
+        url: "ボルトテチE��・コーポレーション.html",
         category: "場所",
         appearance: [
             "Fallout 76"
@@ -13869,9 +13869,9 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "変異パブリック��ベント",
-        yomi: "変異パブリック��ベント",
-        url: "変異パブリック��ベント.html",
+        name: "変異パブリチE���E��E�ベンチE,
+        yomi: "変異パブリチE���E��E�ベンチE,
+        url: "変異パブリチE���E��E�ベンチEhtml",
         category: "場所",
         appearance: [
             "Fallout 76"
@@ -13880,9 +13880,9 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "��スローカム・ジョー",
-        yomi: "��スローカム・ジョー",
-        url: "��スローカム・ジョー.html",
+        name: "�E��E�スローカム・ジョー",
+        yomi: "�E��E�スローカム・ジョー",
+        url: "�E��E�スローカム・ジョー.html",
         category: "場所",
         appearance: [
             "Fallout 76"
@@ -13892,7 +13892,7 @@ const loreEntries = [
     },
     {
         name: "ラピダン・クリーク",
-        yomi: "らぴだんくりーく",
+        yomi: "ら�Eだんくり�EぁE,
         url: "rapidan-creek.html",
         category: "場所",
         appearance: [
@@ -13902,7 +13902,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シェナンドー国立公園",
+        name: "シェナンド�E国立�E圁E,
         yomi: "しぇなんどーこくりつこうえん",
         url: "shenandoah-national-park.html",
         category: "場所",
@@ -13913,8 +13913,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スカイライン・ドライブ",
-        yomi: "すかいらいんどらいぶ",
+        name: "スカイライン・ドライチE,
+        yomi: "すかぁE��ぁE��どらいぶ",
         url: "skyline-drive.html",
         category: "場所",
         appearance: [
@@ -13924,8 +13924,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スカイライン・ドライブ：入り口",
-        yomi: "すかいらいんどらいぶいりぐち",
+        name: "スカイライン・ドライブ：�Eり口",
+        yomi: "すかぁE��ぁE��どらいぶぁE��ぐち",
         url: "skyline-drive-entrance.html",
         category: "場所",
         appearance: [
@@ -13936,7 +13936,7 @@ const loreEntries = [
     },
     {
         name: "ブラウン・ハウス",
-        yomi: "ぶらうんはうす",
+        yomi: "ぶらうん�EぁE��",
         url: "the-brown-house.html",
         category: "場所",
         appearance: [
@@ -13947,7 +13947,7 @@ const loreEntries = [
     },
     {
         name: "トレイル・ヒル展望台",
-        yomi: "とれいるひるてんぼうだい",
+        yomi: "とれいる�EるてんぼぁE��ぁE,
         url: "trail-hill-overlook.html",
         category: "場所",
         appearance: [
@@ -13957,8 +13957,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ツリートップ展望台",
-        yomi: "つりーとっぷてんぼうだい",
+        name: "チE��ートップ展望台",
+        yomi: "つり�EとっぷてんぼぁE��ぁE,
         url: "treetop-lookout.html",
         category: "場所",
         appearance: [
@@ -13969,7 +13969,7 @@ const loreEntries = [
     },
     {
         name: "98 NARリージョナル",
-        yomi: "きゅうじゅうはちなーりーじょなる",
+        yomi: "きゅぁE��めE��はちなーり�EじょなめE,
         url: "98-nar-regional.html",
         category: "場所",
         appearance: [
@@ -13980,7 +13980,7 @@ const loreEntries = [
     },
     {
         name: "ベックウィス農場",
-        yomi: "べっくうぃすのうじょう",
+        yomi: "べっくうぁE��のぁE��めE��",
         url: "beckwith-farm.html",
         category: "場所",
         appearance: [
@@ -13990,8 +13990,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ビッグ・フレッドのBBQシャック",
-        yomi: "びっぐふれっどのばーべきゅーしゃっく",
+        name: "ビッグ・フレチE��のBBQシャチE��",
+        yomi: "びっぐ�EれっどのばーべきゅーしゃっぁE,
         url: "big-freds-bbq-shack.html",
         category: "場所",
         appearance: [
@@ -14002,7 +14002,7 @@ const loreEntries = [
     },
     {
         name: "カーヘンジ",
-        yomi: "かーへんじ",
+        yomi: "か�Eへんじ",
         url: "carhenge-fo76.html",
         category: "場所",
         appearance: [
@@ -14012,7 +14012,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デント＆サンズ建設",
+        name: "チE��ト！E��ンズ建設",
         yomi: "でんとあんどさんずけんせつ",
         url: "dent-and-sons-construction.html",
         category: "場所",
@@ -14023,8 +14023,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファウンデーション補給室",
-        yomi: "ふぁうんでーしょんほきゅうしつ",
+        name: "ファウンチE�Eション補給室",
+        yomi: "ふぁうんでーしょんほきゅぁE��つ",
         url: "foundation-supply-room.html",
         category: "場所",
         appearance: [
@@ -14034,8 +14034,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ファウンダーズ・ホール",
-        yomi: "ふぁうんだーずほーる",
+        name: "ファウンダーズ・ホ�Eル",
+        yomi: "ふぁうんだーずほーめE,
         url: "founders-hall.html",
         category: "場所",
         appearance: [
@@ -14046,7 +14046,7 @@ const loreEntries = [
     },
     {
         name: "ザ・フリークショー",
-        yomi: "ざふりーくしょー",
+        yomi: "ざ�Eり�EくしめE�E",
         url: "the-freak-show.html",
         category: "場所",
         appearance: [
@@ -14056,8 +14056,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エロイーズ湖",
-        yomi: "えろいーずこ",
+        name: "エロイーズ湁E,
+        yomi: "えろぁE�Eずこ",
         url: "lake-eloise.html",
         category: "場所",
         appearance: [
@@ -14067,7 +14067,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "メタル・ドーム",
+        name: "メタル・ド�Eム",
         yomi: "めたるどーむ",
         url: "metal-dome.html",
         category: "場所",
@@ -14078,8 +14078,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ミドル・マウンテン・ピットストップ",
-        yomi: "みどるまうんてんぴっとすとっぷ",
+        name: "ミドル・マウンチE��・ピットストッチE,
+        yomi: "みどるまぁE��てん�Eっとすとっぷ",
         url: "middle-mountain-pitstop.html",
         category: "場所",
         appearance: [
@@ -14089,8 +14089,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マイナーズ・モニュメント",
-        yomi: "まいなーずもにゅめんと",
+        name: "マイナ�Eズ・モニュメンチE,
+        yomi: "まぁE��ーずもにめE��んと",
         url: "miners-monument.html",
         category: "場所",
         appearance: [
@@ -14100,8 +14100,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "密造酒業者の見晴らし台",
-        yomi: "みつぞうしゅぎょうしゃのみはらしだい",
+        name: "寁E��酒業老E�E見晴らし台",
+        yomi: "みつぞうしゅぎょぁE��めE�EみはらしだぁE,
         url: "moonshiners-overlook.html",
         category: "場所",
         appearance: [
@@ -14111,8 +14111,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ミステリアス・ガイドストーン",
-        yomi: "みすてりあすがいどすとーん",
+        name: "ミスチE��アス・ガイドスト�Eン",
+        yomi: "みすてりあすがぁE��すとーめE,
         url: "mysterious-guidestones.html",
         category: "場所",
         appearance: [
@@ -14122,8 +14122,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ノース・マウンテン監視塔",
-        yomi: "のーすまうんてんかんしとう",
+        name: "ノ�Eス・マウンチE��監視塁E,
+        yomi: "のーすまぁE��てんかんしとぁE,
         url: "north-mountain-lookout.html",
         category: "場所",
         appearance: [
@@ -14133,8 +14133,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ポイント・リポーズ",
-        yomi: "ぽいんとりぽーず",
+        name: "ポイント�Eリポ�Eズ",
+        yomi: "ぽぁE��とりぽーぁE,
         url: "point-repose.html",
         category: "場所",
         appearance: [
@@ -14144,8 +14144,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラディアント・ヒルズ",
-        yomi: "らでぃあんとひるず",
+        name: "ラチE��アント�Eヒルズ",
+        yomi: "らでぁE��んとひるず",
         url: "radiant-hills.html",
         category: "場所",
         appearance: [
@@ -14156,7 +14156,7 @@ const loreEntries = [
     },
     {
         name: "リレータワー DP-B5-21",
-        yomi: "りれーたわーでぃーぴーびーふぁいぶにじゅういち",
+        yomi: "りれーたわーでぁE�EぴーびーふぁいぶにじゅぁE��ち",
         url: "relay-tower-dp-b5-21.html",
         category: "場所",
         appearance: [
@@ -14167,7 +14167,7 @@ const loreEntries = [
     },
     {
         name: "シーニック展望台",
-        yomi: "しーにっくてんぼうだい",
+        yomi: "し�EにっくてんぼぁE��ぁE,
         url: "scenic-overlook.html",
         category: "場所",
         appearance: [
@@ -14177,8 +14177,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "シルヴィ＆サンズ伐採キャンプ",
-        yomi: "しるゔぃあんどさんずばっさいきゃんぷ",
+        name: "シルヴィ�E�E��ンズ伐採キャンチE,
+        yomi: "しるゔぃあんどさんず�Eっさいきゃん�E",
         url: "sylvie-and-sons-logging-camp.html",
         category: "場所",
         appearance: [
@@ -14188,8 +14188,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・バウンティ",
-        yomi: "ざばうんてぃ",
+        name: "ザ・バウンチE��",
+        yomi: "ざ�EぁE��てぁE,
         url: "the-bounty.html",
         category: "場所",
         appearance: [
@@ -14199,8 +14199,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ザ・ブレングルーベ",
-        yomi: "ざぶれんぐるーべ",
+        name: "ザ・ブレングルーチE,
+        yomi: "ざ�Eれんぐるーべ",
         url: "the-bullengrube.html",
         category: "場所",
         appearance: [
@@ -14210,8 +14210,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トーマス農場",
-        yomi: "とーますのうじょう",
+        name: "ト�Eマス農場",
+        yomi: "とーます�EぁE��めE��",
         url: "thomas-farm.html",
         category: "場所",
         appearance: [
@@ -14221,8 +14221,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "トキシック・ラリーのミート・アンド・ゴー",
-        yomi: "ときしっくらりーのみーとあんどごー",
+        name: "トキシチE��・ラリーのミ�Eト�Eアンド�Eゴー",
+        yomi: "ときしっくらり�Eのみーとあんどご�E",
         url: "toxic-larrys-meat-n-go.html",
         category: "場所",
         appearance: [
@@ -14233,7 +14233,7 @@ const loreEntries = [
     },
     {
         name: "ワイルドウルフ農場",
-        yomi: "わいるどうるふのうじょう",
+        yomi: "わいるどぁE��ふのぁE��めE��",
         url: "wild-wolf-homestead.html",
         category: "場所",
         appearance: [
@@ -14243,8 +14243,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アレゲニー山脈",
-        yomi: "あれげにーさんみゃく",
+        name: "アレゲニ�E山脁E,
+        yomi: "あれげにーさんみめE��",
         url: "allegheny-mountains.html",
         category: "場所",
         appearance: [
@@ -14266,7 +14266,7 @@ const loreEntries = [
     },
     {
         name: "ドラム缶埋葬地",
-        yomi: "どらむかんまいそうち",
+        yomi: "どら�EかんまぁE��ぁE��",
         url: "barrel-burial.html",
         category: "場所",
         appearance: [
@@ -14277,7 +14277,7 @@ const loreEntries = [
     },
     {
         name: "崖上展望キャビン",
-        yomi: "がけうえてんぼうきゃびん",
+        yomi: "がけぁE��てんぼぁE��めE�EめE,
         url: "clifftop-vista-cabin.html",
         category: "場所",
         appearance: [
@@ -14287,7 +14287,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クロスロード",
+        name: "クロスローチE,
         yomi: "くろすろーど",
         url: "crossroad.html",
         category: "場所",
@@ -14298,7 +14298,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デビルズ・アレー",
+        name: "チE��ルズ・アレー",
         yomi: "でびるずあれー",
         url: "devils-alley.html",
         category: "場所",
@@ -14309,8 +14309,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エディ・ハリソン医師の家",
-        yomi: "えでぃはりそんいしのいえ",
+        name: "エチE��・ハリソン医師の家",
+        yomi: "えでぁE�Eりそんいし�EぁE��",
         url: "dr-eddie-harrisons-house.html",
         category: "場所",
         appearance: [
@@ -14320,8 +14320,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エメット・マウンテン側トンネル",
-        yomi: "えめっとまうんてんがわとんねる",
+        name: "エメチE��・マウンチE��側トンネル",
+        yomi: "えめっとまぁE��てんがわとん�EめE,
         url: "emmett-mountain-side-tunnel.html",
         category: "場所",
         appearance: [
@@ -14331,8 +14331,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "道の終わり",
-        yomi: "みちのおわり",
+        name: "道�E終わめE,
+        yomi: "みちのおわめE,
         url: "end-of-the-road.html",
         category: "場所",
         appearance: [
@@ -14342,8 +14342,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "爆発物の祠",
-        yomi: "ばくはつぶつのほこら",
+        name: "爁E��物の祠",
+        yomi: "ばく�Eつぶつのほこら",
         url: "explosives-shrine.html",
         category: "場所",
         appearance: [
@@ -14353,7 +14353,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "庭師の小屋",
+        name: "庭師の小屁E,
         yomi: "にわしのこや",
         url: "gardeners-shack.html",
         category: "場所",
@@ -14364,8 +14364,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "グランピングサイト",
-        yomi: "ぐらんぴんぐさいと",
+        name: "グランピングサイチE,
+        yomi: "ぐらん�Eんぐさいと",
         url: "glamping-site.html",
         category: "場所",
         appearance: [
@@ -14375,7 +14375,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ノームの菜園",
+        name: "ノ�Eムの菜園",
         yomi: "のーむのさいえん",
         url: "gnomes-allotment.html",
         category: "場所",
@@ -14387,7 +14387,7 @@ const loreEntries = [
     },
     {
         name: "ハロウィン恐怖農場",
-        yomi: "はろうぃんきょうふのうじょう",
+        yomi: "はろうぁE��きょぁE�EのぁE��めE��",
         url: "halloween-fright-farm.html",
         category: "場所",
         appearance: [
@@ -14397,8 +14397,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハロウィンホラー集落",
-        yomi: "はろうぃんほらーしゅうらく",
+        name: "ハロウィンホラー雁E��",
+        yomi: "はろうぁE��ほら�EしゅぁE��ぁE,
         url: "halloween-horror-hamlet.html",
         category: "場所",
         appearance: [
@@ -14408,8 +14408,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ヒルサイド・ケイバーン",
-        yomi: "ひるさいどけいばーん",
+        name: "ヒルサイド�Eケイバ�Eン",
+        yomi: "ひるさぁE��けいばーめE,
         url: "hillside-cavern.html",
         category: "場所",
         appearance: [
@@ -14419,8 +14419,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジャギーズ・クラッグ",
-        yomi: "じゃぎーずくらっぐ",
+        name: "ジャギーズ・クラチE��",
+        yomi: "じゃぎ�EずくらっぁE,
         url: "jaggys-crag.html",
         category: "場所",
         appearance: [
@@ -14431,7 +14431,7 @@ const loreEntries = [
     },
     {
         name: "山腹のキャビン",
-        yomi: "さんぷくのきゃびん",
+        yomi: "さんぷく�EきゃびめE,
         url: "mountainside-cabin.html",
         category: "場所",
         appearance: [
@@ -14441,8 +14441,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ノース・マウンテン演説キャンプ",
-        yomi: "のーすまうんてんえんぜつきゃんぷ",
+        name: "ノ�Eス・マウンチE��演説キャンチE,
+        yomi: "のーすまぁE��てんえんぜつきゃん�E",
         url: "north-mountain-oratory-camp.html",
         category: "場所",
         appearance: [
@@ -14452,8 +14452,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "オールド・ダニエルソン・キャビン",
-        yomi: "おーるどだにえるそんきゃびん",
+        name: "オールド�Eダニエルソン・キャビン",
+        yomi: "お�EるどだにえるそんきゃびめE,
         url: "old-danielson-cabin.html",
         category: "場所",
         appearance: [
@@ -14464,7 +14464,7 @@ const loreEntries = [
     },
     {
         name: "レイダーのトイレと堀",
-        yomi: "れいだーのといれとほり",
+        yomi: "れいだーのとぁE��とほめE,
         url: "raider-outhouse-and-moat.html",
         category: "場所",
         appearance: [
@@ -14474,8 +14474,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "人里離れた洞窟",
-        yomi: "ひとざとはなれたどうくつ",
+        name: "人里離れた洞突E,
+        yomi: "ひとざとはなれたどぁE��つ",
         url: "secluded-cave.html",
         category: "場所",
         appearance: [
@@ -14486,7 +14486,7 @@ const loreEntries = [
     },
     {
         name: "スキーリフト",
-        yomi: "すきーりふと",
+        yomi: "すきーり�Eと",
         url: "ski-lift.html",
         category: "場所",
         appearance: [
@@ -14496,8 +14496,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スキーリフト・ベースキャンプ",
-        yomi: "すきーりふとべーすきゃんぷ",
+        name: "スキーリフト・ベ�EスキャンチE,
+        yomi: "すきーり�EとべーすきめE��ぷ",
         url: "ski-lift-base-camp.html",
         category: "場所",
         appearance: [
@@ -14507,8 +14507,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "綱渡り",
-        yomi: "つなわたり",
+        name: "綱渡めE,
+        yomi: "つなわためE,
         url: "tightrope.html",
         category: "場所",
         appearance: [
@@ -14519,7 +14519,7 @@ const loreEntries = [
     },
     {
         name: "散策路のピクニックエリアと展望台",
-        yomi: "さんさくろのぴくにっくえりあとてんぼうだい",
+        yomi: "さんさくろ�EぴくにっくえりあとてんぼぁE��ぁE,
         url: "walking-trail-picnic-area.html",
         category: "場所",
         appearance: [
@@ -14529,7 +14529,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スコーチビースト",
+        name: "スコーチビースチE,
         yomi: "すこーちびーすと",
         url: "scorchbeast-fo76.html",
         category: "クリーチャー",
@@ -14540,8 +14540,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スコーチビースト・クイーン",
-        yomi: "すこーちびーすとくいーん",
+        name: "スコーチビースト�Eクイーン",
+        yomi: "すこーちびーすとくいーめE,
         url: "scorchbeast-queen.html",
         category: "クリーチャー",
         appearance: [
@@ -14552,7 +14552,7 @@ const loreEntries = [
     },
     {
         name: "フェラル・グール",
-        yomi: "ふぇらるぐーる",
+        yomi: "ふぁE��るぐーめE,
         url: "feral-ghoul-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14563,7 +14563,7 @@ const loreEntries = [
     },
     {
         name: "グラフトン・モンスター",
-        yomi: "ぐらふとんもんすたー",
+        yomi: "ぐらふとんもんすた�E",
         url: "grafton-monster.html",
         category: "クリーチャー",
         appearance: [
@@ -14574,7 +14574,7 @@ const loreEntries = [
     },
     {
         name: "マイアラーク",
-        yomi: "まいあらーく",
+        yomi: "まぁE��ら�EぁE,
         url: "mirelurk-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14584,8 +14584,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラッドスコルピオン",
-        yomi: "らっどすこるぴおん",
+        name: "ラチE��スコルピオン",
+        yomi: "らっどすこる�Eおん",
         url: "radscorpion-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14596,7 +14596,7 @@ const loreEntries = [
     },
     {
         name: "スナリーギャスター",
-        yomi: "すなりーぎゃすたー",
+        yomi: "すなり�Eぎゃすたー",
         url: "snallygaster-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14606,8 +14606,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウェンディゴ・コロッサス",
-        yomi: "うぇんでぃごころっさす",
+        name: "ウェンチE��ゴ・コロチE��ス",
+        yomi: "ぁE��んでぁE��ころっさす",
         url: "wendigo-colossus.html",
         category: "クリーチャー",
         appearance: [
@@ -14618,7 +14618,7 @@ const loreEntries = [
     },
     {
         name: "ヤオ・グアイ",
-        yomi: "やおぐあい",
+        yomi: "めE��ぐあぁE,
         url: "yao-guai-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14628,8 +14628,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ジ・インターローパー",
-        yomi: "じいんたーろーぱー",
+        name: "ジ・インターローパ�E",
+        yomi: "じいんたーろ�Eぱー",
         url: "the-interloper.html",
         category: "クリーチャー",
         appearance: [
@@ -14639,8 +14639,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウルトラサイト・タイタン",
-        yomi: "うるとらさいとたいたん",
+        name: "ウルトラサイト�Eタイタン",
+        yomi: "ぁE��とらさぁE��たいたん",
         url: "ultracite-titan.html",
         category: "クリーチャー",
         appearance: [
@@ -14650,7 +14650,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハニービースト",
+        name: "ハニービ�EスチE,
         yomi: "はにーびーすと",
         url: "honey-beast-fo76.html",
         category: "クリーチャー",
@@ -14662,7 +14662,7 @@ const loreEntries = [
     },
     {
         name: "メガ・スロス",
-        yomi: "めがすろす",
+        yomi: "めがすろぁE,
         url: "mega-sloth-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14673,7 +14673,7 @@ const loreEntries = [
     },
     {
         name: "フォグ・クロウラー",
-        yomi: "ふぉぐくろうらー",
+        yomi: "ふぉぐくろぁE��ー",
         url: "fog-crawler-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14684,7 +14684,7 @@ const loreEntries = [
     },
     {
         name: "フローター",
-        yomi: "ふろーたー",
+        yomi: "ふろ�Eた�E",
         url: "floater-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14694,7 +14694,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ガルパー",
+        name: "ガルパ�E",
         yomi: "がるぱー",
         url: "gulper-fo76.html",
         category: "クリーチャー",
@@ -14705,7 +14705,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ハーミット・クラブ",
+        name: "ハ�Eミット�EクラチE,
         yomi: "はーみっとくらぶ",
         url: "hermit-crab-fo76.html",
         category: "クリーチャー",
@@ -14717,7 +14717,7 @@ const loreEntries = [
     },
     {
         name: "マイアラーク・ハンター",
-        yomi: "まいあらーくはんたー",
+        yomi: "まぁE��ら�Eく�Eんたー",
         url: "mirelurk-hunter-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14728,7 +14728,7 @@ const loreEntries = [
     },
     {
         name: "マイアラーク・キング",
-        yomi: "まいあらーくきんぐ",
+        yomi: "まぁE��ら�Eくきんぐ",
         url: "mirelurk-king-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14739,7 +14739,7 @@ const loreEntries = [
     },
     {
         name: "マイアラーク・クイーン",
-        yomi: "まいあらーくくいーん",
+        yomi: "まぁE��ら�EくくぁE�EめE,
         url: "mirelurk-queen-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14749,8 +14749,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モールラット",
-        yomi: "もーるらっと",
+        name: "モールラチE��",
+        yomi: "も�Eるらっと",
         url: "mole-rat-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14761,7 +14761,7 @@ const loreEntries = [
     },
     {
         name: "モングレル",
-        yomi: "もんぐれる",
+        yomi: "もんぐれめE,
         url: "mongrel-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14771,8 +14771,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ミュータント・ハウンド",
-        yomi: "みゅーたんとはうんど",
+        name: "ミュータント�EハウンチE,
+        yomi: "みめE�EたんとはぁE��ど",
         url: "mutant-hound-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14782,8 +14782,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラッドローチ",
-        yomi: "らっどろーち",
+        name: "ラチE��ローチE,
+        yomi: "らっどろ�Eち",
         url: "radroach-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14793,8 +14793,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラッドスタッグ",
-        yomi: "らっどすたっぐ",
+        name: "ラチE��スタチE��",
+        yomi: "らっどすたっぁE,
         url: "radstag-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14804,8 +14804,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スティングウィング",
-        yomi: "すてぃんぐうぃんぐ",
+        name: "スチE��ングウィング",
+        yomi: "すてぁE��ぐうぁE��ぁE,
         url: "stingwing-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14815,7 +14815,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラッドトード",
+        name: "ラチE��ト�EチE,
         yomi: "らっどとーど",
         url: "radtoad-fo76.html",
         category: "クリーチャー",
@@ -14826,8 +14826,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラッドホッグ",
-        yomi: "らっどほっぐ",
+        name: "ラチE��ホッグ",
+        yomi: "らっどほっぁE,
         url: "radhog-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14837,7 +14837,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ラッドラット",
+        name: "ラチE��ラチE��",
         yomi: "らっどらっと",
         url: "radrat-fo76.html",
         category: "クリーチャー",
@@ -14848,8 +14848,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ティック",
-        yomi: "てぃっく",
+        name: "チE��チE��",
+        yomi: "てぁE��ぁE,
         url: "tick-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14859,7 +14859,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ストラングラー・ハート",
+        name: "ストラングラー・ハ�EチE,
         yomi: "すとらんぐらーはーと",
         url: "strangler-heart-fo76.html",
         category: "クリーチャー",
@@ -14870,8 +14870,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "スーパーミュータント・ベヒモス",
-        yomi: "すーぱーみゅーたんとべひもす",
+        name: "スーパ�Eミュータント�Eベヒモス",
+        yomi: "す�EぱーみめE�Eたんとべひもす",
         url: "super-mutant-behemoth-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14881,8 +14881,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウルトラサイト・テラー",
-        yomi: "うるとらさいとてらー",
+        name: "ウルトラサイト�EチE��ー",
+        yomi: "ぁE��とらさぁE��てら�E",
         url: "ultracite-terror-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14904,7 +14904,7 @@ const loreEntries = [
     },
     {
         name: "ワイズ・モスマン",
-        yomi: "わいずもすまん",
+        yomi: "わいずもすまめE,
         url: "wise-mothman-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14914,8 +14914,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "マイアラーク・スポーン",
-        yomi: "まいあらーくすぽーん",
+        name: "マイアラーク・スポ�Eン",
+        yomi: "まぁE��ら�EくすぽーめE,
         url: "mirelurk-spawn-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14925,8 +14925,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "エイリアン（概要）",
-        yomi: "えいりあん",
+        name: "エイリアン�E�概要E��E,
+        yomi: "えいりあめE,
         url: "aliens-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14936,7 +14936,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "魚",
+        name: "魁E,
         yomi: "さかな",
         url: "fish-fo76.html",
         category: "クリーチャー",
@@ -14947,8 +14947,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ドルフィッシュ",
-        yomi: "どるふぃっしゅ",
+        name: "ドルフィチE��ュ",
+        yomi: "どる�EぁE��しゅ",
         url: "dolphish-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14959,7 +14959,7 @@ const loreEntries = [
     },
     {
         name: "ファイアフライ",
-        yomi: "ふぁいあふらい",
+        yomi: "ふぁいあ�Eらい",
         url: "firefly-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14970,7 +14970,7 @@ const loreEntries = [
     },
     {
         name: "ハエ",
-        yomi: "はえ",
+        yomi: "はぁE,
         url: "fly-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -14980,7 +14980,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "キツネ",
+        name: "キチE��",
         yomi: "きつね",
         url: "fox-fo76.html",
         category: "クリーチャー",
@@ -14992,7 +14992,7 @@ const loreEntries = [
     },
     {
         name: "カエル",
-        yomi: "かえる",
+        yomi: "かえめE,
         url: "frog-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15002,8 +15002,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "イグアナ",
-        yomi: "いぐあな",
+        name: "イグアチE,
+        yomi: "ぁE��あな",
         url: "iguana-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15014,7 +15014,7 @@ const loreEntries = [
     },
     {
         name: "ヒル",
-        yomi: "ひる",
+        yomi: "ひめE,
         url: "leech-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15025,7 +15025,7 @@ const loreEntries = [
     },
     {
         name: "オポッサム",
-        yomi: "おぽっさむ",
+        yomi: "おぽっさ�E",
         url: "opossum-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15036,7 +15036,7 @@ const loreEntries = [
     },
     {
         name: "フクロウ",
-        yomi: "ふくろう",
+        yomi: "ふくろぁE,
         url: "owl-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15046,8 +15046,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フクロウ（子）",
-        yomi: "ふくろうこ",
+        name: "フクロウ�E�子！E,
+        yomi: "ふくろぁE��",
         url: "owlet-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15058,7 +15058,7 @@ const loreEntries = [
     },
     {
         name: "ウサギ",
-        yomi: "うさぎ",
+        yomi: "ぁE��ぁE,
         url: "rabbit-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15080,7 +15080,7 @@ const loreEntries = [
     },
     {
         name: "ハゲタカ",
-        yomi: "はげたか",
+        yomi: "はげたぁE,
         url: "vulture-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15090,8 +15090,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウルフ",
-        yomi: "うるふ",
+        name: "ウルチE,
+        yomi: "ぁE��ふ",
         url: "wolf-fo76.html",
         category: "クリーチャー",
         appearance: [
@@ -15102,7 +15102,7 @@ const loreEntries = [
     },
     {
         name: "マキシマス",
-        yomi: "まきします",
+        yomi: "まきしまぁE,
         url: "maximus-tv.html",
         category: "人物",
         appearance: [
@@ -15112,8 +15112,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "チェット",
-        yomi: "ちぇっと",
+        name: "チェチE��",
+        yomi: "ちぁE��と",
         url: "chet-tv.html",
         category: "人物",
         appearance: [
@@ -15123,8 +15123,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デイン",
-        yomi: "でいん",
+        name: "チE��ン",
+        yomi: "でぁE��",
         url: "dane-tv.html",
         category: "人物",
         appearance: [
@@ -15134,8 +15134,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "サディアス",
-        yomi: "さでぃあす",
+        name: "サチE��アス",
+        yomi: "さでぁE��ぁE,
         url: "thaddeus-tv.html",
         category: "人物",
         appearance: [
@@ -15145,8 +15145,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ウッディ・トーマス",
-        yomi: "うっでぃとーます",
+        name: "ウチE��ィ・ト�Eマス",
+        yomi: "ぁE��でぁE��ーまぁE,
         url: "woody-thomas.html",
         category: "人物",
         appearance: [
@@ -15157,7 +15157,7 @@ const loreEntries = [
     },
     {
         name: "ヴェロニカ",
-        yomi: "う゛ぇろにか",
+        yomi: "ぁE�EぁE��にぁE,
         url: "veronica-tv.html",
         category: "人物",
         appearance: [
@@ -15167,8 +15167,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "デイヴィー",
-        yomi: "でいう゛ぃー",
+        name: "チE��ヴィー",
+        yomi: "でぁE��゛ぃー",
         url: "davey-tv.html",
         category: "人物",
         appearance: [
@@ -15179,7 +15179,7 @@ const loreEntries = [
     },
     {
         name: "マリアン",
-        yomi: "まりあん",
+        yomi: "まりあめE,
         url: "marianne-tv.html",
         category: "人物",
         appearance: [
@@ -15189,8 +15189,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "バーディ",
-        yomi: "ばーでぃ",
+        name: "バ�EチE��",
+        yomi: "ばーでぁE,
         url: "birdie-tv.html",
         category: "人物",
         appearance: [
@@ -15200,8 +15200,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "監督官ベンジャミン",
-        yomi: "かんとくかんべんじゃみん",
+        name: "監督官�Eンジャミン",
+        yomi: "かんとくかんべんじめE��めE,
         url: "benjamin-tv.html",
         category: "人物",
         appearance: [
@@ -15212,7 +15212,7 @@ const loreEntries = [
     },
     {
         name: "解放されたグール",
-        yomi: "かいほうされたぐーる",
+        yomi: "かいほぁE��れたぐ�EめE,
         url: "freed-ghoul-tv.html",
         category: "人物",
         appearance: [
@@ -15222,8 +15222,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "モンティ",
-        yomi: "もんてぃ",
+        name: "モンチE��",
+        yomi: "もんてぁE,
         url: "monty-tv.html",
         category: "人物",
         appearance: [
@@ -15233,7 +15233,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ショートサイト士官",
+        name: "ショートサイト士宁E,
         yomi: "しょーとさいと",
         url: "shortsight-tv.html",
         category: "人物",
@@ -15244,8 +15244,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "クインタス長老聖職者",
-        yomi: "くいんたす",
+        name: "クインタス長老聖職老E,
+        yomi: "くいんたぁE,
         url: "quintus-tv.html",
         category: "人物",
         appearance: [
@@ -15266,8 +15266,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フェリックス聖職者",
-        yomi: "ふぇりっくす",
+        name: "フェリチE��ス聖�E老E,
+        yomi: "ふぁE��っくす",
         url: "felix-tv.html",
         category: "人物",
         appearance: [
@@ -15277,7 +15277,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ホルヘ",
+        name: "ホルチE,
         yomi: "ほるへ",
         url: "jorge-tv.html",
         category: "人物",
@@ -15288,7 +15288,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "フレデリック・シンクレア",
+        name: "フレチE��チE��・シンクレア",
         yomi: "ふれでりっくしんくれあ",
         url: "frederick-sinclair-tv.html",
         category: "人物",
@@ -15299,8 +15299,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ロバート・ハウス",
-        yomi: "ろばーとはうす",
+        name: "ロバ�Eト�Eハウス",
+        yomi: "ろ�EーとはぁE��",
         url: "robert-house-tv.html",
         category: "人物",
         appearance: [
@@ -16554,7 +16554,7 @@ const loreEntries = [
     },
     {
         name: "コーガン",
-        yomi: "こーがん",
+        yomi: "こ�Eがん",
         url: "kogan.html",
         category: "人物",
         appearance: [
@@ -20380,8 +20380,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "中傷ボット",
-        yomi: "中傷ボット",
+        name: "中傷ボッチE,
+        yomi: "中傷ボッチE,
         url: "slander-bot.html",
         category: "",
         appearance: [
@@ -20390,8 +20390,8 @@ const loreEntries = [
         date: "2026-02-13"
     },
     {
-        name: "シェイディ・サンズ",
-        yomi: "シェイディ・サンズ",
+        name: "シェイチE��・サンズ",
+        yomi: "シェイチE��・サンズ",
         url: "shady-sands.html",
         category: "",
         appearance: [
@@ -20404,8 +20404,8 @@ const loreEntries = [
         date: "2026-02-12"
     },
     {
-        name: "フランキー・ベケット",
-        yomi: "フランキー・ベケット",
+        name: "フランキー・ベケチE��",
+        yomi: "フランキー・ベケチE��",
         url: "frankie-beckett.html",
         category: "",
         appearance: [
@@ -20414,8 +20414,8 @@ const loreEntries = [
         date: "2026-02-11"
     },
     {
-        name: "アラデシュ",
-        yomi: "アラデシュ",
+        name: "アラチE��ュ",
+        yomi: "アラチE��ュ",
         url: "aradesh.html",
         category: "",
         appearance: [
@@ -20425,8 +20425,8 @@ const loreEntries = [
         date: "2026-02-11"
     },
     {
-        name: "ロニー",
-        yomi: "ロニー",
+        name: "ロニ�E",
+        yomi: "ロニ�E",
         url: "ronnie.html",
         category: "",
         appearance: [
@@ -20435,8 +20435,8 @@ const loreEntries = [
         date: "2026-02-10"
     },
     {
-        name: "ブラッド・イーグル ",
-        yomi: "ブラッド・イーグル ",
+        name: "ブラチE��・イーグル ",
+        yomi: "ブラチE��・イーグル ",
         url: "blood-eagle.html",
         category: "",
         appearance: [
@@ -20455,8 +20455,8 @@ const loreEntries = [
         date: "2026-02-09"
     },
     {
-        name: "B.O.S.アウトキャスト",
-        yomi: "B.O.S.アウトキャスト",
+        name: "B.O.S.アウトキャスチE,
+        yomi: "B.O.S.アウトキャスチE,
         url: "b-o-s-outcast.html",
         category: "",
         appearance: [
@@ -20468,8 +20468,8 @@ const loreEntries = [
         date: "2026-02-09"
     },
     {
-        name: "ベケット ",
-        yomi: "ベケット ",
+        name: "ベケチE�� ",
+        yomi: "ベケチE�� ",
         url: "beckett.html",
         category: "",
         appearance: [
@@ -20500,8 +20500,8 @@ const loreEntries = [
         date: "2026-02-07"
     },
     {
-        name: "ビルボードのジャンクキャンプ",
-        yomi: "ビルボードのジャンクキャンプ",
+        name: "ビルボ�Eド�EジャンクキャンチE,
+        yomi: "ビルボ�Eド�EジャンクキャンチE,
         url: "billboard-junk-camp.html",
         category: "場所",
         appearance: [
@@ -20510,8 +20510,8 @@ const loreEntries = [
         date: "2026-02-06"
     },
     {
-        name: "アリステア",
-        yomi: "アリステア",
+        name: "アリスチE��",
+        yomi: "アリスチE��",
         url: "alistair.html",
         category: "クリーチャー",
         appearance: [
@@ -20532,8 +20532,8 @@ const loreEntries = [
         date: "2026-02-05"
     },
     {
-        name: "ブラッドバグ",
-        yomi: "ブラッドバグ",
+        name: "ブラチE��バグ",
+        yomi: "ブラチE��バグ",
         url: "blood-bug.html",
         category: "",
         appearance: [
@@ -20607,8 +20607,8 @@ const loreEntries = [
         date: "2026-02-01"
     },
     {
-        name: "ジェフ・ナカムラ",
-        yomi: "ジェフ・ナカムラ",
+        name: "ジェフ�Eナカムラ",
+        yomi: "ジェフ�Eナカムラ",
         url: "jeff-nakamura.html",
         category: "",
         appearance: [
@@ -20617,8 +20617,8 @@ const loreEntries = [
         date: "2026-01-31"
     },
     {
-        name: "エイミー・ケリー",
-        yomi: "エイミー・ケリー",
+        name: "エイミ�E・ケリー",
+        yomi: "エイミ�E・ケリー",
         url: "amy-kelly.html",
         category: "",
         appearance: [
@@ -20638,8 +20638,8 @@ const loreEntries = [
         date: "2026-01-30"
     },
     {
-        name: "タイガート水処理場 ",
-        yomi: "タイガート水処理場 ",
+        name: "タイガート水処琁E�� ",
+        yomi: "タイガート水処琁E�� ",
         url: "tygart-water-treatment-plant.html",
         category: "",
         appearance: [
@@ -20648,8 +20648,8 @@ const loreEntries = [
         date: "2026-01-29"
     },
     {
-        name: "サマーズビル",
-        yomi: "サマーズビル",
+        name: "サマ�Eズビル",
+        yomi: "サマ�Eズビル",
         url: "summersville.html",
         category: "",
         appearance: [
@@ -20670,8 +20670,8 @@ const loreEntries = [
         date: "2026-01-28"
     },
     {
-        name: "ダンカン＆ダンカン・ロボティクス",
-        yomi: "ダンカン＆ダンカン・ロボティクス",
+        name: "ダンカン�E�E��ンカン・ロボティクス",
+        yomi: "ダンカン�E�E��ンカン・ロボティクス",
         url: "duncan-duncan-robotics.html",
         category: "",
         appearance: [
@@ -20690,8 +20690,8 @@ const loreEntries = [
         date: "2026-01-27"
     },
     {
-        name: "パイパー・ライト",
-        yomi: "パイパー・ライト",
+        name: "パイパ�E・ライチE,
+        yomi: "パイパ�E・ライチE,
         url: "piper-light.html",
         category: "",
         appearance: [
@@ -20701,8 +20701,8 @@ const loreEntries = [
         date: "2026-01-27"
     },
     {
-        name: "アッシュ・ローズ",
-        yomi: "アッシュ・ローズ",
+        name: "アチE��ュ・ローズ",
+        yomi: "アチE��ュ・ローズ",
         url: "ash-rose.html",
         category: "",
         appearance: [
@@ -20721,8 +20721,8 @@ const loreEntries = [
         date: "2026-01-26"
     },
     {
-        name: "蜂の群れ",
-        yomi: "蜂の群れ",
+        name: "蜂�E群めE,
+        yomi: "蜂�E群めE,
         url: "swarm-of-bees.html",
         category: "",
         appearance: [
@@ -20731,8 +20731,8 @@ const loreEntries = [
         date: "2026-01-25"
     },
     {
-        name: "オルガン洞窟 ",
-        yomi: "オルガン洞窟 ",
+        name: "オルガン洞突E",
+        yomi: "オルガン洞突E",
         url: "organ-cave.html",
         category: "武器",
         appearance: [
@@ -20741,8 +20741,8 @@ const loreEntries = [
         date: "2026-01-25"
     },
     {
-        name: "アデレード",
-        yomi: "アデレード",
+        name: "アチE��ーチE,
+        yomi: "アチE��ーチE,
         url: "adelaide.html",
         category: "",
         appearance: [
@@ -20752,8 +20752,8 @@ const loreEntries = [
         date: "2026-01-24"
     },
     {
-        name: "ラッドガル",
-        yomi: "ラッドガル",
+        name: "ラチE��ガル",
+        yomi: "ラチE��ガル",
         url: "ladgal.html",
         category: "",
         appearance: [
@@ -20763,8 +20763,8 @@ const loreEntries = [
         date: "2026-01-24"
     },
     {
-        name: "ドッティ",
-        yomi: "ドッティ",
+        name: "ドッチE��",
+        yomi: "ドッチE��",
         url: "dotty.html",
         category: "",
         appearance: [
@@ -20794,8 +20794,8 @@ const loreEntries = [
         date: "2026-01-22"
     },
     {
-        name: "海賊放送",
-        yomi: "海賊放送",
+        name: "海賊放送E,
+        yomi: "海賊放送E,
         url: "pirate-broadcast.html",
         category: "",
         appearance: [
@@ -20824,8 +20824,8 @@ const loreEntries = [
         date: "2026-01-20"
     },
     {
-        name: "ジュンコおばあちゃん",
-        yomi: "ジュンコおばあちゃん",
+        name: "ジュンコお�EあちめE��",
+        yomi: "ジュンコお�EあちめE��",
         url: "junko-grandma.html",
         category: "",
         appearance: [
@@ -20844,8 +20844,8 @@ const loreEntries = [
         date: "2026-01-19"
     },
     {
-        name: "デル・ローソン",
-        yomi: "デル・ローソン",
+        name: "チE��・ローソン",
+        yomi: "チE��・ローソン",
         url: "del-lawson.html",
         category: "",
         appearance: [
@@ -20864,8 +20864,8 @@ const loreEntries = [
         date: "2026-01-18"
     },
     {
-        name: "グレロック",
-        yomi: "グレロック",
+        name: "グレロチE��",
+        yomi: "グレロチE��",
         url: "grelock.html",
         category: "",
         appearance: [
@@ -20884,8 +20884,8 @@ const loreEntries = [
         date: "2026-01-17"
     },
     {
-        name: "ドクター・ゾルボ",
-        yomi: "ドクター・ゾルボ",
+        name: "ドクター・ゾルチE,
+        yomi: "ドクター・ゾルチE,
         url: "dr-zorbo.html",
         category: "",
         appearance: [
@@ -20905,8 +20905,8 @@ const loreEntries = [
         date: "2026-01-16"
     },
     {
-        name: "PTSアップデート – 2026年1月16日",
-        yomi: "PTSアップデート – 2026年1月16日",
+        name: "PTSアチE�EチE�EチE E2026年1朁E6日",
+        yomi: "PTSアチE�EチE�EチE E2026年1朁E6日",
         url: "pts-update-january-16-2026.html",
         category: "",
         appearance: [
@@ -20947,8 +20947,8 @@ const loreEntries = [
         date: "2026-01-14"
     },
     {
-        name: "ビッグ・アルのタトゥー・パーラー",
-        yomi: "ビッグ・アルのタトゥー・パーラー",
+        name: "ビッグ・アルのタトゥー・パ�Eラー",
+        yomi: "ビッグ・アルのタトゥー・パ�Eラー",
         url: "big-al-s-tattoo-parlor.html",
         category: "",
         appearance: [
@@ -20957,8 +20957,8 @@ const loreEntries = [
         date: "2026-01-13"
     },
     {
-        name: "ウエスト・テック (West Tek)",
-        yomi: "ウエスト・テック (West Tek)",
+        name: "ウエスト�EチE��ク (West Tek)",
+        yomi: "ウエスト�EチE��ク (West Tek)",
         url: "west-tek.html",
         category: "",
         appearance: [
@@ -20968,8 +20968,8 @@ const loreEntries = [
         date: "2026-01-13"
     },
     {
-        name: "D.B.テクニカルハイスクール",
-        yomi: "D.B.テクニカルハイスクール",
+        name: "D.B.チE��ニカルハイスクール",
+        yomi: "D.B.チE��ニカルハイスクール",
         url: "d-b-technical-high-school.html",
         category: "",
         appearance: [
@@ -20978,8 +20978,8 @@ const loreEntries = [
         date: "2026-01-12"
     },
     {
-        name: "バナナ・ユッカの果実",
-        yomi: "バナナ・ユッカの果実",
+        name: "バナナ�EユチE��の果宁E,
+        yomi: "バナナ�EユチE��の果宁E,
         url: "banana-yucca-fruit.html",
         category: "植物",
         appearance: [
@@ -21011,10 +21011,10 @@ const loreEntries = [
         date: "2026-01-10"
     },
     {
-        name: "サンセット・サルサパリラ",
-        yomi: "サンセット・サルサパリラ",
+        name: "サンセチE��・サルサパリラ",
+        yomi: "サンセチE��・サルサパリラ",
         url: "sunset-sarsaparilla.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76",
             "Fallout: New Vegas"
@@ -21022,8 +21022,8 @@ const loreEntries = [
         date: "2026-01-10"
     },
     {
-        name: "キャッピー",
-        yomi: "キャッピー",
+        name: "キャチE��ー",
+        yomi: "キャチE��ー",
         url: "cappy.html",
         category: "",
         appearance: [
@@ -21045,8 +21045,8 @@ const loreEntries = [
         date: "2026-01-09"
     },
     {
-        name: "ビーバー ",
-        yomi: "ビーバー ",
+        name: "ビ�Eバ�E ",
+        yomi: "ビ�Eバ�E ",
         url: "beaver.html",
         category: "クリーチャー",
         appearance: [
@@ -21091,7 +21091,7 @@ const loreEntries = [
         name: "ヌカ・コーラ (Nuka-Cola)",
         yomi: "ヌカ・コーラ (Nuka-Cola)",
         url: "nuka-cola.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76"
         ],
@@ -21108,8 +21108,8 @@ const loreEntries = [
         date: "2026-01-06"
     },
     {
-        name: "変異パブリックイベント",
-        yomi: "変異パブリックイベント",
+        name: "変異パブリチE��イベンチE,
+        yomi: "変異パブリチE��イベンチE,
         url: "mutation-public-event.html",
         category: "",
         appearance: [
@@ -21140,8 +21140,8 @@ const loreEntries = [
         date: "2026-01-05"
     },
     {
-        name: "アークトス・ファーマ (企業) ",
-        yomi: "アークトス・ファーマ (企業) ",
+        name: "アークトス・ファーチE(企業) ",
+        yomi: "アークトス・ファーチE(企業) ",
         url: "arktos-pharma-corporate.html",
         category: "",
         appearance: [
@@ -21150,8 +21150,8 @@ const loreEntries = [
         date: "2026-01-04"
     },
     {
-        name: "スコーチ",
-        yomi: "スコーチ",
+        name: "スコーチE,
+        yomi: "スコーチE,
         url: "scorch.html",
         category: "クリーチャー",
         appearance: [
@@ -21170,8 +21170,8 @@ const loreEntries = [
         date: "2026-01-03"
     },
     {
-        name: "ウェンディゴ",
-        yomi: "ウェンディゴ",
+        name: "ウェンチE��ゴ",
+        yomi: "ウェンチE��ゴ",
         url: "wendigo.html",
         category: "クリーチャー",
         appearance: [
@@ -21180,8 +21180,8 @@ const loreEntries = [
         date: "2026-01-03"
     },
     {
-        name: "アークトス・ファーマ・バイオーム研究所",
-        yomi: "アークトス・ファーマ・バイオーム研究所",
+        name: "アークトス・ファーマ�Eバイオーム研究所",
+        yomi: "アークトス・ファーマ�Eバイオーム研究所",
         url: "arktos-pharma-biome-research-institute.html",
         category: "場所",
         appearance: [
@@ -21190,8 +21190,8 @@ const loreEntries = [
         date: "2026-01-02"
     },
     {
-        name: "セントリーボット",
-        yomi: "セントリーボット",
+        name: "セントリーボッチE,
+        yomi: "セントリーボッチE,
         url: "sentry-bot.html",
         category: "",
         appearance: [
@@ -21203,8 +21203,8 @@ const loreEntries = [
         date: "2026-01-02"
     },
     {
-        name: "アークトス・ファーマ",
-        yomi: "アークトス・ファーマ",
+        name: "アークトス・ファーチE,
+        yomi: "アークトス・ファーチE,
         url: "arktos-pharma.html",
         category: "",
         appearance: [
@@ -21213,8 +21213,8 @@ const loreEntries = [
         date: "2026-01-01"
     },
     {
-        name: "血濡れ不屈ビルド",
-        yomi: "血濡れ不屈ビルド",
+        name: "血濡れ不屈ビルチE,
+        yomi: "血濡れ不屈ビルチE,
         url: "bloody-indomitable-build.html",
         category: "",
         appearance: [
@@ -21234,8 +21234,8 @@ const loreEntries = [
         date: "2025-12-31"
     },
     {
-        name: "ジャイアントティーポット",
-        yomi: "ジャイアントティーポット",
+        name: "ジャイアントティーポッチE,
+        yomi: "ジャイアントティーポッチE,
         url: "giant-teapot.html",
         category: "",
         appearance: [
@@ -21244,8 +21244,8 @@ const loreEntries = [
         date: "2025-12-31"
     },
     {
-        name: "デイリー・オプス",
-        yomi: "デイリー・オプス",
+        name: "チE��リー・オプス",
+        yomi: "チE��リー・オプス",
         url: "daily-ops.html",
         category: "",
         appearance: [
@@ -21264,8 +21264,8 @@ const loreEntries = [
         date: "2025-12-29"
     },
     {
-        name: "ヘルヴェティア",
-        yomi: "ヘルヴェティア",
+        name: "ヘルヴェチE��ア",
+        yomi: "ヘルヴェチE��ア",
         url: "helvetia.html",
         category: "",
         appearance: [
@@ -21274,8 +21274,8 @@ const loreEntries = [
         date: "2025-12-29"
     },
     {
-        name: "ブラムコ・ブランド・マック＆チーズ",
-        yomi: "ブラムコ・ブランド・マック＆チーズ",
+        name: "ブラムコ・ブランド�Eマック�E�E��ーズ",
+        yomi: "ブラムコ・ブランド�Eマック�E�E��ーズ",
         url: "bramco-brand-mac-and-cheese.html",
         category: "",
         appearance: [
@@ -21298,8 +21298,8 @@ const loreEntries = [
         date: "2025-12-27"
     },
     {
-        name: "ニューリバー渓谷橋",
-        yomi: "ニューリバー渓谷橋",
+        name: "ニューリバ�E渓谷橁E,
+        yomi: "ニューリバ�E渓谷橁E,
         url: "new-river-gorge-bridge.html",
         category: "場所",
         appearance: [
@@ -21308,10 +21308,10 @@ const loreEntries = [
         date: "2025-12-27"
     },
     {
-        name: "ドッグフード缶",
-        yomi: "ドッグフード缶",
+        name: "ドッグフ�Eド缶",
+        yomi: "ドッグフ�Eド缶",
         url: "dog-food-cans.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76"
         ],
@@ -21328,8 +21328,8 @@ const loreEntries = [
         date: "2025-12-26"
     },
     {
-        name: "パブリックパーティー",
-        yomi: "パブリックパーティー",
+        name: "パブリチE��パ�EチE��ー",
+        yomi: "パブリチE��パ�EチE��ー",
         url: "public-party.html",
         category: "",
         appearance: [
@@ -21348,8 +21348,8 @@ const loreEntries = [
         date: "2025-12-24"
     },
     {
-        name: "C.A.M.P. (建設組立用移動プラットフォーム)",
-        yomi: "C.A.M.P. (建設組立用移動プラットフォーム)",
+        name: "C.A.M.P. (建設絁E��用移動�EラチE��フォーム)",
+        yomi: "C.A.M.P. (建設絁E��用移動�EラチE��フォーム)",
         url: "c-a-m-p-mobile-platform-for-construction-assembly.html",
         category: "クリーチャー",
         appearance: [
@@ -21358,8 +21358,8 @@ const loreEntries = [
         date: "2025-12-24"
     },
     {
-        name: "反射",
-        yomi: "反射",
+        name: "反封E,
+        yomi: "反封E,
         url: "reflection.html",
         category: "",
         appearance: [
@@ -21380,8 +21380,8 @@ const loreEntries = [
         date: "2025-12-22"
     },
     {
-        name: "サバイバルテント",
-        yomi: "サバイバルテント",
+        name: "サバイバルチE��チE,
+        yomi: "サバイバルチE��チE,
         url: "survival-tent.html",
         category: "",
         appearance: [
@@ -21391,8 +21391,8 @@ const loreEntries = [
         date: "2025-12-22"
     },
     {
-        name: "渓谷の廃品集積場",
-        yomi: "渓谷の廃品集積場",
+        name: "渓谷の廁E��雁E��場",
+        yomi: "渓谷の廁E��雁E��場",
         url: "valley-junkyard.html",
         category: "場所",
         appearance: [
@@ -21433,8 +21433,8 @@ const loreEntries = [
         date: "2025-12-20"
     },
     {
-        name: "ウィルソン・ブラザーズ自動車修理屋",
-        yomi: "ウィルソン・ブラザーズ自動車修理屋",
+        name: "ウィルソン・ブラザーズ自動車修琁E��E,
+        yomi: "ウィルソン・ブラザーズ自動車修琁E��E,
         url: "wilson-brothers-auto-repair-shop.html",
         category: "",
         appearance: [
@@ -21443,8 +21443,8 @@ const loreEntries = [
         date: "2025-12-19"
     },
     {
-        name: "リプトカ－ド",
-        yomi: "リプトカ－ド",
+        name: "リプトカ�E�ド",
+        yomi: "リプトカ�E�ド",
         url: "ripto-card.html",
         category: "",
         appearance: [
@@ -21453,8 +21453,8 @@ const loreEntries = [
         date: "2025-12-19"
     },
     {
-        name: "デルバート・ウィンターズ",
-        yomi: "デルバート・ウィンターズ",
+        name: "チE��バ�Eト�Eウィンターズ",
+        yomi: "チE��バ�Eト�Eウィンターズ",
         url: "delbert-winters.html",
         category: "",
         appearance: [
@@ -21463,8 +21463,8 @@ const loreEntries = [
         date: "2025-12-19"
     },
     {
-        name: "アーチェリー・セット",
-        yomi: "アーチェリー・セット",
+        name: "アーチェリー・セチE��",
+        yomi: "アーチェリー・セチE��",
         url: "archery-set.html",
         category: "",
         appearance: [
@@ -21473,8 +21473,8 @@ const loreEntries = [
         date: "2025-12-17"
     },
     {
-        name: "クランシー邸宅",
-        yomi: "クランシー邸宅",
+        name: "クランシー邸宁E,
+        yomi: "クランシー邸宁E,
         url: "clancy-mansion.html",
         category: "場所",
         appearance: [
@@ -21493,10 +21493,10 @@ const loreEntries = [
         date: "2025-12-13"
     },
     {
-        name: "アディクトール（Addictol）",
-        yomi: "アディクトール（Addictol）",
+        name: "アチE��クト�Eル�E�Eddictol�E�E,
+        yomi: "アチE��クト�Eル�E�Eddictol�E�E,
         url: "addictol.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76"
         ],
@@ -21513,8 +21513,8 @@ const loreEntries = [
         date: "2025-12-12"
     },
     {
-        name: "ランチボックス",
-        yomi: "ランチボックス",
+        name: "ランチ�EチE��ス",
+        yomi: "ランチ�EチE��ス",
         url: "lunch-box.html",
         category: "",
         appearance: [
@@ -21524,8 +21524,8 @@ const loreEntries = [
         date: "2025-12-12"
     },
     {
-        name: "ポイント・プレザント",
-        yomi: "ポイント・プレザント",
+        name: "ポイント�EプレザンチE,
+        yomi: "ポイント�EプレザンチE,
         url: "point-pleasant.html",
         category: "",
         appearance: [
@@ -21534,8 +21534,8 @@ const loreEntries = [
         date: "2025-12-11"
     },
     {
-        name: "パーティーハット",
-        yomi: "パーティーハット",
+        name: "パ�EチE��ーハッチE,
+        yomi: "パ�EチE��ーハッチE,
         url: "party-hat.html",
         category: "",
         appearance: [
@@ -21544,8 +21544,8 @@ const loreEntries = [
         date: "2025-12-11"
     },
     {
-        name: "北カナー監視地点",
-        yomi: "北カナー監視地点",
+        name: "北カナ�E監視地点",
+        yomi: "北カナ�E監視地点",
         url: "north-kanner-monitoring-point.html",
         category: "",
         appearance: [
@@ -21554,8 +21554,8 @@ const loreEntries = [
         date: "2025-12-10"
     },
     {
-        name: "バファウト",
-        yomi: "バファウト",
+        name: "バファウチE,
+        yomi: "バファウチE,
         url: "buffout.html",
         category: "",
         appearance: [
@@ -21566,8 +21566,8 @@ const loreEntries = [
         date: "2025-12-10"
     },
     {
-        name: "強制進化ウイルス（FEV）",
-        yomi: "強制進化ウイルス（FEV）",
+        name: "強制進化ウイルス�E�EEV�E�E,
+        yomi: "強制進化ウイルス�E�EEV�E�E,
         url: "forced-evolution-virus-fev.html",
         category: "",
         appearance: [
@@ -21577,8 +21577,8 @@ const loreEntries = [
         date: "2025-12-09"
     },
     {
-        name: "サターナイト・フィスト",
-        yomi: "サターナイト・フィスト",
+        name: "サターナイト�EフィスチE,
+        yomi: "サターナイト�EフィスチE,
         url: "saturnite-fist.html",
         category: "",
         appearance: [
@@ -21588,8 +21588,8 @@ const loreEntries = [
         date: "2025-12-09"
     },
     {
-        name: "スーパーミュータント",
-        yomi: "スーパーミュータント",
+        name: "スーパ�EミュータンチE,
+        yomi: "スーパ�EミュータンチE,
         url: "super-mutant.html",
         category: "",
         appearance: [
@@ -21602,8 +21602,8 @@ const loreEntries = [
         date: "2025-12-08"
     },
     {
-        name: "B.O.B.クッキングステーション",
-        yomi: "B.O.B.クッキングステーション",
+        name: "B.O.B.クチE��ングスチE�Eション",
+        yomi: "B.O.B.クチE��ングスチE�Eション",
         url: "b-o-b-cooking-station.html",
         category: "",
         appearance: [
@@ -21614,8 +21614,8 @@ const loreEntries = [
         date: "2025-12-08"
     },
     {
-        name: "ツイン・パイン・キャビン",
-        yomi: "ツイン・パイン・キャビン",
+        name: "チE��ン・パイン・キャビン",
+        yomi: "チE��ン・パイン・キャビン",
         url: "twin-pine-cabin.html",
         category: "",
         appearance: [
@@ -21655,8 +21655,8 @@ const loreEntries = [
         date: "2025-12-05"
     },
     {
-        name: "コズミック・ナイフ",
-        yomi: "コズミック・ナイフ",
+        name: "コズミック・ナイチE,
+        yomi: "コズミック・ナイチE,
         url: "cosmic-knife.html",
         category: "",
         appearance: [
@@ -21676,8 +21676,8 @@ const loreEntries = [
         date: "2025-12-04"
     },
     {
-        name: "フーズボールゲーム",
-        yomi: "フーズボールゲーム",
+        name: "フ�Eズボ�Eルゲーム",
+        yomi: "フ�Eズボ�Eルゲーム",
         url: "foosball-game.html",
         category: "",
         appearance: [
@@ -21686,8 +21686,8 @@ const loreEntries = [
         date: "2025-12-04"
     },
     {
-        name: "パイプ・リボルバー",
-        yomi: "パイプ・リボルバー",
+        name: "パイプ�Eリボルバ�E",
+        yomi: "パイプ�Eリボルバ�E",
         url: "pipe-revolver.html",
         category: "",
         appearance: [
@@ -21709,8 +21709,8 @@ const loreEntries = [
         date: "2025-12-03"
     },
     {
-        name: "マリーゴールド・パビリオン",
-        yomi: "マリーゴールド・パビリオン",
+        name: "マリーゴールド�Eパビリオン",
+        yomi: "マリーゴールド�Eパビリオン",
         url: "marigold-pavilion.html",
         category: "植物",
         appearance: [
@@ -21729,8 +21729,8 @@ const loreEntries = [
         date: "2025-12-02"
     },
     {
-        name: "ブルーリッジの宿泊小屋",
-        yomi: "ブルーリッジの宿泊小屋",
+        name: "ブルーリチE��の宿泊小屁E,
+        yomi: "ブルーリチE��の宿泊小屁E,
         url: "blue-ridge-lodge.html",
         category: "場所",
         appearance: [
@@ -21739,8 +21739,8 @@ const loreEntries = [
         date: "2025-12-01"
     },
     {
-        name: "天候制御ステーション",
-        yomi: "天候制御ステーション",
+        name: "天候制御スチE�Eション",
+        yomi: "天候制御スチE�Eション",
         url: "weather-control-station.html",
         category: "",
         appearance: [
@@ -21759,8 +21759,8 @@ const loreEntries = [
         date: "2025-11-30"
     },
     {
-        name: "ミスター・ハンディ",
-        yomi: "ミスター・ハンディ",
+        name: "ミスター・ハンチE��",
+        yomi: "ミスター・ハンチE��",
         url: "mr-handy.html",
         category: "クリーチャー",
         appearance: [
@@ -21779,8 +21779,8 @@ const loreEntries = [
         date: "2025-11-29"
     },
     {
-        name: "雑誌",
-        yomi: "雑誌",
+        name: "雑誁E,
+        yomi: "雑誁E,
         url: "magazine.html",
         category: "",
         appearance: [
@@ -21800,8 +21800,8 @@ const loreEntries = [
         date: "2025-11-28"
     },
     {
-        name: "プロテクトロン",
-        yomi: "プロテクトロン",
+        name: "プロチE��トロン",
+        yomi: "プロチE��トロン",
         url: "protectron.html",
         category: "クリーチャー",
         appearance: [
@@ -21811,8 +21811,8 @@ const loreEntries = [
         date: "2025-11-28"
     },
     {
-        name: "モルデカイ \"モート\" マッコイ",
-        yomi: "モルデカイ \"モート\" マッコイ",
+        name: "モルチE��イ \"モーチE" マッコイ",
+        yomi: "モルチE��イ \"モーチE" マッコイ",
         url: "mordecai-mort-mccoy.html",
         category: "",
         appearance: [
@@ -21821,8 +21821,8 @@ const loreEntries = [
         date: "2025-11-27"
     },
     {
-        name: "抗議プラカード",
-        yomi: "抗議プラカード",
+        name: "抗議プラカーチE,
+        yomi: "抗議プラカーチE,
         url: "protest-placard.html",
         category: "",
         appearance: [
@@ -21831,8 +21831,8 @@ const loreEntries = [
         date: "2025-11-27"
     },
     {
-        name: "ダッチェス",
-        yomi: "ダッチェス",
+        name: "ダチE��ェス",
+        yomi: "ダチE��ェス",
         url: "duchess.html",
         category: "",
         appearance: [
@@ -21844,7 +21844,7 @@ const loreEntries = [
         name: "メンタス",
         yomi: "メンタス",
         url: "mentas.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76",
             "Fallout: New Vegas",
@@ -21853,18 +21853,18 @@ const loreEntries = [
         date: "2025-11-26"
     },
     {
-        name: "入植者のリッジ",
-        yomi: "入植者のリッジ",
+        name: "入植老E�EリチE��",
+        yomi: "入植老E�EリチE��",
         url: "settler-s-ridge.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout 76"
         ],
         date: "2025-11-25"
     },
     {
-        name: "Vault-Tec ボブルヘッド",
-        yomi: "Vault-Tec ボブルヘッド",
+        name: "Vault-Tec ボブルヘッチE,
+        yomi: "Vault-Tec ボブルヘッチE,
         url: "vault-tec-bobblehead.html",
         category: "",
         appearance: [
@@ -21885,8 +21885,8 @@ const loreEntries = [
         date: "2025-11-24"
     },
     {
-        name: "パワーアーマー",
-        yomi: "パワーアーマー",
+        name: "パワーアーマ�E",
+        yomi: "パワーアーマ�E",
         url: "power-armor.html",
         category: "",
         appearance: [
@@ -21905,8 +21905,8 @@ const loreEntries = [
         date: "2025-11-23"
     },
     {
-        name: "ヌカ・タッパー",
-        yomi: "ヌカ・タッパー",
+        name: "ヌカ・タチE��ー",
+        yomi: "ヌカ・タチE��ー",
         url: "nuka-tapper.html",
         category: "",
         appearance: [
@@ -21915,8 +21915,8 @@ const loreEntries = [
         date: "2025-11-23"
     },
     {
-        name: "コンスタンティン・チェイス ",
-        yomi: "コンスタンティン・チェイス ",
+        name: "コンスタンチE��ン・チェイス ",
+        yomi: "コンスタンチE��ン・チェイス ",
         url: "constantine-chase.html",
         category: "",
         appearance: [
@@ -21937,8 +21937,8 @@ const loreEntries = [
         date: "2025-11-22"
     },
     {
-        name: "グリーンカントリー・ロッジ",
-        yomi: "グリーンカントリー・ロッジ",
+        name: "グリーンカントリー・ロチE��",
+        yomi: "グリーンカントリー・ロチE��",
         url: "green-country-lodge.html",
         category: "場所",
         appearance: [
@@ -21947,10 +21947,10 @@ const loreEntries = [
         date: "2025-11-21"
     },
     {
-        name: "スティムパック",
-        yomi: "スティムパック",
+        name: "スチE��ムパック",
+        yomi: "スチE��ムパック",
         url: "stim-pack.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76"
         ],
@@ -21967,8 +21967,8 @@ const loreEntries = [
         date: "2025-11-20"
     },
     {
-        name: "スウィートウォータースペシャルブレンド",
-        yomi: "スウィートウォータースペシャルブレンド",
+        name: "スウィートウォータースペシャルブレンチE,
+        yomi: "スウィートウォータースペシャルブレンチE,
         url: "sweetwater-special-blend.html",
         category: "",
         appearance: [
@@ -21990,7 +21990,7 @@ const loreEntries = [
         name: "シュガーボム",
         yomi: "シュガーボム",
         url: "sugar-bomb.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76",
             "Fallout: New Vegas"
@@ -21998,8 +21998,8 @@ const loreEntries = [
         date: "2025-11-19"
     },
     {
-        name: "パイプボルトアクション",
-        yomi: "パイプボルトアクション",
+        name: "パイプ�Eルトアクション",
+        yomi: "パイプ�Eルトアクション",
         url: "pipe-bolt-action.html",
         category: "",
         appearance: [
@@ -22048,8 +22048,8 @@ const loreEntries = [
         date: "2025-11-16"
     },
     {
-        name: "ホーマー・サパースタイン",
-        yomi: "ホーマー・サパースタイン",
+        name: "ホ�Eマ�E・サパ�Eスタイン",
+        yomi: "ホ�Eマ�E・サパ�Eスタイン",
         url: "homer-saperstein.html",
         category: "",
         appearance: [
@@ -22100,8 +22100,8 @@ const loreEntries = [
         date: "2025-11-14"
     },
     {
-        name: "Grahm's Meat-Cook(ミート ウィーク)",
-        yomi: "Grahm's Meat-Cook(ミート ウィーク)",
+        name: "Grahm's Meat-Cook(ミ�EチEウィーク)",
+        yomi: "Grahm's Meat-Cook(ミ�EチEウィーク)",
         url: "grahm-s-meat-cook-meat-week.html",
         category: "",
         appearance: [
@@ -22110,8 +22110,8 @@ const loreEntries = [
         date: "2025-11-13"
     },
     {
-        name: "スーザンの小屋",
-        yomi: "スーザンの小屋",
+        name: "スーザンの小屁E,
+        yomi: "スーザンの小屁E,
         url: "susan-s-cabin.html",
         category: "植物",
         appearance: [
@@ -22120,8 +22120,8 @@ const loreEntries = [
         date: "2025-11-13"
     },
     {
-        name: "ブラックアイド・スーザン",
-        yomi: "ブラックアイド・スーザン",
+        name: "ブラチE��アイド�Eスーザン",
+        yomi: "ブラチE��アイド�Eスーザン",
         url: "black-eyed-susan.html",
         category: "植物",
         appearance: [
@@ -22140,8 +22140,8 @@ const loreEntries = [
         date: "2025-11-13"
     },
     {
-        name: "ポトマック川",
-        yomi: "ポトマック川",
+        name: "ポトマック巁E,
+        yomi: "ポトマック巁E,
         url: "potomac-river.html",
         category: "",
         appearance: [
@@ -22154,7 +22154,7 @@ const loreEntries = [
         name: "サイコ",
         yomi: "サイコ",
         url: "psycho.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76",
             "Fallout: New Vegas",
@@ -22186,7 +22186,7 @@ const loreEntries = [
         name: "Rad-X",
         yomi: "Rad-X",
         url: "rad-x.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76",
             "Fallout: New Vegas",
@@ -22198,7 +22198,7 @@ const loreEntries = [
         name: "RadAway",
         yomi: "RadAway",
         url: "radaway.html",
-        category: "アイテム",
+        category: "アイチE��",
         appearance: [
             "Fallout 76",
             "Fallout: New Vegas",
@@ -22217,8 +22217,8 @@ const loreEntries = [
         date: "2025-11-08"
     },
     {
-        name: "ホロテープ",
-        yomi: "ホロテープ",
+        name: "ホロチE�EチE,
+        yomi: "ホロチE�EチE,
         url: "holotape.html",
         category: "",
         appearance: [
@@ -22253,8 +22253,8 @@ const loreEntries = [
         date: "2025-11-06"
     },
     {
-        name: "ハンター・リッジ",
-        yomi: "ハンター・リッジ",
+        name: "ハンター・リチE��",
+        yomi: "ハンター・リチE��",
         url: "hunter-ridge.html",
         category: "場所",
         appearance: [
@@ -22263,8 +22263,8 @@ const loreEntries = [
         date: "2025-11-05"
     },
     {
-        name: "ジャイアントラット",
-        yomi: "ジャイアントラット",
+        name: "ジャイアントラチE��",
+        yomi: "ジャイアントラチE��",
         url: "giant-rat.html",
         category: "クリーチャー",
         appearance: [
@@ -22275,8 +22275,8 @@ const loreEntries = [
         date: "2025-11-04"
     },
     {
-        name: "ボトルキャップ",
-        yomi: "ボトルキャップ",
+        name: "ボトルキャチE�E",
+        yomi: "ボトルキャチE�E",
         url: "bottle-cap.html",
         category: "",
         appearance: [
@@ -22309,8 +22309,8 @@ const loreEntries = [
         date: "2025-11-03"
     },
     {
-        name: "アルパインリバー・キャビン",
-        yomi: "アルパインリバー・キャビン",
+        name: "アルパインリバ�E・キャビン",
+        yomi: "アルパインリバ�E・キャビン",
         url: "alpine-river-cabin.html",
         category: "",
         appearance: [
@@ -22319,8 +22319,8 @@ const loreEntries = [
         date: "2025-11-02"
     },
     {
-        name: "モールラット",
-        yomi: "モールラット",
+        name: "モールラチE��",
+        yomi: "モールラチE��",
         url: "mall-rat.html",
         category: "クリーチャー",
         appearance: [
@@ -22334,7 +22334,7 @@ const loreEntries = [
         name: "フリーラジカルズ",
         yomi: "フリーラジカルズ",
         url: "free-radicals.html",
-        category: "勢力",
+        category: "勢劁E,
         appearance: [
             "Fallout 76"
         ],
@@ -22351,8 +22351,8 @@ const loreEntries = [
         date: "2025-10-29"
     },
     {
-        name: "ジョン・ハンコック",
-        yomi: "ジョン・ハンコック",
+        name: "ジョン・ハンコチE��",
+        yomi: "ジョン・ハンコチE��",
         url: "john-hancock.html",
         category: "",
         appearance: [
@@ -22415,8 +22415,8 @@ const loreEntries = [
         date: "2025-10-19"
     },
     {
-        name: "サットン",
-        yomi: "サットン",
+        name: "サチE��ン",
+        yomi: "サチE��ン",
         url: "sutton.html",
         category: "",
         appearance: [
@@ -22491,9 +22491,9 @@ const loreEntries = [
         name: "About",
         yomi: "About",
         url: "about.html",
-        category: "未分類",
+        category: "未刁E��E,
         appearance: [
-            "不明"
+            "不�E"
         ],
         date: "2026-02-28",
         isDraft: true
@@ -22532,8 +22532,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "アーノルド",
-        yomi: "アーノルド",
+        name: "アーノルチE,
+        yomi: "アーノルチE,
         url: "arnold-galaxy-news-network.html",
         category: "人物",
         appearance: [
@@ -22560,17 +22560,6 @@ const loreEntries = [
         category: "場所",
         appearance: [
             "Fallout TV"
-        ],
-        date: "2026-04-08",
-        isDraft: true
-    },
-    {
-        name: "ブラザーフッド・オブ・スティール",
-        yomi: "ブラザーフッド・オブ・スティール",
-        url: "brotherhood-of-steel-full.html",
-        category: "勢力",
-        appearance: [
-            "Fallout 全般"
         ],
         date: "2026-04-08",
         isDraft: true
@@ -22642,8 +22631,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "薬物とバスケットの小屋",
-        yomi: "薬物とバスケットの小屋",
+        name: "薬物とバスケチE��の小屁E,
+        yomi: "薬物とバスケチE��の小屁E,
         url: "chem-hoop-shack.html",
         category: "場所",
         appearance: [
@@ -23038,12 +23027,12 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "Fallout ロア・アーカイブ",
-        yomi: "Fallout ロア・アーカイブ",
+        name: "Fallout ロア・アーカイチE,
+        yomi: "Fallout ロア・アーカイチE,
         url: "lore_old.html",
-        category: "未分類",
+        category: "未刁E��E,
         appearance: [
-            "不明"
+            "不�E"
         ],
         date: "2026-04-05",
         isDraft: true
@@ -23082,12 +23071,12 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ロバート・マクレディ (Robert MacCready)",
-        yomi: "ロバート・マクレディ (Robert MacCready)",
+        name: "ロバ�Eト�EマクレチE�� (Robert MacCready)",
+        yomi: "ロバ�Eト�EマクレチE�� (Robert MacCready)",
         url: "maccready.html",
-        category: "未分類",
+        category: "未刁E��E,
         appearance: [
-            "不明"
+            "不�E"
         ],
         date: "2026-04-04",
         isDraft: true
@@ -23225,12 +23214,12 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "パイパー・ライト (Piper Wright)",
-        yomi: "パイパー・ライト (Piper Wright)",
+        name: "パイパ�E・ライチE(Piper Wright)",
+        yomi: "パイパ�E・ライチE(Piper Wright)",
         url: "piper.html",
-        category: "未分類",
+        category: "未刁E��E,
         appearance: [
-            "不明"
+            "不�E"
         ],
         date: "2026-04-04",
         isDraft: true
@@ -23533,8 +23522,8 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ピット",
-        yomi: "ピット",
+        name: "ピッチE,
+        yomi: "ピッチE,
         url: "the-pitt.html",
         category: "場所",
         appearance: [
@@ -23663,5 +23652,39 @@ const loreEntries = [
         ],
         date: "2026-04-08",
         isDraft: true
+    }
+,
+    {
+        name: "Brotherhood of Steel",
+        yomi: "ぶらざーふっどお�EすてぁE�EめE,
+        url: "brotherhood-of-steel.html",
+        category: "勢劁E,
+        appearance: [
+            "Fallout",
+            "Fallout 2",
+            "Fallout 3",
+            "Fallout 4",
+            "Fallout 76",
+            "Fallout: New Vegas",
+            "Fallout TV"
+        ],
+        date: "2026-05-02"
+    }
+,
+    {
+        name: "Brotherhood of Steel",
+        yomi: "ぶらざーふっどお�EすてぁE�EめE,
+        url: "brotherhood-of-steel.html",
+        category: "勢劁E,
+        appearance: [
+            "Fallout",
+            "Fallout 2",
+            "Fallout 3",
+            "Fallout 4",
+            "Fallout 76",
+            "Fallout: New Vegas",
+            "Fallout TV"
+        ],
+        date: "2026-05-02"
     }
 ];
