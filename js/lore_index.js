@@ -1,4 +1,4 @@
-const loreEntries = const loreEntries = [
+const loreEntries = [
             {
                 name: "10mmピストル",
                 yomi: "10mmピストル",

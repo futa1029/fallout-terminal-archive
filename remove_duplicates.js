@@ -20243,7 +20243,7 @@ async function rebuildLoreHtml() {
 
     
     const INDEX_FILE = path.join(DIR, 'js', 'lore_index.js');
-    const finalIndexContent = `const loreEntries = ${finalEntriesObjStr.trim().replace(/,$/, '')};`;
+    const finalIndexContent = `${finalEntriesObjStr.trim().replace(/,$/, '')};`;
     fs.writeFileSync(INDEX_FILE, finalIndexContent, 'utf8');
     console.log(`Successfully regenerated ${INDEX_FILE}!`);
 
