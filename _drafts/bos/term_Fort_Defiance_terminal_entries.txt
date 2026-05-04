@@ -1,0 +1,644 @@
+{{Cleanup|missing parameters for transcripts of terminal text|FO76}}
+The '''Fort Defiance terminal entries''' are a series of [[Fallout 76 terminal entries|entries]] found on terminals in [[Fort Defiance]] in ''[[Fallout 76]]''.
+
+==Brotherhood of Steel defense terminal==
+[[File:FO76_Fort_Defiance_(Brotherhood_of_Steel_Defense_Terminal).jpg|thumb]]
+{{Small|'''Note:''' ''This wall terminal is located on the machinery beneath the [[automated surface to air missile]].''}}
+<!-- [SeventySix.esm] Brotherhood of Steel Defense Terminal (00311444) -->
+{{Transcript|text=
+[[Brotherhood of Steel (Fallout 76)|Brotherhood of Steel]] only
+Perimeter Defense System
+}}
+{{Transcript|text=
+ATTENTION! ALL PERSONNEL!
+Do NOT turn on the Defense System and [[Sonic Generator]] unless ordered by the brass. Every minute the system's on drains the power reserves.
+
+Remember: Diligence is the key to victory.
+}}
+
+===Initiate Pre-Combat Check===
+{{Small|'''Note:''' ''The following text is conditional.{{Clarify}}''}}
+{{Transcript|text=
+ACTIVE SENSORS... Enemy Targets Found.
+
+SONIC GENERATOR... Operational and Ready.
+
+POWER CYCLE... Commencing.
+
+WARNING: Please wear ear protection at all times within 90 meters of the Sonic Generator. Do not stand within 3 meters of the Generator for any length of time.
+
+The generator takes approximately one minute to fully cycle on.
+}}
+{{Small|'''Note:''' ''The following text is conditional.{{Clarify}}''}}
+{{Transcript|text=
+ACTIVE SENSORS... Enemy Targets Found.
+
+SONIC GENERATOR... Offline.
+
+!!! WARNING WARNING WARNING !!!
+Sonic Generator must be repaired before Scorchbeast threat leaves the Protected Zone. Report to Scribe Grant to receive instructions on the emergency maintenance procedure for the Sonic Generator.
+}}
+{{Small|'''Note:''' ''The following text is conditional.{{Clarify}}''}}
+{{Transcript|text=
+ACTIVE SENSORS... No Enemy Targets Found.
+
+Automated sensors do not detect any Scorchbeast swarms in range. Perimeter Defense System is OFFLINE.
+}}
+
+===Obsolete Functions===
+{{Transcript|text=
+<nowiki>***</nowiki>ERROR***
+Directory not found.
+}}
+
+==Artillery battery terminal==
+[[File:FO76_Fort_Defiance_(Artillery_Battery_Terminal).jpg|thumb]]
+{{Small|'''Note:''' ''This wall terminal is located on the beam southeast of the main entrance, by the automated surface to air missile. This terminal requires a key.{{Clarify}}''}}
+<!-- [SeventySix.esm] Artillery Battery Terminal (00313080) -->
+{{Transcript|text=
+Welcome to ROBCO Industries (TM) Termlink
+<nowiki>***</nowiki> AUTHORIZED BROTHERHOOD PERSONNEL ONLY ***
+}}
+
+{{Small|'''Note:''' ''The following body is conditional.{{Clarify}}''}}
+{{Transcript|text=
+ARTILLERY BATTERY... Online.
+TARGET TELEMETRY... Detected but Not Acquired.
+
+<nowiki>**</nowiki>WARNING**
+Hostile $TARGET_SCORCHED cluster detected. Deploy Forward Observer squad. Recon Scope required.
+
+<nowiki>**</nowiki>ATTENTION**
+New personnel please register with this terminal so the Recon Scope syncs with the Artillery Forward Observer Automated System.
+}}
+{{Transcript|text=
+ARTILLERY BATTERY... Offline.
+TARGET TELEMETRY... N/A.
+
+<nowiki>**</nowiki>ATTENTION**
+New personnel please register with this terminal so the Recon Scope syncs with the Artillery's Forward Observer Automated System.
+}}
+
+===New Registration===
+{{Small|'''Note:''' ''The following text is conditional.{{Clarify}}''}}
+{{Transcript|text=
+SCANNING...
+SCANNING...
+
+Pip-Boy detected...
+Handshake complete...
+
+ARTILLERY BATTERY synced to new soldier... COMPLETE.
+
+Brotherhood of Steel standard-issue Recon Rifle dispensed.
+}}
+
+===Detail Forward Observer mission===
+{{Small|'''Note:''' ''The following text is conditional.{{Clarify}}''}}
+{{Transcript|text=
+Assignment DISTANT THUNDER details commence.
+
+MISSION BRIEF
+<nowiki>*</nowiki> Proceed to target location and use synced Recon Scope to acquire specified targets
+<nowiki>*</nowiki> Evacuate immediate vincinity
+<nowiki>*</nowiki> After artillery barrage, mop up stragglers
+
+Ad victoriam!
+}}
+
+===Artillery Battery Info===
+{{Transcript|text=
+Whenever the perimeter sensors pick up a mass of Scorched, Grant's wired up the Artillery Battery to spin up. The sensors aren't precise enough to use. A fire team with a spotter needs to go to the deployment zone and use a Recon Scope to mark enough targets for the batteries to fire.
+
+Once the targets are marked, book it. The artillery will kill friends and foes alike.
+}}
+
+==De Silva's terminal==
+[[File:FO76_Fort_Defiance_(De_Silva's_Terminal).jpg|thumb]]
+{{Small|'''Note:''' ''This desk terminal is located on a fancy endtable/dresser in the room west of the main entrance.''}}
+<!-- [SeventySix.esm] De Silva's Terminal (0051e23f) -->
+{{Transcript|text=
+BROTHERHOOD OF STEEL ONLY
+[[Hannah de Silva|De Silva]]'s Personal Terminal
+}}
+
+===Grant, Grant, Grant===
+{{Transcript|text=
+So [[Grant McNamara|Grant]] shows up and starts running all over. Checking every room, the generator, the elevator, everything. It would be impressive if it weren't so exhausting.
+
+Then Grant starts asking a million questions. How many breaches in the walls? How many doors? Unsecured windows? Then he says we're abandoning this whole wing and the first floor. Has he trekked up to the second floor? 
+
+But he says he can get the elevator running again. And even install some military security stuff [[Gary Weber|Squire Weber]] found on a salvage run. So in one day everything we were planning for Fort Defiance is tossed out. Oh, except the name. That's the one thing Grant liked.
+}}
+
+===WHAT?===
+{{Transcript|text=
+I was trading war stories with the guys on the roof last night. Then we saw the craziest thing. It was like some sort of [[Scorchbeast|bat]] flying in from [[Watoga]], I guess. We thought there was nothing living over there, unless you count those murder bots. 
+
+But the thing flew straight towards us. So we opened up with the miniguns and I think we literally scared the crap out of it.
+
+That was real, right? The [[Cranberry Bog]]'s gotten so very, very strange.
+}}
+
+===First Week Down===
+{{Transcript|text=
+The first floor's clear of [[Feral ghoul (Fallout 76)|ghouls]]. It's a disaster area, but with a little elbow grease we each have our own room. It's a little scary at night. The others weren't raised with stories about this place.
+
+My guess is in a week or two we'll be ready for Scribe Grant and the others to come on over. The boys and I have started calling the place "Fort Defiance." Has a nice ring to it.
+}}
+
+==Terminal==
+{{Small|'''Note:''' ''This wall terminal is located next to the door to the weapons room. It is locked and requires [[Hacker (Fallout 76)|Hacker]] rank 1.''}}
+{{Transcript|text=
+Welcome to [[RobCo Industries|ROBCO Industries]] (TM) Termlink
+}}
+
+===Remote Door Control===
+{{Section|FO76}}
+
+==Brotherhood personnel terminal==
+[[File:FO76_Fort_Defiance_(Brotherhood_Personnel_Terminal).jpg|thumb|180px]]
+{{Small|'''Note:''' ''This desk terminal is located on the medical tray stand next to the barracks.''}}
+<!-- [SeventySix.esm] Brotherhood Personnel Terminal (004e4588) -->
+{{Transcript|text=
+USA-MilSec V12.3C // v1.1.05 LC
+Welcome to Fort $DEFIANCE
+}}
+
+===Register new personnel===
+{{Small|'''Note:''' ''The following header is the default text; accessing it progresses the quest [[Recruitment Blues]].''}}
+{{Transcript|text=
+Please scan valid U.S. Military ID to register for $BROTHERHOOD_OF_STEEL.
+
+// ADMIN COMMENT: The security system is straight up military hardware. If you weren't a grunt before there's no getting in. When Scr. Grant isn't knee deep in vital Brotherhood tasks he will make it so civvies can be registered, too. Stop belly-aching.
+}}
+
+====Abort scan====
+{{Small|'''Note:''' ''Accessing this command brings the user back to the main menu.''}}
+
+====Scan military ID card====
+{{Small|'''Note:''' ''The following header is conditional.{{Clarify}}''}}
+{{Transcript|text=
+Scanning Military ID...
+
+Valid [[Charleston|CHARLESTON]], [[State#West Virignia|WV]] ID found...
+
+Registering new $SQUIRE to Fort $DEFIANCE.... Complete.
+
+Connecting to US-ARMY Central Records... FAILED
+
+REGISTRATION COMPLETE
+
+// ADMIN NOTE: Welcome to the Brotherhood of Steel. AD VICTORIAM!
+}}
+
+{{Small|'''Note:''' ''The following text is after the player has a valid [[Military ID card]] in their inventory during the quest Recruitment Blues, which progresses the quest.''}}
+{{Transcript|text=
+Scanning Military ID...
+
+Valid CHARLESTON, WV ID found...
+
+Registering new $SQUIRE_GEORGE_WASHINGTON to Fort $DEFIANCE.... Complete.
+
+Connecting to US-ARMY Central Records... FAILED
+
+REGISTRATION COMPLETE
+
+// ADMIN NOTE: Welcome to the Brotherhood of Steel. AD VICTORIAM!
+}}
+
+{{Small|'''Note:''' ''The following header is conditional.{{Clarify}}''}}
+{{Transcript|text=
+Scanning Military ID...
+
+Valid CHARLESTON, WV ID found...
+
+Registering new $SQUIRE_PRIVATE_PARTS to Fort $DEFIANCE.... Complete.
+
+Connecting to US-ARMY Central Records... FAILED
+
+REGISTRATION COMPLETE
+
+// ADMIN NOTE: Welcome to the Brotherhood of Steel. AD VICTORIAM!
+}}
+
+{{Small|'''Note:''' ''The following header is conditional.{{Clarify}}''}}
+{{Transcript|text=
+Scanning Military ID...
+
+Valid CHARLESTON, WV ID found...
+
+Registering new $SQUIRE_ANONYMOUS to Fort $DEFIANCE.... Complete.
+
+Connecting to US-ARMY Central Records... FAILED
+
+REGISTRATION COMPLETE
+
+// ADMIN NOTE: Welcome to the Brotherhood of Steel. AD VICTORIAM!
+}}
+
+===Register new personnel===
+{{Small|'''Note:''' ''The following header is conditional.{{Clarify}}''}}
+{{Transcript|text=
+ERROR CODE 003:
+
+Squire $CUSTOM  is already registered with the system.
+}}
+{{Small|'''Note:''' ''The following text is displayed if one selected the name "George Washington" earlier in the quest and has already registered with the system.''}}
+{{Transcript|text=
+ERROR CODE 003:
+
+Squire $GEORGE_WASHINGTON  is already registered with the system.
+}}
+{{Small|'''Note:''' ''The following text is displayed if one selected the name "Private Parts" earlier in the quest and has already registered with the system.''}}
+{{Transcript|text=
+ERROR CODE 003:
+
+Squire $PRIVATE_PARTS  is already registered with the system.
+}}
+{{Small|'''Note:''' ''The following text is displayed if one selected the name "Anonymous" earlier in the quest and has already registered with the system.''}}
+{{Transcript|text=
+ERROR CODE 003:
+
+Squire $ANONYMOUS  is already registered with the system.
+}}
+
+===Current Personnel===
+{{Transcript|text=
+<nowiki>=========================</nowiki>
+FORT $DEFIANCE STAFF LIST
+<nowiki>=========================</nowiki>
+
+[[Ted Wilson|Sr Knight Ted Wilson]], CO
+[[Grant McNamara|Scr Grant McNamara]], XO
+[[Tex Rogers|Knight "Tex" Rogers]]
+[[Enrique Belmonte|Sq Enrique Belmonte]]
+[[Evelyn (Fallout 76)|Sq Evelyn]]
+}}
+
+===Version Notes===
+{{Transcript|text=
+<nowiki>=============</nowiki>
+VERSION NOTES
+<nowiki>=============</nowiki>
+
+v1.0: Hacked together the MilSec to secure facility. Alpha work at best. (ADMIN_GRANT)
+v1.1: Fixed the klaxon glitch. So many hacks. (ADMIN_GRANT)
+v1.1.01: This system SUCKS! Make it so anyone can register. ($CURRENT_USER)
+v1.1.02: Current User is right. Going up the damned stairs every day is shitty! ($CURRENT_USER)
+v1.1.03: Evelyn? Log files are for the programmer - me - only. (ADMIN_GRANT)
+v1.1.04: Please, Grant. The rest of the Asylum is falling apart. Someone is going to get hurt. ($CURRENT_USER)
+v1.1.05: Emergency patch to prevent log file edits. (ADMIN_GRANT)
+}}
+
+==Terminal==
+{{Small|'''Note:''' ''This wall terminal is located next to the door to the supply closet. It is locked and requires Hacker level 2. The door is locked and requires [[Picklock]] level 2.''}}
+{{Transcript|text=
+Welcome to ROBCO Industries (TM) Termlink
+}}
+
+===Remote Door Control===
+{{Section|FO76}}
+
+==Scribe Grant's terminal==
+[[File:FO76_Fort_Defiance_(Scribe_Grant's_Terminal).jpg|thumb]]
+{{Small|'''Note:''' ''This desk terminal is located on the large white metal table in the fourth floor workshop room.''}}
+<!-- [SeventySix.esm] Scribe Grant's Terminal (002c5442) -->
+{{Transcript|text=
+BROTHERHOOD OF STEEL ONLY
+Scribe Grant's Personal Terminal
+}}
+
+===Last Plea for 099-01 (Draft)===
+{{Transcript|text=
+TO:   &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+FROM: &lt;Scr Grant&gt;
+SUBJ: Last Plea for 099-01
+
+I'm not the Scribe you need. But 099-01 isn't my idea. It's the last message we got from those [[Brotherhood of Steel (Lost Hills)|geniuses]] on the West Coast. We need to do this.
+
+The Automated Research Program is solid. It can conduct iterative research on [[Scorchbeast]]s and find their weaknesses. Just two men could run the operation out of [[Vault-Tec University]].
+
+We may die, yes. But someone's got to figure out how to destroy these bastards once and for all. Don't make it so [[Elizabeth Taggerdy|Taggerdy]] died in vain.
+}}
+
+===Stored Logs===
+{{Transcript|text=
+<nowiki>===========</nowiki>
+STORED LOGS
+<nowiki>===========</nowiki>
+}}
+
+====RE: Mission 099-01 URGENT!====
+{{Transcript|text=
+TO:   &lt;Scr Grant&gt;
+FROM: &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+SUBJ: RE: Mission 099-01 URGENT!
+
+We're in the trench we've dug, Grant. Telling everyone mistakes were made doesn't help.
+
+Yes, we need to know more about Scorchbeasts. 099-01 is vital.
+
+But let's say I pull out even two knights to run this mission - what happens then? Every time we spin up the Sonic Attractor it's a life or death struggle to keep a lid on the Scorchbeasts. Take out two people and we're dead. All of us. And if we die here [[Appalachia]] dies with us.
+
+Focus that brain of yours on keeping those generators up. Getting us enough power if [[Thunder Mountain Power Plant|Thunder Mountain]] falls. Help us hold the line. We need you.
+}}
+
+====RE: Mission 099-01 Follow Up====
+{{Transcript|text=
+TO:   &lt;Scr Grant&gt;
+FROM: &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+SUBJ: RE: Mission 099-01 Follow Up
+
+We don't have the manpower to commit to 099-01. Look around. Taggerdy took our best with her on [[Operation Touchdown|Touchdown]]. If they're not back yet, they're not coming back. 
+
+But the skies are clearing. We don't need to know more about the Scorchbeasts. They're dead. And a lot of that's because of your work. Be proud and rest easy, soldier.
+}}
+
+====RE: Mission 099-01====
+{{Transcript|text=
+TO:   &lt;Scr Grant&gt;
+FROM: &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+SUBJ: RE: Mission 099-01
+
+099-01 was run once. And we lost good men. Another run at this does more than risk our Brothers and Sisters' lives. It risks turning the [[Responders]] into hostiles. We can't afford that now of all times.
+
+I keep making allowances for your background, but we're a military outfit. You've made your case. It's been rejected. I don't want to hear another word about this.
+}}
+
+===Personal Notes===
+{{Transcript|text=
+<nowiki>===========</nowiki>
+STORED LOGS
+<nowiki>===========</nowiki>
+}}
+
+====Scribe Takano====
+{{Transcript|text=
+It may be awhile before I can write again. Working directly with [[Hailey Takano|Scribe Takano]] is... intimidating.
+
+I've read so many of her articles in [[Tesla Science Magazine|Tesla Science]]. Cutting edge research and theories. I don't know how [[Roger Maxson|Elder Maxson]] found her, but we're very fortunate.
+
+I try to keep up with her. The schematics she sends, the terminal code, all of it. I know she has other Scribes helping her, but I just don't want to be the one dropping the ball.
+
+I had a hard talk with the Paladin. I told her we need more Scribes, better Scribes. But I think I'm the only civilian she trusts. After [[Hank Madigan|Madigan]] and [[E. Fisher|Fisher]], I guess I can't blame her.
+}}
+
+====Making it home====
+{{Transcript|text=
+So I have a home and some people to help out. And [[Fort Defiance]] is shaping up, the elevator was the last piece of the puzzle. The hydraulics do need some extra work. Squire [[Enrique Belmonte|Belmonte]] was stuck in there for three hours. Oops.
+
+For the longest time, I felt like I was the Brotherhood's pet mechanic. But things have been changing after Maxson talked about [[Brotherhood of Steel ranks#Journeyman scribe|Scribes]] being important. About technology being one of our central missions. It's amazing, the old man gives a speech and almost overnight people are listening to me.
+
+I've earned my place in the Brotherhood. It's nice to be recognized.
+}}
+
+==Senior Knight Wilson's terminal==
+[[File:FO76_Fort_Defiance_(Senior_Knight_Wilson's_Terminal).jpg|thumb]]
+{{Small|'''Note:''' ''This desk terminal is located on the writing desk in the barracks on the fourth level.''}}
+<!-- [SeventySix.esm] Senior Knight Wilson's Terminal (0026b2bd) -->
+{{Transcript|text=
+BROTHERHOOD OF STEEL ONLY
+Property of Sr. Kngt. Wilson
+}}
+
+===URGENT: Touchdown Recovery===
+{{Small|'''Note:''' ''Accessing this command completes the quest [[Recruitment Blues]].''}}
+{{Transcript|text=
+TO:   &lt;BoS Recovery Team&gt;
+FROM: &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+SUBJ: Touchdown Recovery
+
+Any Brotherhood personnel that read this - you are now on the Recovery Team. Under my command we didn't have the men or firepower to find the fate of Operation Touchdown. All hands must be lost.
+
+Touchdown's transponders broadcast on the Brotherhood's radio frequency 92.3, encryption key 3A-F1. Follow it, find them.
+
+Can't shake the feeling that Pldn. Taggerdy's fate is the answer to the Scorchbeast (Sierra Bravo) menace.
+
+Touchdown Supplemental has more details.
+}}
+
+===Touchdown Recovery (Supplemental)===
+{{Transcript|text=
+TO:   &lt;BoS Recovery Team&gt;
+FROM: &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+SUBJ: Touchdown Recovery (Supplemental)
+
+After losing contact with Pldn. Taggerdy, initial assumption was Touchdown was a bust. But 2 days after signal loss massive earthquake. Spotters reported tunnel collapses.
+
+For a couple weeks skies clear. No new Scorched assaults on Defiance. We thought it was a final victory.
+
+Now Sierra Bravos swarming from multiple fissures. We can't contain them. Situation dire.
+}}
+
+===Stored Logs===
+{{Transcript|text=
+<nowiki>===========</nowiki>
+STORED LOGS
+<nowiki>===========</nowiki>
+}}
+
+====95-AUG-13====
+{{Transcript|text=
+TO:   &lt;&gt;
+FROM: &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+SUBJ: Defend the Line
+
+Sierra Bravos grow in increasing number. The range of Scr. Grant's Sonar Array isn't attracting all of them. If they hit Thunder Mountain, all is lost.
+
+The men know there is no Operation plan. No deserters. We will fight to the last.
+}}
+
+====95-JUN-03====
+{{Transcript|text=
+TO:   &lt;BoS Defiance&gt;
+FROM: &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+SUBJ: Mop Up
+
+I want to confirm that we have spotted growing numbers of Bravos. If one is spotted contact the Officer of the Watch immediately.
+
+Scr. Grant is investigating. If there are any new developments, I will contact you immediately.
+
+Ad victoriam.
+}}
+
+====95-FEB-02====
+{{Transcript|text=
+TO:   &lt;&gt;
+FROM: &lt;Sr Knight Wilson, CO Ft Defiance&gt;
+SUBJ: She will be honored
+
+It's been five days since Touchdown. After the tremors, we have spotted no Bravos in the air. Preliminarily declaring mission successful.
+
+On a personal note, the world can never replace Liz. Appalachia can never repay her sacrifice. God speed, Pldn. Taggerdy.
+}}
+
+====94-JAN-03====
+{{Transcript|text=
+TO:   &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+FROM: &lt;Sr Knight Wilson, XO Ft Defiance&gt;
+SUBJ: Need more supplies
+
+I know we're burning good will, but if we want to fight the Bravos we need bullets. And lots of them.
+
+To fix the immediate needs:
+1000  [[5mm round (Fallout 76)|5mm]]
+150   [[5.56 round (Fallout 76)|5.56]]
+40    [[Missile (Fallout 76)|Missiles]]
+13    [[Fusion core (Fallout 76)|Fusion Cores]]
+6     [[Plasma core|Plasma Cores]]
+
+Plus we need at least two weeks more food for the Mess Hall.
+}}
+
+====93-JUL-20====
+{{Transcript|text=
+TO:   &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+FROM: &lt;Sr Knight Wilson, XO Ft Defiance&gt;
+SUBJ: Settling in
+
+[[Camp Venture]] is officially abandoned. All personnel are relocated. Reporting all scouts pulled back, as well. In short, except for Thunder Mountain all hands are here.
+
+I will try to complete the training of the remaining Squires. I want to reiterate that Squire Evelyn should be discharged. Her conduct is not becoming the BoS. I recognize that these are exceptional circumstances, but standards must be maintained.
+
+Ad victoriam.
+}}
+
+==Paladin Taggerdy's terminal==
+[[File:FO76_Fort_Defiance_(Paladin_Taggerdy's_Terminal).jpg|thumb]]
+{{Small|'''Note:''' ''This desk terminal is located on the fancy marble end table in Paladin Taggerdy's quarters.''}}
+<!-- [SeventySix.esm] Paladin Taggerdy's Terminal (0034b443) -->
+{{Transcript|text=
+BROTHERHOOD OF STEEL ONLY
+Property of Paladin Taggerdy
+}}
+
+===Scorchbeast: Analysis===
+{{Transcript|text=
+We've learned much since we lost contact with Elder Maxson. Grant says it's pretty much worst case. Threat assessment:
+
+<nowiki>*</nowiki> Actual Sierra Bravos are reinforced, mobile, and cunning predators.
+<nowiki>*</nowiki> Bravos use echolocation to call in ground reinforcements.
+<nowiki>*</nowiki> The breeding cycle for the Bravos is off-the-charts.
+
+The saving grace in all this is that the Sierra Bravos only nest in specific places. We've found three nests in old mining tunnels below the Bog, but there's a main nest somewhere that's the real problem.
+
+In order to stop the Bravos from spreading outside Appalachia and possibly becoming an extinction event, we have to destroy their main nests.
+}}
+
+===Ultimate Solution===
+{{Small|'''Note:''' ''Accessing this entry ends the quest [[Belly of the Beast]] and starts the quest [[Uncle Sam]].''}}
+{{Transcript|text=
+Every last Bravo needs to be destroyed. Maxson forbade using nukes. But...
+
+A few years back we found one of the missile silos and the old security system was formidable. As a last resort we need to find a way in. [[Sam Blackwell|Senator Sam Blackwell]] was on the nuclear energy committee, so he might know something? But no one knows where his bunker is... except maybe [[Quinn Carter]] of the [[Charleston Herald]].
+
+One way or another, if Touchdown fails the nuclear option may be our only option. Maxson's orders be damned.
+}}
+
+===Strange New World===
+{{Transcript|text=
+Everything is different. We send information to [[Lost Hills]] about what we see and what we face and they have a hard time believing it. Some of the things they face are equally strange. The new plants, animals, monsters ... it's hard to keep track of. To some degree I've given up even trying.
+
+But one thing is clear - these [[Scorched]] and the Scorchedbeasts are something different. We need to focus on them. All these other threats, even the giant hulking mutants, we can handle. But how will we handle the Scorched?
+}}
+
+===Ultracite Power Armor===
+{{Small|'''Note:''' ''Accessing this entry adds [[Ultracite power armor]] schematic to the player character's inventory.{{Verify|verified}}''}}
+{{Transcript|text=
+TO:   &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+FROM: &lt;Scribe Grant&gt;
+SUBJ: Ultracite Power Armor
+
+I've taken the schematics Scribe Takano transmitted as far as I can. I think I fixed the coolant leak problem, but I just don't know. If we ever get some serious time and resources I can try building one, but the list of components... is intimidating.
+
+<nowiki>[[ATTACHMENT: Ultracite Power Armor Schematics]]</nowiki>
+}}
+
+===Stored Logs===
+{{Transcript|text=
+<nowiki>===========</nowiki>
+STORED LOGS
+<nowiki>===========</nowiki>
+}}
+
+====Personal Notes====
+{{Transcript|text=
+TO:   
+FROM: &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+SUBJ: Personal Notes
+
+Two months and no word from Maxson. Grant's declared communications with the West Coast dead and dead for good.
+
+Every time we think we have the Bravos licked they come back in greater numbers.
+
+Only Grant and Wilson know of Takano's final assessment. If word got out, we can't guarantee there won't be a panic.
+
+Every day that goes by, we're chewing through ammo, power, and sometimes knights.
+
+We desperately need to make it to the end zone or Appalachia's toast. Or far worse.
+}}
+
+====Change of Priorities====
+{{Transcript|text=
+TO:   &lt;All Brotherhood Forces&gt;
+FROM: &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+SUBJ: Change of Priorities
+
+Up to now our priorities have been:
+
+<nowiki>*</nowiki> Secure dangerous and useful technology.
+<nowiki>*</nowiki> Protect the people of Appalachia.
+<nowiki>*</nowiki> Expand our operational capacity.
+
+But the brass has talked and we're changing that. We have a plan to lure the Scorchbeasts into a kill zone with some tech that Scribe Takano and Scribe Grant have been working on. Until the skies are clear our new priority is to wipe the SBs out.
+
+Some of you will be receiving orders to secure food, munitions, and other supplies from the [[Responders]] and [[Free States]]. Be firm. Tell them that the SB Threat is real and that once it is dealt with the Brotherhood will once again help protect them. Under no circumstances are you to initiate hostilities or even take supplies.
+
+However, in order to get the supplies we need you're authorized to ignore salvage rights claims. If it's not on one of their farms, put simply, it's fair game.
+
+I know this is controversial, but we don't have time to play politics. There's a war on, let's win it.
+
+Ad victoriam.
+}}
+
+====Satellite is Down====
+{{Transcript|text=
+TO:   &lt;Sr Knight Wilson, CO Cmp Venture&gt;
+FROM: &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+SUBJ: Satellite is Down
+
+We lost contact with [[USA-1103]] today. Grant's got the backup already up, but he doesn't know how long that'll work. Elder Maxson said we have to accept that there'll be a point where we're on our own. So if there is ANY urgent info you need - ask it now. The window is closing.
+
+Wanted to give you the heads-up that we're moth-balling the [[Grafton Dam]] outpost. The Scorchbeasts are just getting too dangerous. We need to reinforce our patrols with Power Armored knights. I'm sending Esposito your way. I hate to dissolve her command, but she can be a real asset to you.
+
+Screen the Squires carefully. I don't want any weak links.
+
+Ad victoriam.
+}}
+
+====Fort Defiance====
+{{Transcript|text=
+TO:   &lt;BoS Defiance&gt;
+FROM: &lt;Pldn Taggerdy, CO Ft Defiance&gt;
+SUBJ: Fort Defiance
+
+Camp Venture served us well as our base of operations, but with the new class graduating we are ready to expand. So welcome to Fort Defiance.
+
+Let me address some of the concerns raised about relocating:
+
+<nowiki>*</nowiki> The Cranberry Bog has formidable challenges. But by basing ourselves here we protect Appalachia from them.
+<nowiki>**</nowiki> These threats also act as a deterrence from raids and other intruders. It becomes our shield.
+
+<nowiki>*</nowiki> The Fort itself is indeed too large for our purposes now. But we won't out-grow it any time soon.
+
+<nowiki>*</nowiki> The previous purpose of this institution some find distasteful. Noted. Now's a chance to clean it up and make it our own.
+
+For those who served in uniform, you're used to toughing it out. For those who haven't it's your opportunity to develop grit and character.
+
+Ad victoriam.
+}}
+
+[[Category:Fallout 76 terminal entries]]
+
+[[ru:Форт Дефайанс — записи в терминалах]]

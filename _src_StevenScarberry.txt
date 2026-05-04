@@ -1,0 +1,132 @@
+{{Infobox character
+|games       =FO76, FO76MI
+|type        =Ally
+|image       =FO76MI Stevie.png
+|race        =[[Human]]
+|gender      =Male
+|aliases     =Stevie<br />Brother Scarberry<br />Brother Stevie
+|affiliation =[[Cult of the Mothman]],<br />Followers of the Winged One
+|role        =[[Fallout 76 allies|Ally]]<br />[[Fallout 76 vendors|Vendor]]
+|location    =[[CAMP|Player character's C.A.M.P.]] (optional)
+|family      =
+|rank        =Brother
+|actor       =[[Robbie Daymond]]
+|designer    =[[Ryan White]]
+|dialogue    =[[Steven Scarberry/Dialogue]]
+|archetype   =Friendly
+|hair color  ={{Tooltip|Auburn|HairColor22Auburn}}
+|eye color   ={{Tooltip|Light gray|MaleEyesHumanLightGrey}}
+|hairstyle   ={{Tooltip|Waster|HairMale07}}
+|level       =1→50
+|derived     ={{Derived stats FO4|hp=35→800|ap=50}}
+|special     ={{SPECIAL|8,4,0,0,0,5,0}}
+|aggression  =Unaggressive
+|confidence  =Foolhardy
+|assistance  =Helps Allies
+|factions    =ATX_COMP_Scarberry_VendorFaction<br />COMP_CompanionDialogue_Faction<br />COMP_CompanionGeneralFaction<br />PlayerAllyFaction
+|CK race     =HumanRace
+|class       =raiderClass
+|combat style=Default
+|voice type  =ATX_NPCM_COMP_<br />Lite_Scarberry
+|edid        =ATX_COMP_Actor_StevenScarberry
+|formid      ={{ID|0068d3da}}
+}}
+
+{{Quotation|Ah hubris. We have a story about a moth that flew too close to the sun and burned their wings. It seems he had the same outcome with False Gods.|sound=Steven Scarberry 0068e269_1.ogg}}
+
+'''Brother Steven "Stevie" Scarberry''' is a member of the [[Cult of the Mothman]] and a potential [[Fallout 76 allies|lite ally]] living in [[Appalachia]]. He is a member of the "Followers of the Winged One," the sect of the cult that worships the red-eyed [[Mothman]], and is in opposition to [[the Enlightened]]. 
+
+Steven is unlocked as a reward at rank 35 of ''[[Rip Daring and the Cryptid Hunt]]'', the twelfth [[Fallout 76 seasons|season]] {{In|FO76MI}}.
+
+==Background==
+Stevie makes no references to the pre-War world, implying he was born after the [[Great War]] of 2077. When Stevie was a baby, his parents were said to have been found and selected by the Mothman himself, and it is suggested his parents were devoured by the insect-like deity. The baby Stevie was placed among the [[Mothman egg|Mothman's eggs]] where he was found by the [[Cult of the Mothman|Followers of the Winged One]]. The baby, surrounded as it was by His eggs, was seen as a sign of the Mothman's blessing. They took him in and raised him. Stevie holds the Followers to be his family, and has devoted himself to worship of the holy one.
+
+Now a young man, Stevie believes himself a chosen disciple of the Mothman, with a soul blessed by His love. He has been on a months-long pilgrimage to the "Holy Lands of Appalachia" to find him himself, explaining why he is currently away from his other cultists. He is searching for the [[Albino radstag blood|albino blood]] necessary for the ritual. His pilgrimage will end when he gazes into the Mothman's eyes and sees his great truth.
+
+==Interactions with the player character==
+===Interactions overview===
+{{Interactions FO76
+|essential          =yes
+|ally               =yes
+|allyfurn           =[[Scarberry's shrine]]
+|wares              =* Various
+|caps               =yes
+|bonus              =Blessing of the True Mothman: XP buff
+}}
+
+===Effects of player's actions===
+* Steven will comment if the Vault Dweller is wearing Cult of the Mothman related clothing, positively if it is related to his sect (such as [[cultist adept clothes]]) or discouragingly if related to the Enlightened Cult (such as the [[cultist enlightened robe]]).
+* Steven will comment on if the Vault Dweller's radiation is high.
+
+===Other interactions===
+* The Vault Dweller can tell Steven about various quests they have resolved that are centered on cryptids, such as [[The Lowe-Down]], [[Over and Out]], [[Unsolved: Death and Taxidermy]] and [[The Mothman Equinox]].
+* With an Intelligence +8 check, the Vault Dweller can tell Stevie he was placed as a baby among the Mothman's eggs to be devoured by the Mothman's offspring. Stevie vehemently denies the idea, saying that it meant he was accepted as being one of the Mothman's children.
+* If [[False Gods of Appalachia]] has been read, the Vault Dweller can ask Steven about [[the Interloper]]. Steven clams up and begs the Vault Dweller to drop the subject.
+* The Vault Dweller can ask Steven about his pilgrimage and he will give various stories on his encounters and stories he has heard, such as encountering the [[Smiling Man]], [[the Whitespring]] Ghost, rumors on the [[Sickleman]] and various cryptid-like spottings.
+* The Vault Dweller can tell Steven to pull himself together because he is worshiping a "fucking bug," but this only strengthens Steven's faith, as he frames the player character's skepticism as a test along his pilgrimage.
+
+==Inventory==
+{{Inventory
+|apparel   =
+|weapon    =
+|otheritem =
+|ondeath   =empty
+}}
+
+==Notes==
+* One of Steven's idle barks, ''"I just can't shake these nightmares. Floating in darkness forever... What if I cannot find His Light?"'', is a sentiment [[Sofia Daguerre]] also expresses, nearly word-for-word: ''"I just can't shake these nightmares. Floating in space forever... Just, why?"''
+* There is a book near his shrine titled ''The Man The Moth The Legend'' with a small doodle of the Mothman on the cover.
+* Although a member of the Cult of the Mothman, Steven will not hesitate to attack hostile [[Cultist (Fallout 76)|cultists]] at a C.A.M.P. (see [[#Gallery|gallery]]).
+* Steven claims to be able to perceive radiation on someone as a visible "glow,"<ref>Steven Scarberry: ''"{{Tooltip|You are absolutely glowing. Would you mind climbing something tall and jumping around? I think that might attract Him.|Player is highly irradiated.}}"''<br />([[Steven Scarberry/Dialogue|Steven Scarberry's dialogue]])</ref> a phenomenon also observed in characters such as [[Gerard (Broken Steel)|Gerard]], [[Devin (Far Harbor)|Devin]] and [[Curie III|Mother Curie III]]. He can also see radiation in the environment.<ref name=":0">Steven Scarberry: ''"{{Tooltip|*Gasp* Is that the warm glow of the Holy Mothman!? *Sigh* Alas no, just more radiation.|Starts excited, gets dejected}}"''<br />([[Steven Scarberry/Dialogue|Steven Scarberry's dialogue]])</ref> 
+** Additionally, he describes the Mothman as possessing a "warm glow" resembling that of radiation,<ref name=":0" /> which doesn't seem to comport with the in-game visuals. To players, Mothmen appear to pour shadowy smoke upon the earth, though their eyes are sharply bioluminescent and some rare mothmen have green glowing spots around their joints.
+* Steven shares his surname with Mary Scarberry, the main protagonist of "The Mothman Cometh," a story in ''Fallout 76''{{'}}s fictional ''[[Tales from the West Virginia Hills]]'' radio play and holotape series which features the Mothman.
+* Stevie mentions that he saw a light fall from the sky, and upon investigating the impact site, found only a fuzzy painting of a man in a blue shirt.<ref>Steven Scarberry: ''"I saw a light fall from the sky. I hoped for Him, but instead found metal, smoke, and debris. Nothing else except for a fuzzy painting of a man in a blue shirt."''<br />([[Steven Scarberry/Dialogue|Steven Scarberry's dialogue]])</ref> This alludes to the [[fuzzy painting (Fallout)|fuzzy painting]] item found in the UFO crash encounter in ''[[Fallout]]''.
+
+==Notable quotes==
+* {{Inline quote|Do you mean to tell me that you showcase Mothman Imagery, yet do not follow the flutter of His wings?|sound=Steven Scarberry 0068ddfa_1.ogg}}
+* {{Inline quote|Oh where are my manners? My name is Brother Steven. Steven Scarberry. Brother Scarberry if you want to be formal, Brother Stevie if you don't.|sound=Steven Scarberry 0068e22f_1.ogg}}
+* {{Inline quote|Welcome back to His Altar. I mean your altar. I mean your C.A.M.P. thing.|sound=Steven Scarberry 0068eb11_1.ogg}}
+* {{Inline quote|What? No! We're not a cryptid cult... club... thing. We're a... What's the word? Family. That's it! A family in eternal unwavering support of the Holy Mothman.|sound=Steven Scarberry 0068e8a8_1.ogg}}
+* {{Inline quote|I uh... I still have not found Mothman. I have in my mind, and in my soul, but not on this mortal plane. My pilgrimage ends when I look into His eyes and finally understand His Truth. But... it has been many months with no sign. I remain with Him, but like a candle, my faith flickers in the uncaring wind.|sound=Steven Scarberry 0068e8ab_1.ogg}}
+* {{Inline quote|There's a Mothman... I wonder if there's a Mothwoman? Another question for Him... or Her.|sound=Steven Scarberry 0068eae5_1.ogg}}
+
+==Appearances==
+Steven Scarberry appears only {{In|FO76MI}}.
+
+==Behind the scenes==
+[[File:Historic Mothman article.webp|right|frameless]]
+* [[SkyBox Labs]] developer [[Ryan White]] was a writer for Steven; White also wrote for [[Grandma Junko]] and [[Adelaide (ally)|Adelaide]].<ref group="Non-game">[https://www.linkedin.com/posts/ryanwhite125_outside-of-lead-responsibilities-ive-also-activity-7193067240680742912-OGwn Ryan White on LinkedIn]: ''"Outside of lead responsibilities, I've also been keeping up with my writing for the project. I've previously posted about Rip Daring's adventures, but I've also had the opportunity to write a lot more, like B-movie radio ads, quips from an underqualified baking machine, and numerous non-linear allies for the players to talk to.<br />I'm especially proud of the allies, as they've all become fan favorites and resonate with players for different reasons. Steven Scarberry is a passionate priest who is beginning to question his faith as he has not seen his deity, the local cryptid known as Mothman. Grandma Junko is a sweet and caring old lady who seems out of time, as she is either oblivious to the state of the world or refuses to acknowledge it for some reason. And most recently Adelaide, a weapon of mass destruction that was reprogrammed into a showgirl who sings show tunes.<br />It's an incredible feeling seeing the fan responses since I got to take these characters all the way from planning, to recording, to implementation. All of this is something I'll never get tired of, and I look forward to posting more updates on my work when I can."''</ref>
+* Steven shares his last name, Scarberry, with Linda and Roger Scarberry, who were eyewitnesses to the first reported encounter with the Mothman in November 1966. The other eyewitnesses were Steve and Mary Mallette.
+* Steven alludes to having met the [[Smiling Man]], also known as Indrid Cold.<ref>Steven Scarberry: ''"{{Tooltip|A very friendly man. While his personality was cold, he could not shake his smile. I feel as though we were looking for similar things.|Remembering a previous adventure}}"''<br />([[Steven Scarberry/Dialogue|Steven Scarberry's dialogue]])</ref> Steven and the Smiling Man share the same voice actor, [[Robbie Daymond]].
+* As mentioned above, Steven closely paraphrases a line about a recurring void-based nightmare from [[Sofia Daguerre]], one of the original CAMP allies from ''Wastelanders''.<ref>Steven Scarberry: ''"{{Tooltip|I just can't shake these nightmares. Floating in darkness forever... What if I cannot find His Light?|Sad that he still has not met Mothman}}"''<br />([[Steven Scarberry/Dialogue|Steven Scarberry's dialogue]])</ref><ref>[[Sofia Daguerre]]: ''"I just can't shake these nightmares. Floating in space forever... Just, why?"''<br />([[Sofia Daguerre/Dialogue|Sofia Daguerre's dialogue]])</ref> This line was a meme among ''Fallout 76'' fans because it stood out as strange, and might be heard frequently while hosting Sofia or visiting other player CAMPs.
+* He will also question if there is a Mothwoman, a recurring line by CAMP lite ally [[Sam Nguyen]].<ref>Sam Nguyen: ''"There's a mothman... I wonder if there's a mothwoman? Or is that just the light he's drawn to? Makes for a good love song either way."''<br />([[Sam Nguyen/Dialogue|Sam Nguyen's dialogue]])</ref>
+
+==Gallery==
+<gallery>
+SCORE S12 CAMP Ally Scarberry L.webp|[[Vault Boy]] depiction
+Steven Scarberry headshot.png|Headshot
+FO76MI Stevie worship 1.png|Stevie's passtime
+FO76MI Stevie worship 2.png|Stevie's passtime
+FO76MI Stevie worship 3.png|Stevie's passtime
+FO76MI Stevie jacket.png|His jacket re-embroidered to say "A MOTH" instead of "Grafton Monsters"
+FO76MI Steven Scarberry attacking cultist.png|Attacking a hostile [[Cultist (Fallout 76)|cultist]]
+76 Scarberry altar.png
+76 MI At the altar.png
+76 NOTM Scarberry portrait.png
+</gallery>
+
+==References==
+{{References}}
+'''Non-game'''
+{{References|group=Non-game}}
+
+{{Navbox allies FO76}}
+{{Navbox vendors FO76}}
+{{Navbox Cult of the Mothman}}
+
+[[Category:Fallout 76 allies]]
+[[Category:Fallout 76 merchants]]
+[[Category:Mutation Invasion characters]]
+[[Category:Cult of the Mothman characters]]
+
+[[ru:Стивен Скарберри]]

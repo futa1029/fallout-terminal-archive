@@ -1,0 +1,84 @@
+p|Don't know about restin' easy, but it's one less thing to worry about.|Grateful}}"''<br/>''"{{tooltip|Hard to believe Shipbreaker is finally dead.|Awed}}"''
+|}
+
+===Companion swap comments===
+{| class="va-table va-table-full va-table-center mw-collapsible mw-collapsed"
+! colspan="3"| Swapping in Old Longfellow
+
+|- valign="top"
+! Previous companion
+! Comment
+! Longfellow's comment
+
+|-
+| [[Nick Valentine]]
+| ''"{{tooltip|You sure you two are gonna be all right out there?|Concerned}}{{Inline quote|sound=Fo4FH Nick Valentine 0001540E_1.ogg}}"''
+| ''"{{tooltip|Quit your worryin', metal man. We'll be fine.|Feeling nagged}}"''
+|}
+
+==Inventory==
+{{Inventory
+|game      =FO4FH
+|title     =yes
+|apparel   =[[Hunter's long coat (Far Harbor)|Hunter's long coat]] (default)
+|weapon    =[[Lever-action rifle (Far Harbor)|Lever-action rifle]] (default)
+|otheritem =
+|ondeath   =empty
+}}
+{{Inventory
+|game      =FOS
+|title     =yes
+|image     =FoS Old Longfellow.png
+|apparel   =[[Tattered longcoat]]
+|weapon    =[[Henrietta]]
+}}
+
+==Notes==
+* In his appearance in ''[[Fallout Shelter]]'', Old Longfellow carries a unique [[Lever-action rifle (Fallout Shelter)|lever-action rifle]] called [[Henrietta]] whereas his default weapon in ''Far Harbor'' is an unnamed standard one.
+* Similar to [[Robert MacCready]] and [[Porter Gage]] from the ''[[Nuka-World (add-on)|Nuka-World]]'' add-on, it is shown that Old Longfellow's teeth are rotten.
+
+==Notable quotes==
+* {{Inline quote|Gettin' too damn old for all this runnin' around.|sound=Old Longfellow 00011E71_1.ogg}}
+* {{Inline quote|Don't know what's more sore, my back or my feet.|sound=Old Longfellow 00011E70_1.ogg}}
+* {{Inline quote|Bury me... with a bottle...|sound=Old Longfellow 000153EF_1.ogg}}
+* {{Inline quote|Damn... can't remember if I had my bath this week or not.|sound=Old Longfellow 00011E72_1.ogg}}
+* {{Inline quote|Whiskey's runnin' low. Better find some more, an' soon.|sound=Old Longfellow 00011E6E_1.ogg}}
+
+==Appearances==
+Old Longfellow appears {{In|FO4FH}}, {{In|FOS|noin}}, and {{In|FOSO|noin}}.
+
+==Behind the scenes==
+* Old Longfellow shares his name with the American poet [[Henry Wadsworth Longfellow]], who was also a native of [[Maine]].
+* Concept art shows an early design of Old Longfellow where his face was more wrinkly and sunken to reflect his age and hard lifestyle, as well as him wearing the [[Old fisherman's hat (Far Harbor)|old fisherman's hat]] with his longcoat and smoking from a pipe.
+* When near old shipwrecks around the shoreline, Old Longfellow may quote lines from the 1865 poem "O Captain! My Captain!" by [[wikipedia:Walt Whitman|Walt Whitman]] and the 1902 poem "Sea-Fever" by [[wikipedia:John Masefield|John Masefield]].<ref>Old Longfellow: ''"{{tooltip|O captain, my captain, our fearful trip is done. The ship has weather'd every rack, the prize we sought is won.|Rhetorical, wistful, sad. You love ships and are looking at a wrecked one.}}"''<br/>([[DLC03 CompanionOldLongfellow.txt#678|Old Longfellow's dialogue]])</ref><ref>Old Longfellow: ''"{{tooltip|I must go down to the seas again, to the lonely sea and the sky, and all I ask is a tall ship and a star to steer her by.|Rhetorical, wistful, sad. You love ships and are looking at a wrecked one.}}"''<br/>([[DLC03 CompanionOldLongfellow.txt#678|Old Longfellow's dialogue]])</ref>
+
+==Bugs==
+* {{Platforms|pc}} Old Longfellow might disappear for no reason. To fix this use console command {{Console|{{DLC ID|014602}}.moveto player}}.{{Verify|verified}}
+* {{Platforms|pc}} Old Longfellow may become impossible to interact with. To fix this enter the console and click on Old Longfellow and use the console command {{Console|resetAi}}.{{Verify|verified}}
+
+==Gallery==
+<gallery widths=200>
+FO4FH Old Longfellow pre-release.jpg|Pre-release image
+FO4FH Meet Old Longfellow.png|Old Longfellow in [[the Last Plank]]
+Old Longfellow.jpg|Old Longfellow
+Old Longfellow perk icon.png|Old Longfellow's icon from the [[Hunter's Wisdom]] perk
+FO4FarHarbor Longfellow Full.jpg|Concept art
+</gallery>
+
+==References==
+{{References}}
+
+{{Navbox companions FO4}}
+{{Navbox characters FO4}}
+
+[[Category:Far Harbor human characters]]
+[[Category:Fallout 4 companions]]
+[[Category:Fallout Shelter characters]]
+[[Category:Fallout Shelter Online characters]]
+
+[[de:Der alte Longfellow]]
+[[es:Viejo Longfellow]]
+[[pl:Stary Longfellow]]
+[[ru:Старик Лонгфелло]]
+[[uk:Старий Лонгфелло]]
+[[zh:老朗费罗]]

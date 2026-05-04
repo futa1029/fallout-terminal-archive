@@ -1,0 +1,899 @@
+'''The Prydwen terminal entries''' are a series of [[Fallout 4 terminal entries|entries]] found on various terminals on [[the Prydwen]] in ''[[Fallout 4]]''.
+
+==[[Quinlan|Proctor Quinlan's]] terminal==
+{{Small|'''Note:''' ''This desk terminal is located on the desk of [[Proctor]] Quinlan's quarters.''}}
+{{Transcript|text=
+[[Prydwen Internal Network]]
+Data Terminal Quinlan QN-448PR
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Quinlan -->
+
+===Recon Data Listings===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_QuinlanSub01 -->
+
+====Hardware Town====
+{{Transcript|text=
+Location: [[Hardware Town]]
+Logged By: Proctor Quinlan QN-448PR
+
+Former retail location, very likely to contain useful scrap or raw materials. [[Raiders (Fallout 4)|Raiders]] last seen inhabiting location - proceed with caution. Raiders may be stockpiling ammunition or [[weapon]]s as well, suggest all sweep and retrieve teams recover whatever they can.
+}}
+{{Transcript|text=
+> Sending Location Packet...
+}}
+
+====Vault-Tec Vault 75====
+{{Transcript|text=
+Location: [[Vault-Tec Corporation|Vault-Tec]] [[Vault 75]]
+Logged By: Proctor Quinlan QN-448PR
+
+Vault-Tec constructed Vault in the basement of [[Malden Middle School]]. Data suggests [[Vault]] was created to experiment on [[child]]ren, but purpose has been struck from all records. Would like to retrieve as much data as possible from location, as well as any technological artifacts that were left behind.
+}}
+{{Transcript|text=
+> Sending Location Packet...
+}}
+
+====Robotics Disposal Ground====
+{{Transcript|text=
+Location: [[Robotics disposal ground|Robotics Disposal Ground]]
+Logged By: Proctor Quinlan QN-448PR
+
+Junkyard littered with remains of [[Great War|pre-war]] robots. Scouting patrol reported a possible [[United States Armed Forces|military]]-grade [[Sentry bot (Fallout 4)|Sentry Bot]] that looks serviceable. Location likely to contain spare parts or electronic materials.
+}}
+{{Transcript|text=
+> Sending Location Packet...
+}}
+
+====BADTFL Regional Office====
+{{Transcript|text=
+Location: [[BADTFL regional office|BADTFL Regional Office]]
+Logged By: Proctor Quinlan QN-448PR
+
+Facility was former location for [[Bureau of Alcohol, Drugs, Tobacco, Firearms and Lasers]]. Data suggests evidence lockers on site may still contain viable weapons or other useful equipment. Warning - scouting units have observed Raiders operating in the area.
+}}
+{{Transcript|text=
+> Sending Location Packet...
+}}
+
+====General Atomics Factory====
+{{Transcript|text=
+Location: [[General Atomics factory|General Atomics Factory]]
+Logged By: Proctor Quinlan QN-448PR
+
+Factory was designed for the manufacture and repair of [[Miss Nanny (Fallout 4)|Miss Nanny]] Robots. Site likely to contain technological artifacts and/or documentation as well as spare parts Proctor Ingram might find useful. The chance for automated security at this location is high, so proceed with caution.
+}}
+{{Transcript|text=
+> Sending Location Packet...
+}}
+
+===Prydwen Internal Mail===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_QuinlanSub02 -->
+
+====Maxson MX-001E DR-078====
+{{Transcript|text=
+Fr: Elder Maxon MX-001E
+To: Proctor Quinlan QN-448PR
+
+After we arrive in the Commonwealth, I want you to begin organizing sweep and retrieve teams. Take as many men as you need and coordinate the duty rosters with Lancer-Captain Kells. I want as much information about these energy readings from Danse's team as you can find. We could be on the brink of discovering the location of the Institute, so this needs to be your top priority.
+}}
+
+====Maxson MX-001E DR-092====
+{{Transcript|text=
+Fr: Elder Maxon MX-001E
+To: Proctor Quinlan QN-448PR
+
+Proctor Ingram is requesting any information that will assist her reconstruction efforts. I've passed along your gantry design to Kells, and we're both confident that it will be completed by the time her project is ready. We have a lot of resources riding on the success of Ingram's mission, so I expect you to help her in any way that you can.
+}}
+
+====Ingram IG-444PR DR-094====
+{{Transcript|text=
+Fr: Proctor Ingram IG-444PR
+To: Proctor Quinlan QN-448PR
+
+I've sent over the proper forms to requisition two more scribes and you denied them? I don't need you slowing me down on this, Quinlan. Maxson keeps hounding me for results, but getting anything done with this project has been like trying to field-strip a [[Laser gun (Fallout 4)|laser rifle]] without using your hands. I need all the help I can get and if that means taking a few troops away from your scouting missions, I'm afraid you'll just have to make due. Now sign the damn forms, and let me do my job.
+}}
+
+====Neriah NR-490SS DR-112====
+{{Small|'''Note:''' ''This correspondence is available once Blind Betrayal is set to begin.''}}
+{{Transcript|text=
+Fr: Scribe Neriah NR-490SS
+To: Proctor Quinlan QN-448PR
+
+I've checked the data three additional times to confirm and I'm positive that the DNA sample we have on file for Paladin Danse matches the DNA sample you provided. I'm not certain why you're having me do these readings, but I can assure you that my data is accurate. Could you at least tell me where the sample you found originated from?
+}}
+
+====Maxson MX-001E DR-124====
+{{Small|'''Note:''' ''This correspondence is available once Blind Betrayal is set to begin.''}}
+{{Transcript|text=
+Fr: Elder Maxson MX-001E
+To: Proctor Quinlan QN-448PR
+
+The information you've discovered regarding Danse is of a highly sensitive nature and we need to proceed carefully. Until I make a formal announcement to the crew, I need you to keep this quiet. I'll have Kells raise the alert to all departments shortly. In the meantime, I need every scrap of data your department can come up with regarding possible locations that Danse may have gone.
+}}
+
+====Kells KS-390LC DR-133====
+{{Small|'''Note:''' ''This correspondence is available once Blind Betrayal is active.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Entire Crew
+
+This is a priority alert. Paladin Danse has been identified as an Institute synth by our command staff.&#160;&#160;Its current whereabouts are unknown. If it's spotted, terminate immediately. Do not attempt to approach. If you are unable to engage, report Danse's last known location to any duty officer as soon as possible so we can track its movement. This attempt by the Institute to tear the Brotherhood down from the inside has failed. Despite their treachery, we will persevere and emerge victorious. Ad victoriam, brothers and sisters.
+}}
+
+===The Rise of Elder Maxson===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_QuinlanSub03 -->
+
+====Opening Notes====
+{{Transcript|text=
+These entries are my attempt at writing a timeline documenting Elder Maxson's rise within the ranks of the Brotherhood. It's my sincerest wish that these entries will one day be compiled in a classic printed book format and distributed throughout the Wasteland. Long live Elder Maxson and long live the Brotherhood!
+}}
+
+====Background====
+{{Transcript|text=
+Despite [[Purifier Conflict|the defeat of the]] [[Enclave]] in the Capital Wasteland, the [[Brotherhood of Steel]] was still an organization divided. The [[Brotherhood Outcasts|Outcasts]], a splinter faction that left the safety of the Citadel, still struggled to survive in the Capital Wasteland, separated from [[Lyons' Brotherhood of Steel|their parent organization]]. And while some of the Brotherhood members within the Citadel had no desire to reunite with their "disgraced" brothers, many saw the advantage in bolstering their own forces with warriors already trained and indoctrinated by the Brotherhood of Steel. Surely they could work out any... philosophical issues?
+}}
+
+====Enter Maxson====
+{{Transcript|text=
+Enter Arthur Maxson, young squire to both [[Owyn Lyons|Owyn]] and [[Sarah Lyons]], and descendant of the very founder of the Brotherhood of Steel, [[Roger Maxson]]. When Elder Owyn Lyons died, care of young [[Arthur Maxson]] passed to Sarah Lyons, Owyn's daughter, who was then named Elder in his place. But when Sarah fell in battle shortly thereafter, things became complicated. The Brotherhood of Steel based in the Citadel found itself in need of leadership, and began appointing one ineffective Elder after another.
+}}
+
+====Accomplishments====
+{{Transcript|text=
+As the years passed, and Arthur Maxson grew, so too did his accomplishments. At age 12, while on a training patrol, he killed two Raiders and saved the squad that was supposed to be escorting him. At age age 13, he single-handedly killed a [[Deathclaw (Fallout 4)|Deathclaw]] (and gained the large facial scar he still has to this day). But it was his victory at age 15, over the Super Mutant "[[Shepherd]]" who was attempting to re-organize the Capital Wasteland's Super Mutants, that elevated him to hero-like status. When word of this feat reached the Elders back on [[New California|the West Coast]], they knew the time had come... Maxson was ready. Ready to lead and, more importantly, to reunite the fragmented Brotherhood of Steel forces on the [[East Coast]].
+}}
+
+====Our New Leader====
+{{Transcript|text=
+So it was that a year later, when he was only 16 years old, Arthur Maxson brokered a peace with the Outcasts, re-integrating them into the Brotherhood of Steel, and proving he was as effective a diplomat as he was a warrior. Now re-united, the full force of the Brotherhood of Steel appointed Arthur Maxson as Elder... the youngest in Brotherhood of Steel history.
+}}
+====Aftermath====
+{{Transcript|text=
+Elder Maxson reigns supreme in the Capital Wasteland, and his authority and influence have been spreading across the Eastern Seaboard, thanks in no small part by the mobility afforded by the Prydwen. He has the full support of the Elders back on the West Coast, who have proudly reported that they've begun eradicating cults that have popped up, worshipping Maxson as though he's some kind of god. Maxson himself is almost offended by the idea of being referred to as a deity, as it goes against everything he believes in. Arthur Maxson is happy to be one thing... the perfect human specimen, an example of everything a human being can achieve. Assisted, even enhanced, by advanced technology, but still very much [[human]].
+}}
+
+==[[Cade|Knight-Captain Cade's]] terminal==
+{{Small|'''Note:''' ''This desk terminal is located on the desk within the clinic.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Medical Terminal Cade CD-440KC
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Cade -->
+
+===Medical Files===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_CadeSub01 -->
+
+===={{linkable|Medical File DN-407P}} [Treated]====
+{{Transcript|text=
+Medical File DN-407P
+[[Brotherhood of Steel hierarchy#Paladins|Paladin]] [[Danse]]
+
+Patient symptoms included inability to sleep and a "dull throbbing pain in head." All standard tests are negative. Evidence suggests post-traumatic stress disorder or similar issue. Until severity of issue increases, recommend voluntary removal from active duty. Patient was informed, but is currently in the field.
+}}
+
+===={{linkable|Medical File DN-407P}} [Ongoing]====
+{{Small|'''Note:''' ''This entry is available once Blind Betrayal is active.''}}
+{{Transcript|text=
+Medical File DN-407P
+Danse (Ranking revoked per [[Brotherhood of Steel hierarchy#Elders|Elder]] Maxson)
+
+Incident 1: Patient symptoms included inability to sleep and a "dull throbbing pain in head." All standard tests are negative. Evidence suggests post-traumatic stress disorder or similar issue. Until severity of issue increases, recommend voluntary removal from active duty. Patient was informed, but is currently in the field.
+
+Incident 2: Comparitive analysis of DNA data provided by Proctor Quinlan confirms subject is a [[synth]]. Subject not present for a full analysis. Suggest immediate termination of subject and preservation of remains for a full dissection/diagnostic.
+}}
+
+===={{linkable|Medical File IG-444PR}} [Ongoing]====
+{{Transcript|text=
+Medical File IG-444PR
+[[Ingram|Proctor Ingram]]
+
+Patient is complaining of phantom pain from limb loss. Previously prescribed painkiller and [[Stimpak (Fallout 4)|Stimpak]] mixture appears ineffective. Dosage has been increased to 300mg/day which is maximum allowable to remain duty-capable. Patient also describes nightmares of limb loss incident which is not unusual considering the level of trauma. Will continue to monitor.
+}}
+
+===={{linkable|Medical File TG-477PR}} [Treated]====
+{{Transcript|text=
+Medical File TG-477PR
+[[Teagan|Proctor Teagan]]
+
+Patient slipped and fell due to intoxication, causing minor laceration on forehead and contusion to upper chest. Applied Stimpak and recommended a minumum eight-hour bedrest. This is third intoxication-related medical incident for patient, so I ordered treatment program to begin, as per regulations.
+}}
+
+===={{linkable|Medical File MR-192KS}} [Deceased]====
+{{Transcript|text=
+Medical File MR-192KS
+[[Merric|Knight-Sergeant Merric]]
+
+Patient returned from patrol with critical injuries from exposure to [[Nuclear weapons|nuclear warhead]] detonation. Injuries: left arm and leg missing, severe internal trauma, left hemisphere of head severely burned and acute radiation poisoning. Attempted emergency surgery, but patient died after three hours. Patient's remains were incinerated as per regulations.
+}}
+
+===={{linkable|Medical File OG-133ES}} [Treated]====
+{{Transcript|text=
+Medical File OG-133ES
+[[Osridge|Engineering Scribe Osridge]]
+
+Patient suffering from discoloration/rash, pustules and radioactive residue in groin area. Symptoms consistent with sexually-transmitted disease from [[Ghoul]] species. Patient treated and report has been sent to Proctor Ingram as per regulations.
+}}
+
+===Prydwen Internal Mail===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_CadeSub02 -->
+
+====Maxson MX-001E PM-097====
+{{Transcript|text=
+Fr: Elder Maxon MX-001E
+To: Knight-Captain Cade CD-440KC
+
+As we undertake our urgent mission in [[the Commonwealth]], I feel that the mental well-being of the crew should remain a top priority for your department. I am well aware that being sequestered aboard this vessel can take its toll. If you observe any issues relating to the stresses that these lengthy missions can cause, I want you to treat it as though a legitimate illness is being reported. If we have any hope of defeating the Institute, we cannot afford to lose even a single soldier to mental instability.
+}}
+
+====Maxson MX-001E PM-099====
+{{Transcript|text=
+Fr: Elder Maxon MX-001E
+To: Knight-Captain Cade CD-440KC
+
+I've received your concerns about Proctor Ingram's condition, but I can assure you she is more than capable of handling herself. She's already proven to be an extremely valuable member of this crew, and I will not place her on mandatory leave until you've proven to me that she's physically incapable of handling her duties.
+}}
+
+====Teagan TG-477PR PM-104====
+{{Transcript|text=
+Fr: Teagan TG-477PR
+To: Knight-Captain Cade CD-440KC
+
+Our latest sweep and retrieve patrol came back with some medical supplies. If you have some extra time, head down to the cage and let me know what you want. If there's anything you don't need, I'll use it for trading. We're running a bit low on [[ammunition]] supplies, and these [[Drugs|medical supplies]] are as good as caps with the locals.
+}}
+
+====Kells KS-390LC PM-112====
+{{Transcript|text=
+Fr: [[Brotherhood of Steel hierarchy#Lancers|Lancer-Captain]] Kells KS-390LC
+To: [[Brotherhood of Steel hierarchy#Knights|Knight-Captain]] Cade CD-440KC
+
+I've finished reading your medical report on Knight-Sergeant Merric. The fact that he managed to survive long enough to reach the Prydwen and deliver his report is absolutely incredible.&#160;&#160;The sacrifice that he made for the sake of the mission is a testament to his dedication and loyalty. We will be holding a memorial service on the ship's forecastle at sunset this evening. I sincerely hope you'll be able to attend.
+}}
+
+====Kells KS-390LC PM-144====
+{{Small|'''Note:''' ''This correspondence is available once [[Blind Betrayal]] is active.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Entire Crew
+
+This is a priority alert.
+
+Paladin Danse has been identified as an Institute synth by our command staff.&#160;&#160;Its current whereabouts are unknown. If it's spotted, terminate immediately. Do not attempt to approach. If you are unable to engage, report Danse's last known location to any duty officer as soon as possible so we can track its movement.
+
+This attempt by [[the Institute]] to tear the Brotherhood down from the inside has failed. Despite their treachery, we will persevere and emerge victorious. Ad victoriam, brothers and sisters.
+}}
+
+==Elder Maxson's terminal==
+{{Small|'''Note:''' ''This desk terminal is located on the desk within Elder Maxson's quarters.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Mail Terminal Maxson MX-001E
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Maxson -->
+
+===Kells KS-390LC - Paladin Hudson===
+{{Transcript|text=
+Priority Communication
+Fr: Lancer-Captain Kells KS-390LC
+To: Elder Maxson MX-001E
+
+We've picked up some disturbing news regarding a rise in Super Mutant activity near the Commonwealth, and [[Hudson|Paladin Hudson]] has bravely volunteered to single-handedly investigate.
+
+This mission will take the Paladin deep into hostile territory so he'll need all the support we can provide. I'm having Teagan give Paladin Hudson an ample supply of ammunition, and making sure Ingram certifies that his [[Fallout 4 power armor|Power Armor]] is in peak condition. I'm also allowing Paladin Hudson full use of one of our Vertibird gunships, so I'll have one prepped immediately.
+
+Once everything is ready, I'll meet you and Paladin Hudson on the Flight Deck so we can give him a proper send-off. I can't stress to you enough how dangerous this mission will be, so it's imperative that we provide the Paladin with all the support we can muster.
+}}
+
+===Kells KS-390LC - Recon Squad Artemis===
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Elder Maxson MX-001E
+
+As requested, I'm providing you with all of the current information we have on Recon Squad Artemis.
+
+According to our records, we sent them into the Commonwealth approximately three years ago to perform a standard survey beginning with the [[Malden]] area. We received a few reports from the team and then abruptly lost contact. Nothing in their communications indicated anything unusual, so we assume they've either lost the ability to radio us or have been killed. The squad consisted of seven soldiers under the command of [[Brandis|Paladin Brandis]], so they certainly had plenty of firepower and the experience required to survive a deep recon mission.
+
+I have several recon teams searching for Artemis's whereabouts, but so far, they've been unsuccessful.
+}}
+
+===Ingram IG-444PR - Prydwen Concerns===
+{{Transcript|text=
+Fr: Proctor Ingram IG-444PR
+To: Elder Maxson MX-001E
+
+As you know, in order to get the Prydwen rapidly to the Commonwealth, I had my engineering team pull her older power plant and replace it with an updated fusion plant we pulled from that aircraft carrier wreckage. I was able to squeeze almost one hundred percent efficiency from the new reactor, but the system is burning through our [[coolant]] supply faster than expected.
+
+As we've been docked over the airport, I've been able to deactivate the main engines to cool down the reactor, but we're still eating up coolant when we're in hover mode. We're eventually going to hit a point where we'll run out of coolant. If that happens, we'll need to put the Prydwen on the ground. I desperately need your help if you want to prevent that from happening. I'll be certain to provide you with the details at our next briefing.
+}}
+
+===Cade CD-440KC - Proctor Ingram===
+{{Transcript|text=
+Fr: Knight-Captain Cade CD-440KC
+To: Lancer-Captain Kells KS-390LC, Elder Maxson MX-001E
+
+As requested, I've sent over my evaluation of Proctor Ingram's capabilities in the field. In my professional opinion, Ingram is fully capable of handling field operations and would benefit any team fortunate enough to have her with them. Before the Prydwen left the Capital Wasteland, I spent six months helping her design the Power Armor frame she's using to enhance her mobility. She's trained in the armor rigorously and is fully qualified... actually, MORE than qualified to be placed with our ground troops. I've been treating wounded soldiers for almost two decades, and I've yet to see anyone that can match Ingram's level of commitment and determination. Confining her to the ship would be a waste of resources and a damn shame.
+}}
+
+===Teagan TG-477PR - Armored Jacket===
+{{Transcript|text=
+Fr: Proctor Teagan TG-477PR
+To: Elder Maxson MX-001E
+
+You'll be pleased to know that work on the armored reinforcement plating for [[Maxson's battlecoat|your jacket]] is complete and I'll be more than happy to send up a scribe to retrieve it when you're ready. The plating is fairly strong but I think you'll appreciate how lightweight the entire jacket will feel once the modification is made. I've stress tested the plating and it should help you resist different types of energy weapon fire as well as most ballistic threats. After you try it on, let me know if it's comfortable to wear long-term or if I need to make any adjustments to the design.
+}}
+
+===Kells KS-390LC - Fort Strong===
+{{Small|'''Note:''' ''This correspondence is available once [[Show No Mercy]] is completed.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Elder Maxson MX-001E
+
+According to Proctor Quinlan, we have a serious security threat on our hands. There's a sizable stockpile of [[Mini nuke (Fallout 4)|Fat Man shells]] being kept nearby at the remains of Fort Strong. More disturbingly, the facility is currently held by a Super Mutant contingent of unknown size.
+
+I'm certain I don't have to remind you that the Super Mutants are smart enough to utilize the weapons, and that the Prydwen is well within a [[Fat Man (Fallout 4)|Fat Man launcher]]'s range. I urge you to send someone down there immediately to deal with this threat before we end up as targets for their nuclear arsenal.
+}}
+
+===Kells KS-390LC - Fort Strong Update===
+{{Small|'''Note:''' ''This correspondence is available once [[Show No Mercy]] is completed.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Elder Maxson MX-001E
+
+I wanted to inform you that I'm having all of the Fat Man shells recovered from Fort Strong moved from the armory ruins to the lower cargo area of the Prydwen. This will ensure that the weapons remain protected as we prepare for our assault on the Institute.
+}}
+
+===Ingram IG-444PR - Institute Data===
+{{Small|'''Note:''' ''This correspondence is available once [[Outside the Wire]] is completed.''}}
+{{Transcript|text=
+Fr: Proctor Ingram IG-444PR
+To: Elder Maxson MX-001E
+
+I'm pleased to report that our [[Sole Survivor|new recruit]] has returned from the Institute with a [[holotape]] [[Network scanner|full of sensitive data]]. I've given the tape to Proctor Quinlan so his team can begin decrypting the information immediately. As soon as we have any concrete information, I'll be sure to let you know.
+}}
+
+===Ingram IG-444PR - Liberty Prime===
+{{Small|'''Note:''' ''This correspondence is available once [[Liberty Reprimed]] is started.''}}
+{{Transcript|text=
+Fr: Proctor Ingram IG-444PR
+To: Elder Maxson MX-001E
+
+Now that the gantry is complete, construction on Liberty Prime can begin. I've pulled almost my entire engineering team onto the project as well as some of Quinlan's scribes to assist with the complex calculations needed to get him on his feet. If our new recruit is successful, we'll have the rest of the parts we need to complete the project and you can march Prime right up to the Institute's front door.
+}}
+
+===Ingram IG-444PR - Liberty Prime Update===
+{{Small|'''Note:''' ''This correspondence is available once [[Liberty Reprimed]] is completed.''}}
+{{Transcript|text=
+Fr: Proctor Ingram IG-444PR
+To: Elder Maxson MX-001E
+
+I'm happy to report that Liberty Prime has been completed, and initial diagnostics of his operational capabilities are quite promising. Prime is currently running off of the Prydwen's engines, and we hope to have a solution for starting up his reactor core quite soon. Once the reactor core has been started, we'll be able to release him from the gantry and send him on his way.
+}}
+===Ingram IG-444PR - Liberty Prime Ready===
+{{Small|'''Note:''' ''This correspondence is available once {{Clarify}}.''}}
+{{Transcript|text=
+Fr: Proctor Ingram IG-444PR
+To: Elder Maxson MX-001E
+
+With Liberty Prime's construction fully completed, and the Beryllium Agitator in hand, we're ready to proceed to the final phase of our operation. All that remains is throwing the switch to restart his reactor core, and he'll finally be running under his own power. I've pre-programmed a complex set of instructions into his databank that should take him directly to the [[C.I.T. ruins|ruins of the C.I.T. building]]. I suggest you provide some sort of an escort for Prime, because I'm certain the Institute will do everything in its power to prevent him from reaching his target.
+}}
+===Kells KS-390LC - Paladin Danse===
+{{Small|'''Note:''' ''This correspondence is available once [[Blind Betrayal]] is active.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Elder Maxson MX-001E
+
+Sir, I've placed our entire division on alert as you've requested. I'm instructing our soldiers to shoot Danse on sight rather than trying to capture or contain him for study. I feel that it's important we use his execution to set an example not only to our own brothers and sisters, but to the Institute as well.
+
+While I'm aware that certain members of the Brotherhood were quite close to Danse, I'm certain you'll agree that we can't afford to allow him to remain "alive." In his time with the Brotherhood of Steel, he's amassed quite a bit of intelligence on our operations and we have to stop him before the Institute throws the switch to bring him home.
+}}
+===Kells KS-390LC - Railroad Destroyed===
+{{Small|'''Note:''' ''This correspondence is available once {{Clarify}}.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Elder Maxson MX-001E
+ 
+I'm pleased to report that [[the Railroad]] will no longer hinder our operations in the Commonwealth. According to the report I've just received, all of their leaders have been executed and their headquarters is now in our hands. I've posted a small detachment of troops there in case any of them attempt to regroup there or recover supplies that they may have left behind. With this threat removed, we can now proceed to the final phase of our mission in the Commonwealth.
+}}
+
+==Captain Kell's{{Sic}} terminal==
+{{Small|'''Note:''' ''This desk terminal is located on the desk of [[Kells|Lancer-Captain Kells]]' quarters.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Mail Terminal Kells KS-390LC
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Kells -->
+
+===Maxon MX-001E CP-05===
+{{Transcript|text=
+Fr: Elder Maxson MX-001E
+To: Lancer-Captain Kells KS-390LC
+
+Captain, I need you to prepare the Prydwen for departure. [[Knox|Archivist Knox]] has completed the analysis of the energy readings we received from Paladin Danse's recon team and has concluded that they're being produced by the Institute. Knox is certain that the energy readings could only be produced by artificial means and only with an extremely advanced level of [[technology]]. Judging from the frequency of the readings, we both agree that some type of device or weapon is being deployed by the Institute which means we need to head to the Commonwealth as soon as possible. I'm not certain what type of ploy the Institute is attempting to unleash upon the world, but I'll be damned if I'm going to stand by idly and let it happen.
+}}
+
+===Ingram IG-444PR CP-17===
+{{Transcript|text=
+Fr: Proctor Ingram IG-444PR
+To: Lancer-Captain Kells KS-390LC
+
+All stations are reporting green and all personnel are aboard the Prydwen. I've gone over her from the bow to stern and she's ready to depart. With all due respect, it would be helpful if you could let me know exactly where we're headed. It's difficult preparing this vessel properly not knowing what type of environment we're flying her through. I am well aware that we're pointed north, but just how far are we going, and what can we expect when we get there, Captain?
+}}
+
+===Cade CD-440KC CP-25===
+{{Transcript|text=
+Fr: Knight-Captain Cade CD-440KC
+To: Lancer-Captain Kells KS-390LC, Elder Maxson MX-001E
+
+As requested, I've sent over my evaluation of Proctor Ingram's capabilities in the field. In my professional opinion, Ingram is fully capable of handling field operations and would benefit any team fortunate enough to have her with them.
+
+Before the Prydwen left the [[Capital Wasteland]], I spent six months helping her design the Power Armor frame she's using to enhance her mobility. She's trained in the armor rigorously and is fully qualified... actually, MORE than qualified to be placed with our ground troops.
+
+I've been treating wounded soldiers for almost two decades, and I've yet to see anyone that can match Ingram's level of commitment and determination. Confining her to the ship would be a waste of resources and a damn shame.
+}}
+
+===Teagan TG-477PR CP-39===
+{{Transcript|text=
+Fr: Proctor Teagan TG-477PR
+To: Lancer-Captain Kells KS-390LC
+
+Now that we've arrived in the Commonwealth, I'd like to establish trade relations with the locals. I'm going to need a standard sweep and retrieve team and one of our vertibirds in order to make that happen. There are several [[caravan]]s that roam the Commonwealth, and we'll use the vertibirds to track them. If any of the caravans gets jumped, we can swoop in and lend a hand to let them know that we're the friendly eye in the sky.
+
+Since you can't normally buy that kind of protection from mercenaries, we'll be certain to get the best prices and values for trades. I've used the same tactic in the Capital Wasteland and it worked wonders. Out here, with the threat of the Institute looming over their heads, we'll have these merchants eating out of our hands.
+}}
+
+===Quinlan QN-448PR CP-50===
+{{Transcript|text=
+Fr: Proctor Quinlan QN-448PR
+To: Lancer-Captain Kells KS-390LC
+
+After examining technical documentation brought in by one of our patrols, I've identified [[Fort Strong]] as a priority target. The location was an experimental weapons testing facility and according to their manifests, it should still contain a sizable stockpile of Fat Man shells. According to the patrol, the fort is inhabited by [[Institute super mutant|Super Mutants]] so we're in serious jeopardy of losing the stockpile if something isn't done immediately.
+}}
+
+===Maxon MX-001E CP-92===
+{{Transcript|text=
+Fr: Elder Maxson MX-001E
+To: Lancer-Captain Kells KS-390LC
+
+Captain, I've received credible information that we have a traitor among us. It brings me no pleasure to inform you that Paladin Danse is an Institute synth. I've had Proctor Quinlan verify the data numerous times, so I can assure you that it's accurate.
+
+We need to handle this situation carefully, Kells. Paladin Danse was well-liked and this news is certain to create a panic. We do not want this incident to touch off a series of false reports and assumptions that other synths have infiltrated our ranks. The ensuing paranoia could result in a catastrophic breakdown of order and our eventual defeat at the hands of the Institute.
+
+Placing an operative among us was a brilliant move on the Institute's part, and we can't afford to underestimate them in the future. When you're ready, I want you to inform the crew and then take the necessary steps to hunt Danse down.
+}}
+
+==Proctor Ingram's terminal==
+{{Small|'''Note:''' ''This desk terminal is located on the desk of the Armor Bay, on the second level of the airship.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Armor Bay Terminal Ingram IG-444PR
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Ingram -->
+
+===Work Orders===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_IngramSub01 -->
+
+====Item 000345IM====
+{{Transcript|text=
+Type: Repair
+Status: Completed
+Completed By: Ingram IG-444PR
+Item: TVR-07 Internal Air Conditioning Unit
+
+Air conditioning unit had burned out its condensing coil from overuse. Need to remind the soldiers that they can't constantly run the damn thing 24 hours a day. Copper condensing coils are tough to replace, so had to make due with homemade version. Unit should last a while longer with moderate use.
+}}
+
+====Item 000357RB====
+{{Transcript|text=
+Type: Repair
+Status: Completed
+Completed By: Ingram IG-444PR
+Item: Mr. Handy Cultivation Unit
+
+Got called down to lab area and their [[Mister Handy]] was trying to cut through everything in sight. Was almost ready to get some soldiers to shoot the thing before it hurt someone, but it tried to cut through the bulkhead and burned up its motor. Pulled the logic unit and it looks like an old factory defect on the cultivation models. I've blown out the firmware and rewrote the instruction set to fix the issue. Replaced the motor and put the unit back into service.
+}}
+
+====Item 000366IM====
+{{Transcript|text=
+Type: Install
+Status: Completed
+Completed By: Ingram IG-444PR
+Item: Ventilation Filter System
+
+Installed a ventilation system over the rear laboratory space to help Neriah vent the stench of her mole rats to the exterior of the ship. Had to cut a few holes in the inner and outer plating, but triple-welded everything to make sure it all stays tacked down. System is on a timer, so it shouldn't draw too much power from the ship's reserves. Was happy to help since I could smell her rats all the way down here.
+}}
+
+====Item 000377EM====
+{{Transcript|text=
+Type: Repair
+Status: Completed
+Completed By: Ingram IG-444PR
+Item: [[Vertibird]] Gunship "[[Vorpal]]"
+
+Vorpal threw a rotor on its last landing, so I hitched a ride with [[Spatha]] and headed out to the crash site. [[Pilot]] did a hell of a job bringing his bird down in one piece. All I had to do was recover the rotor and set it back in place. There's some minor plating damage on the starboard thruster, but I'll hammer it down when Vorpal gets back to the [[Boston Airport|airport]]. Was nice to get away from the Prydwen for once. Hopefully I can convince Kells to let me head out with some future patrols.
+}}
+
+====Item 000380IM====
+{{Transcript|text=
+Type: Repair
+Status: Completed
+Completed By: [[Bainbridge]] BB-426ES
+Item: Sewage Lines
+
+I don't know what the heck the mess hall is serving, but the sewage lines were completely clogged. It was so disgusting, I had to borrow one of my buddy's Power Armor helmets to keep the smell from making me puke. I think I'd rather scrape rust of{{sic}} the exterior hull plating next time.
+}}
+
+====Item 000410EM====
+{{Small|'''Note:''' ''This correspondence is available after [[Liberty Reprimed]].''}}
+{{Transcript|text=
+Type: Install
+Status: Completed
+Completed By: Ingram IG-444PR
+Item: Ground-Level Gantry
+
+Finally got the gantry done. I hope that I've engineered it to properly handle [[Liberty Prime]]'s weight. I've also run a bunch of power shunts from the Prydwen's engines right down to a bunch of transformers under the control platform. I'll wire all of it into the system so we can change over from the ship's power to the big guy's internal power at the flick of a switch. Now all we need is a miracle to get Liberty Prime back on his feet.
+}}
+
+===Prydwen Internal Mail===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_IngramSub02 -->
+
+====Maxson MX-001E MT-02====
+{{Transcript|text=
+Fr: Elder Maxson MX-001E
+To: Proctor Ingram IG-444PR
+
+After having a long discussion with both Lancer-Captain Kells and Knight-Captain&#160;&#160;Cade, I've decided to deny your request for field service. While I understand that you've modified your [[Power armor frame|Power Armor frame]] to accommodate your injury, and Cade&#160;&#160;has personally given it his seal of approval, I don't feel it's worth risking&#160;&#160;your life. You of all people should appreciate that machines can break down. In your particular case, if your frame fails while you're in the field, it could place you and anyone with you in extreme danger.
+
+Please don't take this personally, Ingram. I can't afford to lose you. My decision is final. I'm sorry.
+}}
+
+====Cade CD-440KC MT-04====
+{{Transcript|text=
+Fr: Knight-Captain Cade CD-440KC
+To: Proctor Ingram IG-444PR
+
+I'm guessing you've already read that Maxson is denying your field work request.&#160;&#160;I did everything I could to talk him out of it, but he just wasn't convinced. If there's anything you need, even if you just want to talk about it, my door's always open.
+
+I hate to bring this up now, but you really need to head down here and let me&#160;&#160;tweak your leg hydraulics. Last time you were here, you complained that the shock absorbers weren't doing their job dampening your impacts from walking. Well, I was able to tweak some numbers and I'd like to look them over with you. After all, you're the expert when it comes to mechanical engineering.
+
+So there, now you have two excuses to visit me in the sickbay. I hope to see you in here soon.
+}}
+
+====Teagan TG-477PR MT-07====
+{{Transcript|text=
+Fr: Proctor Teagan TG-477PR
+To: Proctor Ingram IG-444PR
+
+I've got a little surprise for you. Remember how you told me about those sweets&#160;&#160;you loved so much? You know, the ones that look like little colored disks? Well,&#160;&#160;Quinlan's last sweep and retrieve patrol just came in, and they found a whole&#160;&#160;roll of them. If that doesn't put a smile on your face, I don't know what will. Now how about heading over to my quarters this evening and we can split it together. Don't worry, I'll be a complete gentleman. I just hate seeing you storm all over the repair bay with that damn scowl on your face, and I think this will cheer you up.
+}}
+
+====Maxson MX-001E MT-33====
+{{Transcript|text=
+Fr: Elder Maxson MX-001E
+To: Proctor Ingram IG-444PR
+
+Now that Captain Kells has transferred all of your materials down to the surface,&#160;&#160;and the gantry construction has started, I think it's time we had a talk about the timeline of your new project. I'd like you to head up to the Command Deck as soon as possible so we can discuss the details. We have far too many resources tied up in this operation to allow anything to slip through the cracks. We have a war to win, Proctor. And I strongly believe that this ambitious project of yours will be our rallying cry.
+}}
+
+====Maxson MX-001E MT-40====
+{{Small|'''Note:''' ''This correspondence is available once the player recovers the agitator for the Brotherhood.''}}
+{{Transcript|text=
+Fr: Elder Maxson MX-001E
+To: Proctor Ingram IG-444PR
+
+I was just informed that you disobeyed a direct order by leaving the airport and traveling with one of our strike teams to [[Mass Fusion building|Mass Fusion]]. While I appreciate your devotion to the cause, I'm dismayed that you chose to ignore our earlier communications regarding your role in field operations.
+
+On the other hand, I've read your after-report and I'm pleased that the [[Beryllium agitator|Beryllium Agitator]] is in our hands. It's obvious that retrieving the device would have been quite difficult without your participation, so I'm willing to overlook this breach of protocol. But don't assume that my leniency in this matter indicates that my orders are subject to debate. In the future, I expect you to be more cognizant of your actions or there WILL be consequences.
+}}
+
+====Kells KS-390LC MT-50====
+{{Small|'''Note:''' ''This correspondence is available once Blind Betrayal is active.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Entire Crew
+
+This is a priority alert. Paladin Danse has been identified as an Institute synth by our command staff.&#160;&#160;Its current whereabouts are unknown. If it's spotted, terminate immediately. Do not attempt to approach. If you are unable to engage, report Danse's last known location to any duty officer as soon as possible so we can track its movement. This attempt by the Institute to tear the Brotherhood down from the inside has failed. Despite their treachery, we will persevere and emerge victorious. Ad victoriam, brothers and sisters.
+}}
+
+==Scribe Neriah's terminal==
+{{Small|'''Note:''' ''This desk terminal is located on a table on the second level of the airship.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Lab Terminal Neriah NR-490SS
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_NeriahLab -->
+===Personal Notes===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_NeriahLabSub01 -->
+====Entry 0765-AT78====
+{{Transcript|text=
+As we've been travelling towards the Commonwealth, I've been preparing my makeshift laboratory in the rear cargo hold of the Prydwen. When we arrive, Quinlan says he'll be sending out several patrols with the express purpose of collecting viable field specimens. My job is to oversee the dissection and study of anything the patrols bring aboard. I've always agreed with the notion that the quickest way to learn your enemy's weakness is by examining them from the inside out. I hope I don't have to wait too terribly long to put that notion to the test.
+}}
+====Entry 0769-CM22====
+{{Transcript|text=
+Quinlan's collection teams have already brought Super Mutant and synth specimens aboard. I've collected a fair bit of data from their remains, but have yet to discover anything that will give our soldiers an advantage in the field. As far as the Super Mutant specimens go, they're quite different from [[Vault 87 super mutant|the strains present in the Capital Wasteland]], so most of our anatomical records require updates, which takes time.
+
+And the synths specimens, they're a complete mystery. The models we've recovered are almost entirely mechanized, so I've been coordinating with Proctor Ingram since she's our resident [[robot]]ics expert. I suppose it's only a matter of time before I have some answers. In the meantime, I'm going to begin working on a special project of my own design.
+}}
+====Entry 0777-DK45====
+{{Transcript|text=
+I've brought several mole rat specimens aboard for my special project. I'm convinced that the key to unlocking improved [[radiation resistance]] is in tenacious little creatures like these. If they've learned to adapt to the radiation blanketing the Commonwealth, with a little help, we can too.
+
+I know most of the crew thinks I'm crazy, but I'm certain that I'm on the right track. I just need as many [[viable blood sample]]s as possible to make my theory a reality, which is difficult right now since Maxson has most of our teams sweeping for technology. I'll see what I can do with my mole rat specimens, but I am not sure it will be enough.
+}}
+====Entry 0782-BR19====
+{{Transcript|text=
+I've run into a stroke of luck today. One of the new recruits has agreed to do a little field research for me and bring back as many viable blood samples as they could find. I was even more fortunate that [[Pip-Boy 3000 Mark IV|they possessed a]] [[Pip-Boy]] I could modify to extract the blood from whatever [[creature]]s they killed during their missions. Now all I have to do is wait until our new recruit returns and my special project can continue in earnest.
+}}
+====Entry 0795-GW36====
+{{Small|'''Note:''' ''This entry is available once {{Clarify}}.''}}
+{{Transcript|text=
+Success! After analyzing the viable blood samples brought back by our new recruit, I've discovered the key to creating an improved radiation chem. In honor of my resourceful laboratory field assistant, I've decided to name it the [[X111 compound|X111 Compound]].&#160;&#160;I'll begin distributing it to all of our patrol teams as soon as possible. After all of this work, I hope the entire crew will realize I'm more than just that "crazy rat lady."
+}}
+
+===Prydwen Internal Mail===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_NeriahLabSub02 -->
+
+====Quinlan QN-448PR PM-010====
+{{Transcript|text=
+Fr: Proctor Quinlan QN-448PR
+To: Scribe Neriah NR-490SS
+
+While I'm pleased that you're settling into your new role as our medical examiner, I'm a bit dismayed that your attention appears to be focused on your own personal projects. The dissection and examination of the Super Mutant and synth corpses need to be your top priority. Don't make me regret placing you in charge of that laboratory, Neriah. I have plenty of other scribes waiting in line who are just itching for you to fail.
+}}
+
+====Rhys RS-104K PM-014====
+{{Transcript|text=
+Fr: Knight Rhys RS-104K
+To: Scribe Neriah NR-490SS
+
+I'm sending the mole rats that you asked for on the next vertibird flight from [[Cambridge police station|the police station]]. I have no idea what you want them for - those things bite and they crap all over the place. It was a pain in the ass to collect them alive, so you better have that case of whiskey you promised ready for the return flight after the pilot drops them off. As far as getting a [[Brahmin (Fallout 4)|brahmin]] up there, you can forget it. I talked to the pilot and he refuses to shove one of those disgusting things into his ship.
+}}
+
+====Kells KS-390LC PM-020====
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Scribe Neriah NR-490SS
+
+I've been informed by several members of the crew that you're keeping several mole rat specimens in the laboratory area of the ship. While I can appreciate their value as biological specimens, I'm sure you understand that these creatures are filthy and emit an unpleasant odor in enclosed spaces such as our hull. I'll permit you to keep them if you can assure me that you'll have Proctor Ingram devise some type of ventilation system to help mitigate the smell. Try to remember that you're sharing a space where people have to eat and sleep, scribe. I expect a full report by the end of the week.
+}}
+
+====Quinlan QN-448PR PM-026====
+{{Small|'''Note:''' ''This correspondence is available once the player retrieves the data from the Institute.''}}
+{{Transcript|text=
+Fr: Proctor Quinlan QN-448PR
+To: Scribe Neriah NR-490SS
+
+I'm sending back a sample of DNA that's been encrypted. I want you to deconstruct the code and then compare it to our personnel files immediately. I'll send along the password to my database which contains samples of every registered soldier's DNA for comparison. This is absolutely top priority, and I want you to perform the work in isolation. Please do not share your findings with anyone but myself, Lancer-Captain Kells or Elder Maxson. You have twenty-four hours to complete your findings, Neriah. Don't let me down.
+}}
+
+====Kells KS-390LC PM-033====
+{{Small|'''Note:''' ''This correspondence is available once Blind Betrayal is active.''}}
+{{Transcript|text=
+Fr: Lancer-Captain Kells KS-390LC
+To: Entire Crew
+
+This is a priority alert. Paladin Danse has been identified as an Institute synth by our command staff.&#160;&#160;Its current whereabouts are unknown. If it's spotted, terminate immediately. Do not attempt to approach. If you are unable to engage, report Danse's last known location to any duty officer as soon as possible so we can track its movement. This attempt by the Institute to tear the Brotherhood down from the inside has failed. Despite their treachery, we will persevere and emerge victorious. Ad victoriam, brothers and sisters.
+}}
+
+==Botany terminal==
+{{Small|'''Note:''' ''This desk terminal is located on a {{Clarify}} in the second level of the airship.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Botany Terminal PLB-009 Restricted
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Botany -->
+
+===Experimental Hybrid Log===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_BotanySub01 -->
+
+====Experiment NRT-001 Log A010====
+{{Transcript|text=
+Proctor Quinlan's teams continue to bring in samples of the local [[flora]]. They seem fairly corrupted by [[radiation]], but some of them have promising properties, so we'll continue to study them. Our ultimate goal is to cultivate enough hybrids to increase our heterotic yield. If we can do that, we may be able to cultivate the new species and create viable alternatives to our dependency on man-made resources.
+}}
+
+====Experiment NRT-001 Log A015====
+{{Transcript|text=
+Had a bit of an unexpected find today. One of our field scribes brought a small root he found at the mouth of a river. Normally I wouldn't hold high hopes for such a small specimen, but the root is displaying chemical properties I've never seen before. I'm not sure anything will come of it, but it's certainly worth experimenting on.
+}}
+
+====Experiment NRT-001 Log A017====
+{{Transcript|text=
+My new experimental root is doing surprisingly well. I've managed to graft pieces of it onto some hardier stock, and we've yielded a strong, leafy plant with thick roots. While I am uncertain of future applications for my new hybrid, I did a chemical test and it seems safe to ingest. On a whim, I boiled the plant in some water and discovered that it makes an oddly good tea.
+}}
+
+====Experiment NRT-001 Log A022====
+{{Transcript|text=
+When I entered the botany area this morning, I couldn't believe my eyes. My experimental root has started glowing! After running a battery of tests, I am 100% certain this isn't radiation, but some sort of bioluminescence. I intend to continue my tests to see what else we can get out of this little wonder. One of my fellow [[Brotherhood of Steel hierarchy#Scribes|scribes]] suggested I probably shouldn't drink tea made from the leaves anymore, but it's really great tea and I still don't see the harm.
+}}
+
+====Experiment NRT-001 Log A026====
+{{Transcript|text=
+After some debate, I've decided to name my discovery "[[Experiment NRT-001|Glowleaf]]." Ingesting the plant must have restorative properties, because I feel healthier than ever. A few of the scribes on the laboratory team think I'm getting addicted to it, but what the hell do they know? Anyone who tells me I can't have my cup of Glowleaf tea can stuff it!
+}}
+
+====Experiment NRT-001 Log A033====
+{{Transcript|text=
+EXPERIMENT TERMINATED.
+
+Senior Botany Scribe has been reassigned.
+}}
+
+===Commonwealth Plant Database===
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_BotanySub02 -->
+
+====Blood Leaf====
+{{Transcript|text=
+[[Bloodleaf (Fallout 4)|Blood Leaf]]
+
+Short, broad-leafed red flower with long roots, found near [[water]] sources. Leaves are edible. Appears to have restorative properties, but is usually irradiated, so continued consumption not recommended.
+}}
+
+====Carrot Flower====
+{{Transcript|text=
+[[Carrot flower (Fallout 4)|Carrot Flower]]
+
+Long-stemmed specimen with delicate white flowers. Appears edible, may be related to the [[Mutations and their causes|mutated]] [[Carrot (Fallout 4)|carrots]] grown on farms. Uncertain of its properties, so recommend caution.
+}}
+
+====Hubflower====
+{{Transcript|text=
+[[Hubflower]]
+
+Large hanging purple flowers. Bitter, but appears to have some restorative benefits. Will continue to investigate.
+}}
+
+====Tato====
+{{Transcript|text=
+[[Tato (Fallout 4)|Tato]]
+
+According to some old botany texts we found, this appears to be combination of a now extinct plant called a "[[Vegetable#Fresh potato|potato]]" and another extinct plant called a "[[tomato]]." The outside looks like a tomato, but the inside is brown. Tastes as absolutely disgusting as it looks, but will keep you from starving.
+}}
+
+====Razorgrain====
+{{Transcript|text=
+[[Razorgrain (Fallout 4)|Razorgrain]]
+
+This species appears to be quite promising. It's a toothy grain that we may be able to grind in order to replace wheat, which is untenable in the [[Wasteland]]. We are uncertain how to increase crop yields, which are very unpredictable. Will continue to study.
+}}
+
+==Crew's terminal==
+{{Small|'''Note:''' ''This desk terminal is located on the desk in the {{Clarify}} of the second level of the airship.''}}
+{{Transcript|text=
+Prydwen Internal Network
+General Information System - Official Use Only
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Crew -->
+
+===Announcement 001===
+{{Transcript|text=
+All recovered technology must be presented immediately to Proctor Quinlan for evaluation. Anyone found in possession of undocumented [[Technology|technologies]] will be subject to inquiry and punishment.
+}}
+
+===Announcement 002===
+{{Transcript|text=
+[[Neriah|Scribe Neriah's]] [[Mole rat (Fallout 4)|Mole Rat]] subjects are not pets. They are crucial military resources. As such, they are not to be fed by any personnel save Scribe Neriah and her team. Any violation of this policy will result in severe disciplinary action.
+}}
+
+===Announcement 003===
+{{Transcript|text=
+Due to increased Raider activity, all leave requests to off-base sites have been temporarily suspended. Affected parties will have their leave compensated at the next available opportunity.
+}}
+
+===Announcement 004===
+{{Transcript|text=
+This is a notice to all personnel. Please think of your brothers and sisters down below. Thoroughly secure all gear while on the Flight Deck.
+}}
+
+===Announcement 005===
+{{Transcript|text=
+Any personnel who have not completed their annual medical evaluation should report to Knight-Captain Cade immediately to schedule an examination.
+}}
+
+==Terminal==
+{{Small|'''Note:''' ''This console terminal is located next to the door to Proctor Teagan's shop. It is locked Master.''}}
+{{Transcript|text=
+Welcome to ROBCO Industries (TM) Termlink
+}}
+===> Remote Door Control===
+{{Small|'''Note:''' ''This is displayed as default.''}}
+{{Transcript|text=
+Remote Door Control Interface
+STATUS: Locked
+}}
+{{Small|'''Note:''' ''This is displayed if the door is unlocked.''}}
+{{Transcript|text=
+Remote Door Control Interface
+STATUS: Unlocked
+}}
+====Unlock Door====
+{{Small|'''Note:''' ''Accessing this command unlocks the door to the shop.''}}
+{{Transcript|text=
+Unlocking door...
+}}
+{{Transcript|text=
+> Accessing Door...
+}}
+====Lock Door====
+{{Small|'''Note:''' ''Accessing this command unlocks the door to the shop.''}}
+{{Transcript|text=
+Locking door...
+}}
+{{Transcript|text=
+> Initializing Door...
+}}
+
+==Recreation terminal==
+{{Small|'''Note:''' ''This desk terminal is located on the first level of the airship.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Prydwen Recreation Terminal
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_Recreation -->
+
+===Ingram 09770-A===
+{{Transcript|text=
+Feel free to use this terminal to unwind. I've disconnected it from the Prydwen's mainframe, but keep it clean or I'm shutting it down permanently. If you've got a problem with that, keep it to yourself.
+}}
+
+===Teagan 08116-B===
+{{Transcript|text=
+Ingram told me about the rec section under the Main Deck. I've contributed a few bottles of [[Alcohol|liquor]] and some [[cigarette]]s, but I don't have an endless supply. If you need refills, come see me and we'll do a trade.
+}}
+
+===[[Womack]] 09901-C===
+{{Transcript|text=
+If anyone's up for it, I'm organizing a little nighttime Feral hunt that's strictly off the books. I don't give a damn about the synths - these Ghouls are disgusting and we need to keep thinning them out before they infest the entire Commonwealth. I'm pretty sure we can start with the [[Cambridge crater|Cambridge Crater]]. See me if you're interested.
+}}
+
+===[[Delecroix]] 05558-D===
+{{Transcript|text=
+[[McLaren]] got his suit wiped out trying to drop from the top of [[Trinity Tower]], so the current record holder is still [[Petris]] with his Prydwen-to-ground drop. Remember, no leg armor mods allowed, just a clean jump with standard [[T-60 power armor|T-60]] and you have to be able to walk away. No exceptions.
+}}
+
+===[[Flores]] 03447-E===
+{{Transcript|text=
+I don't remember who was asking, but someone was looking for [[Mirelurk egg (Fallout 4)|mirelurk eggs]]. On my last patrol, we swept through [[Neponset Park]] and I saw a few nests but Kells had me carrying a ton of gear. If you want to head out there, I'm sure you can pick up some of the eggs for yourself.
+}}
+
+==Outgoing Mail Terminal==
+{{Small|'''Note:''' ''This desk terminal is located on a desk within the second level of the airship.''}}
+{{Transcript|text=
+Prydwen Internal Network
+Outgoing Mail System - Use Responsibly
+}}
+<!-- ;Creation Kit ID: BoS_Prydwen_Terminal_OutgoingMail -->
+
+===Outgoing Mail PEM787A-009===
+{{Transcript|text=
+[[Karen (Fallout 4)|Karen]], I really miss you, baby. I hope you're safe out there. Remember to keep the&#160;&#160;doors locked at night and the [[shotgun]] I gave you loaded at all times. Don't&#160;&#160;trust anyone unless you know them, and even then, keep an eye on everything they do. I don't know how long this tour will last, but I promise to come back safe.&#160;&#160;Love you.
+}}
+
+===Outgoing Mail PEM787A-011===
+{{Transcript|text=
+Opened with moving your King's pawn 2 spaces, eh? Smart move - try to control&#160;&#160;the center of the board and free up the Queen and one of your Bishops. I bet you think I'm going to mirror your move, but guess what? I'm going to move my Queen's pawn 2 spaces so I can teach you a little something called the French Defense. Don't worry, you'll get the hang of this game.
+}}
+
+===Outgoing Mail PEM787A-015===
+{{Transcript|text=
+Hey Mom, they're letting me send out a message before we initiate [[radio]] silence.&#160;&#160;I'm working with a pretty decent officer, a guy named Kells. He treats us well as&#160;&#160;long as we do what we're told. Working with the Brotherhood has been an amazing experience so far. It's nice to finally be making a difference in this messed up world. Got to go now, Mom. Say hi to Daniel for me.
+}}
+
+===Outgoing Mail PEM787A-020===
+{{Transcript|text=
+Chalk up two more dead [[Feral ghoul (Fallout 4)|Ferals]]. That makes a total of seventeen since I've been&#160;&#160;out here. You wouldn't believe how easy they go down when you hit them with a&#160;&#160;laser rifle - it slices right through the ugly things like butter. When I get back from this tour, I'm going to take you Feral hunting. Trust me, you'll love it. For now, you'll just have to stick to hunting the local mole rats with your [[zip gun]].
+}}
+
+===Outgoing Mail PEM787A-026===
+{{Transcript|text=
+I hope this message gets to the right person. My name is [[Bota|Knight Bota]] and I served&#160;&#160;with your son, [[Brotherhood of Steel hierarchy#Initiate|Initiate]] [[Arlen]]. I'm sorry to inform you that Arlen was shot and&#160;&#160;killed during one of our field training operations. I wanted you to know he died a brave death, saving the life of three other Initiates in the process. There's nothing I can say that will soften the blow of losing a child, but I wanted you to know that it was an honor to fight at Arlen's side. You should be proud of the sacrifice he made for the sake of his country. I've sent his personal belongings&#160;&#160;back to [[the Citadel]]. You have my deepest condolences for your loss.
+}}
+
+==Notes==
+* Although the [[#Botany terminal|botany department terminal]] describes both the potato and the tomato as extinct, neither are.
+* Although [[#Medical File OG-133ES|a medical file describes ghouls]] as a separate species from humans, they are not.
+
+==Behind the scenes==
+The candy made from "little colored disks" mentioned in Proctor Teagan's message to Proctor Ingram are called NECCO Wafers (short for New England Confectionary Company). The company and production plant are located in Revere, Massachusetts.
+
+[[Category:Fallout 4 terminal entries]]
+
+[[fr:Entrées de terminal du Prydwen]]
+[[ru:Придвен — записи в терминалах]]

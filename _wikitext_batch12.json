@@ -1,0 +1,62 @@
+{
+  "Antoine": {
+    "content": "{{For|the character mentioned in ''[[Fallout 4]]''|Antoine (Fallout 4)}}\n{{Infobox character\n|games       =FO76\n|type        =vendor\n|image       =Antoine.png\n|race        =[[Protectron (Fallout 76)|Protectron]]\n|gender      =Male programming\n|affiliation =[[Marie (Fallout 76)|Marie]]\n|role        =[[Fallout 76 vendors|Vendor]]\n|location    =[[The Whitespring Resort]]\n|level       =38\n|actor       =[[Wes Johnson]]\n|dialogue    =[[Antoine/Dialogue]]\n|edid        =LC060_WhitespringVendor_GourmetRecipes_Antoine\n|formid      ={{ID|0037d9c9}}\n|refid       ={{ID|0037d9dc}}\n}}\n\n{{Quotation|Gourmet ingredients require gourmet preparation.|sound=Antoine 003a28da_1.ogg}}\n\n'''Antoine (PM-08)'''<ref>[[The Whitespring Resort terminal entries#Week of 10/11/77|The Whitespring Resort terminal entries; Maintenance room terminal, Maintenance Logs; Week of 10/11/77]]</ref> is a [[Protectron (Fallout 76)|Protectron]] serving as a [[Fallout 76 vendors|vendor]] at [[the Whitespring Resort|Whitespring Mall]] in [[Appalachia]].            \n\n==Background==\nAntoine is one of the robotic vendors that replaced the human staff of the Whitespring shortly before the [[Great War]].<ref>[[The Whitespring 2080 Initiative]]</ref> He is the automated head chef of Le Grand Gourmet in the Whitespring Resort and has a wide variety of recipes for sale. He staffs the store along with [[Marie (Fallout 76)|Marie]].\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|essential       =yes\n|perk            =\n|wares           =[[Fallout 76 recipes|recipes]]\n|caps            =1400 {{icon|caps|16px}}\n}}\n\n==Inventory==\n{{Inventory\n|apparel   =\n|weapon    =\n|otheritem =\n|ondeath   =\n}}\n\n==Appearances==\nAntoine appears only {{In|FO76}}.\n\n==References==\n{{References}}\n\n{{Navbox vendors FO76}}\n{{Navbox The Whitespring Resort}}\n\n[[Category:Fallout 76 robots and computers]]\n[[Category:The Whitespring Resort characters]]\n[[Category:Fallout 76 merchants]]\n[[Category:Protectron characters]]\n\n[[ru:Антуан]]\n[[zh:Antoine]]",
+    "images": [
+      "File:Antoine.png",
+      "File:Antoine 003a28da 1.ogg",
+      "File:Caps.png",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 Legendary scrip.png",
+      "File:FO76 P.png"
+    ]
+  },
+  "Ashmore": {
+    "content": "{{Infobox character\n|games       =FO76, FO76SR\n|image       =FO76SR_V96_Prisoner_Ashmore.png\n|race        =[[Human]]\n|gender      =Female\n|affiliation =\n|role        =\n|rank        =\n|location    =[[Vault 96]]\n|family      =\n|quests      =[[A Satisfied Conscience]]\n|archetype   =Friendly\n|skin        =\n|hair color  =\n|eye color   =\n|hairstyle   =\n|height      =\n|level       =<!-- not required if non-combatant -->\n|derived     =<!-- not required if non-combatant -->\n|str         =\n|per         =\n|end         =\n|chr         =\n|int         =\n|agi         =\n|lck         =\n|aggression  =Unaggressive\n|confidence  =Average\n|assistance  =Helps Nobody\n|flags       =Essential, Is Ghost\n|scripts     =<!-- special scripting -->\n|factions    =<!-- combat hostility flags -->\n|CK race     =HumanRace\n|class       =raiderClass\n|combat style=<!-- not required if non-combatant -->\n|voice type  =BS02_NPCF_Vault96<br />Prisoner_01\n|actor       =\n|dialogue    =[[Ashmore/Dialogue]]\n|edid        =BS02_Vault96Prisoner_F_01\n|formid      ={{ID|00609da1}}\n|refid       ={{ID|00609db5}}\n}}\n\n{{Quotation|It was a nightmare. A waking nightmare!|sound=Ashmore 006050c5_1.ogg}}\n\n'''Ashmore''' is a prisoner in [[Appalachia]].\n\n==Background==\nAshmore, along with [[Cassie Halloway]], [[Petersen (Steel Reign)|Petersen]] and [[Wilkins (Steel Reign)|Wilkins]], were captured by [[Edgar Blackburn]] and the [[Hellcat Company]] to be used as human test subjects against their will. They were imprisoned in [[Vault 96]].\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|none               =\n|dead               =\n|quests started     =\n|quests involved    =[[A Satisfied Conscience]]\n|events started     =\n|events involved    =\n|encounters involved=\n|essential          =yes\n|essential until    =\n|ghost              =yes\n|hostile            =\n|ally               =\n|temp companion     =\n|wares              =\n|caps               =\n|currency           =\n|medical services   =\n|heal               =\n|cripple            =\n|cure disease       =\n|cure addiction     =\n|cure radiation     =\n|cure mutation      =\n|bonus              =\n|romance            =\n|other              =\n|locations          =* [[Vault 96]]\n}}\n\n===Quests===\n[[A Satisfied Conscience]] - Ashmore is being held prisoner in [[Vault 96]].\n\n==Inventory==\n{{Inventory\n|apparel   = [[Ratty skirt (Fallout 76)|Ratty skirt]]\n|weapon    =\n|otheritem =\n|ondeath   =\n}}\n\n==Appearances==\nAshmore appears only {{In|FO76SR}}.\n\n==Gallery==\n<gallery>\nFO76SR Cassie locked up.png|Ashmore locked up with [[Cassie Halloway]]\n</gallery>\n\n{{Navbox Steel Reign}}\n\n[[Category:Steel Reign human characters]]\n[[ru:Ашмор]]",
+    "images": [
+      "File:Ashmore 006050c5 1.ogg",
+      "File:FO76SR Cassie locked up.png",
+      "File:FO76SR V96 Prisoner Ashmore.png",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 P.png",
+      "File:FO76 S.png"
+    ]
+  },
+  "Clarice": {
+    "content": "{{Infobox character\n|games       =FO76\n|image       =FO76_Clarice.png\n|race        =[[Miss Nanny (Fallout 76)|Miss Nanny]]\n|sex         =Female programming\n|affiliation =\n|role        =Barber\n|location    =[[The Whitespring Resort]]\n|quests      =\n|alignment   =\n|level       =8\n|derived     =\n|actor       =[[Amy Walker]]\n|dialogue    =[[Carolyn/Dialogue]]\n|edid        =LC060_WhitespringVendor_Barbershop_Clarice\n|formid      ={{ID|003a293b}}\n|refid       ={{ID|0039be9c}}\n}}\n\n{{Quotation|Did you have an appointment?|sound=Carolyn 003a28e4_1.ogg}}\n\n'''Clarice''' is a [[Miss Nanny (Fallout 76)|Miss Nanny]] barber at [[the Whitespring Resort]] in [[Appalachia]].\n\n==Background==\nClarice is one of the four automated barbers at the Whitespring Resort's Elegance salon. The salon takes no walk-ins, so [[Vault Dweller (Fallout 76)|Vault Dwellers]] cannot receive services from them. This matters little as player characters can change their appearance at will from the main menu.<ref>Clarice: ''\"Did you have an appointment? I'm afraid I'm all booked up for the day.\"''<br />([[Carolyn/Dialogue|Clarice's dialogue]])</ref>\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|essential       =yes\n|temp companion  =\n|perm companion  =\n|perk            =\n|wares           =\n|caps            =\n|max condition   =\n|heal            =\n|cure addiction  =\n|cure radiation  =\n|rent            =\n|items modified  =\n|quests started  =\n|quests involved =\n}}\n\n==Inventory==\n{{Inventory\n|apparel   =\n|weapon    =\n|otheritem =\n|ondeath   =\n}}\n\n==Appearances==\nClarice appears only {{In|FO76}}.\n\n==References==\n{{References}}\n\n{{Stub|FO76}}\n{{Navbox The Whitespring Resort}}\n{{Navbox robots}}\n\n[[Category:Fallout 76 robots and computers]]\n[[Category:The Whitespring Resort characters]]\n[[Category:Miss Nanny characters]]\n\n[[ru:Кларисса]]",
+    "images": [
+      "File:Carolyn 003a28e4 1.ogg",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 Clarice.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 P.png",
+      "File:FO76 Quest Old Man Winter.png",
+      "File:FO76 S.png"
+    ]
+  },
+  "Helena (Fallout 76)": {
+    "content": "{{Infobox incomplete|FO76|derived stats}}\n{{For|other characters named Helena|Helena}}\n{{Infobox character\n|games       =FO76\n|type        =vendor\n|image       =Fo76 Helena.png\n|race        =[[Miss Nanny (Fallout 76)|Miss Nanny]]\n|gender      =Female programming\n|role        =[[Fallout 76 vendors|Vendor]]\n|location    =[[The Whitespring Resort]]\n|level       =8\n|derived     =\n|actor       =[[Amy Walker]]\n|dialogue    =[[Helena (Fallout 76)/Dialogue]]\n|edid        =LC060_WhitespringVendor_JewelryAndAccessories_Helena\n|formid      ={{ID|0037d971}}\n|refid       ={{ID|0037d9d5}}\n}}\n\n{{Quotation|Nothing is forever, dear. But our jewelry comes close.|sound=Helena 003a28b9_1.ogg}}\n\n'''Helena''' is a [[Miss Nanny (Fallout 76)|Miss Nanny]] serving as a [[Fallout 76 vendors|vendor]] at [[the Whitespring Resort]] in [[Appalachia]].\n\n==Background==\nHelena is one of the robotic vendors the Whitespring Resort replaced their human staff with shortly before the [[Great War]].<ref>[[The Whitespring 2080 Initiative]]</ref> She resides in the Aurum store of the Whitespring's mall area. She mainly sells jewelry, including [[Silver pocket watch (Fallout 76)|silver]] and [[gold pocket watch]]es, as well as spoons.\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|essential       =yes\n|wares           =[[Fallout 76 junk items|junk]], [[Fallout 76 armor and apparel|apparel]], [[Fallout 76 miscellaneous items|misc]]\n|caps            =1400 {{icon|caps|16px}}\n}}\n\n==Inventory==\n{{Inventory\n|apparel   =\n|weapon    =\n|otheritem =\n|ondeath   =\n}}\n\n==Appearances==\nHelena appears only {{In|FO76}}.\n\n==References==\n{{References}}\n\n{{Navbox vendors FO76}}\n{{Navbox The Whitespring Resort}}\n\n[[Category:Fallout 76 robots and computers]]\n[[Category:The Whitespring Resort characters]]\n[[Category:Fallout 76 merchants]]\n[[Category:Miss Nanny characters]]\n\n[[ru:Елена (Fallout 76)]]",
+    "images": [
+      "File:Caps.png",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 Legendary scrip.png",
+      "File:FO76 P.png",
+      "File:FO76 S.png",
+      "File:FO76 ui exploration team.png"
+    ]
+  }
+}

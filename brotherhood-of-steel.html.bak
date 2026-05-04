@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ブラザーフッド・オブ・スティール | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/brotherhood-of-steel.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="ブラザーフッド・オブ・スティール | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ウェイストランド最大のテクノ・ミリタリー教団「ブラザーフッド・オブ・スティール」の全歴史を網羅した詳細なロア記事です。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/brotherhood-base/FOTV_BoS_Base_Flag.png">
+    <meta property="og:url" content="https://www.fallout-jp.com/brotherhood-of-steel.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Common Styles from article-common.js to prevent layout shift */
+        .breadcrumb { font-size: 0.85em; margin-bottom: 15px; font-family: 'Share Tech Mono', monospace; color: #888; min-height: 1.5em; }
+        .breadcrumb a { color: var(--accent-color, #00ff00); text-decoration: none; }
+        .bc-sep { margin: 0 6px; color: #555; }
+        .bc-current { color: var(--accent-color, #00ff00); opacity: 0.8; }
+        .toc-container { margin: 20px 0; border: 1px solid var(--accent-color, #00ff00); border-radius: 4px; background: rgba(0, 255, 0, 0.03); min-height: 45px; }
+        .toc-toggle { width: 100%; background: rgba(0, 255, 0, 0.08); border: none; color: var(--accent-color, #00ff00); padding: 12px 15px; font-family: 'Share Tech Mono', monospace; font-size: 1em; cursor: pointer; text-align: left; }
+        .related-section { margin-top: 40px; padding-top: 20px; border-top: 1px dashed var(--accent-color, #00ff00); }
+    </style>
+    <style>
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; text-align: right; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; text-align: left; }
+        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
+        .article-image.right { float: right; width: 45%; margin: 10px 0 20px 25px; clear: right; }
+        .article-image.left { float: left; width: 45%; margin: 10px 25px 20px 0; clear: left; }
+        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
+        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
+        .holotape-box { border-left: 4px solid #E67E22; margin: 30px 0; background: rgba(230, 126, 34, 0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .holotape-box b { color: #E67E22; font-size: 1.05em; }
+        .note-box { border-left: 4px solid #8b9dc3; margin: 30px 0; background: rgba(139, 157, 195, 0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
+        .note-box b { color: #8b9dc3; font-size: 1.05em; }
+        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px dashed transparent; }
+        .content a:hover { border-bottom: 1px dashed var(--accent-color); }
+        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
+        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
+        ul { list-style-type: square; } li::marker { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } .article-image.right { float: none; width: 100%; margin: 10px 0; } }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
+        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
+    </style>
+    <meta name="article-status" content="draft">
+</head>
+<body data-article-category="勢力" data-article-appearance="Fallout 全般">
+
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">Brotherhood of Steel</h3>
+            <div style="width: 100%; aspect-ratio: 16/9; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; border: 1px solid #555;">
+                <img src="images/note_extracted/brotherhood-base/FOTV_BoS_Base_Flag.png" alt="Brotherhood of Steel flag" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            </div>
+            <div style="text-align:center; font-size: 0.8em; margin-top:-10px; margin-bottom:15px; color:#aaa;">ブラザーフッド・オブ・スティールの旗 (TVシリーズ版)</div>
+            
+            <div class="infobox-row"><span class="infobox-label">組織形態</span><span class="info-value">テクノロジカル・パラミリタリー・オーダー<br>(技術的・軍事的な準宗教教団)</span></div>
+            <div class="infobox-row"><span class="infobox-label">創設者</span><span class="info-value">ロジャー・マクソン</span></div>
+            <div class="infobox-row"><span class="infobox-label">創設年</span><span class="info-value">2077年10月20日 (事実上)<br>2082年頃 (公式)</span></div>
+            <div class="infobox-row"><span class="infobox-label">イデオロギー</span><span class="info-value">支部により異なる。<br>伝統主義派と改革派の対立</span></div>
+            
+            <div class="infobox-row"><span class="infobox-label" style="text-align:center; width:100%; margin-top:10px; border-bottom:1px solid var(--accent-color);">本部 (Headquarters)</span></div>
+            <div class="infobox-row"><span class="info-value" style="width:100%; text-align:center;">ロスト・ヒルズ (西海岸)<br>シタデル / ボストン空港 (東海岸)<br>アトラス砦 (アパラチア)<br>ヒドゥンバレー (モハビ)<br>サンフェルナンド基地 (TVシリーズ)</span></div>
+            
+            <div class="infobox-row"><span class="infobox-label" style="text-align:center; width:100%; margin-top:10px; border-bottom:1px solid var(--accent-color);">主要指導者 (Leaders)</span></div>
+            <div class="infobox-row"><span class="info-value" style="width:100%; text-align:left;"><b>■ ハイ・エルダー</b><br>ロジャー・マクソン<br>マクソン2世<br>ジョン・マクソン<br><b>■ 東海岸エルダー</b><br>オーウェン・リヨンズ<br>サラ・リヨンズ<br>アーサー・マクソン<br><b>■ モハビ エルダー</b><br>エリヤ / ノーラン・マクナマラ<br><b>■ TVシリーズ</b><br>エルダー・クレリック / クインタス</span></div>
+            
+            <div class="infobox-row"><span class="infobox-label" style="text-align:center; width:100%; margin-top:10px; border-bottom:1px solid var(--accent-color);">登場作品</span></div>
+            <div class="infobox-row"><span class="info-value" style="width:100%; text-align:center;">Fallout / Fallout 2<br>Fallout 3<br>Fallout: New Vegas<br>Fallout 4<br>Fallout 76<br>Fallout TV Series</span></div>
+        </aside>
+
+        <main class="content">
+            <div id="breadcrumb-placeholder"></div>
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_brotherhood_of_steel_2" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>Brotherhood of Steel<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">ブラザーフッド・オブ・スティール</span></h1>
+
+
+            <h2>背景 (Background)</h2>
+
+            <h3>マリポサの反乱 (The Mariposa Rebellion)</h3>
+            <img src="images/note_extracted/brotherhood-base/Fo1_Military_Base_Destroyed.png" class="article-image right" alt="破壊されたマリポサ軍事基地" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッド・オブ・スティールの物語は、2077年の大戦（Great War）直前にまで遡ります。カリフォルニア州のマリポサ軍事基地に駐屯していたアメリカ陸軍のスパインブレーカー中隊は、基地の奥深くでウェスト・テック社の科学者たちが強制進化ウイルス（FEV）を使用した恐るべき人体実験を行っていた事実を発見しました。</p>
+
+            <p>2077年10月10日、ロジャー・マクソン大尉率いる部隊は科学者たちの実験の真実を目撃し、激昂のあまり科学者の一人を射殺。マクソンは基地を掌握し、10月15日には責任者のロバート・アンダーソン主任研究員を尋問の末に処刑しました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Fo1_Brotherhood_Corridor.png" class="article-image left" alt="マリポサ基地の廊下" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>10月20日、マクソンは無線を通じてアメリカ陸軍最高司令部に「分離独立（Secession）」を宣言しましたが、政府機能が麻痺していたため応答はありませんでした。そして10月23日、大戦が勃発。世界中に核ミサイルが降り注ぎましたが、マリポサ基地は堅牢な地下構造により直接の被害を免れました。</p>
+
+            <div class="holotape-box">
+                <b>ロジャー・マクソンの日記 (Captain Maxson's diary)</b><br><br>
+                ……科学者たちの尋問を終えた。彼らは自分たちが「人類の進化」を助けているだけだと信じ込んでいるようだが、私には地獄の光景にしか見えなかった。水槽の中に浮かぶ変わり果てた姿の人間たち、それがFEVというウイルスの成れの果てだ。今日、私はアンダーソンを処刑した。これで戻れる道はなくなった。私たちはもう合衆国軍ではない。
+            </div>
+
+            <p>核攻撃の直後、マクソンは汚染が広がるマリポサ基地に留まることは不可能であると判断し、10月27日に生き残った兵士たちとその家族を率いて砂漠を越える決死の移動「<b>大脱走（The Exodus）</b>」を開始しました。数週間にわたる過酷な移動は多くの犠牲を強い、マクソンの妻アンナも放射能汚染により命を落としました。しかしついに11月、カリフォルニア南部の山中にある政府の核シェルター「<b>ロスト・ヒルズ（Lost Hills）</b>」に到達しました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO01_NPC_Maxson_G.png" class="article-image right" alt="ロジャー・マクソン (Fallout 1)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ロスト・ヒルズに定着したマクソンは、2082年に「<b>ブラザーフッド・オブ・スティール</b>」の公式創設を宣言し、自らを最初のハイ・エルダー（High Elder）に任命しました。メンバーには「ナイト（騎士）」「スクライブ（書記官）」「パラディン（守護騎士）」といった階級が与えられ、人類が危険な高度技術を再び使う準備ができるまで、それらを世の中から隔離し保存するという使命が定められました。これが「<b>コーデックス（Codex）</b>」の基礎です。</p>
+
+            <h3>エンクレイヴとの最初の衝突 (Earliest conflict with the Enclave)</h3>
+            <img src="images/note_extracted/brotherhood-base/Fo2_Matthew_v_Horrigan.png" class="article-image right" alt="マシューとフランク・ホリガンの対峙" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッド・オブ・スティールがエンクレイヴと最初に衝突したのは、西海岸における2241年のことです。エンクレイヴが核戦争後の世界にその存在を現し始めると、ブラザーフッドはニュー・カリフォルニア各地に複数の監視拠点を再稼働させ、エンクレイヴの活動を監視しその動機を探りました。</p>
+
+            <div class="holotape-box">
+                <b>マシューの証言 (Fallout 2)</b><br><br>
+                「数ヶ月前、我々はエンクレイヴとして知られる集団に遭遇した。驚くべきことに、彼らの技術力は我々のそれをも上回っていた。我々はこれを非常に不安に感じ、接触を検討したが、エンクレイヴが何者であり、その組織の根底にある目的が何であるかを正確に見極めるまで、より慎重な行動方針を取ることにした。」<br>
+                「この目的のため、我々はエンクレイヴの活動地域の近くに小規模な前哨基地を再稼働させ、そこから安全に彼らを観察している。現在、デン、NCR、そしてここサンフランシスコに前哨基地を設置している。」
+            </div>
+
+            <p>この時期、ブラザーフッドは選ばれし者（Chosen One）にナバロ空軍基地への潜入とエンクレイヴの改良型ベルチバードの設計図の奪取を依頼しました。その結果、サンフランシスコのブラザーフッド前哨基地がフランク・ホリガンによって襲撃され、マシューは殺害されました。</p>
+
+            <div class="holotape-box">
+                <b>マシューとフランク・ホリガンの最後の対話</b><br><br>
+                マシュー：「お前と自称大統領は成功しない。」<br>
+                フランク・ホリガン：「そうかな？」<br>
+                マシュー：「選ばれし者が来た。彼がお前たちの悪を世界から駆逐するだろう。」<br>
+                フランク・ホリガン：「お前の哀れな予言など知ったことか。しかも、お前は干渉によって厄介者になった。それも今日で終わりだ！」<br>
+                マシュー：「私を殺しても何も止まらない。」<br>
+                フランク・ホリガン：「そうかもしれんが、お前の死体が地面に転がっているのを見れば、俺は笑顔になれるだろう。」
+            </div>
+
+            <p>2246年以降にNCRの手によってナバロが破壊された後、ブラザーフッドは西海岸でエンクレイヴの残党を公然と追跡し殲滅し始めました。</p>
+
+            <div class="holotape-box">
+                <b>アーケイド・ガノンの証言 (Fallout: New Vegas)</b><br><br>
+                「エンクレイヴの指揮系統が崩壊した後、ナバロがNCR軍に制圧されるのは時間の問題だった。私の母と私は、父の旧部隊の兵士たちと一緒に脱出した。脱出できなかった者はNCRに殺された。脱出した者の中にも、最終的にブラザーフッド・オブ・スティールに追い詰められた者がいた。」
+            </div>
+
+            <h3>NCR-ブラザーフッド戦争 (NCR-Brotherhood War)</h3>
+            <p>2250年代後半から2260年代にかけて、ニュー・カリフォルニア共和国（NCR）の成長は、やがてブラザーフッドとの衝突コースへと進みました。NCRの勢力が拡大するにつれ、ブラザーフッドは教団外の人々から技術、特にエネルギー兵器を回収する方針を採用しました。技術の取り扱いに関する意見の対立は、やがてNCRとの全面戦争に発展しました。</p>
+
+            <div class="holotape-box">
+                <b>ベロニカ・サンタンジェロの証言 (Fallout: New Vegas)</b><br><br>
+                「両親だけよ、でもずっと前からいないの。お父さんはパラディンで、お母さんはスクライブだった。二人とも同じ戦いで死んだわ、NCRの何かを食い止めようとして……何だったか覚えてない。当時は重要に思えたんでしょうけど。」
+            </div>
+
+            <p>ブラザーフッドは優れた装備と訓練にもかかわらず、最終的に退却を余儀なくされました。少なくとも6つのブラザーフッド・バンカーがNCRに奪われ、そのうち4つはブラザーフッドが敵に渡すまいと自ら破壊しました。しかしNCR側も多大な損害を被りました。ブラザーフッドはNCRの金準備を度々襲撃し、取り付け騒ぎを引き起こしました。NCRはさらなる危機を防ぐために不換紙幣（フィアット・マネー）に切り替えましたが、これがインフレーションを引き起こす結果となりました。</p>
+
+            <div class="holotape-box">
+                <b>アーロン・キンボール大統領の演説 (Fallout: New Vegas)</b><br><br>
+                「ワン・パインの郊外にあるトタン小屋で生まれたジェレミー・ワトソンは、決して楽な人生ではなかった。父はショート・ループのキャラバン護衛として働き、母は多くのカリフォルニア人と同様に旧世界の廃墟で採掘者として身を立てていた。彼らは水不足、レイダーの襲撃、そしてブラザーフッド戦争を耐え抜いた。」
+            </div>
+
+            <p>戦争の結果、ブラザーフッドはもはやNCRと直接対決できる状態ではなくなりました。しかし完全に敗北したわけではなく、各支部は散発的な抵抗と独立した活動を続けました。この敗北は組織の内部に深い亀裂を生むことになります。</p>
+
+            <h3>キャピタル・ウェイストランド (Fallout 3)</h3>
+            <img src="images/note_extracted/brotherhood-base/Elder_Lyons.jpg" class="article-image right" alt="エルダー・オーウェン・リヨンズ" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>2254年、ウェスト・コーストのエルダー評議会は、パラディン・オーウェン・リヨンズを率いるブラザーフッドの一団を東海岸、特にワシントンD.C.に派遣しました。その公式な任務は、かつての首都に残る先進的な技術を回収し、その地域のブラザーフッドの活動状況を調査することでした。</p>
+
+            <p>しかし、リヨンズは荒廃したキャピタル・ウェイストランドの人々が直面する苦難を目の当たりにし、本来の任務であった技術回収よりも、地域住民の保護を優先する方針に転換しました。スーパーミュータントの脅威から人々を守り、浄水プロジェクト「プロジェクト・ピュリティ」を支援しました。この方針転換はウェスト・コーストの本部との深刻な亀裂を生み、最終的にはブラザーフッド・アウトキャスト（Brotherhood Outcasts）が分離する原因となりました。アウトキャストはリヨンズの方針を「教義からの逸脱」と見なし、技術回収というブラザーフッド本来の使命に回帰することを選びました。</p>
+
+            <p>リヨンズ率いる東海岸ブラザーフッドは、旧アメリカ国防総省跡地を改修して「シタデル（Citadel）」と呼ばれる要塞を建設し、そこを東海岸における活動拠点としました。リヨンズはエルダーに昇進し、キャピタル・ウェイストランドの守護者としての役割を果たしました。</p>
+
+            <div class="holotape-box">
+                <b>エルダー・リヨンズについて</b><br><br>
+                リヨンズのリーダーシップの下、東海岸ブラザーフッドはスーパーミュータントの脅威に対抗し、エンクレイヴの侵攻を撃退し、プロジェクト・ピュリティを通じてキャピタル・ウェイストランドに清浄な水をもたらしました。しかし、西海岸の本部からの補給と連絡は途絶え、リヨンズの部隊は事実上、独立した組織として機能していました。
+            </div>
+
+            <h4>空白期間 (Fallout 3 と 4 の間)</h4>
+            <p>エンクレイヴとの戦いの後、リヨンズのブラザーフッドはキャピタル・ウェイストランドで最も強力な勢力として台頭しました。プロジェクト・ピュリティからの清浄な水の供給は、ブラザーフッドの評判を大きく向上させました。</p>
+
+            <p>しかし、リヨンズの死後（時期は不明）、その娘サラ・リヨンズが後を継ぎましたが、彼女もまた程なくして亡くなりました（状況は不明瞭で疑わしいとされています）。その後、ブラザーフッドは「名前すら覚える価値のない」と評された一連の効果のないリーダーたちの下で迷走しました。</p>
+
+            <p>この混乱の時代に、若きアーサー・マクソン——初代エルダーであるロジャー・マクソンの直系の子孫——が台頭しました。わずか16歳でエルダーの座に就いたマクソンは、アウトキャストを本隊に再統合し、リヨンズの人道主義的理念とブラザーフッド伝統の技術回収使命を折衷する新たな方針を打ち出しました。彼のリーダーシップの下で、東海岸ブラザーフッドは急速に勢力を拡大し、ウェスト・コーストの本部からも正式な承認を受けました。</p>
+
+            <h3>モハビ支部 (Fallout: New Vegas)</h3>
+            <img src="images/note_extracted/brotherhood-base/Elder_McNamara.jpg" class="article-image right" alt="エルダー・ノーラン・マクナマラ" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>モハビ・ウェイストランドのブラザーフッド支部は、NCR-ブラザーフッド戦争の余波で壊滅的な打撃を受けた後、ヒドゥンバレー・バンカーに潜伏していました。かつてのエルダー・エリヤはヘリオスONEの太陽エネルギー施設をNCRから防衛しようとしましたが、HELIOS戦争での壊滅的敗北の後、姿を消しました。</p>
+
+            <p>エリヤの後を継いだエルダー・ノーラン・マクナマラは、厳格なロックダウン（封鎖）方針を敷き、メンバーの外出を最小限に制限しました。この方針は支部の存続を確保しましたが、外界との接触を絶つことで新たなリクルートの確保が困難になり、組織は徐々に衰退の道を辿りました。</p>
+
+            <div class="holotape-box">
+                <b>ベロニカ・サンタンジェロ (Fallout: New Vegas)</b><br><br>
+                「ここでは何も変わらない。ただ暗い穴の中に座って、外の世界が通り過ぎていくのを見ているだけ。エルダーは私たちが安全だと思っているけれど、私たちは死にかけている。ゆっくりと、でも確実に。新しいメンバーはいない。目的もない。ただ……存在しているだけ。」
+            </div>
+
+            <p>モハビ支部の運命は運び屋（Courier）の介入によって変化する可能性があります。マクナマラのロックダウンを維持するか、より積極的なリーダーシップへの交代を支援するかで、支部の将来は大きく異なります。</p>
+
+            <h3>インスティチュートとの紛争 (Fallout 4)</h3>
+            <img src="images/note_extracted/brotherhood-base/Fo4_Elder_Maxson.png" class="article-image right" alt="エルダー・アーサー・マクソン" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>2287年、エルダー・アーサー・マクソン率いる東海岸ブラザーフッドは、巨大飛行船「<b>プリドゥウェン（Prydwen）</b>」を旗艦としてコモンウェルス（マサチューセッツ州）に進軍しました。彼らの主な目的は、地下に潜む謎の組織「インスティチュート」の技術的脅威を排除し、コモンウェルスに蔓延するスーパーミュータントやフェラル・グールの脅威に対抗することでした。</p>
+
+            <p>マクソンは人造人間（Synth）を人類に対する存在的脅威と見なし、インスティチュートの完全な破壊を目標としました。彼のリーダーシップスタイルは、リヨンズの人道主義とは異なり、より軍事的で教条主義的なものでしたが、その決意と実行力は多くのフォロワーを引きつけました。</p>
+
+            <p>コモンウェルスでのブラザーフッドの活動は、地域住民との摩擦も生みました。ブラザーフッドの兵士たちは農場から食料を「徴発」し、入植地に対して「保護」と引き換えに物資を要求することがありました。この振る舞いは、一部の住民からは征服者と見なされる原因となりました。</p>
+
+            <h3>ロサンゼルスでの冷間核融合紛争 (Fallout TVシリーズ)</h3>
+            <img src="images/note_extracted/brotherhood-base/FOTV_S01E01_Quintus_01.jpg" class="article-image right" alt="エルダー・クインタス" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>2296年のFallout TVシリーズでは、ブラザーフッド・オブ・スティールはロサンゼルス近郊で重要な転機を迎えます。サンフェルナンド要塞を拠点とするこの支部は、エルダー・クインタスの指導の下、インスティチュートの技術と類似した冷間核融合技術の回収を最重要任務として追求していました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FOTV_Official_Trailer_Still_055.png" class="article-image left" alt="ブラザーフッドの戦闘" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>物語の中心には、見習い（Squire）であるマキシマスの成長と、ブラザーフッドの内部構造への疑問が描かれています。マキシマスはシャディ・サンズの核破壊の生存者であり、復讐と庇護を求めてブラザーフッドに入隊しました。TVシリーズは、ブラザーフッドが技術の保護者であると同時に、その技術を自らの力の拡大のために利用する矛盾した性質を鮮明に描き出しています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FOTV_Official_Trailer_Still_085.png" class="article-image right" alt="ブラザーフッドの進軍" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>シーズン1の終盤では、ブラザーフッドがかつてのシャディ・サンズの跡地で巨大な衝撃クレーターの底に眠る秘密——エンクレイヴが建設した冷間核融合施設——を発見します。この発見は組織の方向性に大きな影響を与えます。</p>
+
+            <h3>内戦の兆し (Fallout TVシリーズ)</h3>
+            <p>TVシリーズ シーズン2では、冷間核融合技術の獲得を巡ってブラザーフッド内部の対立がさらに深刻化します。エルダー・クインタスのリーダーシップに対する疑問が高まり、組織内部での権力闘争の兆候が見え始めています。</p>
+
+            <p>マキシマスの立場は複雑化し、ブラザーフッドの理想と現実の間で葛藤を深めます。冷間核融合技術は単なる技術的資産を超え、ウェイストランド全体のパワーバランスを変え得る戦略的資源として、各勢力間の争いの焦点となっています。</p>
+
+
+
+            <h2>社会 (Society)</h2>
+            <img src="images/note_extracted/brotherhood-base/Fallout_Season_1_Amazon_Maximus_bg.jpg" class="article-image right" alt="マキシマス" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッド・オブ・スティールは、テクノロジーの保存と管理を至上の使命とする準軍事的・準宗教的な騎士団です。創設者ロジャー・マクソンの言葉に基づき、「<b>新しいものを鍛え上げよう。強きものを。誇れるものを。何世紀にもわたって語り継がれるものを</b>」という理念の下、独自の社会制度を構築しています。</p>
+
+            <p>ブラザーフッドの社会は厳格な軍事的階級制に基づいています。すべてのメンバーは「コーデックス（Codex）」と呼ばれる教義に従うことが求められ、テクノロジーの保護、危険な技術の一般人からの隔離、そして騎士道的名誉の維持が義務付けられています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/F76_BOS_Scout_Tower_Banner_1.png" class="article-image left" alt="ブラザーフッドのバナー" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>組織の基本的な階級構造は以下の通りです：</p>
+            <ul>
+                <li><b>エルダー (Elder)</b> - 各支部の最高指導者。ハイ・エルダーは全組織の統率者</li>
+                <li><b>パラディン (Paladin)</b> - 精鋭戦闘員。ブラザーフッドの軍事力の中核</li>
+                <li><b>センティネル (Sentinel)</b> - パラディンの中でも最も卓越した戦士に与えられる称号</li>
+                <li><b>スター・パラディン (Star Paladin)</b> - パラディンの上級指揮官</li>
+                <li><b>ナイト (Knight)</b> - 技術の維持・運用・戦闘を担う中核メンバー</li>
+                <li><b>スクライブ (Scribe)</b> - 研究・記録・技術開発を担当する知識階級</li>
+                <li><b>イニシエイト (Initiate)</b> - 訓練中の新規メンバー</li>
+                <li><b>スクワイア (Squire)</b> - 見習い。特にFallout 4とTVシリーズで描写される少年少女たち</li>
+                <li><b>アスピラント (Aspirant)</b> - 入隊希望者。正式メンバーになる前の候補者</li>
+            </ul>
+
+            <h3>教育制度 (Education System)</h3>
+            <img src="images/note_extracted/brotherhood-base/HVB_class_room.jpg" class="article-image right" alt="ヒドゥンバレー・バンカーの教室" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドにおける教育は、組織の存続と教義の継承にとって不可欠な要素です。「<b>肉体は弱し、されど鉄鋼は永遠なり</b>（Flesh is weak, but steel endures）」というスクワイア・デーンの言葉が示すように、知識と技術の伝承は組織の根幹を成しています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FOTV_BoS_Base_Classroom.png" class="article-image left" alt="TVシリーズのブラザーフッド教室" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout TVシリーズでは、ブラザーフッドの教育制度がより詳細に描かれています。サンフェルナンドの要塞基地では、スクワイアたちが整列して教官の指導の下で訓練を受ける場面が描かれ、軍事訓練と知識教育が統合されたカリキュラムが展開されています。教育の目的は、単なる戦闘技術の習得ではなく、ブラザーフッドの教義を内面化し、コーデックスへの忠誠を深めることにあります。</p>
+
+            <p>モハビ支部のヒドゥンバレー・バンカーにも教室が設置されており、ロックダウン下でも教育活動が継続されていたことがわかります。スクライブ階級のメンバーは特に高度な技術教育を受け、戦前の技術の理解・修復・記録に必要な専門知識を習得します。</p>
+
+            <h3>司法制度 (Judiciary System)</h3>
+            <img src="images/note_extracted/brotherhood-base/FOTV_Official_Trailer_Still_059.png" class="article-image right" alt="ブラザーフッドの司法" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>「<b>暴力は単なる道具にすぎない。我々はウェイストランドに秩序をもたらすためにそれを使うが、秩序なき暴力は混沌に他ならない</b>」——この言葉に示されるように、ブラザーフッドは独自の厳格な司法制度を持っています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Clarke-in-jail.jpg" class="article-image left" alt="独房に収監されたクラーク" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドの法体系はコーデックスに基づいており、違反者には軍事法廷での裁判が行われます。脱走、命令への不服従、技術の不正使用、そして反逆行為は最も重大な犯罪と見なされます。罰則は訓戒から追放、さらには死刑まで多岐にわたります。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO76_steelreign_chronicsonictonic_08.jpg" class="article-image right" alt="ブラザーフッドの裁き" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 76のSteel Reignストーリーラインでは、パラディン・ラフマーニとナイト・シンの間の指導権争いが司法制度の限界を浮き彫りにしました。教義の解釈を巡る対立は、最終的にプレイヤーの選択によって決着が図られます。</p>
+
+            <p>TVシリーズでは、マキシマスが偽りの身分で任務に就いていたことが発覚した際の裁きの場面や、ブラザーフッド内部での権力闘争が司法手続きを通じて行われる様子が描かれています。これは組織が形式的には法の支配を重視していることを示していますが、同時に権力者による恣意的な運用の危険性も暗示しています。</p>
+
+            <h3>宗教的要素 (Religious Elements)</h3>
+            <img src="images/note_extracted/brotherhood-base/FOTV_Brotherhood_lineup.jpg" class="article-image right" alt="クレリックによる祝福を受ける騎士たち" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>一般的に、ブラザーフッドは世俗的な組織として存在してきましたが、常に準宗教的な側面を持っていました。コーデックスは単なる規則集ではなく、メンバーにとっては生き方そのものを規定する聖典に近い存在です。</p>
+
+            <p>ブラザーフッドの文化には、中世の騎士道やキリスト教の修道会を彷彿とさせる要素が随所に見られます。「エルダー」「パラディン」「スクライブ」といった称号自体が宗教的・騎士道的な響きを持ち、技術の保護という使命は聖なる義務として語られます。</p>
+
+            <p>Fallout TVシリーズでは、この宗教的側面がさらに強調されています。「クレリック（Cleric）」という役職が存在し、出撃前の騎士たちに祝福を授ける儀式が行われます。焼印の儀式（Branding）、祈りの場面、そして聖遺物のような技術への崇敬は、ブラザーフッドが単なる軍事組織ではなく、技術を神聖視する宗教的カルトとしての性格を強めていることを示しています。</p>
+
+            <h4>エデン (Eden)</h4>
+            <p>「エデン」の概念は、ブラザーフッドの中でも特にTVシリーズの時代（2296年）における重要な教義的要素です。これは失われた戦前の楽園——すなわちテクノロジーによって維持されていた文明社会——を取り戻すという理想を象徴しています。</p>
+
+            <p>サンフェルナンドの騎士団では、「エデン」は世界をより良くするための目標として公式に使用されています。この概念は、ブラザーフッドの伝統的な「技術の保存」という消極的な使命から、「技術による世界の再建」というより積極的な理想への進化を示しています。</p>
+
+
+
+            <h3>財産と交易 (Property and Trade)</h3>
+
+            <h4>内部経済 (Internal)</h4>
+            <img src="images/note_extracted/brotherhood-base/Brotherhood_scrip_concept.jpg" class="article-image right" alt="ブラザーフッド証書（スクリップ）のコンセプトアート" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>原則として、ブラザーフッドのメンバーの大半は個人的な財産をほとんど所有しません。装備、武器、そして技術はすべて組織の共有財産であり、必要に応じてメンバーに貸与されます。この制度は、個人の利益よりも組織全体の利益を優先するというブラザーフッドの教義を反映しています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Prydwen-StowageDepot-Fallout4.jpg" class="article-image left" alt="プリドゥウェンの物資貯蔵庫" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 4のプリドゥウェンでは、物資の集中管理体制が明確に描かれています。物資貯蔵庫（Stowage Depot）にはブラザーフッドが回収したすべての物資が保管され、プロクター・ティーガンがその配分を管理しています。メンバーは必要な物資を申請し、承認を得て受け取る仕組みになっています。</p>
+
+            <p>一部の支部では「ブラザーフッド・スクリップ（Brotherhood Scrip）」と呼ばれる独自通貨が使用されていました。これは外部のキャップ経済とは独立した内部流通手段であり、メンバー間の限定的な取引に使用されました。</p>
+
+            <h4>外部交易 (External)</h4>
+
+            <h5>アパラチア (Appalachia)</h5>
+            <img src="images/note_extracted/brotherhood-base/FO76_Brotherhood_vendor.png" class="article-image right" alt="ブラザーフッド・ベンダーボット" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 76の時代（2102-2105年）、アパラチアのブラザーフッド遠征軍は、地域の経済活動に積極的に参加していました。ブラザーフッド・ベンダーボットが各拠点に配置され、メンバーや協力者との物資の取引を行いました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Watoga_Shopping_Plaza_(Vendor_bot_Phoenix).jpg" class="article-image left" alt="ワトガ・ショッピングプラザ" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>タガーディの雷鳴隊（Taggerdy's Thunder）は、軍の補給ラインが崩壊した後も地域の入植者と協力関係を築き、相互扶助の経済圏を形成しようとしました。しかし、スコーチ病の蔓延とスコーチビーストの脅威により、これらの経済活動は壊滅しました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO76TM_Gladiators_of_Steel_end.jpg" class="article-image right" alt="スティールの剣闘士たち" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>2104年にシンの部隊またはラフマーニの部隊がアトラス砦を再建した後、ブラザーフッドは再び地域経済に参入しました。補給の要請、技術提供と引き換えの物資調達、そして地域住民との協力的な交易関係の再構築が行われました。</p>
+
+            <h5>ニュー・カリフォルニア (New California)</h5>
+            <img src="images/note_extracted/brotherhood-base/Fo1_Hub_Downtown.png" class="article-image right" alt="ハブの中心部" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 1の時代、ロスト・ヒルズのブラザーフッドは、近隣の交易都市「ハブ（The Hub）」と重要な経済的関係を維持していました。ハブの商人たちはブラザーフッドに食料や日用品を供給し、見返りとしてブラザーフッドが修理・整備した戦前の技術を受け取りました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Fo1_caravan_leader.png" class="article-image left" alt="キャラバンのリーダー" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>この関係は相互に利益をもたらすものでしたが、ブラザーフッドは常にエネルギー兵器や高度な軍事技術の流出を厳しく管理していました。交易品として提供されるのは、農業用機器、水浄化装置、医療機器など、「安全」と見なされた技術に限定されていました。</p>
+
+            <h5>キャピタル・ウェイストランド (Capital Wasteland)</h5>
+            <img src="images/note_extracted/brotherhood-base/Frag_mines1_Washington_Monument.jpg" class="article-image right" alt="ワシントン記念碑周辺のブラザーフッド防衛陣地" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>東海岸のリヨンズ派ブラザーフッドは、キャピタル・ウェイストランドの住民との関係において、西海岸の伝統とは異なるアプローチを取りました。リヨンズ・エルダーの指導の下、ブラザーフッドは地域社会の保護を優先し、その見返りとして住民からの自発的な物資提供を受けました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO3BS_Water_caravan_in_the_Big_Town.png" class="article-image left" alt="ビッグ・タウンへの水キャラバン" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>プロジェクト・ピュリティの成功後、ブラザーフッドは浄水された水の配給を通じて、ウェイストランド全体に対する影響力を大幅に拡大しました。アクア・ピュラ（清浄水）のキャラバンが各入植地に派遣され、水の供給と引き換えにブラザーフッドへの忠誠が期待されました。しかし一部のキャラバンは途中でレイダーや敵対勢力に襲撃されることもありました。</p>
+
+            <h5>モハビ・ウェイストランド (Mojave Wasteland)</h5>
+            <img src="images/note_extracted/brotherhood-base/FNV_131120_188_trading_roadway_4.png" class="article-image right" alt="188交易所" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>モハビ支部は厳格なロックダウン政策により外部との交易をほぼ完全に遮断していました。エルダー・マクナマラの方針により、メンバーの外出は偵察任務に限定され、商業活動は行われませんでした。</p>
+
+            <p>188交易所（188 Trading Post）は、ブラザーフッドの元メンバーであるベロニカが活動する地域にあり、間接的にブラザーフッドとウェイストランドの経済圏をつなぐ役割を果たしていましたが、公式な交易関係は存在しませんでした。</p>
+
+            <h5>コモンウェルス (Commonwealth)</h5>
+            <img src="images/note_extracted/brotherhood-base/Brotherhood_soldiers_patrolling_Boston.png" class="article-image right" alt="ボストンをパトロールするブラザーフッド兵" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>2287年のコモンウェルスでは、エルダー・マクソン率いるブラザーフッドはより強制的な物資調達方法を採用しました。ブラザーフッドの兵士たちは入植地を訪問し、「保護」の名目で食料やその他の物資を要求しました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Fo4_vertibird.jpg" class="article-image left" alt="ベルチバードによる補給" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>プロクター・ティーガンは、農場からの食料調達任務をプレイヤーに依頼します。その方法は「交渉」「説得」あるいは「強制的な徴発」まで多岐にわたり、ブラザーフッドの物資調達がしばしば住民の意向を無視して行われる実態を浮き彫りにしています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Brotherhood_trade_mission_Diamond_City.png" class="article-image right" alt="ダイアモンドシティへの交易任務" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>しかし同時に、ブラザーフッドはダイアモンドシティなどの主要拠点との正式な交易関係も維持していました。ベルチバードによる空輸ネットワークを活用し、コモンウェルス全域にわたる補給線を確立しました。</p>
+
+            <h3>没収 (Confiscations)</h3>
+            <img src="images/note_extracted/brotherhood-base/FO76_Makeshift_Vault_Interior_Atrium.png" class="article-image right" alt="即席のVaultの内部" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>戦争などの極端な状況下、あるいは絶対的に必要と判断された場合、ブラザーフッドは民間人の所有する技術を強制的に没収することで知られています。特にエネルギー兵器、パワーアーマー、そしてその他の高度な軍事技術は、ブラザーフッドによる回収の優先対象です。</p>
+
+            <p>この没収政策は、ブラザーフッドの教義における中心的な信条——「危険な技術は、それを正しく管理できる者の手になければならない」——に基づいています。しかし、この方針はしばしばウェイストランドの住民との深刻な対立を引き起こし、多くの入植者や商人がブラザーフッドを略奪者と同等視する原因となっています。</p>
+
+            <p>Fallout 76では、パラディン・ラフマーニとナイト・シンの間で、没収に関する教義の解釈が対立の焦点となりました。シンは厳格な没収政策を支持する一方、ラフマーニはより柔軟で住民に配慮したアプローチを提唱しました。</p>
+
+            <p>Fallout 4でも、エルダー・マクソンのブラザーフッドが入植地から技術を「回収」する場面が描かれ、この政策の倫理的な問題が提起されています。マクソンは人造人間を含む「危険な技術」の全面的な排除を掲げ、これが住民との摩擦の大きな原因となりました。</p>
+
+
+
+            <h3>社会構造 (Social Structure)</h3>
+            <img src="images/note_extracted/brotherhood-base/FO01_NPC_Maxson_G.png" class="article-image right" alt="ジョン・マクソン将軍 (ハイ・エルダー)" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッド・オブ・スティールの社会は、厳格な軍事的カースト制度に基づいています。すべてのメンバーは、戦闘、研究、支援のいずれかの役割に分類され、昇進は功績と能力に基づいて行われます。</p>
+
+            <p>組織の最高指導者は<b>ハイ・エルダー（High Elder）</b>であり、西海岸ではマクソン家がこの地位を世襲してきました。各支部には独自の<b>エルダー（Elder）</b>が置かれ、その下に<b>エルダー評議会</b>が存在します。</p>
+
+            <p>軍事部門は<b>パラディン</b>と<b>ナイト</b>で構成されます。パラディンはブラザーフッドの精鋭戦闘部隊であり、最も危険な任務を担います。ナイトは技術の維持と運用を担当しますが、戦闘にも参加します。Fallout 4では、ナイト階級がさらに細分化され、ナイト、ナイト・サージャント、ナイト・キャプテンなどの小階級が設けられました。</p>
+
+            <p>研究部門は<b>スクライブ</b>が担当します。スクライブは戦前の技術の研究、記録、修復を行う知識階級です。Fallout 3のシタデルでは、スクライブはさらに専門分野（Order of the Sword：武器技術、Order of the Shield：防御技術、Order of the Quill：記録・管理）に分かれていました。</p>
+
+            <p>最も下位の階級は<b>イニシエイト</b>（訓練生）と<b>スクワイア</b>（見習い）です。イニシエイトはブラザーフッドに正式に受け入れられたばかりの新兵であり、スクワイアは特にFallout 4とTVシリーズにおいて、若いメンバーが上位メンバーの補佐をしながら訓練を受ける役職として描かれています。</p>
+
+            <h3>信仰体系 (Belief System)</h3>
+
+            <h4>起源 — 伝統主義者 (Origins / Traditionalists)</h4>
+            <p>「<b>言葉には力がある、リジー。言葉はアイデンティティを構築する。信じ続ければ意味を帯びてくる</b>」——この言葉に示されるように、ブラザーフッドの信仰体系はロジャー・マクソンの理念に根ざしています。</p>
+
+            <p>マクソンの原初のビジョンは、科学者たちの倫理なき技術濫用が核戦争を招いたという深い反省に基づいていました。彼は、技術は本質的に中立であるが、それを扱う人間の道徳的資質がその善悪を決定すると信じていました。この考えから、技術を「保護する」——すなわち、人類が再びそれを責任を持って使えるようになるまで、危険な技術を一般社会から隔離する——という使命が生まれました。</p>
+
+            <p>伝統主義者たちはこの原初の教義を文字通りに解釈し、外部世界との関わりを最小限にとどめ、技術の収集と保存に専念するべきだと主張します。彼らにとって、ウェイストランドの政治に介入することは教義からの逸脱です。</p>
+
+            <h4>保全主義者 (Preservationists)</h4>
+            <p>「<b>ブラザーフッドこそが、この苦しむ惑星とその人々が持つ唯一の救済だ。我々が守るテクノロジーだけが、人類の将来を保証できる</b>」——このモットーに象徴されるように、保全主義者たちはブラザーフッドの使命をより広い視野で解釈します。</p>
+
+            <p>保全主義者は、技術の保護だけでなく、その知識を通じて人類全体の存続に貢献することを重視します。彼らは一般の人々との交流や協力に比較的寛容であり、ブラザーフッドの孤立主義が最終的には組織の衰退を招くと懸念しています。ベロニカ・サンタンジェロはこの立場を代表する人物です。</p>
+
+            <h4>反動主義者 (Reactionaries)</h4>
+            <img src="images/note_extracted/brotherhood-base/Fallout_New_Vegas_T-51b.jpg" class="article-image right" alt="T-51bパワーアーマーを装着したパラディン" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>反動主義者は、ブラザーフッドの伝統的教義をさらに過激に解釈する一派です。彼らは外部世界を脅威と見なし、テクノロジーの独占的支配を通じてブラザーフッドの優位性を維持することを至上命題とします。</p>
+
+            <p>モハビ支部のエルダー・マクナマラは、反動主義的傾向を持つリーダーとして描かれています。HELIOS ONEでの壊滅的敗北の後、マクナマラは完全なロックダウン政策を採用し、外界との接触をほぼ完全に遮断しました。この決断は短期的には支部の存続を確保しましたが、長期的にはリクルートの枯渇と士気の低下を招きました。</p>
+
+            <p>反動主義者の中にはエリヤのように、テクノロジーの力に取り憑かれて教義すらも逸脱する極端な人物も存在します。エリヤはシエラ・マドレ・カジノの伝説に執着し、その秘密を手に入れるためにブラザーフッドを捨てました。</p>
+
+            <h4>修復者 (Restorers)</h4>
+            <p>「<b>大戦以前、科学と技術は制御を失った。人々はその力に酔い、自らを破壊した。我々はその過ちを繰り返してはならない。だが同時に、我々はその知識を使って世界を修復する義務がある</b>」——修復者の立場は、エルダー・リヨンズの哲学に最もよく体現されています。</p>
+
+            <p>リヨンズは、ブラザーフッドの技術力をウェイストランドの住民を直接助けるために使用することを信条としました。スーパーミュータントからの市民の保護、プロジェクト・ピュリティの支援、そしてキャピタル・ウェイストランドのインフラ再建への関与は、すべてこの「修復」理念に基づいています。</p>
+
+            <p>この方針は西海岸のエルダー評議会からは異端視されましたが、キャピタル・ウェイストランドの住民からは広く支持されました。リヨンズの死後、アーサー・マクソンが伝統主義と修復主義を折衷する新路線を打ち出したことは、この二つの思想が完全に対立するものではないことを示しています。</p>
+
+            <h4>国家建設者 (Nation Builders)</h4>
+            <p>「<b>いつか、時が来たら、その種は育つだろう。そして新しい文明がそこから生まれるだろう</b>」——国家建設者は、ブラザーフッドの最も野心的なビジョンを持つ一派です。</p>
+
+            <p>彼らは単なる技術の保存や住民の保護を超え、ブラザーフッド自体を新たな国家、あるいは文明の基盤として発展させることを目指します。エルダー・アーサー・マクソンの東海岸ブラザーフッドは、軍事力の大幅な拡大、大規模な兵員募集、そして広範な領土支配を通じて、この方向性を最も明確に体現しています。</p>
+
+            <p>TVシリーズのサンフェルナンド支部もまた、「エデン」の理念と結びついた国家建設的ビジョンを示しています。冷間核融合技術の獲得は、単なる技術の保存ではなく、新たな文明を構築するための戦略的資源として追求されています。</p>
+
+            <h3>紋章 (Iconography)</h3>
+            <img src="images/note_extracted/brotherhood-base/FO76_steelreign_chronicsonictonic_01.jpg" class="article-image right" alt="ブラザーフッドの紋章が飾られた旗" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッド・オブ・スティールの紋章は、翼を広げた剣と歯車を組み合わせたデザインです。剣は軍事力と騎士道精神を、歯車はテクノロジーの保護と機械工学への献身を象徴しています。翼は組織の崇高な使命と、荒廃した世界の上を飛翔する理想を表しています。</p>
+
+            <p>この紋章のデザインは作品ごとに微妙に異なりますが、基本的なモチーフは一貫しています。Fallout 1のロスト・ヒルズでは壁面や旗に大きく掲げられ、Fallout 3のシタデルではエンブレムとしてパワーアーマーや旗に描かれています。Fallout 76では、スカウトタワーのバナーに独自のデザインが使用されています。</p>
+
+            <p>TVシリーズでは、紋章がブラザーフッドの宗教的シンボルとしてより強く機能しています。祭壇に飾られ、メンバーに焼印として刻まれ、儀式において中心的な役割を果たしています。</p>
+
+
+
+            <h2>支部と拠点 (Divisions and Locations)</h2>
+            <p>ブラザーフッド・オブ・スティールは、核戦争後の北米大陸全体に複数の支部を展開しています。各支部は独自のエルダーのもとで一定の自治を行っていますが、基本的にはロスト・ヒルズの本部とコーデックスの権威のもとに統合されています。</p>
+
+            <h3>創設支部 — ロスト・ヒルズ (Founding Chapter)</h3>
+            <img src="images/note_extracted/brotherhood-base/FB3_Appendix.jpg" class="article-image right" alt="ブラザーフッドの歴史文書" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>カリフォルニア州のロスト・ヒルズに本拠を置く創設支部は、ブラザーフッドの本家にして総本山です。2077年のマリポサ基地脱出後にロジャー・マクソンが設立したこの支部は、すべてのブラザーフッド支部の原型であり、コーデックスの制定地です。</p>
+            <p>ロスト・ヒルズのバンカーは複数の地下階層で構成され、指揮所、研究施設、訓練場、居住区、そして膨大な技術アーカイブを備えています。エルダー評議会がここに常駐し、全支部に対する最終的な権限を保持しています。</p>
+
+            <h3>アパラチア支部 (Appalachia)</h3>
+            <p>アパラチアのブラザーフッドは、ロジャー・マクソンの命令により東海岸に派遣された遠征軍に起源を持ちます。パラディン・エリザベス・タガーディが率いるこの部隊は、マクソンとの通信を通じてブラザーフッドの教義を受け入れ、アパラチア支部として正式に発足しました。</p>
+            <p>しかし、スコーチ病とスコーチビーストの脅威により壊滅的な打撃を受け、2102年までにアパラチアのすべてのブラザーフッドメンバーが死亡しました。2103年以降、パラディン・ラフマーニとナイト・シン率いる新たな部隊がアトラス砦を再建し、支部を復活させました。</p>
+
+            <h3>モハビ支部 (Mojave)</h3>
+            <img src="images/note_extracted/brotherhood-base/Mojave_BOS_banner.png" class="article-image right" alt="モハビ支部のバナー" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>モハビ・ウェイストランドに駐留するこの支部は、ヒドゥンバレー・バンカーを拠点としています。NCR-ブラザーフッド戦争での敗北、特にHELIOS ONEの戦いでの壊滅的損失の後、ロックダウン政策の下で隠匿活動を続けています。</p>
+            <p>エルダー・マクナマラ（またはプレイヤーの選択によりエルダー・ハーディン）が指導し、支部の将来——孤立を続けるか、外界との関係を再構築するか——は運び屋の行動に左右されます。</p>
+
+            <h3>東海岸ブラザーフッド (East Coast Brotherhood)</h3>
+            <img src="images/note_extracted/brotherhood-base/Citadel.jpg" class="article-image right" alt="シタデル" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>2254年にオーウェン・リヨンズが率いる遠征隊がワシントンD.C.に到着して設立された東海岸支部は、旧国防総省跡地の「シタデル」を本拠としています。Fallout 3の時点ではリヨンズ・エルダーの下で活動し、後にアーサー・マクソンの指導の下でブラザーフッド最大の軍事力を擁する支部へと成長しました。</p>
+            <p>2287年にはプリドゥウェンを旗艦としてコモンウェルスに進出し、ボストン空港を前線基地としました。マクソンの東海岸ブラザーフッドは西海岸本部からも正式に承認されており、事実上独立した大規模軍事組織として機能しています。</p>
+
+            <h3>サンフェルナンドの騎士団 (Knights of San Fernando)</h3>
+            <img src="images/note_extracted/brotherhood-base/FOTV_Amazon_Profile_Picture_Power_Armor.png" class="article-image right" alt="TVシリーズのパワーアーマー" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout TVシリーズで初めて登場するこの支部は、ロサンゼルス近郊のサンフェルナンド要塞を拠点としています。エルダー・クインタス（後にクレリックが重要な役割を果たす）の指導の下、冷間核融合技術の追求を主要任務としています。</p>
+            <p>この支部は従来のブラザーフッドよりも宗教的要素が強く、クレリック（聖職者）が組織内で大きな影響力を持っています。焼印の儀式、祝福の儀式、そして「エデン」の教義は、この支部の独自の文化を形成しています。</p>
+
+            <h3>グランドキャニオン支部 (Grand Canyon Chapter)</h3>
+            <p>グランドキャニオン支部はFallout: New Vegasのカット・コンテンツとして言及された支部です。その詳細は限定的ですが、西部の各支部と同様にロスト・ヒルズの管轄下にあったとされています。</p>
+
+            <h3>コロナド支部 (Coronado Chapter)</h3>
+            <p>コロナド支部もまた、限定的な情報しか存在しない支部の一つです。</p>
+
+            <h3>ヨセミテ支部 (Yosemite Chapter)</h3>
+            <p>ヨセミテ支部は、カリフォルニア州のヨセミテ地域に駐留するブラザーフッドの一支部です。</p>
+
+            <h3>モンタナ支部 (Montana Chapter)</h3>
+            <p>Fallout TVシリーズで言及されるモンタナ支部は、モンタナ・バンカーを拠点としています。マキシマスの背景に関連する情報から、この支部の存在が確認されています。</p>
+
+            <h3>シカゴ支部 (Chicago Chapter)</h3>
+            <p>シカゴ周辺に存在するとされるこの支部は、Fallout 3とFallout 4で言及されています。東海岸への遠征中にリヨンズの部隊がシカゴのブラザーフッドの残存勢力と接触したことが示唆されています。その現状や勢力は不明ですが、Fallout Tacticsのシナリオ（非正史）に関連する可能性があります。</p>
+
+            <h3>支部組織 (Branch Organizations)</h3>
+            <h4>サークル・オブ・スティール (Circle of Steel)</h4>
+            <p>サークル・オブ・スティールは、ブラザーフッド内部の秘密監察組織です。彼らの任務は、ブラザーフッドの教義に違反したメンバーの追跡と処罰であり、脱走兵や反逆者の暗殺も含まれます。Fallout: New Vegasでは、クリスティーン・ロイスがこの組織のメンバーとして、エリヤの追跡任務に従事していました。</p>
+
+            <h3>戦術部隊 (Tactical Units)</h3>
+            <h4>リヨンズ・プライド (Lyon's Pride)</h4>
+            <p>リヨンズ・プライドは、エルダー・リヨンズの娘であるセンティネル・サラ・リヨンズが率いる精鋭部隊です。キャピタル・ウェイストランドで最も危険な任務を担い、スーパーミュータントの殲滅やエンクレイヴとの戦闘で中心的な役割を果たしました。</p>
+
+            <h3>非正史の支部 (Non-canonical Chapters)</h3>
+            <h4>中西部ブラザーフッド (Midwestern Brotherhood)</h4>
+            <p>Fallout Tacticsに登場する中西部ブラザーフッドは、飛行船の墜落事故により中西部に取り残された部隊から発展した支部です。この支部は非人間種族（デスクロー、グール、スーパーミュータント）のメンバーを受け入れるなど、正史のブラザーフッドとは大きく異なる方針を取っていました。Fallout Tacticsの正史としての位置づけは曖昧ですが、一部の要素はFallout 3やFallout 4で間接的に言及されています。</p>
+
+            <h4>テキサス遠征隊 (Texas Expedition)</h4>
+            <p>Fallout: Brotherhood of Steel（Xbox/PS2）に登場するテキサス遠征隊は、テキサス州での活動を描いていますが、このゲーム自体が非正史とされており、ゲームの出来事はFalloutの公式タイムラインには含まれていません。</p>
+
+
+
+            <h2>外交関係 (Foreign Relations)</h2>
+            <p>ブラザーフッド・オブ・スティールの外部勢力との関係は、支部や時代によって大きく異なります。しかし、その根底には常に「テクノロジーの保護」という教義的使命があり、これが外交関係の基本的な方向性を決定しています。</p>
+
+            <h3>民間人との関係 (Civilians)</h3>
+            <img src="images/note_extracted/brotherhood-base/FOT_Intro_War_10.jpg" class="article-image right" alt="ブラザーフッドの戦場" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドと一般市民との関係は複雑です。伝統的に、ブラザーフッドは一般社会との関わりを最小限にとどめ、「彼らの問題は彼ら自身で解決すべきだ」という立場を取ってきました。しかし、一部の支部や指導者はこの方針を覆し、積極的な市民保護を実践しました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Shady_Sands_Knight_and_Maximus.png" class="article-image left" alt="シャディ・サンズのナイトとマキシマス" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>TVシリーズでは、マキシマスの過去を通じてブラザーフッドと民間人の関係が複雑に描かれています。シャディ・サンズの核破壊の生存者であるマキシマスは、ブラザーフッドに保護と力を求めて入隊しましたが、組織が本当に市民を守るのか、あるいは自らの力の拡大のために利用しているだけなのかという疑問に直面します。</p>
+
+            <img src="images/note_extracted/brotherhood-base/BoS_Recruitment_Poster_from_FOTV_Merch.jpg" class="article-image right" alt="ブラザーフッドのリクルートポスター" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>エルダー・リヨンズの東海岸ブラザーフッドは、スーパーミュータントの脅威からキャピタル・ウェイストランドの住民を守ることに尽力し、これがブラザーフッド内部で「教義からの逸脱」と見なされる対立を引き起こしました。一方、エルダー・マクソンの時代には、市民保護よりも技術の回収と脅威の排除が優先され、より強制的なアプローチが採用されました。</p>
+
+            <h3>外部からのリクルート (Outside Recruitment)</h3>
+            <img src="images/note_extracted/brotherhood-base/FO76_Brotherhood_Recruiter.webp" class="article-image right" alt="ブラザーフッドのリクルーター" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドのリクルート方針は時代と支部により大きく異なります。伝統的な西海岸支部では、外部からのリクルートは極めて限定的であり、メンバーの多くは組織内で生まれ育った人々でした。</p>
+
+            <p>しかし、東海岸支部のリヨンズやマクソンは、積極的な外部リクルートを行いました。Fallout 3では、リヨンズがウェイストランドの志願者を受け入れ、Fallout 4では、マクソンの下で大規模なリクルートキャンペーンが展開されました。パラディン・ダンス自身もウェイストランド出身のリクルートであり、ブラザーフッド内で最も信頼されるメンバーの一人にまで昇進しました。</p>
+
+            <p>Fallout 76でも、アパラチア支部が地域の入植者や元軍人からリクルートを受け入れ、プレイヤー自身もブラザーフッドに加入する機会が与えられています。TVシリーズでは、シャディ・サンズの孤児であるマキシマスが組織に受け入れられる過程が描かれ、リクルートの動機が必ずしも教義への共感ではなく、生存のための選択であることが示されています。</p>
+
+            <h3>レイダーとの関係 (Raiders)</h3>
+            <img src="images/note_extracted/brotherhood-base/Outcast_patrol_fighting_raiders.png" class="article-image right" alt="レイダーと戦うアウトキャスト・パトロール" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドは、すべてのレイダー集団を文明社会に対する脅威と見なし、遭遇時には交戦を躊躇しません。レイダーは技術を略奪し濫用する無法者として、ブラザーフッドの教義に反する存在そのものです。</p>
+
+            <p>キャピタル・ウェイストランドでは、リヨンズのブラザーフッドがレイダーの掃討を市民保護の一環として実施しました。アウトキャストもまた、技術の回収任務中にレイダーとの交戦を頻繁に経験しました。</p>
+
+            <h3>傭兵団との関係 (Mercenary Groups)</h3>
+            <img src="images/note_extracted/brotherhood-base/Ft_Bannister_BOS_aqua_pura_security_after_Broken_Steel.jpg" class="article-image right" alt="アクア・ピュラの護衛" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドと傭兵団の関係は、その集団の性質と行動に大きく左右されます。テイロンの傭兵部隊（Talon Company）のような敵対的な傭兵団とは交戦状態にありましたが、友好的な関係を築いた傭兵団も存在しました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO_Vertibird_on_ground_vs_Gunners.jpg" class="article-image left" alt="ガンナーズとの交戦" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 4では、ブラザーフッドはガンナーズ（Gunners）と敵対関係にあります。ガンナーズは高度に組織化された傭兵団であり、その軍事力と技術保有はブラザーフッドにとって脅威と見なされています。</p>
+
+            <h3>NCRとの関係 (Relations with NCR)</h3>
+            <img src="images/note_extracted/brotherhood-base/FOTV_Official_Trailer_Still_085.png" class="article-image right" alt="ブラザーフッドの進軍" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>NCR（ニュー・カリフォルニア共和国）との関係は、ブラザーフッドの歴史において最も重要な外交関係の一つです。当初は比較的友好的な共存関係にありましたが、技術の管理権を巡る意見の相違が深刻化し、最終的にNCR-ブラザーフッド戦争（前述）に発展しました。</p>
+
+            <p>Fallout: New Vegasの時点では、両者の関係は極めて悪化しており、モハビ支部はNCRの追跡を避けて地下に潜伏しています。しかし、プレイヤーの行動によっては、モハビ支部とNCRの間に一時的な休戦協定が結ばれる可能性もあります。</p>
+
+            <p>TVシリーズの時代（2296年）では、シャディ・サンズの核破壊後にNCRの勢力は大幅に弱体化しており、両者の関係性にも大きな変化が生じていると推測されます。</p>
+
+            <h3>ミュータントへの態度 (Attitude Towards Mutants)</h3>
+            <img src="images/note_extracted/brotherhood-base/FO76_BoS_GY_1.png" class="article-image right" alt="ブラザーフッドとスーパーミュータント" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドの非人間種族——特にスーパーミュータント、フェラル・グール、人造人間（シンス）——に対する態度は、一貫して敵対的です。これは「テクノロジーの濫用によって生み出された存在は排除されるべき」という教義的信条に基づいています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Fallout_76_super_mutants_are_attacking_fort_atlas_by_spartan22294.jpg" class="article-image left" alt="アトラス砦を攻撃するスーパーミュータント" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>スーパーミュータントはFEVの産物であり、ブラザーフッドが最も忌避する「テクノロジーの濫用」の象徴です。ほぼすべての支部がスーパーミュータントの殲滅を正当な任務と見なしています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Following_In_His_Footsteps.jpg" class="article-image right" alt="シタデルへの道" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>グールに対する態度は支部によって異なります。知性を保った非フェラル・グールに対しては、一部のメンバーが同情的な態度を示すこともありますが、組織としては基本的に人間以外のメンバーを受け入れません。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO4-Liberty-prime-kills-behemoth.png" class="article-image left" alt="ベヒモスを倒すリバティ・プライム" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 4のエルダー・マクソンは、人造人間を人類に対する最大の存在的脅威と位置づけ、インスティチュートの破壊を最優先任務としました。パラディン・ダンスが人造人間であることが発覚した際のエピソードは、この問題の複雑さを浮き彫りにしています——長年信頼されてきた仲間が「敵」であることが判明した場合、教義と個人的な絆のどちらを優先するのか。</p>
+
+
+
+            <h2>テクノロジー (Technology)</h2>
+            <p>ブラザーフッド・オブ・スティールの存在意義は、テクノロジーの保存・管理・保護にあります。彼らは核戦争前の先進技術を収集・修復し、人類が再びそれを責任を持って使えるようになる日まで守り続けることを使命としています。</p>
+
+            <h3>パワーアーマー (Power Armor)</h3>
+            <img src="images/note_extracted/brotherhood-base/Two_knights_with_assault_rifles.png" class="article-image right" alt="アサルトライフルを装備した2名のナイト" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>パワーアーマーはブラザーフッドの軍事力の象徴であり、最も重要な技術的資産です。ブラザーフッドは戦前の合衆国軍から継承したT-51b、T-60、X-01パワーアーマーを保有し、さらに独自の改良を加えています。</p>
+
+            <p>Fallout 1の時代では、T-51bパワーアーマーがブラザーフッドの標準装備であり、ウェイストランドのほぼすべての敵対勢力に対して圧倒的な優位性を与えていました。Fallout 3ではT-45dパワーアーマーが広く使用され、Fallout 4ではT-60が東海岸ブラザーフッドの主力装備として描かれています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO76_Ultracite_power_armor.png" class="article-image left" alt="ウルトラサイト・パワーアーマー" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 76では、アパラチア支部が「ウルトラサイト・パワーアーマー」というユニークな装備を開発しました。これはウルトラサイト鉱石を使用して強化された特殊なパワーアーマーであり、スコーチビーストの脅威に対抗するために特別に設計されました。</p>
+
+            <h3>武器 (Weapons)</h3>
+            <img src="images/note_extracted/brotherhood-base/FI_research_room.jpg" class="article-image right" alt="研究室の武器" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドはウェイストランドにおいて最も洗練された武器アーセナルを保有しています。レーザーライフル、プラズマライフル、ガトリングレーザーなどのエネルギー兵器は、ブラザーフッドの技術的優位性の核心です。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO76_BoS_TIE_fighter_1.png" class="article-image left" alt="ブラザーフッドの重火器" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドのスクライブとナイトは、これらの武器の修理・改良・製造能力を有しており、ウェイストランドの他の勢力にはない工学的知識を駆使して武器の性能を維持・向上させています。特にレーザー技術に関しては、ブラザーフッドは比類なき専門知識を持っています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Outcast_Patrol_2.jpg" class="article-image right" alt="アウトキャストのパトロール隊" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>アウトキャストが保有していた高度なエネルギー兵器は、リヨンズの本隊とは異なる種類の武装を含んでいました。彼らは特に技術回収に特化しており、戦前の兵器を優先的に収集していました。</p>
+
+            <h3>車両 (Vehicles)</h3>
+            <img src="images/note_extracted/brotherhood-base/Rockland_CT_exterior.jpg" class="article-image right" alt="ロックランドの車両デポ" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドはウェイストランドにおいて数少ない実動車両を保有する勢力の一つです。最も注目すべきは<b>ベルチバード（Vertibird）</b>——VTOL（垂直離着陸）能力を持つティルトローター航空機です。</p>
+
+            <img src="images/note_extracted/brotherhood-base/BOSvertibird.jpg" class="article-image left" alt="ブラザーフッドのベルチバード" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ベルチバードは元々エンクレイヴの技術でしたが、ブラザーフッドがこれを鹵獲・複製し、主要な航空輸送・近接航空支援手段として運用しています。Fallout 4では、コモンウェルス全域でベルチバードが活動している姿が頻繁に見られます。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FoTV_Prydwen.webp" class="article-image right" alt="プリドゥウェン" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>プリドゥウェン（Prydwen）は、東海岸ブラザーフッドが建造した巨大な飛行船です。旧アダムス空軍基地でエンクレイヴのバレル駆動部品を利用して建造されたこの飛行船は、エルダー・マクソンの旗艦であり、移動司令部、兵站基地、そしてブラザーフッドの軍事力の象徴として機能しています。</p>
+
+            <h3>研究と製造 (Research and Manufacturing)</h3>
+
+            <h4>西海岸 (West Coast)</h4>
+            <img src="images/note_extracted/brotherhood-base/Fallout_Lost_Hills_Level_3.png" class="article-image right" alt="ロスト・ヒルズ Level 3" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ロスト・ヒルズのバンカーには、ブラザーフッドの最も重要な研究施設が収容されています。複数のフロアにわたる研究室では、スクライブたちが戦前の技術の研究・修復・記録に従事しています。</p>
+
+            <img src="images/note_extracted/brotherhood-base/HVB_workshop.jpg" class="article-image left" alt="ヒドゥンバレーの工房" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>モハビ支部のヒドゥンバレー・バンカーにも工房と研究施設が存在し、ロックダウン下でも限定的な技術研究が継続されていました。しかし、外部からの新しい技術の流入が途絶えたことで、研究の停滞が深刻な問題となっていました。</p>
+
+            <h4>東海岸 (East Coast)</h4>
+            <img src="images/note_extracted/brotherhood-base/Prime.jpg" class="article-image right" alt="リバティ・プライム" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>東海岸ブラザーフッドの最も顕著な技術的成果は、戦前の巨大ロボット「<b>リバティ・プライム（Liberty Prime）</b>」の修復です。シタデルの地下で長年放置されていたこの巨大ロボットを、スクライブ・ロスチャイルドが率いるチームが修復し、エンクレイヴとの最終決戦に投入しました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Adams_Air_Force_Base_map.jpg" class="article-image left" alt="アダムス空軍基地" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Broken Steel DLCでは、リバティ・プライムがエンクレイヴの軌道攻撃によって破壊された後、その残骸の回収と再修復が行われました。また、アダムス空軍基地の制圧により、エンクレイヴの航空技術（ベルチバード、モバイルクローラーなど）が大量にブラザーフッドの手に渡りました。</p>
+
+            <img src="images/note_extracted/brotherhood-base/FO4_Pryd_TV_14.png" class="article-image right" alt="プリドゥウェンの艦内" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 4の時代には、プリドゥウェン内部に研究施設が設置され、プロクター・イングラムが技術開発を主導しています。プリドゥウェン自体が先進的な工学の結晶であり、その建造・維持・運用にはブラザーフッドの技術力の粋が集約されています。</p>
+
+            <h3>テクノロジーの再配分 (Redistribution of Technology)</h3>
+            <img src="images/note_extracted/brotherhood-base/FO76SD_supplyingdemands_chronicsonictonic_01.jpg" class="article-image right" alt="物資供給任務" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>ブラザーフッドにおけるテクノロジーの再配分——すなわち回収した技術を外部に提供するかどうか——は、組織内で最も議論を呼ぶ問題の一つです。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Fo2_Jimmy.png" class="article-image left" alt="ジミー" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>伝統主義者は、テクノロジーは一般市民に渡すべきではないと主張します。彼らにとって、テクノロジーの保護はブラザーフッドの聖なる義務であり、それを外部に流出させることは教義への冒涜です。</p>
+
+            <img src="images/note_extracted/brotherhood-base/Activated_Purifier02.jpg" class="article-image right" alt="起動した浄水器" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>一方、リヨンズのような修復主義者は、テクノロジーを人々の生活向上のために活用すべきだと主張しました。プロジェクト・ピュリティの浄化水の配給は、この哲学の最も象徴的な例です。</p>
+
+            <p>エルダー・マクソンの時代には、テクノロジーの再配分に関してより実利的なアプローチが採用されました。ブラザーフッドの軍事的優位性を損なわない範囲で、限定的な技術支援が行われることがありましたが、核心的な軍事技術は厳格に管理されました。</p>
+
+
+
+            <h2>備考 (Notes)</h2>
+            <img src="images/note_extracted/brotherhood-base/BOS_Rhombus.png" class="article-image right" alt="パラディン・ロンバス" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <ul>
+                <li>ブラザーフッド・オブ・スティールは、Falloutシリーズのすべてのメインタイトルに登場する唯一の勢力の一つです。Fallout 1から最新のTVシリーズまで、一貫して物語の重要な要素として描かれています。</li>
+                <li>「ブラザーフッド」という名称は、中世ヨーロッパの騎士修道会（テンプル騎士団、聖ヨハネ騎士団など）を意識したものです。階級名（パラディン、ナイト、スクライブ、エルダー）も同様に中世的な響きを持っています。</li>
+                <li>ロジャー・マクソンは最初のハイ・エルダーであり、マクソン家は世代を超えてブラザーフッドのリーダーシップを担ってきました。Fallout 1のジョン・マクソン、Fallout 4のアーサー・マクソンはいずれもロジャーの子孫です。</li>
+                <li>パラディン・ロンバスは、Fallout 1の設定でブラザーフッドが最も尊敬するパラディンとして名前が挙がっています。彼はVault居住者に対して友好的な態度を示し、ブラザーフッドとプレイヤーの関係構築に重要な役割を果たしました。</li>
+                <li>Fallout 2では、ブラザーフッドの存在感は比較的控えめであり、サンフランシスコのアウトポストが主な拠点でした。しかし、マシューとフランク・ホリガンのカットシーンは、ゲームで最もドラマチックな場面の一つとなっています。</li>
+                <li>Fallout 3のブラザーフッド・アウトキャストは、本来のブラザーフッドの教義に忠実であることを自称しており、リヨンズの方針を「異端」と見なしていました。皮肉なことに、リヨンズの「異端的」方針こそが東海岸ブラザーフッドを最も強力な勢力へと押し上げた要因です。</li>
+                <li>ブラザーフッドの紋章は作品ごとにわずかに異なるデザインが使用されていますが、剣・歯車・翼という基本モチーフは一貫しています。</li>
+            </ul>
+
+            <h2>舞台裏 (Behind the Scenes)</h2>
+            <p>ブラザーフッド・オブ・スティールは、Falloutシリーズの開発において最も初期から構想されていた勢力の一つです。</p>
+
+            <h3>開発者の言葉 (Developer Quotes)</h3>
+            <div class="holotape-box">
+                <b>Josh Sawyer（Fallout: New Vegas ディレクター）</b><br><br>
+                「Fallout: New Vegasでは、ブラザーフッドはFallout 3ほど目立つ存在ではありません。その理由の一つは、時間の経過とともにブラザーフッドがNCRと戦争状態にあったからです。Fallout 2の終わり以降、彼らは基本的に技術の管理——特にエネルギー兵器の管理——を巡ってNCRと衝突しました。ブラザーフッドの主な目的の一つがその技術を管理することだったからです。NCRはそれを引き渡すことを拒否したので、戦争になりました。」
+            </div>
+
+            <div class="holotape-box">
+                <b>Fallout 4 開発チーム</b><br><br>
+                エルダー・アーサー・マクソンのキャラクターは、リヨンズの人道主義とブラザーフッド伝統の技術回収主義を統合する指導者として設計されました。マクソンの複雑さは、プレイヤーにブラザーフッドの善悪を単純に判断させないことを意図しています。
+            </div>
+
+            <h3>クリエーション・クラブ (Creation Club)</h3>
+            <img src="images/note_extracted/brotherhood-base/BoS_FO4_CC_Minigun_Decal_recreation.png" class="article-image right" alt="ブラザーフッド・ミニガン・デカール" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <p>Fallout 4のクリエーション・クラブでは、ブラザーフッドをテーマにした複数のコスメティックアイテムが提供されました。これらには、パワーアーマー用のカスタムデカール（紋章のバリエーション）が含まれています。</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/note_extracted/brotherhood-base/BoS_FO4_CC_Minigun_Decal_recreation.png" class="article-image " alt="ミニガン・デカール" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                    <div class="caption">ミニガン・デカール</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/brotherhood-base/BoS_CC_Wingspan_Decal-3.png" class="article-image " alt="ウィングスパン・デカール" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                    <div class="caption">ウィングスパン・デカール</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/brotherhood-base/BoS_CC_Wings_and_Chevrons_Decal.png" class="article-image " alt="ウィング＆シェブロン・デカール" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                    <div class="caption">ウィング＆シェブロン・デカール</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/note_extracted/brotherhood-base/BoS_CC_Combat_Wing_Decal.png" class="article-image " alt="コンバットウィング・デカール" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+                    <div class="caption">コンバットウィング・デカール</div>
+                </div>
+            </div>
+
+
+
+            <h2>ギャラリー (Gallery)</h2>
+
+            <h3>Fallout</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Paladin.jpg" alt="B.O.S. パラディン (T-51b)" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">B.O.S. パラディン (T-51b)</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo1_Losthills_Entrance.png" alt="ロスト・ヒルズ 入口" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ロスト・ヒルズ 入口</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fallout_Lost_Hills_Level_1.png" alt="ロスト・ヒルズ Level 1" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ロスト・ヒルズ Level 1</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo1_Brotherhood_Interior.jpg" alt="ブラザーフッド本部 内部" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッド本部 内部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo1_Lost_Hills_Townmap.png" alt="ロスト・ヒルズ タウンマップ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ロスト・ヒルズ タウンマップ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/BOS.gif" alt="ブラザーフッドのエンブレム" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドのエンブレム</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo1_Brotherhood_Corridor.png" alt="ブラザーフッド基地の廊下" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッド基地の廊下</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO01_NPC_Maxson_G.png" alt="ジョン・マクソン将軍" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ジョン・マクソン将軍</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/BOS_Rhombus.png" alt="パラディン・ロンバス" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">パラディン・ロンバス</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo1_Military_Base_Destroyed.png" alt="破壊されたマリポサ軍事基地" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">破壊されたマリポサ軍事基地</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo1_Hub_Downtown.png" alt="ハブ中心部" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ハブ中心部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo1_caravan_leader.png" alt="キャラバンリーダー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">キャラバンリーダー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fallout_Lost_Hills_Level_3.png" alt="ロスト・ヒルズ Level 3" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ロスト・ヒルズ Level 3</div></div>
+            </div>
+
+            <h3>Fallout 2</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO2_Den_BoS.png" alt="デンのブラザーフッド" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">デンのブラザーフッド</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo2_BOS_Outpost_NCR.png" alt="NCRのブラザーフッド前哨基地" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">NCRのブラザーフッド前哨基地</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Brotherhood_OutpostFrancisco.png" alt="サンフランシスコの前哨基地" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">サンフランシスコの前哨基地</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo2_Matthew_v_Horrigan.png" alt="マシュー vs フランク・ホリガン" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">マシュー vs フランク・ホリガン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo2_Jimmy.png" alt="ジミー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ジミー</div></div>
+            </div>
+
+            <h3>Fallout 3</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fallout_3_power_armor_concept_art.jpg" alt="Fallout 3 パワーアーマー コンセプトアート" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">Fallout 3 パワーアーマー コンセプトアート</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Elder_Lyons.jpg" alt="エルダー・リヨンズ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">エルダー・リヨンズ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/CBailey7.jpg" alt="ブラザーフッドの騎士" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの騎士</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Citadel.jpg" alt="シタデル" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">シタデル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Following_In_His_Footsteps.jpg" alt="シタデルへの道" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">シタデルへの道</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Frag_mines1_Washington_Monument.jpg" alt="ワシントン記念碑の防衛陣地" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ワシントン記念碑の防衛陣地</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO3_Screenshot_BoS_and_Washington_Monument.jpg" alt="ブラザーフッドとワシントン記念碑" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドとワシントン記念碑</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO3BS_Water_caravan_in_the_Big_Town.png" alt="ビッグ・タウンの水キャラバン" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ビッグ・タウンの水キャラバン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Ft_Bannister_BOS_aqua_pura_security_after_Broken_Steel.jpg" alt="アクア・ピュラの護衛" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">アクア・ピュラの護衛</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Outcast_patrol_fighting_raiders.png" alt="アウトキャスト vs レイダー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">アウトキャスト vs レイダー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Outcast_Patrol_2.jpg" alt="アウトキャスト・パトロール" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">アウトキャスト・パトロール</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Rockland_CT_exterior.jpg" alt="ロックランド車両デポ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ロックランド車両デポ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Adams_Air_Force_Base_map.jpg" alt="アダムス空軍基地" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">アダムス空軍基地</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Activated_Purifier02.jpg" alt="起動した浄水器" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">起動した浄水器</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Prime.jpg" alt="リバティ・プライム" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">リバティ・プライム</div></div>
+            </div>
+
+            <h3>Fallout: New Vegas</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fallout_New_Vegas_T-51b.jpg" alt="T-51bパワーアーマー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">T-51bパワーアーマー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Hidden_Valley_bunker.jpg" alt="ヒドゥンバレー・バンカー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ヒドゥンバレー・バンカー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Elder_McNamara.jpg" alt="エルダー・マクナマラ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">エルダー・マクナマラ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FNV_brotherhoodlogo_nif.png" alt="ブラザーフッドのロゴ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドのロゴ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Bosdecal.png" alt="BOSデカール" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">BOSデカール</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FNV_131120_188_trading_roadway_4.png" alt="188交易所" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">188交易所</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Mojave_BOS_banner.png" alt="モハビ支部のバナー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">モハビ支部のバナー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/HVB_class_room.jpg" alt="ヒドゥンバレーの教室" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ヒドゥンバレーの教室</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/HVB_workshop.jpg" alt="ヒドゥンバレーの工房" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ヒドゥンバレーの工房</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Clarke-in-jail.jpg" alt="収監されたクラーク" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">収監されたクラーク</div></div>
+            </div>
+
+            <h3>Fallout 4</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo4_Elder_Maxson.png" alt="エルダー・アーサー・マクソン" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">エルダー・アーサー・マクソン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo4-drop-concept.jpg" alt="降下作戦コンセプトアート" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">降下作戦コンセプトアート</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/BostonAirport-FiringRange-Fallout4.jpg" alt="ボストン空港の射撃場" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ボストン空港の射撃場</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/The_Prydwen.png" alt="プリドゥウェン" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">プリドゥウェン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Prydwen-CommandDeck-Fallout4.jpg" alt="プリドゥウェン 指揮甲板" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">プリドゥウェン 指揮甲板</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo4_Prydwen_Concept_Art.png" alt="プリドゥウェン コンセプトアート" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">プリドゥウェン コンセプトアート</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo4-Bos-flag.png" alt="ブラザーフッドの旗" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの旗</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Prydwen-StowageDepot-Fallout4.jpg" alt="プリドゥウェン物資貯蔵庫" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">プリドゥウェン物資貯蔵庫</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Brotherhood_soldiers_patrolling_Boston.png" alt="ボストンをパトロール" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ボストンをパトロール</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fo4_vertibird.jpg" alt="ベルチバード" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ベルチバード</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Brotherhood_trade_mission_Diamond_City.png" alt="ダイアモンドシティ交易任務" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ダイアモンドシティ交易任務</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO4-Liberty-prime-kills-behemoth.png" alt="リバティ・プライム vs ベヒモス" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">リバティ・プライム vs ベヒモス</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO_Vertibird_on_ground_vs_Gunners.jpg" alt="ベルチバード vs ガンナーズ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ベルチバード vs ガンナーズ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FI_research_room.jpg" alt="研究室" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">研究室</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO4_Pryd_TV_14.png" alt="プリドゥウェン艦内" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">プリドゥウェン艦内</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Two_knights_with_assault_rifles.png" alt="アサルトライフルを装備したナイト" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">アサルトライフルを装備したナイト</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/DecalSheet_d.png" alt="デカールシート" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">デカールシート</div></div>
+            </div>
+
+            <h3>Fallout 76</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Steam_reward_Taggerdys_Thunder_group_photo.jpg" alt="タガーディの雷鳴隊 集合写真" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">タガーディの雷鳴隊 集合写真</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_Twitter_Brotherhood_of_Steel.jpg" alt="FO76ブラザーフッド公式ビジュアル" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">FO76ブラザーフッド公式ビジュアル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_Forward_Station_Alpha.png" alt="前線基地アルファ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">前線基地アルファ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76LR_Fortifying_ATLAS_Dorsey.jpg" alt="アトラス砦の強化" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">アトラス砦の強化</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76SR_The_Catalyst_Shin_victory.png" alt="カタリスト：シンの勝利" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">カタリスト：シンの勝利</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/BOS_weapons_cache.png" alt="ブラザーフッドの武器キャッシュ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの武器キャッシュ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76LL_BoS_medallion.png" alt="BOSメダリオン" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">BOSメダリオン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_steelreign_chronicsonictonic_02.jpg" alt="Steel Reign イベント" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">Steel Reign イベント</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_steelreign_chronicsonictonic_01.jpg" alt="ブラザーフッドの旗" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの旗</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_steelreign_chronicsonictonic_08.jpg" alt="ブラザーフッドの裁き" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの裁き</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_Brotherhood_vendor.png" alt="ブラザーフッド・ベンダーボット" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッド・ベンダーボット</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_Brotherhood_Recruiter.webp" alt="ブラザーフッド・リクルーター" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッド・リクルーター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_BoS_GY_1.png" alt="ブラザーフッド戦闘シーン" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッド戦闘シーン</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fallout_76_super_mutants_are_attacking_fort_atlas_by_spartan22294.jpg" alt="アトラス砦を攻撃するスーパーミュータント" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">アトラス砦を攻撃するスーパーミュータント</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_BoS_TIE_fighter_1.png" alt="ブラザーフッド重火器" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッド重火器</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_Ultracite_power_armor.png" alt="ウルトラサイト・パワーアーマー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ウルトラサイト・パワーアーマー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76SD_supplyingdemands_chronicsonictonic_01.jpg" alt="物資供給任務" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">物資供給任務</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76TM_Gladiators_of_Steel_end.jpg" alt="スティールの剣闘士たち" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">スティールの剣闘士たち</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FO76_Makeshift_Vault_Interior_Atrium.png" alt="即席Vault内部" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">即席Vault内部</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Watoga_Shopping_Plaza_Vendor_bot_Phoenix.jpg" alt="ワトガ・ショッピングプラザ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ワトガ・ショッピングプラザ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/F76_BOS_Scout_Tower_Banner_1.png" alt="スカウトタワー バナー 1" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">スカウトタワー バナー 1</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/F76_BOS_Scout_Tower_Banner_2.png" alt="スカウトタワー バナー 2" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">スカウトタワー バナー 2</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/F76_BOS_Scout_Tower_Banner_3.png" alt="スカウトタワー バナー 3" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">スカウトタワー バナー 3</div></div>
+            </div>
+
+            <h3>Fallout TVシリーズ</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Amazon_Profile_Picture_Power_Armor.png" alt="TVシリーズ パワーアーマー" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">TVシリーズ パワーアーマー</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Brotherhood_lineup.jpg" alt="ブラザーフッドの整列" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの整列</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_S1_Amazon_promo_14.jpg" alt="シーズン1 プロモーション 14" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">シーズン1 プロモーション 14</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_S1_Amazon_promo_15.jpg" alt="シーズン1 プロモーション 15" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">シーズン1 プロモーション 15</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_S1_Amazon_promo_18.jpg" alt="シーズン1 プロモーション 18" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">シーズン1 プロモーション 18</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FoTV_Brotherhood_group.jpg" alt="ブラザーフッドのグループ" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドのグループ</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Brotherhood_Stole_and_Censer.png" alt="ブラザーフッドの聖具" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの聖具</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Season_2_Maximus_Character_Poster_2.jpg" alt="マキシマス キャラクターポスター" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">マキシマス キャラクターポスター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/The_Target_credits_Brotherhood_poster.png" alt="ブラザーフッドのポスター" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドのポスター</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_S01E01_Quintus_01.jpg" alt="エルダー・クインタス" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">エルダー・クインタス</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Official_Trailer_Still_055.png" alt="公式トレーラー 場面55" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">公式トレーラー 場面55</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Official_Trailer_Still_059.png" alt="公式トレーラー 場面59" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">公式トレーラー 場面59</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Official_Trailer_Still_085.png" alt="公式トレーラー 場面85" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">公式トレーラー 場面85</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Fallout_Season_1_Amazon_Maximus_bg.jpg" alt="マキシマス ビジュアル" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">マキシマス ビジュアル</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_BoS_Base_Classroom.png" alt="ブラザーフッド基地の教室" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッド基地の教室</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Altar_Brotherhood_of_Steel.png" alt="ブラザーフッドの祭壇" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">ブラザーフッドの祭壇</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FOTV_Branding_by_the_Brotherhood.png" alt="焼印の儀式" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">焼印の儀式</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/FoTV_Prydwen.webp" alt="プリドゥウェン (TVシリーズ)" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">プリドゥウェン (TVシリーズ)</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/Shady_Sands_Knight_and_Maximus.png" alt="シャディ・サンズのナイトとマキシマス" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">シャディ・サンズのナイトとマキシマス</div></div>
+                <div class="gallery-item"><img src="images/note_extracted/brotherhood-base/BoS_Recruitment_Poster_from_FOTV_Merch.jpg" alt="リクルートポスター" loading="lazy" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="caption">リクルートポスター</div></div>
+            </div>
+
+            <div class="quote-box">
+                <b>感想</b><br><br>
+                ブラザーフッド・オブ・スティールは、Falloutシリーズを通じて最も複雑で多面的な勢力です。技術の保護者として崇高な使命を掲げながらも、その実践においては独善、孤立主義、そして時に暴力的な教条主義に陥る——この矛盾こそが、彼らを単純な「善玉」や「悪役」に分類することを不可能にし、Falloutの世界観に深い奥行きを与えています。<br><br>
+
+                リヨンズの人道主義、マクソンの軍国主義、マクナマラの孤立主義、エリヤの狂気——それぞれの指導者が体現する哲学の違いは、「テクノロジーとは何のためにあるのか」という根源的な問いに対する異なる回答です。<br><br>
+
+                TVシリーズでの宗教的要素の強化は、ブラザーフッドの本質を鮮やかに照らし出しました。彼らは技術の管理者であると同時に、技術を崇拝する信者でもあるのです。マキシマスの物語を通じて、個人がこの巨大な組織の中でどのように自己を見出し、あるいは失うのかが描かれており、これまでのゲーム作品では見られなかった人間ドラマの深みを加えています。<br><br>
+
+                Ad Victoriam（勝利に栄光あれ）。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Brotherhood_of_Steel" target="_blank" rel="noopener">Brotherhood of Steel</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section">
+                <h3 class="comments-title">// TERMINAL COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea>
+                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span>/100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SUBMIT</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">コメントを読み込み中...</div>
+                </div>
+            </div>
+
+            <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active');">
+                <img id="lightbox-img" src="" alt="拡大画像">
+            </div>
+
+
+
+
+
+        </main>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+    </div>
+
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        let supabaseClient;
+        try { supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey); } catch (e) {}
+
+        const _commentArticleId = 'note_brotherhood_of_steel_2'; 
+        const _commentArticleName = 'Brotherhood of Steel'; 
+        const _commentArticleUrl = 'brotherhood-of-steel.html'; 
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token'; 
+        const ADMIN_PASSWORD = 'tq7jtq7j'; 
+        const RATE_LIMIT_KEY = 'comment_last_posted'; 
+        const RATE_LIMIT_SEC = 60; 
+        let _isAdminMode = false;
+
+        async function toggleLike(btn) { 
+            const articleId = btn.getAttribute('data-article-id'); 
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+            btn.disabled = true; 
+            if (isLiked) { 
+                isLiked = false; 
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } else { 
+                isLiked = true; 
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } 
+            btn.disabled = false; 
+        }
+
+        function updateLikeButton(btn, isLiked, count) { 
+            const heart = btn.querySelector('.heart'); 
+            const countSpan = btn.querySelector('.like-count'); 
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } 
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; } 
+            countSpan.textContent = count || 0; 
+        }
+
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => { 
+            const btn = document.querySelector('.like-button'); 
+            if (btn && supabaseClient) { 
+                const articleId = btn.getAttribute('data-article-id'); 
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); 
+                let count = 0; 
+                if (!error && data) count = data.like_count; 
+                updateLikeButton(btn, isLiked, count); 
+            } 
+            document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { 
+                img.addEventListener('click', (e) => { 
+                    e.stopPropagation(); 
+                    openLightbox(img.src); 
+                }); 
+            }); 
+            loadComments();
+        });
+
+        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
+        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+        
+        function renderComments(comments) { 
+            const list = document.getElementById('comments-list'); 
+            if (!list) return; 
+            if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } 
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); 
+        }
+
+        async function loadComments() { 
+            const list = document.getElementById('comments-list'); 
+            if (!list || !supabaseClient) return; 
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); 
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } 
+            renderComments(data || []); 
+        }
+
+        async function submitComment() { 
+            if (!supabaseClient) return;
+            const input = document.getElementById('comment-input'); 
+            const hp = document.getElementById('hp_field'); 
+            if (hp && hp.value !== '') return; 
+            const content = input ? input.value.trim() : ''; 
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; } 
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } 
+            const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; 
+            const lc = content.toLowerCase(); 
+            if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } 
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); 
+            const now = Date.now(); 
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } 
+            const btn = document.querySelector('.comment-submit-btn'); 
+            if (btn) btn.disabled = true; 
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); 
+            if (btn) btn.disabled = false; 
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; } 
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString()); 
+            input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); 
+        }
+
+        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
+        async function deleteComment(commentId) { if (!_isAdminMode || !supabaseClient) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
+        
+        document.addEventListener('keydown', (e) => { 
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') { 
+                e.preventDefault(); 
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } 
+                const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; 
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } 
+                else { alert('パスワードが違います。'); } 
+            } 
+        });
+    </script>
+    <script src="article-common.js" defer></script>
+</body>
+</html>

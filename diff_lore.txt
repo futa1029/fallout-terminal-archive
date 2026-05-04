@@ -1,0 +1,4606 @@
+diff --git a/lore.html b/lore.html
+index 17db2527..9b7a737c 100644
+--- a/lore.html
++++ b/lore.html
+@@ -691,7 +691,4391 @@
+     <script>
+         const loreEntries = [
+             {
+-                name: "アーロン・キンバル",
++                name: "Dave",
++                yomi: "でいぶだいとうりょう",
++                url: "dave-fo3.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Roy Phillips",
++                yomi: "ろいふぃりっぷす",
++                url: "roy-phillips.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sticky",
++                yomi: "すてぃっきー",
++                url: "sticky.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Gob",
++                yomi: "ごぶ",
++                url: "gob.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Lucas Simms",
++                yomi: "るーかすしむず",
++                url: "lucas-simms.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sydney",
++                yomi: "しどにー",
++                url: "sydney.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Herbert Dashwood",
++                yomi: "はーばーとだっしゅうっど",
++                url: "herbert-dashwood.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Argyle",
++                yomi: "あーがいる",
++                url: "argyle.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Pinkerton",
++                yomi: "ぴんかとん",
++                url: "pinkerton.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dr. Zimmer",
++                yomi: "じまー",
++                url: "zimmer.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Uncle Leo",
++                yomi: "あんくるれお",
++                url: "uncle-leo.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Calvert",
++                yomi: "かるばーと",
++                url: "calvert.html",
++                category: "人物",
++                appearance: ["Fallout 3 (Point Lookout)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "General Jingwei",
++                yomi: "じんうぇいしょうぐん",
++                url: "jingwei.html",
++                category: "人物",
++                appearance: ["Fallout 3 (Operation Anchorage)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Clover",
++                yomi: "くろーばー",
++                url: "clover.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mayor MacCready",
++                yomi: "まくれでぃしちょう",
++                url: "mayor-maccready.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Arthur Maxson",
++                yomi: "あーさーまくそん",
++                url: "arthur-maxson.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Flak",
++                yomi: "ふらっく",
++                url: "flak.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Shrapnel",
++                yomi: "しゅらぷねる",
++                url: "shrapnel.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "James (Fallout 3)",
++                yomi: "じぇーむず",
++                url: "james.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Amata Almodovar",
++                yomi: "あまた",
++                url: "amata.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Oliver Swanick",
++                yomi: "おりばーすわにっく",
++                url: "oliver-swanick.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Motor-Runner",
++                yomi: "もーたーらんなー",
++                url: "motor-runner.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Cook-Cook",
++                yomi: "くっくくっく",
++                url: "cook-cook.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Driver Nephi",
++                yomi: "どらいばーねふぃ",
++                url: "driver-nephi.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Follows-Chalk",
++                yomi: "ふぉろーずちょーく",
++                url: "follows-chalk.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Honest Hearts)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Red Lucy",
++                yomi: "れっどるーしー",
++                url: "red-lucy.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Orion Moreno",
++                yomi: "おりおんもれの",
++                url: "orion-moreno.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dr. Henry",
++                yomi: "へんりー",
++                url: "dr-henry.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Beagle",
++                yomi: "びーぐる",
++                url: "beagle.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Borous",
++                yomi: "ぼろす",
++                url: "borous.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Old World Blues)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Chief Hanlon",
++                yomi: "はんろん",
++                url: "chief-hanlon.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Swank",
++                yomi: "すわんく",
++                url: "swank.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sink Central Intelligence Unit",
++                yomi: "しんくちゅうおう",
++                url: "sink-central-intelligence-unit.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Old World Blues)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "James Hsu",
++                yomi: "じぇーむずしゅー",
++                url: "james-hsu.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Silus",
++                yomi: "さいらす",
++                url: "silus.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Manny Vargas",
++                yomi: "まにーばるがす",
++                url: "manny-vargas.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Jason Bright",
++                yomi: "じぇいそんぶらいと",
++                url: "jason-bright.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Rex (Fallout: New Vegas)",
++                yomi: "れっくす",
++                url: "rex.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Toaster (character)",
++                yomi: "とーすたー",
++                url: "toaster.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Old World Blues)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "No-bark Noonan",
++                yomi: "のーばーくぬーなん",
++                url: "no-bark-noonan.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sarah Weintraub",
++                yomi: "さらわいんとろーぶ",
++                url: "sarah-weintraub.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dala",
++                yomi: "だら",
++                url: "dala.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Old World Blues)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Chris Haversam",
++                yomi: "くりすはばーさむ",
++                url: "chris-haversam.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Elijah",
++                yomi: "えりや",
++                url: "elijah.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Dead Money)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dean Domino",
++                yomi: "でぃーんどみの",
++                url: "dean-domino.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Dead Money)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Christine Royce",
++                yomi: "くりすてぃーんろいす",
++                url: "christine-royce.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Dead Money)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mobius",
++                yomi: "もびうす",
++                url: "mobius.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Old World Blues)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Klein (Old World Blues)",
++                yomi: "くらいん",
++                url: "klein.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas (Old World Blues)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Marcus",
++                yomi: "まーかす",
++                url: "marcus.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Raul Tejada",
++                yomi: "らうるてはだ",
++                url: "raul-tejada.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Papa Khan",
++                yomi: "ぱぱかーん",
++                url: "papa-khan.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Gloria Van Graff",
++                yomi: "ぐろりあばんぐらふ",
++                url: "gloria-van-graff.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fantastic",
++                yomi: "ふぁんたすてぃっく",
++                url: "fantastic.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Robert House",
++                yomi: "ろばーとはうす",
++                url: "robert-house.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Ulysses",
++                yomi: "ゆりしーず",
++                url: "ulysses.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Caesar",
++                yomi: "しーざー",
++                url: "caesar.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Joshua Graham",
++                yomi: "じょしゅあぐらはむ",
++                url: "joshua-graham.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Arcade Gannon",
++                yomi: "あーけいどぎゃのん",
++                url: "arcade-gannon.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Veronica Santangelo",
++                yomi: "べろにかさんたんじぇろ",
++                url: "veronica-santangelo.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Craig Boone",
++                yomi: "くれいぐぶーん",
++                url: "craig-boone.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Benny",
++                yomi: "べにー",
++                url: "benny.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Lanius",
++                yomi: "らにうす",
++                url: "lanius.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Rose of Sharon Cassidy",
++                yomi: "ろーずおぶしゃろんきゃしでぃ",
++                url: "rose-of-sharon-cassidy.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Acadia",
++                yomi: "あかでぃあ",
++                url: "acadia-location.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Far Harbor)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Island",
++                yomi: "しま",
++                url: "the-island.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Far Harbor)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Echo Lake Lumber",
++                yomi: "えこーれいくらんばーみる",
++                url: "echo-lake-lumber.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Far Harbor)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "National Park visitor's center",
++                yomi: "こくりつこうえんあんないじょ",
++                url: "national-park-visitors-center.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Far Harbor)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dalton farm",
++                yomi: "だるとんふぁーむ",
++                url: "dalton-farm.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Far Harbor)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Red Death Island",
++                yomi: "れっどですのしま",
++                url: "red-death-island.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Far Harbor)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Cranberry Island Bog",
++                yomi: "くらんべりーとうのぬまち",
++                url: "cranberry-island-bog.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Far Harbor)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault-Tec: Among the Stars",
++                yomi: "ぼるとてっくあまんぐざすたー",
++                url: "vault-tec-among-the-stars.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Home Plate",
++                yomi: "ほーむぷれーと",
++                url: "home-plate.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sunshine Tidings co-op",
++                yomi: "さんしゃいんたいでぃんぐすこーぷ",
++                url: "sunshine-tidings-co-op.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Nuka-Town USA",
++                yomi: "ぬかたうんUSA",
++                url: "nuka-town-usa.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fizztop Mountain",
++                yomi: "ふぃずとっぷまうんてん",
++                url: "fizztop-mountain.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Gauntlet",
++                yomi: "がんとれっと",
++                url: "the-gauntlet-nuka-world.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Galactic Zone",
++                yomi: "ぎゃらくてぃっくぞーん",
++                url: "galactic-zone.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Safari Adventure",
++                yomi: "さふぁりあどべんちゃー",
++                url: "safari-adventure.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dry Rock Gulch",
++                yomi: "どらいろっくがるち",
++                url: "dry-rock-gulch.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "World of Refreshment",
++                yomi: "わーるどおぶりふれっしゅめんと",
++                url: "world-of-refreshment.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Nuka-Galaxy",
++                yomi: "ぬかぎゃらくしー",
++                url: "nuka-galaxy.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Nuka-Cade",
++                yomi: "ぬかけーど",
++                url: "nuka-cade-nuka-world.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Nuka-World power plant",
++                yomi: "ぬかわーるどはつでんしょ",
++                url: "nuka-world-power-plant.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4 (Nuka-World)"],
++                date: "2026-04-05"
++            },
++            {
++                name: "County crossing",
++                yomi: "かうんてぃーくろっしんぐ",
++                url: "county-crossing.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Greentop Nursery",
++                yomi: "ぐりーんとっぷさいえん",
++                url: "greentop-nursery.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Egret Tours Marina",
++                yomi: "いーぐれっとつあーまりーな",
++                url: "egret-tours-marina.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Somerville Place",
++                yomi: "さまーびるぷれいす",
++                url: "somerville-place.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Outpost Zimonja",
++                yomi: "じもんやぜんしょうきち",
++                url: "outpost-zimonja.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Oberland station",
++                yomi: "おばーらんどえき",
++                url: "oberland-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Taffington boathouse",
++                yomi: "たふぃんとんぼーとはうす",
++                url: "taffington-boathouse.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Coastal cottage",
++                yomi: "えんがんのこてーじ",
++                url: "coastal-cottage.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Power Noodles",
++                yomi: "ぱわーぬーどる",
++                url: "power-noodles.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mega surgery center",
++                yomi: "めがせいけいげかせんたー",
++                url: "mega-surgery-center.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Memory Den",
++                yomi: "めもりーでん",
++                url: "memory-den.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Third Rail",
++                yomi: "さーどれーる",
++                url: "the-third-rail.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Tenpines Bluff",
++                yomi: "てんぱいんずのだんがい",
++                url: "tenpines-bluff.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Finch farm",
++                yomi: "ふぃんちふぁーむ",
++                url: "finch-farm.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Murkwater construction site",
++                yomi: "まーくうぉーたーけんせつげんば",
++                url: "murkwater-construction-site.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Concord civic access",
++                yomi: "こんこーどしがいちへのあくせす",
++                url: "concord-civic-access.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Old Gullet sinkhole",
++                yomi: "おーるどがれっとしんくほーる",
++                url: "old-gullet-sinkhole.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mass Pike Interchange",
++                yomi: "ますぱいくいんたーちぇんじ",
++                url: "mass-pike-interchange.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Quincy quarries",
++                yomi: "くいんしーさいせきじょう",
++                url: "quincy-quarries.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Slocum's Joe Corporate HQ",
++                yomi: "すろーかむずじょーほんしゃ",
++                url: "slocums-joe-corporate-hq.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Malden Center",
++                yomi: "もーるでんせんたー",
++                url: "malden-center.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Milton parking garage",
++                yomi: "みるとんぱーきんぐがれーじ",
++                url: "milton-parking-garage.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Hub 360",
++                yomi: "はぶさんろくまる",
++                url: "hub-360.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Gwinnett Restaurant",
++                yomi: "ぐうぃねっとれすとらん",
++                url: "the-gwinnett-restaurant.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Trinity Church",
++                yomi: "とりにてぃちゃーち",
++                url: "trinity-church.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Lynn Woods",
++                yomi: "りんうっず",
++                url: "lynn-woods.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Boylston Club",
++                yomi: "ぼいるすとんくらぶ",
++                url: "boylston-club.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Gorski cabin",
++                yomi: "ごるすきーのこや",
++                url: "gorski-cabin.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Ranger cabin",
++                yomi: "れんじゃーのこや",
++                url: "ranger-cabin.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Westing Estate",
++                yomi: "うぇすてぃんぐえすてーと",
++                url: "westing-estate.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Greater Mass blood clinic",
++                yomi: "まさちゅーせっつけつえきくりにっく",
++                url: "greater-mass-blood-clinic.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Lake Quannapowitt",
++                yomi: "くあなぽうぃっとこ",
++                url: "lake-quannapowitt.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Nordhagen Beach",
++                yomi: "のーどはーげんびーち",
++                url: "nordhagen-beach.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Reeb Marina",
++                yomi: "りーぶまりーな",
++                url: "reeb-marina.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Ticonderoga",
++                yomi: "たいこんでろが",
++                url: "ticonderoga.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Bedford Station",
++                yomi: "べっどふぉーどえき",
++                url: "bedford-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Crater of Atom",
++                yomi: "くれーたーおぶあとむ",
++                url: "crater-of-atom.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Cutler Bend",
++                yomi: "かとらーべんど",
++                url: "cutler-bend.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Drumlin Diner",
++                yomi: "どらむりんだいなー",
++                url: "drumlin-diner.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Hangman's Alley",
++                yomi: "はんぐまんずありー",
++                url: "hangmans-alley.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Revere Beach station",
++                yomi: "りびあびーちえき",
++                url: "revere-beach-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Breakheart Banks",
++                yomi: "ぶれいくはーとばんくす",
++                url: "breakheart-banks.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Forest Grove marsh",
++                yomi: "ふぉれすとぐるーぶまーしゅ",
++                url: "forest-grove-marsh.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Croup Manor",
++                yomi: "くるーぷけのやかた",
++                url: "croup-manor.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Charles View Amphitheater",
++                yomi: "ちゃーるずびゅーえんけいげきじょう",
++                url: "charles-view-amphitheater.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Wicked Shipping Fleet Lockup",
++                yomi: "うぃけっどしっぴんぐふりーとろっくあっぷ",
++                url: "wicked-shipping-fleet-lockup.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Jalbert Brothers Disposal",
++                yomi: "じゃるばーとぶらざーずはいきじょう",
++                url: "jalbert-brothers-disposal.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Listening Post Bravo",
++                yomi: "かんしきょうぶらぼー",
++                url: "listening-post-bravo.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fairline Hill Estates",
++                yomi: "ふぇあらいんひるえすてーと",
++                url: "fairline-hill-estates.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Chestnut Hillock Reservoir",
++                yomi: "ちぇすとなっとひろっくたんく",
++                url: "chestnut-hillock-reservoir.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Railroad HQ",
++                yomi: "れーるろーどほんぶ",
++                url: "railroad-hq.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Starlight Drive-In",
++                yomi: "すたーらいとどらいぶいん",
++                url: "starlight-drive-in.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Slog",
++                yomi: "すろっぐ",
++                url: "the-slog.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Abernathy farm",
++                yomi: "あばなしーふぁーむ",
++                url: "abernathy-farm.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Kingsport Lighthouse",
++                yomi: "きんぐすぽーととうだい",
++                url: "kingsport-lighthouse.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Graygarden",
++                yomi: "ぐれいがーでん",
++                url: "graygarden.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Warwick homestead",
++                yomi: "わーうぃっくのうえん",
++                url: "warwick-homestead.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "WRVR broadcast station",
++                yomi: "だぶりゅーあーるぶいあーるほうそうきょく",
++                url: "wrvr-broadcast-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Boston Common",
++                yomi: "ぼすとんこもん",
++                url: "boston-common.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Wreck of the FMS Northern Star",
++                yomi: "えふえむえすのーざんすたーのざんがい",
++                url: "wreck-of-the-fms-northern-star.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "USAF Satellite Station Olivia",
++                yomi: "ゅーえすえーえふえいせいかしかんちじょおりびあ",
++                url: "usaf-satellite-station-olivia.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Andrew station",
++                yomi: "あんどりゅーえき",
++                url: "andrew-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Park Street station",
++                yomi: "ぱーくすとりーとえき",
++                url: "park-street-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fraternal Post 115",
++                yomi: "ふらたーなるぽすと115",
++                url: "fraternal-post-115.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Monsignor Plaza",
++                yomi: "もんしにょーるぷらざ",
++                url: "monsignor-plaza.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "West Roxbury station",
++                yomi: "うぇすとろっくすばりーえき",
++                url: "west-roxbury-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Four Leaf fishpacking plant",
++                yomi: "ふぉーりーふすいさんかこうしょ",
++                url: "four-leaf-fishpacking-plant.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Gwinnett brewery",
++                yomi: "ぐうぃねっとじょうぞうじょ",
++                url: "gwinnett-brewery.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Irish Pride Industries shipyard",
++                yomi: "あいりっしゅぷらいどこうぎょうぞうせんじょ",
++                url: "irish-pride-industries-shipyard.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Hester's Consumer Robotics",
++                yomi: "へすたーろぼてぃくす",
++                url: "hesters-consumer-robotics.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "East Boston Preparatory School",
++                yomi: "いーすとぼーすとんぷれっぷすくーる",
++                url: "east-boston-preparatory-school.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Boston Police rationing site",
++                yomi: "ぼすとんけいさつはいきゅうじょ",
++                url: "boston-police-rationing-site.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mass Bay Medical Center",
++                yomi: "ますべいいりょうせんたー",
++                url: "mass-bay-medical-center.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Federal Surveillance Center K-21B",
++                yomi: "れんぽうかんしせんたーk21b",
++                url: "federal-surveillance-center-k-21b.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "South Boston military checkpoint",
++                yomi: "みなみぼすとんぐんぼうえいせん",
++                url: "south-boston-military-checkpoint.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Poseidon Energy",
++                yomi: "ぽせいどんえねるぎー",
++                url: "poseidon-energy-fo4.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Hub City Auto Wreckers",
++                yomi: "はぶしてぃおーとうぉれっかーず",
++                url: "hub-city-auto-wreckers.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Wattz Consumer Electronics",
++                yomi: "わっつえれくとろにくす",
++                url: "wattz-consumer-electronics.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Wilson Atomatoys factory",
++                yomi: "うぃるそんあとまといずこうじょう",
++                url: "wilson-atomatoys-factory.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Robotics disposal ground",
++                yomi: "ろぼっとはいきじょう",
++                url: "robotics-disposal-ground.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Revere satellite array",
++                yomi: "りびあえいせいあれい",
++                url: "revere-satellite-array.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fens Street sewer",
++                yomi: "ふぇんずすとりーとげすいどう",
++                url: "fens-street-sewer.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Weston water treatment plant",
++                yomi: "うぇすとんみずしょりじょう",
++                url: "weston-water-treatment-plant.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault-Tec Regional HQ",
++                yomi: "ぼるとてっくちくほんぶ",
++                url: "vault-tec-regional-hq.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fiddler's Green Trailer Estates",
++                yomi: "ふぃどらーずぐりーんとれーらーえすてーと",
++                url: "fiddlers-green-trailer-estates.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Medford Memorial Hospital",
++                yomi: "めどふぉーどきねんびょういん",
++                url: "medford-memorial-hospital.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Coast Guard pier",
++                yomi: "えんがんけいびたいのぴあ",
++                url: "coast-guard-pier.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Milton General Hospital",
++                yomi: "みるとんじぇねらるびょういん",
++                url: "milton-general-hospital.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Hyde Park",
++                yomi: "はいどぱーく",
++                url: "hyde-park.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fort Hagen",
++                yomi: "へーげんとりで",
++                url: "fort-hagen.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Switchboard",
++                yomi: "すうぃっちぼーど",
++                url: "the-switchboard.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault 114",
++                yomi: "ゔぉると114",
++                url: "vault-114.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Atom Cats garage",
++                yomi: "あとむきゃっつのがれーじ",
++                url: "atom-cats-garage.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Big John's Salvage",
++                yomi: "びっぐじょんのさるべーじじょう",
++                url: "big-johns-salvage.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Med-Tek Research",
++                yomi: "めっどてっくりさーち",
++                url: "med-tek-research.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "General Atomics factory",
++                yomi: "ぜねらるあとみっくすこうじょう",
++                url: "general-atomics-factory.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Kendall Hospital",
++                yomi: "けんだるびょういん",
++                url: "kendall-hospital.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "C.I.T. ruins",
++                yomi: "しーあいてぃーはいきょ",
++                url: "cit-ruins.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "BADTFL regional office",
++                yomi: "ばっどてふるちほうきょく",
++                url: "badtfl-regional-office.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Gunners plaza",
++                yomi: "がんなーぷらざ",
++                url: "gunners-plaza.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Super Duper Mart",
++                yomi: "すーぱーうるとらまーけっと",
++                url: "super-duper-mart.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Boston mayoral shelter",
++                yomi: "ぼすとんしちょうようしぇるたー",
++                url: "boston-mayoral-shelter.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fallon's department store",
++                yomi: "ふぁろんでぱーと",
++                url: "fallons-department-store.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Longneck Lukowski's Cannery",
++                yomi: "ちょうこうるかうすきーのかんづめこうじょう",
++                url: "longneck-lukowskis-cannery.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Greenetech Genetics",
++                yomi: "ぐりーんてっくじぇねてぃくす",
++                url: "greenetech-genetics.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Massachusetts State House",
++                yomi: "まさちゅーせっつしゅうぎじどう",
++                url: "massachusetts-state-house.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Libertalia",
++                yomi: "りべるたりあ",
++                url: "libertalia.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Grandchester Mystery Mansion",
++                yomi: "ぐらんちぇすたーみすてりーまんしょん",
++                url: "grandchester-mystery-mansion.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Hubris Comics",
++                yomi: "はぶりすこみっく",
++                url: "hubris-comics.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "D.B. Technical High School",
++                yomi: "でぃーびーてくにかるはいすくーる",
++                url: "db-technical-high-school.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Walden Pond",
++                yomi: "うぉーるでんぽんど",
++                url: "walden-pond.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "College Square",
++                yomi: "かれっじすくえあ",
++                url: "college-square.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Beantown Brewery",
++                yomi: "びーんたうんじょうぞうじょ",
++                url: "beantown-brewery.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sandy Coves Convalescent Home",
++                yomi: "さんでぃこーゔすこんばれっせんとほーむ",
++                url: "sandy-coves-convalescent-home.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mahkra Fishpacking",
++                yomi: "まくらふぃっしゅぱっきんぐ",
++                url: "mahkra-fishpacking.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Federal ration stockpile",
++                yomi: "れんぽうしょくりょうびちくこ",
++                url: "federal-ration-stockpile.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Shamrock Taphouse",
++                yomi: "しゃむろっくさかば",
++                url: "the-shamrock-taphouse.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Wilson Atomatoys corporate HQ",
++                yomi: "うぃるそんあとまといずほんしゃ",
++                url: "wilson-atomatoys-corporate-hq.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Nahant Oceanological Society",
++                yomi: "なはんとかいようがくきょうかい",
++                url: "nahant-oceanological-society.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Old North Church",
++                yomi: "おーるどのーすちゃーち",
++                url: "old-north-church.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Trinity Tower",
++                yomi: "とりにてぃたわー",
++                url: "trinity-tower.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "General Atomics Galleria",
++                yomi: "ぜねらるあとみっくすがれりあ",
++                url: "general-atomics-galleria.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Cambridge Polymer Labs",
++                yomi: "けんぶりっじぽりまーけんきゅうじょ",
++                url: "cambridge-polymer-labs.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Hardware Town",
++                yomi: "はーどうぇあたうん",
++                url: "hardware-town.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Easy City Downs",
++                yomi: "いーじーしてぃだうんず",
++                url: "easy-city-downs.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Pickman Gallery",
++                yomi: "ぴっくまんぎゃらりー",
++                url: "pickman-gallery.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Museum of Witchcraft",
++                yomi: "されむまじょはくぶつかん",
++                url: "museum-of-witchcraft.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Cabot House",
++                yomi: "かぼっとてい",
++                url: "cabot-house.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Salem",
++                yomi: "されむ",
++                url: "salem.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault 88",
++                yomi: "ぼると88",
++                url: "vault-88.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault 75",
++                yomi: "ぼると75",
++                url: "vault-75.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Mechanist's lair",
++                yomi: "めかにすとのかくれが",
++                url: "the-mechanists-lair.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Saugus Ironworks",
++                yomi: "そうがすせいてつじょ",
++                url: "saugus-ironworks.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Combat Zone",
++                yomi: "こんばっとぞーん",
++                url: "combat-zone.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Thicket Excavations",
++                yomi: "しけっとえくすかーべーしょんず",
++                url: "thicket-excavations.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Faneuil Hall",
++                yomi: "ふぁにゅえるほーる",
++                url: "faneuil-hall.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Shaw High School",
++                yomi: "しょうはいすくーる",
++                url: "shaw-high-school.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "West Everett Estates",
++                yomi: "うえすとえばれっとしゆうち",
++                url: "west-everett-estates.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Suffolk County charter school",
++                yomi: "さふぉーくぐんちゃーたーすくーる",
++                url: "suffolk-county-charter-school.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Museum of Freedom",
++                yomi: "じゆうはくぶつかん",
++                url: "museum-of-freedom.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Cambridge Police Station",
++                yomi: "けんぶりっじけいさつしょ",
++                url: "cambridge-police-station.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "National Guard training yard",
++                yomi: "しゅうへいくんれんじょ",
++                url: "national-guard-training-yard.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Spectacle Island",
++                yomi: "すぺくたくるあいらんど",
++                url: "spectacle-island.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault 118",
++                yomi: "ぼると118",
++                url: "vault-118.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Boston Public Library",
++                yomi: "ぼすとんこうきょうとしょかん",
++                url: "boston-public-library.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sentinel site",
++                yomi: "せんちねるさいと",
++                url: "sentinel-site.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vim! Pop factory",
++                yomi: "ゔぃむぽっぷこうじょう",
++                url: "vim-pop-factory.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Kiddie Kingdom",
++                yomi: "きっでぃきんぐだむ",
++                url: "kiddie-kingdom.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Nuka-World",
++                yomi: "ぬかわーるど",
++                url: "nuka-world-loc.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Boston Airport",
++                yomi: "ぼすとんくうこう",
++                url: "boston-airport.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fort Strong",
++                yomi: "すとろんぐとりで",
++                url: "fort-strong.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault 95",
++                yomi: "ぼると95",
++                url: "vault-95.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Jamaica Plain",
++                yomi: "じゃまいかぷれいん",
++                url: "jamaica-plain.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "University Point",
++                yomi: "ゆにばーしてぃぽいんと",
++                url: "university-point.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Nucleus",
++                yomi: "にゅーくりあす",
++                url: "the-nucleus.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Parsons State Insane Asylum",
++                yomi: "ぱーそんずしゅうりつせいしんびょういん",
++                url: "parsons-state-insane-asylum.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "ArcJet Systems",
++                yomi: "あーくじぇっとしすてむ",
++                url: "arcjet-systems.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Yangtze",
++                yomi: "やんつー（ちゃんじゃん）",
++                url: "yangtze.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Institute",
++                yomi: "いんすてぃちゅーと",
++                url: "the-institute.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Goodneighbor",
++                yomi: "ぐっどねいばー",
++                url: "goodneighbor.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Glowing Sea",
++                yomi: "かがやきのうみ",
++                url: "glowing-sea.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault 111",
++                yomi: "ぼると111",
++                url: "vault-111.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Concord",
++                yomi: "こんこーど",
++                url: "concord.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Lexington",
++                yomi: "れきしんとん",
++                url: "lexington.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Corvega assembly plant",
++                yomi: "こるべがくみたてこうじょう",
++                url: "corvega-assembly-plant.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Red Rocket truck stop",
++                yomi: "れっどろけっととらっくすとっぷ",
++                url: "red-rocket-truck-stop.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "USS Constitution",
++                yomi: "ゆーえすえすこんすてぃちゅーしょん",
++                url: "uss-constitution.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Far Harbor",
++                yomi: "ふぁーはーばー",
++                url: "far-harbor-loc.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Diamond City",
++                yomi: "だいあもんどしてぃ",
++                url: "diamond-city.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Prydwen",
++                yomi: "ぷりどぅえん",
++                url: "the-prydwen.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The Castle",
++                yomi: "きゃっする",
++                url: "the-castle.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vault 81",
++                yomi: "ぼると81",
++                url: "vault-81.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Quincy ruins",
++                yomi: "くいんしーあとち",
++                url: "quincy-ruins.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mass Fusion building",
++                yomi: "ますふゅーじょんびる",
++                url: "mass-fusion-building.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Covenant",
++                yomi: "こべなんと",
++                url: "covenant.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dunwich Borers",
++                yomi: "だんうぃっちぼーらー",
++                url: "dunwich-borers.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sanctuary Hills",
++                yomi: "さんくちゅありひるず",
++                url: "sanctuary-hills.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Bunker Hill",
++                yomi: "ばんかーひる",
++                url: "bunker-hill.html",
++                category: "拠点/ダンジョン",
++                appearance: ["Fallout 4"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Star Paladin Cross",
++                yomi: "すたーぱらでぃんくろす",
++                url: "star-paladin-cross.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Butch DeLoria",
++                yomi: "ぶっちでろりあ",
++                url: "butch-deloria.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Mechanist",
++                yomi: "めかにすと",
++                url: "mechanist-fo3.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Agatha",
++                yomi: "あがさ",
++                url: "agatha.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Wernher",
++                yomi: "わーなー",
++                url: "wernher.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Horace Pinkerton",
++                yomi: "ほれすぴんかーとん",
++                url: "horace-pinkerton.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Eulogy Jones",
++                yomi: "ゆーろじーじょーんず",
++                url: "eulogy-jones.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Charon",
++                yomi: "かろん",
++                url: "charon.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Jericho",
++                yomi: "じぇりこ",
++                url: "jericho.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dogmeat",
++                yomi: "どっぐみーと",
++                url: "dogmeat-fo3.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sierra Petrovita",
++                yomi: "しえらぺとろびた",
++                url: "sierra-petrovita.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "John Henry Eden",
++                yomi: "じょんへんりーえでん",
++                url: "john-henry-eden.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Ishmael Ashur",
++                yomi: "いしゅまえるあしゅーる",
++                url: "ishmael-ashur.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Amata",
++                yomi: "あまた",
++                url: "amata-almodovar.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Scribe Rothchild",
++                yomi: "すくらいぶろすちゃいるど",
++                url: "reginald-rothchild.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Fawkes",
++                yomi: "ふぉーくす",
++                url: "fawkes.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Moira Brown",
++                yomi: "もいらぶらうん",
++                url: "moira-brown.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Desmond Lockheart",
++                yomi: "でずもんどろっくはーと",
++                url: "desmond-lockheart.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Colin Moriarty",
++                yomi: "こりんもりあーてぃ",
++                url: "colin-moriarty.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Three Dog",
++                yomi: "すりーどっぐ",
++                url: "three-dog.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Robert MacCready",
++                yomi: "ろばーとまくれでぃ",
++                url: "robert-maccready.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Harold",
++                yomi: "はろるど",
++                url: "harold.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Liberty Prime",
++                yomi: "りばてぃぷらいむ",
++                url: "liberty-prime.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Augustus Autumn",
++                yomi: "おーたむたいさ",
++                url: "augustus-autumn.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Madison Li",
++                yomi: "まるでぃそんりー",
++                url: "madison-li.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Sarah Lyons",
++                yomi: "さらりおんず",
++                url: "sarah-lyons.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "AntAgonizer",
++                yomi: "あんたごないざー",
++                url: "antagonizer.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Owyn Lyons",
++                yomi: "おーうぃんりおんず",
++                url: "owyn-lyons.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "James",
++                yomi: "じぇーむず",
++                url: "james-fallout-3.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Allistair Tenpenny",
++                yomi: "ありすたーてんぺにー",
++                url: "allistair-tenpenny.html",
++                category: "人物",
++                appearance: ["Fallout 3"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dr. Henry",
++                yomi: "どくたーへんりー",
++                url: "henry.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Randall Clark",
++                yomi: "らんどーるくらーく",
++                url: "randall-clark.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Daniel",
++                yomi: "だにえる",
++                url: "daniel-honest-hearts.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Doc Mitchell",
++                yomi: "どくみっちぇる",
++                url: "doc-mitchell.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Michael Angelo",
++                yomi: "まいけるあんじぇろ",
++                url: "michael-angelo.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Captain Curtis",
++                yomi: "ろなるどかーてぃす",
++                url: "ronald-curtis.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Julie Farkas",
++                yomi: "じゅりーふぁーかす",
++                url: "julie-farkas.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "General Lee Oliver",
++                yomi: "りーおりばー",
++                url: "lee-oliver.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Muggy",
++                yomi: "まぎー",
++                url: "muggy.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "The King",
++                yomi: "ざきんぐ",
++                url: "the-king.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Lily Bowen",
++                yomi: "りりーぼーえん",
++                url: "lily-bowen.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Thomas Hildern",
++                yomi: "とーますひるだーん",
++                url: "thomas-hildern.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Vulpes Inculta",
++                yomi: "ゔるぺすいんかるた",
++                url: "vulpes-inculta.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Dog and God",
++                yomi: "どっぐごっど",
++                url: "dog-and-god.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Chief Hanlon",
++                yomi: "ちーふはんろん",
++                url: "hanlon.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "ED-E",
++                yomi: "えでぃ",
++                url: "ed-e.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Victor",
++                yomi: "びくたー",
++                url: "victor.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Cassandra Moore",
++                yomi: "かさんどらむーあ",
++                url: "cassandra-moore.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Carrie Boyd",
++                yomi: "きゃりーぼいど",
++                url: "carrie-boyd.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Yes Man",
++                yomi: "いえすまん",
++                url: "yes-man.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "Aaron Kimball",
++                yomi: "あーろんきんばる",
++                url: "aaron-kimball.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas"],
++                date: "2026-04-05"
++            },
++            {
++                name: "ホーソーン・メディカル・ラボラトリーズ",
++                yomi: "ほーそーん・めでぃかる・らぼらとりーず",
++                url: "hawthorne-medical-laboratories.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "レッドロケット",
++                yomi: "れっどろけっと",
++                url: "red-rocket-tv-series.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "ソビエトの人工衛星",
++                yomi: "そびえとのじんこうえいせい",
++                url: "soviet-satellite.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "BBQシャック",
++                yomi: "ばーべきゅーしゃっく",
++                url: "bbq-shack-tv-series.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "グールの墓",
++                yomi: "ぐーるのはか",
++                url: "the-ghoul-s-grave.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "ソニーズ・サンドリーズ",
++                yomi: "そにーず・さんどりーず",
++                url: "sonny-s-sundries.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "ヤオ・グアイの洞窟",
++                yomi: "やお・ぐあいのどうくつ",
++                url: "yao-guai-cave-tv-series.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "ウエストサイド・メディカル・クリニック",
++                yomi: "うえすとさいど・めでぃかる・くりにっく",
++                url: "westside-medical-clinic.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "国際連合本部",
++                yomi: "こくさいれんごうほんぶ",
++                url: "headquarters-of-the-united-nations.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "アフォーダブル・アルのディスカウント・ホスピタル",
++                yomi: "あふぉーだぶる・あるのでぃすかうんと・ほすぴたる",
++                url: "affordable-al-s-discount-hospital.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "サンタモニカ・ピア",
++                yomi: "さんたもにか・ぴあ",
++                url: "santa-monica-pier.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "キャンプ・ゴルフのテント",
++                yomi: "きゃんぷ・ごるふのてんと",
++                url: "camp-golf-tent.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "スターライト・ドライブイン",
++                yomi: "すたーらいと・どらいぶいん",
++                url: "starlight-drive-in-theatre-tv-series.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "ドーナツショップ",
++                yomi: "どーなつしょっぷ",
++                url: "donut-shop.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "サンタモニカ",
++                yomi: "さんたもにか",
++                url: "santa-monica.html",
++                category: "場所",
++                appearance: ["Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "ブラザーフッド・オブ・スティール",
++                yomi: "ぶらざーふっどおぶすてぃーる",
++                url: "brotherhood-of-steel.html",
++                category: "勢力",
++                appearance: ["Fallout","Fallout 2","Fallout 3","Fallout: New Vegas","Fallout 4","Fallout 76","Fallout TV"],
++                date: "2026-04-04"
++            },
++            {
++                name: "Vault 31の居住者",
++                yomi: "ぼると31のきょじゅうしゃ",
++                url: "vault-31-dweller.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "Vault 32の居住者",
++                yomi: "ぼると32のきょじゅうしゃ",
++                url: "vault-32-dweller.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "Vault 32のレイダー",
++                yomi: "ぼると32のれいだー",
++                url: "vault-32-raider.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "Vault 33の居住者",
++                yomi: "ぼると33のきょじゅうしゃ",
++                url: "vault-33-dweller.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "Vault 33のエンジニア",
++                yomi: "ぼると33のえんじにあ",
++                url: "vault-33-engineer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "トミー",
++                yomi: "とみー",
++                url: "tommy-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "保安官トロイ",
++                yomi: "ほあんかんとろい",
++                url: "troy-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "トルーディ",
++                yomi: "とるーでぃ",
++                url: "trudy-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "米連邦捜査官",
++                yomi: "べいれんぽうそうさかん",
++                url: "u-s-federal-agent.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "組合の抗議者",
++                yomi: "くみあいのこうぎしゃ",
++                url: "union-protester.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "サデウス",
++                yomi: "さでうす",
++                url: "thaddeus.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "サデウスの子分",
++                yomi: "さでうすのこぶん",
++                url: "thaddeus-minion.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "トーマス・ハミルトン",
++                yomi: "とーます・はみるとん",
++                url: "thomas-hamilton.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "タイタス",
++                yomi: "たいたす",
++                url: "titus.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "トム",
++                yomi: "とむ",
++                url: "tom-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ストリート・ハスラー",
++                yomi: "すとりーと・はすらー",
++                url: "street-hustler.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "被験体476",
++                yomi: "ひけんたい476",
++                url: "subject-476.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "日焼けした男",
++                yomi: "ひやけしたおとこ",
++                url: "sunburned-man.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "タチアナ・リー",
++                yomi: "たちあな・りー",
++                url: "tatyana-lee.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "テレビ司会者",
++                yomi: "てれびしかいしゃ",
++                url: "television-host.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "スクワイア（Fallout TV）",
++                yomi: "すくわいあ",
++                url: "squire-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "スクワール",
++                yomi: "すくわーる",
++                url: "squirrel-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "刺されたリージョナリー",
++                yomi: "さされたりーじょなりー",
++                url: "stabbed-legionary.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ステフ・ハーパー",
++                yomi: "すてふ・はーぱー",
++                url: "steph-harper.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "スティーブン・ウィンスロップ",
++                yomi: "すてぃーぶん・うぃんすろっぷ",
++                url: "stephen-winthrop.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "喉を掻き切られた犠牲者",
++                yomi: "のどをかききられたぎせいしゃ",
++                url: "slit-throat-victim.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "胡散臭いセールスマン",
++                yomi: "うさんくさいせーるすまん",
++                url: "snake-oil-salesman.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ソニー",
++                yomi: "そにー",
++                url: "sonny.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ソレル・ブッカー",
++                yomi: "それる・ぶっかー",
++                url: "sorrel-booker.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "見物人（Vault-Tec）",
++                yomi: "みものにん",
++                url: "spectator.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "店主サイモン",
++                yomi: "てんしゅさいもん",
++                url: "shopkeep-simon.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ショートサイト",
++                yomi: "しょーとさいと",
++                url: "shortsight.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ショットガン・ジェフ",
++                yomi: "しょっとがん・じぇふ",
++                url: "shotgun-jeff.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "シギ・ウィルギグ博士",
++                yomi: "しぎ・うぃるぎぐはかせ",
++                url: "siggi-wilzig.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "スリム",
++                yomi: "すりむ",
++                url: "slim-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "シェイディ・サンズの農民",
++                yomi: "しぇいでぃ・さんずののうみん",
++                url: "shady-sands-farmer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "シェリー",
++                yomi: "しぇりー",
++                url: "shelley-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "保安官（ガバミント）",
++                yomi: "ほあんかん",
++                url: "sheriff-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "シャーマン",
++                yomi: "しゃーまん",
++                url: "sherman-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "上半身裸のレイダー",
++                yomi: "じょうはんしんはだかのれいだー",
++                url: "shirtless-raider.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "サラ・クレメンツ",
++                yomi: "さら・くれめんつ",
++                url: "sarah-clements.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "スカベンジャー",
++                yomi: "すかべんじゃー",
++                url: "scavenger-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "スクライブ",
++                yomi: "すくらいぶ",
++                url: "scribe-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "セバスチャン・レスリー",
++                yomi: "せばすちゃん・れすりー",
++                url: "sebastian-leslie.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "シェイディ・サンズの市民",
++                yomi: "しぇいでぃ・さんずのしみん",
++                url: "shady-sands-citizen-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ロンダ・スペンサー",
++                yomi: "ろんだ・すぺんさー",
++                url: "ronda-spencer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ロニー・マクカートリー",
++                yomi: "ろにー・まくかーとりー",
++                url: "ronnie-mccurtry.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ルーファス",
++                yomi: "るーふぁす",
++                url: "roofus.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ロイ・スペンサー",
++                yomi: "ろい・すぺんさー",
++                url: "roy-spencer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "サンドラ",
++                yomi: "さんどら",
++                url: "sandra-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "リタ",
++                yomi: "りた",
++                url: "rita-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ロバート・ハウス（Mr.ハウス）",
++                yomi: "ろばーと・はうす",
++                url: "robert-house.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "Mr.ハウスの影武者",
++                yomi: "みすたー・はうすのかげむしゃ",
++                url: "robert-houses-double.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ロバート・オルセン",
++                yomi: "ろばーと・おるせん",
++                url: "robert-olsen.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "キャプテン・ロドリゲス",
++                yomi: "きゃぷてん・ろどりげす",
++                url: "rodriguez.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "レグ・マクフィー",
++                yomi: "れぐ・まくふぃー",
++                url: "reg-mcphee.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "リポーター",
++                yomi: "りぽーたー",
++                url: "reporter-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "保安官レックス",
++                yomi: "ほあんかんれっくす",
++                url: "rex-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ナイト・ライリー",
++                yomi: "ないと・らいりー",
++                url: "riley-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "リンク",
++                yomi: "りんく",
++                url: "rink.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "抗議活動のまとめ役",
++                yomi: "こうぎかつどうのまとめやく",
++                url: "protest-foreperson.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "エルダー・クレリック・クインタス",
++                yomi: "えるだー・くれりっく・くいんたす",
++                url: "quintus.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "レイダー3",
++                yomi: "れいだー3",
++                url: "raider-3.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "赤毛の男",
++                yomi: "あかげのおとこ",
++                url: "red-haired-man.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "赤毛の女",
++                yomi: "あかげのおんな",
++                url: "red-haired-woman.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "パーティーの参加者（Lucky 38）",
++                yomi: "ぱーてぃーのさんかしゃ",
++                url: "partygoer-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "パトリシア・ピーターズ",
++                yomi: "ぱとりしあ・ぴーたーず",
++                url: "patricia-peters.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ピート",
++                yomi: "ぴーと",
++                url: "pete-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "小柄なレイダー",
++                yomi: "こがらなれいだー",
++                url: "petite-raider.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ナース・パウエル",
++                yomi: "なーす・ぱうえる",
++                url: "powell.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ニック・ザ・プリック",
++                yomi: "にっく・ざ・ぷりっく",
++                url: "nick-the-prick.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ノーム・マクレーン",
++                yomi: "のーむ・まくれーん",
++                url: "norm-maclean.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ドクター・\"ノーズ\"・エドモンドソン",
++                yomi: "どくたー・\"のーず\"・えどもんどそん",
++                url: "nose-edmundson.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "老婆のグレッチ",
++                yomi: "ろうばのぐれっち",
++                url: "old-woman-gretch.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "パーティー客",
++                yomi: "ぱーてぃーきゃく",
++                url: "party-guest.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "NCRのキャラバン商人",
++                yomi: "えぬしーあーるのきゃらばんしょうにん",
++                url: "ncr-caravaner.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "NCRの市民",
++                yomi: "えぬしーあーるのしみん",
++                url: "ncr-citizen-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "NCR兵士",
++                yomi: "えぬしーあーるへいし",
++                url: "ncr-soldier-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "NCRトルーパー",
++                yomi: "えぬしーあーるとるーぱー",
++                url: "ncr-trooper-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ニュースキャスター",
++                yomi: "にゅーすきゃすたー",
++                url: "news-anchor.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "マクレー",
++                yomi: "まくれー",
++                url: "mcrae.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "憲兵",
++                yomi: "けんぺい",
++                url: "military-police-officer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "モヒカンのリージョナリー",
++                yomi: "もひかんのりーじょなりー",
++                url: "mohawk-legionary.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "モルデイヴァーのエリート護衛",
++                yomi: "もるでいゔぁーのえりーとごえい",
++                url: "moldavers-elite-guard.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "モンティ",
++                yomi: "もんてぃ",
++                url: "monty-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "マリアン",
++                yomi: "まりあん",
++                url: "marianne-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "マージョリー",
++                yomi: "まーじょりー",
++                url: "marjorie-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "大柄なリージョナリー",
++                yomi: "おおがらなりーじょなりー",
++                url: "massive-legionary.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "マクシミリアン・ドッティーノ",
++                yomi: "まくしみりあん・どってぃーの",
++                url: "maximillian-dottino.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "マキシマス",
++                yomi: "まきします",
++                url: "maximus.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ラッキー38・セキュリトロン",
++                yomi: "らっきー38・せきゅりとろん",
++                url: "lucky-38-securitron.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ルーシー・マクレーン",
++                yomi: "るーしー・まくれーん",
++                url: "lucy-maclean.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "マ・ジューン",
++                yomi: "ま・じゅーん",
++                url: "ma-june.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "暗がりに立つ男",
++                yomi: "くらがりにたつおとこ",
++                url: "man-in-shadows.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "マーチ・シャーウッド",
++                yomi: "まーち・しゃーうっど",
++                url: "march-sherwood.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "リージョン上級顧問",
++                yomi: "りーじょんじょうきゅうこもん",
++                url: "legion-senior-advisor.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "リージョナリー",
++                yomi: "りーじょなりー",
++                url: "legionary-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "レオン・フォン・フェルデン",
++                yomi: "れおん・ふぉん・ふぇるでん",
++                url: "leon-von-felden.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ロイド・ホーソーン",
++                yomi: "ろいど・ほーそーん",
++                url: "lloyd-hawthorne.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ロイス",
++                yomi: "ろいす",
++                url: "lois.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ナイト",
++                yomi: "ないと",
++                url: "knight-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ラセルタ軍団長",
++                yomi: "らせるたぐんだんちょう",
++                url: "lacerta-legate.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "アメリカ合衆国大統領",
++                yomi: "あめりかがっしゅうこくだいとうりょう",
++                url: "last-president-of-the-united-states.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ローレンス・ロナルド",
++                yomi: "ろーれんす・ろなるど",
++                url: "laurence-ronald.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "リー・モルデイヴァー",
++                yomi: "りー・もるでいゔぁー",
++                url: "lee-moldaver.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジョセフ",
++                yomi: "じょせふ",
++                url: "joseph-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジョセフ・モールダー",
++                yomi: "じょせふ・もーるだー",
++                url: "joseph-moerder.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジュリア",
++                yomi: "じゅりあ",
++                url: "julia-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジュリア・マスターズ",
++                yomi: "じゅりあ・ますたーず",
++                url: "julia-masters.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "キャスリン・セップ",
++                yomi: "きゃすりん・せっぷ",
++                url: "kathryn-cep.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジム",
++                yomi: "じむ",
++                url: "jim-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジョアン",
++                yomi: "じょあん",
++                url: "joan-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジョアン・ポランスキー",
++                yomi: "じょあん・ぽらんすきー",
++                url: "joan-polansky.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジョアン・ワームウッド",
++                yomi: "じょあん・わーむうっど",
++                url: "joanne-wormwood.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ホルヘ",
++                yomi: "ほるへ",
++                url: "jorge.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "アーヴ",
++                yomi: "あーゔ",
++                url: "irv.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジャミラ",
++                yomi: "じゃみら",
++                url: "jamila.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジェイニー・ハワード",
++                yomi: "じぇいにー・はわーど",
++                url: "janey-howard.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジャニス",
++                yomi: "じゃにす",
++                url: "janice-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジャビン",
++                yomi: "じゃびん",
++                url: "javin.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ハンク・マクレーン",
++                yomi: "はんく・まくれーん",
++                url: "hank-maclean.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ハリウッド・フォーエバーの集会の参加者",
++                yomi: "はりうっど・ふぉーえばーのしゅうかいのさんかしゃ",
++                url: "hollywood-forever-meeting-attendee.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ホンチョー",
++                yomi: "ほんちょー",
++                url: "honcho.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ヒューイ",
++                yomi: "ひゅーい",
++                url: "huey.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "イアン・ジャクソン",
++                yomi: "いあん・じゃくそん",
++                url: "ian-jackson.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ジョージ・ヤッファ",
++                yomi: "じょーじ・やっふぁ",
++                url: "george-yaffe.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "グール（クーパー・ハワード）",
++                yomi: "ぐーる（くーぱー・はわーど）",
++                url: "the-ghoul.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ナイト・グナティウス",
++                yomi: "ないと・ぐなてぃうす",
++                url: "gnatius.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "グランドキャニオンのエルダー",
++                yomi: "ぐらんどきゃにおんのえるだー",
++                url: "grand-canyon-elder.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "グレゴリー",
++                yomi: "ぐれごりー",
++                url: "gregory-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フリーサイドのギャンブラー",
++                yomi: "ふりーさいどのぎゃんぶらー",
++                url: "freeside-gambler.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フリーサイドのショーガール",
++                yomi: "ふりーさいどのしょーがーる",
++                url: "freeside-showgirl.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フリーサイドの住人",
++                yomi: "ふりーさいどのじゅうにん",
++                url: "freesider.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ギャラクシー・ニュースのアナウンサー",
++                yomi: "ぎゃらくしー・にゅーすのあなうんさー",
++                url: "galaxy-news-announcer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ゲイリー",
++                yomi: "げいりー",
++                url: "gary-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フリーサイドの子供のハスラー",
++                yomi: "ふりーさいどのこどものはすらー",
++                url: "freeside-child-hustler.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フリーサイドの子供のリーダー",
++                yomi: "ふりーさいどのこどものりーだー",
++                url: "freeside-child-in-charge.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "薬を売るフリーサイドの子供",
++                yomi: "くすりをうるふりーさいどのこども",
++                url: "freeside-child-selling-drugs.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フリーサイドのクルーピエ",
++                yomi: "ふりーさいどのくるーぴえ",
++                url: "freeside-croupier.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フリーサイドの客",
++                yomi: "ふりーさいどのきゃく",
++                url: "freeside-customer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フィリーの商人",
++                yomi: "ふぃりーのしょうにん",
++                url: "filly-vendor.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フランチェスカ・マハジャン",
++                yomi: "ふらんちぇすか・まじゃはん",
++                url: "francesca-mahajan.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フランク",
++                yomi: "ふらんく",
++                url: "frank-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フランクの娘",
++                yomi: "ふらんくのむすめ",
++                url: "franks-daughter.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フレデリック・シンクレア",
++                yomi: "ふれでりっく・しんくれあ",
++                url: "frederick-sinclair.html",
++                category: "人物",
++                appearance: ["Fallout: New Vegas","Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "農夫",
++                yomi: "のうふ",
++                url: "farmer-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "クレリック・フェリックス",
++                yomi: "くれりっく・ふぇりっくす",
++                url: "felix-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "女性の給仕",
++                yomi: "じょせいのきゅうじ",
++                url: "female-server.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フィリーの巨漢",
++                yomi: "ふぃりーのきょかん",
++                url: "filly-huge-man.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "フィリーの町民",
++                yomi: "ふぃりーのちょうみん",
++                url: "filly-townsperson.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "エンクレイヴの科学者",
++                yomi: "えんくれいゔのかがくしゃ",
++                url: "enclave-scientist-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "エンクレイヴの警備員",
++                yomi: "えんくれいゔのけいびいん",
++                url: "enclave-security-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "興奮したパーティー客",
++                yomi: "こうふんしたぱーてぃーきゃく",
++                url: "excited-partygoer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "エグゼクティヴ・アシスタント",
++                yomi: "えぐぜくてぃゔ・あしすたんと",
++                url: "executive-assistant.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "偽のシーザー",
++                yomi: "にせのしーざー",
++                url: "false-caesar.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ドン・ペドロの護衛",
++                yomi: "どん・ぺどろのごえい",
++                url: "dom-pedros-guard.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "年配の司会者",
++                yomi: "ねんぱいのしかいしゃ",
++                url: "elderly-speaker.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "エルマー・グリーン",
++                yomi: "えるまー・ぐりーん",
++                url: "elmer-greene.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "エミール・デール",
++                yomi: "えみーる・でーる",
++                url: "emil-dale.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "エンクレイヴの管理者",
++                yomi: "えんくれいゔのかんりしゃ",
++                url: "enclave-administrator.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "デイヴィー",
++                yomi: "でいゔぃー",
++                url: "davey-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "歯医者兼理髪師",
++                yomi: "はいしゃけんりはつし",
++                url: "dentist-barber.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ダーヴィン",
++                yomi: "だーゔぃん",
++                url: "dervin.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ダイアン・ウェルチ",
++                yomi: "だいあん・うぇるち",
++                url: "diane-welch.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "飛行船の従者",
++                yomi: "ひこうせんのじゅうしゃ",
++                url: "dirigible-squire.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "コロナドのエルダー",
++                yomi: "ころなど・えるだー",
++                url: "coronado-elder.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "コロナドのナイト",
++                yomi: "ころなど・ないと",
++                url: "coronado-knight.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "批評家",
++                yomi: "ひひょうか",
++                url: "critic.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ダン",
++                yomi: "だん",
++                url: "dan-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "デイン",
++                yomi: "でいん",
++                url: "dane-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "クリスティン・マリ",
++                yomi: "くりすてぃん・まり",
++                url: "christyn-mari.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "クレア・フェルドマン",
++                yomi: "くれあ・ふぇるどまん",
++                url: "claire-feldman.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "クラーク",
++                yomi: "くらーく",
++                url: "clark-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "クラウディア",
++                yomi: "くらうでぃあ",
++                url: "claudia-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "B.O.S.クレリック",
++                yomi: "ぶらざーふっどおぶすてぃーるくれりっく",
++                url: "cleric.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "チェット",
++                yomi: "ちぇっと",
++                url: "chet-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "チェット・ジュニア",
++                yomi: "ちぇっと・じゅにあ",
++                url: "chet-jr.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "チェット・ジュニア（チェットの父）",
++                yomi: "ちぇっと・じゅにあ",
++                url: "chet-jr-mentioned.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "鶏集めの男",
++                yomi: "にわとりあつめのおとこ",
++                url: "chicken-collector.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "クロエ・グラス",
++                yomi: "くろえ・ぐらす",
++                url: "chloe-glass.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "ケイシー・シュルツ",
++                yomi: "けいしー・しゅるつ",
++                url: "casey-schulz.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "カサンドラ・ホーソーン",
++                yomi: "かさんどら・ほーそーん",
++                url: "cassandra-hawthorne.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "キャシー",
++                yomi: "きゃしー",
++                url: "cathy-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "チャールズ・ホワイトナイフ",
++                yomi: "ちゃーるず・ほわいとないふ",
++                url: "charles-whiteknife.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "チェイス・パウエル",
++                yomi: "ちぇいす・ぱうえる",
++                url: "chase-powell.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-03"
++            },
++            {
++                name: "大柄なレイダー",
++                yomi: "おおがらなれいだー",
++                url: "burly-raider.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "キャデラックボブ",
++                yomi: "きゃでらっくぼぶ",
++                url: "cadillac-bob.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "シーザー（TVシリーズ）",
++                yomi: "しーざー",
++                url: "caesar-tv.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "カナダの反乱者",
++                yomi: "かなだのはんらんしゃ",
++                url: "canadian-rebel.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "DJカール",
++                yomi: "でぃーじぇいかーる",
++                url: "carl-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "国境警備隊員",
++                yomi: "こっきょうけいびたいいん",
++                url: "border-agent.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ブラザーフッドの衛生兵",
++                yomi: "ぶらざーふっどのえいせいへい",
++                url: "brotherhood-medic.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ブラザーフッドの将校",
++                yomi: "ぶらざーふっどのしょうこう",
++                url: "brotherhood-officer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ブラザーフッドの兵士",
++                yomi: "ぶらざーふっどのへいし",
++                url: "brotherhood-soldier-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バド・アスキンス",
++                yomi: "ばど・あすきんす",
++                url: "bud-askins.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ビギー",
++                yomi: "びぎー",
++                url: "biggie.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ビル（建設作業員）",
++                yomi: "びる",
++                url: "bill-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バーディ",
++                yomi: "ばーでぃ",
++                url: "birdie.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "誕生会に呼ばれた客たち",
++                yomi: "たんじょうかいによばれたきゃくたち",
++                url: "birthday-party-guest.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ボブ・スペンサー",
++                yomi: "ぼぶ・すぺんさー",
++                url: "bob-spencer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バーブ",
++                yomi: "ばーぶ",
++                url: "barv.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ベンジャミン（テレビドラマ）",
++                yomi: "べんじゃみん",
++                url: "benjamin-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バート（テレビドラマ）",
++                yomi: "ばーと",
++                url: "bert-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ベティ・ピアソン",
++                yomi: "べてぃ・ぴあそん",
++                url: "betty-pearson.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ビフ（テレビドラマ）",
++                yomi: "びふ",
++                url: "biff-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "アダム",
++                yomi: "あだむ",
++                url: "adam-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "航空券検査員",
++                yomi: "こうくうけんけんさいん",
++                url: "airline-ticket-inspector.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "空港の旅行者",
++                yomi: "くうこうのりょこうしゃ",
++                url: "airport-traveler.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "アレクサンダー・ボーマー",
++                yomi: "あれくさんだー・ぼーまー",
++                url: "alexander-boamer.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "アーチボルド・サックス",
++                yomi: "あーちぼるど・さっくす",
++                url: "archibald-sachs.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "アーノルド（ギャラクシー・ニュース・ネットワーク）",
++                yomi: "あーのるど",
++                url: "arnold-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "アーサー・ワームリー",
++                yomi: "あーさー・わーむりー",
++                url: "arthur-wormeley.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "アスピラント（候補生）",
++                yomi: "あすぴらんと",
++                url: "aspirant-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "エヴァ・ウェスト",
++                yomi: "えば・うぇすと",
++                url: "ava-west.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バーブ・ハワード",
++                yomi: "ばーぶ・はわーど",
++                url: "barb-howard.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バーテンダー（ロサンゼルス）",
++                yomi: "ばーてんだー（ろさんぜるす）",
++                url: "bartender-los-angeles.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バーテンダー（ラッキー38）",
++                yomi: "ばーてんだー（らっきーさんじゅうはち）",
++                url: "bartender-lucky-38.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "ハゲのレイダー",
++                yomi: "はげのれいだー",
++                url: "bald-raider.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "バーの常連客",
++                yomi: "ばーのじょうれんきゃく",
++                url: "bar-patron-tv-series.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "助監督",
++                yomi: "じょかんとく",
++                url: "assistant-director.html",
++                category: "人物",
++                appearance: ["Fallout TV"],
++                date: "2026-04-02"
++            },
++            {
++                name: "undefined",
+                 yomi: "あーろん・きんばる",
+                 url: "kimball.html",
+                 category: "人物",
+@@ -1161,13 +5545,12 @@
+                 isDraft: true
+             },
+             {
+-                name: "Game of Thrones",
++                name: "ゲーム・オブ・スローンズ",
+                 yomi: "げーむおぶすろーんず",
+                 url: "game-of-thrones.html",
+                 category: "場所",
+                 appearance: ["Fallout 76"],
+-                date: "2026-03-17",
+-                isDraft: true
++                date: "2026-03-31"
+             },
+             {
+                 name: "グレッグの鉱山用品店",
+@@ -1305,7 +5688,7 @@
+                 isDraft: true
+             },
+             {
+-                name: "オハイオ・リバー・アドベンチャーズ",
++                name: "オハイオの川下りアドベンチャーズ",
+                 yomi: "おはいおりばーあどべんちゃーず",
+                 url: "ohio-river-adventures.html",
+                 category: "場所",
+@@ -1890,13 +6273,12 @@
+                 isDraft: true
+             },
+             {
+-                name: "PoseidoNet",
++                name: "ポセイドネット",
+                 yomi: "ぽせいどねっと",
+                 url: "poseidonet.html",
+                 category: "テクノロジー",
+                 appearance: ["Fallout 2","Fallout: New Vegas","Fallout 76"],
+-                date: "2026-03-22",
+-                isDraft: true
++                date: "2026-03-31"
+             },
+             {
+                 name: "積灰の山",
+@@ -2493,13 +6875,12 @@
+                 isDraft: true
+             },
+             {
+-                name: "A.T.H.E.N.A.",
+-                yomi: "a.t.h.e.n.a.",
++                name: "A.T.H.E.N.A. (アテナ)",
++                yomi: "あてな",
+                 url: "athena.html",
+                 category: "場所",
+                 appearance: ["Fallout 76"],
+-                date: "2026-03-10",
+-                isDraft: true
++                date: "2026-03-31"
+             },
+             {
+                 name: "ATLAS天文台",
+@@ -2511,13 +6892,12 @@
+                 isDraft: true
+             },
+             {
+-                name: "Autumn Acre Cabin",
+-                yomi: "autumn acre cabin",
++                name: "オータム・エーカー・キャビン",
++                yomi: "おーたむえーかーきゃびん",
+                 url: "autumn-acre-cabin.html",
+                 category: "場所",
+                 appearance: ["Fallout 76"],
+-                date: "2026-03-25",
+-                isDraft: true
++                date: "2026-03-31"
+             },
+             {
+                 name: "AVR Medical Center",
+@@ -2853,13 +7233,12 @@
+                 isDraft: true
+             },
+             {
+-                name: "Just a moment...",
+-                yomi: "just a moment...",
++                name: "ケン・ユアーズ",
++                yomi: "けんゆあーず",
+                 url: "buds_full.html",
+                 category: "場所",
+                 appearance: ["Fallout 76"],
+-                date: "2026-02-21",
+-                isDraft: true
++                date: "2026-03-31"
+             },
+             {
+                 name: "バーデット邸",
+@@ -4694,8 +9073,7 @@
+                 url: "mistress-of-mystery.html",
+                 category: "場所",
+                 appearance: ["Fallout 76"],
+-                date: "2026-03-08",
+-                isDraft: true
++                date: "2026-03-08"
+             },
+             {
+                 name: "MODUS",
+@@ -12679,6 +17057,14 @@
+                 date: "2026-03-27",
+                 isDraft: true
+             },
++            {
++                name: "アーロン・キンバル",
++                yomi: "アーロン・キンバル",
++                url: "aaron-kimball.html",
++                category: "",
++                appearance: ["Fallout 76","Fallout: New Vegas"],
++                date: "2026-02-16"
++            },
+             {
+                 name: "中傷ボット",
+                 yomi: "中傷ボット",
+@@ -12754,7 +17140,7 @@
+             {
+                 name: "ゲイリー",
+                 yomi: "ゲイリー",
+-                url: "gary.html",
++                url: "gary-tv-series.html.html",
+                 category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2026-02-08"
+@@ -13035,7 +17421,7 @@
+                 name: "ジュンコおばあちゃん",
+                 yomi: "ジュンコおばあちゃん",
+                 url: "junko-grandma.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2026-01-20"
+             },
+@@ -13051,7 +17437,7 @@
+                 name: "デル・ローソン",
+                 yomi: "デル・ローソン",
+                 url: "del-lawson.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2026-01-19"
+             },
+@@ -13755,7 +18141,7 @@
+                 name: "ポリー",
+                 yomi: "ポリー",
+                 url: "polly.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2025-11-29"
+             },
+@@ -13787,7 +18173,7 @@
+                 name: "モルデカイ \"モート\" マッコイ",
+                 yomi: "モルデカイ \"モート\" マッコイ",
+                 url: "mordecai-mort-mccoy.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2025-11-27"
+             },
+@@ -13803,7 +18189,7 @@
+                 name: "ダッチェス",
+                 yomi: "ダッチェス",
+                 url: "duchess.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2025-11-26"
+             },
+@@ -13867,7 +18253,7 @@
+                 name: "コンスタンティン・チェイス ",
+                 yomi: "コンスタンティン・チェイス ",
+                 url: "constantine-chase.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2025-11-22"
+             },
+@@ -13971,7 +18357,7 @@
+                 name: "ホーマー・サパースタイン",
+                 yomi: "ホーマー・サパースタイン",
+                 url: "homer-saperstein.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76"],
+                 date: "2025-11-16"
+             },
+@@ -14203,7 +18589,7 @@
+                 name: "ジョン・ハンコック",
+                 yomi: "ジョン・ハンコック",
+                 url: "john-hancock.html",
+-                category: "人物",
++                category: "",
+                 appearance: ["Fallout 76","Fallout 4"],
+                 date: "2025-10-28"
+             },
+@@ -14258,8 +18644,8 @@
+             {
+                 name: "マジソン・リー",
+                 yomi: "マジソン・リー",
+-                url: "madison-lee.html",
+-                category: "人物",
++                url: "madison-li.html",
++                category: "",
+                 appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3"],
+                 date: "2025-10-18"
+             },

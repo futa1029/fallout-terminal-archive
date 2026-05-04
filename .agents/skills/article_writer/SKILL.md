@@ -80,7 +80,7 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
   | Starlight creeper | スターライト・ベリー（※「スターライト・クリーパー」はNG） |
   | Fever blossom | 熱の花（※「フィーバーブロッサム」はNG） |
   | Owlet | フクロウ（※「アウレット」はNG） |
-  | Order of Mysteries | オーダー・オブ・ミステリー（※「ミステリーの騎士団」はNG） |
+  | Order of Mysteries | オーダーオブミステリー（※「ミステリー教団」はNG） |
   | Ash Heap | 積灰の山（※「アッシュ・ヒープ」はNG） |
   | Vertibird | ベルチバード（※「バーティバード」はNG） |
   | Serum | 設計図（※「セラム」はNG） |

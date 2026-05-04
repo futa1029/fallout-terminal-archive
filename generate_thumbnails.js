@@ -45,8 +45,16 @@ function main() {
 
     files.forEach(file => {
         const filePath = path.join(DIR, file);
-        const image = extractOgImage(filePath);
+        let image = extractOgImage(filePath);
         if (image) {
+            // ローカルファイルの場合、存在確認を行う
+            if (!image.startsWith('http')) {
+                const imgPathOnDisk = path.join(DIR, image.split('?')[0]); // クエリパラメータを除去してパスを取得
+                if (!fs.existsSync(imgPathOnDisk)) {
+                    // 画像が存在しない場合はプレースホルダに変更
+                    image = 'images/placeholder.jpg';
+                }
+            }
             thumbnails[file] = image;
         }
     });

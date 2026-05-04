@@ -1,0 +1,62 @@
+{
+  "Shopping mall vendor": {
+    "content": "{{Infobox character\n|games       =FO76,FO76WA\n|type        =vendor\n|image       =FO76 Shopping mall vendor.png\n|race        =[[Protectron]]\n|gender      =Male programming\n|family      =\n|affiliation =[[Watoga]]\n|role        =[[Fallout 76 vendors|Vendor]]\n|location    =[[The Whitespring Resort]]\n|quests      =\n|alignment   =\n|level       =5\n|derived     =\n|class       =RobotClass\n|actor       =[[Wes Johnson]]\n|dialogue    =\n|edid        =LC060_WhitespringVendor_Neutral\n|formid      ={{ID|004124ae}}\n|refid       ={{ID|00412215}}\n}}\n\nThe '''shopping mall vendor''' is a [[Protectron (Fallout 76)|Protectron]] operating at [[the Whitespring Resort]] in [[Appalachia]]. \n\n==Background==\nThe shopping mall vendor is one of the robotic vendors the Whitespring Resort replaced their human staff with shortly before the [[Great War]].<ref>[[The Whitespring 2080 Initiative]]</ref> It is found in the Whitespring Resort's Aurum along with [[Helena (Fallout 76)|Helena]]. It sells a variety of items, including plans and other wares alongside other faction vendors.\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|essential       =yes\n|temp companion  =\n|perm companion  =\n|perk            =\n|wares           =[[Fallout 76 consumables|aid]], [[Fallout 76 ammunition|ammo]], [[Fallout 76 armor and apparel|apparel]], [[Fallout 76 miscellaneous items|misc]], [[Fallout 76 weapons|weapons]], [[Fallout 76 junk items|junk]], [[Fallout 76 plans|plans]]\n|caps            =1400\n|max condition   =\n|heal            =\n|cure addiction  =\n|cure radiation  =\n|rent            =\n|items modified  =\n|quests started  =\n|quests involved =\n}}\n\n==Inventory==\n{{Inventory\n|apparel   =\n|weapon    =\n|otheritem =\n|ondeath   =\n}}\n\n==Notes==\nThis vendor was added to the Whitespring Resort as part of [[Fallout 76 patch 1.1.2.7|patch 1.1.2.7]].\n\n==Appearances==\nThe shopping mall vendor appears only {{In|FO76WA}}.\n\n==References==\n{{References}}\n\n{{Navbox vendors FO76}}\n{{Navbox The Whitespring Resort}}\n\n[[Category:Wild Appalachia robots and computers]]\n[[Category:Protectron characters]]\n[[Category:Wild Appalachia merchants]]\n[[Category:The Whitespring Resort characters]]\n\n[[fr:Marchand de centre commercial]]\n[[ru:Торговец в торговом центре]]",
+    "images": [
+      "File:Caps.png",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 Legendary scrip.png",
+      "File:FO76 P.png",
+      "File:FO76 S.png",
+      "File:FO76 Shopping mall vendor.png"
+    ]
+  },
+  "Camden Park security": {
+    "content": "{{Infobox character\n|games       =FO76\n|image       =FO76 Camden Park Security.png\n|race        =[[Protectron]]\n|sex         =\n|affiliation =\n|role        =Guard\n|location    =[[Camden Park]]\n|quests      =[[Mistaken Identity]]\n|derived     ={{Derived stats FO4|hp=100|dr=40|er=25}}\n|level       =5+\n|actor       =[[Wes Johnson]]\n|dialogue    =[[Camden Park security/Dialogue]]\n|edid        =MTR04_EmployeeSecurityBot\t\n|formid      ={{ID|00320E76}}\n|refid       ={{ID|00320e72}}\n}}\n\n{{Quotation|Get in there kid. Suit up and get clocked in, you're late! I already lied to the boss for you.|sound=Camden Park security 0034ad90 2.ogg}}\n\n'''Camden Park security''' is a unique [[Protectron (Fallout 76)|Protectron]] found at [[Camden Park]] {{in|FO76}}.     \n\n==Background==\nThis Protectron guards the staff area of Camden Park. It is operational even though its head has been mostly destroyed, and appears to have issues with its sensors, mistaking passers-by for park employees.\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|ghost           =yes\n|quests started  =\n|quests involved =[[Mistaken Identity]]\n}}\n\n===Quests===\n* [[Mistaken Identity]]: The player must talk to this Protectron during Mistaken Identity, during which the Camden Park security robot mistakes the [[Vault Dweller (Fallout 76)|Vault 76 dwellers]] for park employees.\n\n==Inventory==\n{{Inventory\n|apparel   =\n|weapon    =\n|otheritem =\n|ondeath   =empty\n}}\n\n==Appearances==\nCamden Park security appears only {{In|FO76}}.\n\n{{Navbox robots}}\n\n[[Category:Fallout 76 robots and computers]]\n[[Category:Protectron characters]]",
+    "images": [
+      "File:Camden Park security 0034ad90 2.ogg",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 Camden Park Security.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 P.png",
+      "File:FO76 Quest Old Man Winter.png",
+      "File:FO76 S.png"
+    ]
+  },
+  "Cunningham (Fallout 76)": {
+    "content": "{{Infobox incomplete|FO76|derived stats}}\n{{Infobox character\n|games       =FO76\n|type        =vendor\n|image       =Cunningham.png\n|race        =[[Mister Handy (Fallout 76)|Mister Handy]]\n|gender      =Male programming\n|role        =[[Fallout 76 vendors|Vendor]]\n|location    =[[The Whitespring Resort]]\n|level       =8\n|derived     =\n|actor       =[[Stephen Russell]]\n|dialogue    =[[Cunningham (Fallout 76)/Dialogue]]\n|edid        =LC060_WhitespringVendor_ArmorHuntingSupplies_Cunningham\n|formid      ={{ID|0037d9bf}}\n|refid       ={{ID|0037d9da}}\n}}\n\n{{Quotation|This modern combat armor hardly seems sporting.|sound=Cunningham 003a28c8_1.ogg}}\n\n'''Cunningham''' is a [[Mister Handy (Fallout 76)|Mister Handy]] serving as a [[Fallout 76 vendors|vendor]] at [[the Whitespring Resort]] in [[Appalachia]].            \n\n==Background==\nCunningham is a Mr. Handy, and one of the dozen or so robotic vendors the Whitespring Resort replaced their human staff with shortly before the [[Great War]].<ref>[[The Whitespring 2080 Initiative]]</ref> He resides in the Creekside Lodge store of the Whitespring mall area and is mainly responsible for selling armors and weapons to the player character.\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|essential       =yes\n|temp companion  =\n|perm companion  =\n|perk            =\n|wares           =[[Fallout 76 armor and apparel|apparel]], [[Fallout 76 consumables|aid]], [[Fallout 76 plans|plans]] and [[Fallout 76 miscellaneous items|junk]]\n|caps            =1400\n|max condition   =\n|heal            =\n|cure addiction  =\n|cure radiation  =\n|rent            =\n|items modified  =\n|quests started  =\n|quests involved =\n}}\n\n==Inventory==\n{{Inventory\n|apparel   =\n|weapon    =\n|otheritem =\n|ondeath   =\n}}\n\n==Appearances==\nCunningham appears only {{In|FO76}}.\n\n==References==\n{{References}}\n\n{{Navbox vendors FO76}}\n{{Navbox The Whitespring Resort}}\n\n[[Category:Fallout 76 robots and computers]]\n[[Category:The Whitespring Resort characters]]\n[[Category:Fallout 76 merchants]]\n[[Category:Mister Handy characters]]\n\n[[ru:Каннингем]]",
+    "images": [
+      "File:Caps.png",
+      "File:Cunningham.png",
+      "File:Cunningham 003a28c8 1.ogg",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 Legendary scrip.png",
+      "File:FO76 P.png"
+    ]
+  },
+  "Nuclear Don": {
+    "content": "{{Infobox character\n|games       =FO76, FO76WL\n|image       =FO76WL Nuclear Don.png\n|race        =[[Human]]\n|gender      =Male\n|affiliation =[[Sargento]]'s gang\n|role        =Slave<br />Fighter\n|location    =[[Watoga Civic Center]]\n|quests      =[[The Ol' Weston Shuffle]]\n|hair color  =Red dye\n|eye color   =Hazel bloodshot\n|hairstyle   =Chemical Storm\n|facial hair =Poetry Slam\n|level       =66\n|derived     ={{Derived stats FO4|hp=390|ap=50}}\n|special     ={{SPECIAL|8,4,0,0,0,5,0}}\n|aggression  =Unaggressive\n|confidence  =Average\n|assistance  =Helps Nobody\n|class       =raiderClass\n|factions    =W05_MQR_203PSlaveFaction\n|combat style=Default\n|CK race     =HumanRace\n|actor       =[[Todd Haberkorn]]\n|dialogue    =[[Nuclear Don/Dialogue]]\n|edid        =W05_Raider_Don\n|formid      ={{ID|0042f59b}}\n|refid       ={{ID|0042F5A0}}\n}}\n\n{{Quotation|Stay away. I... don't like people touching me! I don't like people near me! Just, aghhh! Go away!}}\n\n'''Nuclear Don''' is a [[Slavery|slave]] competing in fighting tournaments at the [[Watoga Civic Center]] in [[Appalachia]].\n\n==Background==\nHe has a special chem blend in his locker, called [[Nuclear Don's Custom Chem Blend]].\n\nDuring the quest [[the Ol' Weston Shuffle]], if the player character wins their matches up to that point, Don is the loser of the first round and is killed when the [[slave collar]] around his neck is detonated.\n\n==Interactions with the player character==\n===Interactions overview===\n{{Interactions FO76\n|essential       =\n|temp companion  =\n|perm companion  =\n|perk            =\n|wares           =\n|caps            =\n|max condition   =\n|heal            =\n|cure addiction  =\n|cure radiation  =\n|rent            =\n|items modified  =\n|quests started  =\n|quests involved =[[The Ol' Weston Shuffle]]\n}}\n\n==Inventory==\n{{Inventory\n|apparel   =[[Raider scavenger]]<br />[[Prisoner collar]]\n|weapon    =\n|otheritem =\n|ondeath   =\n}}\n\n==Notable quotes==\n* {{Inline quote|You wanna piece of me? Huh? No.. no.. gotta stay focused on the match. You should too.}}\n* {{Inline quote|You want a tip? Listen, I know how to survive in there. You just gotta... wait... what? You're just trying to get into my head! Get out! Get out!}}\n* {{Inline quote|When I win this, that's it. I'll have paid off my debt. I can taste that freedom. It tastes like... metal? Nah, that's... something else.}}\n\n==Appearances==\nNuclear Don appears only in ''[[Fallout 76]]'', introduced in the ''[[Wastelanders]]'' [[Fallout 76 updates|update]].\n\n{{Navbox Wastelanders}}\n\n[[Category:Wastelanders human characters]]\n[[Category:Wastelanders raider characters]]",
+    "images": [
+      "File:FO76WL Nuclear Don.png",
+      "File:FO76 A.png",
+      "File:FO76 C.png",
+      "File:FO76 E.png",
+      "File:FO76 I.png",
+      "File:FO76 L.png",
+      "File:FO76 P.png",
+      "File:FO76 S.png",
+      "File:FO76 ui icon quest.png",
+      "File:Icon acid.png"
+    ]
+  }
+}
