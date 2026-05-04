@@ -3541,8 +3541,8 @@ const manualEntries = [
         url: "commie-kazi.html",
         category: "アイテム",
         appearance: ["Fallout 4","Fallout 76"],
-        date: "2026-05-02",
-        status: "draft"
+        date: "2026-04-30",
+        status: "published"
     },
     {
         name: "コミッショナー・カオス",
