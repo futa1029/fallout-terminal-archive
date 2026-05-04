@@ -265,14 +265,6 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "FALLOUT ロア・アーカイブ",
-                yomi: "FALLOUT ロア・アーカイブ",
-                url: "admin-drafts.html",
-                category: "未分類",
-                appearance: [],
-                date: "2026-05-02"
-            },
-            {
                 name: "アドベ教会",
                 yomi: "アドベ教会",
                 url: "adobe-church.html",
