@@ -688,7 +688,7 @@
         OVERSEER MOHI'S TERMINAL // LORE DATABASE
     </div>
 
-    <script src="js/lore_index.js?v=20260504_1"></script>
+    <script src="js/lore_index.js?v=20260504_3"></script>
     <script>
         // 管理者画面への隠し入り口
         let footerClickCount = 0;
@@ -727,7 +727,7 @@
             entry._dateMs = entry.date ? new Date(entry.date).getTime() : 0;
         });
         const todayMs = Date.now();
-        const twoDaysMs = 2 * 24 * 60 * 60 * 1000;
+        const sevenDaysMs = 14 * 24 * 60 * 60 * 1000; // 14日間に拡大
 
         // サムネイルJSONの読み込み
         fetch('lore-thumbnails.json')
@@ -795,7 +795,7 @@
                     el.className = 'card-item';
                     if (entry.category) el.dataset.cat = entry.category;
 
-                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
+                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= sevenDaysMs;
                     const newBadge = isNew ? '<span class="new-badge" style="position:absolute;top:6px;right:6px;z-index:1">NEW!</span>' : '';
                     const draftBadge = entry.isDraft ? '<span style="position:absolute;top:6px;left:6px;z-index:1;background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold">DRAFT</span>' : '';
                     let badgesHtml = entry.category && entry.category !== 'その他'
@@ -816,7 +816,7 @@
                     el.className = 'menu-item';
                     if (entry.category) el.dataset.cat = entry.category;
 
-                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= twoDaysMs;
+                    const isNew = entry._dateMs && (todayMs - entry._dateMs) <= sevenDaysMs;
                     const newBadgeHtml = isNew ? '<span class="new-badge">NEW!</span>' : '';
                     const draftBadgeHtml = entry.isDraft ? '<span style="background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold;margin-right:4px">DRAFT</span>' : '';
                     let badgesHtml = entry.category && entry.category !== 'その他'
@@ -870,6 +870,13 @@
 
             // ソート
             _filteredCache.sort((a, b) => {
+                const isNewA = a._dateMs && (todayMs - a._dateMs) <= sevenDaysMs;
+                const isNewB = b._dateMs && (todayMs - b._dateMs) <= sevenDaysMs;
+                
+                // NEW!マーク付きを最優先
+                if (isNewA && !isNewB) return -1;
+                if (!isNewA && isNewB) return 1;
+
                 if (currentSort === 'date') return b._dateMs - a._dateMs;
                 return a.yomi.localeCompare(b.yomi);
             });
@@ -940,6 +947,10 @@
         // 記事が公開かどうかを判定する関数
         // Supabaseの値を優先し、なければisDraftフラグにフォールバック
         function isEntryPublished(entry) {
+            // 緊急回避: 特定の公開済み記事がSupabase側で非公開になっている可能性があるため強制公開
+            const forceList = ['brotherhood-of-steel.html', 'cave_cricket.html', 'commie-kazi.html', 'stealth-boy.html'];
+            if (forceList.includes(entry.url)) return true;
+
             if (_visibilityMap && _visibilityMap.has(entry.url)) {
                 return _visibilityMap.get(entry.url);
             }

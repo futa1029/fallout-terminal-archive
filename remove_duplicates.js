@@ -2218,8 +2218,8 @@ const manualEntries = [
         url: "brotherhood-of-steel.html",
         category: "勢力",
         appearance: ["Fallout 全般"],
-        date: "2026-05-02",
-        status: "draft"
+        date: "2026-05-03",
+        status: "published"
     },
     {
         name: "ブラザーフッドのオフィサー（将校）",
@@ -2795,7 +2795,7 @@ const manualEntries = [
         category: "未分類",
         appearance: [],
         date: "2026-05-02",
-        status: "draft"
+        status: "published"
     },
     {
         name: "Cavit Klein",
@@ -3541,7 +3541,7 @@ const manualEntries = [
         url: "commie-kazi.html",
         category: "アイテム",
         appearance: ["Fallout 4","Fallout 76"],
-        date: "2026-04-30",
+        date: "2026-05-01",
         status: "published"
     },
     {
@@ -15484,8 +15484,8 @@ const manualEntries = [
         url: "stealth-boy.html",
         category: "アイテム",
         appearance: ["Fallout シリーズ"],
-        date: "2026-05-02",
-        status: "draft"
+        date: "2026-05-04",
+        status: "published"
     },
     {
         name: "ステルス技術",
