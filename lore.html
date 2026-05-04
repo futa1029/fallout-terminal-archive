@@ -688,7 +688,7 @@
         OVERSEER MOHI'S TERMINAL // LORE DATABASE
     </div>
 
-    <script src="js/lore_index.js?v=20260504_3"></script>
+    <script src="js/lore_index_v5.js?v=20260504_5"></script>
     <script>
         // 管理者画面への隠し入り口
         let footerClickCount = 0;
@@ -727,7 +727,7 @@
             entry._dateMs = entry.date ? new Date(entry.date).getTime() : 0;
         });
         const todayMs = Date.now();
-        const sevenDaysMs = 14 * 24 * 60 * 60 * 1000; // 14日間に拡大
+        const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
 
         // サムネイルJSONの読み込み
         fetch('lore-thumbnails.json')
@@ -947,10 +947,6 @@
         // 記事が公開かどうかを判定する関数
         // Supabaseの値を優先し、なければisDraftフラグにフォールバック
         function isEntryPublished(entry) {
-            // 緊急回避: 特定の公開済み記事がSupabase側で非公開になっている可能性があるため強制公開
-            const forceList = ['brotherhood-of-steel.html', 'cave_cricket.html', 'commie-kazi.html', 'stealth-boy.html'];
-            if (forceList.includes(entry.url)) return true;
-
             if (_visibilityMap && _visibilityMap.has(entry.url)) {
                 return _visibilityMap.get(entry.url);
             }

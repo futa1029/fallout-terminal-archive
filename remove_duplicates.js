@@ -12,8 +12,14 @@ const manualEntries = [
         yomi: "10mmピストル",
         url: "10mm-pistol.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -21,8 +27,11 @@ const manualEntries = [
         yomi: ".44ピストル",
         url: "44-pistol.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -30,8 +39,10 @@ const manualEntries = [
         yomi: "98 NARリージョナル",
         url: "98-nar-regional.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -39,8 +50,10 @@ const manualEntries = [
         yomi: "アーロンホルト農場",
         url: "aaron-holt-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -48,8 +61,11 @@ const manualEntries = [
         yomi: "アーロン・キンバル",
         url: "aaron-kimball.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -57,8 +73,10 @@ const manualEntries = [
         yomi: "アーロンホルト農家",
         url: "aaronholt-homestead.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -66,8 +84,10 @@ const manualEntries = [
         yomi: "放棄された湿原の町",
         url: "abandoned-bog-town.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -75,8 +95,10 @@ const manualEntries = [
         yomi: "放棄されたバンカー",
         url: "abandoned-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -84,8 +106,10 @@ const manualEntries = [
         yomi: "放棄鉱山キタリー",
         url: "abandoned-mine-kittery.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -93,8 +117,10 @@ const manualEntries = [
         yomi: "放棄鉱山坑道 1",
         url: "abandoned-mine-shaft-1.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -102,8 +128,10 @@ const manualEntries = [
         yomi: "放棄された鉱山坑道2",
         url: "abandoned-mine-shaft-2.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -111,8 +139,10 @@ const manualEntries = [
         yomi: "放棄鉱山坑道 3",
         url: "abandoned-mine-shaft-3.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -120,8 +150,10 @@ const manualEntries = [
         yomi: "放棄鉱山坑道 4",
         url: "abandoned-mine-shaft-4.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -129,8 +161,10 @@ const manualEntries = [
         yomi: "放棄鉱山坑道 5",
         url: "abandoned-mine-shaft-5.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -138,8 +172,10 @@ const manualEntries = [
         yomi: "放棄鉱山坑道 6",
         url: "abandoned-mine-shaft-6.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -147,8 +183,10 @@ const manualEntries = [
         yomi: "放棄鉱山坑道エレイン",
         url: "abandoned-mine-shaft-elaine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -156,8 +194,10 @@ const manualEntries = [
         yomi: "放棄された鉱山サイト・キタリー",
         url: "abandoned-mine-site-kittery.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -165,8 +205,10 @@ const manualEntries = [
         yomi: "廃墟となったタコス屋",
         url: "abandoned-taco-stand.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -174,8 +216,10 @@ const manualEntries = [
         yomi: "放棄された廃棄場",
         url: "abandoned-waste-dump.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -183,8 +227,10 @@ const manualEntries = [
         yomi: "アビーのバンカー",
         url: "abbies-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -192,8 +238,10 @@ const manualEntries = [
         yomi: "アバナシー・ファーム",
         url: "abernathy-farm.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -201,8 +249,10 @@ const manualEntries = [
         yomi: "アビゲイル・\"アビー\"・シン",
         url: "abigayle-singh.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -210,8 +260,10 @@ const manualEntries = [
         yomi: "アブラクソダイン・ケミカル配電所",
         url: "abraxodyne-chemical-power-substation.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -219,8 +271,10 @@ const manualEntries = [
         yomi: "アブラクソダイン・オフィス",
         url: "abraxodyne-office.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -228,8 +282,10 @@ const manualEntries = [
         yomi: "アカディア",
         url: "acadia-location.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Far Harbor)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Far Harbor)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -237,8 +293,10 @@ const manualEntries = [
         yomi: "エイダ",
         url: "ada.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -246,8 +304,10 @@ const manualEntries = [
         yomi: "Adam",
         url: "adam-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -255,8 +315,11 @@ const manualEntries = [
         yomi: "アディクトール（Addictol）",
         url: "addictol.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -264,8 +327,11 @@ const manualEntries = [
         yomi: "アデレード",
         url: "adelaide.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -273,8 +339,10 @@ const manualEntries = [
         yomi: "アデレードのダイナー",
         url: "adelaides-diner.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -282,8 +350,10 @@ const manualEntries = [
         yomi: "アドベ教会",
         url: "adobe-church.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -291,8 +361,10 @@ const manualEntries = [
         yomi: "エイ・リ",
         url: "ae-ri.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -300,8 +372,10 @@ const manualEntries = [
         yomi: "アフォーダブル・アルのディスカウント・ホスピタル",
         url: "affordable-al-s-discount-hospital.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -309,8 +383,10 @@ const manualEntries = [
         yomi: "アガサ",
         url: "agatha.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -318,8 +394,10 @@ const manualEntries = [
         yomi: "航空券検査員",
         url: "airline-ticket-inspector.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -327,8 +405,10 @@ const manualEntries = [
         yomi: "空港の旅行者",
         url: "airport-traveler.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -336,8 +416,10 @@ const manualEntries = [
         yomi: "オールバニー",
         url: "albany.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -345,8 +427,10 @@ const manualEntries = [
         yomi: "Alderton",
         url: "alderton.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -354,8 +438,10 @@ const manualEntries = [
         yomi: "オルドリッジ",
         url: "aldridge.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -363,8 +449,10 @@ const manualEntries = [
         yomi: "アレクサンダー・ボーマー",
         url: "alexander-boamer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -372,8 +460,10 @@ const manualEntries = [
         yomi: "アレクシス",
         url: "alexis.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -381,8 +471,14 @@ const manualEntries = [
         yomi: "アリ",
         url: "ali.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -390,8 +486,10 @@ const manualEntries = [
         yomi: "エイリアンブラスター",
         url: "alien-blaster.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -399,8 +497,11 @@ const manualEntries = [
         yomi: "エイリアンの食用生物",
         url: "alien-edible-creatures.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -408,8 +509,10 @@ const manualEntries = [
         yomi: "エイリアン（概要）",
         url: "aliens-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -417,8 +520,10 @@ const manualEntries = [
         yomi: "アリステア",
         url: "alistair.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -426,8 +531,10 @@ const manualEntries = [
         yomi: "アレゲニー山脈",
         url: "allegheny-mountains.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -435,8 +542,10 @@ const manualEntries = [
         yomi: "アレメイン軍曹",
         url: "allemane.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -444,8 +553,10 @@ const manualEntries = [
         yomi: "アリステア・テンペニー将軍",
         url: "allistair-tenpenny.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -453,8 +564,10 @@ const manualEntries = [
         yomi: "Aloe",
         url: "aloe.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -462,8 +575,10 @@ const manualEntries = [
         yomi: "アルパインリバー・キャビン",
         url: "alpine-river-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -471,8 +586,10 @@ const manualEntries = [
         yomi: "アルパイン・リバー・キャビンズ",
         url: "alpine-river-cabins.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -480,8 +597,10 @@ const manualEntries = [
         yomi: "アマタ・アルモドバル",
         url: "amata.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -489,8 +608,10 @@ const manualEntries = [
         yomi: "弾薬庫",
         url: "ammo-dump.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -498,8 +619,10 @@ const manualEntries = [
         yomi: "ボットスミス・アンプ",
         url: "amp.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -507,8 +630,10 @@ const manualEntries = [
         yomi: "AMS本社ビル",
         url: "ams-corporate-headquarters.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -516,8 +641,10 @@ const manualEntries = [
         yomi: "AMSテストサイト",
         url: "ams-testing-site.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -525,8 +652,10 @@ const manualEntries = [
         yomi: "エイミー・ケリー",
         url: "amy-kelly.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -534,8 +663,10 @@ const manualEntries = [
         yomi: "エイミー・L・ケリー",
         url: "amy-kerry.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -543,8 +674,11 @@ const manualEntries = [
         yomi: "アンカー農場",
         url: "anchor-farm.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -552,8 +686,10 @@ const manualEntries = [
         yomi: "アンドリュー・ローズ",
         url: "andrew-rhodes.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -561,8 +697,10 @@ const manualEntries = [
         yomi: "アンドリュー駅",
         url: "andrew-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -570,8 +708,10 @@ const manualEntries = [
         yomi: "アネットのアレンジメンツ",
         url: "anettes-arrangements.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -579,8 +719,11 @@ const manualEntries = [
         yomi: "アングラー",
         url: "angler.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -588,8 +731,10 @@ const manualEntries = [
         yomi: "アン・リッツィンガー",
         url: "anne-litzinger.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -597,8 +742,10 @@ const manualEntries = [
         yomi: "アンセル・エイブラムス",
         url: "ansel-abrahms.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -606,8 +753,10 @@ const manualEntries = [
         yomi: "antagonizer",
         url: "antagonizer.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -615,8 +764,10 @@ const manualEntries = [
         yomi: "アントワーヌ",
         url: "antoine.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -624,8 +775,10 @@ const manualEntries = [
         yomi: "appalachia",
         url: "appalachia.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -633,8 +786,10 @@ const manualEntries = [
         yomi: "アパラチアン・アンティーク",
         url: "appalachian-antiques.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -642,8 +797,10 @@ const manualEntries = [
         yomi: "アパラチアの核発射コード",
         url: "appalachian-launch-codes.html",
         category: "ゲームプレイ",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -651,8 +808,11 @@ const manualEntries = [
         yomi: "アパラチア・ラジオ",
         url: "appalachian-radio.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -660,8 +820,10 @@ const manualEntries = [
         yomi: "水上トイレ小屋",
         url: "aquatic-outhouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -669,8 +831,11 @@ const manualEntries = [
         yomi: "アラデシュ",
         url: "aradesh.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -678,8 +843,10 @@ const manualEntries = [
         yomi: "アーケイド・ギャノン",
         url: "arcade-gannon.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -687,8 +854,10 @@ const manualEntries = [
         yomi: "アーチェリー・セット",
         url: "archery-set.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -696,8 +865,10 @@ const manualEntries = [
         yomi: "アーチボルド・サックス",
         url: "archibald-sachs.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -705,8 +876,10 @@ const manualEntries = [
         yomi: "Archie the Kid (アーチー・ザ・キッド)",
         url: "archie-the-kid.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -714,8 +887,10 @@ const manualEntries = [
         yomi: "アークジェット・システム",
         url: "arcjet-systems.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -723,8 +898,10 @@ const manualEntries = [
         yomi: "エリア51",
         url: "area-51.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -732,8 +909,10 @@ const manualEntries = [
         yomi: "アーガイル",
         url: "argyle.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -741,8 +920,10 @@ const manualEntries = [
         yomi: "自律型研究知能コンピューター",
         url: "aric-4.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -750,8 +931,10 @@ const manualEntries = [
         yomi: "Aries",
         url: "aries.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -759,8 +942,10 @@ const manualEntries = [
         yomi: "アークトス・ファーマ・バイオーム研究所",
         url: "arktos-pharma-biome-research-institute.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -768,8 +953,10 @@ const manualEntries = [
         yomi: "アークトス・ファーマ (企業)",
         url: "arktos-pharma-corporate.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -777,8 +964,10 @@ const manualEntries = [
         yomi: "アークトス・ファーマ",
         url: "arktos-pharma.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -786,8 +975,10 @@ const manualEntries = [
         yomi: "アーマー・エース",
         url: "armor-ace.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -795,8 +986,10 @@ const manualEntries = [
         yomi: "Arnold",
         url: "arnold-galaxy-news-network.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -804,8 +997,10 @@ const manualEntries = [
         yomi: "アーノルド（ギャラクシー・ニュース・ネットワーク）",
         url: "arnold-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -813,8 +1008,10 @@ const manualEntries = [
         yomi: "アート・ナップ",
         url: "art-knapp.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -822,8 +1019,10 @@ const manualEntries = [
         yomi: "ARTEMIS",
         url: "artemis-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -831,8 +1030,10 @@ const manualEntries = [
         yomi: "アーサー・マクソン (少年期)",
         url: "arthur-maxson.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -840,8 +1041,10 @@ const manualEntries = [
         yomi: "アーサー・ワームリー",
         url: "arthur-wormeley.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -849,8 +1052,10 @@ const manualEntries = [
         yomi: "アーティザンズ・ロウ・ショップス",
         url: "artisans-row-shoppes.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -858,8 +1063,10 @@ const manualEntries = [
         yomi: "アッシュ・ケイブ",
         url: "ash-cave.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -867,8 +1074,10 @@ const manualEntries = [
         yomi: "Ash Heap Marketplace",
         url: "ash-heap-marketplace.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -876,8 +1085,10 @@ const manualEntries = [
         yomi: "アッシュヒープ",
         url: "ash-heap.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -885,8 +1096,10 @@ const manualEntries = [
         yomi: "アッシュ・ローズ",
         url: "ash-rose.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -894,8 +1107,10 @@ const manualEntries = [
         yomi: "アシュモア",
         url: "ashmore.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -903,8 +1118,10 @@ const manualEntries = [
         yomi: "Aspirant",
         url: "aspirant-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -912,8 +1129,11 @@ const manualEntries = [
         yomi: "アサルトロン",
         url: "assaultron.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -921,8 +1141,11 @@ const manualEntries = [
         yomi: "Recovered Assaultron Head (回収されたアサルトロン頭部)",
         url: "assaultron_head.html",
         category: "武器",
-        appearance: ["Fallout 4","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -930,8 +1153,10 @@ const manualEntries = [
         yomi: "助監督",
         url: "assistant-director.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -939,8 +1164,10 @@ const manualEntries = [
         yomi: "ATHENA",
         url: "athena.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -948,8 +1175,10 @@ const manualEntries = [
         yomi: "アテネ武器庫",
         url: "athens-armory.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -957,8 +1186,10 @@ const manualEntries = [
         yomi: "アテネ精神病院",
         url: "athens-lunatic-asylum.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -966,8 +1197,10 @@ const manualEntries = [
         yomi: "アテネ",
         url: "athens.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -975,8 +1208,10 @@ const manualEntries = [
         yomi: "ATLAS天文台",
         url: "atlas-observatory.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -984,8 +1219,10 @@ const manualEntries = [
         yomi: "アトムキャッツのガレージ",
         url: "atom-cats-garage.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -993,8 +1230,10 @@ const manualEntries = [
         yomi: "アトミック・ラングラー・カジノ (Atomic Wrangler Casino)",
         url: "atomic-wrangler-casino.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1002,8 +1241,10 @@ const manualEntries = [
         yomi: "Aubrie Willem",
         url: "aubrie-willem.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1011,8 +1252,10 @@ const manualEntries = [
         yomi: "オーガスタス・オータム大佐",
         url: "augustus-autumn.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1020,8 +1263,10 @@ const manualEntries = [
         yomi: "オートマイナーDU-K3",
         url: "auto-miner-du-k3.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1029,8 +1274,10 @@ const manualEntries = [
         yomi: "オータム・エーカー・キャビン",
         url: "autumn-acre-cabin.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1038,8 +1285,10 @@ const manualEntries = [
         yomi: "エイバ・ローズ",
         url: "ava-rose.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1047,8 +1296,10 @@ const manualEntries = [
         yomi: "エヴァ・ウェスト",
         url: "ava-west.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1056,8 +1307,10 @@ const manualEntries = [
         yomi: "AVR Medical Center",
         url: "avr-medical-center.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1065,8 +1318,10 @@ const manualEntries = [
         yomi: "Axel (アクセル)",
         url: "axel-milepost-zero.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1074,8 +1329,10 @@ const manualEntries = [
         yomi: "アクセル",
         url: "axel-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1083,8 +1340,14 @@ const manualEntries = [
         yomi: "B.O.B.クッキングステーション",
         url: "b-o-b-cooking-station.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1092,8 +1355,13 @@ const manualEntries = [
         yomi: "B.O.S.アウトキャスト",
         url: "b-o-s-outcast.html",
         category: "勢力",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1101,8 +1369,10 @@ const manualEntries = [
         yomi: "バックパック",
         url: "backpack.html",
         category: "アイテム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1110,8 +1380,10 @@ const manualEntries = [
         yomi: "BADTFL地方局",
         url: "badtfl-regional-office.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1119,8 +1391,10 @@ const manualEntries = [
         yomi: "ベイリー家のキャビン",
         url: "bailey-family-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1128,8 +1402,10 @@ const manualEntries = [
         yomi: "ハゲのレイダー",
         url: "bald-raider.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1137,8 +1413,11 @@ const manualEntries = [
         yomi: "バナナ・ユッカの果実",
         url: "banana-yucca-fruit.html",
         category: "植物",
-        appearance: ["Fallout 76","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1146,8 +1425,10 @@ const manualEntries = [
         yomi: "Bar patron",
         url: "bar-patron-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1155,8 +1436,10 @@ const manualEntries = [
         yomi: "バーブ・ハワード",
         url: "barb-howard.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1164,8 +1447,10 @@ const manualEntries = [
         yomi: "バーブ",
         url: "barb-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1173,8 +1458,10 @@ const manualEntries = [
         yomi: "Barbara Elizabeth",
         url: "barbara-elizabeth.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1182,8 +1469,10 @@ const manualEntries = [
         yomi: "ドラム缶埋葬地",
         url: "barrel-burial.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1191,8 +1480,10 @@ const manualEntries = [
         yomi: "Bartender (Los Angeles)",
         url: "bartender-los-angeles.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1200,8 +1491,10 @@ const manualEntries = [
         yomi: "Bartender (Lucky 38)",
         url: "bartender-lucky-38.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1209,8 +1502,10 @@ const manualEntries = [
         yomi: "バーブ（フィリー）",
         url: "barv.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1218,8 +1513,10 @@ const manualEntries = [
         yomi: "バスティオン・パーク",
         url: "bastion-park.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1227,8 +1524,10 @@ const manualEntries = [
         yomi: "Batter",
         url: "batter.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1236,8 +1535,10 @@ const manualEntries = [
         yomi: "BBQシャック (TVシリーズ)",
         url: "bbq-shack-tv-series.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1245,8 +1546,10 @@ const manualEntries = [
         yomi: "ビーグル保安官補",
         url: "beagle.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1254,8 +1557,10 @@ const manualEntries = [
         yomi: "ビーンタウン醸造所",
         url: "beantown-brewery.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1263,8 +1568,10 @@ const manualEntries = [
         yomi: "ベックリーの獣の巣",
         url: "beast-of-beckleys-den.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1272,8 +1579,10 @@ const manualEntries = [
         yomi: "Beastmaster Lina",
         url: "beastmaster-lina.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1281,8 +1590,10 @@ const manualEntries = [
         yomi: "Beatrice the Wrench",
         url: "beatrice-the-wrench.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1290,8 +1601,10 @@ const manualEntries = [
         yomi: "ビーバー",
         url: "beaver.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1299,8 +1612,10 @@ const manualEntries = [
         yomi: "ベッカー農場",
         url: "becker-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1308,8 +1623,10 @@ const manualEntries = [
         yomi: "Beckett",
         url: "beckett-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1317,8 +1634,10 @@ const manualEntries = [
         yomi: "ベケット",
         url: "beckett.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1326,8 +1645,10 @@ const manualEntries = [
         yomi: "Beckley Mine Exhibit",
         url: "beckley-mine-exhibit.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1335,8 +1656,10 @@ const manualEntries = [
         yomi: "ベックリー",
         url: "beckley.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1344,8 +1667,10 @@ const manualEntries = [
         yomi: "ベックウィス農場",
         url: "beckwith-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1353,8 +1678,10 @@ const manualEntries = [
         yomi: "ベッドフォード駅",
         url: "bedford-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1362,8 +1689,10 @@ const manualEntries = [
         yomi: "ベルチング・ベティ",
         url: "belching-betty.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1371,8 +1700,10 @@ const manualEntries = [
         yomi: "ベルホップ",
         url: "bellhop.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1380,8 +1711,10 @@ const manualEntries = [
         yomi: "Overseer Benjamin",
         url: "benjamin-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1389,8 +1722,10 @@ const manualEntries = [
         yomi: "監督官ベンジャミン",
         url: "benjamin-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1398,8 +1733,10 @@ const manualEntries = [
         yomi: "ベニー",
         url: "benny.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1407,8 +1744,10 @@ const manualEntries = [
         yomi: "バークレー・スプリングス駅",
         url: "berkeley-springs-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1416,8 +1755,10 @@ const manualEntries = [
         yomi: "バークレー・スプリングス西",
         url: "berkeley-springs-west.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1425,8 +1766,10 @@ const manualEntries = [
         yomi: "バークレー・スプリングス",
         url: "berkeley-springs.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1434,8 +1777,10 @@ const manualEntries = [
         yomi: "Bernie",
         url: "bernie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1443,8 +1788,10 @@ const manualEntries = [
         yomi: "Bert",
         url: "bert-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1452,8 +1799,10 @@ const manualEntries = [
         yomi: "ベッシー",
         url: "bessie-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1461,8 +1810,10 @@ const manualEntries = [
         yomi: "ベティ・マンガノ",
         url: "bethy-mangano.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1470,8 +1821,10 @@ const manualEntries = [
         yomi: "Betty Hill",
         url: "betty-hill.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1479,8 +1832,10 @@ const manualEntries = [
         yomi: "ベティ・ピアソン",
         url: "betty-pearson.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1488,8 +1843,10 @@ const manualEntries = [
         yomi: "自転車の墓場",
         url: "bicycle-graveyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1497,8 +1854,10 @@ const manualEntries = [
         yomi: "Ranger Biff",
         url: "biff-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1506,8 +1865,10 @@ const manualEntries = [
         yomi: "ビッグ・アルのタトゥー・パーラー",
         url: "big-al-s-tattoo-parlor.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1515,8 +1876,10 @@ const manualEntries = [
         yomi: "ビッグ・アルのタトゥーパーラー",
         url: "big-als-tattoo.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1524,8 +1887,10 @@ const manualEntries = [
         yomi: "ビッグベンド・トンネル・キャンプサイト",
         url: "big-bend-tunnel-campsite.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1533,8 +1898,10 @@ const manualEntries = [
         yomi: "ビッグベンド・トンネル東口",
         url: "big-bend-tunnel-east.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1542,8 +1909,10 @@ const manualEntries = [
         yomi: "ビッグ・ベンド・トンネル西",
         url: "big-bend-tunnel-west.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1551,8 +1920,10 @@ const manualEntries = [
         yomi: "ビッグベンド・トンネル",
         url: "big-bend-tunnel.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1560,8 +1931,10 @@ const manualEntries = [
         yomi: "ビッグBの休憩所",
         url: "big-bs-rest-stop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1569,8 +1942,10 @@ const manualEntries = [
         yomi: "ビッグ・フレッドのBBQシャック",
         url: "big-freds-bbq-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1578,8 +1953,10 @@ const manualEntries = [
         yomi: "ビッグジョンのサルベージ場",
         url: "big-johns-salvage.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1587,8 +1964,10 @@ const manualEntries = [
         yomi: "ビッグ・モウ",
         url: "big-maw.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1596,8 +1975,10 @@ const manualEntries = [
         yomi: "ビッグ・マスキーのバケット",
         url: "big-muskies-bucket.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1605,8 +1986,10 @@ const manualEntries = [
         yomi: "ビッグ・パパ・モーのサンドイッチ小屋",
         url: "big-papa-moes.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1614,8 +1997,10 @@ const manualEntries = [
         yomi: "bigfoot",
         url: "bigfoot.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1623,8 +2008,10 @@ const manualEntries = [
         yomi: "ビギー",
         url: "biggie.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1632,8 +2019,10 @@ const manualEntries = [
         yomi: "Bill",
         url: "bill-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1641,8 +2030,10 @@ const manualEntries = [
         yomi: "ビルボードのジャンクキャンプ",
         url: "billboard-junk-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1650,8 +2041,10 @@ const manualEntries = [
         yomi: "ビリングス農家",
         url: "billings-homestead.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1659,8 +2052,10 @@ const manualEntries = [
         yomi: "ビリー",
         url: "billy-harpers-ferry.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1668,8 +2063,10 @@ const manualEntries = [
         yomi: "Biplane crash (Anchor farm)",
         url: "biplane-crash-anchor-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1677,8 +2074,10 @@ const manualEntries = [
         yomi: "バードハウス・リッジ",
         url: "birdhouse-ridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1686,8 +2085,10 @@ const manualEntries = [
         yomi: "バーディ",
         url: "birdie-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1695,8 +2096,10 @@ const manualEntries = [
         yomi: "バーディ",
         url: "birdie.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1704,8 +2107,10 @@ const manualEntries = [
         yomi: "Birdwatcher's platform",
         url: "birdwatchers-platform.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1713,8 +2118,10 @@ const manualEntries = [
         yomi: "誕生会に呼ばれた客たち",
         url: "birthday-party-guest.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1722,8 +2129,10 @@ const manualEntries = [
         yomi: "ビブ・E・リッジ",
         url: "biv.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1731,8 +2140,10 @@ const manualEntries = [
         yomi: "ブラックベア・ロッジ",
         url: "black-bear-lodge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1740,8 +2151,10 @@ const manualEntries = [
         yomi: "ブラックアイド・スーザン",
         url: "black-eyed-susan.html",
         category: "植物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1750,7 +2163,7 @@ const manualEntries = [
         url: "black-mountain-ordnance-works.html",
         category: "未分類",
         appearance: [],
-        date: "2026-05-02",
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1758,8 +2171,10 @@ const manualEntries = [
         yomi: "ブラックマウンテン兵器工場",
         url: "black-mountain-ordnance.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1767,8 +2182,10 @@ const manualEntries = [
         yomi: "黒色火薬ブランダーバス",
         url: "black-powder-blunderbuss.html",
         category: "武器",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1776,8 +2193,10 @@ const manualEntries = [
         yomi: "黒色火薬ピストル",
         url: "black-powder-pistol.html",
         category: "武器",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1785,8 +2204,10 @@ const manualEntries = [
         yomi: "ブラックアイ",
         url: "blackeye.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1794,8 +2215,10 @@ const manualEntries = [
         yomi: "ブラックウォーター鉱山",
         url: "blackwater-mine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1803,8 +2226,10 @@ const manualEntries = [
         yomi: "ブレイク・サンダース博士",
         url: "blake-saunders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1812,8 +2237,10 @@ const manualEntries = [
         yomi: "ブレイクの供物",
         url: "blakes-offering.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1821,8 +2248,10 @@ const manualEntries = [
         yomi: "ブリーディング・ケイトのグラインドハウス",
         url: "bleeding-kates-grindhouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1830,8 +2259,10 @@ const manualEntries = [
         yomi: "Blight (ブライト)",
         url: "blight.html",
         category: "植物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1839,8 +2270,11 @@ const manualEntries = [
         yomi: "ブラッドバグ",
         url: "blood-bug.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1848,8 +2282,10 @@ const manualEntries = [
         yomi: "ブラッドイーグル・キャンプ",
         url: "blood-eagle-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1857,8 +2293,10 @@ const manualEntries = [
         yomi: "ブラッド・イーグル",
         url: "blood-eagle.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1866,8 +2304,10 @@ const manualEntries = [
         yomi: "Bloodhound",
         url: "bloodhound-gleaming-depths.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1875,8 +2315,10 @@ const manualEntries = [
         yomi: "Bloodleaf",
         url: "bloodleaf.html",
         category: "植物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1884,8 +2326,10 @@ const manualEntries = [
         yomi: "血濡れ不屈ビルド",
         url: "bloody-indomitable-build.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1893,8 +2337,10 @@ const manualEntries = [
         yomi: "ブルーリッジ・バンクハウス",
         url: "blue-ridge-bunkhouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1902,8 +2348,10 @@ const manualEntries = [
         yomi: "ブルーリッジ・ギャラリー",
         url: "blue-ridge-gallery.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1911,8 +2359,10 @@ const manualEntries = [
         yomi: "ブルーリッジの宿泊小屋",
         url: "blue-ridge-lodge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -1920,8 +2370,10 @@ const manualEntries = [
         yomi: "ボブ・スペンサー",
         url: "bob-spencer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1929,8 +2381,10 @@ const manualEntries = [
         yomi: "Bodhi (ボーディ)",
         url: "bodhi.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1938,8 +2392,10 @@ const manualEntries = [
         yomi: "ボグ水路シェルター",
         url: "bog-channel-shelter.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1947,8 +2403,10 @@ const manualEntries = [
         yomi: "ボルトン・グリーンズ",
         url: "bolton-greens.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1956,8 +2414,10 @@ const manualEntries = [
         yomi: "ブーマー",
         url: "boomer-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1965,8 +2425,10 @@ const manualEntries = [
         yomi: "密造酒業者の小屋",
         url: "bootleggers-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1974,8 +2436,10 @@ const manualEntries = [
         yomi: "国境警備隊員",
         url: "border-agent.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1983,8 +2447,10 @@ const manualEntries = [
         yomi: "Dr. ボロス",
         url: "borous.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -1992,8 +2458,10 @@ const manualEntries = [
         yomi: "ボズリー",
         url: "bosley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2001,8 +2469,10 @@ const manualEntries = [
         yomi: "ボストン空港",
         url: "boston-airport.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2010,8 +2480,10 @@ const manualEntries = [
         yomi: "ボストン・コモン（スワンの池）",
         url: "boston-common.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2019,8 +2491,10 @@ const manualEntries = [
         yomi: "ボストン市長用シェルター",
         url: "boston-mayoral-shelter.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2028,8 +2502,10 @@ const manualEntries = [
         yomi: "ボストン警察配給所",
         url: "boston-police-rationing-site.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2037,8 +2513,10 @@ const manualEntries = [
         yomi: "ボストン公共図書館",
         url: "boston-public-library.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2046,8 +2524,14 @@ const manualEntries = [
         yomi: "ボトルキャップ",
         url: "bottle-cap.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2055,8 +2539,11 @@ const manualEntries = [
         yomi: "ボトル",
         url: "bottle.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2064,8 +2551,10 @@ const manualEntries = [
         yomi: "ボイルストンクラブ",
         url: "boylston-club.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2073,8 +2562,11 @@ const manualEntries = [
         yomi: "バラモン",
         url: "brahmin.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2082,8 +2574,13 @@ const manualEntries = [
         yomi: "脳みそキノコ",
         url: "brain-mushroom.html",
         category: "植物",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2091,8 +2588,14 @@ const manualEntries = [
         yomi: "ブラムコ・ブランド・マック＆チーズ",
         url: "bramco-brand-mac-and-cheese.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2100,8 +2603,10 @@ const manualEntries = [
         yomi: "ブラムウェル",
         url: "bramwell.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2109,8 +2614,10 @@ const manualEntries = [
         yomi: "Head Engineer Brass",
         url: "brass.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2118,8 +2625,10 @@ const manualEntries = [
         yomi: "ブラクソンの医療品店",
         url: "braxsons-quality-medical.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2127,8 +2636,10 @@ const manualEntries = [
         yomi: "ブレイクハート・バンクス",
         url: "breakheart-banks.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2136,8 +2647,10 @@ const manualEntries = [
         yomi: "ブリム採石場",
         url: "brim-quarry.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2145,8 +2658,12 @@ const manualEntries = [
         yomi: "ブロートフライ",
         url: "broat-fries_2.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2154,8 +2671,10 @@ const manualEntries = [
         yomi: "ブロディ・トーランス",
         url: "brody-torrance.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2163,8 +2682,10 @@ const manualEntries = [
         yomi: "バーナビー医師",
         url: "brotherhood-barnaby.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2172,8 +2693,10 @@ const manualEntries = [
         yomi: "ブラザーフッドのバリー",
         url: "brotherhood-barry.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2181,8 +2704,10 @@ const manualEntries = [
         yomi: "ブラザーフッド・ベース",
         url: "brotherhood-base.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2190,8 +2715,10 @@ const manualEntries = [
         yomi: "Brotherhood Buck",
         url: "brotherhood-buck.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2199,8 +2726,10 @@ const manualEntries = [
         yomi: "B.O.S. 共同墓地",
         url: "brotherhood-graveyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2208,8 +2737,10 @@ const manualEntries = [
         yomi: "ブラザーフッドの衛生兵",
         url: "brotherhood-medic.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2217,7 +2748,9 @@ const manualEntries = [
         yomi: "ブラザーフッド・オブ・スティール",
         url: "brotherhood-of-steel.html",
         category: "勢力",
-        appearance: ["Fallout 全般"],
+        appearance: [
+            "Fallout 全般"
+        ],
         date: "2026-05-03",
         status: "published"
     },
@@ -2226,8 +2759,10 @@ const manualEntries = [
         yomi: "ブラザーフッドのオフィサー（将校）",
         url: "brotherhood-officer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2235,8 +2770,10 @@ const manualEntries = [
         yomi: "Brotherhood soldier",
         url: "brotherhood-soldier-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2244,8 +2781,10 @@ const manualEntries = [
         yomi: "B.O.S.ベンダー",
         url: "brotherhood-vendor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2253,8 +2792,10 @@ const manualEntries = [
         yomi: "ブルーザー",
         url: "bruiser-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2262,8 +2803,10 @@ const manualEntries = [
         yomi: "Bruno the Strongbot (ブルーノ・ザ・ストロングボット)",
         url: "bruno-the-strongbot.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2271,8 +2814,13 @@ const manualEntries = [
         yomi: "バブルガム",
         url: "bubble-gum.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2280,8 +2828,10 @@ const manualEntries = [
         yomi: "バブルス",
         url: "bubbles.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2289,8 +2839,10 @@ const manualEntries = [
         yomi: "バド・アスキンス",
         url: "bud-askins.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2299,7 +2851,7 @@ const manualEntries = [
         url: "buds_buds.html",
         category: "未分類",
         appearance: [],
-        date: "2026-05-02",
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2307,8 +2859,10 @@ const manualEntries = [
         yomi: "ケン・ユアーズ",
         url: "buds_full.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2316,8 +2870,10 @@ const manualEntries = [
         yomi: "バッファロー・ゴードの種",
         url: "buffalo-gourd-seed.html",
         category: "植物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2325,8 +2881,14 @@ const manualEntries = [
         yomi: "バファウト",
         url: "buffout.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2334,8 +2896,10 @@ const manualEntries = [
         yomi: "バンカーヒル",
         url: "bunker-hill.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2343,8 +2907,10 @@ const manualEntries = [
         yomi: "バーデット邸",
         url: "burdette-manor.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2352,8 +2918,10 @@ const manualEntries = [
         yomi: "大柄なレイダー",
         url: "burly-raider.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2361,8 +2929,10 @@ const manualEntries = [
         yomi: "バーニング・スプリングス（地域）",
         url: "burning-springs-region.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2370,8 +2940,10 @@ const manualEntries = [
         yomi: "バーニング・スプリングス",
         url: "burning-springs.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2379,8 +2951,12 @@ const manualEntries = [
         yomi: "ブッチ・デロリア",
         url: "butch-deloria.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2388,8 +2964,10 @@ const manualEntries = [
         yomi: "バズソー",
         url: "buzzsaw.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2397,8 +2975,10 @@ const manualEntries = [
         yomi: "C.A.M.P. (建設組立用移動プラットフォーム)",
         url: "c-a-m-p-mobile-platform-for-construction-assembly.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2406,8 +2986,10 @@ const manualEntries = [
         yomi: "Cabbage",
         url: "cabbage.html",
         category: "植物",
-        appearance: ["Fallout 2"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 2"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2415,8 +2997,10 @@ const manualEntries = [
         yomi: "カボット邸（キャボット邸）",
         url: "cabot-house.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2424,8 +3008,10 @@ const manualEntries = [
         yomi: "キャデラック・ボブ",
         url: "cadillac-bob.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2433,8 +3019,10 @@ const manualEntries = [
         yomi: "シーザー・リージョンのキャンプ",
         url: "caesar-s-legion-camp.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2442,8 +3030,10 @@ const manualEntries = [
         yomi: "シーザー",
         url: "caesar-tv.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2451,8 +3041,10 @@ const manualEntries = [
         yomi: "シーザー (エドワード・サロウ)",
         url: "caesar.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2460,8 +3052,10 @@ const manualEntries = [
         yomi: "ケイト",
         url: "cait.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2469,8 +3063,10 @@ const manualEntries = [
         yomi: "ケイレブ・カーソン",
         url: "caleb-carson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2478,8 +3074,10 @@ const manualEntries = [
         yomi: "Caleb Fisher",
         url: "caleb-fisher.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2487,8 +3085,10 @@ const manualEntries = [
         yomi: "ケイレブ・ウィドマー",
         url: "caleb-widmer.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2496,8 +3096,10 @@ const manualEntries = [
         yomi: "カリフォルニア・クレスト・スタジオ",
         url: "california-crest-studios.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2505,8 +3107,10 @@ const manualEntries = [
         yomi: "カルバート教授",
         url: "calvert.html",
         category: "人物",
-        appearance: ["Fallout 3 (Point Lookout)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3 (Point Lookout)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2514,8 +3118,10 @@ const manualEntries = [
         yomi: "ケンブリッジ警察署",
         url: "cambridge-police-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2523,8 +3129,10 @@ const manualEntries = [
         yomi: "ケンブリッジポリマー研究所",
         url: "cambridge-polymer-labs.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2532,8 +3140,10 @@ const manualEntries = [
         yomi: "カムデンパーク・セキュリティ",
         url: "camden-park-security.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2541,8 +3151,10 @@ const manualEntries = [
         yomi: "カムデンパーク",
         url: "camden-park.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2550,8 +3162,10 @@ const manualEntries = [
         yomi: "キャンプ・アダムス見張り台",
         url: "camp-adams-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2559,8 +3173,10 @@ const manualEntries = [
         yomi: "キャンプ・アダムス",
         url: "camp-adams.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2568,8 +3184,10 @@ const manualEntries = [
         yomi: "キャンプ・ゴルフのテント",
         url: "camp-golf-tent.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2577,8 +3195,10 @@ const manualEntries = [
         yomi: "キャンプ・ゴルフ",
         url: "camp-golf.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2586,8 +3206,10 @@ const manualEntries = [
         yomi: "キャンプ・マクリントック",
         url: "camp-mcclintock.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2595,8 +3217,10 @@ const manualEntries = [
         yomi: "キャンプ・ベンチャー",
         url: "camp-venture.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2604,8 +3228,10 @@ const manualEntries = [
         yomi: "カナダの反乱者",
         url: "canadian-rebel.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2613,8 +3239,11 @@ const manualEntries = [
         yomi: "キャッピー",
         url: "cappy.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2622,8 +3251,13 @@ const manualEntries = [
         yomi: "キャプテン・コスモス",
         url: "captain-cosmos.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2631,8 +3265,10 @@ const manualEntries = [
         yomi: "カーヘンジ",
         url: "carhenge-fo76.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2640,8 +3276,10 @@ const manualEntries = [
         yomi: "DJカール",
         url: "carl-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2649,8 +3287,10 @@ const manualEntries = [
         yomi: "カールトン鉱山",
         url: "carleton-mine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2658,8 +3298,10 @@ const manualEntries = [
         yomi: "キャロル・パットナム",
         url: "carol-putnam.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2667,8 +3309,10 @@ const manualEntries = [
         yomi: "キャロル・スウィーニー",
         url: "carol-sweeney.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2676,8 +3320,10 @@ const manualEntries = [
         yomi: "キャロリン",
         url: "carolyn.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2685,8 +3331,10 @@ const manualEntries = [
         yomi: "carrie-boyd",
         url: "carrie-boyd.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2694,8 +3342,10 @@ const manualEntries = [
         yomi: "「長い茎に繊細な白い花をつけた標本。食用と思われ、農場で栽培されている変異ニンジンとの関連が疑われる。性質が不明なため、摂取には十分注意されたし。」<br>\r\n                <span style=\"font-size: 0.85em; color: #888;\">— シニア・スクライブ ネリア（プリドウェン植物学ターミナル）</span>",
         url: "carrot-flower.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2703,8 +3353,10 @@ const manualEntries = [
         yomi: "carrot",
         url: "carrot.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2712,8 +3364,10 @@ const manualEntries = [
         yomi: "カーソン家のバンカー",
         url: "carson-family-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2721,8 +3375,10 @@ const manualEntries = [
         yomi: "Carver Timmerman",
         url: "carver-timmerman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2730,8 +3386,10 @@ const manualEntries = [
         yomi: "ケイシー・シュルツ",
         url: "casey-schulz.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2739,8 +3397,10 @@ const manualEntries = [
         yomi: "カサンドラ・ホーソーン",
         url: "cassandra-hawthorne.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2748,8 +3408,10 @@ const manualEntries = [
         yomi: "cassandra-moore",
         url: "cassandra-moore.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2757,8 +3419,10 @@ const manualEntries = [
         yomi: "キャシー・ハロウェイ",
         url: "cassie-halloway.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2766,8 +3430,10 @@ const manualEntries = [
         yomi: "catarax",
         url: "catarax.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -2775,8 +3441,10 @@ const manualEntries = [
         yomi: "キャシー",
         url: "cathy-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2784,8 +3452,10 @@ const manualEntries = [
         yomi: "キャベンディッシュ",
         url: "cavendish.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2802,8 +3472,10 @@ const manualEntries = [
         yomi: "Cavit Klein",
         url: "cavit-klein.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2811,8 +3483,10 @@ const manualEntries = [
         yomi: "セドリック",
         url: "cedric.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2820,8 +3494,10 @@ const manualEntries = [
         yomi: "Census taker",
         url: "census-taker.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2829,8 +3505,10 @@ const manualEntries = [
         yomi: "セントラル・マウンテン見張り台",
         url: "central-mountain-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2838,8 +3516,10 @@ const manualEntries = [
         yomi: "鎖で封じられた農場",
         url: "chained-up-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2847,8 +3527,10 @@ const manualEntries = [
         yomi: "Chally the moo-moo",
         url: "chally-the-moo-moo.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2856,8 +3538,10 @@ const manualEntries = [
         yomi: "先見の明ある賢きチャールズ",
         url: "charles-cult-of-the-mothman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2865,8 +3549,10 @@ const manualEntries = [
         yomi: "チャールズビュー円形劇場",
         url: "charles-view-amphitheater.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2874,8 +3560,10 @@ const manualEntries = [
         yomi: "チャールズ・ホワイトナイフ",
         url: "charles-whiteknife.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2883,8 +3571,10 @@ const manualEntries = [
         yomi: "チャールストン議事堂ビル",
         url: "charleston-capitol-building.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2892,8 +3582,10 @@ const manualEntries = [
         yomi: "チャールストン議事堂裁判所",
         url: "charleston-capitol-courthouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2901,8 +3593,10 @@ const manualEntries = [
         yomi: "チャールストン議事堂 車両管理局",
         url: "charleston-capitol-dmv.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2910,8 +3604,10 @@ const manualEntries = [
         yomi: "チャールストン緊急政府",
         url: "charleston-emergency-government.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2919,8 +3615,10 @@ const manualEntries = [
         yomi: "チャールストン消防署",
         url: "charleston-fire-department.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2928,8 +3626,10 @@ const manualEntries = [
         yomi: "チャールストン・ヘラルド新聞社ビル",
         url: "charleston-herald-building.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2937,8 +3637,10 @@ const manualEntries = [
         yomi: "チャールストン埋立地",
         url: "charleston-landfill.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2946,8 +3648,10 @@ const manualEntries = [
         yomi: "チャールストン駅",
         url: "charleston-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2955,8 +3659,10 @@ const manualEntries = [
         yomi: "チャールストン操車場",
         url: "charleston-trainyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2964,8 +3670,10 @@ const manualEntries = [
         yomi: "チャールストン",
         url: "charleston.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2973,8 +3681,10 @@ const manualEntries = [
         yomi: "カロン",
         url: "charon.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2982,8 +3692,10 @@ const manualEntries = [
         yomi: "チェイス・パウエル",
         url: "chase-powell.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -2991,8 +3703,10 @@ const manualEntries = [
         yomi: "チェイス・\"ディガー\"・テリア",
         url: "chase-terrier.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3000,8 +3714,10 @@ const manualEntries = [
         yomi: "チェックポイント・キャニオン",
         url: "checkpoint-canyon.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3009,8 +3725,10 @@ const manualEntries = [
         yomi: "陽気な養蜂家",
         url: "cheerful-beekeeper.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3018,8 +3736,10 @@ const manualEntries = [
         yomi: "チーズハウス",
         url: "cheese-haus.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3027,8 +3747,10 @@ const manualEntries = [
         yomi: "ケム・アンド・フープ小屋",
         url: "chem-and-hoop-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3036,8 +3758,10 @@ const manualEntries = [
         yomi: "Chem and Hoop Shack",
         url: "chem-hoop-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3045,8 +3769,10 @@ const manualEntries = [
         yomi: "シェリーズ",
         url: "cherise.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3054,8 +3780,10 @@ const manualEntries = [
         yomi: "チェストナット・ヒロック・タンク",
         url: "chestnut-hillock-reservoir.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3063,8 +3791,10 @@ const manualEntries = [
         yomi: "チェスウィック",
         url: "cheswick.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3072,8 +3802,10 @@ const manualEntries = [
         yomi: "チェット・ジュニア（チェットの父）",
         url: "chet-jr-mentioned.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3081,8 +3813,10 @@ const manualEntries = [
         yomi: "チェット・ジュニア",
         url: "chet-jr.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3090,8 +3824,10 @@ const manualEntries = [
         yomi: "チェット",
         url: "chet-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3099,8 +3835,10 @@ const manualEntries = [
         yomi: "チェット",
         url: "chet-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3108,8 +3846,10 @@ const manualEntries = [
         yomi: "鶏集めの男",
         url: "chicken-collector.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3117,8 +3857,12 @@ const manualEntries = [
         yomi: "ニワトリ",
         url: "chicken.html",
         category: "クリーチャー",
-        appearance: ["Fallout 4","Fallout 76","Fallout TV series"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4",
+            "Fallout 76",
+            "Fallout TV series"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3126,8 +3870,10 @@ const manualEntries = [
         yomi: "チーフ・ハンロン",
         url: "chief-hanlon.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3135,8 +3881,11 @@ const manualEntries = [
         yomi: "中華人民共和国",
         url: "china.html",
         category: "勢力",
-        appearance: ["Fallout 3","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3144,8 +3893,10 @@ const manualEntries = [
         yomi: "中国ステルスアーマー（黒鬼）",
         url: "chinese-stealth-armor.html",
         category: "アーマー",
-        appearance: ["Fallout シリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout シリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3153,8 +3904,10 @@ const manualEntries = [
         yomi: "クロエ・グラス",
         url: "chloe-glass.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3162,8 +3915,10 @@ const manualEntries = [
         yomi: "Chloe the Clown",
         url: "chloe-the-clown.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3171,8 +3926,10 @@ const manualEntries = [
         yomi: "クリス・ハバーサム",
         url: "chris-haversam.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3180,8 +3937,10 @@ const manualEntries = [
         yomi: "クリスティーン・ロイス",
         url: "christine-royce.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3189,8 +3948,10 @@ const manualEntries = [
         yomi: "クリスティン・マリ",
         url: "christyn-mari.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3198,8 +3959,14 @@ const manualEntries = [
         yomi: "クライスラス・モータース・コーポレーション",
         url: "chryslus-motors-corporation.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3207,8 +3974,10 @@ const manualEntries = [
         yomi: "シンディ・ホロウェイ",
         url: "cindy-holloway.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3216,8 +3985,13 @@ const manualEntries = [
         yomi: "サークルG",
         url: "circle-g.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3225,8 +3999,10 @@ const manualEntries = [
         yomi: "C.I.T.廃墟",
         url: "cit-ruins.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3234,8 +4010,10 @@ const manualEntries = [
         yomi: "クレア・フェルドマン",
         url: "claire-feldman.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3243,8 +4021,10 @@ const manualEntries = [
         yomi: "Claire Hudson",
         url: "claire-hudson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3252,8 +4032,10 @@ const manualEntries = [
         yomi: "クランシー邸",
         url: "clancy-manor.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3261,8 +4043,10 @@ const manualEntries = [
         yomi: "クランシー邸宅",
         url: "clancy-mansion.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3270,8 +4054,10 @@ const manualEntries = [
         yomi: "Clara Song",
         url: "clara-song.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3279,8 +4065,10 @@ const manualEntries = [
         yomi: "通訳官クラレンス",
         url: "clarence-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3288,8 +4076,10 @@ const manualEntries = [
         yomi: "クラリス",
         url: "clarice.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3297,8 +4087,10 @@ const manualEntries = [
         yomi: "クラーク",
         url: "clark-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3306,8 +4098,10 @@ const manualEntries = [
         yomi: "クラークスバーグ射撃クラブ",
         url: "clarksburg-shooting-club.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3315,8 +4109,10 @@ const manualEntries = [
         yomi: "クラークスバーグ",
         url: "clarksburg.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3324,8 +4120,10 @@ const manualEntries = [
         yomi: "クラウディア",
         url: "claudia-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3333,8 +4131,10 @@ const manualEntries = [
         yomi: "クラウス＆カンパニー",
         url: "claus-and-co.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3342,8 +4142,10 @@ const manualEntries = [
         yomi: "B.O.S.クレリック",
         url: "cleric.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3351,8 +4153,10 @@ const manualEntries = [
         yomi: "崖上展望キャビン",
         url: "clifftop-vista-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3360,8 +4164,10 @@ const manualEntries = [
         yomi: "クリフウォーク・トラック",
         url: "cliffwalk-track.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3369,8 +4175,10 @@ const manualEntries = [
         yomi: "クリフウォッチ",
         url: "cliffwatch.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3378,8 +4186,10 @@ const manualEntries = [
         yomi: "クローバー",
         url: "clover.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3387,8 +4197,10 @@ const manualEntries = [
         yomi: "Clyde",
         url: "clyde.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3396,8 +4208,10 @@ const manualEntries = [
         yomi: "沿岸警備隊のピア",
         url: "coast-guard-pier.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3405,8 +4219,10 @@ const manualEntries = [
         yomi: "沿岸のコテージ",
         url: "coastal-cottage.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3414,8 +4230,10 @@ const manualEntries = [
         yomi: "コブルトン農場",
         url: "cobbleton-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3423,8 +4241,10 @@ const manualEntries = [
         yomi: "Cobby",
         url: "cobby.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3432,8 +4252,12 @@ const manualEntries = [
         yomi: "コズワース",
         url: "codsworth.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3441,8 +4265,10 @@ const manualEntries = [
         yomi: "コール・カーバー",
         url: "cole-carver.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3450,8 +4276,10 @@ const manualEntries = [
         yomi: "コール",
         url: "cole-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3459,8 +4287,10 @@ const manualEntries = [
         yomi: "コリン・モリアティ",
         url: "colin-moriarty.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3468,8 +4298,10 @@ const manualEntries = [
         yomi: "コリン・パットナム",
         url: "colin-putnam.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3477,8 +4309,10 @@ const manualEntries = [
         yomi: "Collector Murmrgh (コレクター・マームル / 没データ)",
         url: "collector-murmrgh.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3486,8 +4320,10 @@ const manualEntries = [
         yomi: "Collectron (コレクトロン)",
         url: "collectron.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3495,8 +4331,10 @@ const manualEntries = [
         yomi: "カレッジスクエア",
         url: "college-square.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3504,8 +4342,10 @@ const manualEntries = [
         yomi: "ケリー大佐記念碑",
         url: "colonel-kelly-monument.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3513,8 +4353,10 @@ const manualEntries = [
         yomi: "Colonel",
         url: "colonel.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3522,8 +4364,10 @@ const manualEntries = [
         yomi: "コンバットゾーン",
         url: "combat-zone.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3531,8 +4375,10 @@ const manualEntries = [
         yomi: "コミンスキー軍曹",
         url: "cominsky.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3540,7 +4386,10 @@ const manualEntries = [
         yomi: "コミーカミカゼ",
         url: "commie-kazi.html",
         category: "アイテム",
-        appearance: ["Fallout 4","Fallout 76"],
+        appearance: [
+            "Fallout 4",
+            "Fallout 76"
+        ],
         date: "2026-05-01",
         status: "published"
     },
@@ -3549,8 +4398,10 @@ const manualEntries = [
         yomi: "コミッショナー・カオス",
         url: "commissioner-chaos.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3558,8 +4409,10 @@ const manualEntries = [
         yomi: "コンコード市街地へのアクセス（地下水路）",
         url: "concord-civic-access.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3567,8 +4420,10 @@ const manualEntries = [
         yomi: "コンコード",
         url: "concord.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3576,8 +4431,11 @@ const manualEntries = [
         yomi: "コンスタンティン・チェイス",
         url: "constantine-chase.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3585,8 +4443,10 @@ const manualEntries = [
         yomi: "改装弾薬工場",
         url: "converted-munitions-factory.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3594,8 +4454,10 @@ const manualEntries = [
         yomi: "陽気な歴史家",
         url: "convivial-historian.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3603,8 +4465,10 @@ const manualEntries = [
         yomi: "クック・クック",
         url: "cook-cook.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3612,8 +4476,10 @@ const manualEntries = [
         yomi: "コロナドのエルダー",
         url: "coronado-elder.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3621,8 +4487,10 @@ const manualEntries = [
         yomi: "コロナドのナイト",
         url: "coronado-knight.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3630,8 +4498,10 @@ const manualEntries = [
         yomi: "コルベガ組立工場",
         url: "corvega-assembly-plant.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3639,8 +4509,11 @@ const manualEntries = [
         yomi: "コズミック・ナイフ",
         url: "cosmic-knife.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3648,8 +4521,10 @@ const manualEntries = [
         yomi: "カウンティー・クロッシング",
         url: "county-crossing.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3657,8 +4532,10 @@ const manualEntries = [
         yomi: "コートニー・ケリー",
         url: "courtney-kelly.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3666,8 +4543,10 @@ const manualEntries = [
         yomi: "コベナント",
         url: "covenant.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3675,8 +4554,10 @@ const manualEntries = [
         yomi: "屋根付き橋",
         url: "covered-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3684,8 +4565,10 @@ const manualEntries = [
         yomi: "カウスポット乳製品製造所",
         url: "cow-spots-creamery.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3693,8 +4576,10 @@ const manualEntries = [
         yomi: "カウスポット乳製品製造所",
         url: "cowspot-dairy.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3702,8 +4587,10 @@ const manualEntries = [
         yomi: "クレイグ・ブーン",
         url: "craig-boone.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3711,8 +4598,10 @@ const manualEntries = [
         yomi: "クランベリー湿原",
         url: "cranberry-bog.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3720,8 +4609,10 @@ const manualEntries = [
         yomi: "クランベリー・グレイド",
         url: "cranberry-glade.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3729,8 +4620,10 @@ const manualEntries = [
         yomi: "クランベリー・ハイツ",
         url: "cranberry-heights.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3738,8 +4631,10 @@ const manualEntries = [
         yomi: "クランベリー島の沼地",
         url: "cranberry-island-bog.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Far Harbor)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Far Harbor)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3747,8 +4642,10 @@ const manualEntries = [
         yomi: "Crane",
         url: "crane-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3756,8 +4653,10 @@ const manualEntries = [
         yomi: "クレーン",
         url: "crane.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3765,8 +4664,10 @@ const manualEntries = [
         yomi: "墜落した複葉機（グラニンジャー農場）",
         url: "crashed-biplane-graninger.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3774,8 +4675,10 @@ const manualEntries = [
         yomi: "墜落した飛行機",
         url: "crashed-plane-mire.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3783,8 +4686,10 @@ const manualEntries = [
         yomi: "クレーター・オブ・アトム",
         url: "crater-of-atom.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3792,8 +4697,10 @@ const manualEntries = [
         yomi: "クレーター前哨基地",
         url: "crater-outpost.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3801,8 +4708,10 @@ const manualEntries = [
         yomi: "クレーター監視所",
         url: "crater-watchstation.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3810,8 +4719,10 @@ const manualEntries = [
         yomi: "クリード",
         url: "creed.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3819,8 +4730,10 @@ const manualEntries = [
         yomi: "クリークサイド・サンデュー叢",
         url: "creekside-sundew-grove.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3828,8 +4741,10 @@ const manualEntries = [
         yomi: "クレバス・ダム",
         url: "crevasse-dam.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3837,8 +4752,10 @@ const manualEntries = [
         yomi: "クリムゾン・プロスペクト",
         url: "crimson-prospect.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3846,8 +4763,10 @@ const manualEntries = [
         yomi: "批評家",
         url: "critic.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3855,8 +4774,10 @@ const manualEntries = [
         yomi: "クロスロード",
         url: "crossroad.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3864,8 +4785,10 @@ const manualEntries = [
         yomi: "クループ家の館",
         url: "croup-manor.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3873,8 +4796,10 @@ const manualEntries = [
         yomi: "Crowley",
         url: "crowley-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3882,8 +4807,11 @@ const manualEntries = [
         yomi: "クルセイダーピストル",
         url: "crusader-pistol.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3891,8 +4819,10 @@ const manualEntries = [
         yomi: "クラッチリー",
         url: "crutchley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3900,8 +4830,10 @@ const manualEntries = [
         yomi: "クリプトス",
         url: "cryptos.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3909,8 +4841,10 @@ const manualEntries = [
         yomi: "教団のトーテム",
         url: "cultist-totem.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3918,8 +4852,10 @@ const manualEntries = [
         yomi: "カニンガム",
         url: "cunningham-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3927,8 +4863,10 @@ const manualEntries = [
         yomi: "キュリー",
         url: "curie.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3936,8 +4874,10 @@ const manualEntries = [
         yomi: "カトラー・ベンド",
         url: "cutler-bend.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3945,8 +4885,10 @@ const manualEntries = [
         yomi: "カットスロート",
         url: "cutthroats.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3954,8 +4896,10 @@ const manualEntries = [
         yomi: "シンノック",
         url: "cynnoc.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3963,8 +4907,10 @@ const manualEntries = [
         yomi: "シンシア",
         url: "cynthia.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3972,8 +4918,10 @@ const manualEntries = [
         yomi: "D.B.テクニカルハイスクール",
         url: "d-b-technical-high-school.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -3981,8 +4929,10 @@ const manualEntries = [
         yomi: "ダブニー農家",
         url: "dabney-homestead.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3990,8 +4940,10 @@ const manualEntries = [
         yomi: "Dagger",
         url: "dagger.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -3999,8 +4951,10 @@ const manualEntries = [
         yomi: "ダガーズ・デン",
         url: "daggers-den.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4008,8 +4962,10 @@ const manualEntries = [
         yomi: "Dagger&#39;s lieutenant",
         url: "daggers-lieutenant.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4017,8 +4973,10 @@ const manualEntries = [
         yomi: "デイリー・オプス",
         url: "daily-ops.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4026,8 +4984,10 @@ const manualEntries = [
         yomi: "Dr. ダラ",
         url: "dala.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4035,8 +4995,10 @@ const manualEntries = [
         yomi: "ダルトン・ファーム",
         url: "dalton-farm.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Far Harbor)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Far Harbor)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4044,8 +5006,10 @@ const manualEntries = [
         yomi: "ダン",
         url: "dan-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4053,8 +5017,10 @@ const manualEntries = [
         yomi: "デイン",
         url: "dane-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4062,8 +5028,10 @@ const manualEntries = [
         yomi: "デイン",
         url: "dane-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4071,8 +5039,10 @@ const manualEntries = [
         yomi: "ダニエル",
         url: "daniel-honest-hearts.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4080,8 +5050,10 @@ const manualEntries = [
         yomi: "ダニエル・ホーンライト",
         url: "daniel-hornwright.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4089,8 +5061,10 @@ const manualEntries = [
         yomi: "Knight Shin",
         url: "daniel-shin.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4098,8 +5072,10 @@ const manualEntries = [
         yomi: "ダニエル",
         url: "daniel-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4107,8 +5083,10 @@ const manualEntries = [
         yomi: "ダニーロ",
         url: "danilo.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4116,8 +5094,10 @@ const manualEntries = [
         yomi: "パラディン・ダンス",
         url: "danse.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4125,8 +5105,10 @@ const manualEntries = [
         yomi: "Daphne",
         url: "daphne.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4134,8 +5116,10 @@ const manualEntries = [
         yomi: "ダリオン・ジョーンズ少佐",
         url: "darion-jones.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4143,8 +5127,10 @@ const manualEntries = [
         yomi: "ダーリン・シスターの研究所",
         url: "darling-sister-s-institute.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4152,8 +5138,10 @@ const manualEntries = [
         yomi: "ダーリング姉妹の研究室",
         url: "darling-sisters-lab.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4161,8 +5149,10 @@ const manualEntries = [
         yomi: "Darwin the Devil (ダーウィン・ザ・デビル)",
         url: "darwin-the-devil.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4170,8 +5160,10 @@ const manualEntries = [
         yomi: "Dassa Ben-Ami",
         url: "dassa-ben-ami.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4179,8 +5171,10 @@ const manualEntries = [
         yomi: "デイブ大統領",
         url: "dave-fo3.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4188,8 +5182,10 @@ const manualEntries = [
         yomi: "Dave",
         url: "dave-ghoul-within.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4197,8 +5193,10 @@ const manualEntries = [
         yomi: "Davenport",
         url: "davenport.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4206,8 +5204,10 @@ const manualEntries = [
         yomi: "デイヴィー",
         url: "davey-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4215,8 +5215,10 @@ const manualEntries = [
         yomi: "Davey (デイヴィー)",
         url: "davey-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4224,8 +5226,10 @@ const manualEntries = [
         yomi: "デイヴィー",
         url: "davey-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4233,8 +5237,10 @@ const manualEntries = [
         yomi: "David Thorpe",
         url: "david-thorpe.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4242,8 +5248,10 @@ const manualEntries = [
         yomi: "デイビー・テイラー",
         url: "davie-taylor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4251,8 +5259,10 @@ const manualEntries = [
         yomi: "D.B.テクニカルハイスクール",
         url: "db-technical-high-school.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4260,8 +5270,10 @@ const manualEntries = [
         yomi: "ディーコン",
         url: "deacon.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4269,8 +5281,10 @@ const manualEntries = [
         yomi: "ディーン・ドミノ",
         url: "dean-domino.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4278,8 +5292,10 @@ const manualEntries = [
         yomi: "デスクロー・アイランド",
         url: "deathclaw-island.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4287,8 +5303,15 @@ const manualEntries = [
         yomi: "チE��クロー",
         url: "deathclaw.html",
         category: "クリーチャー",
-        appearance: ["Fallout","Fallout 2","Fallout 3","Fallout: New Vegas","Fallout 4","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout",
+            "Fallout 2",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout 4",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4296,8 +5319,10 @@ const manualEntries = [
         yomi: "デスクロース",
         url: "deathklaus.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4305,8 +5330,10 @@ const manualEntries = [
         yomi: "デコラ",
         url: "decorat.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4314,8 +5341,10 @@ const manualEntries = [
         yomi: "deep-sleep-project",
         url: "deep-sleep-project.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4323,8 +5352,10 @@ const manualEntries = [
         yomi: "デル・ローソン",
         url: "del-lawson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4332,8 +5363,10 @@ const manualEntries = [
         yomi: "Del Walsh",
         url: "del-walsh.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4341,8 +5374,10 @@ const manualEntries = [
         yomi: "デラノ・グレンジ",
         url: "delano-grange.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4350,8 +5385,10 @@ const manualEntries = [
         yomi: "デルバート・ウィンターズ",
         url: "delbert-winters.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4359,8 +5396,10 @@ const manualEntries = [
         yomi: "デント＆サンズ建設",
         url: "dent-and-sons-construction.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4368,8 +5407,10 @@ const manualEntries = [
         yomi: "歯医者兼理髪師",
         url: "dentist-barber.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4377,8 +5418,10 @@ const manualEntries = [
         yomi: "デレク・ガリソン",
         url: "derek-garrison.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4386,8 +5429,10 @@ const manualEntries = [
         yomi: "Derrick Taylor",
         url: "derrick-taylor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4395,8 +5440,10 @@ const manualEntries = [
         yomi: "ダーヴィン",
         url: "dervin.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4404,8 +5451,10 @@ const manualEntries = [
         yomi: "荒廃した鉱山",
         url: "deserted-mine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4413,8 +5462,10 @@ const manualEntries = [
         yomi: "デズモンド・ロックハート",
         url: "desmond-lockheart.html",
         category: "人物",
-        appearance: ["Fallout 3 (Point Lookout)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3 (Point Lookout)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4422,8 +5473,10 @@ const manualEntries = [
         yomi: "デビルズ・アレー",
         url: "devils-alley.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4431,8 +5484,10 @@ const manualEntries = [
         yomi: "デビルズ・バックボーン",
         url: "devils-backbone.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4440,8 +5495,10 @@ const manualEntries = [
         yomi: "ダイアモンドシティ",
         url: "diamond-city.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4449,8 +5506,10 @@ const manualEntries = [
         yomi: "ダイアン・ウェルチ",
         url: "diane-welch.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4458,8 +5517,10 @@ const manualEntries = [
         yomi: "ディロ",
         url: "dillo.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4467,8 +5528,10 @@ const manualEntries = [
         yomi: "ディンキー・ザ・T-レックス",
         url: "dinky-the-t-rex.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4476,8 +5539,10 @@ const manualEntries = [
         yomi: "ダイノ・ディーライト・モーテル",
         url: "dino-dee-lite-motel.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4485,8 +5550,10 @@ const manualEntries = [
         yomi: "ダイノ・ピークス・ミニゴルフ",
         url: "dino-peaks-mini-golf.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4494,8 +5561,10 @@ const manualEntries = [
         yomi: "飛行船の従者",
         url: "dirigible-squire.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4503,8 +5572,10 @@ const manualEntries = [
         yomi: "分岐",
         url: "divergence.html",
         category: "設定",
-        appearance: ["Fallout シリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout シリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4512,8 +5583,10 @@ const manualEntries = [
         yomi: "doc-mitchell",
         url: "doc-mitchell.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4521,8 +5594,10 @@ const manualEntries = [
         yomi: "Doc Stanley",
         url: "doc-stanley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4530,8 +5605,10 @@ const manualEntries = [
         yomi: "dog-and-god",
         url: "dog-and-god.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4539,8 +5616,10 @@ const manualEntries = [
         yomi: "ドッグフード缶",
         url: "dog-food-cans.html",
         category: "アイテム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4548,8 +5627,14 @@ const manualEntries = [
         yomi: "犬",
         url: "dog.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4557,8 +5642,10 @@ const manualEntries = [
         yomi: "ドッグミート (FO3)",
         url: "dogmeat-fo3.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4566,8 +5653,10 @@ const manualEntries = [
         yomi: "ドリー・ソッズ・キャンプ場",
         url: "dolly-sods-campground.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4575,8 +5664,10 @@ const manualEntries = [
         yomi: "ドリー・ソッズ見張り台",
         url: "dolly-sods-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4584,8 +5675,10 @@ const manualEntries = [
         yomi: "ドリー・ソッズ・レンジャーステーション",
         url: "dolly-sods-ranger-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4593,8 +5686,10 @@ const manualEntries = [
         yomi: "ドリー・ソッズ荒野",
         url: "dolly-sods-wilderness.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4602,8 +5697,10 @@ const manualEntries = [
         yomi: "ドルフィッシュ",
         url: "dolphish-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4611,8 +5708,10 @@ const manualEntries = [
         yomi: "ドム・ペドロ",
         url: "dom-pedro.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4620,8 +5719,10 @@ const manualEntries = [
         yomi: "ドン・ペドロの護衛",
         url: "dom-pedros-guard.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4629,8 +5730,10 @@ const manualEntries = [
         yomi: "ドンネリー",
         url: "donnelley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4638,8 +5741,10 @@ const manualEntries = [
         yomi: "ドントレル・ヘインズ",
         url: "dontrelle-haines.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4647,8 +5752,10 @@ const manualEntries = [
         yomi: "ドーナツショップ",
         url: "donut-shop.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4656,8 +5763,10 @@ const manualEntries = [
         yomi: "ディアス博士",
         url: "dorothea-dias.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4665,8 +5774,10 @@ const manualEntries = [
         yomi: "Dottie",
         url: "dottie-gone-fission.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4674,8 +5785,10 @@ const manualEntries = [
         yomi: "ドッティ",
         url: "dotty.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4683,8 +5796,10 @@ const manualEntries = [
         yomi: "ダウ湖流域",
         url: "dow-lake-watershed.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4692,8 +5807,10 @@ const manualEntries = [
         yomi: "Dr.ブレインウォッシュ",
         url: "dr-brainwash.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4701,8 +5818,10 @@ const manualEntries = [
         yomi: "エディ・ハリソン医師の家",
         url: "dr-eddie-harrisons-house.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4710,8 +5829,10 @@ const manualEntries = [
         yomi: "Dr. ヘンリー",
         url: "dr-henry.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4719,8 +5840,10 @@ const manualEntries = [
         yomi: "ドクター・ゾルボ",
         url: "dr-zorbo.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4728,8 +5851,10 @@ const manualEntries = [
         yomi: "ドライバー・ネフィ",
         url: "driver-nephi.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4737,8 +5862,10 @@ const manualEntries = [
         yomi: "ドロップサイト C2",
         url: "drop-site-c2.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4746,8 +5873,10 @@ const manualEntries = [
         yomi: "ドロップサイト G3",
         url: "drop-site-g3.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4755,8 +5884,10 @@ const manualEntries = [
         yomi: "ドロップサイト V9",
         url: "drop-site-v9.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4764,8 +5895,10 @@ const manualEntries = [
         yomi: "ドラムリン・ダイナー",
         url: "drumlin-diner-watoga.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4773,8 +5906,10 @@ const manualEntries = [
         yomi: "ドラムリン・ダイナー",
         url: "drumlin-diner.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4782,8 +5917,10 @@ const manualEntries = [
         yomi: "ドライロックガルチ",
         url: "dry-rock-gulch.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4791,8 +5928,10 @@ const manualEntries = [
         yomi: "ダッチェス",
         url: "duchess.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4800,8 +5939,10 @@ const manualEntries = [
         yomi: "ダンカン＆ダンカン・ロボティクス",
         url: "duncan-duncan-robotics.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4809,8 +5950,10 @@ const manualEntries = [
         yomi: "Duncan McKann",
         url: "duncan-mckann.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4818,8 +5961,10 @@ const manualEntries = [
         yomi: "ダンウィッチ・ボーラー",
         url: "dunwich-borers.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4827,8 +5972,10 @@ const manualEntries = [
         yomi: "ダスティ・ヒープ",
         url: "dusty-heap.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4836,8 +5983,10 @@ const manualEntries = [
         yomi: "ダイアー・ケミカル",
         url: "dyer-chemical.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4845,8 +5994,10 @@ const manualEntries = [
         yomi: "ディラン・ローズ",
         url: "dylan-rhodes.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4854,8 +6005,10 @@ const manualEntries = [
         yomi: "Earle Williams",
         url: "earle-williams.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4863,8 +6016,10 @@ const manualEntries = [
         yomi: "イーストボーストン・プレップスクール",
         url: "east-boston-preparatory-school.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4872,8 +6027,10 @@ const manualEntries = [
         yomi: "東カナワ見張り台",
         url: "east-kanawha-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4881,8 +6038,10 @@ const manualEntries = [
         yomi: "イースト・マウンテン見張り台",
         url: "east-mountain-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4890,8 +6049,10 @@ const manualEntries = [
         yomi: "イースト・リッジ見張り台",
         url: "east-ridge-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4899,8 +6060,10 @@ const manualEntries = [
         yomi: "イーストストリート銀行",
         url: "east-street-bank.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4908,8 +6071,10 @@ const manualEntries = [
         yomi: "東部地域刑務所",
         url: "eastern-regional-penitentiary.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4917,8 +6082,10 @@ const manualEntries = [
         yomi: "イージーシティ・ダウンズ",
         url: "easy-city-downs.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4926,8 +6093,10 @@ const manualEntries = [
         yomi: "エコーレイク・ランバー・ミル",
         url: "echo-lake-lumber.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Far Harbor)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Far Harbor)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4935,8 +6104,10 @@ const manualEntries = [
         yomi: "エディ (ED-E)",
         url: "ed-e.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4944,8 +6115,10 @@ const manualEntries = [
         yomi: "Edgar Blackburn",
         url: "edgar-blackburn.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4953,8 +6126,10 @@ const manualEntries = [
         yomi: "イーディ・スティーブンス",
         url: "edie-stevens.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4962,8 +6137,10 @@ const manualEntries = [
         yomi: "エドウィン",
         url: "edwin.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -4971,8 +6148,10 @@ const manualEntries = [
         yomi: "イーグレット・ツアー・マリーナ",
         url: "egret-tours-marina.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4980,8 +6159,10 @@ const manualEntries = [
         yomi: "エイトボール",
         url: "eightball.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4989,8 +6170,10 @@ const manualEntries = [
         yomi: "年配の司会者",
         url: "elderly-speaker.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -4998,8 +6181,10 @@ const manualEntries = [
         yomi: "エリヤ (ファザー・エリヤ)",
         url: "elijah.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5007,8 +6192,10 @@ const manualEntries = [
         yomi: "Elizabeth Taggerdy",
         url: "elizabeth-taggerdy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5016,8 +6203,10 @@ const manualEntries = [
         yomi: "エラ・エイムズのバンカー",
         url: "ella-ames-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5025,8 +6214,10 @@ const manualEntries = [
         yomi: "Ella Ames",
         url: "ella-ames.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5034,8 +6225,10 @@ const manualEntries = [
         yomi: "Ellen Santiago",
         url: "ellen-santiago.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5043,8 +6236,10 @@ const manualEntries = [
         yomi: "エリオット・ティスデイル",
         url: "elliot-tisdale.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5052,8 +6247,10 @@ const manualEntries = [
         yomi: "エルマー・グリーン",
         url: "elmer-greene.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5061,8 +6258,10 @@ const manualEntries = [
         yomi: "エルシー・テイラー",
         url: "elsie-taylor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5070,8 +6269,10 @@ const manualEntries = [
         yomi: "「彼女とのリンクは切れていないことを知っておくべきだ。ソフィア、君の目を見ると、あの人工知能がそこにいる。私たち全員を見ている。」<br>\r\n                <span style=\"font-size: 0.85em; color: #888;\">— エマーソン・ヘイル（A.T.H.E.N.A.がソフィアの目を通して自分を見ていることを躊躇いながら告げる）</span>",
         url: "emerson-hale.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5079,8 +6280,10 @@ const manualEntries = [
         yomi: "エミール・デール",
         url: "emil-dale.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5088,8 +6291,10 @@ const manualEntries = [
         yomi: "エメット山廃棄場",
         url: "emmett-mountain-disposal-site.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5097,8 +6302,10 @@ const manualEntries = [
         yomi: "エメット・マウンテン採掘施設",
         url: "emmett-mountain-mining-facility.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5106,8 +6313,10 @@ const manualEntries = [
         yomi: "エメット・マウンテン側トンネル",
         url: "emmett-mountain-side-tunnel.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5115,8 +6324,10 @@ const manualEntries = [
         yomi: "EN-06 ガーディアン",
         url: "en06-guardian.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5124,8 +6335,10 @@ const manualEntries = [
         yomi: "エンクレイヴの管理者",
         url: "enclave-administrator.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5133,8 +6346,10 @@ const manualEntries = [
         yomi: "エンクレイヴ石油リグ",
         url: "enclave-oil-rig.html",
         category: "場所",
-        appearance: ["Fallout 2"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 2"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5142,8 +6357,10 @@ const manualEntries = [
         yomi: "エンクレイヴの研究コロニー",
         url: "enclave-research-colony.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5151,8 +6368,10 @@ const manualEntries = [
         yomi: "エンクレイヴの科学者",
         url: "enclave-scientist-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5160,8 +6379,10 @@ const manualEntries = [
         yomi: "エンクレイヴの警備員",
         url: "enclave-security-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5169,8 +6390,10 @@ const manualEntries = [
         yomi: "エンクレイヴ・ベルチバード墜落地点",
         url: "enclave-vertibird-crash-site.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5178,8 +6401,10 @@ const manualEntries = [
         yomi: "エンクレイヴ",
         url: "enclave.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5187,8 +6412,10 @@ const manualEntries = [
         yomi: "道の終わり",
         url: "end-of-the-road.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5196,8 +6423,10 @@ const manualEntries = [
         yomi: "Erika Hewsen",
         url: "erika-hewsen.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5205,8 +6434,10 @@ const manualEntries = [
         yomi: "アーニー・ナヴァロ",
         url: "ernie-navarro.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5214,8 +6445,10 @@ const manualEntries = [
         yomi: "Observer Errol",
         url: "errol.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5223,8 +6456,10 @@ const manualEntries = [
         yomi: "Escaped inmate",
         url: "escaped-inmate.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5232,8 +6467,10 @@ const manualEntries = [
         yomi: "エスメラルダ・ルソー（シェフ・エスメ）",
         url: "esme-rousseau.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5241,8 +6478,10 @@ const manualEntries = [
         yomi: "エスポジト",
         url: "esposito.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5250,8 +6489,10 @@ const manualEntries = [
         yomi: "エスター・ライト博士",
         url: "esther-wright.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5259,8 +6500,10 @@ const manualEntries = [
         yomi: "イータ・プサイ・ハウス",
         url: "eta-psi-house.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -5268,8 +6511,10 @@ const manualEntries = [
         yomi: "ユージニー",
         url: "eugenie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5277,8 +6522,10 @@ const manualEntries = [
         yomi: "eulogy-jones",
         url: "eulogy-jones.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5286,8 +6533,10 @@ const manualEntries = [
         yomi: "イヴ・ドゥヴァール",
         url: "eve-devoir.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5295,8 +6544,10 @@ const manualEntries = [
         yomi: "エクセルシオール・モデルホーム",
         url: "excelsior-model-home.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5304,8 +6555,10 @@ const manualEntries = [
         yomi: "興奮したパーティー客",
         url: "excited-partygoer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5313,8 +6566,10 @@ const manualEntries = [
         yomi: "エグゼクティヴ・アシスタント",
         url: "executive-assistant.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5322,8 +6577,10 @@ const manualEntries = [
         yomi: "エグゼクティブの部屋",
         url: "executives-apartment.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5331,8 +6588,10 @@ const manualEntries = [
         yomi: "爆発物の祠",
         url: "explosives-shrine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5340,8 +6599,10 @@ const manualEntries = [
         yomi: "ファビュラス・ニューベガスの看板",
         url: "fabulous-new-vegas-sign.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5349,8 +6610,10 @@ const manualEntries = [
         yomi: "フェアライン・ヒル・エステート",
         url: "fairline-hill-estates.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5358,8 +6621,10 @@ const manualEntries = [
         yomi: "ファロンデパート",
         url: "fallons-department-store.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5367,8 +6632,10 @@ const manualEntries = [
         yomi: "fallout-1",
         url: "fallout-1.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5376,8 +6643,10 @@ const manualEntries = [
         yomi: "fallout-2",
         url: "fallout-2.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5385,8 +6654,10 @@ const manualEntries = [
         yomi: "フォールアウト 3",
         url: "fallout-3.html",
         category: "ゲーム",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5394,8 +6665,10 @@ const manualEntries = [
         yomi: "ペット",
         url: "fallout-76-pets.html",
         category: "システム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -5403,8 +6676,10 @@ const manualEntries = [
         yomi: "フォールアウト: ニューベガス",
         url: "fallout-new-vegas.html",
         category: "ゲーム",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5412,8 +6687,10 @@ const manualEntries = [
         yomi: "フォールアウト タクティクス：ブラザーフッド・オブ・スティール",
         url: "fallout-tactics.html",
         category: "ゲーム",
-        appearance: ["Fallout Tactics"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout Tactics"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5421,8 +6698,10 @@ const manualEntries = [
         yomi: "偽のシーザー",
         url: "false-caesar.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5430,8 +6709,10 @@ const manualEntries = [
         yomi: "ファニュエル・ホール",
         url: "faneuil-hall.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5439,8 +6720,10 @@ const manualEntries = [
         yomi: "ファンタスティック",
         url: "fantastic.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5448,8 +6731,10 @@ const manualEntries = [
         yomi: "ファー・ハーバー",
         url: "far-harbor-loc.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5457,8 +6742,10 @@ const manualEntries = [
         yomi: "遠くのツリーハウス",
         url: "faraway-treehouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5466,8 +6753,10 @@ const manualEntries = [
         yomi: "Doctor Farha",
         url: "farha.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5475,8 +6764,10 @@ const manualEntries = [
         yomi: "農夫",
         url: "farmer-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5484,8 +6775,10 @@ const manualEntries = [
         yomi: "Fasnacht Day",
         url: "fasnacht-day.html",
         category: "イベント・現象",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -5493,8 +6786,10 @@ const manualEntries = [
         yomi: "フォークス",
         url: "fawkes.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5502,8 +6797,10 @@ const manualEntries = [
         yomi: "連邦廃棄場 HZ-21",
         url: "federal-disposal-field-hz-21.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5511,8 +6808,10 @@ const manualEntries = [
         yomi: "連邦食糧備蓄庫",
         url: "federal-ration-stockpile.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5520,8 +6819,10 @@ const manualEntries = [
         yomi: "連邦監視センターK-21B",
         url: "federal-surveillance-center-k-21b.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5529,8 +6830,10 @@ const manualEntries = [
         yomi: "クレリック・フェリックス",
         url: "felix-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5538,8 +6841,10 @@ const manualEntries = [
         yomi: "フェリックス聖職者",
         url: "felix-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5547,8 +6852,10 @@ const manualEntries = [
         yomi: "フェルトン・リード",
         url: "felton-reed.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5556,8 +6863,10 @@ const manualEntries = [
         yomi: "女性の給仕",
         url: "female-server.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5565,8 +6874,10 @@ const manualEntries = [
         yomi: "フェンズ・ストリート下水道",
         url: "fens-street-sewer.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5574,8 +6885,10 @@ const manualEntries = [
         yomi: "フェラル・グール",
         url: "feral-ghoul-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5583,8 +6896,10 @@ const manualEntries = [
         yomi: "フィドラーズ・グリーン・トレーラー・エステート",
         url: "fiddlers-green-trailer-estates.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5592,8 +6907,10 @@ const manualEntries = [
         yomi: "フィリーの巨漢",
         url: "filly-huge-man.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5601,8 +6918,10 @@ const manualEntries = [
         yomi: "フィリーの町民",
         url: "filly-townsperson.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5610,8 +6929,10 @@ const manualEntries = [
         yomi: "フィリーの商人",
         url: "filly-vendor.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5619,8 +6940,10 @@ const manualEntries = [
         yomi: "フィンチ・ファーム",
         url: "finch-farm.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5628,8 +6951,10 @@ const manualEntries = [
         yomi: "ファイアベース・ハンコック",
         url: "firebase-hancock.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5637,8 +6962,10 @@ const manualEntries = [
         yomi: "ファイアベース LT",
         url: "firebase-lt.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5646,8 +6973,10 @@ const manualEntries = [
         yomi: "ファイアベース・メジャー",
         url: "firebase-major.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5655,8 +6984,10 @@ const manualEntries = [
         yomi: "ファイアベース MG",
         url: "firebase-mg.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5664,8 +6995,10 @@ const manualEntries = [
         yomi: "ファイアフライ",
         url: "firefly-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5673,8 +7006,10 @@ const manualEntries = [
         yomi: "ファースト・フレンズ教会",
         url: "first-friends-church.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5682,8 +7017,10 @@ const manualEntries = [
         yomi: "魚",
         url: "fish-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5691,8 +7028,10 @@ const manualEntries = [
         yomi: "フィッシュボーンズ",
         url: "fishbones.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5700,8 +7039,10 @@ const manualEntries = [
         yomi: "釣り人の休息所",
         url: "fishermans-rest.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5709,8 +7050,10 @@ const manualEntries = [
         yomi: "フィッシャーサイト・プライム",
         url: "fissure-site-prime.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5718,8 +7061,10 @@ const manualEntries = [
         yomi: "フィズトップ・マウンテン",
         url: "fizztop-mountain.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5727,8 +7072,10 @@ const manualEntries = [
         yomi: "フラック",
         url: "flak.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5736,8 +7083,11 @@ const manualEntries = [
         yomi: "フレアガン",
         url: "flare-gun.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -5745,8 +7095,10 @@ const manualEntries = [
         yomi: "フラットウッズ見張り台",
         url: "flatwoods-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5754,8 +7106,10 @@ const manualEntries = [
         yomi: "フラットウッズ集会場",
         url: "flatwoods-meeting-hall.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5763,8 +7117,10 @@ const manualEntries = [
         yomi: "フラットウッズ・リバー",
         url: "flatwoods-river.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5772,8 +7128,10 @@ const manualEntries = [
         yomi: "フラットウッズ",
         url: "flatwoods.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5781,8 +7139,10 @@ const manualEntries = [
         yomi: "フローレスカ",
         url: "flauresca.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5790,8 +7150,10 @@ const manualEntries = [
         yomi: "フリントロック",
         url: "flintlock.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5799,8 +7161,10 @@ const manualEntries = [
         yomi: "フローター",
         url: "floater-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5808,8 +7172,10 @@ const manualEntries = [
         yomi: "水没した操車場",
         url: "flooded-trainyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5817,8 +7183,10 @@ const manualEntries = [
         yomi: "ハエ",
         url: "fly-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5826,8 +7194,10 @@ const manualEntries = [
         yomi: "フォグ・クロウラー",
         url: "fog-crawler-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5835,8 +7205,10 @@ const manualEntries = [
         yomi: "フォローズ・チョーク",
         url: "follows-chalk.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5844,8 +7216,10 @@ const manualEntries = [
         yomi: "フーズボールゲーム",
         url: "foosball-game.html",
         category: "アイテム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -5853,8 +7227,12 @@ const manualEntries = [
         yomi: "強制進化ウイルス（FEV）",
         url: "forced-evolution-virus-fev.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -5862,8 +7240,10 @@ const manualEntries = [
         yomi: "Ford",
         url: "ford.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5871,8 +7251,10 @@ const manualEntries = [
         yomi: "フォレスト・グルーブ・マーシュ",
         url: "forest-grove-marsh.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5880,8 +7262,10 @@ const manualEntries = [
         yomi: "Former raider",
         url: "former-raider.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5889,8 +7273,10 @@ const manualEntries = [
         yomi: "フォート・ディファイアンス",
         url: "fort-defiance.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5898,8 +7284,10 @@ const manualEntries = [
         yomi: "ヘーゲン砦",
         url: "fort-hagen.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5907,8 +7295,10 @@ const manualEntries = [
         yomi: "フォート・スチューベン",
         url: "fort-steuben.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5916,8 +7306,10 @@ const manualEntries = [
         yomi: "ストロング砦",
         url: "fort-strong.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5925,8 +7317,10 @@ const manualEntries = [
         yomi: "前進基地アルファ",
         url: "forward-station-alpha.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5934,8 +7328,10 @@ const manualEntries = [
         yomi: "前進基地デルタ",
         url: "forward-station-delta.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5943,8 +7339,10 @@ const manualEntries = [
         yomi: "前進基地タンゴ",
         url: "forward-station-tango.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5952,8 +7350,10 @@ const manualEntries = [
         yomi: "ファウンデーション前哨基地",
         url: "foundation-outpost.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5961,8 +7361,10 @@ const manualEntries = [
         yomi: "ファウンデーション補給室",
         url: "foundation-supply-room.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5970,8 +7372,10 @@ const manualEntries = [
         yomi: "ファウンダーズ・ホール",
         url: "founders-hall.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5979,8 +7383,10 @@ const manualEntries = [
         yomi: "フォー・リーフ・プラント（水産加工所）",
         url: "four-leaf-fishpacking-plant.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5988,8 +7394,10 @@ const manualEntries = [
         yomi: "キツネ",
         url: "fox-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -5997,8 +7405,10 @@ const manualEntries = [
         yomi: "フランチェスカ・マハジャン",
         url: "francesca-mahajan.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6006,8 +7416,10 @@ const manualEntries = [
         yomi: "肉屋のフランク",
         url: "frank-the-butcher.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6015,8 +7427,10 @@ const manualEntries = [
         yomi: "フランク",
         url: "frank-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6024,8 +7438,10 @@ const manualEntries = [
         yomi: "フランキー・ベケット",
         url: "frankie-beckett.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6033,8 +7449,10 @@ const manualEntries = [
         yomi: "フランクの娘",
         url: "franks-daughter.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6042,8 +7460,10 @@ const manualEntries = [
         yomi: "フラターナルポスト115",
         url: "fraternal-post-115.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6051,8 +7471,10 @@ const manualEntries = [
         yomi: "フラタニティ・ロウ",
         url: "fraternity-row.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6060,8 +7482,10 @@ const manualEntries = [
         yomi: "Sergeant Fred Radcliff",
         url: "fred-radcliff.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6069,8 +7493,10 @@ const manualEntries = [
         yomi: "フレディ・ラング",
         url: "freddie-lang.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6078,8 +7504,10 @@ const manualEntries = [
         yomi: "フレディ・フィアーの地下室",
         url: "freddy-fears-basement.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6087,8 +7515,10 @@ const manualEntries = [
         yomi: "フレディ・フィアーのお化け屋敷",
         url: "freddy-fears-house-of-scares.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6096,8 +7526,10 @@ const manualEntries = [
         yomi: "フレデリック・リバーズ",
         url: "frederick-rivers.html",
         category: "キャラクター",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6105,8 +7537,10 @@ const manualEntries = [
         yomi: "フレデリック・シンクレア",
         url: "frederick-sinclair-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6114,8 +7548,10 @@ const manualEntries = [
         yomi: "フレデリック・シンクレア",
         url: "frederick-sinclair.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6123,8 +7559,10 @@ const manualEntries = [
         yomi: "フリーラジカルズ",
         url: "free-radicals.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6132,8 +7570,10 @@ const manualEntries = [
         yomi: "Free States vendor",
         url: "free-states-vendor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6141,8 +7581,10 @@ const manualEntries = [
         yomi: "解放されたグール",
         url: "freed-ghoul-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6150,8 +7592,10 @@ const manualEntries = [
         yomi: "フリーサイドの子供のハスラー",
         url: "freeside-child-hustler.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6159,8 +7603,10 @@ const manualEntries = [
         yomi: "フリーサイドの子供のリーダー",
         url: "freeside-child-in-charge.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6168,8 +7614,10 @@ const manualEntries = [
         yomi: "薬を売るフリーサイドの子供",
         url: "freeside-child-selling-drugs.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6177,8 +7625,10 @@ const manualEntries = [
         yomi: "フリーサイドのクルーピエ",
         url: "freeside-croupier.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6186,8 +7636,10 @@ const manualEntries = [
         yomi: "フリーサイドの客",
         url: "freeside-customer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6195,8 +7647,10 @@ const manualEntries = [
         yomi: "フリーサイドのギャンブラー",
         url: "freeside-gambler.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6204,8 +7658,10 @@ const manualEntries = [
         yomi: "フリーサイドのショーガール",
         url: "freeside-showgirl.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6213,8 +7669,10 @@ const manualEntries = [
         yomi: "フリーサイドの住人",
         url: "freesider.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6222,8 +7680,10 @@ const manualEntries = [
         yomi: "フレッシュ・ソイル・レストラン",
         url: "fresh-soil-restaurant.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6231,8 +7691,10 @@ const manualEntries = [
         yomi: "フレイヤのレストラン",
         url: "freyjas-haus.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6240,8 +7702,10 @@ const manualEntries = [
         yomi: "Frida Madani",
         url: "frida-madani.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6249,8 +7713,10 @@ const manualEntries = [
         yomi: "フリードリヒ",
         url: "friedrich.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6258,8 +7724,10 @@ const manualEntries = [
         yomi: "フレンドリー",
         url: "friendly.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6267,8 +7735,10 @@ const manualEntries = [
         yomi: "フリッツ",
         url: "fritz.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6276,8 +7746,10 @@ const manualEntries = [
         yomi: "カエル",
         url: "frog-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6285,8 +7757,10 @@ const manualEntries = [
         yomi: "前線基地タンゴ",
         url: "front-line-tango.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6294,8 +7768,10 @@ const manualEntries = [
         yomi: "フジニヤ諜報基地",
         url: "fujiniya-intelligence-base.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6303,8 +7779,10 @@ const manualEntries = [
         yomi: "future-tec",
         url: "future-tec.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6312,8 +7790,11 @@ const manualEntries = [
         yomi: "G.O.A.T.",
         url: "g-o-a-t.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6321,8 +7802,10 @@ const manualEntries = [
         yomi: "G・ウォルトン",
         url: "g-walton.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6330,8 +7813,10 @@ const manualEntries = [
         yomi: "ポーター・ゲイジ",
         url: "gage.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6339,8 +7824,10 @@ const manualEntries = [
         yomi: "ゲイル",
         url: "gail.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6348,8 +7835,10 @@ const manualEntries = [
         yomi: "ギャラクティックゾーン",
         url: "galactic-zone.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6357,8 +7846,10 @@ const manualEntries = [
         yomi: "ギャラクシー・ニュースのアナウンサー",
         url: "galaxy-news-announcer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6366,8 +7857,10 @@ const manualEntries = [
         yomi: "ゲーム・オブ・スローンズ",
         url: "game-of-thrones.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6375,8 +7868,11 @@ const manualEntries = [
         yomi: "ガンマ線銃",
         url: "gamma-ray-gun.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6384,8 +7880,10 @@ const manualEntries = [
         yomi: "庭師の小屋",
         url: "gardeners-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6393,8 +7891,10 @@ const manualEntries = [
         yomi: "ガラハン邸",
         url: "garrahan-estate.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6402,8 +7902,10 @@ const manualEntries = [
         yomi: "ギャラハン・マイニング本社",
         url: "garrahan-mining-headquarters.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6411,8 +7913,10 @@ const manualEntries = [
         yomi: "ガラハン・マイニング本社",
         url: "garrahan-mining-hq.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6420,8 +7924,10 @@ const manualEntries = [
         yomi: "ギャリー・ウィルキンス",
         url: "garry-wilkins.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6429,8 +7935,10 @@ const manualEntries = [
         yomi: "プレストン・ガービー",
         url: "garvey.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6438,8 +7946,10 @@ const manualEntries = [
         yomi: "ゲイリー",
         url: "gary-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6447,8 +7957,10 @@ const manualEntries = [
         yomi: "ゲイリー・ウェバー",
         url: "gary-weber.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6456,8 +7968,11 @@ const manualEntries = [
         yomi: "ゲイリー",
         url: "gary.html",
         category: "人物",
-        appearance: ["Fallout 3","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6465,8 +7980,10 @@ const manualEntries = [
         yomi: "ゲートの警備員",
         url: "gate-guard.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6474,8 +7991,11 @@ const manualEntries = [
         yomi: "ガウスピストル",
         url: "gauss-pistol.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6483,8 +8003,10 @@ const manualEntries = [
         yomi: "geck",
         url: "geck.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6492,8 +8014,10 @@ const manualEntries = [
         yomi: "ゼネラル・アトミックス工場",
         url: "general-atomics-factory.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6501,8 +8025,10 @@ const manualEntries = [
         yomi: "ゼネラル・アトミックス・ガレリア",
         url: "general-atomics-galleria.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6510,8 +8036,10 @@ const manualEntries = [
         yomi: "ジョージ・パットナム",
         url: "george-putnam.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6519,8 +8047,10 @@ const manualEntries = [
         yomi: "ジョージ・ヤッファ",
         url: "george-yaffe.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6528,8 +8058,13 @@ const manualEntries = [
         yomi: "グール",
         url: "ghoul.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6537,8 +8072,14 @@ const manualEntries = [
         yomi: "ジャイアントラット",
         url: "giant-rat.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6546,8 +8087,10 @@ const manualEntries = [
         yomi: "ジャイアントティーポット",
         url: "giant-teapot.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6555,8 +8098,10 @@ const manualEntries = [
         yomi: "ギース・ベリー・ボグ",
         url: "giese-berry-bog.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6564,8 +8109,10 @@ const manualEntries = [
         yomi: "Gilbert Hopson",
         url: "gilbert-hopson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6573,8 +8120,10 @@ const manualEntries = [
         yomi: "ジャイルズ・スウィートウォーター",
         url: "giles-sweetwater.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6582,8 +8131,10 @@ const manualEntries = [
         yomi: "ギルマン製材所",
         url: "gilman-lumber-mill.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6591,8 +8142,10 @@ const manualEntries = [
         yomi: "ジーナ・ベイリー",
         url: "gina-bailey.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6600,8 +8153,10 @@ const manualEntries = [
         yomi: "グランピングサイト",
         url: "glamping-site.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6609,8 +8164,10 @@ const manualEntries = [
         yomi: "ガラス化した洞窟",
         url: "glassed-cavern.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6618,8 +8175,10 @@ const manualEntries = [
         yomi: "グリーミング・デプス",
         url: "gleaming-depths.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6627,8 +8186,10 @@ const manualEntries = [
         yomi: "ご機嫌な肉屋",
         url: "gleeful-butcher.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6636,8 +8197,10 @@ const manualEntries = [
         yomi: "グレン",
         url: "glenn.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6645,8 +8208,10 @@ const manualEntries = [
         yomi: "グロリア・チャンス",
         url: "gloria-chance.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6654,8 +8219,10 @@ const manualEntries = [
         yomi: "グロリア・ヴァン・グラフ",
         url: "gloria-van-graff.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6663,8 +8230,10 @@ const manualEntries = [
         yomi: "glowing-fungus",
         url: "glowing-fungus.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6672,8 +8241,10 @@ const manualEntries = [
         yomi: "輝きの海",
         url: "glowing-sea.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6681,8 +8252,10 @@ const manualEntries = [
         yomi: "ナールド・シャローズ",
         url: "gnarled-shallows.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6690,8 +8263,10 @@ const manualEntries = [
         yomi: "Gnash",
         url: "gnash.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6699,8 +8274,10 @@ const manualEntries = [
         yomi: "ナイト・グナティウス",
         url: "gnatius.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6708,8 +8285,10 @@ const manualEntries = [
         yomi: "ノームの菜園",
         url: "gnomes-allotment.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6717,8 +8296,10 @@ const manualEntries = [
         yomi: "ゴブ",
         url: "gob.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6726,8 +8307,10 @@ const manualEntries = [
         yomi: "ゴールデングローブ・ポルノ",
         url: "golden-globes-porn.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6735,8 +8318,10 @@ const manualEntries = [
         yomi: "ゴルフカート",
         url: "golf-cart.html",
         category: "車両",
-        appearance: ["Fallout シリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout シリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6744,8 +8329,10 @@ const manualEntries = [
         yomi: "グッドネイバー",
         url: "goodneighbor.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6753,8 +8340,10 @@ const manualEntries = [
         yomi: "ゴーリー鉱山",
         url: "gorey-mines.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6762,8 +8351,10 @@ const manualEntries = [
         yomi: "ゴージ・ジャンクヤード",
         url: "gorge-junkyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6771,8 +8362,10 @@ const manualEntries = [
         yomi: "ゴルスキーの小屋",
         url: "gorski-cabin.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6780,8 +8373,10 @@ const manualEntries = [
         yomi: "グルマンズ",
         url: "gourmands.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6789,8 +8384,10 @@ const manualEntries = [
         yomi: "グラフトン・ダム",
         url: "grafton-dam.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6798,8 +8395,10 @@ const manualEntries = [
         yomi: "グラフトン高校",
         url: "grafton-high-school.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6807,8 +8406,10 @@ const manualEntries = [
         yomi: "グラフトン湖",
         url: "grafton-lake.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6816,8 +8417,10 @@ const manualEntries = [
         yomi: "グラフトン市長",
         url: "grafton-mayor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6825,8 +8428,10 @@ const manualEntries = [
         yomi: "グラフトン・モンスター",
         url: "grafton-monster.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6834,8 +8439,10 @@ const manualEntries = [
         yomi: "グラフトン質店",
         url: "grafton-pawn-shop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6843,8 +8450,10 @@ const manualEntries = [
         yomi: "グラフトン警察署",
         url: "grafton-police-department.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6852,8 +8461,10 @@ const manualEntries = [
         yomi: "グラフトン駅",
         url: "grafton-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6861,8 +8472,10 @@ const manualEntries = [
         yomi: "グラフトン製鉄地下",
         url: "grafton-steel-underground.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6870,8 +8483,10 @@ const manualEntries = [
         yomi: "グラフトン製鉄ヤード",
         url: "grafton-steel-yard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6879,8 +8494,10 @@ const manualEntries = [
         yomi: "グラフトン製鉄所",
         url: "grafton-steel.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6888,8 +8505,10 @@ const manualEntries = [
         yomi: "グラフトン",
         url: "grafton.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6897,8 +8516,10 @@ const manualEntries = [
         yomi: "Grahm's Meat-Cook(ミート ウィーク)",
         url: "grahm-s-meat-cook-meat-week.html",
         category: "イベント・現象",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6906,8 +8527,10 @@ const manualEntries = [
         yomi: "Grahm",
         url: "grahm.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6915,8 +8538,10 @@ const manualEntries = [
         yomi: "グラム",
         url: "grams.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -6924,8 +8549,10 @@ const manualEntries = [
         yomi: "グランドキャニオンのエルダー",
         url: "grand-canyon-elder.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6933,8 +8560,10 @@ const manualEntries = [
         yomi: "グランチェスター・ミステリー・マンション",
         url: "grandchester-mystery-mansion.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6942,8 +8571,10 @@ const manualEntries = [
         yomi: "Grandma Junko",
         url: "grandma-junko.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6951,8 +8582,10 @@ const manualEntries = [
         yomi: "グラニンジャー農場",
         url: "graninger-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6960,8 +8593,10 @@ const manualEntries = [
         yomi: "グラント・マクナマラ",
         url: "grant-mcnamara.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6969,8 +8604,10 @@ const manualEntries = [
         yomi: "グレイガーデン",
         url: "graygarden.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6978,8 +8615,10 @@ const manualEntries = [
         yomi: "マサチューセッツ血液クリニック",
         url: "greater-mass-blood-clinic.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6987,8 +8626,10 @@ const manualEntries = [
         yomi: "グリーン・カントリー橋",
         url: "green-country-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -6996,8 +8637,10 @@ const manualEntries = [
         yomi: "グリーンカントリー・ロッジ",
         url: "green-country-lodge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7005,8 +8648,10 @@ const manualEntries = [
         yomi: "グリーンテック・ジェネティクス",
         url: "greenetech-genetics.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7014,8 +8659,10 @@ const manualEntries = [
         yomi: "グリーントップ菜園",
         url: "greentop-nursery.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7023,8 +8670,10 @@ const manualEntries = [
         yomi: "グレッグ・ゴールドスタイン",
         url: "greg-goldstein.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7032,8 +8681,10 @@ const manualEntries = [
         yomi: "Gregory Dixon",
         url: "gregory-dixon.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7041,8 +8692,10 @@ const manualEntries = [
         yomi: "Gregory Timmerman",
         url: "gregory-timmerman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7050,8 +8703,10 @@ const manualEntries = [
         yomi: "グレゴリー",
         url: "gregory-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7059,8 +8714,10 @@ const manualEntries = [
         yomi: "グレッグの鉱山用品店",
         url: "gregs-mine-supply.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7068,8 +8725,12 @@ const manualEntries = [
         yomi: "グレロック",
         url: "grelock.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7077,8 +8738,10 @@ const manualEntries = [
         yomi: "グリフィス天文台",
         url: "griffith-observatory.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7086,8 +8749,13 @@ const manualEntries = [
         yomi: "グログナック",
         url: "grognac.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7095,8 +8763,10 @@ const manualEntries = [
         yomi: "グローブス家のキャビン",
         url: "groves-family-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7104,8 +8774,10 @@ const manualEntries = [
         yomi: "ガルパー",
         url: "gulper-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7113,8 +8785,10 @@ const manualEntries = [
         yomi: "ガルパー・ラグーン",
         url: "gulper-lagoon.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7122,8 +8796,10 @@ const manualEntries = [
         yomi: "ガンナープラザ",
         url: "gunners-plaza.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7131,8 +8807,10 @@ const manualEntries = [
         yomi: "ガンサー・ジェンキンス",
         url: "gunther-jenkins.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7140,8 +8818,10 @@ const manualEntries = [
         yomi: "Guy",
         url: "guy-ghoul-within.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7149,8 +8829,10 @@ const manualEntries = [
         yomi: "グウィネット醸造所",
         url: "gwinnett-brewery.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7158,8 +8840,10 @@ const manualEntries = [
         yomi: "ジャイロ",
         url: "gyro.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7167,8 +8851,12 @@ const manualEntries = [
         yomi: "H&H Tools Company",
         url: "h-h-tools-company.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7176,8 +8864,10 @@ const manualEntries = [
         yomi: "Hailey Takano",
         url: "hailey-takano.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7185,8 +8875,10 @@ const manualEntries = [
         yomi: "ハル・グリーソン",
         url: "hal-gleeson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7194,8 +8886,10 @@ const manualEntries = [
         yomi: "ハロウィン恐怖農場",
         url: "halloween-fright-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7203,8 +8897,10 @@ const manualEntries = [
         yomi: "ハロウィンホラー集落",
         url: "halloween-horror-hamlet.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7212,8 +8908,10 @@ const manualEntries = [
         yomi: "ハルシジェン社",
         url: "hallucigen-inc.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7221,8 +8919,10 @@ const manualEntries = [
         yomi: "ハムリー・ラン・キャンプ",
         url: "hamley-run-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7230,8 +8930,10 @@ const manualEntries = [
         yomi: "ジョン・ハンコック",
         url: "hancock.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7239,8 +8941,10 @@ const manualEntries = [
         yomi: "ハングマンズ・アリー（絞首刑の裏路地）",
         url: "hangmans-alley.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7248,8 +8952,10 @@ const manualEntries = [
         yomi: "ハンク・マクレーン",
         url: "hank-maclean.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7257,8 +8963,10 @@ const manualEntries = [
         yomi: "ハンク・マディガン",
         url: "hank-madigan.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7266,8 +8974,10 @@ const manualEntries = [
         yomi: "hanlon",
         url: "hanlon.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7275,8 +8985,10 @@ const manualEntries = [
         yomi: "Hannah de Silva",
         url: "hannah-de-silva.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7284,8 +8996,10 @@ const manualEntries = [
         yomi: "ハンナ",
         url: "hannah-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7293,8 +9007,10 @@ const manualEntries = [
         yomi: "ハッピー・キャンドルメーカー",
         url: "happy-candlemaker.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7302,8 +9018,10 @@ const manualEntries = [
         yomi: "ハードボール",
         url: "hardball.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7311,8 +9029,10 @@ const manualEntries = [
         yomi: "ハードウェア・タウン",
         url: "hardware-town.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7320,8 +9040,10 @@ const manualEntries = [
         yomi: "harold",
         url: "harold.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7329,8 +9051,10 @@ const manualEntries = [
         yomi: "ハーパーズ・フェリー兵器庫",
         url: "harpers-ferry-armory.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7338,8 +9062,10 @@ const manualEntries = [
         yomi: "ハーパーズ・フェリー・クリニック",
         url: "harpers-ferry-clinic.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7347,8 +9073,10 @@ const manualEntries = [
         yomi: "ハーパーズ・フェリー操車場",
         url: "harpers-ferry-trainyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7356,8 +9084,10 @@ const manualEntries = [
         yomi: "ハーパーズ・フェリー",
         url: "harpers-ferry.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7365,8 +9095,10 @@ const manualEntries = [
         yomi: "ハリソン・ハイツ",
         url: "harrison-heights.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7374,8 +9106,10 @@ const manualEntries = [
         yomi: "ハーベイ・ティンリー",
         url: "harvey-tinley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7383,8 +9117,10 @@ const manualEntries = [
         yomi: "ヘイブン教会",
         url: "haven-church.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7392,8 +9128,10 @@ const manualEntries = [
         yomi: "ホークの隠れ家",
         url: "hawkes-refuge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7401,8 +9139,10 @@ const manualEntries = [
         yomi: "ホーソーン・メディカル・ラボラトリーズ",
         url: "hawthorne-medical-laboratories.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7410,8 +9150,10 @@ const manualEntries = [
         yomi: "国際連合本部",
         url: "headquarters-of-the-united-nations.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7419,8 +9161,10 @@ const manualEntries = [
         yomi: "Heather Ellis",
         url: "heather-ellis.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7428,8 +9172,10 @@ const manualEntries = [
         yomi: "ヘレナ・ブルム",
         url: "helena-blum.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7437,8 +9183,10 @@ const manualEntries = [
         yomi: "ヘレナ",
         url: "helena-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7446,8 +9194,10 @@ const manualEntries = [
         yomi: "ヘルヴェティア",
         url: "helvetia.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7455,8 +9205,10 @@ const manualEntries = [
         yomi: "ヘムロック・ホールズ整備場",
         url: "hemlock-holes-maintenance.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7464,8 +9216,10 @@ const manualEntries = [
         yomi: "ヘムロック・ホールズ",
         url: "hemlock-holes.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7473,8 +9227,10 @@ const manualEntries = [
         yomi: "ヘンリック",
         url: "henrick.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7482,8 +9238,10 @@ const manualEntries = [
         yomi: "henry",
         url: "henry.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7491,8 +9249,10 @@ const manualEntries = [
         yomi: "ハーバート・ダッシュウッド",
         url: "herbert-dashwood.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7500,8 +9260,10 @@ const manualEntries = [
         yomi: "ハーミット・クラブ",
         url: "hermit-crab-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7509,8 +9271,10 @@ const manualEntries = [
         yomi: "ハーシェル・クライン",
         url: "herschel-klein.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7518,8 +9282,10 @@ const manualEntries = [
         yomi: "ヘスター・ロボティクス",
         url: "hesters-consumer-robotics.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7527,8 +9293,10 @@ const manualEntries = [
         yomi: "ヘックス",
         url: "hex-expeditions-the-pitt.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7536,8 +9304,10 @@ const manualEntries = [
         yomi: "ヒッゲンボトム",
         url: "higgenbottom.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7545,8 +9315,10 @@ const manualEntries = [
         yomi: "ハイランド・マーシュ",
         url: "highland-marsh.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7554,8 +9326,10 @@ const manualEntries = [
         yomi: "ハイウェイ・タウン",
         url: "highway-town.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7563,8 +9337,10 @@ const manualEntries = [
         yomi: "Hijack",
         url: "hijack.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7572,8 +9348,10 @@ const manualEntries = [
         yomi: "ヒルフォーク・ホットドッグ",
         url: "hillfolk-hotdogs.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7581,8 +9359,10 @@ const manualEntries = [
         yomi: "ヒルサイド・ケイバーン",
         url: "hillside-cavern.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7590,8 +9370,10 @@ const manualEntries = [
         yomi: "丘上パイロンキャンプ",
         url: "hilltop-pylon-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7599,8 +9381,10 @@ const manualEntries = [
         yomi: "ホッキング・ヒルズ州立公園",
         url: "hocking-hills-state-park.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7608,8 +9392,10 @@ const manualEntries = [
         yomi: "ホッキング・ヒルズ・ステーション",
         url: "hocking-hills-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7617,8 +9403,10 @@ const manualEntries = [
         yomi: "ホールディングフォード農家",
         url: "holdingford-homestead.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7626,8 +9414,10 @@ const manualEntries = [
         yomi: "ハリウッド大通り",
         url: "hollywood-boulevard.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7635,8 +9425,10 @@ const manualEntries = [
         yomi: "ハリウッド・フォーエバーの集会の参加者",
         url: "hollywood-forever-meeting-attendee.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7644,8 +9436,10 @@ const manualEntries = [
         yomi: "ハリウッド・ヒルズ",
         url: "hollywood-hills.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7653,8 +9447,10 @@ const manualEntries = [
         yomi: "ハリウッドサイン",
         url: "hollywood-sign.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7662,8 +9458,10 @@ const manualEntries = [
         yomi: "ハリウッド・ウォーク・オブ・フェーム",
         url: "hollywood-walk-of-fame.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7671,8 +9469,14 @@ const manualEntries = [
         yomi: "ホロテープ",
         url: "holotape.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7680,8 +9484,10 @@ const manualEntries = [
         yomi: "ホルスタイン軍曹",
         url: "holstein.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7689,8 +9495,10 @@ const manualEntries = [
         yomi: "ホームプレート",
         url: "home-plate.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7698,8 +9506,10 @@ const manualEntries = [
         yomi: "ホーマー・サパースタイン",
         url: "homer-saperstein.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -7707,8 +9517,10 @@ const manualEntries = [
         yomi: "ホンチョー",
         url: "honcho.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7716,8 +9528,10 @@ const manualEntries = [
         yomi: "ハニービースト",
         url: "honey-beast-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7725,8 +9539,10 @@ const manualEntries = [
         yomi: "ハニーハウス",
         url: "honey-haus.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7734,8 +9550,10 @@ const manualEntries = [
         yomi: "ハニーウェル養蜂場",
         url: "honey-well-apiary.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7743,8 +9561,10 @@ const manualEntries = [
         yomi: "ホップの墓",
         url: "hop-graves.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7752,8 +9572,10 @@ const manualEntries = [
         yomi: "Hopewell Cave",
         url: "hopewell-cave.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7761,8 +9583,10 @@ const manualEntries = [
         yomi: "horace-pinkerton",
         url: "horace-pinkerton.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7770,8 +9594,10 @@ const manualEntries = [
         yomi: "ホライズンズ・レスト",
         url: "horizons-rest.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7779,8 +9605,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機サイト 01",
         url: "hornwright-air-purifier-01.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7788,8 +9616,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機サイト 02",
         url: "hornwright-air-purifier-02.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7797,8 +9627,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機サイト 03",
         url: "hornwright-air-purifier-03.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7806,8 +9638,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機サイト 04",
         url: "hornwright-air-purifier-04.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7815,8 +9649,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機設置場 #01",
         url: "hornwright-air-purifier-site-01.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7824,8 +9660,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機設置場 #02",
         url: "hornwright-air-purifier-site-02.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7833,8 +9671,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機設置場 #03",
         url: "hornwright-air-purifier-site-03.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7842,8 +9682,10 @@ const manualEntries = [
         yomi: "ホーンライト空気清浄機設置場 #04",
         url: "hornwright-air-purifier-site-04.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7851,8 +9693,10 @@ const manualEntries = [
         yomi: "ホーンライト邸",
         url: "hornwright-estate.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7860,8 +9704,10 @@ const manualEntries = [
         yomi: "ホーンライト・インダストリアル本社",
         url: "hornwright-industrial-headquarters.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7869,8 +9715,10 @@ const manualEntries = [
         yomi: "ホーンライト・インダストリアル本社",
         url: "hornwright-industrial-hq.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7878,8 +9726,10 @@ const manualEntries = [
         yomi: "ホーンライト家の別荘",
         url: "hornwright-summer-villa.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7887,8 +9737,10 @@ const manualEntries = [
         yomi: "ホーンライト・テストサイト 2",
         url: "hornwright-testing-2.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7896,8 +9748,10 @@ const manualEntries = [
         yomi: "ホーンライト・テストサイト 3",
         url: "hornwright-testing-3.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7905,8 +9759,10 @@ const manualEntries = [
         yomi: "ホーンライト・テストサイト 4",
         url: "hornwright-testing-4.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7914,8 +9770,10 @@ const manualEntries = [
         yomi: "ホーンライト試験サイト #03",
         url: "hornwright-testing-site-03.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7923,8 +9781,10 @@ const manualEntries = [
         yomi: "ホーンライト試験場 #02",
         url: "hornwright-testing-site-2.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7932,8 +9792,10 @@ const manualEntries = [
         yomi: "ホーンライト試験場 #03",
         url: "hornwright-testing-site-3.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7941,8 +9803,10 @@ const manualEntries = [
         yomi: "ハウス・リゾート",
         url: "house-resort.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7950,8 +9814,10 @@ const manualEntries = [
         yomi: "ハワード邸",
         url: "howard-residence.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7959,8 +9825,10 @@ const manualEntries = [
         yomi: "ハブ360",
         url: "hub-360.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7968,8 +9836,10 @@ const manualEntries = [
         yomi: "ハブシティ・オートウォレッカーズ",
         url: "hub-city-auto-wreckers.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7977,8 +9847,10 @@ const manualEntries = [
         yomi: "ヒューブリス・コミックス＆トイズ",
         url: "hubris-comics-watoga.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7986,8 +9858,10 @@ const manualEntries = [
         yomi: "ハブリス・コミック",
         url: "hubris-comics.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -7995,8 +9869,10 @@ const manualEntries = [
         yomi: "ヒューイ",
         url: "huey.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8004,8 +9880,10 @@ const manualEntries = [
         yomi: "ハンター・リッジ",
         url: "hunter-ridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8013,8 +9891,10 @@ const manualEntries = [
         yomi: "ハンターズ・リッジ",
         url: "hunters-ridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8022,8 +9902,10 @@ const manualEntries = [
         yomi: "ハンターの小屋",
         url: "hunters-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8031,8 +9913,10 @@ const manualEntries = [
         yomi: "ハンターズヴィル",
         url: "huntersville.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8040,8 +9924,10 @@ const manualEntries = [
         yomi: "Huntmaster",
         url: "huntmaster.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8049,8 +9935,10 @@ const manualEntries = [
         yomi: "ハンツマンズ・グレイド",
         url: "huntsmans-glade.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8058,8 +9946,10 @@ const manualEntries = [
         yomi: "ハイドパーク",
         url: "hyde-park.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8067,8 +9957,10 @@ const manualEntries = [
         yomi: "イアン・ジャクソン",
         url: "ian-jackson.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8076,8 +9968,10 @@ const manualEntries = [
         yomi: "Ian Orwell",
         url: "ian-orwell.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8085,8 +9979,10 @@ const manualEntries = [
         yomi: "イグアナ",
         url: "iguana-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8094,8 +9990,10 @@ const manualEntries = [
         yomi: "Ineke de Haan",
         url: "ineke-de-haan.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8103,8 +10001,10 @@ const manualEntries = [
         yomi: "イングラム邸",
         url: "ingram-mansion.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8112,8 +10012,10 @@ const manualEntries = [
         yomi: "インサルトボット",
         url: "insult-bot.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8121,8 +10023,10 @@ const manualEntries = [
         yomi: "Invaders from Beyond",
         url: "invaders-from-beyond.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8130,8 +10034,10 @@ const manualEntries = [
         yomi: "調査官のキャビン",
         url: "investigators-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8139,8 +10045,10 @@ const manualEntries = [
         yomi: "アイリッシュプライド工業造船所",
         url: "irish-pride-industries-shipyard.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8148,8 +10056,10 @@ const manualEntries = [
         yomi: "アーヴ",
         url: "irv.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8157,8 +10067,10 @@ const manualEntries = [
         yomi: "アイザック・ハモンド",
         url: "isaac-hammond.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8166,8 +10078,10 @@ const manualEntries = [
         yomi: "イセラ・メジア",
         url: "isela-mejia.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8175,8 +10089,10 @@ const manualEntries = [
         yomi: "ロード・アッシャー",
         url: "ishmael-ashur.html",
         category: "人物",
-        appearance: ["Fallout 3 (The Pitt)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3 (The Pitt)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8184,8 +10100,11 @@ const manualEntries = [
         yomi: "孤立したキャビン",
         url: "isolated-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8193,8 +10112,10 @@ const manualEntries = [
         yomi: "J・シュラムの家",
         url: "j-schrams-house.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8202,8 +10123,10 @@ const manualEntries = [
         yomi: "ジャック・オ・ランタン",
         url: "jack-o-lantern.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8211,8 +10134,10 @@ const manualEntries = [
         yomi: "ジャック・ウッドハウス",
         url: "jack-woodhouse.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8220,8 +10145,10 @@ const manualEntries = [
         yomi: "ジャクソン・ジャンクヤード",
         url: "jackson-junkyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8229,8 +10156,10 @@ const manualEntries = [
         yomi: "ジャッキー",
         url: "jacky-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8238,8 +10167,10 @@ const manualEntries = [
         yomi: "ジェイコブ・ラーナー",
         url: "jacob-lerner.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8247,8 +10178,10 @@ const manualEntries = [
         yomi: "ジャクリーン・マーフィー",
         url: "jacqueline-murphy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8256,8 +10189,10 @@ const manualEntries = [
         yomi: "スカウトリーダー・ジャギー",
         url: "jaggy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8265,8 +10200,10 @@ const manualEntries = [
         yomi: "ジャギーズ・クラッグ",
         url: "jaggys-crag.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8274,8 +10211,10 @@ const manualEntries = [
         yomi: "ドクター・ジェイン",
         url: "jain-steel-reign.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8283,8 +10222,10 @@ const manualEntries = [
         yomi: "ジャルバートブラザーズ廃棄場",
         url: "jalbert-brothers-disposal.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8292,8 +10233,10 @@ const manualEntries = [
         yomi: "ジャマイカ・プレイン",
         url: "jamaica-plain.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8301,8 +10244,10 @@ const manualEntries = [
         yomi: "ジェームズ・アディソン",
         url: "james-addison.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8310,8 +10255,10 @@ const manualEntries = [
         yomi: "james-fallout-3",
         url: "james-fallout-3.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8319,8 +10266,10 @@ const manualEntries = [
         yomi: "ジェームズ・シュー",
         url: "james-hsu.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8328,8 +10277,12 @@ const manualEntries = [
         yomi: "ジェームス",
         url: "james.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8337,8 +10290,10 @@ const manualEntries = [
         yomi: "ジャミラ",
         url: "jamila.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8346,8 +10301,10 @@ const manualEntries = [
         yomi: "ジャネル・プリブロ",
         url: "janelle-priblo.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8355,8 +10312,10 @@ const manualEntries = [
         yomi: "Janelle's Camp",
         url: "janelles-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8364,8 +10323,10 @@ const manualEntries = [
         yomi: "ジェイニー・ハワード",
         url: "janey-howard.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8373,8 +10334,10 @@ const manualEntries = [
         yomi: "ジャニス",
         url: "janice-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8382,8 +10345,10 @@ const manualEntries = [
         yomi: "ジェイソン・ブライト",
         url: "jason-bright.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8391,8 +10356,10 @@ const manualEntries = [
         yomi: "ジャビン",
         url: "javin.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8400,8 +10367,10 @@ const manualEntries = [
         yomi: "ジェイ・ヴォー",
         url: "jaye-vo.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8409,8 +10378,10 @@ const manualEntries = [
         yomi: "ジェフ・ナカムラ",
         url: "jeff-nakamura.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8418,8 +10389,10 @@ const manualEntries = [
         yomi: "ジェファーソン・グレイ",
         url: "jefferson-grey.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8427,8 +10400,10 @@ const manualEntries = [
         yomi: "Jen",
         url: "jen.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8436,8 +10411,10 @@ const manualEntries = [
         yomi: "Jennie Brown",
         url: "jennie-brown.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8445,8 +10422,10 @@ const manualEntries = [
         yomi: "ジェリコ",
         url: "jericho.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8454,8 +10433,10 @@ const manualEntries = [
         yomi: "JES-2R",
         url: "jes-2r.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8463,8 +10444,10 @@ const manualEntries = [
         yomi: "Jess",
         url: "jess-ghoul-within.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8472,8 +10455,10 @@ const manualEntries = [
         yomi: "ジェシ・ザ・フック",
         url: "jessi-the-hook.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8481,8 +10466,10 @@ const manualEntries = [
         yomi: "Jesus Sunday",
         url: "jesus-sunday.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8490,8 +10477,10 @@ const manualEntries = [
         yomi: "ジャイド",
         url: "jide.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8499,8 +10488,10 @@ const manualEntries = [
         yomi: "ジム",
         url: "jim-raider.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8508,8 +10499,10 @@ const manualEntries = [
         yomi: "ジム",
         url: "jim-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8517,8 +10510,10 @@ const manualEntries = [
         yomi: "ジンウェイ将軍",
         url: "jingwei.html",
         category: "人物",
-        appearance: ["Fallout 3 (Operation Anchorage)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3 (Operation Anchorage)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8526,8 +10521,10 @@ const manualEntries = [
         yomi: "ジョアン・ポランスキー",
         url: "joan-polansky.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8535,8 +10532,10 @@ const manualEntries = [
         yomi: "ジョアン",
         url: "joan-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8544,8 +10543,10 @@ const manualEntries = [
         yomi: "ジョアンナ・メイフィールド",
         url: "joanna-mayfield.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8553,8 +10554,10 @@ const manualEntries = [
         yomi: "ジョアン・ワームウッド",
         url: "joanne-wormwood.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8562,8 +10565,10 @@ const manualEntries = [
         yomi: "ジョーのスパッキーズ",
         url: "joes-spuckies.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8571,8 +10576,10 @@ const manualEntries = [
         yomi: "ジョーイ・ベロ",
         url: "joey-bello.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8580,8 +10587,10 @@ const manualEntries = [
         yomi: "オブザーバー・ジョアンナ",
         url: "johanna.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8589,8 +10598,10 @@ const manualEntries = [
         yomi: "ジョン・アーロンホルト",
         url: "john-aaronholt.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8598,8 +10609,11 @@ const manualEntries = [
         yomi: "ジョン・ハンコック",
         url: "john-hancock.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8607,8 +10621,10 @@ const manualEntries = [
         yomi: "ジョン・ヘンリー・エデン大統領",
         url: "john-henry-eden.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8616,8 +10632,10 @@ const manualEntries = [
         yomi: "ジョン・ホロウェイ",
         url: "john-holloway.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8625,8 +10643,10 @@ const manualEntries = [
         yomi: "Johnny Moreno",
         url: "johnny-moreno.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8634,8 +10654,10 @@ const manualEntries = [
         yomi: "ジョニー・ウェストン",
         url: "johnny-weston.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8643,8 +10665,10 @@ const manualEntries = [
         yomi: "Johnson's Acre",
         url: "johnsons-acre.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8652,8 +10676,10 @@ const manualEntries = [
         yomi: "陽気なパン職人",
         url: "jolly-baker.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8661,8 +10687,10 @@ const manualEntries = [
         yomi: "ジョナ・イトウ",
         url: "jonah-ito.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8670,8 +10698,10 @@ const manualEntries = [
         yomi: "ジューキー・ヘアサロン",
         url: "jooky-hair-salon.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8679,8 +10709,10 @@ const manualEntries = [
         yomi: "ホルヘ",
         url: "jorge-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8688,8 +10720,10 @@ const manualEntries = [
         yomi: "ホルヘ",
         url: "jorge.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8697,8 +10731,10 @@ const manualEntries = [
         yomi: "ジョセフ・モールダー",
         url: "joseph-moerder.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8706,8 +10742,10 @@ const manualEntries = [
         yomi: "ジョセフ",
         url: "joseph-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8715,8 +10753,10 @@ const manualEntries = [
         yomi: "ジョシュア・グラハム",
         url: "joshua-graham.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8724,8 +10764,10 @@ const manualEntries = [
         yomi: "ジョージー",
         url: "josie-milepost-zero.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8733,8 +10775,10 @@ const manualEntries = [
         yomi: "喜びに満ちたミュージシャン",
         url: "joyous-musician.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8742,8 +10786,10 @@ const manualEntries = [
         yomi: "Juan Diego Sunday",
         url: "juan-diego-sunday.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8751,8 +10797,10 @@ const manualEntries = [
         yomi: "陽気なデコレーター",
         url: "jubilant-decorator.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8760,8 +10808,10 @@ const manualEntries = [
         yomi: "ジュリア・マスターズ",
         url: "julia-masters.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8769,8 +10819,10 @@ const manualEntries = [
         yomi: "ジュリア",
         url: "julia-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8778,8 +10830,10 @@ const manualEntries = [
         yomi: "julie-farkas",
         url: "julie-farkas.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8787,8 +10841,10 @@ const manualEntries = [
         yomi: "ジュリエット",
         url: "juliette.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8796,8 +10852,10 @@ const manualEntries = [
         yomi: "ジュンコおばあちゃん",
         url: "junko-grandma.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8805,8 +10863,10 @@ const manualEntries = [
         yomi: "K.D.インクウェル",
         url: "k-d-inkwell.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -8814,8 +10874,10 @@ const manualEntries = [
         yomi: "カナワ郡墓地",
         url: "kanawha-county-cemetery.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8823,8 +10885,10 @@ const manualEntries = [
         yomi: "カノーワ国立公園",
         url: "kanawha-national-park.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8832,8 +10896,10 @@ const manualEntries = [
         yomi: "カナー・ヌカコーラ工場",
         url: "kanawha-nuka-cola-plant.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8841,8 +10907,10 @@ const manualEntries = [
         yomi: "カナー川",
         url: "kanawha-river.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8850,8 +10918,10 @@ const manualEntries = [
         yomi: "Kassie",
         url: "kassie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8859,8 +10929,10 @@ const manualEntries = [
         yomi: "「人生の綱渡りをするとき、絶対に下を見てはいけない。」",
         url: "katherine-swan.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8868,8 +10940,10 @@ const manualEntries = [
         yomi: "キャスリン・セップ",
         url: "kathryn-cep.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8877,8 +10951,10 @@ const manualEntries = [
         yomi: "ケレメン",
         url: "kelemen.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8886,8 +10962,10 @@ const manualEntries = [
         yomi: "ケンダル病院",
         url: "kendall-hospital.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8895,8 +10973,10 @@ const manualEntries = [
         yomi: "ケンディル・シムズ",
         url: "kendyll-sims.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8904,8 +10984,10 @@ const manualEntries = [
         yomi: "Kenneth Dean",
         url: "kenneth-dean.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8913,8 +10995,10 @@ const manualEntries = [
         yomi: "ケンジントン捜査官",
         url: "kensington.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8922,8 +11006,10 @@ const manualEntries = [
         yomi: "Kerry",
         url: "kerry-brotherhood.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8931,8 +11017,10 @@ const manualEntries = [
         yomi: "ケリー",
         url: "kerry-cutthroats.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8940,8 +11028,10 @@ const manualEntries = [
         yomi: "カーウッド鉱山",
         url: "kerwood-mine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8949,8 +11039,10 @@ const manualEntries = [
         yomi: "ケシャ・マクダーモット",
         url: "kesha-mcdermott.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8958,8 +11050,10 @@ const manualEntries = [
         yomi: "Kevan Asherton",
         url: "kevan-asherton.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8967,8 +11061,10 @@ const manualEntries = [
         yomi: "キディ・コーナー・キャビンズ",
         url: "kiddie-corner-cabins.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8976,8 +11072,10 @@ const manualEntries = [
         yomi: "キッディキングダム",
         url: "kiddie-kingdom.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8985,8 +11083,10 @@ const manualEntries = [
         yomi: "Kieran Kennedy",
         url: "kieran-kennedy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -8994,8 +11094,10 @@ const manualEntries = [
         yomi: "Aaron Kimball (アーロン・キンバル)",
         url: "kimball.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9003,8 +11105,10 @@ const manualEntries = [
         yomi: "キングス・インパーソネーション・スクール",
         url: "king-s-school-of-impersonation.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9012,8 +11116,10 @@ const manualEntries = [
         yomi: "キングスポート灯台",
         url: "kingsport-lighthouse.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9021,8 +11127,10 @@ const manualEntries = [
         yomi: "キット軍曹",
         url: "kit.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9030,8 +11138,10 @@ const manualEntries = [
         yomi: "キヨミ",
         url: "kiyomi.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9039,8 +11149,10 @@ const manualEntries = [
         yomi: "Dr. クライン",
         url: "klein.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9048,8 +11160,10 @@ const manualEntries = [
         yomi: "KMAX送信塔",
         url: "kmax-transmission.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9057,8 +11171,10 @@ const manualEntries = [
         yomi: "ナイフ・エッジ",
         url: "knife-edge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9066,8 +11182,10 @@ const manualEntries = [
         yomi: "ナイト",
         url: "knight-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9075,8 +11193,10 @@ const manualEntries = [
         yomi: "コーガン",
         url: "kogan.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9084,8 +11204,10 @@ const manualEntries = [
         yomi: "コラ",
         url: "kora.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9093,8 +11215,10 @@ const manualEntries = [
         yomi: "KPSSラジオ放送局",
         url: "kpss-radio-station.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9102,8 +11226,10 @@ const manualEntries = [
         yomi: "ラセルタ軍団長",
         url: "lacerta-legate.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9111,8 +11237,10 @@ const manualEntries = [
         yomi: "レイシー・ドラモンド",
         url: "lacey-drummond.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9120,8 +11248,11 @@ const manualEntries = [
         yomi: "ラッドガル",
         url: "ladgal.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9129,8 +11260,10 @@ const manualEntries = [
         yomi: "Lady G the Fortune Teller",
         url: "lady-g-the-fortune-teller.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9138,8 +11271,10 @@ const manualEntries = [
         yomi: "レディ・ジャネットのソフトクリーム",
         url: "lady-janets-soft-serve.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9147,8 +11282,10 @@ const manualEntries = [
         yomi: "エロイーズ湖",
         url: "lake-eloise.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9156,8 +11293,10 @@ const manualEntries = [
         yomi: "クアナポウィット湖",
         url: "lake-quannapowitt.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9165,8 +11304,10 @@ const manualEntries = [
         yomi: "レイノルズ湖",
         url: "lake-reynolds.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9174,8 +11315,10 @@ const manualEntries = [
         yomi: "レイクサイド・キャビンズ",
         url: "lakeside-cabins.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9183,8 +11326,10 @@ const manualEntries = [
         yomi: "ランドン",
         url: "landon.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9192,8 +11337,10 @@ const manualEntries = [
         yomi: "ランドビュー灯台",
         url: "landview-lighthouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9201,8 +11348,10 @@ const manualEntries = [
         yomi: "リゲート・ラニウス (軍団長・怪物)",
         url: "lanius.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9210,8 +11359,10 @@ const manualEntries = [
         yomi: "ラスベガス管理Vault (Las Vegas management Vault)",
         url: "las-vegas-management-vault.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9219,8 +11370,10 @@ const manualEntries = [
         yomi: "レーザーガン",
         url: "laser-gun.html",
         category: "武器",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9228,8 +11381,10 @@ const manualEntries = [
         yomi: "アメリカ合衆国大統領",
         url: "last-president-of-the-united-states.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9237,8 +11392,10 @@ const manualEntries = [
         yomi: "ラスト・リゾート",
         url: "last-resort.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9246,8 +11403,10 @@ const manualEntries = [
         yomi: "ローレンス・ロナルド",
         url: "laurence-ronald.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9255,8 +11414,10 @@ const manualEntries = [
         yomi: "レモン・プライス",
         url: "leamon-price.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9264,8 +11425,10 @@ const manualEntries = [
         yomi: "リー・モルデイヴァー",
         url: "lee-moldaver.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9273,8 +11436,10 @@ const manualEntries = [
         yomi: "lee-oliver",
         url: "lee-oliver.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9282,8 +11447,10 @@ const manualEntries = [
         yomi: "ヒル",
         url: "leech-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9291,8 +11458,10 @@ const manualEntries = [
         yomi: "Lee Moldaver (リー・モルデイヴァー)",
         url: "lee_moldaver.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9300,8 +11469,10 @@ const manualEntries = [
         yomi: "リージョン上級顧問",
         url: "legion-senior-advisor.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9309,8 +11480,10 @@ const manualEntries = [
         yomi: "リージョナリー",
         url: "legionary-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9318,8 +11491,10 @@ const manualEntries = [
         yomi: "Leila Rahmani",
         url: "leila-rahmani.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9327,8 +11502,10 @@ const manualEntries = [
         yomi: "レノックス",
         url: "lennox.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9336,8 +11513,10 @@ const manualEntries = [
         yomi: "「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>\r\n                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」",
         url: "leo-petrov.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9345,8 +11524,10 @@ const manualEntries = [
         yomi: "レオン・フォン・フェルデン",
         url: "leon-von-felden.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9354,8 +11535,10 @@ const manualEntries = [
         yomi: "レフ",
         url: "lev.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9363,8 +11546,10 @@ const manualEntries = [
         yomi: "ルイス＆サンズ農業用品店",
         url: "lewis-and-sons-farming-supply.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9372,8 +11557,10 @@ const manualEntries = [
         yomi: "ルイス＆サンズ農業用品店",
         url: "lewis-sons-farming.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9381,8 +11568,10 @@ const manualEntries = [
         yomi: "ルイスバーグ駅",
         url: "lewisburg-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9390,8 +11579,10 @@ const manualEntries = [
         yomi: "ルイスバーグ",
         url: "lewisburg.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9399,8 +11590,10 @@ const manualEntries = [
         yomi: "レキシントン",
         url: "lexington.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9408,8 +11601,10 @@ const manualEntries = [
         yomi: "リビー・ウェン",
         url: "libby-wen.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9417,8 +11612,10 @@ const manualEntries = [
         yomi: "リベルタリア",
         url: "libertalia.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9426,8 +11623,10 @@ const manualEntries = [
         yomi: "自由の鐘",
         url: "liberty-bell.html",
         category: "アイテム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9435,8 +11634,10 @@ const manualEntries = [
         yomi: "liberty-prime",
         url: "liberty-prime.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9444,8 +11645,10 @@ const manualEntries = [
         yomi: "リリィ・ボウエン",
         url: "lily-bowen.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9453,8 +11656,10 @@ const manualEntries = [
         yomi: "リムジンの衝突事故現場",
         url: "limousine-crash.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9462,8 +11667,10 @@ const manualEntries = [
         yomi: "監視郷（リスニング・ポスト）・ブラボー",
         url: "listening-post-bravo.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9471,8 +11678,10 @@ const manualEntries = [
         yomi: "ロイド・ホーソーン",
         url: "lloyd-hawthorne.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9480,8 +11689,10 @@ const manualEntries = [
         yomi: "ロイス",
         url: "lois.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9489,8 +11700,10 @@ const manualEntries = [
         yomi: "オールド・ロングフェロー",
         url: "longfellow.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9498,8 +11711,10 @@ const manualEntries = [
         yomi: "長江ルカウスキーの缶詰工場（ロングネック・ルカウスキー）",
         url: "longneck-lukowskis-cannery.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9507,8 +11722,10 @@ const manualEntries = [
         yomi: "ドクター・ロリス",
         url: "loris.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9516,8 +11733,10 @@ const manualEntries = [
         yomi: "ロサンゼルス市庁舎",
         url: "los-angeles-city-hall.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9525,8 +11744,10 @@ const manualEntries = [
         yomi: "ロサンゼルス国際空港",
         url: "los-angeles-international-airport.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9534,8 +11755,10 @@ const manualEntries = [
         yomi: "失われた家",
         url: "lost-home.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9543,8 +11766,10 @@ const manualEntries = [
         yomi: "ロータス",
         url: "lotus.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9552,8 +11777,10 @@ const manualEntries = [
         yomi: "ラバーズ・リープ",
         url: "lovers-leap.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9561,8 +11788,10 @@ const manualEntries = [
         yomi: "ローウェル・アーロンホルト",
         url: "lowell-aaronholt.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9570,8 +11799,10 @@ const manualEntries = [
         yomi: "ルカ・コスタ",
         url: "luca-costa.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9579,8 +11810,10 @@ const manualEntries = [
         yomi: "ルーカス・シムズ",
         url: "lucas-simms.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9588,8 +11821,10 @@ const manualEntries = [
         yomi: "ラッキー38・セキュリトロン",
         url: "lucky-38-securitron.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9597,8 +11832,10 @@ const manualEntries = [
         yomi: "Lucky Hole Mine",
         url: "lucky-hole-mine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9606,8 +11843,10 @@ const manualEntries = [
         yomi: "Lucky Lou",
         url: "lucky-lou.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9615,8 +11854,10 @@ const manualEntries = [
         yomi: "Lucy Harwick",
         url: "lucy-harwick.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9624,8 +11865,10 @@ const manualEntries = [
         yomi: "ルーシー・マクレーン",
         url: "lucy-maclean.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9633,8 +11876,10 @@ const manualEntries = [
         yomi: "Luis Ramirez",
         url: "luis-ramirez.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9642,8 +11887,10 @@ const manualEntries = [
         yomi: "ルーク",
         url: "luke-milepost-zero.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9651,8 +11898,13 @@ const manualEntries = [
         yomi: "ランチボックス",
         url: "lunch-box.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9660,8 +11912,10 @@ const manualEntries = [
         yomi: "リン・ウッズ",
         url: "lynn-woods.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9669,8 +11923,10 @@ const manualEntries = [
         yomi: "Lynx",
         url: "lynx.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9678,8 +11934,10 @@ const manualEntries = [
         yomi: "マ・ジューンの雑貨店",
         url: "ma-june-s-sundries.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9687,8 +11945,10 @@ const manualEntries = [
         yomi: "マ・ジューン",
         url: "ma-june.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9696,8 +11956,10 @@ const manualEntries = [
         yomi: "マックの農場",
         url: "macs-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9705,8 +11967,10 @@ const manualEntries = [
         yomi: "マダム・テイラーズ",
         url: "madame-taylors.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9714,8 +11978,10 @@ const manualEntries = [
         yomi: "マドックス・マレン",
         url: "maddox-mullen.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9723,8 +11989,10 @@ const manualEntries = [
         yomi: "マデリーン・キーン",
         url: "madeline-keene.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9732,8 +12000,13 @@ const manualEntries = [
         yomi: "マジソン・リー",
         url: "madison-li.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9741,8 +12014,12 @@ const manualEntries = [
         yomi: "雑誌",
         url: "magazine.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9750,8 +12027,10 @@ const manualEntries = [
         yomi: "Magellan",
         url: "magellan.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9759,8 +12038,10 @@ const manualEntries = [
         yomi: "マギー・スターン",
         url: "maggie-stern.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9768,8 +12049,10 @@ const manualEntries = [
         yomi: "Maggie Williams",
         url: "maggie-williams.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9777,8 +12060,10 @@ const manualEntries = [
         yomi: "マグパイ",
         url: "magpie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9786,8 +12071,10 @@ const manualEntries = [
         yomi: "マクラッチー魚包装工場（マクラ・フィッシュパッキング）",
         url: "mahkra-fishpacking.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9795,8 +12082,10 @@ const manualEntries = [
         yomi: "MAIA",
         url: "maia.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9804,8 +12093,10 @@ const manualEntries = [
         yomi: "モールデン・センター",
         url: "malden-center.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9813,8 +12104,14 @@ const manualEntries = [
         yomi: "モールラット",
         url: "mall-rat.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9822,8 +12119,10 @@ const manualEntries = [
         yomi: "ママ・ドルスの食品加工場",
         url: "mama-dolces-food-processing.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9831,8 +12130,10 @@ const manualEntries = [
         yomi: "ママ・ドルチのフードプロセッシング",
         url: "mama-dolces.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9840,8 +12141,10 @@ const manualEntries = [
         yomi: "暗がりに立つ男",
         url: "man-in-shadows.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9849,8 +12152,10 @@ const manualEntries = [
         yomi: "マニー・バルガス",
         url: "manny-vargas.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9858,8 +12163,11 @@ const manualEntries = [
         yomi: "マンタ・マン",
         url: "manta-man.html",
         category: "人物",
-        appearance: ["Fallout 4","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9867,8 +12175,10 @@ const manualEntries = [
         yomi: "Maram Ayari",
         url: "maram-ayari.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9876,8 +12186,10 @@ const manualEntries = [
         yomi: "マーチ・シャーウッド",
         url: "march-sherwood.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9885,8 +12197,10 @@ const manualEntries = [
         yomi: "Marcia Leone",
         url: "marcia-leone.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9894,8 +12208,10 @@ const manualEntries = [
         yomi: "マーカス",
         url: "marcus.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9903,8 +12219,10 @@ const manualEntries = [
         yomi: "マーガレット",
         url: "margaret-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9912,8 +12230,10 @@ const manualEntries = [
         yomi: "Margie McClintock",
         url: "margie-mcclintock.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9921,8 +12241,10 @@ const manualEntries = [
         yomi: "マリア・チャベス",
         url: "maria-chavez.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9930,8 +12252,10 @@ const manualEntries = [
         yomi: "マリアン",
         url: "marianne-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9939,8 +12263,10 @@ const manualEntries = [
         yomi: "マリアン",
         url: "marianne-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9948,8 +12274,10 @@ const manualEntries = [
         yomi: "マリー",
         url: "marie-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9957,8 +12285,10 @@ const manualEntries = [
         yomi: "マリーゴールド・パビリオン",
         url: "marigold-pavilion.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -9966,8 +12296,10 @@ const manualEntries = [
         yomi: "マリリン",
         url: "marilyn-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9975,8 +12307,10 @@ const manualEntries = [
         yomi: "Marion Copeland",
         url: "marion-copeland.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9984,8 +12318,10 @@ const manualEntries = [
         yomi: "マージョリー",
         url: "marjorie-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -9993,8 +12329,10 @@ const manualEntries = [
         yomi: "マーリー",
         url: "marley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10002,8 +12340,10 @@ const manualEntries = [
         yomi: "オブザーバー・マーロン",
         url: "marlon.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10011,8 +12351,10 @@ const manualEntries = [
         yomi: "沼地のコテージ",
         url: "marsh-cottage.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10020,8 +12362,10 @@ const manualEntries = [
         yomi: "マーティ・パットナム",
         url: "marty-putnam.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10029,8 +12373,10 @@ const manualEntries = [
         yomi: "マスベイ医療センター",
         url: "mass-bay-medical-center.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10038,8 +12384,10 @@ const manualEntries = [
         yomi: "マスフュージョン・ビル",
         url: "mass-fusion-building.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10047,8 +12395,10 @@ const manualEntries = [
         yomi: "マスパイク・インターチェンジ",
         url: "mass-pike-interchange.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10056,8 +12406,10 @@ const manualEntries = [
         yomi: "マサチューセッツ州議事堂",
         url: "massachusetts-state-house.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10065,8 +12417,10 @@ const manualEntries = [
         yomi: "大柄なリージョナリー",
         url: "massive-legionary.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10074,8 +12428,10 @@ const manualEntries = [
         yomi: "司会者",
         url: "master-of-ceremonies.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10083,8 +12439,10 @@ const manualEntries = [
         yomi: "マスターガッツィー軍曹",
         url: "master-sergeant-gutsy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10092,8 +12450,10 @@ const manualEntries = [
         yomi: "「うーん…マウル、そんなこと考えたことなかった。<br>\r\n                でも人間の言う通りだ。<br>\r\n                お前は強い。<br>\r\n                グログナックより強いかもしれない。<br>\r\n                人間が前に進めるなら、マウルにもできるかもしれない。」",
         url: "maul.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10101,8 +12461,10 @@ const manualEntries = [
         yomi: "Max Posey",
         url: "max-posey.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10110,8 +12472,10 @@ const manualEntries = [
         yomi: "マクシミリアン・ドッティーノ",
         url: "maximillian-dottino.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10119,8 +12483,10 @@ const manualEntries = [
         yomi: "マキシモ・レオーネ",
         url: "maximo-leone.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10128,8 +12494,10 @@ const manualEntries = [
         yomi: "Maximum Maddie",
         url: "maximum-maddie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10137,8 +12505,10 @@ const manualEntries = [
         yomi: "マキシマス",
         url: "maximus-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10146,8 +12516,10 @@ const manualEntries = [
         yomi: "マキシマス",
         url: "maximus.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10155,8 +12527,10 @@ const manualEntries = [
         yomi: "マクシーン・バラード",
         url: "maxine-ballard.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10164,8 +12538,10 @@ const manualEntries = [
         yomi: "マクレディ市長 (幼少期)",
         url: "mayor-maccready.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10173,8 +12549,10 @@ const manualEntries = [
         yomi: "マクレー",
         url: "mcrae.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10182,8 +12560,10 @@ const manualEntries = [
         yomi: "メドウ・ブリーズ貯蔵庫",
         url: "meadow-breeze-storage-depot.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10191,8 +12571,10 @@ const manualEntries = [
         yomi: "メカニックの金属小屋",
         url: "mechanics-metal-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10200,8 +12582,10 @@ const manualEntries = [
         yomi: "mechanist-fo3",
         url: "mechanist-fo3.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10209,8 +12593,12 @@ const manualEntries = [
         yomi: "メカニスト",
         url: "mechanist.html",
         category: "人物",
-        appearance: ["Fallout 3","Fallout 4","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3",
+            "Fallout 4",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10218,8 +12606,10 @@ const manualEntries = [
         yomi: "メッド・テック・リサーチ",
         url: "med-tek-research.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10227,8 +12617,10 @@ const manualEntries = [
         yomi: "メドフォード記念病院",
         url: "medford-memorial-hospital.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10236,8 +12628,10 @@ const manualEntries = [
         yomi: "Meg Groberg",
         url: "meg-groberg.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10245,8 +12639,10 @@ const manualEntries = [
         yomi: "メガ・マンション",
         url: "mega-mansion.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10254,8 +12650,10 @@ const manualEntries = [
         yomi: "メガ・スロス",
         url: "mega-sloth-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10263,8 +12661,10 @@ const manualEntries = [
         yomi: "メガ整形外科センター",
         url: "mega-surgery-center.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10272,8 +12672,10 @@ const manualEntries = [
         yomi: "メロディ・K・ラーキン",
         url: "melody-larkin.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10281,8 +12683,10 @@ const manualEntries = [
         yomi: "メモリー・デン",
         url: "memory-den.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10290,8 +12694,14 @@ const manualEntries = [
         yomi: "メンタス",
         url: "mentas.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -10299,8 +12709,10 @@ const manualEntries = [
         yomi: "メルセデス・スターン",
         url: "mercedes-stern.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10308,8 +12720,10 @@ const manualEntries = [
         yomi: "メリマン",
         url: "merriman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10317,8 +12731,10 @@ const manualEntries = [
         yomi: "陽気な木こり",
         url: "merry-woodsman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10326,8 +12742,10 @@ const manualEntries = [
         yomi: "メタル・ドーム",
         url: "metal-dome.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10335,8 +12753,10 @@ const manualEntries = [
         yomi: "michael-angelo",
         url: "michael-angelo.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10344,8 +12764,10 @@ const manualEntries = [
         yomi: "マイケル・ターナー",
         url: "michael-turner.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10353,8 +12775,10 @@ const manualEntries = [
         yomi: "ミック＆ラルフ",
         url: "mick-ralph-s.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10362,8 +12786,10 @@ const manualEntries = [
         yomi: "ミドル・マウンテン・キャビン",
         url: "middle-mountain-cabins.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10371,8 +12797,10 @@ const manualEntries = [
         yomi: "ミドルマウンテン湖",
         url: "middle-mountain-lake.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10380,8 +12808,10 @@ const manualEntries = [
         yomi: "ミドル・マウンテン・ピットストップ",
         url: "middle-mountain-pitstop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10389,8 +12819,10 @@ const manualEntries = [
         yomi: "ミゲル・カルデラ",
         url: "miguel-caldera.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10398,8 +12830,10 @@ const manualEntries = [
         yomi: "マイク・ティラー",
         url: "mike-tiller.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10407,8 +12841,10 @@ const manualEntries = [
         yomi: "憲兵（ミリタリーポリス・オフィサー）",
         url: "military-police-officer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10416,8 +12852,10 @@ const manualEntries = [
         yomi: "ミラーの家電店",
         url: "millers-appliances.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10425,8 +12863,10 @@ const manualEntries = [
         yomi: "ミルストーン",
         url: "millstone.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10434,8 +12874,10 @@ const manualEntries = [
         yomi: "マイロ",
         url: "milo-raider.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10443,8 +12885,10 @@ const manualEntries = [
         yomi: "ミルトン・ジェネラル病院",
         url: "milton-general-hospital.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10452,8 +12896,10 @@ const manualEntries = [
         yomi: "ミルトン・パーキング・ガレージ",
         url: "milton-parking-garage.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10461,8 +12907,10 @@ const manualEntries = [
         yomi: "マイナーズ・モニュメント",
         url: "miners-monument.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10470,8 +12918,10 @@ const manualEntries = [
         yomi: "Minerva",
         url: "minerva.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10479,8 +12929,10 @@ const manualEntries = [
         yomi: "ミラージュ・ピクチャーズ",
         url: "mirage-pictures.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10488,8 +12940,10 @@ const manualEntries = [
         yomi: "マイアラーク",
         url: "mirelurk-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10497,8 +12951,10 @@ const manualEntries = [
         yomi: "マイアラーク・ハンター",
         url: "mirelurk-hunter-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10506,8 +12962,10 @@ const manualEntries = [
         yomi: "マイアラーク・キング",
         url: "mirelurk-king-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10515,8 +12973,10 @@ const manualEntries = [
         yomi: "マイアラーク・クイーン",
         url: "mirelurk-queen-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10524,8 +12984,10 @@ const manualEntries = [
         yomi: "マイアラーク・スポーン",
         url: "mirelurk-spawn-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10533,8 +12995,10 @@ const manualEntries = [
         yomi: "マイアの眼",
         url: "mires-eye.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10542,8 +13006,10 @@ const manualEntries = [
         yomi: "Mischief Night",
         url: "mischief-night.html",
         category: "イベント・現象",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -10551,8 +13017,10 @@ const manualEntries = [
         yomi: "ミス・アニー",
         url: "miss-annie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10560,8 +13028,10 @@ const manualEntries = [
         yomi: "mistress-of-mystery",
         url: "mistress-of-mystery.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10569,8 +13039,10 @@ const manualEntries = [
         yomi: "Dr. モビウス",
         url: "mobius.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10578,8 +13050,10 @@ const manualEntries = [
         yomi: "Agent Mochou",
         url: "mochou.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10587,8 +13061,10 @@ const manualEntries = [
         yomi: "MODUSアーマリー・ターミナル",
         url: "modus-armory-terminal.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10596,8 +13072,10 @@ const manualEntries = [
         yomi: "MODUSメディカル・ターミナル",
         url: "modus-medical-terminal.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10605,8 +13083,10 @@ const manualEntries = [
         yomi: "MODUSプロダクション・ターミナル",
         url: "modus-production-terminal.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10614,8 +13094,10 @@ const manualEntries = [
         yomi: "MODUSサイエンス・ターミナル",
         url: "modus-science-terminal.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10623,8 +13105,10 @@ const manualEntries = [
         yomi: "Multi-Operation Directions and Utility System",
         url: "modus.html",
         category: "キャラクター",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10632,8 +13116,10 @@ const manualEntries = [
         yomi: "モール・ザ・モール",
         url: "moe-the-mole.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10641,8 +13127,10 @@ const manualEntries = [
         yomi: "モヒカンのリージョナリー",
         url: "mohawk-legionary.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10650,8 +13138,10 @@ const manualEntries = [
         yomi: "モイラ・ブラウン",
         url: "moira-brown.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10659,8 +13149,10 @@ const manualEntries = [
         yomi: "モハビ・ミッション・スクール",
         url: "mojave-mission-school.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10668,8 +13160,10 @@ const manualEntries = [
         yomi: "モハビ・ウェイストランド (Mojave Wasteland)",
         url: "mojave-wasteland.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10677,8 +13171,10 @@ const manualEntries = [
         yomi: "モルデイヴァーのエリート護衛",
         url: "moldavers-elite-guard.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10686,8 +13182,10 @@ const manualEntries = [
         yomi: "モール・マイナー",
         url: "mole-miner.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10695,8 +13193,10 @@ const manualEntries = [
         yomi: "モールラット",
         url: "mole-rat-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10704,8 +13204,10 @@ const manualEntries = [
         yomi: "モリー",
         url: "molly-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10713,8 +13215,10 @@ const manualEntries = [
         yomi: "ブラザー・モンクリフ",
         url: "moncrief.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10722,8 +13226,10 @@ const manualEntries = [
         yomi: "モングレル",
         url: "mongrel-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10731,8 +13237,10 @@ const manualEntries = [
         yomi: "モノンガー鉱山",
         url: "monongah-mine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10740,8 +13248,10 @@ const manualEntries = [
         yomi: "モノンガー展望台",
         url: "monongah-overlook.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10749,8 +13259,10 @@ const manualEntries = [
         yomi: "モノンガー発電所",
         url: "monongah-power-plant.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10758,8 +13270,10 @@ const manualEntries = [
         yomi: "モノンガー",
         url: "monongah.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10767,8 +13281,10 @@ const manualEntries = [
         yomi: "モノンガヒラ国立森林",
         url: "monongahela-national-forest.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10776,8 +13292,10 @@ const manualEntries = [
         yomi: "モノレール・エレベーター",
         url: "monorail-elevator.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10785,8 +13303,10 @@ const manualEntries = [
         yomi: "モンシニョール・プラザ",
         url: "monsignor-plaza.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10794,8 +13314,10 @@ const manualEntries = [
         yomi: "モンティ",
         url: "monty-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10803,8 +13325,10 @@ const manualEntries = [
         yomi: "モンティ",
         url: "monty-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10812,8 +13336,13 @@ const manualEntries = [
         yomi: "ムーンモンキーのジャングルズ",
         url: "moon-monkey-jungles.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -10821,8 +13350,10 @@ const manualEntries = [
         yomi: "Moonshiner Ned",
         url: "moonshiner-ned.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10830,8 +13361,10 @@ const manualEntries = [
         yomi: "密造酒業者の見晴らし台",
         url: "moonshiners-overlook.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10839,8 +13372,10 @@ const manualEntries = [
         yomi: "密造酒業者の小屋",
         url: "moonshiners-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10848,8 +13383,10 @@ const manualEntries = [
         yomi: "ムーンベイル・トンネル",
         url: "moonvale-tunnel.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10857,8 +13394,10 @@ const manualEntries = [
         yomi: "Mordecai McCoy",
         url: "mordecai-mccoy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10866,8 +13405,10 @@ const manualEntries = [
         yomi: "モルデカイ &quot;モート&quot; マッコイ",
         url: "mordecai-mort-mccoy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -10875,8 +13416,10 @@ const manualEntries = [
         yomi: "モーガンタウン空港ターミナル",
         url: "morgantown-airport-terminal.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10884,8 +13427,10 @@ const manualEntries = [
         yomi: "モーガンタウン空港",
         url: "morgantown-airport.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10893,8 +13438,10 @@ const manualEntries = [
         yomi: "モーガンタウン高校",
         url: "morgantown-high-school.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10902,8 +13449,10 @@ const manualEntries = [
         yomi: "モーガンタウン・モノレール",
         url: "morgantown-monorail.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10911,8 +13460,10 @@ const manualEntries = [
         yomi: "モーガンタウン操車場",
         url: "morgantown-trainyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10920,8 +13471,10 @@ const manualEntries = [
         yomi: "モーガンタウン",
         url: "morgantown.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10929,8 +13482,10 @@ const manualEntries = [
         yomi: "モーリー",
         url: "morley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10938,8 +13493,10 @@ const manualEntries = [
         yomi: "Morris Stevens",
         url: "morris-stevens.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10947,8 +13504,10 @@ const manualEntries = [
         yomi: "モーティマー",
         url: "mortimer-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10956,8 +13515,10 @@ const manualEntries = [
         yomi: "モスタウン",
         url: "mosstown.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10965,8 +13526,10 @@ const manualEntries = [
         yomi: "モスホーム",
         url: "moth-home.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10974,8 +13537,10 @@ const manualEntries = [
         yomi: "マザーロード取得施設",
         url: "motherlode-acquisition-facility.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10983,8 +13548,10 @@ const manualEntries = [
         yomi: "モスマン博物館",
         url: "mothman-museum.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -10992,8 +13559,10 @@ const manualEntries = [
         yomi: "モスマン",
         url: "mothman.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11001,8 +13570,10 @@ const manualEntries = [
         yomi: "モーターランナー",
         url: "motor-runner.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11010,8 +13581,10 @@ const manualEntries = [
         yomi: "マウント・ブレア・コーヒー小屋",
         url: "mount-blair-coffee-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11019,8 +13592,10 @@ const manualEntries = [
         yomi: "マウント・ブレア操車場",
         url: "mount-blair-trainyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11028,8 +13603,10 @@ const manualEntries = [
         yomi: "マウント・ブレア",
         url: "mount-blair.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11037,8 +13614,10 @@ const manualEntries = [
         yomi: "マウンテンサイド B&amp;B",
         url: "mountainside-bed-and-breakfast.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11046,8 +13625,10 @@ const manualEntries = [
         yomi: "山腹のキャビン",
         url: "mountainside-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11055,8 +13636,10 @@ const manualEntries = [
         yomi: "マウンテンサイド・ファーム",
         url: "mountainside-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11064,8 +13647,10 @@ const manualEntries = [
         yomi: "マウンテンサイド駅",
         url: "mountainside-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11073,8 +13658,10 @@ const manualEntries = [
         yomi: "Mr. Fluffy",
         url: "mr-fluffy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11082,8 +13669,10 @@ const manualEntries = [
         yomi: "ミスター・ハンディ",
         url: "mr-handy.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11091,8 +13680,10 @@ const manualEntries = [
         yomi: "Mr.スクイーズ",
         url: "mr-squeeze.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11100,8 +13691,10 @@ const manualEntries = [
         yomi: "マギー",
         url: "muggy.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11109,8 +13702,10 @@ const manualEntries = [
         yomi: "Munch",
         url: "munch.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11118,8 +13713,10 @@ const manualEntries = [
         yomi: "マークウォーター建設現場",
         url: "murkwater-construction-site.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11127,8 +13724,10 @@ const manualEntries = [
         yomi: "Murray",
         url: "murray-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11136,8 +13735,10 @@ const manualEntries = [
         yomi: "自由博物館",
         url: "museum-of-freedom.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11145,8 +13746,10 @@ const manualEntries = [
         yomi: "サレム魔女博物館",
         url: "museum-of-witchcraft.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11154,8 +13757,10 @@ const manualEntries = [
         yomi: "ミュータント・ハウンド",
         url: "mutant-hound-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11163,8 +13768,11 @@ const manualEntries = [
         yomi: "変異パブリックイベント",
         url: "mutation-public-event.html",
         category: "イベント・現象",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11172,8 +13780,10 @@ const manualEntries = [
         yomi: "変異",
         url: "mutation.html",
         category: "イベント・現象",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11181,8 +13791,10 @@ const manualEntries = [
         yomi: "ミステリアス・ガイドストーン",
         url: "mysterious-guidestones.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11190,8 +13802,10 @@ const manualEntries = [
         yomi: "N. Jackson",
         url: "n-jackson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11199,8 +13813,10 @@ const manualEntries = [
         yomi: "ナハント海洋学協会",
         url: "nahant-oceanological-society.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11208,8 +13824,10 @@ const manualEntries = [
         yomi: "NAR修理ヤード",
         url: "nar-repair-yard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11217,8 +13835,10 @@ const manualEntries = [
         yomi: "ネリ・サミール",
         url: "nari-samir.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11226,8 +13846,10 @@ const manualEntries = [
         yomi: "Natasha Hunt",
         url: "natasha-hunt.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11235,8 +13857,10 @@ const manualEntries = [
         yomi: "州兵訓練所",
         url: "national-guard-training-yard.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11244,8 +13868,10 @@ const manualEntries = [
         yomi: "国立隔離無線アレイ",
         url: "national-isolated-radio-array.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11253,8 +13879,10 @@ const manualEntries = [
         yomi: "国立公園案内所",
         url: "national-park-visitors-center.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Far Harbor)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Far Harbor)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11262,8 +13890,10 @@ const manualEntries = [
         yomi: "National Radio Astronomy Research Center",
         url: "national-radio-astronomy-research-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11271,8 +13901,10 @@ const manualEntries = [
         yomi: "NCRのキャラバン商人",
         url: "ncr-caravaner.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11280,8 +13912,10 @@ const manualEntries = [
         yomi: "NCRの市民",
         url: "ncr-citizen-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11289,8 +13923,10 @@ const manualEntries = [
         yomi: "NCRアウトポスト (TVドラマ)",
         url: "ncr-outpost.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11298,8 +13934,10 @@ const manualEntries = [
         yomi: "NCR兵士（シーズン1残党）",
         url: "ncr-soldier-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11307,8 +13945,10 @@ const manualEntries = [
         yomi: "NCRトルーパー（シーズン2）",
         url: "ncr-trooper-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11316,8 +13956,13 @@ const manualEntries = [
         yomi: "New California Republic",
         url: "ncr.html",
         category: "勢力",
-        appearance: ["Fallout","Fallout 2","Fallout: New Vegas","Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout",
+            "Fallout 2",
+            "Fallout: New Vegas",
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11325,8 +13970,10 @@ const manualEntries = [
         yomi: "ニードルズ",
         url: "needles.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11334,8 +13981,10 @@ const manualEntries = [
         yomi: "隣接する農家",
         url: "neighboring-homesteads.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11343,8 +13992,10 @@ const manualEntries = [
         yomi: "Nellie Wright",
         url: "nellie-wright.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11352,8 +14003,10 @@ const manualEntries = [
         yomi: "ニュー・アパラチアン中央操車場",
         url: "new-appalachian-central-trainyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11361,8 +14014,10 @@ const manualEntries = [
         yomi: "ニューガッド",
         url: "new-gad.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11370,8 +14025,10 @@ const manualEntries = [
         yomi: "ニューリバー渓谷橋",
         url: "new-river-gorge-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11379,8 +14036,10 @@ const manualEntries = [
         yomi: "ニューリバー峡谷リゾート",
         url: "new-river-gorge-resort.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11388,8 +14047,10 @@ const manualEntries = [
         yomi: "ニューリバー・ゴージ・ロープスコース",
         url: "new-river-gorge-ropes-course.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11397,8 +14058,10 @@ const manualEntries = [
         yomi: "ニューリバー峡谷ロープコース",
         url: "new-river-gorge-ropes.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11406,8 +14069,10 @@ const manualEntries = [
         yomi: "ニューリバー",
         url: "new-river.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11415,8 +14080,10 @@ const manualEntries = [
         yomi: "ニュースキャスター",
         url: "news-anchor.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11424,8 +14091,10 @@ const manualEntries = [
         yomi: "キャンプカウンセラー・ニア",
         url: "nia.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11433,8 +14102,10 @@ const manualEntries = [
         yomi: "ニコルソンの最期",
         url: "nicholsons-end.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11442,8 +14113,10 @@ const manualEntries = [
         yomi: "ニック・ザ・プリック",
         url: "nick-the-prick.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11451,8 +14124,10 @@ const manualEntries = [
         yomi: "ニック・バレンタイン",
         url: "nick-valentine.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11460,8 +14135,10 @@ const manualEntries = [
         yomi: "ニング",
         url: "ning.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11469,8 +14146,10 @@ const manualEntries = [
         yomi: "ニラジ・シン",
         url: "niraj-singh.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11478,8 +14157,10 @@ const manualEntries = [
         yomi: "ノーバーク・ヌーナン",
         url: "no-bark-noonan.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11487,8 +14168,10 @@ const manualEntries = [
         yomi: "ノードハーゲン・ビーチ",
         url: "nordhagen-beach.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11496,8 +14179,10 @@ const manualEntries = [
         yomi: "Norland",
         url: "norland.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11505,8 +14190,10 @@ const manualEntries = [
         yomi: "ノーム・マクレーン",
         url: "norm-maclean.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11514,8 +14201,10 @@ const manualEntries = [
         yomi: "ノース・カットスロート・キャンプ",
         url: "north-cutthroat-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11523,8 +14212,10 @@ const manualEntries = [
         yomi: "ノースカナワの監視地点",
         url: "north-kanawha-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11532,8 +14223,10 @@ const manualEntries = [
         yomi: "北カナー監視地点",
         url: "north-kanner-monitoring-point.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11541,8 +14234,10 @@ const manualEntries = [
         yomi: "ノース・マウンテン監視塔",
         url: "north-mountain-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11550,8 +14245,10 @@ const manualEntries = [
         yomi: "ノース・マウンテン演説キャンプ",
         url: "north-mountain-oratory-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11559,8 +14256,10 @@ const manualEntries = [
         yomi: "ノースロードブリッジ（シルバーブリッジ）",
         url: "north-road-bridge.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11568,8 +14267,10 @@ const manualEntries = [
         yomi: "ドクター・\"ノーズ\"・エドモンドソン",
         url: "nose-edmundson.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11577,8 +14278,10 @@ const manualEntries = [
         yomi: "ヌカ・ドン",
         url: "nuclear-don.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11586,8 +14289,10 @@ const manualEntries = [
         yomi: "ヌカケイド",
         url: "nuka-cade-fo76.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11595,8 +14300,10 @@ const manualEntries = [
         yomi: "ヌカ・ケード",
         url: "nuka-cade-nuka-world.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11604,8 +14311,12 @@ const manualEntries = [
         yomi: "ヌカ・コーラ (Nuka-Cola)",
         url: "nuka-cola.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11613,8 +14324,10 @@ const manualEntries = [
         yomi: "ヌカ・ギャラクシー",
         url: "nuka-galaxy.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11622,8 +14335,10 @@ const manualEntries = [
         yomi: "ヌカ・ガール",
         url: "nuka-girl.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11631,8 +14346,10 @@ const manualEntries = [
         yomi: "ヌカ・ランチャー",
         url: "nuka-launcher.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11640,8 +14357,11 @@ const manualEntries = [
         yomi: "ヌカ・タッパー",
         url: "nuka-tapper.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11649,8 +14369,10 @@ const manualEntries = [
         yomi: "ヌカ・タウンU.S.A.",
         url: "nuka-town-usa.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11658,8 +14380,10 @@ const manualEntries = [
         yomi: "ヌカ・ワールド",
         url: "nuka-world-loc.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11667,8 +14391,10 @@ const manualEntries = [
         yomi: "ヌカワールド・オン・ツアー",
         url: "nuka-world-on-tour.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11676,8 +14402,10 @@ const manualEntries = [
         yomi: "ヌカ・ワールド・発電所",
         url: "nuka-world-power-plant.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11685,8 +14413,10 @@ const manualEntries = [
         yomi: "オバーランド駅",
         url: "oberland-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11694,8 +14424,10 @@ const manualEntries = [
         yomi: "天文台",
         url: "observatory-savage-divide.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11703,8 +14435,10 @@ const manualEntries = [
         yomi: "Odessa Valdez",
         url: "odessa-valdez.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11712,8 +14446,10 @@ const manualEntries = [
         yomi: "オハイオの川下りアドベンチャーズ",
         url: "ohio-river-adventures.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11721,8 +14457,11 @@ const manualEntries = [
         yomi: "オハイオ川",
         url: "ohio-river.html",
         category: "ロケーション",
-        appearance: ["Fallout 76","The Pitt"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "The Pitt"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11730,8 +14469,10 @@ const manualEntries = [
         yomi: "オールド・ダニエルソン・キャビン",
         url: "old-danielson-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11739,8 +14480,10 @@ const manualEntries = [
         yomi: "オールド・ガレット・シンクホール",
         url: "old-gullet-sinkhole.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11748,8 +14491,10 @@ const manualEntries = [
         yomi: "オールド・モールド採石場",
         url: "old-mold-quarry.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11757,8 +14502,10 @@ const manualEntries = [
         yomi: "オールド・ネイト",
         url: "old-nate.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11766,8 +14513,10 @@ const manualEntries = [
         yomi: "オールド・ノース・チャーチ",
         url: "old-north-church.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11775,8 +14524,10 @@ const manualEntries = [
         yomi: "オールド・ピートの終焉地",
         url: "old-petes-end.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11784,8 +14535,10 @@ const manualEntries = [
         yomi: "古い保管庫",
         url: "old-storehouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11793,8 +14546,10 @@ const manualEntries = [
         yomi: "老婆のグレッチ",
         url: "old-woman-gretch.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11802,8 +14557,10 @@ const manualEntries = [
         yomi: "オリバー・フィールズ大尉",
         url: "oliver-fields.html",
         category: "キャラクター",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11811,8 +14568,10 @@ const manualEntries = [
         yomi: "オリバー・スワニック",
         url: "oliver-swanick.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11820,8 +14579,10 @@ const manualEntries = [
         yomi: "オリヴィア・リバーズ",
         url: "olivia-rivers.html",
         category: "キャラクター",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11829,8 +14590,10 @@ const manualEntries = [
         yomi: "オポッサム",
         url: "opossum-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11838,8 +14601,10 @@ const manualEntries = [
         yomi: "オルガン洞窟",
         url: "organ-cave.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -11847,8 +14612,10 @@ const manualEntries = [
         yomi: "オリオン・モレノ",
         url: "orion-moreno.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11856,8 +14623,10 @@ const manualEntries = [
         yomi: "オーランド",
         url: "orlando.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11865,8 +14634,10 @@ const manualEntries = [
         yomi: "オーウェル果樹園",
         url: "orwell-orchards.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11874,8 +14645,10 @@ const manualEntries = [
         yomi: "オーティス・パイク",
         url: "otis-pike.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11883,8 +14656,10 @@ const manualEntries = [
         yomi: "ジモンヤ前哨基地",
         url: "outpost-zimonja.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11892,8 +14667,10 @@ const manualEntries = [
         yomi: "繁茂したサンデュー叢",
         url: "overgrown-sundew-grove.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11901,8 +14678,10 @@ const manualEntries = [
         yomi: "展望キャビン",
         url: "overlook-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11910,8 +14689,10 @@ const manualEntries = [
         yomi: "監督官のキャンプ",
         url: "overseers-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11919,8 +14700,10 @@ const manualEntries = [
         yomi: "監督官の家",
         url: "overseers-home.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11928,8 +14711,10 @@ const manualEntries = [
         yomi: "フクロウ",
         url: "owl-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11937,8 +14722,10 @@ const manualEntries = [
         yomi: "フクロウ（子）",
         url: "owlet-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11946,8 +14733,10 @@ const manualEntries = [
         yomi: "エルダー・オーウェン・リオンズ",
         url: "owyn-lyons.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11955,8 +14744,10 @@ const manualEntries = [
         yomi: "Paige",
         url: "paige.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11964,8 +14755,10 @@ const manualEntries = [
         yomi: "Palace of the Winding Path",
         url: "palace-of-the-winding-path.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11973,8 +14766,10 @@ const manualEntries = [
         yomi: "PANDORA",
         url: "pandora.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11982,8 +14777,10 @@ const manualEntries = [
         yomi: "パパ・カーン",
         url: "papa-khan.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -11991,8 +14788,10 @@ const manualEntries = [
         yomi: "Initiate Pappas",
         url: "pappas-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12000,8 +14799,10 @@ const manualEntries = [
         yomi: "パークストリート駅",
         url: "park-street-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12009,8 +14810,10 @@ const manualEntries = [
         yomi: "パーソンズ州立精神病院",
         url: "parsons-state-insane-asylum.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12018,8 +14821,10 @@ const manualEntries = [
         yomi: "パルテニア・ブランケンシップ",
         url: "parthenia-blankenship.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12027,8 +14832,10 @@ const manualEntries = [
         yomi: "パーティー客",
         url: "party-guest.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12036,8 +14843,10 @@ const manualEntries = [
         yomi: "パーティーハット",
         url: "party-hat.html",
         category: "アイテム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12045,8 +14854,10 @@ const manualEntries = [
         yomi: "パーティタイム・ダイナーズ",
         url: "party-time-diners.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12054,8 +14865,10 @@ const manualEntries = [
         yomi: "パーティーの参加者（Lucky 38）",
         url: "partygoer-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12063,8 +14876,10 @@ const manualEntries = [
         yomi: "Patricia Myers",
         url: "patricia-myers.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12072,8 +14887,10 @@ const manualEntries = [
         yomi: "パトリシア・ピーターズ",
         url: "patricia-peters.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12081,8 +14898,10 @@ const manualEntries = [
         yomi: "常連客（ザ・ウェイワード）",
         url: "patron-the-wayward.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12090,8 +14909,10 @@ const manualEntries = [
         yomi: "Paul",
         url: "paul-responders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12099,8 +14920,10 @@ const manualEntries = [
         yomi: "ペンドルトン",
         url: "pendleton.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12108,8 +14931,10 @@ const manualEntries = [
         yomi: "ペネロペ・ホーンライト",
         url: "penelope-hornwright.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12117,8 +14942,10 @@ const manualEntries = [
         yomi: "ペニントン",
         url: "pennington.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12126,8 +14953,10 @@ const manualEntries = [
         yomi: "スカウトリーダー・ペニー",
         url: "penny-wild-appalachia.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12135,8 +14964,10 @@ const manualEntries = [
         yomi: "Pete Myers",
         url: "pete-myers.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12144,8 +14975,10 @@ const manualEntries = [
         yomi: "ピート",
         url: "pete-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12153,8 +14986,10 @@ const manualEntries = [
         yomi: "ピーターセン",
         url: "petersen-steel-reign.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12162,8 +14997,10 @@ const manualEntries = [
         yomi: "小柄なレイダー",
         url: "petite-raider.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12171,8 +15008,10 @@ const manualEntries = [
         yomi: "フィリッピ戦場墓地",
         url: "philippi-battlefield-cemetery.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12180,8 +15019,10 @@ const manualEntries = [
         yomi: "フィリッピ",
         url: "philippi.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12189,8 +15030,10 @@ const manualEntries = [
         yomi: "パイ・ハウス",
         url: "pi-house.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12198,8 +15041,10 @@ const manualEntries = [
         yomi: "ピックマン・ギャラリー",
         url: "pickman-gallery.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12207,8 +15052,10 @@ const manualEntries = [
         yomi: "パイハウス",
         url: "pie-house.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12216,8 +15063,10 @@ const manualEntries = [
         yomi: "ピアス",
         url: "pierce-steel-dawn.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12225,8 +15074,10 @@ const manualEntries = [
         yomi: "ピンカートン",
         url: "pinkerton.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12234,8 +15085,10 @@ const manualEntries = [
         yomi: "パイオニア・スカウト・キャンプ",
         url: "pioneer-scout-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12243,8 +15096,10 @@ const manualEntries = [
         yomi: "パイオニア・スカウトの監視地点",
         url: "pioneer-scout-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12252,8 +15107,10 @@ const manualEntries = [
         yomi: "pip-boy-character",
         url: "pip-boy-character.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12261,8 +15118,14 @@ const manualEntries = [
         yomi: "Pip-Boy",
         url: "pip-boy.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12270,8 +15133,10 @@ const manualEntries = [
         yomi: "パイプボルトアクション",
         url: "pipe-bolt-action.html",
         category: "武器",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12279,8 +15144,11 @@ const manualEntries = [
         yomi: "パイプガン",
         url: "pipe-gun.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12288,8 +15156,10 @@ const manualEntries = [
         yomi: "パイプ・リボルバー",
         url: "pipe-revolver.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12297,8 +15167,11 @@ const manualEntries = [
         yomi: "パイパー・ライト",
         url: "piper-light.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12306,8 +15179,11 @@ const manualEntries = [
         yomi: "海賊放送",
         url: "pirate-broadcast.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12315,8 +15191,10 @@ const manualEntries = [
         yomi: "プラズマガン",
         url: "plasma-gun.html",
         category: "武器",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12324,8 +15202,10 @@ const manualEntries = [
         yomi: "プレザント・ヒルズ墓地",
         url: "pleasant-hills-cemetery.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12333,8 +15213,10 @@ const manualEntries = [
         yomi: "プレザント・バレー・キャビン",
         url: "pleasant-valley-cabins.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12342,8 +15224,10 @@ const manualEntries = [
         yomi: "プレザント・バレー・スキーリゾート",
         url: "pleasant-valley-ski-resort.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12351,8 +15235,10 @@ const manualEntries = [
         yomi: "プレザント・バレー駅",
         url: "pleasant-valley-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12360,8 +15246,10 @@ const manualEntries = [
         yomi: "ポイント・プレザント",
         url: "point-pleasant.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12369,8 +15257,10 @@ const manualEntries = [
         yomi: "ポイント・リポーズ",
         url: "point-repose.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12378,8 +15268,10 @@ const manualEntries = [
         yomi: "Polly",
         url: "polly-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12387,8 +15279,10 @@ const manualEntries = [
         yomi: "ポリー",
         url: "polly.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12396,8 +15290,10 @@ const manualEntries = [
         yomi: "スカウトリーダー・ポンピー",
         url: "pompy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12405,8 +15301,10 @@ const manualEntries = [
         yomi: "プール",
         url: "poole.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12414,8 +15312,10 @@ const manualEntries = [
         yomi: "Pop",
         url: "pop.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12423,8 +15323,10 @@ const manualEntries = [
         yomi: "ポートサイド・パブ",
         url: "portside-pub.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12432,8 +15334,10 @@ const manualEntries = [
         yomi: "ポセイドン・エネルギープラント",
         url: "poseidon-energy-fo4.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12441,8 +15345,10 @@ const manualEntries = [
         yomi: "ポセイドン・エナジー発電所 WV-06",
         url: "poseidon-energy-plant-wv-06.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12450,8 +15356,10 @@ const manualEntries = [
         yomi: "ポセイドン発電所ヤード",
         url: "poseidon-energy-plant-yard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12459,8 +15367,15 @@ const manualEntries = [
         yomi: "ポセイドン・エネルギー",
         url: "poseidon-energy.html",
         category: "勢力",
-        appearance: ["Fallout","Fallout 2","Fallout 3","Fallout: New Vegas","Fallout 4","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout",
+            "Fallout 2",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout 4",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12468,8 +15383,11 @@ const manualEntries = [
         yomi: "ポセイドン・ガソリン",
         url: "poseidon-gasoline.html",
         category: "勢力",
-        appearance: ["Fallout","Fallout 2"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout",
+            "Fallout 2"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12477,8 +15395,10 @@ const manualEntries = [
         yomi: "ポセイドン・オイル",
         url: "poseidon-oil.html",
         category: "勢力",
-        appearance: ["Fallout 2"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 2"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12486,8 +15406,10 @@ const manualEntries = [
         yomi: "ポセイドン変電所PX-01",
         url: "poseidon-power-substation-px-01.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12495,8 +15417,10 @@ const manualEntries = [
         yomi: "ポセイドン変電所PX-02",
         url: "poseidon-power-substation-px-02.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12504,8 +15428,10 @@ const manualEntries = [
         yomi: "ポセイドン変電所 PX-03",
         url: "poseidon-power-substation-px-03.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12513,8 +15439,10 @@ const manualEntries = [
         yomi: "ポセイドン変電所 PX-01",
         url: "poseidon-substation-px-01.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12522,8 +15450,10 @@ const manualEntries = [
         yomi: "ポセイドン変電所 PX-02",
         url: "poseidon-substation-px-02.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12531,8 +15461,10 @@ const manualEntries = [
         yomi: "ポセイドン変電所 PX-03",
         url: "poseidon-substation-px-03.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12540,8 +15472,12 @@ const manualEntries = [
         yomi: "ポセイドネット",
         url: "poseidonet.html",
         category: "ロア",
-        appearance: ["Fallout 2","Fallout: New Vegas","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 2",
+            "Fallout: New Vegas",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12549,8 +15485,11 @@ const manualEntries = [
         yomi: "ポトマック川",
         url: "potomac-river.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12558,8 +15497,10 @@ const manualEntries = [
         yomi: "ナース・パウエル",
         url: "powell.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12567,8 +15508,11 @@ const manualEntries = [
         yomi: "パワーアーマー",
         url: "power-armor.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12576,8 +15520,10 @@ const manualEntries = [
         yomi: "パワーヌードル",
         url: "power-noodles.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12585,8 +15531,10 @@ const manualEntries = [
         yomi: "先史時代の骨のキャンプ",
         url: "prehistoric-bones-camp.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12594,8 +15542,10 @@ const manualEntries = [
         yomi: "プレッパーのパイロン天国",
         url: "preppers-pylon-paradise.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12603,8 +15553,10 @@ const manualEntries = [
         yomi: "プリブロスの骨董品店",
         url: "priblos-curios.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12612,8 +15564,10 @@ const manualEntries = [
         yomi: "プリケッツ砦のキュレーター",
         url: "pricketts-fort-curator.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12621,8 +15575,10 @@ const manualEntries = [
         yomi: "プリケットの砦",
         url: "pricketts-fort.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12630,8 +15586,10 @@ const manualEntries = [
         yomi: "プリム",
         url: "primm.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12639,8 +15597,10 @@ const manualEntries = [
         yomi: "Mr. Prize Bot (ミスター・プライズボット)",
         url: "prize_bot.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12648,8 +15608,10 @@ const manualEntries = [
         yomi: "プロフェッサーボット",
         url: "professor-bot.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12657,8 +15619,10 @@ const manualEntries = [
         yomi: "Project Paradise",
         url: "project-paradise.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12666,8 +15630,10 @@ const manualEntries = [
         yomi: "プロスペクト・ヒル",
         url: "prospect-hill.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12675,8 +15641,13 @@ const manualEntries = [
         yomi: "プロテクトロン",
         url: "protectron.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12684,8 +15655,10 @@ const manualEntries = [
         yomi: "抗議活動のまとめ役",
         url: "protest-foreperson.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12693,8 +15666,10 @@ const manualEntries = [
         yomi: "抗議プラカード",
         url: "protest-placard.html",
         category: "武器",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12702,8 +15677,12 @@ const manualEntries = [
         yomi: "プリドゥエン",
         url: "pryduen.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12711,8 +15690,14 @@ const manualEntries = [
         yomi: "サイコ",
         url: "psycho.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12720,8 +15705,10 @@ const manualEntries = [
         yomi: "PTSアップデート – 2026年1月16日",
         url: "pts-update-january-16-2026.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12729,8 +15716,10 @@ const manualEntries = [
         yomi: "パブリックパーティー",
         url: "public-party.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12738,8 +15727,10 @@ const manualEntries = [
         yomi: "パンプキンハウス",
         url: "pumpkin-house.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12747,8 +15738,10 @@ const manualEntries = [
         yomi: "カボチャ",
         url: "pumpkin.html",
         category: "植物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12756,8 +15749,10 @@ const manualEntries = [
         yomi: "パイロン待ち伏せ地点",
         url: "pylon-ambush-site.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12765,8 +15760,10 @@ const manualEntries = [
         yomi: "パイロン V-13",
         url: "pylon-v-13.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12774,8 +15771,10 @@ const manualEntries = [
         yomi: "pyramind",
         url: "pyramind.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12783,8 +15782,10 @@ const manualEntries = [
         yomi: "採石場 X3",
         url: "quarry-x3.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12792,8 +15793,10 @@ const manualEntries = [
         yomi: "クエルクス",
         url: "quercus.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12801,8 +15804,10 @@ const manualEntries = [
         yomi: "クインシー採石場",
         url: "quincy-quarries.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12810,8 +15815,10 @@ const manualEntries = [
         yomi: "クインシー跡地",
         url: "quincy-ruins.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12819,8 +15826,10 @@ const manualEntries = [
         yomi: "クイン・カーター",
         url: "quinn-carter.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12828,8 +15837,10 @@ const manualEntries = [
         yomi: "クインタス長老聖職者",
         url: "quintus-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12837,8 +15848,10 @@ const manualEntries = [
         yomi: "エルダー・クレリック・クインタス",
         url: "quintus.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12846,8 +15859,10 @@ const manualEntries = [
         yomi: "ララ",
         url: "ra-ra.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12855,8 +15870,10 @@ const manualEntries = [
         yomi: "ウサギ",
         url: "rabbit-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12864,8 +15881,14 @@ const manualEntries = [
         yomi: "Rad-X",
         url: "rad-x.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12873,8 +15896,14 @@ const manualEntries = [
         yomi: "RadAway",
         url: "radaway.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -12882,8 +15911,10 @@ const manualEntries = [
         yomi: "ラッドホッグ",
         url: "radhog-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12891,8 +15922,10 @@ const manualEntries = [
         yomi: "ラディアント・ヒルズ",
         url: "radiant-hills.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12900,8 +15933,10 @@ const manualEntries = [
         yomi: "ラッドラット",
         url: "radrat-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12909,8 +15944,10 @@ const manualEntries = [
         yomi: "ラッドローチ",
         url: "radroach-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12918,8 +15955,10 @@ const manualEntries = [
         yomi: "ラッドスコルピオン",
         url: "radscorpion-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12927,8 +15966,10 @@ const manualEntries = [
         yomi: "ラッドスタッグ",
         url: "radstag-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12936,8 +15977,10 @@ const manualEntries = [
         yomi: "ラッドトード",
         url: "radtoad-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12945,8 +15988,10 @@ const manualEntries = [
         yomi: "Raf",
         url: "raf.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12954,8 +15999,10 @@ const manualEntries = [
         yomi: "ragnarok",
         url: "ragnarok.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12963,8 +16010,10 @@ const manualEntries = [
         yomi: "ラグナルスドッティル少佐",
         url: "ragnarsdottir.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12972,8 +16021,10 @@ const manualEntries = [
         yomi: "レイダー3",
         url: "raider-3.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12981,8 +16032,10 @@ const manualEntries = [
         yomi: "レイダーのトイレと堀",
         url: "raider-outhouse-and-moat.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12990,8 +16043,10 @@ const manualEntries = [
         yomi: "「人生の大半を、あちこちのギャングで育ったよ。<br>\r\n                ここやあそこで。よくある悲しい話さ、俺たちの大半がそうだ。<br>\r\n                でも主に北の方だな。」",
         url: "raider-punk.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -12999,8 +16054,10 @@ const manualEntries = [
         yomi: "Raiders vendor",
         url: "raiders-vendor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13008,8 +16065,10 @@ const manualEntries = [
         yomi: "Raiders (レイダー / Fallout 76)",
         url: "raiders_76.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -13017,8 +16076,10 @@ const manualEntries = [
         yomi: "レールロード本部",
         url: "railroad-hq.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13026,8 +16087,10 @@ const manualEntries = [
         yomi: "鉄道整備場",
         url: "railroad-service-yard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13035,8 +16098,10 @@ const manualEntries = [
         yomi: "Raleigh Clay",
         url: "raleigh-clay.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13044,8 +16109,10 @@ const manualEntries = [
         yomi: "ローリー・クレイのバンカー",
         url: "raleigh-clays-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13053,8 +16120,10 @@ const manualEntries = [
         yomi: "randall-clark",
         url: "randall-clark.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13062,8 +16131,10 @@ const manualEntries = [
         yomi: "ランディ・キャロウェイ",
         url: "randy-calloway.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13071,8 +16142,10 @@ const manualEntries = [
         yomi: "レンジャーの小屋",
         url: "ranger-cabin.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13080,8 +16153,10 @@ const manualEntries = [
         yomi: "レンジャー管区事務所",
         url: "ranger-district-office.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13089,8 +16164,10 @@ const manualEntries = [
         yomi: "レンジャー見張り台",
         url: "ranger-lookout-bog.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13098,8 +16175,10 @@ const manualEntries = [
         yomi: "略奪されたバンカー",
         url: "ransacked-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13107,8 +16186,10 @@ const manualEntries = [
         yomi: "ラピダン・クリーク",
         url: "rapidan-creek.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13116,8 +16197,10 @@ const manualEntries = [
         yomi: "Rattler",
         url: "rattler.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13125,8 +16208,10 @@ const manualEntries = [
         yomi: "ラウル・テハダ",
         url: "raul-tejada.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13134,8 +16219,10 @@ const manualEntries = [
         yomi: "レイ・ゲイリー",
         url: "ray-gary.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13143,8 +16230,10 @@ const manualEntries = [
         yomi: "Raymond Clark",
         url: "raymond-clark.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13152,8 +16241,10 @@ const manualEntries = [
         yomi: "レイモンド・プリブロ",
         url: "raymond-priblo.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13161,8 +16252,10 @@ const manualEntries = [
         yomi: "レッドデスの島",
         url: "red-death-island.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Far Harbor)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Far Harbor)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13170,8 +16263,10 @@ const manualEntries = [
         yomi: "赤毛の男",
         url: "red-haired-man.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13179,8 +16274,10 @@ const manualEntries = [
         yomi: "赤毛の女",
         url: "red-haired-woman.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13188,8 +16285,10 @@ const manualEntries = [
         yomi: "レッド・ルーシー",
         url: "red-lucy.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13197,8 +16296,10 @@ const manualEntries = [
         yomi: "ボグタウンのレッドロケット",
         url: "red-rocket-bog-town.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13206,8 +16307,10 @@ const manualEntries = [
         yomi: "レッドロケット・給油所",
         url: "red-rocket-filling-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13215,8 +16318,10 @@ const manualEntries = [
         yomi: "レッド・ロケット（フラットウッズ）",
         url: "red-rocket-flatwoods.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13224,8 +16329,10 @@ const manualEntries = [
         yomi: "レッド・ロケット（巨大ティーポット）",
         url: "red-rocket-giant-teapot.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13233,8 +16340,10 @@ const manualEntries = [
         yomi: "レッドロケット・メガストップ",
         url: "red-rocket-mega-stop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13242,8 +16351,10 @@ const manualEntries = [
         yomi: "レッド・ロケット（モーガンタウン）",
         url: "red-rocket-morgantown.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13251,8 +16362,10 @@ const manualEntries = [
         yomi: "レッドロケット（荒れた境域）",
         url: "red-rocket-savage-divide.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13260,8 +16373,10 @@ const manualEntries = [
         yomi: "レッドロケット（サットン）",
         url: "red-rocket-sutton.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13269,8 +16384,10 @@ const manualEntries = [
         yomi: "レッドロケット・トラックストップ",
         url: "red-rocket-truck-stop.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13278,8 +16395,10 @@ const manualEntries = [
         yomi: "レッドロケット (TVシリーズ)",
         url: "red-rocket-tv-series.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13287,8 +16406,10 @@ const manualEntries = [
         yomi: "レッドロケット（バレー・ギャレリア）",
         url: "red-rocket-valley-galleria.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13296,8 +16417,10 @@ const manualEntries = [
         yomi: "リーブ・マリーナ",
         url: "reeb-marina.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13305,8 +16428,10 @@ const manualEntries = [
         yomi: "反射",
         url: "reflection.html",
         category: "イベント・現象",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -13314,8 +16439,10 @@ const manualEntries = [
         yomi: "レグ・マクフィー",
         url: "reg-mcphee.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13323,8 +16450,10 @@ const manualEntries = [
         yomi: "reginald-rothchild",
         url: "reginald-rothchild.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13332,8 +16461,10 @@ const manualEntries = [
         yomi: "レジナルド・\"レグズ\"・ストーン",
         url: "reginald-stone.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13341,8 +16472,10 @@ const manualEntries = [
         yomi: "Registration guard",
         url: "registration-guard.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13350,8 +16483,10 @@ const manualEntries = [
         yomi: "Regular Debbie",
         url: "regular-debbie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13359,8 +16494,10 @@ const manualEntries = [
         yomi: "リレータワー DP-B5-21",
         url: "relay-tower-dp-b5-21.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13368,8 +16505,10 @@ const manualEntries = [
         yomi: "リレータワー EL-B1-02",
         url: "relay-tower-el-b1-02.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13377,8 +16516,10 @@ const manualEntries = [
         yomi: "中継タワーEM-B1-27",
         url: "relay-tower-em-b1-27.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13386,8 +16527,10 @@ const manualEntries = [
         yomi: "中継塔 HG-B7-09",
         url: "relay-tower-hg-b7-09.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13395,8 +16538,10 @@ const manualEntries = [
         yomi: "リレータワー HN-B1-12",
         url: "relay-tower-hn-b1-12.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13404,8 +16549,10 @@ const manualEntries = [
         yomi: "リレータワー LW-B1-22",
         url: "relay-tower-lw-b1-22.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13413,8 +16560,10 @@ const manualEntries = [
         yomi: "リポーター",
         url: "reporter-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13423,7 +16572,7 @@ const manualEntries = [
         url: "resources.html",
         category: "未分類",
         appearance: [],
-        date: "2026-05-02",
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13431,8 +16580,10 @@ const manualEntries = [
         yomi: "Responder courier",
         url: "responder-courier.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13440,8 +16591,10 @@ const manualEntries = [
         yomi: "Responder Rocky",
         url: "responder-rocky.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13449,8 +16602,10 @@ const manualEntries = [
         yomi: "Responders vendor",
         url: "responders-vendor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13458,8 +16613,10 @@ const manualEntries = [
         yomi: "レスポンダー",
         url: "responders.html",
         category: "組織",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13467,8 +16624,10 @@ const manualEntries = [
         yomi: "ルーベン・ギル",
         url: "reuben-gill.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13476,8 +16635,10 @@ const manualEntries = [
         yomi: "リビア・ビーチ駅",
         url: "revere-beach-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13485,8 +16646,10 @@ const manualEntries = [
         yomi: "リビア衛星アレイ",
         url: "revere-satellite-array.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13494,8 +16657,10 @@ const manualEntries = [
         yomi: "保安官レックス",
         url: "rex-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13503,8 +16668,10 @@ const manualEntries = [
         yomi: "レックス",
         url: "rex.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13512,8 +16679,10 @@ const manualEntries = [
         yomi: "R&amp;Gプロセッシング・サービス",
         url: "rg-processing-services.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13521,8 +16690,10 @@ const manualEntries = [
         yomi: "リッチ・テイラー",
         url: "rich-taylor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13530,8 +16701,10 @@ const manualEntries = [
         yomi: "ナイト・ライリー",
         url: "riley-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13539,8 +16712,10 @@ const manualEntries = [
         yomi: "リンク",
         url: "rink.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13548,8 +16723,10 @@ const manualEntries = [
         yomi: "rip-daring",
         url: "rip-daring.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13557,8 +16734,10 @@ const manualEntries = [
         yomi: "リッパー・アレー",
         url: "ripper-alley.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13566,8 +16745,10 @@ const manualEntries = [
         yomi: "リプトカ－ド",
         url: "ripto-card.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -13575,8 +16756,10 @@ const manualEntries = [
         yomi: "リタ",
         url: "rita-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13584,8 +16767,10 @@ const manualEntries = [
         yomi: "リタ・ウィルコックス",
         url: "rita-wilcox.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13593,8 +16778,10 @@ const manualEntries = [
         yomi: "River Treehouse",
         url: "river-treehouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13602,8 +16789,10 @@ const manualEntries = [
         yomi: "リバーサイド・コテージ",
         url: "riverside-cottage-ash.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13611,8 +16800,10 @@ const manualEntries = [
         yomi: "リバーサイド・マナー",
         url: "riverside-manor.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13620,8 +16811,10 @@ const manualEntries = [
         yomi: "RobCo Auto-Cache #001",
         url: "robco-auto-cache-001.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -13629,8 +16822,10 @@ const manualEntries = [
         yomi: "RobCo研究センター",
         url: "robco-research-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13638,8 +16833,10 @@ const manualEntries = [
         yomi: "ロバート・ゲインズ",
         url: "robert-gaines.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13647,8 +16844,10 @@ const manualEntries = [
         yomi: "ロバート・ハウス / ミスター・ハウス",
         url: "robert-house-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13656,8 +16855,10 @@ const manualEntries = [
         yomi: "ロバート・ハウス (Mr.ハウス)",
         url: "robert-house.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13665,8 +16866,10 @@ const manualEntries = [
         yomi: "Mr.ハウスの影武者",
         url: "robert-houses-double.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13674,8 +16877,10 @@ const manualEntries = [
         yomi: "robert-maccready",
         url: "robert-maccready.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13683,8 +16888,10 @@ const manualEntries = [
         yomi: "ロバート・オルセン",
         url: "robert-olsen.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13692,8 +16899,10 @@ const manualEntries = [
         yomi: "ロバート",
         url: "robert-whitespring.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13701,8 +16910,10 @@ const manualEntries = [
         yomi: "警備主任ロビンソン",
         url: "robinson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13710,8 +16921,10 @@ const manualEntries = [
         yomi: "ロボブレイン",
         url: "robobrain.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -13719,8 +16932,10 @@ const manualEntries = [
         yomi: "ロボット廃棄場",
         url: "robotics-disposal-ground.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13728,8 +16943,10 @@ const manualEntries = [
         yomi: "Robyn the Brute",
         url: "robyn-the-brute.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13737,8 +16954,10 @@ const manualEntries = [
         yomi: "Rocco",
         url: "rocco.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13746,8 +16965,10 @@ const manualEntries = [
         yomi: "Rocksy",
         url: "rocksy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13755,8 +16976,10 @@ const manualEntries = [
         yomi: "キャプテン・ロドリゲス",
         url: "rodriguez.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13764,8 +16987,10 @@ const manualEntries = [
         yomi: "High Elder Roger Maxson",
         url: "roger-maxson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13773,8 +16998,10 @@ const manualEntries = [
         yomi: "ロリンズ労働キャンプ",
         url: "rollins-labor-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13782,8 +17009,10 @@ const manualEntries = [
         yomi: "ronald-curtis",
         url: "ronald-curtis.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13791,8 +17020,10 @@ const manualEntries = [
         yomi: "ロンダ・スペンサー",
         url: "ronda-spencer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13800,8 +17031,10 @@ const manualEntries = [
         yomi: "ロニー・マクカートリー",
         url: "ronnie-mccurtry.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13809,8 +17042,10 @@ const manualEntries = [
         yomi: "ロニー",
         url: "ronnie.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -13818,8 +17053,10 @@ const manualEntries = [
         yomi: "ロンニー",
         url: "ronny-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13827,8 +17064,10 @@ const manualEntries = [
         yomi: "ルーファス",
         url: "roofus.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13836,8 +17075,10 @@ const manualEntries = [
         yomi: "ローパー",
         url: "roper.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13845,8 +17086,10 @@ const manualEntries = [
         yomi: "ロザリン・ジェフリーズ",
         url: "rosalynn-jeffries.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13854,8 +17097,10 @@ const manualEntries = [
         yomi: "Rose",
         url: "rose-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13863,8 +17108,10 @@ const manualEntries = [
         yomi: "ローズ・マクレーン",
         url: "rose-maclean.html",
         category: "人物",
-        appearance: ["Fallout TV series"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV series"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13872,8 +17119,10 @@ const manualEntries = [
         yomi: "ローズ・オブ・シャロン・キャシディ",
         url: "rose-of-sharon-cassidy.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13881,8 +17130,10 @@ const manualEntries = [
         yomi: "Rover",
         url: "rover.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13890,8 +17141,10 @@ const manualEntries = [
         yomi: "Roy Lopez",
         url: "roy-lopez.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13899,8 +17152,10 @@ const manualEntries = [
         yomi: "ロイ・フィリップス",
         url: "roy-phillips.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13908,8 +17163,10 @@ const manualEntries = [
         yomi: "ロイ・スペンサー",
         url: "roy-spencer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13917,8 +17174,10 @@ const manualEntries = [
         yomi: "Rucker",
         url: "rucker.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13926,8 +17185,10 @@ const manualEntries = [
         yomi: "Rudy Fernandez",
         url: "rudy-fernandez.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13935,8 +17196,10 @@ const manualEntries = [
         yomi: "Ruggy",
         url: "ruggy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13944,8 +17207,10 @@ const manualEntries = [
         yomi: "さびれた町 (Run-down town)",
         url: "run-down-town.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13953,8 +17218,10 @@ const manualEntries = [
         yomi: "ラント（シュケト）",
         url: "runt.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13962,8 +17229,10 @@ const manualEntries = [
         yomi: "Russell Dorsey",
         url: "russell-dorsey.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13971,8 +17240,10 @@ const manualEntries = [
         yomi: "ザ・サクラメント",
         url: "sacrament.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13980,8 +17251,10 @@ const manualEntries = [
         yomi: "聖別の空地",
         url: "sacramental-glade.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -13989,8 +17262,10 @@ const manualEntries = [
         yomi: "聖なる書物",
         url: "sacred-writings.html",
         category: "武器",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -13998,8 +17273,10 @@ const manualEntries = [
         yomi: "生贄の祭壇",
         url: "sacrifice-altar.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14007,8 +17284,10 @@ const manualEntries = [
         yomi: "サファリアドベンチャー",
         url: "safari-adventure.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14016,8 +17295,10 @@ const manualEntries = [
         yomi: "セーフ・アンド・クリーン廃棄場",
         url: "safe-n-clean-disposal.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14025,8 +17306,10 @@ const manualEntries = [
         yomi: "金庫破りの小屋",
         url: "safecrackers-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14034,8 +17317,10 @@ const manualEntries = [
         yomi: "Sage",
         url: "sage.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14043,8 +17328,10 @@ const manualEntries = [
         yomi: "サレム",
         url: "salem.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14052,8 +17339,10 @@ const manualEntries = [
         yomi: "サルのグラインダーズ",
         url: "sals-grinders.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14061,8 +17350,10 @@ const manualEntries = [
         yomi: "サミュエル・ブラックウェル",
         url: "sam-blackwell.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14070,8 +17361,10 @@ const manualEntries = [
         yomi: "サム・ブラックウェルのバンカー",
         url: "sam-blackwells-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14079,8 +17372,10 @@ const manualEntries = [
         yomi: "「お前が言ってたこと、考えてたんだ。<br>\r\n                俺が生きてるのは運がいいって話。<br>\r\n                間違ってはいない。<br>\r\n                でも、完全に正しくもない。<br>\r\n                俺だって努力してきたんだ。」",
         url: "sam-nguyen.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14088,8 +17383,10 @@ const manualEntries = [
         yomi: "サミュエル・ハッカーマン",
         url: "samuel-hackerman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14097,8 +17394,10 @@ const manualEntries = [
         yomi: "Samuel",
         url: "samuel-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14106,8 +17405,10 @@ const manualEntries = [
         yomi: "samureye",
         url: "samureye.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14115,8 +17416,10 @@ const manualEntries = [
         yomi: "サンクチュアリ・ヒルズ",
         url: "sanctuary-hills.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14124,8 +17427,10 @@ const manualEntries = [
         yomi: "サンド・フォーク製材所",
         url: "sand-fork-lumber.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14133,8 +17438,10 @@ const manualEntries = [
         yomi: "サンドラ",
         url: "sandra-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14142,8 +17449,10 @@ const manualEntries = [
         yomi: "サンディ・コーヴス・コンヴァレッセント・ホーム",
         url: "sandy-coves-convalescent-home.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14151,8 +17460,10 @@ const manualEntries = [
         yomi: "サンディーズ・ソック・ホップ",
         url: "sandys-sock-hop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14160,8 +17471,10 @@ const manualEntries = [
         yomi: "サンジェイ・クマール",
         url: "sanjay-kumar.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14169,8 +17482,10 @@ const manualEntries = [
         yomi: "サンタモニカ・ピア",
         url: "santa-monica-pier.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14178,8 +17493,10 @@ const manualEntries = [
         yomi: "サンタモニカ",
         url: "santa-monica.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14187,8 +17504,10 @@ const manualEntries = [
         yomi: "Sara Matthews",
         url: "sara-matthews.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14196,8 +17515,10 @@ const manualEntries = [
         yomi: "サラ・サミール",
         url: "sara-samir.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14205,8 +17526,10 @@ const manualEntries = [
         yomi: "サラ・クレメンツ",
         url: "sarah-clements.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14214,8 +17537,10 @@ const manualEntries = [
         yomi: "サラ・リオンズ",
         url: "sarah-lyons.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14223,8 +17548,10 @@ const manualEntries = [
         yomi: "サラ・ワイントローブ",
         url: "sarah-weintraub.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14232,8 +17559,10 @@ const manualEntries = [
         yomi: "サルジェント",
         url: "sargento.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14241,8 +17570,11 @@ const manualEntries = [
         yomi: "サターナイト・フィスト",
         url: "saturnite-fist.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14250,8 +17582,10 @@ const manualEntries = [
         yomi: "サウガス製鉄所",
         url: "saugus-ironworks.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14259,8 +17593,10 @@ const manualEntries = [
         yomi: "スカーレット・メドウズ・コテージ",
         url: "scarlett-meadows-cottage.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14268,8 +17604,10 @@ const manualEntries = [
         yomi: "スカベンジャー",
         url: "scavenger-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14277,8 +17615,10 @@ const manualEntries = [
         yomi: "シーニック展望台",
         url: "scenic-overlook.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14286,8 +17626,10 @@ const manualEntries = [
         yomi: "スクートの小屋",
         url: "scoots-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14295,8 +17637,10 @@ const manualEntries = [
         yomi: "スコーチ",
         url: "scorch.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14304,8 +17648,10 @@ const manualEntries = [
         yomi: "スコーチビースト",
         url: "scorchbeast-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14313,8 +17659,10 @@ const manualEntries = [
         yomi: "スコーチビースト・クイーン",
         url: "scorchbeast-queen.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14322,8 +17670,10 @@ const manualEntries = [
         yomi: "Scott Conroy",
         url: "scott-conroy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14331,8 +17681,10 @@ const manualEntries = [
         yomi: "スコット・マリッシュ",
         url: "scott-malish.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14340,8 +17692,10 @@ const manualEntries = [
         yomi: "スコット・シェパード（ナース・スコット）",
         url: "scott-shepherd.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14349,8 +17703,10 @@ const manualEntries = [
         yomi: "スコット・ターナー",
         url: "scott-turner.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14358,8 +17714,10 @@ const manualEntries = [
         yomi: "スクライブ",
         url: "scribe-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14367,8 +17725,10 @@ const manualEntries = [
         yomi: "セバスチャン・レスリー",
         url: "sebastian-leslie.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14376,8 +17736,10 @@ const manualEntries = [
         yomi: "人里離れた洞窟",
         url: "secluded-cave.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14385,8 +17747,10 @@ const manualEntries = [
         yomi: "シークレットサービスのエージェント",
         url: "secret-service-agent.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14394,8 +17758,10 @@ const manualEntries = [
         yomi: "シーカー・オブ・ミステリー",
         url: "seeker-of-mysteries.html",
         category: "クエスト",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14403,8 +17769,10 @@ const manualEntries = [
         yomi: "セネカ・ギャング・キャンプ",
         url: "seneca-gang-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14412,8 +17780,10 @@ const manualEntries = [
         yomi: "セネカ・ロックス・ビジターセンター",
         url: "seneca-rocks-visitor-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14421,8 +17791,10 @@ const manualEntries = [
         yomi: "セネカ・ロックス",
         url: "seneca-rocks.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14430,8 +17802,10 @@ const manualEntries = [
         yomi: "センチネルサイト",
         url: "sentinel-site.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14439,8 +17813,14 @@ const manualEntries = [
         yomi: "セントリーボット",
         url: "sentry-bot.html",
         category: "人物",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14448,8 +17828,10 @@ const manualEntries = [
         yomi: "入植者のコテージとバンカー",
         url: "settler-cottage-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14457,8 +17839,10 @@ const manualEntries = [
         yomi: "「ビンゴ！ 当たりが出たぞ、みんな！<br>\r\n                見てくれよ。俺のことを知ってる奴がいた！<br>\r\n                いつかこうなると思ってたんだ。」",
         url: "settler-forager.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14466,8 +17850,10 @@ const manualEntries = [
         yomi: "入植者のリッジ",
         url: "settler-s-ridge.html",
         category: "勢力",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14475,8 +17861,10 @@ const manualEntries = [
         yomi: "「ねえ、忘れがちだけど、私たちは恵まれてるのよ。<br>\r\n                たくさんの人が生き残れなかった。だから…小さなことに感謝しましょう。」",
         url: "settler-wanderer.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14484,8 +17872,10 @@ const manualEntries = [
         yomi: "セトラーズリッジ",
         url: "settlers-ridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14493,8 +17883,10 @@ const manualEntries = [
         yomi: "シェイド・ヒル教会",
         url: "shade-hill-church.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14502,8 +17894,10 @@ const manualEntries = [
         yomi: "シャドウブリーズ・アパート",
         url: "shadowbreeze-apartments.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14511,8 +17905,10 @@ const manualEntries = [
         yomi: "謎の施設",
         url: "shadowy-facility.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14520,8 +17916,10 @@ const manualEntries = [
         yomi: "シェイディ・サンズの市民",
         url: "shady-sands-citizen-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14529,8 +17927,10 @@ const manualEntries = [
         yomi: "シェイディ・サンズ市民センター",
         url: "shady-sands-civic-center.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14538,8 +17938,10 @@ const manualEntries = [
         yomi: "シェイディ・サンズ裁判所",
         url: "shady-sands-courthouse.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14547,8 +17949,10 @@ const manualEntries = [
         yomi: "シェイディ・サンズ小学校",
         url: "shady-sands-elementary-school.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14556,8 +17960,10 @@ const manualEntries = [
         yomi: "シェイディ・サンズの農民",
         url: "shady-sands-farmer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14565,8 +17971,10 @@ const manualEntries = [
         yomi: "シェイディ・サンズ公共図書館",
         url: "shady-sands-public-library.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14574,8 +17982,14 @@ const manualEntries = [
         yomi: "シェイディ・サンズ",
         url: "shady-sands.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14583,8 +17997,10 @@ const manualEntries = [
         yomi: "シャノン・リバーズ",
         url: "shannon-rivers.html",
         category: "キャラクター",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14592,8 +18008,10 @@ const manualEntries = [
         yomi: "ショウ・ハイスクール",
         url: "shaw-high-school.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14601,8 +18019,10 @@ const manualEntries = [
         yomi: "ショーン・アーロンホルト",
         url: "shawn-aaronholt.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14610,8 +18030,10 @@ const manualEntries = [
         yomi: "ショーン・ホックマン",
         url: "shawn-hockman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14619,8 +18041,10 @@ const manualEntries = [
         yomi: "シーナ",
         url: "sheena.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14628,8 +18052,10 @@ const manualEntries = [
         yomi: "シェリー",
         url: "shelley-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14637,8 +18063,10 @@ const manualEntries = [
         yomi: "シェルター受付センター",
         url: "shelter-reception-center.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14646,8 +18074,10 @@ const manualEntries = [
         yomi: "シェナンドー国立公園",
         url: "shenandoah-national-park.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14655,8 +18085,10 @@ const manualEntries = [
         yomi: "Shenandoah River",
         url: "shenandoah-river.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14664,8 +18096,10 @@ const manualEntries = [
         yomi: "保安官（ガバミント）",
         url: "sheriff-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14673,8 +18107,10 @@ const manualEntries = [
         yomi: "シャーマン",
         url: "sherman-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14682,8 +18118,10 @@ const manualEntries = [
         yomi: "上半身裸のレイダー",
         url: "shirtless-raider.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14691,8 +18129,10 @@ const manualEntries = [
         yomi: "店主サイモン",
         url: "shopkeep-simon.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14700,8 +18140,10 @@ const manualEntries = [
         yomi: "ショッピングモール・ベンダー",
         url: "shopping-mall-vendor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14709,8 +18151,10 @@ const manualEntries = [
         yomi: "ショートサイト士官",
         url: "shortsight-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14718,8 +18162,10 @@ const manualEntries = [
         yomi: "ショートサイト",
         url: "shortsight.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14727,8 +18173,10 @@ const manualEntries = [
         yomi: "ショットガン・ジェフ",
         url: "shotgun-jeff.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14736,8 +18184,10 @@ const manualEntries = [
         yomi: "シュラプネル",
         url: "shrapnel.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14745,8 +18195,10 @@ const manualEntries = [
         yomi: "シドニー",
         url: "sidney.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14754,8 +18206,10 @@ const manualEntries = [
         yomi: "シエラ・ペトロビタ",
         url: "sierra-petrovita.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14763,8 +18217,10 @@ const manualEntries = [
         yomi: "シギ・ウィルギグ博士",
         url: "siggi-wilzig.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14772,8 +18228,10 @@ const manualEntries = [
         yomi: "サイロ補給小屋",
         url: "silo-supply-shed.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14781,8 +18239,10 @@ const manualEntries = [
         yomi: "サイラス",
         url: "silus.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14790,8 +18250,10 @@ const manualEntries = [
         yomi: "シルバ農家",
         url: "silva-homestead.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14799,8 +18261,10 @@ const manualEntries = [
         yomi: "シルバーラッシュ (Silver Rush)",
         url: "silver-rush.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14808,8 +18272,10 @@ const manualEntries = [
         yomi: "silver-shroud",
         url: "silver-shroud.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14817,8 +18283,11 @@ const manualEntries = [
         yomi: "Single action revolver",
         url: "single-action-revolver.html",
         category: "武器",
-        appearance: ["Fallout 76","Fallout TV series"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout TV series"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14826,8 +18295,10 @@ const manualEntries = [
         yomi: "シンク中央知能ユニット",
         url: "sink-central-intelligence-unit.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14835,8 +18306,10 @@ const manualEntries = [
         yomi: "中米戦争",
         url: "sino-american-war.html",
         category: "イベント",
-        appearance: ["Fallout シリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout シリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14844,8 +18317,10 @@ const manualEntries = [
         yomi: "サイト・アルファ",
         url: "site-alpha.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14853,8 +18328,10 @@ const manualEntries = [
         yomi: "サイト・ブラボー",
         url: "site-bravo.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14862,8 +18339,10 @@ const manualEntries = [
         yomi: "サイト・チャーリー",
         url: "site-charlie.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14871,8 +18350,10 @@ const manualEntries = [
         yomi: "スケルトン・ラフト",
         url: "skeleton-raft.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14880,8 +18361,10 @@ const manualEntries = [
         yomi: "スキーリフト・ベースキャンプ",
         url: "ski-lift-base-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14889,8 +18372,10 @@ const manualEntries = [
         yomi: "スキーリフト",
         url: "ski-lift.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14898,8 +18383,10 @@ const manualEntries = [
         yomi: "スキッピー・ローリッチ",
         url: "skippy-roerich.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14907,8 +18394,10 @@ const manualEntries = [
         yomi: "スカルボーン・ヴァンテージ",
         url: "skullbone-vantage.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14916,8 +18405,10 @@ const manualEntries = [
         yomi: "スカイライン・ドライブ：入り口",
         url: "skyline-drive-entrance.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14925,8 +18416,10 @@ const manualEntries = [
         yomi: "スカイライン・ドライブ",
         url: "skyline-drive.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14934,8 +18427,10 @@ const manualEntries = [
         yomi: "中傷ボット",
         url: "slander-bot.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14943,8 +18438,10 @@ const manualEntries = [
         yomi: "スリム",
         url: "slim-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14952,8 +18449,10 @@ const manualEntries = [
         yomi: "喉を掻き切られた犠牲者",
         url: "slit-throat-victim.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14961,8 +18460,12 @@ const manualEntries = [
         yomi: "スローカム・ジョー [企業]",
         url: "slocum-joe-corporate.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14970,8 +18473,10 @@ const manualEntries = [
         yomi: "スローカム・ジョー",
         url: "slocum-joe.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -14979,8 +18484,10 @@ const manualEntries = [
         yomi: "スロッカムズ・ジョー（チャールストン店）",
         url: "slocums-joe-charleston.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14988,8 +18495,10 @@ const manualEntries = [
         yomi: "スローカムズ・ジョー本社",
         url: "slocums-joe-corporate-hq.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -14997,8 +18506,10 @@ const manualEntries = [
         yomi: "スローカムズ・ジョー",
         url: "slocums-joe-fo76.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15006,8 +18517,10 @@ const manualEntries = [
         yomi: "スローカムズ・ジョー（ワトガ店舗）",
         url: "slocums-joe-watoga.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15015,8 +18528,10 @@ const manualEntries = [
         yomi: "スラッジ・トレーラー",
         url: "sludge-trailer.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15024,8 +18539,10 @@ const manualEntries = [
         yomi: "スラリー・ラン",
         url: "slurry-run.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15033,8 +18550,10 @@ const manualEntries = [
         yomi: "スマイリー",
         url: "smiley-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15042,8 +18561,10 @@ const manualEntries = [
         yomi: "スマイリング・マン（イングリッド・コールド）",
         url: "smiling-man.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15051,8 +18572,10 @@ const manualEntries = [
         yomi: "スミス農場",
         url: "smith-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15060,8 +18583,10 @@ const manualEntries = [
         yomi: "胡散臭いセールスマン",
         url: "snake-oil-salesman.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15069,8 +18594,10 @@ const manualEntries = [
         yomi: "スナリーギャスター",
         url: "snallygaster-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15078,8 +18605,12 @@ const manualEntries = [
         yomi: "石鹸",
         url: "soap.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15087,8 +18618,10 @@ const manualEntries = [
         yomi: "石鹸まみれの骸骨",
         url: "soapy-skeleton.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15096,8 +18629,10 @@ const manualEntries = [
         yomi: "Single-Operation Direction and Utility System",
         url: "sodus.html",
         category: "キャラクター",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15105,8 +18640,10 @@ const manualEntries = [
         yomi: "「私は…たくさん聞きたいことがある。ただ…どうして？なぜ？<br>\r\n                みんなにお別れを言っていたのに…本当にみんないなくなったの。<br>\r\n                放送の断片から…ある程度は何が起きたか理解したつもり。たぶん…戦争だったのね。<br>\r\n                そしてどういうわけか…これが生き残った世界。今は言葉にすらできないわ。」",
         url: "sofia-daguerre.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15114,8 +18651,10 @@ const manualEntries = [
         yomi: "Sofie Yates",
         url: "sofie-yates.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15123,8 +18662,10 @@ const manualEntries = [
         yomi: "Soggy Bottom",
         url: "soggy-bottom.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15132,8 +18673,10 @@ const manualEntries = [
         yomi: "ソル",
         url: "sol.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15141,8 +18684,10 @@ const manualEntries = [
         yomi: "「実を言うと、俺は長い長い医者の家系の出だ…でも育ってく中で、それが身につかなかった。学校に興味を失くして、成績も取れなかった。軍なら自分が何かを変えられる場所だと思って、高校を出てすぐに入隊したんだ。」<br>\r\n                <span style=\"font-size: 0.85em; color: #888;\">— ソロモン・ハーディ</span>",
         url: "solomon-hardy.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15150,8 +18695,10 @@ const manualEntries = [
         yomi: "サマービル・プレイス",
         url: "somerville-place.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15159,8 +18706,10 @@ const manualEntries = [
         yomi: "ソニーズ・サンドリーズ",
         url: "sonny-s-sundries.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15168,8 +18717,10 @@ const manualEntries = [
         yomi: "ソニー",
         url: "sonny.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15177,8 +18728,10 @@ const manualEntries = [
         yomi: "サンズ・オブ・デーン・コンパウンド",
         url: "sons-of-dane-compound.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15186,8 +18739,10 @@ const manualEntries = [
         yomi: "ソフィー・ワゴナー",
         url: "sophie-wagoner.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15195,8 +18750,10 @@ const manualEntries = [
         yomi: "ソレル・ブッカー",
         url: "sorrel-booker.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15204,8 +18761,10 @@ const manualEntries = [
         yomi: "南ボストン軍防衛線",
         url: "south-boston-military-checkpoint.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15213,8 +18772,10 @@ const manualEntries = [
         yomi: "南カットスロートのキャンプ",
         url: "south-cutthroat-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15222,8 +18783,10 @@ const manualEntries = [
         yomi: "South Mountain Lookout",
         url: "south-mountain-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15231,8 +18794,10 @@ const manualEntries = [
         yomi: "South Mountain Nuke Crater",
         url: "south-mountain-nuke-crater.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15240,8 +18805,10 @@ const manualEntries = [
         yomi: "南オハイオ避難センター",
         url: "south-ohio-evacuation-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15249,8 +18816,10 @@ const manualEntries = [
         yomi: "サウス・ロード・ブリッジ",
         url: "south-road-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15258,8 +18827,10 @@ const manualEntries = [
         yomi: "サウスサイド・ブリッジ",
         url: "south-side-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15267,8 +18838,10 @@ const manualEntries = [
         yomi: "サザン・ベル・モーテル",
         url: "southern-belle-motel.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15276,8 +18849,10 @@ const manualEntries = [
         yomi: "サウサンプトン・エステート",
         url: "southhampton-estate.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15285,8 +18860,10 @@ const manualEntries = [
         yomi: "ソビエトの人工衛星",
         url: "soviet-satellite.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15294,8 +18871,10 @@ const manualEntries = [
         yomi: "まばらなサンデュー叢",
         url: "sparse-sundew-grove.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15303,8 +18882,12 @@ const manualEntries = [
         yomi: "SPECIAL",
         url: "special.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15312,8 +18895,10 @@ const manualEntries = [
         yomi: "スペクタクル・アイランド",
         url: "spectacle-island.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15321,8 +18906,10 @@ const manualEntries = [
         yomi: "見物人（Vault-Tec）",
         url: "spectator.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15330,8 +18917,10 @@ const manualEntries = [
         yomi: "スペンサー邸",
         url: "spencer-residence.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15339,8 +18928,10 @@ const manualEntries = [
         yomi: "Splint",
         url: "splint.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15348,8 +18939,10 @@ const manualEntries = [
         yomi: "スプリングヒル・ゴルフコース",
         url: "springhill-golf-course.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15357,8 +18950,10 @@ const manualEntries = [
         yomi: "スプルース・ノブ水路",
         url: "spruce-knob-channels.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15366,8 +18961,10 @@ const manualEntries = [
         yomi: "Spruce Knob Lake",
         url: "spruce-knob-lake.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15375,8 +18972,10 @@ const manualEntries = [
         yomi: "スプルース・ノブ・ワークショップ",
         url: "spruce-knob-workshop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15384,8 +18983,10 @@ const manualEntries = [
         yomi: "スプルース・ノブ",
         url: "spruce-knob.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15393,8 +18994,10 @@ const manualEntries = [
         yomi: "スクワイア（Fallout TV）",
         url: "squire-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15402,8 +19005,10 @@ const manualEntries = [
         yomi: "リス",
         url: "squirrel-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15411,8 +19016,10 @@ const manualEntries = [
         yomi: "スクワール",
         url: "squirrel-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15420,8 +19027,10 @@ const manualEntries = [
         yomi: "刺されたリージョナリー",
         url: "stabbed-legionary.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15429,8 +19038,10 @@ const manualEntries = [
         yomi: "スタニスラウス・ブラウン",
         url: "stanislaus-braun.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15438,8 +19049,10 @@ const manualEntries = [
         yomi: "スターパラディン・クロス",
         url: "star-paladin-cross.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15447,8 +19060,10 @@ const manualEntries = [
         yomi: "Star",
         url: "star.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15456,8 +19071,10 @@ const manualEntries = [
         yomi: "スターライト・ドライブイン",
         url: "starlight-drive-in-bs.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15465,8 +19082,10 @@ const manualEntries = [
         yomi: "スターライト・ドライブイン劇場 (TVシリーズ)",
         url: "starlight-drive-in-theatre-tv-series.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15474,8 +19093,10 @@ const manualEntries = [
         yomi: "スターライト・ドライブイン",
         url: "starlight-drive-in.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15483,7 +19104,9 @@ const manualEntries = [
         yomi: "ステルス・ボーイ",
         url: "stealth-boy.html",
         category: "アイテム",
-        appearance: ["Fallout シリーズ"],
+        appearance: [
+            "Fallout シリーズ"
+        ],
         date: "2026-05-04",
         status: "published"
     },
@@ -15492,8 +19115,10 @@ const manualEntries = [
         yomi: "ステルス技術",
         url: "stealth-technology.html",
         category: "テクノロジー",
-        appearance: ["Fallout シリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout シリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15501,8 +19126,10 @@ const manualEntries = [
         yomi: "スティールハート",
         url: "steelheart.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15510,8 +19137,10 @@ const manualEntries = [
         yomi: "ステフ・ハーパー",
         url: "steph-harper.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15519,8 +19148,10 @@ const manualEntries = [
         yomi: "スティーブン・ウィンスロップ",
         url: "stephen-winthrop.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15528,8 +19159,10 @@ const manualEntries = [
         yomi: "「あぁ、傲慢さの話か。俺たちには、太陽に近づきすぎて翼を焼いた蛾の物語がある。どうやらあいつも同じ結末を迎えたようだな、偽りの神と共に。」<br>\r\n                <span style=\"font-size: 0.85em; color: #888;\">— スティーヴン・スカーベリー</span>",
         url: "steven-scarberry.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15537,8 +19170,10 @@ const manualEntries = [
         yomi: "スティッキー",
         url: "sticky.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15546,8 +19181,10 @@ const manualEntries = [
         yomi: "スティムパック",
         url: "stim-pack.html",
         category: "アイテム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15555,8 +19192,10 @@ const manualEntries = [
         yomi: "スティングウィング",
         url: "stingwing-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15564,8 +19203,10 @@ const manualEntries = [
         yomi: "ストーニー・クリーク駅",
         url: "stony-creek-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15573,8 +19214,10 @@ const manualEntries = [
         yomi: "ストラングラー・ハート",
         url: "strangler-heart-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15582,8 +19225,10 @@ const manualEntries = [
         yomi: "ストラトフォード",
         url: "stratford.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15591,8 +19236,10 @@ const manualEntries = [
         yomi: "ストリート・ハスラー",
         url: "street-hustler.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15600,8 +19247,10 @@ const manualEntries = [
         yomi: "ストライカー・ロウ",
         url: "striker-row.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15609,8 +19258,10 @@ const manualEntries = [
         yomi: "ストロング",
         url: "strong.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15618,8 +19269,10 @@ const manualEntries = [
         yomi: "ストラウズ・ラン州立公園",
         url: "strouds-run-state-park.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15627,8 +19280,10 @@ const manualEntries = [
         yomi: "Stuart's Department Store",
         url: "stuarts-department-store.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15636,8 +19291,10 @@ const manualEntries = [
         yomi: "被験体476",
         url: "subject-476.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15645,8 +19302,10 @@ const manualEntries = [
         yomi: "サフォーク郡チャータースクール",
         url: "suffolk-county-charter-school.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15654,8 +19313,13 @@ const manualEntries = [
         yomi: "シュガーボム",
         url: "sugar-bomb.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15663,8 +19327,10 @@ const manualEntries = [
         yomi: "シュガー・グローブ",
         url: "sugar-grove.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15672,8 +19338,10 @@ const manualEntries = [
         yomi: "シュガーメイプル",
         url: "sugarmaple.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15681,8 +19349,10 @@ const manualEntries = [
         yomi: "サマーズビル・ダム",
         url: "summersville-dam.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15690,8 +19360,10 @@ const manualEntries = [
         yomi: "サマーズヴィル・ドック",
         url: "summersville-docks.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15699,8 +19371,10 @@ const manualEntries = [
         yomi: "サマーズビル湖",
         url: "summersville-lake.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15708,8 +19382,10 @@ const manualEntries = [
         yomi: "サマーズビル",
         url: "summersville.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15717,8 +19393,10 @@ const manualEntries = [
         yomi: "サミット・オブ・ザ・ワールド",
         url: "summit-of-the-world.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15726,8 +19404,10 @@ const manualEntries = [
         yomi: "日焼けした男",
         url: "sunburned-man.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15735,8 +19415,10 @@ const manualEntries = [
         yomi: "サンデー兄弟のキャビン",
         url: "sunday-brothers-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15744,8 +19426,10 @@ const manualEntries = [
         yomi: "沈んだ教会",
         url: "sunken-church.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15753,8 +19437,10 @@ const manualEntries = [
         yomi: "サニー",
         url: "sunny-steel-dawn.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15762,8 +19448,10 @@ const manualEntries = [
         yomi: "Sunny",
         url: "sunny-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15771,8 +19459,10 @@ const manualEntries = [
         yomi: "サニートップ・ベースロッジ",
         url: "sunnytop-ski-lanes-base-lodge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15780,8 +19470,10 @@ const manualEntries = [
         yomi: "サニートップ・スキーレーン",
         url: "sunnytop-ski-lanes.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15789,8 +19481,10 @@ const manualEntries = [
         yomi: "サニートップ駅",
         url: "sunnytop-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15798,8 +19492,10 @@ const manualEntries = [
         yomi: "サンライズ・フィールド",
         url: "sunrise-field.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15807,8 +19503,10 @@ const manualEntries = [
         yomi: "サンセット・サルサパリラ・ファクトリー",
         url: "sunset-sarsaparilla-factory.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15816,8 +19514,12 @@ const manualEntries = [
         yomi: "サンセット・サルサパリラ",
         url: "sunset-sarsaparilla.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15825,8 +19527,10 @@ const manualEntries = [
         yomi: "サンシャイン・メドウズ工業農場",
         url: "sunshine-meadows-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15834,8 +19538,10 @@ const manualEntries = [
         yomi: "サンシャイン・メドウズ工業農場",
         url: "sunshine-meadows-industrial-farm.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15843,8 +19549,10 @@ const manualEntries = [
         yomi: "サンシャイン・タイディングスCo-op",
         url: "sunshine-tidings-co-op.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15852,8 +19560,10 @@ const manualEntries = [
         yomi: "スーパー・デューパー・マート",
         url: "super-duper-mart-bs.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15861,8 +19571,10 @@ const manualEntries = [
         yomi: "Super-Duper Mart (Morgantown)",
         url: "super-duper-mart-morgantown.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15870,8 +19582,10 @@ const manualEntries = [
         yomi: "スーパーウルトラ・マーケット (TVシリーズ)",
         url: "super-duper-mart-tv-series.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15879,8 +19593,10 @@ const manualEntries = [
         yomi: "スーパーデューパーマート（ワトガ）",
         url: "super-duper-mart-watoga.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15888,8 +19604,10 @@ const manualEntries = [
         yomi: "スーパーウルトラ・マーケット",
         url: "super-duper-mart.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15897,8 +19615,10 @@ const manualEntries = [
         yomi: "スーパーミュータント・ベヒモス",
         url: "super-mutant-behemoth-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15906,8 +19626,14 @@ const manualEntries = [
         yomi: "スーパーミュータント",
         url: "super-mutant.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15915,8 +19641,10 @@ const manualEntries = [
         yomi: "スーペリア・サンセット農場",
         url: "superior-sunset-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15924,8 +19652,10 @@ const manualEntries = [
         yomi: "監督官チャッティンガム",
         url: "supervisor-chattingham.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15933,8 +19663,10 @@ const manualEntries = [
         yomi: "監督官ダンフォース",
         url: "supervisor-danforth.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15942,8 +19674,10 @@ const manualEntries = [
         yomi: "監督官ウェリントン",
         url: "supervisor-wellington.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15951,8 +19685,10 @@ const manualEntries = [
         yomi: "サージ",
         url: "surge.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15960,8 +19696,10 @@ const manualEntries = [
         yomi: "Surly's Shack",
         url: "surlys-shack.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15969,8 +19707,10 @@ const manualEntries = [
         yomi: "測量キャンプ・アルファ",
         url: "survey-camp-alpha.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -15978,8 +19718,11 @@ const manualEntries = [
         yomi: "サバイバルテント",
         url: "survival-tent.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15987,8 +19730,10 @@ const manualEntries = [
         yomi: "スーザンの小屋",
         url: "susan-s-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -15996,8 +19741,10 @@ const manualEntries = [
         yomi: "サットン駅",
         url: "sutton-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16005,8 +19752,10 @@ const manualEntries = [
         yomi: "サットン",
         url: "sutton.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16014,8 +19763,10 @@ const manualEntries = [
         yomi: "パラディン・スワフォード",
         url: "swafford-brotherhood.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16023,8 +19774,10 @@ const manualEntries = [
         yomi: "スワンク",
         url: "swank.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16032,8 +19785,10 @@ const manualEntries = [
         yomi: "蜂の群れ",
         url: "swarm-of-bees.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16041,8 +19796,10 @@ const manualEntries = [
         yomi: "スウィートウォータースペシャルブレンド",
         url: "sweetwater-special-blend.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16050,8 +19807,10 @@ const manualEntries = [
         yomi: "ソードハンターズ・キャンプ",
         url: "sword-hunters-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16059,8 +19818,10 @@ const manualEntries = [
         yomi: "シドニー",
         url: "sydney.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16068,8 +19829,10 @@ const manualEntries = [
         yomi: "シルベスター・テイト",
         url: "sylvester-tate.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16077,8 +19840,10 @@ const manualEntries = [
         yomi: "シルヴィ＆サンズ伐採キャンプ",
         url: "sylvie-and-sons-logging-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16086,8 +19851,10 @@ const manualEntries = [
         yomi: "T. Harper",
         url: "t-harper.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16095,8 +19862,10 @@ const manualEntries = [
         yomi: "タッド・チャンス",
         url: "tad-chance.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16104,8 +19873,10 @@ const manualEntries = [
         yomi: "タフィントン・ボートハウス",
         url: "taffington-boathouse.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16113,8 +19884,10 @@ const manualEntries = [
         yomi: "タリー・ラング",
         url: "tally-lang.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16122,8 +19895,10 @@ const manualEntries = [
         yomi: "タナグラ・タウン",
         url: "tanagra-town.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16131,8 +19906,11 @@ const manualEntries = [
         yomi: "Tandi (タンディ)",
         url: "tandi.html",
         category: "人物",
-        appearance: ["Fallout","Fallout 2"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout",
+            "Fallout 2"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16140,8 +19918,10 @@ const manualEntries = [
         yomi: "タンニン",
         url: "tannin.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16149,8 +19929,10 @@ const manualEntries = [
         yomi: "タトゥーパーラー",
         url: "tattoo-parlor.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16158,8 +19940,10 @@ const manualEntries = [
         yomi: "タチアナ・リー",
         url: "tatyana-lee.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16167,8 +19951,10 @@ const manualEntries = [
         yomi: "テッド・ウィルソン",
         url: "ted-wilson.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16176,8 +19962,10 @@ const manualEntries = [
         yomi: "テディベアの家",
         url: "teddy-bear-house.html",
         category: "ロケーション",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16185,8 +19973,10 @@ const manualEntries = [
         yomi: "テレビ司会者",
         url: "television-host.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16194,8 +19984,10 @@ const manualEntries = [
         yomi: "テンパインズの断崖",
         url: "tenpines-bluff.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16203,8 +19995,10 @@ const manualEntries = [
         yomi: "ナイト・\"テックス\"・ロジャース",
         url: "tex-rogers.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16212,8 +20006,10 @@ const manualEntries = [
         yomi: "サデウスの子分",
         url: "thaddeus-minion.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16221,8 +20017,10 @@ const manualEntries = [
         yomi: "サディアス",
         url: "thaddeus-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16230,8 +20028,10 @@ const manualEntries = [
         yomi: "サデウス",
         url: "thaddeus.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16239,8 +20039,10 @@ const manualEntries = [
         yomi: "ベックリーの獣",
         url: "the-beast-of-beckley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16248,8 +20050,11 @@ const manualEntries = [
         yomi: "The Big Bloom",
         url: "the-big-bloom.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16257,8 +20062,10 @@ const manualEntries = [
         yomi: "ブラッド",
         url: "the-blood.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16266,8 +20073,10 @@ const manualEntries = [
         yomi: "ザ・ボス",
         url: "the-boss.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16275,8 +20084,10 @@ const manualEntries = [
         yomi: "ザ・バウンティ",
         url: "the-bounty.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16284,8 +20095,10 @@ const manualEntries = [
         yomi: "ブラウン・ハウス",
         url: "the-brown-house.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16293,8 +20106,10 @@ const manualEntries = [
         yomi: "ザ・ブレングルーベ",
         url: "the-bullengrube.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16302,8 +20117,10 @@ const manualEntries = [
         yomi: "バーニング・マイン",
         url: "the-burning-mine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16311,8 +20128,10 @@ const manualEntries = [
         yomi: "ザ・バロウズ",
         url: "the-burrows.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16320,8 +20139,10 @@ const manualEntries = [
         yomi: "キャッスル",
         url: "the-castle.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16329,8 +20150,10 @@ const manualEntries = [
         yomi: "ザ・チョップ・ショップ",
         url: "the-chop-shop-bs.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16338,8 +20161,10 @@ const manualEntries = [
         yomi: "ザ・クープ",
         url: "the-coop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16347,8 +20172,10 @@ const manualEntries = [
         yomi: "ザ・コア",
         url: "the-core.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16356,8 +20183,10 @@ const manualEntries = [
         yomi: "クレーター作戦室",
         url: "the-crater-war-room.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16365,8 +20194,10 @@ const manualEntries = [
         yomi: "ザ・クレーター",
         url: "the-crater.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16374,8 +20205,10 @@ const manualEntries = [
         yomi: "ザ・クロスヘア",
         url: "the-crosshair.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16383,8 +20216,10 @@ const manualEntries = [
         yomi: "ザ・ディープ",
         url: "the-deep.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16392,8 +20227,10 @@ const manualEntries = [
         yomi: "the-diabolicals",
         url: "the-diabolicals.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16401,8 +20238,10 @@ const manualEntries = [
         yomi: "使者",
         url: "the-emissary.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16410,8 +20249,10 @@ const manualEntries = [
         yomi: "エグゼクティブ（トニー）",
         url: "the-exec.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16419,8 +20260,10 @@ const manualEntries = [
         yomi: "The Eye",
         url: "the-eye.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16428,8 +20271,10 @@ const manualEntries = [
         yomi: "フィッシャーマン",
         url: "the-fisherman.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16437,8 +20282,10 @@ const manualEntries = [
         yomi: "森林地帯",
         url: "the-forest.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16446,8 +20293,10 @@ const manualEntries = [
         yomi: "ザ・フリークショー",
         url: "the-freak-show.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16455,8 +20304,10 @@ const manualEntries = [
         yomi: "ガントレット",
         url: "the-gauntlet-nuka-world.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16464,8 +20315,10 @@ const manualEntries = [
         yomi: "ジェネラルのステーキハウス",
         url: "the-generals-steakhouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16473,8 +20326,10 @@ const manualEntries = [
         yomi: "グールの墓",
         url: "the-ghoul-s-grave.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16482,8 +20337,10 @@ const manualEntries = [
         yomi: "グール（クーパー・ハワード）",
         url: "the-ghoul.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16491,8 +20348,10 @@ const manualEntries = [
         yomi: "巨大ティーポット",
         url: "the-giant-teapot.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16500,8 +20359,10 @@ const manualEntries = [
         yomi: "グウィネット・レストラン",
         url: "the-gwinnett-restaurant.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16509,8 +20370,10 @@ const manualEntries = [
         yomi: "the-inspector",
         url: "the-inspector.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16518,8 +20381,10 @@ const manualEntries = [
         yomi: "インスティチュート",
         url: "the-institute.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16527,8 +20392,10 @@ const manualEntries = [
         yomi: "ジ・インターローパー",
         url: "the-interloper.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16536,8 +20403,10 @@ const manualEntries = [
         yomi: "島 (ファー・ハーバー)",
         url: "the-island.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Far Harbor)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Far Harbor)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16545,8 +20414,10 @@ const manualEntries = [
         yomi: "ザ・キルボックス",
         url: "the-kill-box.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16554,8 +20425,10 @@ const manualEntries = [
         yomi: "ザ・キング",
         url: "the-king.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16563,8 +20436,10 @@ const manualEntries = [
         yomi: "メカニストの隠れ家",
         url: "the-mechanists-lair.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16572,8 +20447,10 @@ const manualEntries = [
         yomi: "マイア",
         url: "the-mire.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16581,8 +20458,10 @@ const manualEntries = [
         yomi: "ザ・ミストレス・オブ・ミステリー",
         url: "the-mistress-of-mystery.html",
         category: "クエスト",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16590,8 +20469,10 @@ const manualEntries = [
         yomi: "マザーロード",
         url: "the-motherlode-robot.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16599,8 +20480,10 @@ const manualEntries = [
         yomi: "The Mothman Equinox",
         url: "the-mothman-equinox.html",
         category: "イベント・現象",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16608,8 +20491,10 @@ const manualEntries = [
         yomi: "ニュークリアス",
         url: "the-nucleus.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16617,8 +20502,10 @@ const manualEntries = [
         yomi: "ヌカシャイン",
         url: "the-nukashine.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16626,8 +20513,10 @@ const manualEntries = [
         yomi: "The Pigsty",
         url: "the-pigsty.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16635,8 +20524,10 @@ const manualEntries = [
         yomi: "The Pitt",
         url: "the-pitt.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16644,8 +20535,10 @@ const manualEntries = [
         yomi: "プリドゥエン",
         url: "the-prydwen.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16653,8 +20546,10 @@ const manualEntries = [
         yomi: "ザ・リトリート",
         url: "the-retreat.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16662,8 +20557,10 @@ const manualEntries = [
         yomi: "The Rust King",
         url: "the-rust-king.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16671,8 +20568,10 @@ const manualEntries = [
         yomi: "ラスト・キングダム",
         url: "the-rust-kingdom.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16680,8 +20579,10 @@ const manualEntries = [
         yomi: "ラスティ・ピック",
         url: "the-rusty-pick.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16689,8 +20590,10 @@ const manualEntries = [
         yomi: "シャムロック酒場",
         url: "the-shamrock-taphouse.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16698,8 +20601,10 @@ const manualEntries = [
         yomi: "スロッグ",
         url: "the-slog.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16707,8 +20612,10 @@ const manualEntries = [
         yomi: "スラッジ・ホール",
         url: "the-sludge-hole.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16716,8 +20623,10 @@ const manualEntries = [
         yomi: "ザ・スラッジ・ワークス",
         url: "the-sludge-works.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16725,8 +20634,10 @@ const manualEntries = [
         yomi: "スプリングハウス",
         url: "the-springhouse.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16734,8 +20645,10 @@ const manualEntries = [
         yomi: "スウィッチボード",
         url: "the-switchboard.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16743,8 +20656,10 @@ const manualEntries = [
         yomi: "サードレール",
         url: "the-third-rail.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16752,8 +20667,10 @@ const manualEntries = [
         yomi: "ザ・ソーン",
         url: "the-thorn-fo76.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16761,8 +20678,12 @@ const manualEntries = [
         yomi: "The Vault Dweller's Official Cookbook",
         url: "the-vault-dweller-s-official-cookbook.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16770,8 +20691,10 @@ const manualEntries = [
         yomi: "The WayWard",
         url: "the-wayward.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -16779,8 +20702,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング議会バンカー",
         url: "the-whitespring-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16788,8 +20713,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング・ゴルフクラブ",
         url: "the-whitespring-golf-club.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16797,8 +20724,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング・リゾート",
         url: "the-whitespring-resort.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16806,8 +20735,10 @@ const manualEntries = [
         yomi: "The Whitespring Station vendor",
         url: "the-whitespring-station-vendor.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16815,8 +20746,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング駅",
         url: "the-whitespring-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16824,8 +20757,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング",
         url: "the-whitespring.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16833,8 +20768,10 @@ const manualEntries = [
         yomi: "Theodore",
         url: "theodore-milepost-zero.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16842,8 +20779,10 @@ const manualEntries = [
         yomi: "シケット・エクスカーベーションズ",
         url: "thicket-excavations.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16851,8 +20790,10 @@ const manualEntries = [
         yomi: "Thomas Eckhart",
         url: "thomas-eckhart.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16860,8 +20801,10 @@ const manualEntries = [
         yomi: "トーマス農場",
         url: "thomas-farm.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16869,8 +20812,10 @@ const manualEntries = [
         yomi: "トーマス・ハミルトン",
         url: "thomas-hamilton.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16878,8 +20823,10 @@ const manualEntries = [
         yomi: "thomas-hildern",
         url: "thomas-hildern.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16887,8 +20834,10 @@ const manualEntries = [
         yomi: "Sergeant Thompson",
         url: "thompson-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16896,8 +20845,10 @@ const manualEntries = [
         yomi: "トンプソン軍曹",
         url: "thompson.html",
         category: "キャラクター",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16905,8 +20856,10 @@ const manualEntries = [
         yomi: "スリードッグ",
         url: "three-dog.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16914,8 +20867,10 @@ const manualEntries = [
         yomi: "サンダー・マウンテン発電所",
         url: "thunder-mountain-power-plant.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16923,8 +20878,10 @@ const manualEntries = [
         yomi: "サンダーマウンテン発電所ヤード",
         url: "thunder-mountain-pp-yard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16932,8 +20889,10 @@ const manualEntries = [
         yomi: "サンダーマウンテン変電所 TM-01",
         url: "thunder-mountain-substation-tm-01.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16941,8 +20900,10 @@ const manualEntries = [
         yomi: "サンダーマウンテン変電所 TM-02",
         url: "thunder-mountain-substation-tm-02.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16950,8 +20911,10 @@ const manualEntries = [
         yomi: "ティック",
         url: "tick-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16959,8 +20922,10 @@ const manualEntries = [
         yomi: "タイコンデロガ",
         url: "ticonderoga.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16968,8 +20933,10 @@ const manualEntries = [
         yomi: "ティファニー・ブラントリー",
         url: "tiffany-brantley.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16977,8 +20944,10 @@ const manualEntries = [
         yomi: "綱渡り",
         url: "tightrope.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16986,8 +20955,10 @@ const manualEntries = [
         yomi: "ティモシー・ウルフ",
         url: "timothy-wolfe.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -16995,8 +20966,10 @@ const manualEntries = [
         yomi: "タイタス騎士",
         url: "titus-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17004,8 +20977,10 @@ const manualEntries = [
         yomi: "タイタス",
         url: "titus.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17013,8 +20988,10 @@ const manualEntries = [
         yomi: "トースター",
         url: "toaster.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17022,8 +20999,14 @@ const manualEntries = [
         yomi: "タバコ",
         url: "tobacco.html",
         category: "植物",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17031,8 +21014,10 @@ const manualEntries = [
         yomi: "トム",
         url: "tom-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17040,8 +21025,10 @@ const manualEntries = [
         yomi: "Tommy Ten-Toes",
         url: "tommy-ten-toes.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17049,8 +21036,10 @@ const manualEntries = [
         yomi: "Tommy",
         url: "tommy-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17058,8 +21047,10 @@ const manualEntries = [
         yomi: "トップ・オブ・ザ・ワールド",
         url: "top-of-the-world.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17067,8 +21058,10 @@ const manualEntries = [
         yomi: "トーランス・ハウス",
         url: "torrance-house.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17076,8 +21069,10 @@ const manualEntries = [
         yomi: "有毒な干上がった湖底",
         url: "toxic-dried-lakebed.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17085,8 +21080,10 @@ const manualEntries = [
         yomi: "トキシック・ラリーのミート・アンド・ゴー",
         url: "toxic-larrys-meat-n-go.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17094,8 +21091,10 @@ const manualEntries = [
         yomi: "有毒池と残骸",
         url: "toxic-pond-wreckage.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17103,8 +21102,10 @@ const manualEntries = [
         yomi: "トキシックバレー",
         url: "toxic-valley.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17112,8 +21113,10 @@ const manualEntries = [
         yomi: "トレイル・ヒル展望台",
         url: "trail-hill-overlook.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17121,8 +21124,10 @@ const manualEntries = [
         yomi: "送信ステーション 1AT-U03",
         url: "transmission-station-1at-u03.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17130,8 +21135,10 @@ const manualEntries = [
         yomi: "トラッパーズ・キャンプ",
         url: "trappers-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17139,8 +21146,10 @@ const manualEntries = [
         yomi: "スカウトリーダー・トレッドリー",
         url: "treadly.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17148,8 +21157,10 @@ const manualEntries = [
         yomi: "ツリーハウス・ビレッジ",
         url: "treehouse-village.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17157,8 +21168,10 @@ const manualEntries = [
         yomi: "ツリートップ展望台",
         url: "treetop-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17166,8 +21179,10 @@ const manualEntries = [
         yomi: "ツリートップス",
         url: "treetops.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17175,8 +21190,10 @@ const manualEntries = [
         yomi: "トリニティ・チャーチ",
         url: "trinity-church.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17184,8 +21201,10 @@ const manualEntries = [
         yomi: "トリニティ・タワー",
         url: "trinity-tower.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17193,8 +21212,10 @@ const manualEntries = [
         yomi: "Sheriff Troy",
         url: "troy-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17202,8 +21223,10 @@ const manualEntries = [
         yomi: "Trudy",
         url: "trudy-tv-series.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17211,8 +21234,10 @@ const manualEntries = [
         yomi: "Tumblin&#39; Joe",
         url: "tumblin-joe.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17220,8 +21245,10 @@ const manualEntries = [
         yomi: "トンネル・オブ・ラブ",
         url: "tunnel-of-love-fo76.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17229,8 +21256,10 @@ const manualEntries = [
         yomi: "ツイード",
         url: "tweed.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17238,8 +21267,10 @@ const manualEntries = [
         yomi: "ツイン・レイクス",
         url: "twin-lakes.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17247,8 +21278,10 @@ const manualEntries = [
         yomi: "ツイン・パイン・キャビン",
         url: "twin-pine-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17256,8 +21289,10 @@ const manualEntries = [
         yomi: "ツインパイン・キャビンズ",
         url: "twin-pine-cabins.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17265,8 +21300,10 @@ const manualEntries = [
         yomi: "タイクーン・レイク",
         url: "tycoon-lake.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17274,8 +21311,10 @@ const manualEntries = [
         yomi: "タイガートバレー川",
         url: "tygart-valley-river.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17283,8 +21322,10 @@ const manualEntries = [
         yomi: "タイガート水処理場",
         url: "tygart-water-treatment-plant.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17292,8 +21333,10 @@ const manualEntries = [
         yomi: "タイガート浄水場",
         url: "tygart-water-treatment.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17301,8 +21344,10 @@ const manualEntries = [
         yomi: "タイラー郡ダートトラック",
         url: "tyler-county-dirt-track.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17310,8 +21355,10 @@ const manualEntries = [
         yomi: "タイラー郡フェアグラウンド",
         url: "tyler-county-fairgrounds.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17319,8 +21366,11 @@ const manualEntries = [
         yomi: "タイラー郡移動遊園地",
         url: "tyler-county-mobile-amusement-park.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17328,8 +21378,10 @@ const manualEntries = [
         yomi: "米連邦捜査官",
         url: "u-s-federal-agent.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17337,8 +21389,10 @@ const manualEntries = [
         yomi: "ウルトラ・ルックス (Ultra-Luxe)",
         url: "ultra-luxe.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17346,8 +21400,10 @@ const manualEntries = [
         yomi: "ウルトラサイト・テラー",
         url: "ultracite-terror-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17355,8 +21411,10 @@ const manualEntries = [
         yomi: "ウルトラサイト・タイタン",
         url: "ultracite-titan.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17364,8 +21422,10 @@ const manualEntries = [
         yomi: "ウルトラサイト",
         url: "ultracite.html",
         category: "アイテム",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17373,8 +21433,10 @@ const manualEntries = [
         yomi: "ユリシーズ",
         url: "ulysses.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17382,8 +21444,10 @@ const manualEntries = [
         yomi: "不気味な洞窟群",
         url: "uncanny-caverns.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17391,8 +21455,10 @@ const manualEntries = [
         yomi: "アンクル・レオ",
         url: "uncle-leo.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17400,8 +21466,10 @@ const manualEntries = [
         yomi: "Under the I-65 Bridge",
         url: "under-the-i-65-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17409,8 +21477,10 @@ const manualEntries = [
         yomi: "Unfinished Mansion",
         url: "unfinished-mansion.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17418,8 +21488,10 @@ const manualEntries = [
         yomi: "組合の抗議者",
         url: "union-protester.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17427,8 +21499,11 @@ const manualEntries = [
         yomi: "アメリカ合衆国",
         url: "united-states-of-america.html",
         category: "勢力",
-        appearance: ["Fallout 4","Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4",
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17436,8 +21511,10 @@ const manualEntries = [
         yomi: "ユニバーシティ・ポイント",
         url: "university-point.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17445,8 +21522,12 @@ const manualEntries = [
         yomi: "アンストッパブル",
         url: "unstoppable.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17454,8 +21535,10 @@ const manualEntries = [
         yomi: "ウラニウム・シティ強制収容所",
         url: "uranium-city-internment-camp.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17463,8 +21546,10 @@ const manualEntries = [
         yomi: "アーサラ",
         url: "ursala.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17472,8 +21557,10 @@ const manualEntries = [
         yomi: "US-13C 野営地",
         url: "us-13c-bivouac.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17481,8 +21568,10 @@ const manualEntries = [
         yomi: "USAF衛星通信基地オリビア",
         url: "usaf-satellite-station-olivia.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17490,8 +21579,10 @@ const manualEntries = [
         yomi: "USSコンスティチューション",
         url: "uss-constitution.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17499,8 +21590,10 @@ const manualEntries = [
         yomi: "ussa",
         url: "ussa.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17508,8 +21601,10 @@ const manualEntries = [
         yomi: "バレー・ギャレリア",
         url: "valley-galleria.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17517,8 +21612,10 @@ const manualEntries = [
         yomi: "渓谷の廃品集積場",
         url: "valley-junkyard.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17526,8 +21623,10 @@ const manualEntries = [
         yomi: "ヴァンロウ剥製店",
         url: "van-lowe-taxidermy.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17535,8 +21634,12 @@ const manualEntries = [
         yomi: "Vault 101",
         url: "vault-101.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17544,8 +21647,11 @@ const manualEntries = [
         yomi: "Vault 108",
         url: "vault-108.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17553,8 +21659,10 @@ const manualEntries = [
         yomi: "Vault 111",
         url: "vault-111.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17562,8 +21670,10 @@ const manualEntries = [
         yomi: "Vault 112",
         url: "vault-112.html",
         category: "ロケーション",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17571,8 +21681,10 @@ const manualEntries = [
         yomi: "Vault 114",
         url: "vault-114.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17580,8 +21692,10 @@ const manualEntries = [
         yomi: "Vault 118",
         url: "vault-118.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17589,8 +21703,13 @@ const manualEntries = [
         yomi: "Vault 13",
         url: "vault-13.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17598,8 +21717,10 @@ const manualEntries = [
         yomi: "Vault 24",
         url: "vault-24.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17607,8 +21728,10 @@ const manualEntries = [
         yomi: "Vault 31 dweller",
         url: "vault-31-dweller.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17616,8 +21739,10 @@ const manualEntries = [
         yomi: "Vault 32 dweller",
         url: "vault-32-dweller.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17625,8 +21750,10 @@ const manualEntries = [
         yomi: "Vault 32 raider",
         url: "vault-32-raider.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17634,8 +21761,10 @@ const manualEntries = [
         yomi: "Vault 33 dweller",
         url: "vault-33-dweller.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17643,8 +21772,10 @@ const manualEntries = [
         yomi: "Vault 33 engineer",
         url: "vault-33-engineer.html",
         category: "人物",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17652,8 +21783,10 @@ const manualEntries = [
         yomi: "Vault 4",
         url: "vault-4.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17661,8 +21794,10 @@ const manualEntries = [
         yomi: "Vault 51",
         url: "vault-51.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17670,8 +21805,10 @@ const manualEntries = [
         yomi: "Vault 63 アトリウム",
         url: "vault-63-atrium.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17679,8 +21816,10 @@ const manualEntries = [
         yomi: "Vault 63 墜落現場",
         url: "vault-63-crash-site.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17688,8 +21827,10 @@ const manualEntries = [
         yomi: "Vault 63 エンジニアリング区画",
         url: "vault-63-engineering.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17697,8 +21838,10 @@ const manualEntries = [
         yomi: "Vault 63 気象学区画",
         url: "vault-63-meteorology.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17706,8 +21849,10 @@ const manualEntries = [
         yomi: "Vault 63 オーガニクス区画",
         url: "vault-63-organics.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17715,8 +21860,10 @@ const manualEntries = [
         yomi: "Vault 63",
         url: "vault-63.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17724,8 +21871,10 @@ const manualEntries = [
         yomi: "Vault 75",
         url: "vault-75.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17733,8 +21882,10 @@ const manualEntries = [
         yomi: "Overseer",
         url: "vault-76-overseer.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17742,8 +21893,10 @@ const manualEntries = [
         yomi: "Vault 76",
         url: "vault-76.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17751,8 +21904,10 @@ const manualEntries = [
         yomi: "ボルト 79",
         url: "vault-79.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17760,8 +21915,10 @@ const manualEntries = [
         yomi: "Vault 81",
         url: "vault-81.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17769,8 +21926,10 @@ const manualEntries = [
         yomi: "Vault 88",
         url: "vault-88.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17778,8 +21937,10 @@ const manualEntries = [
         yomi: "Vault 95",
         url: "vault-95.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17787,8 +21948,10 @@ const manualEntries = [
         yomi: "vault-boy",
         url: "vault-boy.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17796,8 +21959,10 @@ const manualEntries = [
         yomi: "vault-girl",
         url: "vault-girl.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17805,8 +21970,10 @@ const manualEntries = [
         yomi: "Vault-Tec農業研究センター",
         url: "vault-tec-agricultural-research-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17814,8 +21981,10 @@ const manualEntries = [
         yomi: "Vault-Tec農業研究センター",
         url: "vault-tec-agricultural-research.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17823,8 +21992,10 @@ const manualEntries = [
         yomi: "Vault-Tec: アマング・ザ・スター",
         url: "vault-tec-among-the-stars.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4 (Nuka-World)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4 (Nuka-World)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17832,8 +22003,13 @@ const manualEntries = [
         yomi: "Vault-Tec ボブルヘッド",
         url: "vault-tec-bobblehead.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17841,8 +22017,10 @@ const manualEntries = [
         yomi: "Vault-Tec コーポレーション本部 (TVシリーズ)",
         url: "vault-tec-headquarters-tv-series.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17850,8 +22028,10 @@ const manualEntries = [
         yomi: "ボルトテック地区本部",
         url: "vault-tec-regional-hq.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17859,8 +22039,10 @@ const manualEntries = [
         yomi: "Vault-Tec大学（VTU）",
         url: "vault-tec-university.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17868,8 +22050,16 @@ const manualEntries = [
         yomi: "Vault",
         url: "vault.html",
         category: "ロケーション",
-        appearance: ["Fallout","Fallout 2","Fallout 3","Fallout 4","Fallout 76","Fallout: New Vegas","Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout",
+            "Fallout 2",
+            "Fallout 3",
+            "Fallout 4",
+            "Fallout 76",
+            "Fallout: New Vegas",
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17877,8 +22067,11 @@ const manualEntries = [
         yomi: "Vault76",
         url: "vault76.html",
         category: "場所",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17886,8 +22079,10 @@ const manualEntries = [
         yomi: "Vault Dweller (Vaultの居住者)",
         url: "vault_dweller_lore.html",
         category: "人物",
-        appearance: ["Fallout"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17895,8 +22090,16 @@ const manualEntries = [
         yomi: "Vault-Tec Industries",
         url: "vault_tec.html",
         category: "勢力",
-        appearance: ["Fallout","Fallout 2","Fallout 3","Fallout 4","Fallout 76","Fallout: New Vegas","Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout",
+            "Fallout 2",
+            "Fallout 3",
+            "Fallout 4",
+            "Fallout 76",
+            "Fallout: New Vegas",
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -17904,8 +22107,10 @@ const manualEntries = [
         yomi: "ヴェール・オブ・シークレッツ",
         url: "veil-of-secrets.html",
         category: "アーマー・装備",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17913,8 +22118,10 @@ const manualEntries = [
         yomi: "隠されたサンデュー叢",
         url: "veiled-sundew-grove.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17922,8 +22129,10 @@ const manualEntries = [
         yomi: "Vendor bot Bob /<br />Volunteer bot",
         url: "vendor-bot-bob.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17931,8 +22140,10 @@ const manualEntries = [
         yomi: "Vendor bot Chad",
         url: "vendor-bot-chad.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17940,8 +22151,10 @@ const manualEntries = [
         yomi: "Vendor bot Greg",
         url: "vendor-bot-greg.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17949,8 +22162,10 @@ const manualEntries = [
         yomi: "ベンダーボット・マック",
         url: "vendor-bot-mack.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17958,8 +22173,10 @@ const manualEntries = [
         yomi: "ベンダーボット・フェニックス",
         url: "vendor-bot-phoenix.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17967,8 +22184,10 @@ const manualEntries = [
         yomi: "ベンダーボット・レスポンダー",
         url: "vendor-bot-responder.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17976,8 +22195,10 @@ const manualEntries = [
         yomi: "ベンダーボット・ウォレス",
         url: "vendor-bot-wallace.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17985,8 +22206,10 @@ const manualEntries = [
         yomi: "ヴェラ",
         url: "vera-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -17994,8 +22217,10 @@ const manualEntries = [
         yomi: "Vera Thornberg",
         url: "vera-thornberg.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18003,8 +22228,10 @@ const manualEntries = [
         yomi: "Vernon Dodge",
         url: "vernon-dodge.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18012,8 +22239,10 @@ const manualEntries = [
         yomi: "ベロニカ・サンタンジェロ",
         url: "veronica-santangelo.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18021,8 +22250,10 @@ const manualEntries = [
         yomi: "ヴェロニカ",
         url: "veronica-tv.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18030,8 +22261,14 @@ const manualEntries = [
         yomi: "ベルチバード",
         url: "vertibird.html",
         category: "乗り物",
-        appearance: ["Fallout 2","Fallout 3","Fallout: New Vegas","Fallout 4","Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 2",
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout 4",
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18039,8 +22276,10 @@ const manualEntries = [
         yomi: "ベスタの日用品店",
         url: "vestas-housewares.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18048,8 +22287,10 @@ const manualEntries = [
         yomi: "ビクター",
         url: "victor.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18057,8 +22298,10 @@ const manualEntries = [
         yomi: "村人（ザ・リトリート）",
         url: "villager.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18066,8 +22309,10 @@ const manualEntries = [
         yomi: "ヴィム・ポップ工場",
         url: "vim-pop-factory.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18075,8 +22320,10 @@ const manualEntries = [
         yomi: "ヴィンセント・フリード",
         url: "vincent-fried.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18084,8 +22331,10 @@ const manualEntries = [
         yomi: "ヴィンセント・メイ・リリー",
         url: "vincent-may-lilly.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18093,8 +22342,10 @@ const manualEntries = [
         yomi: "Vincent Costa",
         url: "vinny-costa.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18102,8 +22353,10 @@ const manualEntries = [
         yomi: "ビジター",
         url: "visitor-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18111,8 +22364,10 @@ const manualEntries = [
         yomi: "ヴルペス・インカルタ",
         url: "vulpes-inculta.html",
         category: "人物",
-        appearance: ["Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18120,8 +22375,10 @@ const manualEntries = [
         yomi: "ハゲタカ",
         url: "vulture-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18129,8 +22386,10 @@ const manualEntries = [
         yomi: "Vulture",
         url: "vulture-gleaming-depths.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18138,8 +22397,10 @@ const manualEntries = [
         yomi: "ウェイド空港",
         url: "wade-airport.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18147,8 +22408,10 @@ const manualEntries = [
         yomi: "ウォールデン・ポンド",
         url: "walden-pond.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18156,8 +22419,10 @@ const manualEntries = [
         yomi: "散策路のピクニックエリアと展望台",
         url: "walking-trail-picnic-area.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18165,8 +22430,10 @@ const manualEntries = [
         yomi: "ウォルター・グリズウォルド",
         url: "walter-griswold.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18174,8 +22441,10 @@ const manualEntries = [
         yomi: "Ward",
         url: "ward-wastelanders.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18183,8 +22452,10 @@ const manualEntries = [
         yomi: "ワーウィック農園",
         url: "warwick-homestead.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18192,8 +22463,10 @@ const manualEntries = [
         yomi: "Wasted on Nukashine",
         url: "wasted-on-nukashine.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18201,8 +22474,13 @@ const manualEntries = [
         yomi: "水",
         url: "water.html",
         category: "アイテム",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18210,8 +22488,10 @@ const manualEntries = [
         yomi: "ワトガの野外ステージ",
         url: "watoga-bandstand.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18219,8 +22499,10 @@ const manualEntries = [
         yomi: "ワトガ・シビックセンター",
         url: "watoga-civic-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18228,8 +22510,10 @@ const manualEntries = [
         yomi: "ワトガ緊急サービス",
         url: "watoga-emergency-services.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18237,8 +22521,10 @@ const manualEntries = [
         yomi: "ワトガ・エステーツ",
         url: "watoga-estates.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18246,8 +22532,10 @@ const manualEntries = [
         yomi: "ワトガ高校",
         url: "watoga-high-school.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18255,8 +22543,10 @@ const manualEntries = [
         yomi: "ワトガ市役所",
         url: "watoga-municipal-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18264,8 +22554,10 @@ const manualEntries = [
         yomi: "Watoga Real Estate",
         url: "watoga-real-estate.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18273,8 +22565,10 @@ const manualEntries = [
         yomi: "ワトガ・ショッピングプラザ",
         url: "watoga-shopping-plaza.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18282,8 +22576,10 @@ const manualEntries = [
         yomi: "ワトガ駅",
         url: "watoga-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18291,8 +22587,10 @@ const manualEntries = [
         yomi: "ワトガ・タワー",
         url: "watoga-towers.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18300,8 +22598,10 @@ const manualEntries = [
         yomi: "ワトガ・トランジットハブ",
         url: "watoga-transit-hub.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18309,8 +22609,10 @@ const manualEntries = [
         yomi: "ワトガ・アンダーグラウンド",
         url: "watoga-underground.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18318,8 +22620,10 @@ const manualEntries = [
         yomi: "ワトガ大学",
         url: "watoga-university.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18327,8 +22631,10 @@ const manualEntries = [
         yomi: "ワトガ",
         url: "watoga.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18336,8 +22642,10 @@ const manualEntries = [
         yomi: "ワッツ・エレクトロニクス",
         url: "wattz-consumer-electronics.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18345,8 +22653,10 @@ const manualEntries = [
         yomi: "ウェイビー・ウィラードのウォーターパーク",
         url: "wavy-willards.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18354,8 +22664,10 @@ const manualEntries = [
         yomi: "ウィーゼル",
         url: "weasel.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18363,8 +22675,10 @@ const manualEntries = [
         yomi: "天候制御ステーション",
         url: "weather-control-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18372,8 +22686,10 @@ const manualEntries = [
         yomi: "ウェルチ駅",
         url: "welch-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18381,8 +22697,10 @@ const manualEntries = [
         yomi: "ウェルチ",
         url: "welch.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18390,8 +22708,10 @@ const manualEntries = [
         yomi: "Wendigo Cave",
         url: "wendigo-cave.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18399,8 +22719,10 @@ const manualEntries = [
         yomi: "ウェンディゴ・コロッサス",
         url: "wendigo-colossus.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18408,8 +22730,11 @@ const manualEntries = [
         yomi: "ウェンディゴ",
         url: "wendigo.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18417,8 +22742,10 @@ const manualEntries = [
         yomi: "ワーナー",
         url: "wernher.html",
         category: "人物",
-        appearance: ["Fallout 3 (The Pitt)"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3 (The Pitt)"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18426,8 +22753,10 @@ const manualEntries = [
         yomi: "ウェスト・チャールストン・ブリッジ",
         url: "west-charleston-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18435,8 +22764,10 @@ const manualEntries = [
         yomi: "ウエスト・エバレット私有地",
         url: "west-everett-estates.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18444,8 +22775,10 @@ const manualEntries = [
         yomi: "ウェスト・ロックスバリー駅",
         url: "west-roxbury-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18453,8 +22786,10 @@ const manualEntries = [
         yomi: "ウエスト・テック研究センター",
         url: "west-tek-research-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18462,8 +22797,12 @@ const manualEntries = [
         yomi: "ウエスト・テック (West Tek)",
         url: "west-tek.html",
         category: "記録",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18471,8 +22810,10 @@ const manualEntries = [
         yomi: "ウェストブルック牧場",
         url: "westbrook-horse-ranch.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18480,8 +22821,10 @@ const manualEntries = [
         yomi: "western-revolver",
         url: "western-revolver.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18489,8 +22832,10 @@ const manualEntries = [
         yomi: "ウェスティング・エステート",
         url: "westing-estate.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18498,8 +22843,10 @@ const manualEntries = [
         yomi: "ウェストン水処理場",
         url: "weston-water-treatment-plant.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18507,8 +22854,10 @@ const manualEntries = [
         yomi: "ウエストサイド・メディカル・クリニック",
         url: "westside-medical-clinic.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18516,8 +22865,10 @@ const manualEntries = [
         yomi: "ホワイトパウダー・ウィンタースポーツ",
         url: "white-powder-winter-sports.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18525,8 +22876,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング・バンカー",
         url: "whitespring-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18534,8 +22887,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング・コテージ",
         url: "whitespring-cottages.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18543,8 +22898,10 @@ const manualEntries = [
         yomi: "ホワイトスプリングのゴルフ練習場",
         url: "whitespring-driving-range.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18552,8 +22909,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング・ゴルフクラブ",
         url: "whitespring-golf-club.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18561,8 +22920,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング見張り台",
         url: "whitespring-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18570,8 +22931,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング大統領別荘と博物館",
         url: "whitespring-presidential-cottage.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18579,8 +22942,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング避難所",
         url: "whitespring-refuge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18588,8 +22953,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング・リゾート",
         url: "whitespring-resort.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18597,8 +22964,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング・サービスエントランス",
         url: "whitespring-service-entrance.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18606,8 +22975,10 @@ const manualEntries = [
         yomi: "ホワイトスプリング駅",
         url: "whitespring-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18615,8 +22986,10 @@ const manualEntries = [
         yomi: "ウィケッド・シッピング・フリート・ロックアップ",
         url: "wicked-shipping-fleet-lockup.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18624,8 +22997,10 @@ const manualEntries = [
         yomi: "ウィッカー",
         url: "wicker.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18633,8 +23008,10 @@ const manualEntries = [
         yomi: "ウィドウズ・パーチ",
         url: "widows-perch.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18642,8 +23019,10 @@ const manualEntries = [
         yomi: "ワイルドウルフ農場",
         url: "wild-wolf-homestead.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18651,8 +23030,10 @@ const manualEntries = [
         yomi: "荒野 (TVシリーズ)",
         url: "wilds.html",
         category: "場所",
-        appearance: ["Fallout TV"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TV"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18660,8 +23041,10 @@ const manualEntries = [
         yomi: "ウィルキンス",
         url: "wilkins-steel-reign.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18669,8 +23052,10 @@ const manualEntries = [
         yomi: "ウィラード企業住宅",
         url: "willard-corporate-housing.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18678,8 +23063,10 @@ const manualEntries = [
         yomi: "ウィリー・メイ",
         url: "willie-mae.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18687,8 +23074,10 @@ const manualEntries = [
         yomi: "ウィルソン・アトマトイズ本社",
         url: "wilson-atomatoys-corporate-hq.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18696,8 +23085,10 @@ const manualEntries = [
         yomi: "ウィルソン・アトマトイズ工場",
         url: "wilson-atomatoys-factory.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18705,8 +23096,10 @@ const manualEntries = [
         yomi: "ウィルソン・ブラザーズ自動車修理屋",
         url: "wilson-brothers-auto-repair-shop.html",
         category: "記録",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18714,8 +23107,10 @@ const manualEntries = [
         yomi: "ウィルソン兄弟のオート修理工場",
         url: "wilson-brothers-auto.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18723,8 +23118,10 @@ const manualEntries = [
         yomi: "Windy Park",
         url: "windy-park.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18732,8 +23129,10 @@ const manualEntries = [
         yomi: "賢明なるチャールズ",
         url: "wise-charles.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18741,8 +23140,10 @@ const manualEntries = [
         yomi: "ワイズ・モスマン",
         url: "wise-mothman-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18750,8 +23151,10 @@ const manualEntries = [
         yomi: "ウィクソン農場",
         url: "wixon-homestead.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18759,8 +23162,10 @@ const manualEntries = [
         yomi: "ウルフ",
         url: "wolf-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18768,8 +23173,10 @@ const manualEntries = [
         yomi: "ウッズ・エステート",
         url: "woods-estate.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18777,8 +23184,10 @@ const manualEntries = [
         yomi: "ウッズ伍長",
         url: "woods.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18786,8 +23195,10 @@ const manualEntries = [
         yomi: "ウッディ・トーマス",
         url: "woody-thomas.html",
         category: "人物",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18795,8 +23206,10 @@ const manualEntries = [
         yomi: "ワールド・オブ・コーン",
         url: "world-of-corn.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18804,8 +23217,10 @@ const manualEntries = [
         yomi: "ワールド・オブ・リフレッシュメント",
         url: "world-of-refreshment.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18813,8 +23228,10 @@ const manualEntries = [
         yomi: "Worthy",
         url: "worthy.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18822,8 +23239,10 @@ const manualEntries = [
         yomi: "FMSノーザンスターの残骸",
         url: "wreck-of-the-fms-northern-star.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18831,8 +23250,10 @@ const manualEntries = [
         yomi: "Wren",
         url: "wren-raider.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18840,8 +23261,10 @@ const manualEntries = [
         yomi: "WRVR放送局",
         url: "wrvr-broadcast-station.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18849,8 +23272,10 @@ const manualEntries = [
         yomi: "WV製材会社",
         url: "wv-lumber-co.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18858,8 +23283,10 @@ const manualEntries = [
         yomi: "WV木材会社",
         url: "wv-lumber-company.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18867,8 +23294,10 @@ const manualEntries = [
         yomi: "ザンダー・ブラウン",
         url: "xander-brown.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18876,8 +23305,10 @@ const manualEntries = [
         yomi: "ザビエル",
         url: "xavier.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18885,8 +23316,10 @@ const manualEntries = [
         yomi: "「それがお前の最初の過ちだ。考えるということがな。だが安心しろ、我々がお前たちの種族を侵略し支配下に置けば、もう考える必要はなくなる。<br>\r\n                実際、思考は死刑に値する犯罪になるだろう。そしてもちろんその後に、一連の教育ビデオを視聴させられることになる。<br>\r\n                ゼビュロンの死後の世界には1,757段階の地獄があるのだから、ビデオを観て自分の過ちを振り返る時間は十分にあるだろう。」<br>\r\n                <span style=\"font-size: 0.85em; color: #888;\">— ゼルゾ</span>",
         url: "xerxo.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18894,8 +23327,10 @@ const manualEntries = [
         yomi: "長江 (揚子江 / Yangtze)",
         url: "yangtze.html",
         category: "拠点/ダンジョン",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18903,8 +23338,10 @@ const manualEntries = [
         yomi: "ヤオ・グアイの洞窟 (TVシリーズ)",
         url: "yao-guai-cave-tv-series.html",
         category: "場所",
-        appearance: ["Fallout TVシリーズ"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout TVシリーズ"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18912,8 +23349,10 @@ const manualEntries = [
         yomi: "ヤオ・グアイ",
         url: "yao-guai-fo76.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18921,8 +23360,10 @@ const manualEntries = [
         yomi: "「はじめまして。私の名前はヤスミン。アパラチアを旅するシェフよ。」<br>\r\n                <span style=\"font-size: 0.85em; color: #888;\">— ヤスミン・チョウドリー</span>",
         url: "yasmin-chowdhury.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18930,8 +23371,10 @@ const manualEntries = [
         yomi: "イエロー・サンディの蒸留所",
         url: "yellow-sandys-still.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18939,8 +23382,10 @@ const manualEntries = [
         yomi: "yes-man",
         url: "yes-man.html",
         category: "人物",
-        appearance: ["Fallout 4"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 4"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18948,8 +23393,10 @@ const manualEntries = [
         yomi: "ZAX 1.3c",
         url: "zax-13c.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18957,8 +23404,10 @@ const manualEntries = [
         yomi: "ジーク",
         url: "zeke-fallout-76.html",
         category: "人物",
-        appearance: ["Fallout 76"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18966,8 +23415,13 @@ const manualEntries = [
         yomi: "ゼータ星人",
         url: "zeta-alien.html",
         category: "クリーチャー",
-        appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
+        ],
+        date: "2026-04-20",
         status: "published"
     },
     {
@@ -18975,8 +23429,10 @@ const manualEntries = [
         yomi: "Dr. ジマー",
         url: "zimmer.html",
         category: "人物",
-        appearance: ["Fallout 3"],
-        date: "2026-05-02",
+        appearance: [
+            "Fallout 3"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18985,7 +23441,7 @@ const manualEntries = [
         url: "変異パブリック��ベント.html",
         category: "未分類",
         appearance: [],
-        date: "2026-05-02",
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -18994,7 +23450,7 @@ const manualEntries = [
         url: "��スローカム・ジョー.html",
         category: "未分類",
         appearance: [],
-        date: "2026-05-02",
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19003,7 +23459,7 @@ const manualEntries = [
         url: "maccready.html",
         category: "未分類",
         appearance: [],
-        date: "2026-04-30",
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19011,8 +23467,10 @@ const manualEntries = [
         yomi: "放棄されたコンボイ",
         url: "abandoned-convoy.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19020,8 +23478,10 @@ const manualEntries = [
         yomi: "バンカーとハチの巣",
         url: "bunker-and-beehive.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19029,8 +23489,10 @@ const manualEntries = [
         yomi: "キャンプ・リバティ",
         url: "camp-liberty.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19038,8 +23500,10 @@ const manualEntries = [
         yomi: "コビーズ・コーナー",
         url: "cobbys-corner.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19047,8 +23511,10 @@ const manualEntries = [
         yomi: "ダーク・ホロウ・マナー",
         url: "dark-hollow-manor.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19057,7 +23523,7 @@ const manualEntries = [
         url: "donate.html",
         category: "未分類",
         appearance: [],
-        date: "2026-04-29",
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19066,7 +23532,7 @@ const manualEntries = [
         url: "fo76-guide.html",
         category: "未分類",
         appearance: [],
-        date: "2026-04-29",
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19074,8 +23540,10 @@ const manualEntries = [
         yomi: "グラインドストーン・アーチ",
         url: "grindstone-arch.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19083,8 +23551,10 @@ const manualEntries = [
         yomi: "ホークスビル気象観測所",
         url: "hawksbill-weather-station.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19092,8 +23562,10 @@ const manualEntries = [
         yomi: "ヘムロック・スプリングス・ダンプ",
         url: "hemlock-springs-dump.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19101,8 +23573,10 @@ const manualEntries = [
         yomi: "ハイ・ノブ展望台",
         url: "high-knob-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19110,8 +23584,10 @@ const manualEntries = [
         yomi: "ハイウェイ35給水塔",
         url: "highway-35-water-tower.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19119,8 +23595,10 @@ const manualEntries = [
         yomi: "ホッキング・ヒルズ・リトルリーグ場",
         url: "hocking-hills-little-league-field.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19128,8 +23606,10 @@ const manualEntries = [
         yomi: "アイスクリーム・レストストップ",
         url: "ice-cream-rest-stop.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19137,8 +23617,10 @@ const manualEntries = [
         yomi: "メイクアウト・ポイント",
         url: "makeout-point.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19146,8 +23628,10 @@ const manualEntries = [
         yomi: "メアリーズ・ロック・トンネル",
         url: "marys-rock-tunnel.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19155,8 +23639,10 @@ const manualEntries = [
         yomi: "マイルポスト・ゼロ",
         url: "milepost-zero.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19164,8 +23650,10 @@ const manualEntries = [
         yomi: "オールド・クリモラ鉱山",
         url: "old-crimora-mines.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19173,8 +23661,10 @@ const manualEntries = [
         yomi: "オールド・ラグ展望台",
         url: "old-rag-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19182,8 +23672,10 @@ const manualEntries = [
         yomi: "ペブルズ・ザ・キャット博物館",
         url: "pebbles-the-cat-museum.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19192,7 +23684,7 @@ const manualEntries = [
         url: "piper.html",
         category: "未分類",
         appearance: [],
-        date: "2026-04-29",
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19200,8 +23692,10 @@ const manualEntries = [
         yomi: "プレッパーの貯蔵バンカー",
         url: "prepper-storage-bunkers.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19209,8 +23703,10 @@ const manualEntries = [
         yomi: "レンジャーステーション・バンカー",
         url: "ranger-station-bunker.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19218,8 +23714,10 @@ const manualEntries = [
         yomi: "ラピダン・キャンプ",
         url: "rapidan-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19227,8 +23725,10 @@ const manualEntries = [
         yomi: "リサーチサイト・バヴァリア",
         url: "research-site-bavaria.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19236,8 +23736,10 @@ const manualEntries = [
         yomi: "リサーチサイト・ラインラント",
         url: "research-site-rhineland.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19245,8 +23747,10 @@ const manualEntries = [
         yomi: "リサーチサイト・ザクセン",
         url: "research-site-saxony.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19254,8 +23758,10 @@ const manualEntries = [
         yomi: "ルート33の渋滞",
         url: "route-33-traffic-jam.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19263,8 +23769,10 @@ const manualEntries = [
         yomi: "シェナンドー・ビジターセンター",
         url: "shenandoah-visitor-center.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19272,8 +23780,10 @@ const manualEntries = [
         yomi: "シャイニング・クリーク洞窟",
         url: "shining-creek-cavern.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19281,8 +23791,10 @@ const manualEntries = [
         yomi: "スランバー・ミル・モーテル",
         url: "slumber-mill-motel.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19290,8 +23802,10 @@ const manualEntries = [
         yomi: "サウスリバー・ブリッジ",
         url: "south-river-bridge.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19299,8 +23813,10 @@ const manualEntries = [
         yomi: "ストーニー・マン展望台",
         url: "stony-man-lookout.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19308,8 +23824,10 @@ const manualEntries = [
         yomi: "スーザンのキャビン",
         url: "susans-cabin.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19317,8 +23835,10 @@ const manualEntries = [
         yomi: "バッカイ・ダイナー",
         url: "the-buckeye-diner.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19326,8 +23846,10 @@ const manualEntries = [
         yomi: "トレーディング・ポスト",
         url: "the-trading-post.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19335,8 +23857,10 @@ const manualEntries = [
         yomi: "スリー・ポンズ",
         url: "three-ponds.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19344,8 +23868,10 @@ const manualEntries = [
         yomi: "サンダーマウンテン変電所TM-03",
         url: "thunder-mountain-substation-tm-03.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19353,8 +23879,10 @@ const manualEntries = [
         yomi: "ウラジミールのキャンプ",
         url: "vladimirs-camp.html",
         category: "場所",
-        appearance: ["Fallout 76"],
-        date: "2026-04-29",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-04-20",
         status: "draft"
     },
     {
@@ -19363,7 +23891,7 @@ const manualEntries = [
         url: "ボルトテック・コーポレーション.html",
         category: "未分類",
         appearance: [],
-        date: "2026-04-29",
+        date: "2026-04-20",
         status: "draft"
     },
     {
