@@ -20175,12 +20175,12 @@ async function rebuildLoreHtml() {
             console.log(`[Draft] ${e.name} - isDraft:trueで出力`);
         }
         finalEntriesObjStr += `            {
-                name: "${e.name}",
-                yomi: "${e.yomi}",
-                url: "${e.url}",
-                category: "${e.category}",
+                name: ${JSON.stringify(e.name)},
+                yomi: ${JSON.stringify(e.yomi)},
+                url: ${JSON.stringify(e.url)},
+                category: ${JSON.stringify(e.category)},
                 appearance: ${JSON.stringify(e.appearance)},
-                date: "${e.date}"${isDraft ? ',\n                isDraft: true' : ''}
+                date: ${JSON.stringify(e.date)}${isDraft ? ',\n                isDraft: true' : ''}
             },\n`;
     });
 
@@ -20230,12 +20230,12 @@ async function rebuildLoreHtml() {
         const { category, appearance } = guessCategoryAndAppearance(article.title, article.bodyHtml);
 
         finalEntriesObjStr += `            {
-                name: "${safeTitle}",
-                yomi: "${safeTitle}",
-                url: "${htmlFilename}",
-                category: "${category}",
+                name: ${JSON.stringify(article.title)},
+                yomi: ${JSON.stringify(article.title)},
+                url: ${JSON.stringify(htmlFilename)},
+                category: ${JSON.stringify(category)},
                 appearance: ${JSON.stringify(appearance)},
-                date: "${dateStr}"
+                date: ${JSON.stringify(dateStr)}
             },\n`;
     });
 

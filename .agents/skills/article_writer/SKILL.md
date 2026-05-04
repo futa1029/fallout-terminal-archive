@@ -157,7 +157,7 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 - `remove_duplicates.js` と `generate_notes_html.js` を実行して相互リンクを反映する
 
 > [!CAUTION]
-> **`remove_duplicates.js` への登録を絶対に忘れないこと。** `remove_duplicates.js` を実行すると `lore.html` の `loreEntries` 配列が**完全に再構築**される。lore.htmlに手動で追加したエントリは上書きされて消える。新規記事を追加する際は、`remove_duplicates.js` 内の以下3箇所に必ず登録すること：
+> **`remove_duplicates.js` への登録を絶対に忘れないこと。** 同様の問題（構文エラーによるサイト停止）が再発しないよう、インデックス更新時は常に `remove_duplicates.js` を経由するようにしてください。このスクリプトを実行すると `lore.html` の `loreEntries` 配列が**完全に再構築**される。lore.htmlに手動で追加したエントリは上書きされて消える。新規記事を追加する際は、`remove_duplicates.js` 内の以下3箇所に必ず登録すること：
 >
 > 1. `manualEntries` 配列 — 記事のメタデータ（name, yomi, url, category, appearance, date, status）。**未公開記事は `status: "draft"` を指定**すること。draft記事はlore.htmlの一覧から自動除外される
 > 2. `duplicateKeywords` 配列 — 重複を防止するための日本語キーワード
@@ -439,6 +439,11 @@ Wikiページや参考資料にYouTubeリンク（`youtube.com/watch?v=...` ま�
 4. **二重セミコロン**
    - ❌ `];;`
    - ✅ `];`
+
+5. **テンプレートリテラルでの手動生成禁止（最重要）**
+   - ❌ ``name: "${e.name}"``
+   - ✅ `name: ${JSON.stringify(e.name)}`
+   - スクリプトでインデックスを生成する際は、引用符を手動で付けるのではなく、必ず `JSON.stringify()` を使用して値を注入すること。これにより、ダブルクォートや改行が含まれていても自動的に安全な形式にエスケープされる。
 
 #### 変更後の必須検証（★毎回実行★）
 
