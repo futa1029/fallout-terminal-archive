@@ -11,7 +11,7 @@
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
     <meta property="og:title" content="アガサ (Agatha) | Overseer Mohi's Terminal">
     <meta property="og:description" content="キャピタル・ウェイストランドの孤独なヴァイオリニスト、アガサの詳細なロア。">
-    <meta property="og:image" content="https://images.fallout.wiki/6/67/Agatha.jpg">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/agatha/Agatha.jpg">
     <meta property="og:url" content="https://www.fallout-jp.com/agatha.html">
     <meta name="twitter:card" content="summary_large_image">
     
@@ -179,7 +179,6 @@
             color: var(--bg-color);
         }
 
-        /* Comments Section matching Kimball */
         .comments-section {
             margin-top: 40px;
             border-top: 2px solid var(--accent-color);
@@ -218,7 +217,6 @@
             .container { grid-template-columns: 1fr; }
         }
 
-        /* Lightbox Overlay */
         .lightbox-overlay {
             display: none;
             position: fixed;
@@ -238,7 +236,7 @@
         <!-- Sidebar -->
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">アガサ</h3>
-            <img src="https://images.fallout.wiki/6/67/Agatha.jpg" alt="Agatha">
+            <img src="images/agatha/Agatha.jpg" alt="アガサ">
             <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
             <div class="infobox-row"><span class="infobox-label">年齢</span><span>76歳</span></div>
             <div class="infobox-row"><span class="infobox-label">拠点</span><span>アガサの家</span></div>
@@ -254,7 +252,7 @@
                 </button>
             </div>
 
-            <h1>PERSONNEL_FILE: AGATHA</h1>
+            <h1>アガサ (Agatha)</h1>
 
             <section id="summary">
                 <h2>概要</h2>
@@ -319,19 +317,19 @@
                 <h2>ギャラリー</h2>
                 <div class="image-grid">
                     <div class="grid-item">
-                        <img src="https://images.fallout.wiki/2/25/Agatha_Closeup.jpg" alt="Agatha playing">
+                        <img src="images/agatha/Agatha_Closeup.jpg" alt="演奏中のアガサ">
                         <p class="caption">ヴァイオリンを奏でるアガサ</p>
                     </div>
                     <div class="grid-item">
-                        <img src="https://images.fallout.wiki/7/7b/Agatha_performing.png" alt="Agatha in action">
+                        <img src="images/agatha/Agatha_performing.png" alt="放送中のアガサ">
                         <p class="caption">放送室での演奏風景</p>
                     </div>
                     <div class="grid-item">
-                        <img src="https://images.fallout.wiki/6/62/FO3_Agatha_endslide_1.jpg" alt="Ending slide 1">
+                        <img src="images/agatha/FO3_Agatha_endslide_1.jpg" alt="アガサのエンディング1">
                         <p class="caption">エンディングスライド1</p>
                     </div>
                     <div class="grid-item">
-                        <img src="https://images.fallout.wiki/e/e0/FO3_Agatha_endslide_2.jpg" alt="Ending slide 2">
+                        <img src="images/agatha/FO3_Agatha_endslide_2.jpg" alt="アガサのエンディング2">
                         <p class="caption">エンディングスライド2</p>
                     </div>
                 </div>
@@ -340,10 +338,6 @@
             <!-- Comments Section -->
             <div class="comments-section" id="comments-section">
                 <h3 class="comments-title">&gt; COMMENTS</h3>
-                <div class="comment-form">
-                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..."></textarea>
-                    <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
-                </div>
                 <div id="comments-list" class="comments-list">
                     <div class="comment-loading">LOADING...</div>
                 </div>
@@ -361,15 +355,6 @@
         const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // Kimballの共通スクリプトを読み込むための代替実装
-        async function toggleLike(btn) {
-            // common.jsが読み込まれている場合はそちらに任せる
-            if (typeof window.toggleLike === 'function') {
-                return window.toggleLike(btn);
-            }
-            btn.classList.toggle('liked');
-        }
-
         document.querySelectorAll('img').forEach(img => {
             img.addEventListener('click', () => {
                 const overlay = document.getElementById('lightbox');
@@ -379,6 +364,5 @@
         });
     </script>
     <script src="article-common.js" defer></script>
-    <!-- Deployment Trigger: 20260505_v2 -->
 </body>
 </html>

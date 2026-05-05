@@ -285,7 +285,7 @@ const loreEntries = [
             {
                 name: "アガサ",
                 yomi: "アガサ",
-                url: "agatha-v2.html",
+                url: "agatha.html",
                 category: "人物",
                 appearance: ["Fallout 3"],
                 date: "2026-05-05"
