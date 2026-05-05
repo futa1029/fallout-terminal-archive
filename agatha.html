@@ -3,145 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>アガサ (Agatha) | Fallout ターミナル・アーカイブ</title>
+    <title>アガサ (Agatha) | Overseer Mohi's Terminal</title>
     <meta name="description" content="キャピタル・ウェイストランドの孤独なヴァイオリニスト、アガサの詳細なロア。エッグレブレヒト家の音楽的遺産、Vault 92とソイル・ストラディバリウス、そして彼女が届けるラジオ放送の全容。">
-    <link rel="stylesheet" href="index.css">
+    
+    <!-- Open Graph / Discord Embed -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:title" content="アガサ (Agatha) | Overseer Mohi's Terminal">
+    <meta property="og:description" content="キャピタル・ウェイストランドの孤独なヴァイオリニスト、アガサの詳細なロア。">
+    <meta property="og:image" content="https://images.fallout.wiki/6/67/Agatha.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/agatha.html">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Fonts & Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
+        h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-quote {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .terminal-quote cite {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .terminal-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .terminal-list li::before {
+            content: "> ";
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .caption {
+            font-size: 0.85em;
+            color: #888;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Comments Section matching Kimball */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        .comment-form { margin-bottom: 20px; }
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 70px;
+            outline: none;
+        }
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        /* Lightbox Overlay */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; border: 2px solid var(--accent-color); }
+    </style>
 </head>
-<body class="terminal" data-category="人物" data-game="Fallout 3" data-location="アガサの家">
-    <header class="terminal-header">
-        <h1 id="title">PERSONNEL_FILE: AGATHA</h1>
-        <nav class="terminal-nav">
-            <a href="lore.html" class="nav-link">BACK_TO_INDEX</a>
-        </nav>
-    </header>
+<body data-article-category="人物" data-article-appearance="Fallout 3">
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="infobox">
+            <h3 style="margin-top:0; text-align:center;">アガサ</h3>
+            <img src="https://images.fallout.wiki/6/67/Agatha.jpg" alt="Agatha">
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
+            <div class="infobox-row"><span class="infobox-label">年齢</span><span>76歳</span></div>
+            <div class="infobox-row"><span class="infobox-label">拠点</span><span>アガサの家</span></div>
+            <div class="infobox-row"><span class="infobox-label">家系</span><span>エッグレブレヒト</span></div>
+        </aside>
 
-    <main class="terminal-content">
-        <section class="profile-section">
-            <div class="profile-grid">
-                <div class="profile-image">
-                    <img src="https://images.fallout.wiki/6/67/Agatha.jpg" alt="Agatha" id="agatha_portrait">
-                    <p class="caption">演奏の準備をするアガサ</p>
+        <!-- Main Content -->
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="agatha" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>PERSONNEL_FILE: AGATHA</h1>
+
+            <section id="summary">
+                <h2>概要</h2>
+                <p>アガサは、キャピタル・ウェイストランドの北、岩場に隠れるように建つ「アガサの家」で一人暮らす76歳の老婦人である。彼女は戦前から続く高名な音楽家系「エッグレブレヒト家」の末裔であり、ウェイストランドで失われつつあるクラシック音楽の伝統を守り続けている数少ない人物の一人である。</p>
+                <p>彼女は亡き夫が遺した無線機を使い、自身が演奏するヴァイオリンの旋律を「アガサのラジオ局 (Agatha's Station)」としてウェイストランド全土に放送している。その穏やかな口調と美しい調べは、過酷な荒野を旅する者たちにとって一時の安らぎとなっている。</p>
+            </section>
+
+            <section id="background">
+                <h2>背景と家族の歴史</h2>
+                <h3>音楽家の血筋</h3>
+                <p>アガサは、代々優れたクラシック音楽家を輩出してきた家系に生まれた。彼女の高祖母である<b>ヒルダ・エッグレブレヒト (Hilda Egglebrecht)</b>は、世界最高峰のヴァイオリニストとして知られ、2077年の大戦直前には、音楽的才能の保存を目的とした<b>Vault 92</b>へと招かれた。</p>
+                <p>アガサは、ヒルダが娘のメアリー（アガサの曾祖母）に宛てて書いた手紙や日記を通じて、家族の歴史を知ることとなった。これらの記録は世代を超えて受け継がれ、アガサの手元に届けられた。彼女は、ヒルダが世界に数本しか存在しない伝説的なヴァイオリン<b>「ソイル・ストラディバリウス (Soil Stradivarius)」</b>と共にVaultへ入ったことを確信している。</p>
+
+                <h3>夫との生活と孤独</h3>
+                <p>アガサの家は、彼女の亡き夫が風雨や外部の脅威から身を守るために建設したものである。かつて二人は世間から隔絶したこの場所で、互いを唯一の話し相手として幸せな数年間を過ごした。夫はアガサに身を守るための術（銃の扱いなど）を教えたが、彼女自身は平和主義者であり、実際に銃を撃ったことはない。</p>
+                <p>夫の死後、彼女は深い孤独に陥ったが、巡回する商人キャラバンとの交易を通じて外界との接点を保っている。彼女は自分の音楽を聴かせる代わりに、生活に必要な物資を受け取っている。</p>
+            </section>
+
+            <section id="agathas_song">
+                <h2>サイドクエスト: Agatha's Song (アガサの歌)</h2>
+                <p>アガサは長年、自分が使用している「手製の不完全なヴァイオリン」に不満を抱いており、先祖が遺した「ソイル・ストラディバリウス」をVault 92から回収することを夢見ている。アイボットの情報を頼りに訪れたアイツ（孤独な放浪者）に対し、彼女はその回収を依頼する。</p>
+                
+                <h3>主な報酬</h3>
+                <ul class="terminal-list">
+                    <li><b>アガサのラジオ局 (Agatha's Station):</b> ヴァイオリンを無償で渡した場合、ウェイストランド全土で彼女の放送が聴けるようになる。</li>
+                    <li><b>ブラックホーク (Blackhawk):</b> クエスト中に「楽譜の入った本」をアガサに渡すと、報酬として夫の形見であるユニークな.44マグナムを譲り受けることができる。</li>
+                    <li><b>弾薬箱の鍵:</b> 説得や特定のパークがあれば、クエスト開始時に彼女の弾薬箱（ミニ・ニューク等を含む）の鍵を入手可能。</li>
+                </ul>
+            </section>
+
+            <section id="radio_station">
+                <h2>アガサのラジオ局 (Agatha's Station)</h2>
+                <p>ヴァイオリンの回収後（あるいは手製の楽器で）、彼女は夫の遺した機材を使って放送を行う。この放送はライブではなく、彼女が「美しさを保つための睡眠」を取っている間も流れるよう、すべて事前に録音されている。</p>
+                
+                <h3>楽曲リスト</h3>
+                <ul class="terminal-list">
+                    <li>ヨハン・セバスティアン・バッハ: パルティータ第3番「ジグ」</li>
+                    <li>ヨハン・セバスティアン・バッハ: パルティータ第3番「プレリュード」</li>
+                    <li>ヨハン・セバスティアン・バッハ: ソナタ第2番「グラーヴェ」</li>
+                    <li>アントニン・ドヴォルザーク: ヴァイオリン協奏曲 イ短調 作品53</li>
+                    <li>パブロ・デ・サラサーテ: ツィゴイネルワイゼン 作品20</li>
+                </ul>
+            </section>
+
+            <section id="quotes">
+                <h2>印象的な台詞</h2>
+                <blockquote class="terminal-quote">
+                    「ああ... なんてこと。私が想像していたよりも、ずっと美しいわ！」
+                    <cite>— ソイル・ストラディバリウスを手にした時の言葉</cite>
+                </blockquote>
+                <blockquote class="terminal-quote">
+                    「生意気言わないの、この生意気キャプテンさん（Captain sassy-pants）！」
+                    <cite>— 失礼な態度を取る放浪者に対して</cite>
+                </blockquote>
+                <blockquote class="terminal-quote">
+                    「友情はヴァイオリンのようなものですわ。たとえ音楽が止まっても、弦は残りますの。」
+                    <cite>— 亡き夫の言葉を引用して</cite>
+                </blockquote>
+            </section>
+
+            <section id="gallery">
+                <h2>ギャラリー</h2>
+                <div class="image-grid">
+                    <div class="grid-item">
+                        <img src="https://images.fallout.wiki/2/25/Agatha_Closeup.jpg" alt="Agatha playing">
+                        <p class="caption">ヴァイオリンを奏でるアガサ</p>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://images.fallout.wiki/7/7b/Agatha_performing.png" alt="Agatha in action">
+                        <p class="caption">放送室での演奏風景</p>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://images.fallout.wiki/6/62/FO3_Agatha_endslide_1.jpg" alt="Ending slide 1">
+                        <p class="caption">エンディングスライド1</p>
+                    </div>
+                    <div class="grid-item">
+                        <img src="https://images.fallout.wiki/e/e0/FO3_Agatha_endslide_2.jpg" alt="Ending slide 2">
+                        <p class="caption">エンディングスライド2</p>
+                    </div>
                 </div>
-                <div class="profile-info">
-                    <table class="terminal-table">
-                        <tr><th>氏名</th><td>アガサ (Agatha)</td></tr>
-                        <tr><th>年齢</th><td>76歳</td></tr>
-                        <tr><th>役割</th><td>ヴァイオリニスト、ラジオ放送主</td></tr>
-                        <tr><th>拠点</th><td>アガサの家 (キャピタル・ウェイストランド)</td></tr>
-                        <tr><th>家族</th><td>ヒルダ (高祖母)、メアリー (曾祖母)、亡き夫</td></tr>
-                        <tr><th>主な所持品</th><td>手製のヴァイオリン、弾薬箱の鍵</td></tr>
-                    </table>
+            </section>
+
+            <!-- Comments Section -->
+            <div class="comments-section" id="comments-section">
+                <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..."></textarea>
+                    <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                </div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
                 </div>
             </div>
-        </section>
+        </main>
+    </div>
 
-        <section id="summary">
-            <h2>概要</h2>
-            <p>アガサは、キャピタル・ウェイストランドの北、岩場に隠れるように建つ「アガサの家」で一人暮らす76歳の老婦人である。彼女は戦前から続く高名な音楽家系「エッグレブレヒト家」の末裔であり、ウェイストランドで失われつつあるクラシック音楽の伝統を守り続けている数少ない人物の一人である。</p>
-            <p>彼女は亡き夫が遺した無線機を使い、自身が演奏するヴァイオリンの旋律を「アガサのラジオ局 (Agatha's Station)」としてウェイストランド全土に放送している。その穏やかな口調と美しい調べは、過酷な荒野を旅する者たちにとって一時の安らぎとなっている。</p>
-        </section>
+    <!-- Lightbox -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
 
-        <section id="background">
-            <h2>背景と家族の歴史</h2>
-            <h3>音楽家の血筋</h3>
-            <p>アガサは、代々優れたクラシック音楽家を輩出してきた家系に生まれた。彼女の高祖母である<b>ヒルダ・エッグレブレヒト (Hilda Egglebrecht)</b>は、世界最高峰のヴァイオリニストとして知られ、2077年の大戦直前には、音楽的才能の保存を目的とした<b>Vault 92</b>へと招かれた。</p>
-            <p>アガサは、ヒルダが娘のメアリー（アガサの曾祖母）に宛てて書いた手紙や日記を通じて、家族の歴史を知ることとなった。これらの記録は世代を超えて受け継がれ、アガサの手元に届けられた。彼女は、ヒルダが世界に数本しか存在しない伝説的なヴァイオリン<b>「ソイル・ストラディバリウス (Soil Stradivarius)」</b>と共にVaultへ入ったことを確信している。</p>
+    <script>
+        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-            <h3>夫との生活と孤独</h3>
-            <p>アガサの家は、彼女の亡き夫が風雨や外部の脅威から身を守るために建設したものである。かつて二人は世間から隔絶したこの場所で、互いを唯一の話し相手として幸せな数年間を過ごした。夫はアガサに身を守るための術（銃の扱いなど）を教えたが、彼女自身は平和主義者であり、実際に銃を撃ったことはない。</p>
-            <p>夫の死後、彼女は深い孤独に陥ったが、巡回する商人キャラバンとの交易を通じて外界との接点を保っている。彼女は自分の音楽を聴かせる代わりに、生活に必要な物資を受け取っている。</p>
-        </section>
+        // Kimballの共通スクリプトを読み込むための代替実装
+        async function toggleLike(btn) {
+            // common.jsが読み込まれている場合はそちらに任せる
+            if (typeof window.toggleLike === 'function') {
+                return window.toggleLike(btn);
+            }
+            btn.classList.toggle('liked');
+        }
 
-        <section id="agathas_song">
-            <h2>サイドクエスト: Agatha's Song (アガサの歌)</h2>
-            <p>アガサは長年、自分が使用している「手製の不完全なヴァイオリン」に不満を抱いており、先祖が遺した「ソイル・ストラディバリウス」をVault 92から回収することを夢見ている。アイボットの情報を頼りに訪れたアイツ（孤独な放浪者）に対し、彼女はその回収を依頼する。</p>
-            
-            <h3>主な報酬</h3>
-            <ul class="terminal-list">
-                <li><b>アガサのラジオ局 (Agatha's Station):</b> ヴァイオリンを無償で渡した場合、ウェイストランド全土で彼女の放送が聴けるようになる。</li>
-                <li><b>ブラックホーク (Blackhawk):</b> クエスト中に「楽譜の入った本」をアガサに渡すと、報酬として夫の形見であるユニークな.44マグナムを譲り受けることができる。</li>
-                <li><b>弾薬箱の鍵:</b> 説得や特定のパークがあれば、クエスト開始時に彼女の弾薬箱（ミニ・ニューク等を含む）の鍵を入手可能。</li>
-            </ul>
-
-            <div class="terminal-alert note">
-                <p>注意: アガサに対して無礼な態度を取り続けると、彼女は心を閉ざし、クエストの受注や家への立ち入りを拒否するようになる。</p>
-            </div>
-        </section>
-
-        <section id="radio_station">
-            <h2>アガサのラジオ局 (Agatha's Station)</h2>
-            <p>ヴァイオリンの回収後（あるいは手製の楽器で）、彼女は夫の遺した機材を使って放送を行う。この放送はライブではなく、彼女が「美しさを保つための睡眠」を取っている間も流れるよう、すべて事前に録音されている。</p>
-            
-            <h3>楽曲リスト</h3>
-            <ul class="terminal-list">
-                <li>ヨハン・セバスティアン・バッハ: パルティータ第3番「ジグ」</li>
-                <li>ヨハン・セバスティアン・バッハ: パルティータ第3番「プレリュード」</li>
-                <li>ヨハン・セバスティアン・バッハ: ソナタ第2番「グラーヴェ」</li>
-                <li>アントニン・ドヴォルザーク: ヴァイオリン協奏曲 イ短調 作品53</li>
-                <li>パブロ・デ・サラサーテ: ツィゴイネルワイゼン 作品20</li>
-            </ul>
-
-            <p>曲の合間には、アガサが特定の人物（キャラバンのクロウ、ドック・ホフ、クレイジー・ウルフガング）や、恩人である放浪者への感謝を述べるメッセージが流れる。</p>
-        </section>
-
-        <section id="relationships">
-            <h2>人物像とウェイストランドの友人たち</h2>
-            <p>アガサはその教養と品位、そして荒野の危険を恐れない強さから、多くの人々に敬愛されている。特にキャラバンの商人たちとは深い絆で結ばれている。</p>
-            <ul class="terminal-list">
-                <li><b>クロウ (Crow):</b> アガサは彼を「マイ・ラブ」と呼び、孤独な夜に話し相手になってくれる彼に深く感謝している。</li>
-                <li><b>ドック・ホフ (Doc Hoff):</b> 老いた彼女の健康を気遣う彼を「命の恩人」と慕っている。</li>
-                <li><b>クレイジー・ウルフガング (Crazy Wolfgang):</b> 彼の見つけてくる珍品を楽しみにしている。</li>
-                <li><b>スリードッグ (Three Dog):</b> 彼はアガサを尊敬しており、もし彼女が殺害されるようなことがあれば、ラジオを通じて犯人を激しく非難する。</li>
-            </ul>
-        </section>
-
-        <section id="quotes">
-            <h2>印象的な台詞</h2>
-            <blockquote class="terminal-quote">
-                「ああ... なんてこと。私が想像していたよりも、ずっと美しいわ！」
-                <cite>— ソイル・ストラディバリウスを手にした時の言葉</cite>
-            </blockquote>
-            <blockquote class="terminal-quote">
-                「生意気言わないの、この生意気キャプテンさん（Captain sassy-pants）！」
-                <cite>— 失礼な態度を取る放浪者に対して</cite>
-            </blockquote>
-            <blockquote class="terminal-quote">
-                「友情はヴァイオリンのようなものですわ。たとえ音楽が止まっても、弦は残りますの。」
-                <cite>— 亡き夫の言葉を引用して</cite>
-            </blockquote>
-            <blockquote class="terminal-quote">
-                「忍耐は知恵の伴侶、という言葉がありますのよ。口を閉じて聞いていれば、何か学べるかもしれませんわ。」
-                <cite>— 話を急かされた時の窘め</cite>
-            </blockquote>
-        </section>
-
-        <section id="gallery">
-            <h2>ギャラリー</h2>
-            <div class="image-grid">
-                <div class="grid-item">
-                    <img src="https://images.fallout.wiki/2/25/Agatha_Closeup.jpg" alt="Agatha playing">
-                    <p class="caption">ヴァイオリンを奏でるアガサ</p>
-                </div>
-                <div class="grid-item">
-                    <img src="https://images.fallout.wiki/7/7b/Agatha_performing.png" alt="Agatha in action">
-                    <p class="caption">放送室での演奏風景</p>
-                </div>
-                <div class="grid-item">
-                    <img src="https://images.fallout.wiki/6/62/FO3_Agatha_endslide_1.jpg" alt="Ending slide 1">
-                    <p class="caption">エンディングスライド（アガサのその後）</p>
-                </div>
-                <div class="grid-item">
-                    <img src="https://images.fallout.wiki/e/e0/FO3_Agatha_endslide_2.jpg" alt="Ending slide 2">
-                    <p class="caption">ラジオ放送を続ける彼女の姿</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="terminal-footer">
-        <p class="copyright">DATA_RETRIEVED_FROM: FANDOM_WIKI & VAULT-TEC_ARCHIVES</p>
-        <p class="license">CONTENT_LICENSED_UNDER: <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC BY-SA 3.0</a></p>
-        <p class="donation"><a href="https://fallout-jp.com/donate.html">SUPPORT_THE_ARCHIVE</a></p>
-    </footer>
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('click', () => {
+                const overlay = document.getElementById('lightbox');
+                document.getElementById('lightbox-img').src = img.src;
+                overlay.classList.add('active');
+            });
+        });
+    </script>
+    <script src="article-common.js" defer></script>
 </body>
 </html>
