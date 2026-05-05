@@ -2,178 +2,456 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>Ada | Overseer Mohi's Terminal</title>
-    <link rel="canonical" href="https://www.fallout-jp.com/ada.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>エイダ (Ada) | Overseer Mohi's Terminal</title>
+    <meta name="description" content="フォールアウト4のコンパニオン、エイダの詳細なロア。ジャクソンのキャラバンの唯一の生き残りであり、高度に改造されたアサルトロンである彼女の背景、性格、そしてメカニストへの復讐の旅路。">
+    
+    <!-- Open Graph / Discord Embed -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:title" content="Ada | Overseer Mohi's Terminal">
-    <meta property="og:description" content="エイダ。Falloutのロア記事。">
-    <meta property="og:image" content="https://www.fallout-jp.com/images/note_extracted/ada/Fo4_Ada.png">
+    <meta property="og:title" content="エイダ (Ada) | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ジャクソンのキャラバンの唯一の生き残り、高度に改造されたアサルトロン「エイダ」の全記録。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/ada/Fo4_Ada.png">
     <meta property="og:url" content="https://www.fallout-jp.com/ada.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@IwamotoFuta">
+    
+    <!-- Fonts & Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
-        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
-        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
-        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
+        :root {
+            --bg-color: #0f0f0f;
+            --text-color: #e0e0e0;
+            --accent-color: #00ff00;
+            --header-bg: #1a1a1a;
+            --panel-bg: #222;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
+            color: var(--accent-color);
+            border-bottom: 1px solid var(--accent-color);
+            padding-bottom: 5px;
+        }
+
         h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
-        .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; text-align: right; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; text-align: left; }
-        .content { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
-        .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
-        .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
-        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
-        .quote-box b { color: var(--accent-color); font-size: 1.05em; }
-        .note-box { border-left: 4px solid #8b9dc3; margin: 30px 0; background: rgba(139, 157, 195, 0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
-        .note-box b { color: #8b9dc3; font-size: 1.05em; }
-        .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
-        .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
-        .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
-        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
-        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
-        .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        ul { list-style-type: square; } li::marker { color: var(--accent-color); }
-        .gallery-section { margin-top: 50px; } .gallery-section h2 { margin-bottom: 20px; }
+
+        .infobox {
+            background: var(--panel-bg);
+            border: 2px solid var(--accent-color);
+            padding: 15px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            align-self: start;
+        }
+
+        .infobox img {
+            width: 100%;
+            border: 1px solid #555;
+            margin-bottom: 15px;
+            cursor: zoom-in;
+        }
+
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            border-bottom: 1px dashed #444;
+        }
+
+        .infobox-label { color: var(--accent-color); font-weight: bold; }
+
+        .content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 5px;
+            font-size: 1em;
+            line-height: 1.9;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-quote {
+            font-style: italic;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 20px;
+            margin: 30px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .terminal-quote cite {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .terminal-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .terminal-list li::before {
+            content: "> ";
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .gallery-section { margin-top: 50px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
         .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
         .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
         .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
         .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; } .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; } .content { padding: 15px; } h1 { font-size: 1.6em; } .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); } }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
-        .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
-        .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+
+        .quote-box {
+            border-left: 4px solid var(--accent-color);
+            margin: 40px 0 20px 0;
+            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
+            padding: 15px 15px 15px 20px;
+            border-radius: 0 5px 5px 0;
+            line-height: 1.6;
+        }
+
+        .quote-box b {
+            color: var(--accent-color);
+            font-size: 1.05em;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--accent-color);
+            font-size: 0.85em;
+            color: #888;
+            line-height: 1.6;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+        }
+
+        .action-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--accent-color);
+            text-decoration: none;
+            border: 1px solid var(--accent-color);
+            padding: 8px 15px;
+            font-family: 'Share Tech Mono', monospace;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
+
+        .like-button {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Share Tech Mono', monospace;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
+        /* Comments */
+        .comments-section {
+            margin-top: 40px;
+            border-top: 2px solid var(--accent-color);
+            padding-top: 20px;
+        }
+        .comments-title {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
+        }
         .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0,0,0,0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
-        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-textarea {
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--accent-color);
+            color: var(--text-color);
+            padding: 10px;
+            border-radius: 4px;
+            min-height: 70px;
+            outline: none;
+            font-family: 'Noto Sans JP', sans-serif;
+            resize: vertical;
+        }
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comment-submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            font-family: 'Share Tech Mono', monospace;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
         .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
-        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
-        .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
-        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
-        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
-        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
         .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .terminal-entry { border-left: 4px solid #00ff00; margin: 20px 0; background: rgba(0, 255, 0, 0.05); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; color: #00ff00; }
-        .terminal-entry b { color: #00ff00; font-size: 1.05em; }
-        .holotape-box { border-left: 4px solid #e89b3e; margin: 30px 0; background: rgba(232,155,62,0.08); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.7; }
-        .holotape-box b { color: #e89b3e; font-size: 1.05em; }
+        .comment-empty, .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; border: 2px solid var(--accent-color); }
     </style>
-    <meta name="article-status" content="draft">
 </head>
-<body data-article-category="人物" data-article-appearance="Fallout 4">
+<body data-article-category="人物" data-article-appearance="Fallout 4 (Automatron)">
     <div class="container">
+        <!-- Sidebar -->
         <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Ada</h3>
-            <img src="images/note_extracted/ada/Fo4_Ada.png" alt="エイダ" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-            <div class="infobox-row"><span class="infobox-label">種族</span><span>ロボット<br>（改造アサルトロン）</span></div>
-            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性（プログラム）</span></div>
-            <div class="infobox-row"><span class="infobox-label">所属</span><span>ジャクソン・キャラバン（旧）</span></div>
-            <div class="infobox-row"><span class="infobox-label">役割</span><span>キャラバン護衛 / 復讐者</span></div>
-            <div class="infobox-row"><span class="infobox-label">居住地</span><span>ワッツ・エレクトロニクス付近<br>（初期状態）</span></div>
-            <div class="infobox-row"><span class="infobox-label">SPECIAL</span><span>S:9, P:5, E:1, C:1, I:7, A:10, L:1</span></div>
-            <div class="infobox-row"><span class="infobox-label">CV</span><span>Rachel Robinson (英)<br>本田貴子 (日)</span></div>
+            <h3 style="margin-top:0; text-align:center;">エイダ</h3>
+            <div style="width: 100%; aspect-ratio: 16/9; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; border: 1px solid #555;">
+                <img src="images/ada/Fo4_Ada.png" alt="エイダ (Fallout 4)" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物 / ロボット</span></div>
+            <div class="infobox-row"><span class="infobox-label">種族</span><span>アサルトロン（改造済）</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>ジャクソンのキャラバン<br>唯一の生存者</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>キャラバン護衛 / 同行者</span></div>
+            <div class="infobox-row"><span class="infobox-label">所在地</span><span>ワッツ・コンシューマー・エレクトロニクス付近</span></div>
         </aside>
 
+        <!-- Main Content -->
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_ada" onclick="toggleLike(this)">
+                <button class="like-button" data-article-id="ada" onclick="toggleLike(this)">
                     <span class="heart">♡</span> <span class="like-count">0</span>
                 </button>
             </div>
 
-            <h1>Ada<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">エイダ</span></h1>
+            <h1>エイダ (Ada)</h1>
 
-<p><strong>エイダ（Ada）</strong>は、DLC『Automatron』にて登場するロボット・コンパニオンである。アサルトロンをベースに多数のジャンクパーツで改造されたキメラロボットであり、自身の仲間を皆殺しにした「メカニスト（The Mechanist）」への復讐を誓い、主人公に協力を要請する。</p>
+            <blockquote class="terminal-quote">
+                「私の友人たち...彼らはただの商人でした。それが、あなたのロボットたちの手によって皆殺しにされたのです。」
+                <cite>— エイダ、メカニストに対して</cite>
+            </blockquote>
 
-            <div class="character-quote">
-                「私の友達は…皆単なる商人に過ぎませんでした。あなたのロボットの手で、全員殺されたのです！」<br>
-                <div style="text-align: right; font-size: 0.9em; margin-top: 10px;">— メカニストと対峙した際のエイダの怒り</div>
-            </div>
+            <p>
+                <strong>エイダ (Ada)</strong>は、2287年の連邦（コモンウェルス）に存在するロボットであり、創造主である<strong>ジャクソン</strong>のキャラバンがメカニストのロボット軍団に襲撃された際、唯一生き残った個体である。彼女は「Fallout 4」の追加コンテンツ「Automatron」に登場し、唯一の生存者（主人公）の同行者（コンパニオン）となる。
+            </p>
 
-            
-            <h2>生い立ちと背景 (Background)</h2>
-            
-            <h3>キャラバンの護衛ロボット</h3>
-            <p>エイダは元々、ジャクソン（Jackson）というキャラバンのリーダーによって造り出されたロボットである。コア部分はアサルトロンだが、プロテクトロンやセントリーボットなどのパーツがツギハギに搭載されている。彼女が所属するキャラバンは連邦のあちこちを巡って廃品を回収し、修理や交易を行う集団だった。</p>
-            <p>ジャクソンはエイダをただの「護衛用機械」ではなく一つの人格を持つ「友人」として扱っており、彼女の『パーソナリティ・モード』を常にオンの状態で固定していた。これによりエイダはロボットでありながら豊かな感情と人間的な思考能力を獲得し、ジャクソンやキャラバンのメンバー達を「家族」として深く愛するようになった。</p>
+            <section id="background">
+                <h2>背景</h2>
+                <p>
+                    エイダはジャクソンによって、彼のキャラバンの旅の仲間として作られた。彼女のベースは<strong>アサルトロン</strong>であるが、セントリーボットやプロテクトロンのパーツを組み込んだ高度な改造が施されている。
+                </p>
+                <p>
+                    ジャクソンのグループは機械の修理と取引を専門としており、ウェイストランドを旅しながら、使用したり売却したりするためのスペアパーツが豊富にある遺跡を探して生計を立てていた。エイダは主に、キャラバンがスカベンジングのために停止した際、仲間のゾーイを助けて一時的な防御陣地を構築する役割を担っていた。彼女たちはかつて、ボストンへ向かうチャールズ川を渡る途中で、ロボット工学を専門とするレイダー集団「ラスト・デビル」に遭遇し、彼らの破壊的な手法を学んだこともある。
+                </p>
+                <p>
+                    2287年の後半、キャラバンは連邦に平和をもたらすと称するメカニストのパッチワークのようなロボットたちから、短期間に3回もの攻撃を受けた。最初の攻撃の後、グループは連邦に留まるべきか去るべきかを議論したが、利益のために留まるという「計算されたリスク」を選択した。ジャクソンは敵ロボットから回収したパーツを使ってエイダの戦闘能力をさらに強化しようとしたが、その改造が完了する前に、ワッツ・コンシューマー・エレクトロニクス付近で最後のアタックを受けた。この襲撃によって人間の仲間たちと、他の2体のロボット（ポーターとハーツ）は命を落とし、エイダだけがその場に立ち尽くすこととなった。
+                </p>
+            </section>
 
-            <h3>ワッツ・エレクトロニクスの悲劇</h3>
-            <p>2287年、連邦に「平和をもたらす」という歪んだ任務をインプットされたメカニストのロボット軍団が、ジャクソンのキャラバンを「排除対象」として襲撃した。エイダは懸命に防衛したものの、多勢に無勢であり、ワッツ・エレクトロニクスの近辺で彼女を残して人間の仲間達は全員殺害されてしまった。<br>
-            たった一機生き残ったエイダは深い悲しみと後悔、そしてメカニストに対する激しい怒り（ロボットが表現できる限りの感情）に包まれた。「なぜ自分がもっとうまく守れなかったのか」「パーソナリティ・モードなど切られて、何も感じないただの機械であればこんなに苦しまなくて済んだのに」と思い悩む彼女は、偶然通りかかった主人公に助けられ、共にメカニストの野望を打ち砕くための復讐の旅へ出ることになる。</p>
+            <section id="personality">
+                <h2>性格</h2>
+                <p>
+                    エイダは元々プログラムに従うだけの自動人形であったが、コズワースやKL-E-0（クリー）と同様に、仮想ルーチンを超えて人間らしい人格を発達させていった。これは、彼女がジャクソンやその同僚たちと家族のような絆を共有していたためである。ジャクソンはエイダを単なる奉仕用ロボットではなく友人として見ており、彼女のパーソナリティ・モードを恒久的に「オン」に設定していた。
+                </p>
+                <p>
+                    この設定により、エイダはキャラバンのメンバーを単なる創造主ではなく「友人」として、さらには「家族」として慈しむようになった。メカニストのロボットによる彼らの死は、エイダの中に激しい悲しみと怒りを引き起こし、責任者への復讐心を燃え上がらせることとなった。彼女はその感情を人間のように外に出すことはできないが、自分の感情的な能力がもたらすネガティブな感情に苦しみ、いっそパーソナリティ・モードをオフにして、何も感じないロボットのままでいた方が良かったのではないかと、主人公に吐露することさえある。
+                </p>
+            </section>
 
-            <h2>コンパニオンシステム (Companion Mechanics)</h2>
-            <p>Automatron DLCの目玉機能である「ロボット作業台」のチュートリアル役も兼ねた、極めて優秀でカスタマイズ性の高い同行者である。</p>
+            <section id="interactions">
+                <h2>主人公との交流</h2>
+                <h3>同行者として</h3>
+                <ul class="terminal-list">
+                    <li>エイダは、ワッツ・コンシューマー・エレクトロニクス付近でメカニストのロボットを撃退し、彼女の調査に協力することに同意すると同行可能になる。</li>
+                    <li>彼女はドッグミート以外で唯一、主人公の行動（善行・悪行問わず）に対して常に友好的であり続けるコンパニオンである。彼女は状況に応じて助言や意見を述べるが、好感度（アフィニティ）が増減することはなく、関連するパークも存在しない。</li>
+                    <li>エイダが同行している際、彼女に話しかけるとランダムなジャンクアイテムをくれることがある。これはパーソナリティ・サブルーチンが有効な自作オートマトロン共通の特性である。</li>
+                    <li>彼女はロボット作業台で改造可能な数少ないコンパニオンの一人である（他はコズワースと、特定のクエスト前のキュリー）。</li>
+                    <li>改造によって、主人公のスキル不足を補うためのピッキングやハッキング能力を付与することも可能である。</li>
+                </ul>
 
-            <h3>パーツ換装による無限のカスタマイズ</h3>
-            <ul>
-                <li><b>ロボット作業台での改造</b>: エイダはロボット作業台を利用して、腕・脚・胴体・頭部・音声に至るまで<b>全てのパーツを自由に改造することが可能</b>である。両手に強力なガトリングレーザーを装備させたり、脚をホバー（Mr.ハンディ型）にして機動力を上げたり、あるいは積載量を極限まで特化させた「動く倉庫」にすることもできる。</li>
-                <li><b>モジュール機能の搭載</b>: パーツ改造によって、「ハッキング」や「ロックピック」のモジュール機能を持たせることができる。これにより、主人公自身のPerkが足りていなくとも、エイダに命令して端末や金庫を突破させることが可能になる。</li>
-            </ul>
+                <h3>その他の反応</h3>
+                <ul class="terminal-list">
+                    <li>ベルチバードに搭乗する際、彼女は「私の体格ではベルチバードに適切に乗ることができません。目的地で合流しましょう」と言い、空の旅には同行しない。</li>
+                    <li>彼女には疑似的な嗅覚が備わっているようで、マイアラークの生息地に近づくと「腐った魚の臭いを感知しました。あなたにとっては非常に不快でしょうね」と発言する。</li>
+                    <li>自己破壊装置について尋ねると、ジャクソンが彼女を瓦礫にするつもりはなく、より大きな計画を持っていたため、そのような装置はインストールされていないと答える。また、パーソナリティ・サブルーチンをオフにする要求も、そのスイッチ自体が製造時に無効化されているとして拒絶する。</li>
+                </ul>
+            </section>
 
-            <h3>好感度（Affinity）が存在しない</h3>
-            <p>エイダの最大の特徴は、ドッグミート（Dogmeat）と同じく<b>好感度システムが存在しない</b>ことである。<br>
-            彼女は主人公のいかなる行動（善行でも悪逆非道な殺人でも）に対しても評価を下すことがなく、怒って離脱することもない無条件の忠誠心を持つ。そのため、プレイヤーは彼女の目を気にすることなく自由なロールプレイを楽しむことができる。<br>
-            ただし、好感度の上限がないため、ロマンスは不可であり、最大時の「固有Perk」を取得することもできない。</p>
+            <section id="behind_the_scenes">
+                <h2>舞台裏</h2>
+                <ul class="terminal-list">
+                    <li>エイダの名前は、実在の数学者でありコンピュータ科学の先駆者である<strong>エイダ・ラブレス (Ada Lovelace)</strong>に由来している。</li>
+                    <li>エイダの台詞には、ポップカルチャーやSFへのオマージュが含まれている：
+                        <ul>
+                            <li>戦闘開始時の「抵抗は無意味です (resistance is futile)」は、「スタートレック」のボーグの台詞。</li>
+                            <li>ターミナル使用後の「キーボードを使うなんて、古風ですね (Using a keyboard. How quaint.)」は、「スタートレックIV 故郷への長い道」のスコットの台詞。</li>
+                            <li>学校のロケーションで発する「肉を食べないなら、どうしてプリンが食べられるんですか？ (If you don't eat your meat, how can you have any pudding?)」は、ピンク・フロイドの「Another Brick In The Wall, Part 2」の歌詞。</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
 
-            <h2>関連する主要クエスト (Quests)</h2>
-            <ul>
-                <li><b>Mechanical Menace</b>：DLC『Automatron』の開始クエスト。ワッツ・エレクトロニクス近くでロボット軍団に襲われている彼女を救出する。</li>
-                <li><b>A New Threat / Headhunting / Restoring Order</b>：各地のロボボス（ロボブレイン）を倒し、エイダの頭部に特殊なレーダービーコンを取り付けながら、メカニストの隠れ家であるロブコ・セールス&サービスセンターへの道を切り開いていく一連のクエスト。</li>
-                <li><b>Rogue Robot</b>：メカニスト関連の事件を解決した後、連邦に残存している暴走ロボット達を処理する繰り返し（Radiant）クエスト。彼女がクエストギバーになる場合がある。</li>
-            </ul>
-
-            <h2>ギャラリー (Gallery)</h2>
-            <div class="gallery-section">
+            <section class="gallery-section" id="gallery">
+                <h2>ギャラリー</h2>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="images/note_extracted/ada/Fallout_4_Automatron_pre-release_7.png" alt="Automatron" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-                        <div class="caption">Automatron コンセプト</div>
+                        <img src="images/ada/Fo4_Ada.png" alt="デフォルトのエイダ">
+                        <p class="caption">デフォルトの外見 (Automatron)</p>
                     </div>
                     <div class="gallery-item">
-                        <img src="images/note_extracted/ada/Ada_SGB.png" alt="Survival Guide" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-                        <div class="caption">サバイバルガイド版イラスト</div>
+                        <img src="images/ada/Fallout_4_Automatron_pre-release_7.png" alt="トレーラーのエイダ">
+                        <p class="caption">Automatron トレーラーでのエイダ</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/ada/Ada_SGB.png" alt="TRPG版エイダ">
+                        <p class="caption">Settler's Guide Book (TRPG) の挿絵</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/ada/Fallout_Magic_Solemn_Simulacrum.png" alt="MTG版エイダ">
+                        <p class="caption">Magic: The Gathering カードイラスト</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/ada/Fallout_Magic_Solemn_Simulacrum_Extended_Art.png" alt="MTG 拡張アート">
+                        <p class="caption">MTG 拡張アート版</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/ada/Paving_the_Way.png" alt="クエストアイコン">
+                        <p class="caption">クエスト「Paving the Way」アイコン</p>
                     </div>
                 </div>
-            </div>
-
-            <h2>開発秘話・小ネタ (Behind the Scenes)</h2>
-            <ul style="border-left: 2px solid var(--term-dim); padding-left: 15px;">
-                <li>英語音声の Rachel Robinson 氏は『ファイナルファンタジーXIII』のヲルバ＝ユン・ファングなどの吹替も担当している。</li>
-                <li>機械でありながら「嗅覚センサー」をシミュレートしているらしく、マイアラークの群れの近くを通ると「腐った魚の匂いがします」といった専用のセリフを発する。</li>
-                <li>彼女を連れてB.O.S.のプリドゥエンやボストン空港に行くと、「ジャクソンは技術を回収して回る彼ら（B.O.S.）を非常に警戒していました。刺激するのはやめましょう」と警告してくる。</li>
-                <li>足回りの仕様上、主人公がベルチバード（Vertibird）に乗って移動する際は、エイダは同乗できず「現地で合流します」と言って一時離脱する。</li>
-            </ul>
+            </section>
 
             <div class="quote-box">
                 <b>感想</b><br><br>
-<p>ロボット作業台の実装によって「Fallout 4最強のコンパニオン」とも名高い存在になったエイダちゃんです！最強のセントリーパーツやレーザーガトリングを組み込んでしまえば、どんな巨大クリーチャーも文字通り瞬殺してしまう恐ろしい火力を誇ります。</p>
-                <p>彼女の魅力はそのカスタマイズ性だけではなく、「心を持ったロボットの悲哀」というテーマをしっかり背負っているところでもあります。悲しみを紛らわせるために「ジャクソンがパーソナリティ・モードを切ってくれれば良かったのに」とぽつりと漏らすシーンはロボットSFの醍醐味であり、プレイヤーの胸を打ちます。</p>
-                <p>好感度を全く気にせず、連邦中を自由気ままに（悪事も含めて）探索できる使い勝手の良さから、DLC導入後は常に彼女を連れ歩いているプレイヤーも非常に多いのではないでしょうか。</p>
+                「Automatron」の物語を動かす中心人物であり、連邦におけるロボットの「人間性」を象徴する存在です。<br>
+                彼女の最も切ない点は、家族を失った悲しみをプログラムとしてではなく、一個の「人格」として真に感じてしまっていることでしょう。<br>
+                「いっそ何も感じない方が良かった」という言葉は、感情を持つことの代償を重く物語っています。<br><br>
+                一方で、改造によって見た目が全く別物になっても、その献身的な態度は変わりません。<br>
+                主人公がどんな道を選ぼうとも、背中を預けられる数少ない「鉄の友人」として、彼女は連邦の荒野を共に歩んでくれます。
             </div>
 
-            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Ada" target="_blank" rel="noopener">Ada</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            <div class="copyright">
+                <p>This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Ada" target="_blank" rel="noopener">Ada</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout4</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Automatron</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Companion</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Ada</span>
+                </div>
             </div>
 
             <!-- Comments Section -->
@@ -181,40 +459,163 @@
                 <h3 class="comments-title">&gt; COMMENTS</h3>
                 <div class="comment-form">
                     <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
                         <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
-                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+                <div id="comments-list" class="comments-list">
+                    <div class="comment-loading">LOADING...</div>
+                </div>
             </div>
         </main>
     </div>
 
+    <!-- Lightbox -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+        <img id="lightbox-img" src="" alt="拡大画像">
     </div>
 
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
         const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
-        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
-        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
-        const _commentArticleId = 'note_ada'; const _commentArticleName = 'Ada'; const _commentArticleUrl = 'ada.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
-        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
-        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
+
+        async function toggleLike(btn) { 
+            const articleId = btn.getAttribute('data-article-id'); 
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+            btn.disabled = true; 
+            if (isLiked) { 
+                isLiked = false; 
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } else { 
+                isLiked = true; 
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } 
+            btn.disabled = false; 
+        }
+
+        function updateLikeButton(btn, isLiked, count) { 
+            const heart = btn.querySelector('.heart'); 
+            const countSpan = btn.querySelector('.like-count'); 
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } 
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; } 
+            countSpan.textContent = count; 
+        }
+
+        const _commentArticleId = 'ada'; 
+        const _commentArticleName = 'エイダ'; 
+        const _commentArticleUrl = 'ada.html'; 
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token'; 
+        const ADMIN_PASSWORD = 'tq7jtq7j'; 
+        const RATE_LIMIT_KEY = 'comment_last_posted'; 
+        const RATE_LIMIT_SEC = 60; 
+        let _isAdminMode = false;
+
+        function updateCharCount() { 
+            const len = document.getElementById('comment-input').value.length; 
+            const el = document.getElementById('char-count'); 
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } 
+        }
+
+        function relativeTime(s) { 
+            const d = (Date.now() - new Date(s).getTime()) / 1000; 
+            if (d < 60) return 'たった今'; 
+            if (d < 3600) return Math.floor(d/60)+'分前'; 
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; 
+            if (d < 86400*7) return Math.floor(d/86400)+'日前'; 
+            return new Date(s).toLocaleDateString('ja-JP'); 
+        }
+
         function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
-        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
-        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
-        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
-        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
-        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
-        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+
+        function renderComments(comments) { 
+            const list = document.getElementById('comments-list'); 
+            if (!list) return; 
+            if (!comments || comments.length === 0) { 
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; 
+                return; 
+            } 
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); 
+        }
+
+        async function loadComments() { 
+            const list = document.getElementById('comments-list'); 
+            if (!list) return; 
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); 
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } 
+            renderComments(data || []); 
+        }
+
+        async function submitComment() { 
+            const input = document.getElementById('comment-input'); 
+            const content = input ? input.value.trim() : ''; 
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; } 
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } 
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); 
+            const now = Date.now(); 
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } 
+            const btn = document.querySelector('.comment-submit-btn'); 
+            if (btn) btn.disabled = true; 
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); 
+            if (btn) btn.disabled = false; 
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; } 
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString()); 
+            input.value = ''; 
+            updateCharCount(); 
+            showCommentMsg('コメントを投稿しました！', true); 
+            await loadComments(); 
+        }
+
+        function showCommentMsg(text, ok) { 
+            const el = document.getElementById('comment-msg'); 
+            if (!el) return; 
+            el.textContent = text; 
+            el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; 
+            setTimeout(() => { el.textContent = ''; }, 3000); 
+        }
+
+        async function deleteComment(commentId) { 
+            if (!_isAdminMode) return; 
+            if (!confirm('このコメントを削除しますか？')) return; 
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); 
+            if (error) { alert('削除失敗: ' + error.message); return; } 
+            await loadComments(); 
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => { 
+            const btn = document.querySelector('.like-button'); 
+            if (btn) { 
+                const articleId = btn.getAttribute('data-article-id'); 
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); 
+                let count = 0; 
+                if (!error && data) count = data.like_count; 
+                updateLikeButton(btn, isLiked, count); 
+            } 
+            loadComments();
+            document.querySelectorAll('img').forEach(img => { 
+                img.addEventListener('click', () => { 
+                    const overlay = document.getElementById('lightbox'); 
+                    document.getElementById('lightbox-img').src = img.src; 
+                    overlay.classList.add('active'); 
+                }); 
+            }); 
+        });
+
+        document.addEventListener('keydown', (e) => { 
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') { 
+                e.preventDefault(); 
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } 
+                const pw = prompt('管理者パスワードを入力してください:'); 
+                if (!pw) return; 
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } 
+                else { alert('パスワードが違います。'); } 
+            } 
+        });
     </script>
     <script src="article-common.js" defer></script>
 </body>
