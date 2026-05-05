@@ -288,8 +288,7 @@ const loreEntries = [
                 url: "agatha.html",
                 category: "人物",
                 appearance: ["Fallout 3"],
-                date: "2026-04-20",
-                isDraft: true
+                date: "2026-05-05"
             },
             {
                 name: "航空券検査員",
