@@ -119,26 +119,12 @@
             font-weight: bold;
         }
 
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .grid-item img {
-            width: 100%;
-            height: auto;
-            border: 1px solid #444;
-            cursor: zoom-in;
-        }
-
-        .caption {
-            font-size: 0.85em;
-            color: #888;
-            text-align: center;
-            margin-top: 5px;
-        }
+        .gallery-section { margin-top: 50px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
+        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
+        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
+        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
 
         .quote-box {
             border-left: 4px solid var(--accent-color);
@@ -220,6 +206,9 @@
             font-family: 'Share Tech Mono', monospace;
             color: var(--accent-color);
             margin-bottom: 15px;
+            font-size: 1em;
+            border: none;
+            padding: 0;
         }
         .comment-form { margin-bottom: 20px; }
         .comment-textarea {
@@ -232,6 +221,19 @@
             border-radius: 4px;
             min-height: 70px;
             outline: none;
+            font-family: 'Noto Sans JP', sans-serif;
+            resize: vertical;
+        }
+        .comment-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .char-count {
+            font-size: 0.8em;
+            color: #888;
+            font-family: 'Share Tech Mono', monospace;
         }
         .comment-submit-btn {
             background: transparent;
@@ -241,9 +243,59 @@
             font-family: 'Share Tech Mono', monospace;
             cursor: pointer;
             border-radius: 4px;
-            margin-top: 10px;
+            transition: all 0.2s;
         }
         .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-msg {
+            font-size: 0.85em;
+            min-height: 1.2em;
+            margin-top: 4px;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .comment-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px 14px;
+            border-radius: 0 4px 4px 0;
+        }
+        .comment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .comment-time {
+            font-size: 0.78em;
+            color: #666;
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .comment-body {
+            font-size: 0.92em;
+            line-height: 1.6;
+            word-break: break-all;
+        }
+        .comment-delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            padding: 2px 6px;
+            border-radius: 3px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .comment-delete-btn:hover { opacity: 1; }
+        .comment-empty, .comment-loading {
+            color: #666;
+            font-size: 0.85em;
+            font-family: 'Share Tech Mono', monospace;
+            padding: 10px 0;
+        }
 
         @media (max-width: 768px) {
             .container { grid-template-columns: 1fr; }
@@ -268,7 +320,9 @@
         <!-- Sidebar -->
         <aside class="infobox">
             <h3 style="margin-top:0; text-align:center;">アガサ</h3>
-            <img src="images/agatha/Agatha_FSO.png" alt="アガサ (Fallout Shelter Online)">
+            <div style="width: 100%; aspect-ratio: 16/9; background: #1a1a1a; display: flex; align-items: center; justify-content: center; overflow: hidden; margin-bottom: 15px; border: 1px solid #555;">
+                <img src="images/agatha/Agatha_FSO.png" alt="アガサ (Fallout Shelter Online)" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物</span></div>
             <div class="infobox-row"><span class="infobox-label">年齢</span><span>76歳</span></div>
             <div class="infobox-row"><span class="infobox-label">拠点</span><span>アガサの家</span></div>
@@ -288,38 +342,51 @@
 
             <section id="summary">
                 <h2>概要</h2>
-                <p>アガサは、キャピタル・ウェイストランドの北、岩場に隠れるように建つ「アガサの家」で一人暮らす76歳の老婦人である。彼女は戦前から続く高名な音楽家系「エッグレブレヒト家」の末裔であり、ウェイストランドで失われつつあるクラシック音楽の伝統を守り続けている数少ない人物の一人である。</p>
-                <p>彼女は亡き夫が遺した無線機を使い、自身が演奏するヴァイオリンの旋律を「アガサのラジオ局 (Agatha's Station)」としてウェイストランド全土に放送している。その穏やかな口調と美しい調べは、過酷な荒野を旅する者たちにとって一時の安らぎとなっている。</p>
+                <p>アガサは、キャピタル・ウェイストランドの北、岩場に隠れるように建つ「アガサの家」で一人暮らす76歳の老婦人である。彼女は亡き夫が遺した無線機を使い、自身が演奏するヴァイオリンの旋律を「アガサのラジオ局 (Agatha's Station)」としてウェイストランド全土に放送している。その穏やかな口調と美しい調べは、過酷な荒野を旅する者たちにとって一時の安らぎとなっている。彼女は戦前から続く高名な音楽家系「エッグレブレヒト家」の末裔であり、ウェイストランドで失われつつあるクラシック音楽の伝統を守り続けている数少ない人物の一人である。</p>
             </section>
 
             <section id="background">
                 <h2>背景と家族の歴史</h2>
                 <h3>音楽家の血筋</h3>
-                <p>アガサは、代々優れたクラシック音楽家を輩出してきた家系に生まれた。彼女の高祖母である<b>ヒルダ・エッグレブレヒト (Hilda Egglebrecht)</b>は、世界最高峰のヴァイオリニストとして知られ、2077年の大戦直前には、音楽的才能の保存を目的とした<b>Vault 92</b>へと招かれた。</p>
-                <p>アガサは、ヒルダが娘のメアリー（アガサの曾祖母）に宛てて書いた手紙や日記を通じて、家族の歴史を知ることとなった。これらの記録は世代を超えて受け継がれ、アガサの手元に届けられた。彼女は、ヒルダが世界に数本しか存在しない伝説的なヴァイオリン<b>「ソイル・ストラディバリウス (Soil Stradivarius)」</b>と共にVaultへ入ったことを確信している。</p>
+                <p>アガサは、代々優れたクラシック音楽家を輩出してきた家系に生まれた。彼女の高祖母である<b>ヒルダ・エッグレブレヒト (Hilda Egglebrecht)</b>は、世界最高峰のヴァイオリニストの一人として知られ、2077年の大戦直前には、音楽的才能の保存を目的とした<b>Vault 92</b>へと招かれた。</p>
+                <p>アガサは、ヒルダが娘のメアリー（アガサの曾祖母）に宛てて書いた手紙や日記の記録を通じて、この家族の歴史を知ることとなった。これらの手紙は一種の日記のようなもので、メアリーから代々アガサへと受け継がってきた。彼女は、ヒルダが世界に数本しか存在しない伝説的なヴァイオリン<b>「ソイル・ストラディバリウス (Soil Stradivarius)」</b>と共にVaultへ入ったことを確信している。</p>
+                <p>アガサは高祖母がVault内で命を落とすことになったVault-Tecの実験については知らないが、日記からストラディバリウスが特注の加圧ケースに保管されていることを突き止めており、ヴァイオリンが完璧な状態で残っていると信じている。しかし、高齢であることとVault 92の場所を知らないことが、彼女自身の回収を阻んできた。</p>
 
                 <h3>夫との生活と孤独</h3>
-                <p>アガサの家は、彼女の亡き夫が風雨や外部の脅威から身を守るために建設したものである。かつて二人は世間から隔絶したこの場所で、互いを唯一の話し相手として幸せな数年間を過ごした。夫はアガサに身を守るための術（銃の扱いなど）を教えたが、彼女自身は平和主義者であり、実際に銃を撃ったことはない。</p>
-                <p>夫の死後、彼女は深い孤独に陥ったが、巡回する商人キャラバンとの交易を通じて外界との接点を保っている。彼女は自分の音楽を聴かせる代わりに、生活に必要な物資を受け取っている。</p>
+                <p>アガサの家は、彼女の亡き夫が風雨や外部の脅威から身を守るために建設したものである。かつて二人は世間から隔絶したこの場所で、互いを唯一の話し相手として幸せな数年間を過ごした。夫はアガサに身を守るための術（銃の扱いなど）を教えたが、彼女自身は平和主義者であり、実際に銃を撃ったことはない。夫は家以外にも、弾薬箱やユニーク武器「ブラックホーク」、そしてラジオ設備を彼女に遺した。</p>
+                <p>夫の死後、彼女は深い孤独に陥ったが、巡回する商人キャラバンとの交易を通じて外界との接点を保っている。彼女は自分の音楽を聴かせる代わりに、生活に必要な物資を受け取っている。彼女は自作の手製ヴァイオリンを使用しているが、調律が狂いやすく、常にメンテナンスが必要であるという問題を抱えている。楽器の不安定さから、彼女は取引の継続に不安を感じており、伝説的な楽器の回収を放浪者に託すことになる。</p>
+            </section>
+
+            <section id="personality">
+                <h2>性格と哲学</h2>
+                <p>アガサは教育水準が高く穏やかな口調で、ストラディバリウスの歴史や、その制作者であるアントニオ・ストラディバリについての知識も持っている。彼女は、戦前のような方法で楽器を作ることができなくなったこと、そして高祖母のストラディバリウスが世界に現存する最後の「本物」のヴァイオリンかもしれないという事実に悲しみを感じている。彼女は、それぞれのストラディバリウスが「芸術作品」であることに魅了されており、それを家族の家宝と考えている。</p>
+                
+                <h3>諺と教訓</h3>
+                <p>彼女には諺（ことわざ）を引用して話す癖があり、話を聞かずに急かされると、ヒッポのアウグスティヌスの「忍耐は知恵の伴侶である」や、母親が言っていたオランダの格言「一つかみの忍耐は、一ブッシェルの知性よりも価値がある」を引用して放浪者をたしなめる。また、夫の死を軽視された後に謝罪されると、夫の教えである「常に許し、忘れなさい」に従って和解に応じることもある。</p>
+
+                <h3>商人たちとの友情</h3>
+                <p>深い孤独の中にありながらも、彼女は週に一度訪れる商人たちと強い絆を築いている。ラジオ放送では彼らへの個人的な感謝を述べる姿が聞ける。キャラバンの<b>クロウ (Crow)</b>を「愛しい人」と呼んで話し相手になってくれることに感謝し、<b>ドック・ホフ (Doc Hoff)</b>には健康を守ってくれている礼を言い、<b>クレイジー・ヴォルフガング (Crazy Wolfgang)</b>については「彼ほど珍しい品を見つけてくる男はいない」と冗談を飛ばしている。これらは、彼女にとって音楽が単なる娯楽ではなく、コミュニティを繋ぎ止める重要な手段であることを示している。</p>
+
+                <p>一方で、礼儀を重んじる彼女は無礼な態度を嫌う。特に、信頼して託したソイル・ストラディバリウスを他者に売却したことが発覚した場合、激昂して放浪者を「ろくでなし (son of a bitch)」と呼び、二度と家に入れないこともある。</p>
             </section>
 
             <section id="agathas_song">
                 <h2>サイドクエスト: Agatha's Song (アガサの歌)</h2>
-                <p>アガサは長年、自分が使用している「手製の不完全なヴァイオリン」に不満を抱いており、先祖が遺した「ソイル・ストラディバリウス」をVault 92から回収することを夢見ている。アイボットの情報を頼りに訪れたアイツ（孤独な放浪者）に対し、彼女はその回収を依頼する。</p>
+                <p>アガサは長年、自分が使用している「手製の不完全なヴァイオリン」に不満を抱いており、先祖が遺した「ソイル・ストラディバリウス」をVault 92から回収することを夢見ている。彼女はその回収を放浪者に依頼する。なお、放浪者が極めて不遜な態度を取り続けた場合、彼女は協力を拒否し、クエストが開始できなくなる可能性がある。</p>
                 
-                <h3>主な報酬</h3>
+                <h3>報酬と展開</h3>
                 <ul class="terminal-list">
                     <li><b>アガサのラジオ局 (Agatha's Station):</b> ヴァイオリンを無償で渡した場合、ウェイストランド全土で彼女の放送が聴けるようになる。</li>
-                    <li><b>ブラックホーク (Blackhawk):</b> クエスト中に「楽譜の入った本」をアガサに渡すと、報酬として夫の形見であるユニークな.44マグナムを譲り受けることができる。</li>
-                    <li><b>弾薬箱の鍵:</b> 説得や特定のパークがあれば、クエスト開始時に彼女の弾薬箱（ミニ・ニューク等を含む）の鍵を入手可能。</li>
+                    <li><b>ブラックホーク (Blackhawk):</b> クエスト中に「楽譜の入った本」をアガサに渡すと、報酬として夫の形見である強力な.44マグナムを譲り受けることができる。</li>
+                    <li><b>弾薬箱の鍵:</b> 説得や特定のパーク（Lady Killer等）があれば、クエスト開始時に彼女の弾薬箱（ミニ・ニューク等を含む）の鍵を入手可能。なお、彼女を殺害した場合もこの鍵を入手できる。</li>
                 </ul>
             </section>
 
             <section id="radio_station">
                 <h2>アガサのラジオ局 (Agatha's Station)</h2>
-                <p>ヴァイオリンの回収後（あるいは手製の楽器で）、彼女は夫の遺した機材を使って放送を行う。この放送はライブではなく、彼女が「美しさを保つための睡眠」を取っている間も流れるよう、すべて事前に録音されている。</p>
+                <p>ヴァイオリンの回収後（あるいは手製の楽器で）、彼女は夫の遺した機材を使って放送を行う。この放送はライブではなく、すべて事前に録音されている。そのため、もしアガサが不慮の死を遂げたとしても、キャピタル・ウェイストランドの空には彼女の調べが響き続けることになる。</p>
                 
-                <h3>楽曲リスト</h3>
+                <h3>主な楽曲リスト</h3>
                 <ul class="terminal-list">
                     <li>ヨハン・セバスティアン・バッハ: パルティータ第3番「ジグ」</li>
                     <li>ヨハン・セバスティアン・バッハ: パルティータ第3番「プレリュード」</li>
@@ -343,39 +410,52 @@
                     「友情はヴァイオリンのようなものですわ。たとえ音楽が止まっても、弦は残りますの。」
                     <cite>— 亡き夫の言葉を引用して</cite>
                 </blockquote>
+                <blockquote class="terminal-quote">
+                    「忍耐は知恵の伴侶である、という有名な言葉があります。黙って私の話を聞いていれば、何か学べるかもしれませんよ。」
+                    <cite>— 話を遮る放浪者に対して</cite>
+                </blockquote>
             </section>
 
-            <section id="gallery">
+            <section class="gallery-section" id="gallery">
                 <h2>ギャラリー</h2>
-                <div class="image-grid">
-                    <div class="grid-item">
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/agatha/Agatha.jpg" alt="アガサ">
+                        <p class="caption">アガサ (Fallout 3)</p>
+                    </div>
+                    <div class="gallery-item">
                         <img src="images/agatha/Agatha_Closeup.jpg" alt="演奏中のアガサ">
                         <p class="caption">ヴァイオリンを奏でるアガサ (Fallout 3)</p>
                     </div>
-                    <div class="grid-item">
+                    <div class="gallery-item">
                         <img src="images/agatha/FO3_Agatha_endslide_1.jpg" alt="アガサのエンディング1">
-                        <p class="caption">エンディングスライド1</p>
+                        <p class="caption">エンディングスライド1: アガサの歌の成就</p>
                     </div>
-                    <div class="grid-item">
+                    <div class="gallery-item">
                         <img src="images/agatha/FO3_Agatha_endslide_2.jpg" alt="アガサのエンディング2">
                         <p class="caption">エンディングスライド2</p>
                     </div>
-                    <div class="grid-item">
+                    <div class="gallery-item">
                         <img src="images/agatha/Agatha_FSO.png" alt="アガサ (Fallout Shelter Online)">
-                        <p class="caption">演奏中のアガサ (Fallout Shelter Online)</p>
+                        <p class="caption">アガサ (Fallout Shelter Online)</p>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/agatha/Agatha_performing.png" alt="演奏するアガサ">
+                        <p class="caption">演奏中のポートレート</p>
                     </div>
                 </div>
             </section>
+
             <!-- Impression Section -->
             <div class="quote-box">
                 <b>感想</b><br><br>
-                血と肉片に塗れたFO3の探索において、彼女の弾くバイオリンの調べはまさに一筋の天上の光。特に夕暮れのウェイストランドを歩きながら聴くアガサ・ラジオは、Falloutシリーズの中でも屈指の『美しい終末の風景』をプレイヤーに提供してくれます。
+                血と肉片に塗れたキャピタル・ウェイストランドの探索において、彼女の弾くヴァイオリンの調べはまさに一筋の天上の光です。特に夕暮れの荒野を歩きながら聴く「アガサのラジオ局」は、Fallout 3における屈指の美しい体験であり、滅びた世界に残された「高潔な美」を感じさせてくれます。彼女の家が非常に見つけにくい場所にあるのも、隠れた宝物を見つけたような感慨深さがありますね。
             </div>
 
             <div class="copyright">
                 <p>This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Agatha" target="_blank" rel="noopener">Agatha</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
                 <div style="margin-top: 10px;">
-                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout3</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout3</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Agatha</span>
                 </div>
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener">寄付を受け付けております</a>。</p>
             </div>
@@ -383,6 +463,14 @@
             <!-- Comments Section -->
             <div class="comments-section" id="comments-section">
                 <h3 class="comments-title">&gt; COMMENTS</h3>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span> / 100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
                 <div id="comments-list" class="comments-list">
                     <div class="comment-loading">LOADING...</div>
                 </div>
@@ -400,12 +488,142 @@
         const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        document.querySelectorAll('img').forEach(img => {
-            img.addEventListener('click', () => {
-                const overlay = document.getElementById('lightbox');
-                document.getElementById('lightbox-img').src = img.src;
-                overlay.classList.add('active');
-            });
+        async function toggleLike(btn) { 
+            const articleId = btn.getAttribute('data-article-id'); 
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+            btn.disabled = true; 
+            if (isLiked) { 
+                isLiked = false; 
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } else { 
+                isLiked = true; 
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } 
+            btn.disabled = false; 
+        }
+
+        function updateLikeButton(btn, isLiked, count) { 
+            const heart = btn.querySelector('.heart'); 
+            const countSpan = btn.querySelector('.like-count'); 
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } 
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; } 
+            countSpan.textContent = count; 
+        }
+
+        const _commentArticleId = 'agatha'; 
+        const _commentArticleName = 'アガサ'; 
+        const _commentArticleUrl = 'agatha.html'; 
+        const ADMIN_TOKEN_KEY = 'fallout_admin_token'; 
+        const ADMIN_PASSWORD = 'tq7jtq7j'; 
+        const RATE_LIMIT_KEY = 'comment_last_posted'; 
+        const RATE_LIMIT_SEC = 60; 
+        let _isAdminMode = false;
+
+        function updateCharCount() { 
+            const len = document.getElementById('comment-input').value.length; 
+            const el = document.getElementById('char-count'); 
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } 
+        }
+
+        function relativeTime(s) { 
+            const d = (Date.now() - new Date(s).getTime()) / 1000; 
+            if (d < 60) return 'たった今'; 
+            if (d < 3600) return Math.floor(d/60)+'分前'; 
+            if (d < 86400) return Math.floor(d/3600)+'時間前'; 
+            if (d < 86400*7) return Math.floor(d/86400)+'日前'; 
+            return new Date(s).toLocaleDateString('ja-JP'); 
+        }
+
+        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+
+        function renderComments(comments) { 
+            const list = document.getElementById('comments-list'); 
+            if (!list) return; 
+            if (!comments || comments.length === 0) { 
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; 
+                return; 
+            } 
+            list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); 
+        }
+
+        async function loadComments() { 
+            const list = document.getElementById('comments-list'); 
+            if (!list) return; 
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); 
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } 
+            renderComments(data || []); 
+        }
+
+        async function submitComment() { 
+            const input = document.getElementById('comment-input'); 
+            const content = input ? input.value.trim() : ''; 
+            if (!content) { showCommentMsg('コメントを入力してください。', false); return; } 
+            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } 
+            const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; 
+            const lc = content.toLowerCase(); 
+            if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } 
+            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); 
+            const now = Date.now(); 
+            if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } 
+            const btn = document.querySelector('.comment-submit-btn'); 
+            if (btn) btn.disabled = true; 
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); 
+            if (btn) btn.disabled = false; 
+            if (error) { showCommentMsg('投稿に失敗しました。', false); return; } 
+            localStorage.setItem(RATE_LIMIT_KEY, now.toString()); 
+            input.value = ''; 
+            updateCharCount(); 
+            showCommentMsg('コメントを投稿しました！', true); 
+            await loadComments(); 
+        }
+
+        function showCommentMsg(text, ok) { 
+            const el = document.getElementById('comment-msg'); 
+            if (!el) return; 
+            el.textContent = text; 
+            el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; 
+            setTimeout(() => { el.textContent = ''; }, 3000); 
+        }
+
+        async function deleteComment(commentId) { 
+            if (!_isAdminMode) return; 
+            if (!confirm('このコメントを削除しますか？')) return; 
+            const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); 
+            if (error) { alert('削除失敗: ' + error.message); return; } 
+            await loadComments(); 
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => { 
+            const btn = document.querySelector('.like-button'); 
+            if (btn) { 
+                const articleId = btn.getAttribute('data-article-id'); 
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); 
+                let count = 0; 
+                if (!error && data) count = data.like_count; 
+                updateLikeButton(btn, isLiked, count); 
+            } 
+            loadComments();
+            document.querySelectorAll('img').forEach(img => { 
+                img.addEventListener('click', () => { 
+                    const overlay = document.getElementById('lightbox'); 
+                    document.getElementById('lightbox-img').src = img.src; 
+                    overlay.classList.add('active'); 
+                }); 
+            }); 
+        });
+
+        document.addEventListener('keydown', (e) => { 
+            if (e.ctrlKey && e.shiftKey && e.key === 'D') { 
+                e.preventDefault(); 
+                if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } 
+                const pw = prompt('管理者パスワードを入力してください:'); 
+                if (!pw) return; 
+                if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } 
+                else { alert('パスワードが違います。'); } 
+            } 
         });
     </script>
     <script src="article-common.js" defer></script>

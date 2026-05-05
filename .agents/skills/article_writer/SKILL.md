@@ -9,125 +9,63 @@ description: FalloutターミナルWikiの新規記事作成と、インデッ�
 
 ## 記事作成の基本原則（4つの鉄則）
 
-「記事を作成してください」という指示を受けた場合、以下の4ステップを**必ず**実行すること：
+「記事を作成してください」という指示を受けた場合、以下の5ステップを**必ず**実行すること：
+
+### 原則0: APIアクセスの徹底（★最重要★）
+
+> [!IMPORTANT]
+> **Fandom Wikiへの直接的なブラウジング（URL直接叩き）は、ロボット巡回防止機能により403エラーを招くため、原則禁止とする。**
+> 記事の取得には必ず以下のMediaWiki APIエンドポイントを使用すること。
+
+- **Wikitext取得**: `https://fallout.fandom.com/api.php?action=parse&page=記事名&prop=wikitext&format=json`
+- **画像情報取得**: `https://fallout.fandom.com/api.php?action=parse&page=記事名&prop=images&format=json`
+- **画像URL取得**: `https://fallout.fandom.com/api.php?action=query&titles=File:ファイル名&prop=imageinfo&iiprop=url&format=json`
 
 ### 原則1: 全文・全画像の完全取得
 
-- 貼られたURLの**全文**と**すべての画像**を取得し、日本語に翻訳する
-- **省略は一切しない**。すべてのセクション・サブセクションを漏れなく翻訳する
-- 画像は**一つ残らず**ダウンロードし、元のWikiと同じ箇所に配置する。**ロア記事（HTML）での画像取得数に上限はない**。
-- **画像の省略・間引きは一切禁止**。Wikiの `images` リストに含まれる全画像ファイルをすべてダウンロードすること。
+- 取得したWikitextの**全文**と**すべての画像**を抽出し、日本語に翻訳する。
+- **要約・省略は一切禁止**。Wikitextに含まれるセクション、引用（Quotation）、注釈（Notes）、参照（References）の情報をすべて漏らさず日本語化すること。
+- 画像は**一つ残らず**ダウンロードし、元のWikiと同じ箇所に配置する。
 - **ギャラリー画像のキャプション（`.caption`）と `alt` 属性は必ず日本語に翻訳すること**。
-- **X投稿用の画像は4枚まで**。厳選して `_X/<slug>/images/` に格納する。
-- **英語原文のカッコ書きは残さない**。本文中でも見出し（h1/h2/h3）では、英語のカッコ書きは一切使わないこと。
+- **英語原文のカッコ書きは残さない**。本文中や見出し（h1/h2/h3）では、英語のカッコ書きを避け、自然な日本語のみにする。
 - **「。」の後に文が続く場合は改行する**。HTML本文では `。<br>` とし、一文ごとに改行して日本語を見やすく配置すること。
-- **場所名・地名は日本語に翻訳する**。
-- **固有名詞の統一翻訳テーブル**。以下の用語は記事全体で統一して日本語表記を使用すること：
 
-  | 英語 | 日本語 |
-  |---|---|
-  | West Tek | West Tek |
-  | Scorched Plague | スコーチ病 |
-  | Scorchbeast | スコーチビースト |
-  | Scorched | スコーチ |
-  | Great War | 大戦 |
-  | Wasteland | ウエイストランド |
-  | Brotherhood of Steel | ブラザーフッド・オブ・スティール（B.O.S.） |
-  | Responders | レスポンダー |
-  | Free States | フリー・ステイツ |
-  | Enclave | エンクレイヴ |
-  | Super mutant | スーパーミュータント |
-  | Feral ghoul | フェラル・グール |
-  | The Forest | 森林地帯 |
-  | Ash Heap | 積灰の山 |
-  | Toxic Valley | 毒の峡谷 |
-  | Savage Divide | 荒れた境域 |
-  | The Mire | 沼地地帯 |
-  | Cranberry Bog | クランベリー湿原 |
-  | Skyline Valley | スカイライン・バレー |
-  | Overseer | 監督官 |
-  | Chemistry station | ケミストリーステーション |
-  | Cave cricket | カマドウマ |
+### 原則2: 感想の充実と末尾必須セクションの完備
 
-### 原則2: 感想の充実と末尾必須セクションの完備（★最重要★）
+- 感想（quote-box）はプレイヤー目線で、文字数制限なく熱く語ること。**簡略化や要約は厳禁。**
+- **記事末尾の絶対必須コンポーネント**: 以下の順序で配置すること。
+    1. 感想セクション (`<div class="quote-box">`)
+    2. ライセンス・タグ・寄付リンク (`<div class="copyright">`)
+    3. **コメントセクション (投稿フォーム付)**: `stealth-boy.html` 等の正常な記事から、フォームとSupabase連携スクリプトをコピーして使用すること。
 
-> [!CAUTION]
-> **「感想」「タグ」「ライセンス」「コピーライト」「寄付リンク」の5点セットは、記事末尾の絶対必須コンポーネントである。**
-> 過去にこれらを忘れて記事を生成するミスが何度も繰り返されている。HTML生成時、完了報告前には必ずこれら5つが `<div class="comments-section">` の直前に存在することを確認せよ。
+### 原則2.5: 画像レイアウトの鉄則
 
-- 感想（quote-box）は**簡略化・要約を行わない**。文字数制限は設けず、記事から得たインスピレーションや感情をすべて吐き出すように語ること。
-- **感想（quote-box）はHTMLの本文末尾（全セクション終了後、フッター・ライセンス表記の直前）に配置すること。h1タイトル直後には絶対に置かない。**
-- **感想の文体ルール**:
-  - 「マジで」「俺」「〜するか！」等の表現は**使用禁止**。
-  - カジュアルなブログ調で、あくまで軽く・自然に書くこと。「w」は記事あたり最大1回まで。
-  - 箇条書きや小見出しによる分割は禁止。一つのまとまった文章として記述すること。
+- ギャラリーは `height: 180px; object-fit: cover;` で固定。
+- Infobox画像は `aspect-ratio: 16/9;` のコンテナに `object-fit: cover;` で配置。
 
-- **記事末尾の構成テンプレート（必須）**: 以下のHTML構造をそのまま使用し、`<main class="content">` の終端（コメントセクションの前）に配置すること。
+---
 
-  ```html
-  <!-- Impression Section -->
-  <div class="quote-box">
-      <b>感想</b><br><br>
-      <div class="note-figure">
-          <div class="note-figcaption">
-              感想本文（プレイヤー目線の熱い語り）
-          </div>
-      </div>
-  </div>
+## ⚡ ターボ・ワークフロー（作業時間を大幅短縮）
 
-  <!-- Footer Metadata Section -->
-  <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-      <div style="margin-bottom: 10px;">
-          TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#作品タグ</span>
-      </div>
-      
-      <p>This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Slug" target="_blank" rel="noopener">Article Title</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.</p>
-      <p>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-      <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
-      <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
-  </div>
-  ```
+作業効率を極限まで高めるため、以下の『全自動フェイズ』を導入せよ。
 
-### 原則3: インデックス更新と相互リンク
+### 1. データ一括取得フェイズ
+- `scratch/` にAPI経由でWikitextと画像リストを保存するスクリプトを作成・実行する。
+- 画像を一括ダウンロードし、適切なディレクトリに配置する。
 
-- ページを作成したら `lore.html` および `changelog-data.json` にエントリを追加する。
-- **`remove_duplicates.js` への登録を絶対に忘れないこと。**
-- スクリプト（`remove_duplicates.js`, `generate_notes_html.js`）を実行して整合性を取る。
+### 2. 全文翻訳・生成フェイズ
+- Wikitextをセクションごとに分割してAIに投入し、一気に翻訳済みHTMLパーツを生成する。
+- テンプレートHTML（**コメントフォーム付き**）の `<main>` 内にこれらを一挙に流し込む。
 
-### 原則4: X投稿素材の作成
-
-- X用の文章を `_X/<slug>/post.md` に作成し、画像を4枚格納する。
-- **ハッシュタグの `#` の後にスペースを入れない**（例: `#Fallout76`）。
-- **URLは `<>` で囲まない**（プレーンテキストで記載）。
+### 3. 整合性・インデックス自動更新フェイズ
+- `remove_duplicates.js` を実行し、インデックス更新を自動化する。
 
 ---
 
 ## 🛠️ 技術仕様・検証手順
 
-### HTML生成時の注意事項
-- **BOMなしUTF-8**で保存すること。
-- `grid-template-columns: 300px 1fr` の2カラムグリッドを維持。
-- **lore.html への戻りリンク** (`< BACK TO TERMINAL`) を必ず配置。
-- コメントセクションのCSS（`box-sizing: border-box` 等）を必ず含める。
-- **画像は必ず行間に配置（ブロック要素）**。テキストの左右への回り込み（`float`）は禁止。
-
 ### コンテンツ完全性チェック
-- **Notable loot** にあるホロテープ・メモ・ターミナルの全文を取得・翻訳したか？
-- **場所記事**の場合、マップ画像（`img_map_marker.png`）をInfoboxに配置したか？
-- 生成後に `holotape-box` や `note-box` の数がWikitextと一致するか検証すること。
-
-### 🛡️ `lore_index.js` 構文安全性
-- `JSON.stringify()` を使用して値を注入し、エスケープ漏れを防ぐ。
-- 変更後は必ず `node -e "..."` で構文チェックを実行すること。
-
----
-
-## Step-by-Step ワークフロー
-
-1. **調査・スラッグ決定**: `title_to_slug.json` に登録。
-2. **全文・画像取得**: ホロテープ・メモ・ターミナル・マップ画像を漏れなくDL。
-3. **HTML生成**: テンプレートに従い、必須5大セクションを含めて構築。
-4. **インデックス更新**: `remove_duplicates.js` 等を実行。
-5. **最終検証**: コンテンツ数と構文のチェック。
-6. **X素材作成**: `post.md` と画像の用意。
-7. **完了報告**: ファイル名とリンク状況をユーザーに伝える。
+- Wikitextのセクション数とHTMLのセクション数が一致するか？
+- **コメントフォーム（textarea, SENDボタン）が存在するか？**
+- **Supabaseのスクリプト内の `_commentArticleId` が正しいか？**
+- 生成後に `node remove_duplicates.js` を実行して構文エラーがないか確認。

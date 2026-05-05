@@ -38,7 +38,8 @@ const loreEntries = [
                 url: "aaron-kimball.html",
                 category: "人物",
                 appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2026-04-20"
+                date: "2026-04-20",
+                isDraft: true
             },
             {
                 name: "アーロンホルト農家",
@@ -8858,6 +8859,14 @@ const loreEntries = [
                 appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
+            },
+            {
+                name: "Aaron Kimball (アーロン・キンバル)",
+                yomi: "Aaron Kimball (アーロン・キンバル)",
+                url: "kimball.html",
+                category: "人物",
+                appearance: ["Fallout: New Vegas"],
+                date: "2026-04-20"
             },
             {
                 name: "キングス・インパーソネーション・スクール",
@@ -19149,6 +19158,14 @@ const loreEntries = [
                 category: "未分類",
                 appearance: [],
                 date: "2026-02-26"
+            },
+            {
+                name: "アーロン・キンバル",
+                yomi: "アーロン・キンバル",
+                url: "aaron-kimball.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-02-16"
             },
             {
                 name: "中傷ボット",
