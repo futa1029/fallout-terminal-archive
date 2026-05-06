@@ -688,7 +688,7 @@
         OVERSEER MOHI'S TERMINAL // LORE DATABASE
     </div>
 
-    <script src="js/lore_index_v10.js?v=20260505_v10"></script>
+    <script src="js/lore_index_v10.js?v=20260506_v10"></script>
     <script>
         // 管理者画面への隠し入り口
         let footerClickCount = 0;
@@ -797,7 +797,8 @@
 
                     const isNew = entry._dateMs && (todayMs - entry._dateMs) <= sevenDaysMs;
                     const newBadge = isNew ? '<span class="new-badge" style="position:absolute;top:6px;right:6px;z-index:1">NEW!</span>' : '';
-                    const draftBadge = entry.isDraft ? '<span style="position:absolute;top:6px;left:6px;z-index:1;background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold">DRAFT</span>' : '';
+                    const isDraftEntry = !isEntryPublished(entry);
+                    const draftBadge = isDraftEntry ? '<span style="position:absolute;top:6px;left:6px;z-index:1;background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold">DRAFT</span>' : '';
                     let badgesHtml = entry.category && entry.category !== 'その他'
                         ? `<span class="badge">${entry.category}</span>` : '';
 
@@ -818,7 +819,8 @@
 
                     const isNew = entry._dateMs && (todayMs - entry._dateMs) <= sevenDaysMs;
                     const newBadgeHtml = isNew ? '<span class="new-badge">NEW!</span>' : '';
-                    const draftBadgeHtml = entry.isDraft ? '<span style="background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold;margin-right:4px">DRAFT</span>' : '';
+                    const isDraftEntry = !isEntryPublished(entry);
+                    const draftBadgeHtml = isDraftEntry ? '<span style="background:#cc8800;color:#000;padding:1px 6px;border-radius:3px;font-size:0.7em;font-weight:bold;margin-right:4px">DRAFT</span>' : '';
                     let badgesHtml = entry.category && entry.category !== 'その他'
                         ? `<span class="badge">${entry.category}</span>` : '';
                     entry.appearance.forEach(a => { badgesHtml += ` <span class="badge">${a}</span>`; });
