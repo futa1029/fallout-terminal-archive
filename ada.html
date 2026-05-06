@@ -120,6 +120,24 @@
             font-weight: bold;
         }
 
+        .terminal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .terminal-table th, .terminal-table td {
+            border: 1px solid var(--accent-color);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .terminal-table th {
+            background: rgba(0, 255, 0, 0.1);
+            color: var(--accent-color);
+        }
+
         .gallery-section { margin-top: 50px; }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
         .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
@@ -299,6 +317,11 @@
             padding: 10px 0;
         }
 
+        .stats-table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
         @media (max-width: 768px) {
             .container { grid-template-columns: 1fr; }
         }
@@ -327,9 +350,12 @@
             </div>
             <div class="infobox-row"><span class="infobox-label">カテゴリ</span><span>人物 / ロボット</span></div>
             <div class="infobox-row"><span class="infobox-label">種族</span><span>アサルトロン（改造済）</span></div>
-            <div class="infobox-row"><span class="infobox-label">所属</span><span>ジャクソンのキャラバン<br>唯一の生存者</span></div>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>女性プログラミング</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>ジャクソンのキャラバン（以前）<br>唯一の生存者（任意）</span></div>
             <div class="infobox-row"><span class="infobox-label">役割</span><span>キャラバン護衛 / 同行者</span></div>
             <div class="infobox-row"><span class="infobox-label">所在地</span><span>ワッツ・コンシューマー・エレクトロニクス付近</span></div>
+            <div class="infobox-row"><span class="infobox-label">レベル</span><span>10〜</span></div>
+            <div class="infobox-row"><span class="infobox-label">S.P.E.C.I.A.L.</span><span>9, 5, 1, 1, 7, 10, 1</span></div>
         </aside>
 
         <!-- Main Content -->
@@ -372,36 +398,106 @@
                 </p>
                 <p>
                     この設定により、エイダはキャラバンのメンバーを単なる創造主ではなく「友人」として、さらには「家族」として慈しむようになった。メカニストのロボットによる彼らの死は、エイダの中に激しい悲しみと怒りを引き起こし、責任者への復讐心を燃え上がらせることとなった。彼女はその感情を人間のように外に出すことはできないが、自分の感情的な能力がもたらすネガティブな感情に苦しみ、いっそパーソナリティ・モードをオフにして、何も感じないロボットのままでいた方が良かったのではないかと、主人公に吐露することさえある。
-                </p>
+            </p>
+            </section>
+
+            <section id="interactions-overview">
+                <h2>プレイヤーとの相互作用</h2>
+                <h3>概要</h3>
+                <div class="stats-table-wrapper">
+                    <table class="terminal-table">
+                        <tr><th>項目</th><th>詳細</th></tr>
+                        <tr><td>不死属性（Essential）</td><td>常に有効</td></tr>
+                        <tr><td>永続的な同行者</td><td>可能</td></tr>
+                        <tr><td>開始クエスト</td><td>A New Threat, Headhunting, Restoring Order, Rogue Robot</td></tr>
+                        <tr><td>関連クエスト</td><td>Mechanical Menace, Rogue Robot</td></tr>
+                        <tr><td>派生ステータス</td><td>HP: 195 + ([Player Level - 10] x 5)<br>重量制限: 140 lbs<br>ダメージ耐性: 25</td></tr>
+                        <tr><td>特性</td><td>好戦的（Aggressive）、無鉄砲（Foolhardy）、味方を助ける（Helps Allies）</td></tr>
+                    </table>
+                </div>
             </section>
 
             <section id="interactions">
-                <h2>主人公との交流</h2>
                 <h3>同行者として</h3>
                 <ul class="terminal-list">
-                    <li>エイダは、ワッツ・コンシューマー・エレクトロニクス付近でメカニストのロボットを撃退し、彼女の調査に協力することに同意すると同行可能になる。</li>
+                    <li>エイダは、ワッツ・コンシューマー・エレクトロニクス付近でメカニストのロボットを撃退し、彼女の調査に協力することに同意すると同行可能になる（クエスト「Mechanical Menace」）。</li>
                     <li>彼女はドッグミート以外で唯一、主人公の行動（善行・悪行問わず）に対して常に友好的であり続けるコンパニオンである。彼女は状況に応じて助言や意見を述べるが、好感度（アフィニティ）が増減することはなく、関連するパークも存在しない。</li>
                     <li>エイダが同行している際、彼女に話しかけるとランダムなジャンクアイテムをくれることがある。これはパーソナリティ・サブルーチンが有効な自作オートマトロン共通の特性である。</li>
+                    <li>彼女は、所有されているアイテムを盗むように命令できる3人のコンパニオンのうちの1人である。</li>
                     <li>彼女はロボット作業台で改造可能な数少ないコンパニオンの一人である（他はコズワースと、特定のクエスト前のキュリー）。</li>
                     <li>改造によって、主人公のスキル不足を補うためのピッキングやハッキング能力を付与することも可能である。</li>
+                    <li>解雇した際に場所を指定しなかった場合、レッドロケット・トラックストップに移動するが、その居住地の人口にはカウントされない。場所を指定した場合は、人口としてカウントされる。</li>
+                    <li>同行中、ダイヤモンドシティのセキュリティなどは、他のベースゲームのコンパニオンに対するようなコメントを行わない。</li>
+                </ul>
+
+                <h3>プレイヤーの行動による影響</h3>
+                <ul class="terminal-list">
+                    <li>クエスト「Restoring Order」でメカニストが殺害された場合、エイダが繰り返されるクエスト「Rogue Robot」の依頼者となる。</li>
                 </ul>
 
                 <h3>その他の反応</h3>
                 <ul class="terminal-list">
+                    <li>Vault 111にあるネイト/ノーラの遺体へ連れて行っても、彼女は特にコメントしない。</li>
                     <li>ベルチバードに搭乗する際、彼女は「私の体格ではベルチバードに適切に乗ることができません。目的地で合流しましょう」と言い、空の旅には同行しない。</li>
                     <li>彼女には疑似的な嗅覚が備わっているようで、マイアラークの生息地に近づくと「腐った魚の臭いを感知しました。あなたにとっては非常に不快でしょうね」と発言する。</li>
                     <li>自己破壊装置について尋ねると、ジャクソンが彼女を瓦礫にするつもりはなく、より大きな計画を持っていたため、そのような装置はインストールされていないと答える。また、パーソナリティ・サブルーチンをオフにする要求も、そのスイッチ自体が製造時に無効化されているとして拒絶する。</li>
+                    <li>Reunions完了後にボストン空港へ連れて行くと、ジャクソンのキャラバンが以前B.O.S.と遭遇したことがあり、彼らを刺激せず避けるべきだと忠告する。</li>
+                </ul>
+            </section>
+
+            <section id="quest-comments">
+                <h2>クエスト中のコメント</h2>
+                <div class="stats-table-wrapper">
+                    <table class="terminal-table">
+                        <tr><th>クエスト/場所</th><th>状況</th><th>コメント</th></tr>
+                        <tr><td>A New Threat - ゼネラル・アトミックス工場</td><td>最初は勧誘しなかった場合</td><td>「結局、私と一緒にゼネラル・アトミックスに行くことにしたのですか？」</td></tr>
+                        <tr><td>同上</td><td>道中</td><td>「誰かを失うのは初めてです。この失敗は私にとって新しい経験です…」「友人が恋しいです。ライザは困った時にいつも適切な言葉をかけてくれました。」</td></tr>
+                        <tr><td>同上</td><td>工場の外</td><td>「この工場には来たことがありませんでしたが、ジャクソンはメカニストのロボットを見つけるとすぐに私たちを遠ざけました。」</td></tr>
+                        <tr><td>同上</td><td>工場内部</td><td>「ゼネラル・アトミックスは、オリジナルのロボット作業台プロトタイプを保有していた会社です。」「メカニストがどこにいるか、何か証拠が見つかるといいのですが。」</td></tr>
+                        <tr><td>同上</td><td>最初のレーダービーコン入手</td><td>「このビーコンが、メカニストを追跡するために必要な唯一の断片であることを願います。」</td></tr>
+                        <tr><td>同上</td><td>居住地にロボット作業台を設置</td><td>「ロボット作業台は強力なツールです。単純な思考の持ち主でも複雑なロボットを作ることができます。」</td></tr>
+                        <tr><td>同上</td><td>レーダービーコンをエイダにインストール</td><td>「メカニストの才能には疑いの余地がありません。私のシステムはこのレーダービーコンと100%互換性があります。ジャクソンでさえ達成できなかったことです。」</td></tr>
+                        <tr><td>Headhunting</td><td>M-SATモジュールをインストール</td><td>「全システム正常。また一つ、改造が成功しました。」</td></tr>
+                        <tr><td>Restoring Order - ロブコ・セールス＆サービスセンター</td><td>最終決戦前</td><td>「最後の対決が待っています。二人とも生きてそれを見届けられることを願います。」</td></tr>
+                        <tr><td>同上</td><td>メカニストの扉が開くのを見て</td><td>「この扉には興味をそそられます。ロボットにとって、それは『詩的な動き』のようです。」</td></tr>
+                        <tr><td>同上</td><td>アイボットのメッセンジャーに遭遇</td><td>「アイボットは、あまり強力なメッセンジャーではありませんね。」</td></tr>
+                        <tr><td>同上</td><td>ロボブレインの研究施設へ進入</td><td>「ロブコ・セールス＆サービスは、軍事施設としては完璧に目立たない場所のようです。」</td></tr>
+                        <tr><td>同上</td><td>ロボットの猛攻を凌いだ後</td><td>「見事な生存戦術でした。」</td></tr>
+                        <tr><td>同上</td><td>メカニストの隠れ家の制御センター</td><td>「あのロボブレインたちが、なぜ一人でこの施設を維持できたのかを物語っています。見事な改造です。」</td></tr>
+                        <tr><td>同上</td><td>メカニストに「真の脅威はお前のロボットだ」と告げる</td><td>「彼らは罪のない命を奪いました。私の友人たち…彼らはただの商人でした。それが、あなたのロボットたちの手によって皆殺しにされたのです。」</td></tr>
+                    </table>
+                </div>
+            </section>
+
+            <section id="notes">
+                <h2>メモ</h2>
+                <p>
+                    主人公と出会った際のエイダのデフォルト構成は、アサルトロンの頭部（工場用ヘッドアーマー）、アサルトロンの胴体（前方・後方工場用ストレージアーマー）、アサルトロンの左腕（工場用アームアーマーとアサルトロン・クロウ）、セントリーボットの右腕（工場用アームアーマーとレーザー）、そしてプロテクトロンの脚部（アーマーなし）となっており、全体がアクア色のペイントで統一されている。
+                </p>
+            </section>
+
+            <section id="bugs">
+                <h2>既知の不具合</h2>
+                <ul class="terminal-list">
+                    <li>クエスト「A New Threat」にて、ロボット作業台でエイダにレーダービーコンを設置しようとしても、脚の改造オプションしか表示されず進行不能になる場合がある。エイダを攻撃してダウン状態（crippled）にすることで解消することがある。</li>
+                    <li>コマンドモードでアイテムを拾わせることで、重量制限を無視して無限にアイテムを持たせることができる場合がある。</li>
+                    <li>ターミナルのハッキングを命じても、反応せずに無視されることがある。ゲームの再起動で直ることが多い。</li>
+                    <li>同行中、エイダがプレイヤーに向かって繰り返し後退したり衝突したりすることがある。</li>
+                    <li>突然姿を消してしまうことがある。新しいコンパニオンを雇うことで、指定した場所に送り返され、再会できる。</li>
+                    <li>メカニストと対面した際、エイダがその場にいても、後で「彼女（メカニスト）は何と言っていた？」とプレイヤーに尋ねるなど、その場にいなかったかのような言動をすることがある。</li>
                 </ul>
             </section>
 
             <section id="behind_the_scenes">
                 <h2>舞台裏</h2>
                 <ul class="terminal-list">
-                    <li>エイダの名前は、実在の数学者でありコンピュータ科学の先駆者である<strong>エイダ・ラブレス (Ada Lovelace)</strong>に由来している。</li>
+                    <li>エイダの声は<strong>レイチェル・ロビンソン</strong>が担当しており、彼女はロボット作業台で作れる「女性」ボイスのタイプも担当している。日本語版では<strong>梶山はるか</strong>が吹き替えを担当している。</li>
+                    <li>エイダの名前は、実在の数学者でありコンピュータ科学の先駆者である<strong>エイダ・ラブレス (Ada Lovelace)</strong>に由来している。彼女はイージーシティ・ダウンズにいる別のアサルトロン「レディ・ラブレス」ともその名を共有している。</li>
                     <li>エイダの台詞には、ポップカルチャーやSFへのオマージュが含まれている：
                         <ul>
                             <li>戦闘開始時の「抵抗は無意味です (resistance is futile)」は、「スタートレック」のボーグの台詞。</li>
                             <li>ターミナル使用後の「キーボードを使うなんて、古風ですね (Using a keyboard. How quaint.)」は、「スタートレックIV 故郷への長い道」のスコットの台詞。</li>
+                            <li>「Restoring Order」にて扉について述べる「詩的な動き (Poetry in motion)」は、1960年のジョニー・ティロットソンのヒット曲。</li>
                             <li>学校のロケーションで発する「肉を食べないなら、どうしてプリンが食べられるんですか？ (If you don't eat your meat, how can you have any pudding?)」は、ピンク・フロイドの「Another Brick In The Wall, Part 2」の歌詞。</li>
                         </ul>
                     </li>

@@ -66,7 +66,7 @@ const manualEntries = [
             "Fallout: New Vegas"
         ],
         date: "2026-04-20",
-        status: "draft"
+        status: "published"
     },
     {
         name: "アーロンホルト農家",
@@ -297,7 +297,7 @@ const manualEntries = [
             "Fallout 4"
         ],
         date: "2026-04-20",
-        status: "draft"
+        status: "published"
     },
     {
         name: "Adam",
@@ -387,7 +387,7 @@ const manualEntries = [
             "Fallout 3"
         ],
         date: "2026-04-20",
-        status: "draft"
+        status: "published"
     },
     {
         name: "航空券検査員",
@@ -24761,7 +24761,7 @@ async function rebuildLoreHtml() {
     finalEntriesObjStr = finalEntriesObjStr.slice(0, -2) + `\n        ];`;
 
     
-    const INDEX_FILE = path.join(DIR, 'js', 'lore_index.js');
+    const INDEX_FILE = path.join(DIR, 'js', 'lore_index_v10.js');
     const finalIndexContent = `${finalEntriesObjStr.trim().replace(/,$/, '')};`;
     fs.writeFileSync(INDEX_FILE, finalIndexContent, 'utf8');
     console.log(`Successfully regenerated ${INDEX_FILE}!`);

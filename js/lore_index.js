@@ -227,8 +227,7 @@ const loreEntries = [
                 url: "ada.html",
                 category: "人物",
                 appearance: ["Fallout 4"],
-                date: "2026-04-20",
-                isDraft: true
+                date: "2026-04-20"
             },
             {
                 name: "Adam",
