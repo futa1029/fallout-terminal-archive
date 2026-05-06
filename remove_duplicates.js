@@ -65,7 +65,7 @@ const manualEntries = [
             "Fallout 76",
             "Fallout: New Vegas"
         ],
-        date: "2026-04-20",
+        date: "2026-05-06",
         status: "published"
     },
     {
@@ -296,7 +296,7 @@ const manualEntries = [
         appearance: [
             "Fallout 4"
         ],
-        date: "2026-04-20",
+        date: "2026-05-06",
         status: "published"
     },
     {
@@ -386,7 +386,7 @@ const manualEntries = [
         appearance: [
             "Fallout 3"
         ],
-        date: "2026-04-20",
+        date: "2026-05-06",
         status: "published"
     },
     {

@@ -38,7 +38,7 @@ const loreEntries = [
                 url: "aaron-kimball.html",
                 category: "人物",
                 appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2026-04-20"
+                date: "2026-05-06"
             },
             {
                 name: "アーロンホルト農家",
@@ -226,7 +226,7 @@ const loreEntries = [
                 url: "ada.html",
                 category: "人物",
                 appearance: ["Fallout 4"],
-                date: "2026-04-20"
+                date: "2026-05-06"
             },
             {
                 name: "Adam",
@@ -295,7 +295,7 @@ const loreEntries = [
                 url: "agatha.html",
                 category: "人物",
                 appearance: ["Fallout 3"],
-                date: "2026-04-20"
+                date: "2026-05-06"
             },
             {
                 name: "航空券検査員",
