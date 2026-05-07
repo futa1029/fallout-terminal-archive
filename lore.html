@@ -688,7 +688,9 @@
         OVERSEER MOHI'S TERMINAL // LORE DATABASE
     </div>
 
-    <script src="js/lore_index_v10.js?v=20260506_v10"></script>
+    <script>
+        document.write('<script src="js/lore_index_v10.js?v=' + Date.now() + '"><\/script>');
+    </script>
     <script>
         // 管理者画面への隠し入り口
         let footerClickCount = 0;
@@ -729,8 +731,8 @@
         const todayMs = Date.now();
         const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
 
-        // サムネイルJSONの読み込み
-        fetch('lore-thumbnails.json')
+        // サムネイルJSONの読み込み（キャッシュ対策付き）
+        fetch('lore-thumbnails.json?v=' + Date.now())
             .then(r => r.json())
             .then(data => { thumbnails = data; renderEntries(); })
             .catch(() => { renderEntries(); });

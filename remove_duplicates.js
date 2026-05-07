@@ -24684,12 +24684,41 @@ async function rebuildLoreHtml() {
     const articles = JSON.parse(dataRaw);
     let loreContent = fs.readFileSync(LORE_HTML, 'utf8');
 
+    // 既存のindexを読み込んで状態を保持 (admin.html等での更新を維持)
+    const INDEX_FILE = path.join(DIR, 'js', 'lore_index_v10.js');
+    let existingIndex = {};
+    if (fs.existsSync(INDEX_FILE)) {
+        try {
+            const content = fs.readFileSync(INDEX_FILE, 'utf8');
+            const startStr = 'const loreEntries = [';
+            const startIdx = content.indexOf(startStr);
+            const endIdx = content.lastIndexOf('];');
+            if (startIdx !== -1 && endIdx !== -1) {
+                const arrayContent = content.substring(startIdx + startStr.length, endIdx);
+                const fn = new Function('return [' + arrayContent + '];');
+                const entries = fn();
+                entries.forEach(e => {
+                    existingIndex[e.url] = e;
+                });
+            }
+        } catch (e) {
+            console.warn('Failed to parse existing lore_index_v10.js. Proceeding without state preservation.');
+        }
+    }
+
     const regex = /const loreEntries = \[[\s\S]*?\];/;
     let finalEntriesObjStr = `const loreEntries = [\n`;
 
-    // 1. まず手作業で作った完全版を配列へ追加（draftはisDraft:trueフラグ付き）
+    // 1. まず手作業で作った完全版を配列へ追加（既存の公開状態を優先、なければdraftフラグ）
     manualEntries.forEach(e => {
-        const isDraft = e.status === 'draft';
+        let isDraft = e.status === 'draft';
+        let dateStr = e.date;
+
+        if (existingIndex[e.url] && existingIndex[e.url].isDraft !== true) {
+            isDraft = false;
+            if (existingIndex[e.url].date) dateStr = existingIndex[e.url].date;
+        }
+
         if (isDraft) {
             console.log(`[Draft] ${e.name} - isDraft:trueで出力`);
         }
@@ -24699,7 +24728,7 @@ async function rebuildLoreHtml() {
                 url: ${JSON.stringify(e.url)},
                 category: ${JSON.stringify(e.category)},
                 appearance: ${JSON.stringify(e.appearance)},
-                date: ${JSON.stringify(e.date)}${isDraft ? ',\n                isDraft: true' : ''}
+                date: ${JSON.stringify(dateStr)}${isDraft ? ',\n                isDraft: true' : ''}
             },\n`;
     });
 
@@ -24745,8 +24774,14 @@ async function rebuildLoreHtml() {
         }
 
         const safeTitle = article.title.replace(/"/g, '\\"');
-        const dateStr = new Date(article.date).toISOString().split('T')[0];
+        let dateStr = new Date(article.date).toISOString().split('T')[0];
+        let isDraft = true;
         const { category, appearance } = guessCategoryAndAppearance(article.title, article.bodyHtml);
+
+        if (existingIndex[htmlFilename] && existingIndex[htmlFilename].isDraft !== true) {
+            isDraft = false;
+            if (existingIndex[htmlFilename].date) dateStr = existingIndex[htmlFilename].date;
+        }
 
         finalEntriesObjStr += `            {
                 name: ${JSON.stringify(article.title)},
@@ -24754,14 +24789,13 @@ async function rebuildLoreHtml() {
                 url: ${JSON.stringify(htmlFilename)},
                 category: ${JSON.stringify(category)},
                 appearance: ${JSON.stringify(appearance)},
-                date: ${JSON.stringify(dateStr)}
+                date: ${JSON.stringify(dateStr)}${isDraft ? ',\n                isDraft: true' : ''}
             },\n`;
     });
 
     finalEntriesObjStr = finalEntriesObjStr.slice(0, -2) + `\n        ];`;
 
     
-    const INDEX_FILE = path.join(DIR, 'js', 'lore_index_v10.js');
     const finalIndexContent = `${finalEntriesObjStr.trim().replace(/,$/, '')};`;
     fs.writeFileSync(INDEX_FILE, finalIndexContent, 'utf8');
     console.log(`Successfully regenerated ${INDEX_FILE}!`);

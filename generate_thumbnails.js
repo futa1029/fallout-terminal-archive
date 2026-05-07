@@ -29,7 +29,7 @@ function extractOgImage(htmlPath) {
             }
         }
         // OG画像がない場合、本文中の最初の画像を取得
-        const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+        const imgMatch = content.match(/<img[^>]*?\bsrc=["']([^"']+)["']/i);
         if (imgMatch && !imgMatch[1].startsWith('http')) {
             return imgMatch[1];
         }
