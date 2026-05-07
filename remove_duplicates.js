@@ -916,8 +916,8 @@ const manualEntries = [
         status: "draft"
     },
     {
-        name: "自律型研究知能コンピューター",
-        yomi: "自律型研究知能コンピューター",
+        name: "ARIC-4",
+        yomi: "ARIC-4",
         url: "aric-4.html",
         category: "人物",
         appearance: [
