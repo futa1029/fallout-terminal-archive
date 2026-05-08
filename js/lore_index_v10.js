@@ -2719,7 +2719,7 @@ const loreEntries = [
                 name: "カマドウマ",
                 yomi: "カマドウマ",
                 url: "cave_cricket.html",
-                category: "未分類",
+                category: "クリーチャー",
                 appearance: [],
                 date: "2026-05-02"
             },
@@ -16266,8 +16266,7 @@ const loreEntries = [
                 url: "the-ghoul.html",
                 category: "人物",
                 appearance: ["Fallout TV"],
-                date: "2026-04-20",
-                isDraft: true
+                date: "2026-05-08"
             },
             {
                 name: "巨大ティーポット",

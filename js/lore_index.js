@@ -2720,7 +2720,7 @@ const loreEntries = [
                 name: "カマドウマ",
                 yomi: "カマドウマ",
                 url: "cave_cricket.html",
-                category: "未分類",
+                category: "クリーチャー",
                 appearance: [],
                 date: "2026-05-02"
             },

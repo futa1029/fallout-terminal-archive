@@ -3462,7 +3462,7 @@ const manualEntries = [
         name: "カマドウマ",
         yomi: "カマドウマ",
         url: "cave_cricket.html",
-        category: "未分類",
+        category: "クリーチャー",
         appearance: [],
         date: "2026-05-02",
         status: "published"
@@ -20340,8 +20340,8 @@ const manualEntries = [
         appearance: [
             "Fallout TV"
         ],
-        date: "2026-04-20",
-        status: "draft"
+        date: "2026-05-08",
+        status: "published"
     },
     {
         name: "巨大ティーポット",
