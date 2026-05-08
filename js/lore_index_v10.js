@@ -653,7 +653,7 @@ const loreEntries = [
                 url: "arcade-gannon.html",
                 category: "人物",
                 appearance: ["Fallout: New Vegas"],
-                date: "2026-05-08"
+                date: "2026-05-09"
             },
             {
                 name: "アーチェリー・セット",
@@ -714,7 +714,7 @@ const loreEntries = [
                 url: "aric-4.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-05-07"
+                date: "2026-05-09"
             },
             {
                 name: "Aries",
@@ -14869,8 +14869,7 @@ const loreEntries = [
                 url: "snallygaster-fo76.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
+                date: "2026-05-09"
             },
             {
                 name: "石鹸",
@@ -16265,7 +16264,7 @@ const loreEntries = [
                 url: "the-ghoul.html",
                 category: "人物",
                 appearance: ["Fallout TV"],
-                date: "2026-05-08"
+                date: "2026-05-09"
             },
             {
                 name: "巨大ティーポット",

@@ -1,0 +1,1 @@
+const fs = require('fs'); const path = require('path'); const html = fs.readFileSync('aric-4.html', 'utf8'); const match = html.match(/<img[^>]+src=['\x22]([^'\x22]+)['\x22]/i); const image = match[1]; console.log('Extracted:', image); console.log('Exists:', fs.existsSync(path.join('f:\\Fallout', image.split('?')[0])));

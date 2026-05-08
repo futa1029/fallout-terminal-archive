@@ -846,7 +846,7 @@ const manualEntries = [
         appearance: [
             "Fallout: New Vegas"
         ],
-        date: "2026-05-08",
+        date: "2026-05-09",
         status: "published"
     },
     {
@@ -923,8 +923,8 @@ const manualEntries = [
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-04-20",
-        status: "draft"
+        date: "2026-05-09",
+        status: "published"
     },
     {
         name: "Aries",
@@ -18597,8 +18597,8 @@ const manualEntries = [
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-04-20",
-        status: "draft"
+        date: "2026-05-09",
+        status: "published"
     },
     {
         name: "石鹸",
