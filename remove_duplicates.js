@@ -839,15 +839,15 @@ const manualEntries = [
         status: "published"
     },
     {
-        name: "アーケイド・ギャノン",
-        yomi: "アーケイド・ギャノン",
+        name: "アーケード・ゲノン",
+        yomi: "アーケード・ゲノン",
         url: "arcade-gannon.html",
         category: "人物",
         appearance: [
             "Fallout: New Vegas"
         ],
-        date: "2026-04-20",
-        status: "draft"
+        date: "2026-05-08",
+        status: "published"
     },
     {
         name: "アーチェリー・セット",

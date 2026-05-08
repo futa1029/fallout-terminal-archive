@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Arcade Gannon | Overseer Mohi's Terminal</title>
-    <!-- Open Graph / Discord Embed -->
+    <link rel="canonical" href="https://www.fallout-jp.com/arcade-gannon.html">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="Ulysses | Overseer Mohi's Terminal">
-    <meta property="og:description" content="UlyssesのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta property="og:image" content="images/placeholder.jpg">
-    <meta property="og:url" content="https://www.fallout-jp.com/ulysses.html">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="Arcade Gannon | Overseer Mohi's Terminal">
+    <meta property="og:description" content="アーケード・イスラエル・ゲノン。黙示録の追随者の医師であり、エンクレイヴの残党としての過去を持つ男。彼のアイデンティティと信念、そしてモハビの運命。">
+    <meta property="og:image" content="https://www.fallout-jp.com/images/arcade-gannon/Arcade_Gannon.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/arcade-gannon.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ulysses | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="UlyssesのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta name="twitter:image" content="images/placeholder.jpg">
-    <!-- Supabase CDN -->
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <meta name="twitter:title" content="Arcade Gannon | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="エンクレイヴの過去を背負い、モハビの未来を憂う医師。アーケード・ゲノンの真実に迫る。">
+    <meta name="twitter:image" content="https://www.fallout-jp.com/images/arcade-gannon/Arcade_Gannon.jpg">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-color: #0f0f0f;
             --text-color: #e0e0e0;
-            --accent-color: #00ff00; /* Dynamic Theme Color */
+            --accent-color: #00ff00;
             --header-bg: #1a1a1a;
             --panel-bg: #222;
         }
@@ -34,7 +35,6 @@
             line-height: 1.8;
         }
 
-        /* 2-Column Grid Layout */
         .container {
             max-width: 1000px;
             margin: 0 auto;
@@ -57,8 +57,6 @@
             line-height: 1.4;
         }
 
-
-        /* Sidebar InfoBox */
         .infobox {
             background: var(--panel-bg);
             border: 2px solid var(--accent-color);
@@ -73,6 +71,9 @@
             width: 100%;
             border: 1px solid #555;
             margin-bottom: 15px;
+            cursor: zoom-in;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
         }
 
         .infobox-row {
@@ -88,7 +89,6 @@
             font-weight: bold;
         }
 
-        /* Content Area matching manual entries */
         .content {
             background: rgba(255, 255, 255, 0.05);
             padding: 30px;
@@ -98,14 +98,29 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
         }
 
-        /* Quote Box for Impressions */
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #444;
+            display: block;
+            margin: 30px auto;
+            cursor: zoom-in;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 0.9em;
+            color: #888;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
         .quote-box {
-            font-style: auto;
             border-left: 4px solid var(--accent-color);
-            padding-left: 20px;
             margin: 40px 0 20px 0;
             background: color-mix(in srgb, var(--accent-color) 10%, transparent);
-            padding: 15px;
+            padding: 15px 15px 15px 20px;
             border-radius: 0 5px 5px 0;
             line-height: 1.6;
         }
@@ -124,59 +139,7 @@
         .content a:hover {
             border-bottom: 1px solid var(--accent-color);
         }
-        
-        /* Auto Cross-Links */
-        .auto-link {
-            color: var(--accent-color) !important;
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 1px dashed var(--accent-color) !important;
-            transition: all 0.2s;
-            padding: 0 2px;
-        }
 
-        .auto-link:hover {
-            background-color: color-mix(in srgb, var(--accent-color) 20%, transparent);
-            border-bottom: 1px solid var(--accent-color) !important;
-        }
-
-        /* Note specific Inline Images */
-        .note-figure {
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        /* Terminal / Holotape / Note Logs */
-        .note-figure blockquote {
-            background-color: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--accent-color);
-            border-left: 5px solid var(--accent-color);
-            padding: 20px;
-            margin: 0;
-            border-radius: 4px;
-            color: #dcdcdc;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
-            text-align: left;
-        }
-
-        .content img {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #444;
-            display: block;
-            margin: 0 auto 10px auto;
-        }
-
-        .note-figcaption {
-            text-align: center;
-            font-size: 0.9em;
-            color: #888;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        /* Action Header */
         .action-header {
             display: flex;
             justify-content: space-between;
@@ -208,78 +171,94 @@
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             font-family: 'Share Tech Mono', monospace;
-            border-radius: 4px;
             transition: all 0.2s;
         }
 
         .like-button:hover {
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        .like-button.liked {
             background: var(--accent-color);
             color: var(--bg-color);
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border: 1px solid #444;
+            cursor: zoom-in;
+        }
+
+        .gallery-item .caption {
+            font-size: 0.8em;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.8em;
+            color: #777;
+            text-align: center;
+        }
+
+        .copyright a {
+            color: var(--accent-color);
         }
 
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
-                padding: 10px;
-                gap: 20px;
             }
+
             .infobox {
-                grid-row: 1;
-                width: 100%;
-                box-sizing: border-box;
-            }
-            .content {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 1.6em;
-            }
-            .action-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 15px;
+                position: static;
             }
         }
 
-        /* Lightbox */
-        .lightbox-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.92);
-            z-index: 9999;
-            cursor: zoom-out;
-            justify-content: center;
-            align-items: center;
-        }
-        .lightbox-overlay.active {
-            display: flex;
-        }
-        .lightbox-overlay img {
-            max-width: 95vw;
-            max-height: 95vh;
-            object-fit: contain;
-            border: 2px solid var(--accent-color);
-            box-shadow: 0 0 40px rgba(0, 255, 0, 0.3);
-            border-radius: 4px;
-        }
-        .content img, .infobox img, .gallery-item img {
-            cursor: zoom-in;
-        }
-
-        /* コメントセクション */
         .comments-section {
             margin-top: 40px;
             border-top: 2px solid var(--accent-color);
             padding-top: 20px;
         }
+
         .comments-title {
             font-family: 'Share Tech Mono', monospace;
             color: var(--accent-color);
@@ -288,13 +267,15 @@
             border: none;
             padding: 0;
         }
+
         .comment-form {
             margin-bottom: 20px;
         }
+
         .comment-textarea {
             width: 100%;
             box-sizing: border-box;
-            background: rgba(0,0,0,0.4);
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--accent-color);
             color: var(--text-color);
             font-family: 'Noto Sans JP', sans-serif;
@@ -306,20 +287,24 @@
             outline: none;
             transition: box-shadow 0.2s;
         }
+
         .comment-textarea:focus {
             box-shadow: 0 0 8px var(--accent-color);
         }
+
         .comment-form-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: 6px;
         }
+
         .char-count {
             font-size: 0.8em;
             color: #888;
             font-family: 'Share Tech Mono', monospace;
         }
+
         .comment-submit-btn {
             background: transparent;
             border: 1px solid var(--accent-color);
@@ -331,47 +316,51 @@
             border-radius: 4px;
             transition: all 0.2s;
         }
-        .comment-submit-btn:hover, .comment-submit-btn:not(:disabled):hover {
+
+        .comment-submit-btn:hover {
             background: var(--accent-color);
             color: var(--bg-color);
         }
-        .comment-submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+
         .comment-msg {
             font-size: 0.85em;
             min-height: 1.2em;
             margin-top: 4px;
             font-family: 'Share Tech Mono', monospace;
         }
+
         .comments-list {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
+
         .comment-item {
-            background: rgba(255,255,255,0.04);
+            background: rgba(255, 255, 255, 0.04);
             border-left: 3px solid var(--accent-color);
             padding: 10px 14px;
             border-radius: 0 4px 4px 0;
         }
+
         .comment-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 5px;
         }
+
         .comment-time {
             font-size: 0.78em;
             color: #666;
             font-family: 'Share Tech Mono', monospace;
         }
+
         .comment-body {
             font-size: 0.92em;
             line-height: 1.6;
             word-break: break-all;
         }
+
         .comment-delete-btn {
             background: none;
             border: none;
@@ -382,343 +371,346 @@
             opacity: 0.7;
             transition: opacity 0.2s;
         }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading {
-            color: #666;
-            font-size: 0.85em;
-            font-family: 'Share Tech Mono', monospace;
-            padding: 10px 0;
+
+        .comment-delete-btn:hover {
+            opacity: 1;
         }
+
+        .va-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+
+        .va-table th, .va-table td {
+            border: 1px solid #444;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .va-table th {
+            background: #222;
+            color: var(--accent-color);
+        }
+
     </style>
-    <meta name="article-status" content="draft">
 </head>
 <body data-article-category="人物" data-article-appearance="Fallout: New Vegas">
     <div class="container">
-        <!-- Sidebar -->
         <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Ulysses</h3>
-            <img src="images/note_extracted/arcade-gannon/img_main.net" alt="Arcade Gannon" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <h3 style="margin-top:0; text-align:center;">Arcade Gannon</h3>
+            <img src="images/arcade-gannon/Arcade_Gannon.jpg" alt="アーケード・ゲノン" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <div class="infobox-row"><span class="infobox-label">フルネーム</span><span>アーケード・イスラエル・ゲノン</span></div>
             <div class="infobox-row"><span class="infobox-label">種族</span><span>人間</span></div>
-<div class="infobox-row"><span class="infobox-label">所属</span><span>アポカリプスの使徒 / (エンクレイヴ・レムナント)</span></div>
-<div class="infobox-row"><span class="infobox-label">役職</span><span>コンパニオン / 研究者</span></div>
-<div class="infobox-row"><span class="infobox-label">関連</span><span>フォー・プレイス / プラズマ・ディフェンダー</span></div>
-</aside>
+            <div class="infobox-row"><span class="infobox-label">性別</span><span>男性</span></div>
+            <div class="infobox-row"><span class="infobox-label">年齢</span><span>35歳</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>黙示録の追随者<br>エンクレイヴの残党</span></div>
+            <div class="infobox-row"><span class="infobox-label">役割</span><span>医師、研究者</span></div>
+            <div class="infobox-row"><span class="infobox-label">場所</span><span>オールド・モーモン・フォート</span></div>
+            <div class="infobox-row"><span class="infobox-label">S.P.E.C.I.A.L.</span><span>6, 6, 4, 6, 10, 6, 4</span></div>
+            <div class="infobox-row"><span class="infobox-label">声優</span><span>ザッカリー・リーヴァイ</span></div>
+        </aside>
 
-        <!-- Main Content -->
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button" data-article-id="note_arcade_gannon" onclick="toggleLike(this)">
+                <button class="like-button" data-article-id="note_arcade-gannon" onclick="toggleLike(this)">
                     <span class="heart">♡</span> <span class="like-count">0</span>
                 </button>
             </div>
 
-            <h1>Arcade Gannon<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">アーケイド・ギャノン</span></h1>
+            <h1>Arcade Gannon<br><span style="font-size: 0.6em; color: #888; font-family: 'Noto Sans JP', sans-serif; font-weight: normal;">アーケード・ゲノン</span></h1>
 
-<h2>概要</h2>
-<p>アーケイド・イスラエル・ギャノン（Arcade Gannon）は、フリーサイドのオールド・モルモン・フォートで医療活動を行っている「アポカリプスの使徒」のメンバーであり、プレイヤーのコンパニオン（同行者）候補となる人物です。</p>
+            <p>
+                <strong>アーケード・イスラエル・ゲノン</strong>は、モハビ・ウェイストランドに居住する<strong>黙示録の追随者</strong>の医師であり科学者です。<br>
+                彼は運び屋の同行者（コンパニオン）となる可能性のある人物の一人です。
+            </p>
 
-<h2>詳細</h2>
-<p>彼は高い知能を持つ研究者で、モハビの平和と弱者の保護を心から願っている理想主義者です。しかしその一方で、彼の出生には大きな秘密がありました。<br>彼の父親と育ての親たちは、かつてアメリカ東部でブロードキャストを流し、世界を支配しようとした旧アメリカ政府直属の悪の組織『エンクレイヴ』の残党（レムナント）だったのです。<br>彼はその黒い歴史をコンプレックスとして隠しつつも、優れたラテン語の知識やプラズマ兵器の技術を身に着けています。</p>
-<p>彼の専用クエスト「For Auld Lang Syne」では、モハビに隠れ住む高齢のエンクレイヴ残党集団（レムナント）を再び招集し、かつてのパワーアーマーとベルチバードを引っ張り出して、フーバーダムの最終決戦でどちらの陣営に加勢させるかを決定することになります。</p>
+            <div class="quote-box">
+                「私は植物学者ではありませんが、これが完全に自然なものだとは思いません」<br>
+                「人々を助けることには熱心ですが、<em>nihil novi sub sole.</em>（太陽の下に新しきものなし）」<br>
+                「私は本当に退屈な人間ですよ。フリーサイドのジャンキーからの方が、もっと良い話が聞けるでしょう」
+            </div>
 
+            <h2>経歴</h2>
 
-<h2>感想</h2>
-<div class="quote-box" style="margin-top: 40px; border-top: 3px solid var(--accent-color);"><p class="quote-text">皮肉屋でインテリ、常にツンケンしているけれど根はめちゃくちゃ良い医者という、乙女ゲームにでも出てきそうなパーフェクトな設定の仲間。彼の専用クエストでヨボヨボのおじいちゃん達がエンクレイヴ・パワーアーマーを着て空から加勢してくる激熱展開は必見です。</p></div>
+            <h3>エンクレイヴでの生活</h3>
+            <p>
+                エンクレイヴの将校である<strong>ゲノン・シニア</strong>とその妻の間に生まれた唯一の息子であるアーケードは、選ばれし者がオイルリグを爆破した数年後の2240年代半ば、ナヴァロ軍事基地で生まれました。<br>
+                幼い頃に父親を亡くし、母親と強い絆を築きましたが、本人の言葉を借りれば、彼は父の死を完全に乗り越えることはありませんでした。<br>
+                父親が爆弾が世界を破壊する前も後も人道に対する罪を犯したファシストの準軍事組織のメンバーであったという事実は、彼に大きな影響を与えました。<br>
+                また、ゲノン・シニアの死は彼が任務で外出している間に起こり、その正確な状況は残党たちによってアーケードに明かされることはありませんでした。
+            </p>
 
-            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-                <div style="margin-bottom: 10px;">
-                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout:NewVegas</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
+            <p>
+                その後、アーケードと母親、そして父親の旧部隊の数人の兵士はナヴァロ基地を放棄せざるを得なくなり、基地を壊滅させたNCRの攻撃を辛うじて逃れました。<br>
+                ナヴァロを脱出した後も、ブラザーフッド・オブ・スティールによる追跡の危険にさらされ続けたため、一行は南へ移動し、過去のつながりが発見されないようNCRへの統合を試みました。<br>
+                ある時点で、アーケードは黙示録の追随者と接触し、最終的に彼らに加わりました。<br>
+                人々を助けたいという願いと、学ぶことへの才能を組み合わせた結果でした。
+            </p>
+
+            <p>
+                追随者での時間は、アーケードが医学の中に自らの使命を見出す助けとなりました。<br>
+                彼はNCRの中核地にある優れた医療施設でグループからあらゆる知識を学び、自ら診療所を経営できるほどの有能な医師となりました。<br>
+                彼はまた歴史、特に戦前の失敗した社会経済政策というトピックに興味を持ち、追随者の広範なライブラリや剣闘士に関する古いホロテープを利用してラテン語を話すことさえ学びました。<br>
+                彼は完全な資格を持つ植物学者ではありませんが、植物とその医療的特性の研究に時間を費やしています。
+            </p>
+
+            <h3>モハビへの移動</h3>
+            <p>
+                NCRの指導部は、敗北したエンクレイヴの残党が新しいアイデンティティを採用し、国境内で秘密裏に生活していることに気づきました。<br>
+                これにより、グループの戦争犯罪を裁くためにこれらの人々を狩り出す方針がとられ、通常は無期懲役が課されました。<br>
+                NCRレンジャー、ブラザーフッド・オブ・スティールのメンバー、そして多数の賞金稼ぎがエンクレイヴとのつながりを持つ者を積極的に探し求めていたため、残党は追っ手から逃れるためにNCR領土の辺境へと移動し続けなければなりませんでした。<br>
+                彼らが安全であることを確認するために後を追いたいと考えたアーケードは、最も貢献できる辺境での任務を選んだとして、上司に異動を願い出ました。
+            </p>
+
+            <p>
+                残党を追ってNCRから遠く離れたモハビ・ウェイストランドまで来たアーケードは、ニューベガス周辺に定住し、フリーサイドのオールド・モーモン・フォートにあるジュリー・ファーカスの支部に入りました。<br>
+                彼はジュリーの依頼で植物研究に焦点を当て、一般的な病気や怪我の代替治療法や、地元の植物から医療品を製造する方法（例：サボテンからスティムパックを作るなど）を考え出そうとしています。<br>
+                彼はこの研究を高潔だと考えていますが、実際に画期的な発見をする確率は低いとして、時間の無駄であることも認めています。<br>
+                せいぜい、これらの植物を使う古い忘れられた方法を再発見することを望んでおり、それは略奪されていない戦前の病院の数が減少した際、追随者が独自の物資を生産する助けとなるでしょう。<br>
+                彼は研究を退屈だと感じていますが、ジュリーによって人目に触れないようにされていることを感謝しており、自分を「社交的な人間ではない」と主張しています。
+            </p>
+
+            <p>
+                しかし、アーケードは一般的に人々を助けること、特にフリーサイドの虐げられた絶望的な人々を助けることには熱心なままです。<br>
+                この他者を助けたいという衝動は、追随者がフリーサイドで手を広げすぎていることを認識しつつも、最善を尽くして人々を助けるという決意を意味しています。<br>
+                簡単に言えば、もし追随者がやらなければ、他に誰がやるのか？ということです。
+            </p>
+
+            <h2>性格</h2>
+            <p>
+                アーケードは自分を退屈で、やや非社交的だと主張していますが、彼との長い交流は、彼が実際には博学で機知に富み、会話の中で冗談を愛する人物であることを証明しています。<br>
+                社会学と歴史に関する深い知識により、彼は哲学的な事柄を容易に議論し、知的な議論を好みます。<br>
+                シーザーのような同等の知性を持つ人物は、アーケードとその機知を強く好む傾向があります。<br>
+                逆に、レガート・ラニウスのような冗談や辛辣な機知を嫌う人物は、彼に飽き飽きするでしょう。
+            </p>
+
+            <p>
+                この知性はまた、彼を確固たる信念を持つ男にしました。<br>
+                彼は個人の自由、独立、そして自己決定を強く信じており、もし隷属を強いられるならば、いかなる手段を使っても拘束から逃れるために自殺することをいといません。
+            </p>
+
+            <p>
+                世界レベルでは、彼はモハビが外国勢力や国内の独裁者から独立することを固く支持しています。<br>
+                彼はNCRとリージョンをモハビから追い出し、Mr.ハウスの独裁支配を打倒することがモハビの住民の鎖を断ち切り、彼らが自らの道を切り開くことを可能にすると信じています。<br>
+                その場合、独立が彼の理想主義的な希望を和らげたとしても、彼はエンクレイヴの知識と技術を使用して秩序を維持し、地元のコミュニティが自らを統治するのを助ける準備ができています。<br>
+                彼はNCRによるモハビの併合を、追随者の信念とは全く相容れない帝国主義的なプロジェクトであると考えていますが、NCRを完全に拒絶しているわけではありません。<br>
+                彼はNCRをシーザー・リージョンの恐怖に対する防波堤であると考えており、併合はリージョンによる征服よりも好ましい結果です。
+            </p>
+
+            <p>
+                アーケードが問題視している唯一の結果は独裁者です。<br>
+                第一にMr.ハウスとその権力行使であり、それは追随者との絆の解消と幻滅をもたらします。<br>
+                第二にリージョンです。<br>
+                アーケードはリージョンを完全に拒絶し、妄想的な暴君が夢見た時代錯誤な神話であると考えており、シーザーについて議論することは彼が罵倒語を使用する数少ない時の一つです。<br>
+                アーケードは特に、シーザーの誇大妄想的な傾向と、過去の過ちから学ぶことを拒否し、代わりにそれらを再現し繰り返そうとすることを嫌悪しています。
+            </p>
+
+            <h2>人間関係</h2>
+            <p>
+                自身の過去に関する葛藤のため、アーケードは意図的に個人的な質問をはぐらかし、時にはそれがファシストとの過去のつながりを隠蔽するためであると大胆に主張することもあります。<br>
+                この主題に関する感情を処理することの難しさは、彼を他人に打ち明けることに対して慎重にさせます。<br>
+                アーケードは自身の同性愛についてためらいはなく、人生の中で数人の良い男性に出会ったと述べていますが、彼らは相談相手としては不適格で、関係は長続きしなかったと主張しています。
+            </p>
+
+            <p>
+                アーケードが維持している唯一の長続きする関係は、彼が家族のように思っているエンクレイヴの残党たちとの関係です。<br>
+                彼の最も親密な絆は、母親の死後「人生で唯一の女性」となった<strong>デイジー・ホイットマン</strong>とのものです。<br>
+                彼はいつもデイジーと親しく、彼女には子供がいなかったため、いつも話を聞いてくれました。<br>
+                残党の指揮官である<strong>ジュダ・クレガー</strong>は、アーケードの父親への忠誠心から、礼儀正しく親切で、アーケードを歓迎しようと最善を尽くしました。<br>
+                アーケードは彼を特に温かい人としては覚えていませんが、インスピレーションを与えるリーダーとして、反対意見を持つジョンソンとモレノを一つのユニットにまとめ上げることができる人物として記憶しています。
+            </p>
+
+            <p>
+                部隊の2人の重装歩兵も彼に足跡を残しました。<br>
+                アーケードは<strong>オリオン・モレノ</strong>のエンクレイヴへの熱烈な献身を覚えており、ナヴァロを去った瞬間、モレノの中の全ての愛がエンクレイヴの崩壊と共に燃え尽きたのを目撃しました。<br>
+                一方、<strong>カニバル・ジョンソン</strong>は、軍法会議にかけられることなくエンクレイヴに逆らい、覆す能力で彼に感銘を与え、知らず知らずのうちにアーケードの父親の遺産に関する内部葛藤を育みました。<br>
+                ジョンソンはいつもゲノン・シニアについて良いことを言い、その息子が多くの面で父親を反映していると観察していました。
+            </p>
+
+            <p>
+                残党たちからの多くの再確認にもかかわらず、アーケードは自分が本当に父親に似ているのかを知りたいと願っており、彼と共に成長できなかったことを嘆いています。<br>
+                彼は自分の人生に何かが欠けていると感じ、父親の遺産と折り合いをつけるのに苦労しています。<br>
+                しかし、運び屋との交流を通じて、アーケードは父親の靴を履く必要はないが、自分なりの方法で他人の人生にポジティブな影響を与えることができることに気づき、内部の危機を乗り越えることができる可能性があります。
+            </p>
+
+            <h2>同行者（コンパニオン）としての能力</h2>
+            <p>
+                アーケードは以下の条件のいずれかが満たされている場合に同行者として仲間に加わります：
+            </p>
+            <ul>
+                <li>黙示録の追随者との評判が「好意的」以上であること。</li>
+                <li>ジュリー・ファーカスのために「High Times」を完了し、余剰の物資を追随者に提供すること。</li>
+                <li>Speechスキルチェック（75以上）に合格すること。</li>
+                <li>Confirmed Bachelor（確認済みの独身男性）のパークを持っていること。</li>
+                <li>知能（Intelligence）が3以下である場合、アーケードは同情心から付いてきてくれます。</li>
+            </ul>
+
+            <p>
+                <strong>同行者パーク：Better Healing（より良い治療）</strong><br>
+                アーケードが同行している間、あらゆる回復アイテムの回復量が20%増加します。
+            </p>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/arcade-gannon/Arcade_Gannon_OMF.jpg" alt="オールド・モーモン・フォート内のアーケード">
+                    <div class="caption">オールド・モーモン・フォート内のアーケード</div>
                 </div>
-                
-                <!-- 著作権表示 -->
-                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Arcade_Gannon" target="_blank" rel="noopener">Arcade Gannon</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <div class="gallery-item">
+                    <img src="images/arcade-gannon/ArcadeTesla.jpg" alt="父のアーマーを装備したアーケード">
+                    <div class="caption">父のアーマーを装備したアーケード</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/arcade-gannon/Zachary_Levi_booth.png" alt="声優のザッカリー・リーヴァイ">
+                    <div class="caption">声優のザッカリー・リーヴァイ（収録中）</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/arcade-gannon/Arcade_Gannon_reference_image.png" alt="初期のデザインリファレンス">
+                    <div class="caption">初期のデザインリファレンス画像</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/arcade-gannon/Arcade_Gannon_Front.png" alt="コレクターズエディションのトランプ">
+                    <div class="caption">コレクターズエディションのトランプ</div>
+                </div>
+            </div>
+
+            <h2>開発の裏話</h2>
+            <img class="article-image" src="images/arcade-gannon/SIMPLE_Arcade_binder.jpg" alt="ジョシュ・ソーヤーのバインダー" style="max-width: 500px;">
+            <p>
+                アーケードはプロジェクトディレクターの<strong>ジョシュ・ソーヤー</strong>によって執筆されました。<br>
+                ソーヤーは他の多くの同行者の基本詳細を概説しましたが、アーケードは彼が直接全ての対話を執筆した唯一の同行者でした。<br>
+                彼は元々、ブラック・アイル・スタジオによるキャンセルされたFallout 3（Van Buren）に登場する予定でした。
+            </p>
+            <p>
+                アーケードは、ジョシュ・ソーヤーがクリス・アヴェロン主宰のFalloutテーブルトークキャンペーンで使用していたプレイヤーキャラクターの一人でした。<br>
+                ソーヤーはこのテーブルトークゲームの間に作成されたアーケードのキャラクターのオリジナルデザインのノートを保持しています。<br>
+                2020年10月のライブ配信中、ソーヤーはこのノートの一部を公開しました。<br>
+                アーケードのプロフィールでは、彼は34歳、体重は約145ポンドとされています。<br>
+                ミドルネームは元々「ダニエル」で、父親の名前はマークでした。
+            </p>
+            <p>
+                アーケードの声を担当したのは、TVシリーズ『CHUCK/チャック』や映画『シャザム!』で知られる俳優の<strong>ザッカリー・リーヴァイ</strong>です。<br>
+                ジョシュ・ソーヤーは、リーヴァイが各対話のトーンを即座に直感する能力に非常に感銘を受け、収録セッションは非常に早く進み、各行1、2回のテイクで済んだとコメントしています。
+            </p>
+
+            <div class="quote-box">
+                <b>管理者：運び屋モヒの感想</b><br><br>
+                アーケード・ゲノン。彼は単なる同行者ではなく、Falloutシリーズが持つ「過去との決別と継承」というテーマを象徴する、最も知的なキャラクターの一人だ。<br><br>
+                エンクレイヴの残党という、ウェイストランドでは死罪に等しい過去を背負いながら、彼は黙示録の追随者として人道支援に身を投じている。その葛藤は深く、父親の形見であるテスラアーマーを再び身にまとう決断をする際、彼は単に過去に戻るのではなく、過去を「清算」するために立ち上がる。<br><br>
+                彼がラテン語で引用する言葉や、シーザーとの舌戦、そして理想主義者ゆえの苦悩。どれをとっても非常に人間臭く、魅力に溢れている。ザッカリー・リーヴァイの演技も相まって、彼の皮肉屋だが心優しい性格が見事に表現されている。<br><br>
+                「太陽の下に新しきものなし」。彼が好んで使うこの言葉は、歴史が繰り返されることへの諦念ではなく、歴史を知る者としての責任感の裏返しなのかもしれない。
+            </div>
+
+            <div class="copyright">
+                <p>This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Arcade_Gannon" target="_blank" rel="noopener">Arcade Gannon</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <div style="margin-top: 10px;">
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FalloutNewVegas</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Enclave</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#FollowersOfTheApocalypse</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
+                </div>
                 <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
-            <!-- Comments Section -->
+
             <div class="comments-section" id="comments-section">
                 <h3 class="comments-title">&gt; COMMENTS</h3>
                 <div class="comment-form">
                     <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <!-- ハニーポット：ボット対策（人間には見えない） -->
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="comment-form-footer">
                         <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND ▶</button>
+                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
                     </div>
                     <div id="comment-msg" class="comment-msg"></div>
                 </div>
-                <div id="comments-list" class="comments-list">
-                    <div class="comment-loading">LOADING...</div>
-                </div>
+                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
             </div>
         </main>
     </div>
 
-    <!-- Lightbox Overlay -->
     <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
-        <img id="lightbox-img" src="" alt="拡大画像" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+        <img id="lightbox-img" src="" alt="拡大画像">
     </div>
 
-    <!-- Supabase Scripts -->
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
         const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-        async function toggleLike(btn) {
-            const articleId = btn.getAttribute('data-article-id');
-            let isLiked = localStorage.getItem(articleId + '_liked') === 'true';
-            btn.disabled = true;
-
-            if (isLiked) {
-                isLiked = false;
-                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId });
-                if (!error) {
-                    localStorage.setItem(articleId + '_liked', isLiked);
-                    updateLikeButton(btn, isLiked, data);
-                }
-            } else {
-                isLiked = true;
-                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId });
-                if (!error) {
-                    localStorage.setItem(articleId + '_liked', isLiked);
-                    updateLikeButton(btn, isLiked, data);
-                }
-            }
-            btn.disabled = false;
+        
+        async function toggleLike(btn) { 
+            const articleId = btn.getAttribute('data-article-id'); 
+            let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+            btn.disabled = true; 
+            if (isLiked) { 
+                isLiked = false; 
+                const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } else { 
+                isLiked = true; 
+                const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); 
+                if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } 
+            } 
+            btn.disabled = false; 
         }
 
-        function updateLikeButton(btn, isLiked, count) {
-            const heart = btn.querySelector('.heart');
-            const countSpan = btn.querySelector('.like-count');
-            if (isLiked) {
-                btn.classList.add('liked');
-                heart.textContent = '♥';
-            } else {
-                btn.classList.remove('liked');
-                heart.textContent = '♡';
-            }
-            countSpan.textContent = count;
+        function updateLikeButton(btn, isLiked, count) { 
+            const heart = btn.querySelector('.heart'); 
+            const countSpan = btn.querySelector('.like-count'); 
+            if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } 
+            else { btn.classList.remove('liked'); heart.textContent = '♡'; } 
+            countSpan.textContent = count; 
         }
 
-        document.addEventListener('DOMContentLoaded', async () => {
-            const btn = document.querySelector('.like-button');
-            if (btn) {
-                const articleId = btn.getAttribute('data-article-id');
-                const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
-                const { data, error } = await supabaseClient
-                    .from('likes')
-                    .select('like_count')
-                    .eq('article_id', articleId)
-                    .single();
-
-                let count = 0;
-                if (!error && data) count = data.like_count;
-                updateLikeButton(btn, isLiked, count);
-            }
-            // コメントを読み込む
-            await loadComments();
-        });
-        // Lightbox: 画像クリックで元画像を表示
-        document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => {
-            img.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const overlay = document.getElementById('lightbox');
-                document.getElementById('lightbox-img').src = img.src;
-                overlay.classList.add('active');
-            });
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
+        document.addEventListener('DOMContentLoaded', async () => { 
+            const btn = document.querySelector('.like-button'); 
+            if (btn) { 
+                const articleId = btn.getAttribute('data-article-id'); 
+                const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; 
+                const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); 
+                let count = 0; if (!error && data) count = data.like_count; 
+                updateLikeButton(btn, isLiked, count); 
+            } 
+            const lightbox = document.getElementById('lightbox'); 
+            const lightboxImg = document.getElementById('lightbox-img'); 
+            document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { 
+                img.addEventListener('click', (e) => { 
+                    e.stopPropagation(); 
+                    lightboxImg.src = img.src; 
+                    lightbox.classList.add('active'); 
+                }); 
+            }); 
+            loadComments();
         });
 
-        // ========== コメント機能 ==========
-        // 記事情報（HTMLから取得）
-        const _commentArticleId = (document.querySelector('[data-article-id]') || {}).getAttribute?.('data-article-id') || location.pathname.split('/').pop().replace('.html', '');
-        const _commentArticleName = document.title.split('|')[0].trim();
-        const _commentArticleUrl = location.pathname.split('/').pop();
-        const ADMIN_TOKEN_KEY = 'fallout_admin_token';
-        const ADMIN_PASSWORD = 'tq7jtq7j'; // ← ここに管理者パスワードを入力
-        const RATE_LIMIT_KEY = 'comment_last_posted';
-        const RATE_LIMIT_SEC = 60;
-        let _isAdminMode = false;
-
-        // 文字数カウンター
-        function updateCharCount() {
-            const len = document.getElementById('comment-input').value.length;
-            const el = document.getElementById('char-count');
-            if (el) {
-                el.textContent = len;
-                el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)';
-            }
+        const _commentArticleId = 'note_arcade-gannon'; 
+        const _commentArticleName = 'Arcade Gannon'; 
+        const _commentArticleUrl = 'arcade-gannon.html'; 
+        
+        function updateCharCount() { 
+            const len = document.getElementById('comment-input').value.length; 
+            const el = document.getElementById('char-count'); 
+            if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } 
         }
 
-        // 相対時刻
-        function relativeTime(isoStr) {
-            const diff = (Date.now() - new Date(isoStr).getTime()) / 1000;
-            if (diff < 60) return 'たった今';
-            if (diff < 3600) return Math.floor(diff / 60) + '分前';
-            if (diff < 86400) return Math.floor(diff / 3600) + '時間前';
-            if (diff < 86400 * 7) return Math.floor(diff / 86400) + '日前';
-            return new Date(isoStr).toLocaleDateString('ja-JP');
+        async function loadComments() { 
+            const list = document.getElementById('comments-list'); 
+            if (!list) return; 
+            const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); 
+            if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } 
+            if (!data || data.length === 0) { 
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; 
+                return; 
+            } 
+            list.innerHTML = data.map(c => `<div class="comment-item"><div class="comment-meta"><span class="comment-time">${new Date(c.created_at).toLocaleString('ja-JP')}</span></div><div class="comment-body">${c.content.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`).join(''); 
         }
 
-        // コメント一覧を表示
-        function renderComments(comments) {
-            const list = document.getElementById('comments-list');
-            if (!list) return;
-            if (!comments || comments.length === 0) {
-                list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
-                return;
-            }
-            list.innerHTML = comments.map(c => `
-                <div class="comment-item" data-id="${c.id}">
-                    <div class="comment-meta">
-                        <span class="comment-time">${relativeTime(c.created_at)}</span>
-                        ${_isAdminMode ? `<button class="comment-delete-btn" title="完全削除" onclick="deleteComment('${c.id}')">&#128465;</button><button class="comment-delete-btn" title="非表示(サイレント)" onclick="hideComment('${c.id}')">&#128064;</button>` : ''}
-                    </div>
-                    <div class="comment-body">${escapeHtml(c.content)}</div>
-                </div>
-            `).join('');
+        async function submitComment() { 
+            const input = document.getElementById('comment-input'); 
+            const content = input ? input.value.trim() : ''; 
+            if (!content) return; 
+            const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); 
+            if (error) { alert('投稿失敗'); return; } 
+            input.value = ''; updateCharCount(); await loadComments(); 
         }
-
-        // HTMLエスケープ
-        function escapeHtml(str) {
-            return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
-        }
-
-        // コメント読み込み
-        async function loadComments() {
-            const list = document.getElementById('comments-list');
-            if (!list) return;
-            const { data, error } = await supabaseClient
-                .from('comments')
-                .select('id, content, created_at')
-                .eq('article_id', _commentArticleId)
-                .order('created_at', { ascending: false })
-                .limit(50);
-            if (error) {
-                list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>';
-                return;
-            }
-            renderComments(data || []);
-        }
-
-        // コメント投稿
-        async function submitComment() {
-            const input = document.getElementById('comment-input');
-            const msg = document.getElementById('comment-msg');
-            if (!input || !msg) return;
-
-            // ① ハニーポットチェック（ボット検出）
-            const hp = document.getElementById('hp_field');
-            if (hp && hp.value !== '') return; // サイレント拒否
-
-            const content = input.value.trim();
-            if (!content) { showCommentMsg('コメントを入力してください。', false); return; }
-            if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; }
-
-            // ② NGワードチェック（クライアント側）
-            const NG_WORDS = [
-                '広啄', 'http://', 'https://', 'LINE', 'DMして', '難民', 'ビッチ', '死ね',
-                'クソ', 'アホ', 'ウザイ', 'メルマガ', 'discord.gg', 't.me', 'clickして'
-            ];
-            const lc = content.toLowerCase();
-            if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) {
-                showCommentMsg('不適切な表現が含まれていルため投稿できません。', false);
-                return;
-            }
-
-            // レート制限チェック（60秒）
-            const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0');
-            const now = Date.now();
-            if (now - lastPosted < RATE_LIMIT_SEC * 1000) {
-                const remain = Math.ceil((RATE_LIMIT_SEC * 1000 - (now - lastPosted)) / 1000);
-                showCommentMsg(`あと${remain}秒後に投稿できます。`, false);
-                return;
-            }
-
-            const btn = document.querySelector('.comment-submit-btn');
-            if (btn) btn.disabled = true;
-            const { error } = await supabaseClient.from('comments').insert({
-                article_id: _commentArticleId,
-                article_name: _commentArticleName,
-                article_url: _commentArticleUrl,
-                content: content
-            });
-            if (btn) btn.disabled = false;
-
-            if (error) {
-                showCommentMsg('投稿に失敗しました。', false);
-                return;
-            }
-            localStorage.setItem(RATE_LIMIT_KEY, now.toString());
-            input.value = '';
-            updateCharCount();
-            showCommentMsg('コメントを投稿しました！', true);
-            await loadComments();
-        }
-
-        function showCommentMsg(text, ok) {
-            const el = document.getElementById('comment-msg');
-            if (!el) return;
-            el.textContent = text;
-            el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b';
-            setTimeout(() => { el.textContent = ''; }, 3000);
-        }
-
-        // 管理者：コメント完全削除
-        async function deleteComment(commentId) {
-            if (!_isAdminMode) return;
-            if (!confirm('このコメントを完全に削除しますか？(非表示にするならビルボードボタンを使ってください)')) return;
-            const { error } = await supabaseClient.rpc('delete_comment_admin', {
-                comment_id: commentId,
-                admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || ''
-            });
-            if (error) { alert('削除失敗: ' + error.message); return; }
-            await loadComments();
-        }
-
-        // 管理者：コメントサイレント非表示（④ is_hidden フラグ）
-        async function hideComment(commentId) {
-            if (!_isAdminMode) return;
-            if (!confirm('このコメントを非表示(サイレント)にしますか？投稿者には通知されません。')) return;
-            const { error } = await supabaseClient.rpc('hide_comment_admin', {
-                comment_id: commentId,
-                admin_token: localStorage.getItem(ADMIN_TOKEN_KEY) || ''
-            });
-            if (error) { alert('非表示失敗: ' + error.message); return; }
-            await loadComments();
-        }
-
-        // 管理者モード切替（Ctrl+Shift+D）
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                e.preventDefault();
-                if (_isAdminMode) {
-                    _isAdminMode = false;
-                    localStorage.removeItem(ADMIN_TOKEN_KEY);
-                    renderComments([]);
-                    loadComments();
-                    alert('管理者モードを終了しました。');
-                    return;
-                }
-                const pw = prompt('管理者パスワードを入力してください:');
-                if (!pw) return;
-                if (pw === ADMIN_PASSWORD) {
-                    _isAdminMode = true;
-                    localStorage.setItem(ADMIN_TOKEN_KEY, pw);
-                    loadComments();
-                    alert('管理者モードに入りました。
-🗑 = 完全削除 / 👁 = サイレント非表示');
-                } else {
-                    alert('パスワードが違います。');
-                }
-            }
-        });
     </script>
-    <script src="article-common.js" defer></script>
 </body>
 </html>
