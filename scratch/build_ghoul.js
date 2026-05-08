@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+const fs = require('fs');
+
+const header = `<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -168,7 +170,9 @@
                 グールはまた、『Fallout 76』の「Burning Springs」アップデートにも登場し、Vault 76の居住者に賞金稼ぎのクエストを提供します。
             </p>
 
+`;
 
+const background = `
             <h2 id="background">背景 (Background)</h2>
             <p>21世紀のいつかに生まれたクーパーは、やがてバーブという女性に出会い、彼女の常に正しいと信じることを行おうとする決意に惹かれ恋に落ちました。クーパーはカタリナでの休暇中、彼が「カモメの糞まみれ」だったと記憶する岩場に沿った「ロマンチックなポイント」と表現する場所へ行き、バーブにプロポーズしました。とはいえ、プロポーズは成功し、バーブはそれを受け入れて彼と結婚しました。2人の間には、2065年4月14日に生まれた娘のジェイニーがいました。</p>
 
@@ -313,7 +317,9 @@
             <p>ついに、グールは家族が保存されているはずの冷凍チャンバー室に到着しました。しかし、妻と娘のために用意されたポッドは空でした。しかし、バーブのポッドの中には「コロラドは素晴らしいアイデアだった」というメッセージが書かれたコロラドの絵葉書が入っており、逮捕直前のクーパーの次の目的地への提案への言及であるようでした。ハウスは虚しい希望を抱いているクーパーをたしなめようとしましたが、クーパーは代わりに、200年ぶりに家族がまだ生きていることを知ったとハウスに告げ、新たな希望を見出しました。その後、グールはPip-Boyを放棄し、エンクレイヴが依然として彼らとグールの家族の両方にとって脅威であるというハウスの警告にもかかわらず、ハウスと協力し続けることを拒否しました。</p>
 
             <p>ニューベガスを出発し、グールはバーブとジェイニーを探してドッグミートと共にコロラドへ向かいました。</p>
+`;
 
+const inTheTvSeries = `
             <h2 id="in-the-tv-series">TVシリーズでの活躍</h2>
 
             <div class="quote-box">
@@ -487,7 +493,9 @@
             <p>ついに、グールはバーブとジェイニーのクライオ・ポッドが入っている部屋を見つけます。彼の命令で、ハウスはポッドを開けますが、両方とも空です。グールは最初打ちのめされますが、バーブのポッドの床に「コロラドは素晴らしいアイデアだった」というメッセージが書かれたコロラドの絵葉書を見つけ、新たな希望を見出します。これは逮捕直前のクーパーの次の目的地への提案への言及であるようです。ハウスはクーパーが偽りの希望を抱いているとたしなめようとしますが、クーパーは彼を拒絶し、200年ぶりに家族がまだ生きていることが分かったとハウスに告げます。グールはその後Pip-Boyを放棄し、エンクレイヴが彼らとグールの家族の両方にとって依然として脅威であるというハウスの警告にもかかわらず、ハウスと協力し続けることを拒否します。</p>
 
             <p>ニューベガスを出発し、グールはバーブとジェイニーを探してドッグミートと共にコロラドへ向かいます。</p>
+`;
 
+const restOfContent = `
             <h2 id="personality">性格 (Personality)</h2>
             <img src="images/note_extracted/the-ghoul/fotv_official_trailer_still_120.png" alt="バーブにキスするクーパー">
             <p class="img-caption">バーブにキスをするクーパー</p>
@@ -741,14 +749,14 @@
                     list.innerHTML = '<div class="comment-empty">まだコメントがありません。</div>';
                     return;
                 }
-                list.innerHTML = data.map(c => `
+                list.innerHTML = data.map(c => \`
                     <div class="comment-item">
                         <div class="comment-meta">
-                            <span>${new Date(c.created_at).toLocaleDateString('ja-JP')}</span>
+                            <span>\${new Date(c.created_at).toLocaleDateString('ja-JP')}</span>
                         </div>
-                        <div class="comment-body">${c.content.replace(/</g, '&lt;')}</div>
+                        <div class="comment-body">\${c.content.replace(/</g, '&lt;')}</div>
                     </div>
-                `).join('');
+                \`).join('');
             }
 
             window.submitComment = async function() {
@@ -776,3 +784,6 @@
     <script src="article-common.js" defer></script>
 </body>
 </html>
+`;
+
+fs.writeFileSync('f:/Fallout/the-ghoul.html', header + background + inTheTvSeries + restOfContent);
