@@ -139,6 +139,11 @@
             border-radius: 4px;
         }
 
+        .like-button.liked {
+            background: var(--accent-color);
+            color: var(--bg-color);
+        }
+
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -211,9 +216,29 @@
         @media (max-width: 768px) {
             .container { grid-template-columns: 1fr; }
         }
+
+        /* Lightbox */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; border: 2px solid var(--accent-color); }
+
+        .comments-list { display: flex; flex-direction: column; gap: 10px; }
+        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px; border-radius: 0 4px 4px 0; }
+        .comment-time { font-size: 0.8em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-delete-btn { background: none; border: none; cursor: pointer; color: var(--accent-color); }
     </style>
 </head>
-<body data-article-id="note_arcade-gannon">
+<body data-article-id="note_arcade-gannon" data-article-category="人物" data-article-appearance="Fallout: New Vegas">
     <div class="container">
         <!-- Sidebar -->
         <aside class="infobox">
@@ -231,7 +256,7 @@
         <main class="content">
             <div class="action-header">
                 <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
-                <button class="like-button">
+                <button class="like-button" onclick="toggleLike(this)">
                     <span class="heart">♡</span> <span class="like-count">0</span>
                 </button>
             </div>
@@ -245,7 +270,7 @@
             <h2>経歴</h2>
             <h3>エンクレイヴでの生活</h3>
             <p>
-                エンクレイヴの士官であったゲノン・シニアの一人息子として、アーケードは2245年から2246年頃、選ばれし者がオイルリグを破壊した数年後のナヴァロ軍事基地で生まれました。幼い頃に父親を亡くし、母親と強い絆を築きましたが、本人の言葉によれば、その死を乗り越えることはありませんでした。父親が戦前・戦後の世界で人道に対する罪を犯したファシスト的な準軍事組織のメンバーであったという事事実、彼の心に大きな影を落としています。さらに、父親の死は任務中に発生し、その正確な状況は残されたメンバーたちからも彼に明かされることはありませんでした。
+                エンクレイヴの士官であったゲノン・シニアの一人息子として、アーケードは2245年から2246年頃、選ばれし者がオイルリグを破壊した数年後のナヴァロ軍事基地で生まれました。幼い頃に父親を亡くし、母親と強い絆を築きましたが、本人の言葉によれば、その死を乗り越えることはありませんでした。父親が戦前・戦後の世界で人道に対する罪を犯したファシスト的な準軍事組織のメンバーであったという事実は、彼の心に大きな影を落としています。さらに、父親の死は任務中に発生し、その正確な状況は残されたメンバーたちからも彼に明かされることはありませんでした。
             </p>
             <p>
                 その後、ナヴァロ基地が新カリフォルニア共和国（NCR）の攻撃を受けて壊滅する直前、アーケードと母親、そして父親の部下であった数人の兵士たちは基地を脱出しました。彼らはナヴァロを逃れた後もブラザーフッド・オブ・スティール（BoS）による追跡の危険にさらされ続け、NCRの領土内へ南下して身元を隠しながら統合を試みました。やがてアーケードはアポカリプスの使徒と接触して加入し、人々を助けたいという願いと学問への才能を組み合わせる道を見出しました。
@@ -456,6 +481,11 @@
         </main>
     </div>
 
+    <!-- Lightbox Overlay -->
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="拡大画像">
+    </div>
+
     <!-- Supabase Scripts -->
     <script>
         const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
@@ -478,30 +508,88 @@
         }
 
         function updateLikeButton(btn, isLiked, count) {
-            btn.querySelector('.heart').textContent = isLiked ? '♥' : '♡';
-            btn.querySelector('.like-count').textContent = count;
-            btn.style.background = isLiked ? 'var(--accent-color)' : 'transparent';
-            btn.style.color = isLiked ? 'var(--bg-color)' : 'var(--accent-color)';
+            const heart = btn.querySelector('.heart');
+            const countSpan = btn.querySelector('.like-count');
+            if (isLiked) {
+                btn.classList.add('liked');
+                heart.textContent = '♥';
+            } else {
+                btn.classList.remove('liked');
+                heart.textContent = '♡';
+            }
+            countSpan.textContent = count;
         }
 
-        async function loadComments() {
-            const articleId = document.body.getAttribute('data-article-id');
-            const { data, error } = await supabaseClient.from('comments').select('*').eq('article_id', articleId).order('created_at', { ascending: false });
-            const list = document.getElementById('comments-list');
-            if (error || !data) { list.innerHTML = 'Error loading comments.'; return; }
-            list.innerHTML = data.map(c => `<div style="border-left:2px solid var(--accent-color); padding:10px; margin:10px 0; background:rgba(255,255,255,0.05);">${c.content}</div>`).join('');
-        }
-
+        // 文字数カウンター
         function updateCharCount() {
             const len = document.getElementById('comment-input').value.length;
             document.getElementById('char-count').textContent = len;
         }
 
+        // 相対時刻
+        function relativeTime(isoStr) {
+            const diff = (Date.now() - new Date(isoStr).getTime()) / 1000;
+            if (diff < 60) return 'たった今';
+            if (diff < 3600) return Math.floor(diff / 60) + '分前';
+            if (diff < 84600) return Math.floor(diff / 3600) + '時間前';
+            return new Date(isoStr).toLocaleDateString('ja-JP');
+        }
+
+        // コメント一覧表示
+        function renderComments(comments) {
+            const list = document.getElementById('comments-list');
+            if (!list) return;
+            if (comments.length === 0) {
+                list.innerHTML = '<div class="comment-empty">まだコメントがありません。</div>';
+                return;
+            }
+            list.innerHTML = comments.map(c => `
+                <div class="comment-item">
+                    <div class="comment-time">${relativeTime(c.created_at)}</div>
+                    <div class="comment-body">${c.content.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+                </div>
+            `).join('');
+        }
+
+        // コメント読み込み
+        async function loadComments() {
+            const articleId = document.body.getAttribute('data-article-id');
+            const { data, error } = await supabaseClient.from('comments').select('*').eq('article_id', articleId).order('created_at', { ascending: false });
+            if (error) return;
+            renderComments(data || []);
+        }
+
+        // コメント投稿
+        async function submitComment() {
+            const input = document.getElementById('comment-input');
+            const content = input.value.trim();
+            if (!content) return;
+            
+            const articleId = document.body.getAttribute('data-article-id');
+            const { error } = await supabaseClient.from('comments').insert({
+                article_id: articleId,
+                content: content
+            });
+            if (error) { alert('投稿に失敗しました。'); return; }
+            input.value = '';
+            updateCharCount();
+            await loadComments();
+        }
+
         document.addEventListener('DOMContentLoaded', async () => {
             const articleId = document.body.getAttribute('data-article-id');
             const { data } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single();
-            updateLikeButton(document.querySelector('.like-button'), localStorage.getItem(articleId + '_liked') === 'true', data?.like_count || 0);
+            const isLiked = localStorage.getItem(articleId + '_liked') === 'true';
+            updateLikeButton(document.querySelector('.like-button'), isLiked, data?.like_count || 0);
             loadComments();
+
+            // Lightbox
+            document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => {
+                img.addEventListener('click', () => {
+                    document.getElementById('lightbox-img').src = img.src;
+                    document.getElementById('lightbox').classList.add('active');
+                });
+            });
         });
     </script>
 </body>
