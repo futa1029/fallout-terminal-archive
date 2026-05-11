@@ -228,8 +228,7 @@ const loreEntries = [
         appearance: [
             "Fallout 4"
         ],
-        date: "2026-04-20",
-        isDraft: true
+        date: "2026-05-11"
     },
     {
         name: "アビゲイル・\"アビー\"・シン",
