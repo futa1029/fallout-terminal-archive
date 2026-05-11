@@ -179,7 +179,7 @@ const loreEntries = [
                 name: "アバナシー・ファーム",
                 yomi: "アバナシー・ファーム",
                 url: "abernathy-farm.html",
-                category: "拠点/ダンジョン",
+                category: "場所",
                 appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true

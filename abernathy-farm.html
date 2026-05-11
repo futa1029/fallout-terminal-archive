@@ -6,14 +6,14 @@
     <!-- Open Graph / Discord Embed -->
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Overseer Mohi's Terminal">
-    <meta property="og:title" content="Ulysses | Overseer Mohi's Terminal">
-    <meta property="og:description" content="UlyssesのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta property="og:image" content="images/placeholder.jpg">
-    <meta property="og:url" content="https://www.fallout-jp.com/ulysses.html">
+    <meta property="og:title" content="Abernathy farm | Overseer Mohi's Terminal">
+    <meta property="og:description" content="Abernathy farmのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta property="og:image" content="images/abernathy-farm/Abernathy_farm3.jpg">
+    <meta property="og:url" content="https://www.fallout-jp.com/abernathy-farm.html">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ulysses | Overseer Mohi's Terminal">
-    <meta name="twitter:description" content="UlyssesのFalloutロア記事。Overseer Mohi's Terminalで読む。">
-    <meta name="twitter:image" content="images/placeholder.jpg">
+    <meta name="twitter:title" content="Abernathy farm | Overseer Mohi's Terminal">
+    <meta name="twitter:description" content="Abernathy farmのFalloutロア記事。Overseer Mohi's Terminalで読む。">
+    <meta name="twitter:image" content="images/abernathy-farm/Abernathy_farm3.jpg">
     <!-- Supabase CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -57,7 +57,6 @@
             line-height: 1.4;
         }
 
-
         /* Sidebar InfoBox */
         .infobox {
             background: var(--panel-bg);
@@ -73,6 +72,8 @@
             width: 100%;
             border: 1px solid #555;
             margin-bottom: 15px;
+            aspect-ratio: 16/9;
+            object-fit: cover;
         }
 
         .infobox-row {
@@ -389,20 +390,48 @@
             font-family: 'Share Tech Mono', monospace;
             padding: 10px 0;
         }
+
+        /* Gallery Styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .gallery-item {
+            border: 1px solid #444;
+            background: #1a1a1a;
+            padding: 5px;
+            border-radius: 4px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+        .gallery-caption {
+            font-size: 0.85em;
+            color: #ccc;
+            text-align: center;
+            margin-top: 5px;
+            line-height: 1.4;
+        }
     </style>
     <meta name="article-status" content="draft">
 </head>
-<body data-article-category="拠点/ダンジョン" data-article-appearance="Fallout 4">
+<body data-article-category="場所" data-article-appearance="Fallout 4">
     <div class="container">
         <!-- Sidebar -->
         <aside class="infobox">
-            <h3 style="margin-top:0; text-align:center;">Ulysses</h3>
-            <img src="images/note_extracted/abernathy-farm/img_main.net" alt="Abernathy farm" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
-            <div class="infobox-row"><span class="infobox-label">種族</span><span>人間 (アバナシー一家)</span></div>
-<div class="infobox-row"><span class="infobox-label">区分</span><span>農場 / 大規模居住地</span></div>
-<div class="infobox-row"><span class="infobox-label">所在地</span><span>サンクチュアリの南</span></div>
-<div class="infobox-row"><span class="infobox-label">特記事項</span><span>極めて高い建築の高さ制限</span></div>
-</aside>
+            <h3 style="margin-top:0; text-align:center;">Abernathy farm</h3>
+            <img src="images/abernathy-farm/Abernathy_farm3.jpg" alt="Abernathy farm" onerror="this.onerror=null; this.src='images/placeholder.jpg';">
+            <div class="infobox-row"><span class="infobox-label">区分</span><span>農場</span></div>
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>連邦</span></div>
+            <div class="infobox-row"><span class="infobox-label">人口</span><span>3</span></div>
+            <div class="infobox-row"><span class="infobox-label">主要人物</span><span>ブレイク・アバナシー<br>コンニー・アバナシー</span></div>
+            <div class="infobox-row"><span class="infobox-label">施設</span><span>ケミストリーステーション<br>クッキングステーション<br>ワークショップ</span></div>
+        </aside>
 
         <!-- Main Content -->
         <main class="content">
@@ -415,20 +444,130 @@
 
             <h1>Abernathy farm<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">アバナシー・ファーム</span></h1>
 
-<h2>概要</h2>
-<p>アバナシー・ファームは、巨大な戦前の高圧鉄塔の根元を利用して作られた、ブレイク・アバナシー一家が経営する農場です。序盤に訪れる居住地の一つです。</p>
+            <div class="quote-box">
+                「土地を耕し、一日中働き、自分の仕事を愛さなきゃならない。そうじゃない奴は長続きしないさ。」<br>
+                — <cite>ブレイク・アバナシー</cite>
+            </div>
 
-<h2>詳細</h2>
-<p>アバナシー一家は、一人娘のメアリーをレイダーの集団（アックアックの一味）に殺害され、形見のロケットを奪われるという悲劇に見舞われています。プレイヤーがUSAF衛星通信基地オリビアからそのロケットを取り戻してあげることで、彼らは同盟を誓い、この広大な農場がプレイヤーの居住地（ワークショップ）として解放されます。</p>
-<p>このロケーションの最大の特徴は「建築できる高さの限界値が異常に高い」ことです。巨大な鉄塔を利用しているという設定を反映して、なんと通常の居住地の数倍の高さとなる「超高層の塔や空中要塞」をクラフト（建築）することが可能になっており、多くのクラフターがここで奇抜な高層要塞を建設しています。</p>
+            <p>アバナシー・ファームは、2287年の連邦に位置するロケーションであり、居住地となる可能性を秘めた場所です。</p>
 
+            <h2>背景</h2>
+            <p>アバナシー・ファームは、戦前の巨大な高圧鉄塔の周囲に建設された農場であり、ブレイク・アバナシー、コンニー・アバナシー、そして娘のルーシーとメアリーからなるアバナシー一家が居住・経営しています。<br>
+            この農場は、近くのUSAF衛星通信基地オリビアを拠点とするレイダー軍団のリーダー、アックアックによる定期的な略奪の被害を受けている農場の一つです。<br>
+            唯一の生存者がアバナシー・ファームに到着する頃には、これらの強請りが暴力に発展し、メアリーが亡くなっています。</p>
 
-<h2>感想</h2>
-<div class="quote-box" style="margin-top: 40px; border-top: 3px solid var(--accent-color);"><p class="quote-text">娘を殺された農夫の悲痛な依頼から始まり、ミニガン持ちのレイダー討伐へと誘われる序盤の王道クエストの起点。広大なテイト畑と、FO4界隈で有名な「どこまで高く積めるか限界に挑む高層建築の聖地」としての顔を持つ、愛着の湧きやすい農場です。</p></div>
+            <h2>レイアウト</h2>
+            <p>アバナシー・ファームは、テイトやメロンが栽培されている広大で一部未開墾のエリアをカバーしており、プレイヤーはルーシーからキャップと引き換えに収穫した作物を渡すことができます。<br>
+            農家は、高圧鉄塔のフレームに組み込まれた2階建ての仮設構造物です。<br>
+            内部にはすでに照明が点灯していますが、使用可能な電力はありません。</p>
+
+            <h3>居住地としての特徴</h3>
+            <p>「Returning the Favor」を完了すると、アバナシー・ファームが利用可能になります。<br>
+            居住地は適度な広さで、すでに2つの作物用区画が指定されていますが、他の作物を植えたり水を引いたりするための耕作地がたくさん残っています。<br>
+            南東には広大な土地があり、農業や入居者の住宅に最適です。<br>
+            しかし、農場の周囲にはジャンクが少ないため、建設には供給ラインに頼る必要があるかもしれません。</p>
+            <p>この農場がある地域は特に危険ではないため、居住地への襲撃中に攻撃してくる敵は比較的低レベルです。<br>
+            しかし、攻撃を受ける際は、メロン畑の向こう側の北、テイト畑の向こう側の南、そして家のすぐ東から攻撃が来ます。</p>
+
+            <h2>居住者（インハビタンツ）</h2>
+            <p>アバナシー・ファームに暮らす、あるいはかつて暮らしていた人々や動物たちです：</p>
+            <ul>
+                <li><strong>ブレイク・アバナシー (Blake Abernathy)</strong> - 一家の家長。</li>
+                <li><strong>コンニー・アバナシー (Connie Abernathy)</strong> - ブレイクの妻。商人。</li>
+                <li><strong>ルーシー・アバナシー (Lucy Abernathy)</strong> - ブレイクの生き残った娘。メロンをキャップと交換する非公式クエストを出す。</li>
+                <li><strong>メイジー (Maisie)</strong> - タビー（縞模様）の飼い猫。</li>
+                <li><strong>クララベル (Clarabell)</strong> - アバナシー家のバラモン。</li>
+                <li><strong>メアリー・アバナシー (Mary Abernathy)</strong> - ブレイクの亡くなった娘。アックアックの襲撃の際に殺害された。</li>
+            </ul>
+
+            <h2>関連クエスト</h2>
+            <ul>
+                <li><strong>Returning the Favor (恩返し)</strong>: ブレイク・アバナシーはプレイヤーに対し、娘を殺害し、近くのUSAF衛星通信基地オリビアに立てこもっているレイダーから、亡き娘のロケットを取り戻すよう依頼します。ロケットは、ミニガンを操るギャングのリーダー、アックアックによって厳重に守られています。</li>
+                <li><strong>Ghoul Problem (グールの問題)</strong>: 入居者が、近くの場所を恐怖に陥れているフェラル・グールの対処を手伝ってほしいとプレイヤーに依頼します。</li>
+                <li><strong>Kidnapping (誘拐)</strong></li>
+                <li><strong>Raider Troubles (レイダーのトラブル)</strong></li>
+                <li><strong>Lucy Abernathy (quest)</strong>: ルーシー・アバナシーは、プレイヤーが持ってきたメロン1つにつきキャップを支払います。この非公式クエストは「Returning the Favor」を完了するまで繰り返すことができます。</li>
+            </ul>
+
+            <h2>注釈 (Notes)</h2>
+            <ul>
+                <li>ここではアバナシー家の人々の間でユニークなNPC会話を聞くことができます。</li>
+                <li>アバナシー・ファームは、レイダーのキャンプからロケットを回収する（Returning the Favor）か、アバナシー一家を追い払うかの2つの方法で居住地にすることができます。</li>
+                <li>アバナシー・ファームは、フィンチ・ファームの13階、スペクタクル・アイランドの10階を凌ぐ、20階という可能な限り高い建築制限を持っています。</li>
+                <li>人間の入居者とは異なり、メイジーとクララベルは居住地への襲撃中に死亡すると永久に死んだままになります。また、時間の経過とともに失った体力を回復することもありません。<br>
+                クララベルは餌箱に反応しません。もし餌箱を設置しても、彼女は他のすべてのバラモンとは異なり、今の場所に留まります。そのため、彼女を囲むフェンスを解体しても、その場所に留まったままになります。</li>
+                <li>メアリーの墓は、居住地の北西、建築エリアのすぐ外に見ることができます。墓には印がなく、泥の上には濡れた足跡があり、最近埋葬されたことを示しています。墓の上にはドライフラワーの花束が置かれています。</li>
+                <li>アバナシー・ファームは、サンクチュアリやレッドロケット・トラックストップのために作物を集めることができる、最初で最も安全な場所の一つです。</li>
+                <li>主寝室にあるベッドとマットレスを解体することは不可能ですが、サイドの部屋にある独立したマットレスは解体することができます。</li>
+            </ul>
+
+            <h2>不具合 (Bugs)</h2>
+            <ul>
+                <li>[PC] アバナシー一家を居住地内の既存のベッドに割り当てると、他の入居者が様々なタスクに割り当てられなくなる不具合が発生する場合があります。</li>
+                <li>デフォルトで設置されている3つのベッドには不具合があり、居住地の幸福度を計算する際に屋外にあるとみなされます。これを修正するには、3つの新しいベッドを作成し、アバナシー一家（および募集した入居者）をプレイヤーが作成したベッドに割り当てる必要があります。<br>
+                あるいは、コンソールを開き、該当するベッドを選択して「disable」の後に「markfordelete」と入力することで修正できます。その後、新しいベッドを配置し、手動で割り当ててください。</li>
+                <li>入居者がタスクに割り当てられてから反応するまでの時間は、通常の居住地よりも大幅に長くなります。そのため、何も割り当てられないように見えることがあります。特定のリソースに割り当てられるまで、30秒から5分以上かかる場合があります。</li>
+                <li>既存の作物は、ワークベンチにアクセスできるようになった直後に一度引き抜いて植え直す必要があるかもしれません。そうしないと、その後の訪問で割り当てができなくなる可能性があります。</li>
+            </ul>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Abernathy_frm.jpg" alt="Abernathy farm">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Abernathy_farm2.jpg" alt="内部">
+                    <div class="gallery-caption">内部</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Abernathy_farm_interior.jpg" alt="内部">
+                    <div class="gallery-caption">内部</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Abernathy_farm6.jpg" alt="メロン農場">
+                    <div class="gallery-caption">メロン農場</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Maisie.png" alt="一家の猫、メイジー">
+                    <div class="gallery-caption">一家の猫、メイジー</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Fo4_Clarabell_feeding.png" alt="食事を楽しむクララベル">
+                    <div class="gallery-caption">食事を楽しむクララベル</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/FO4_Mary_Abernathy_grave.png" alt="農場の裏にあるメアリー・アバナシーの墓">
+                    <div class="gallery-caption">農場の裏にあるメアリー・アバナシーの墓</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/FO4_Abernathy_farm_sunrise.jpg" alt="日の出の農場">
+                    <div class="gallery-caption">日の出の農場</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/FO4_Abernathy_Family.jpg" alt="アバナシー一家">
+                    <div class="gallery-caption">アバナシー一家</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Chemistry_station_Abernathy_farm.jpg" alt="ケミストリーステーション">
+                    <div class="gallery-caption">ケミストリーステーション</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Cooking_station_Abernathy_farm.jpg" alt="クッキングステーション">
+                    <div class="gallery-caption">クッキングステーション</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/abernathy-farm/Workshop_Abernathy_farm.jpg" alt="ワークショップ">
+                    <div class="gallery-caption">ワークショップ</div>
+                </div>
+            </div>
+
+            <div class="quote-box" style="margin-top: 40px; border-top: 3px solid var(--accent-color);">
+                <p class="quote-text">娘を殺された農夫の悲痛な依頼から始まり、ミニガン持ちのレイダー討伐へと誘われる序盤の王道クエストの起点。広大なテイト畑と、FO4界隈で有名な「どこまで高く積めるか限界に挑む高層建築の聖地」としての顔を持つ、愛着の湧きやすい農場です。一家の歴史が刻まれたこの場所は、連邦の再建を目指す者にとって忘れられない拠点となるでしょう。</p>
+            </div>
 
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
                 <div style="margin-bottom: 10px;">
-                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout4</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
+                    TAGS: <span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Fallout4</span><span style="background:#222; padding:2px 5px; border-radius:3px; color:var(--accent-color); margin-right:5px;">#Lore</span>
                 </div>
                 
                 <!-- 著作権表示 -->
@@ -711,8 +850,7 @@
                     _isAdminMode = true;
                     localStorage.setItem(ADMIN_TOKEN_KEY, pw);
                     loadComments();
-                    alert('管理者モードに入りました。
-🗑 = 完全削除 / 👁 = サイレント非表示');
+                    alert('管理者モードに入りました。\n🗑 = 完全削除 / 👁 = サイレント非表示');
                 } else {
                     alert('パスワードが違います。');
                 }

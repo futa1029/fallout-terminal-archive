@@ -237,7 +237,7 @@ const manualEntries = [
         name: "アバナシー・ファーム",
         yomi: "アバナシー・ファーム",
         url: "abernathy-farm.html",
-        category: "拠点/ダンジョン",
+        category: "場所",
         appearance: [
             "Fallout 4"
         ],
