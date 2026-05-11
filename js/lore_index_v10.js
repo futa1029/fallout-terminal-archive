@@ -21,8 +21,7 @@ const loreEntries = [
                 url: "98-nar-regional.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
+                date: "2026-05-10"
             },
             {
                 name: "アーロンホルト農場",
@@ -181,8 +180,7 @@ const loreEntries = [
                 url: "abernathy-farm.html",
                 category: "場所",
                 appearance: ["Fallout 4"],
-                date: "2026-04-20",
-                isDraft: true
+                date: "2026-05-11"
             },
             {
                 name: "アビゲイル・\"アビー\"・シン",
