@@ -5,47 +5,7 @@ const loreEntries = [
                 url: "10mm-pistol.html",
                 category: "武器",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-12-22"
-            },
-            {
-                name: ".44ピストル",
-                yomi: ".44ピストル",
-                url: "44-pistol.html",
-                category: "武器",
-                appearance: ["Fallout 76","Fallout 4"],
-                date: "2025-12-21"
-            },
-            {
-                name: "98 NARリージョナル",
-                yomi: "98 NARリージョナル",
-                url: "98-nar-regional.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-05-10"
-            },
-            {
-                name: "アーロン・キンバル",
-                yomi: "アーロン・キンバル",
-                url: "aaron-kimball.html",
-                category: "人物",
-                appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2026-02-16"
-            },
-            {
-                name: "アーロンホルト農場",
-                yomi: "アーロンホルト農場",
-                url: "aaron-holt-farm.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2025-10-27"
-            },
-            {
-                name: "放棄された湿原の町",
-                yomi: "放棄された湿原の町",
-                url: "abandoned-bog-town.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-22",
                 isDraft: true
             },
             {
@@ -171,15 +131,7 @@ const loreEntries = [
                 url: "abernathy-farm.html",
                 category: "場所",
                 appearance: ["Fallout 4"],
-                date: "2026-05-11"
-            },
-            {
-                name: "アビゲイル・"アビー"・シン",
-                yomi: "アビゲイル・"アビー"・シン",
-                url: "abigayle-singh.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-05-11",
                 isDraft: true
             },
             {
@@ -215,15 +167,7 @@ const loreEntries = [
                 url: "ada.html",
                 category: "人物",
                 appearance: ["Fallout 4"],
-                date: "2026-05-06"
-            },
-            {
-                name: "Adam",
-                yomi: "Adam",
-                url: "adam-tv-series.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-05-06",
                 isDraft: true
             },
             {
@@ -232,23 +176,7 @@ const loreEntries = [
                 url: "addictol.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2025-12-13"
-            },
-            {
-                name: "アデレード",
-                yomi: "アデレード",
-                url: "adelaide.html",
-                category: "人物",
-                appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2026-01-24"
-            },
-            {
-                name: "アデレードのダイナー",
-                yomi: "アデレードのダイナー",
-                url: "adelaides-diner.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-13",
                 isDraft: true
             },
             {
@@ -284,15 +212,7 @@ const loreEntries = [
                 url: "agatha.html",
                 category: "人物",
                 appearance: ["Fallout 3"],
-                date: "2026-05-06"
-            },
-            {
-                name: "航空券検査員",
-                yomi: "航空券検査員",
-                url: "airline-ticket-inspector.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-05-06",
                 isDraft: true
             },
             {
@@ -355,31 +275,7 @@ const loreEntries = [
                 url: "ali.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-10-26"
-            },
-            {
-                name: "エイリアンブラスター",
-                yomi: "エイリアンブラスター",
-                url: "alien-blaster.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76"],
-                date: "2025-12-24"
-            },
-            {
-                name: "エイリアンの食用生物",
-                yomi: "エイリアンの食用生物",
-                url: "alien-edible-creatures.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76","Fallout 3"],
-                date: "2026-01-06"
-            },
-            {
-                name: "エイリアン（概要）",
-                yomi: "エイリアン（概要）",
-                url: "aliens-fo76.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-26",
                 isDraft: true
             },
             {
@@ -388,15 +284,7 @@ const loreEntries = [
                 url: "alistair.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-02-05"
-            },
-            {
-                name: "アレゲニー山脈",
-                yomi: "アレゲニー山脈",
-                url: "allegheny-mountains.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-05",
                 isDraft: true
             },
             {
@@ -432,15 +320,7 @@ const loreEntries = [
                 url: "alpine-river-cabin.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-11-02"
-            },
-            {
-                name: "アルパイン・リバー・キャビンズ",
-                yomi: "アルパイン・リバー・キャビンズ",
-                url: "alpine-river-cabins.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-02",
                 isDraft: true
             },
             {
@@ -494,15 +374,7 @@ const loreEntries = [
                 url: "amy-kelly.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-30"
-            },
-            {
-                name: "エイミー・L・ケリー",
-                yomi: "エイミー・L・ケリー",
-                url: "amy-kerry.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-30",
                 isDraft: true
             },
             {
@@ -511,15 +383,7 @@ const loreEntries = [
                 url: "anchor-farm.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 3"],
-                date: "2025-10-17"
-            },
-            {
-                name: "アンドリュー・ローズ",
-                yomi: "アンドリュー・ローズ",
-                url: "andrew-rhodes.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-17",
                 isDraft: true
             },
             {
@@ -546,15 +410,7 @@ const loreEntries = [
                 url: "angler.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-01-05"
-            },
-            {
-                name: "アン・リッツィンガー",
-                yomi: "アン・リッツィンガー",
-                url: "anne-litzinger.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-05",
                 isDraft: true
             },
             {
@@ -617,15 +473,7 @@ const loreEntries = [
                 url: "appalachian-radio.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2026-01-22"
-            },
-            {
-                name: "水上トイレ小屋",
-                yomi: "水上トイレ小屋",
-                url: "aquatic-outhouse.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-22",
                 isDraft: true
             },
             {
@@ -634,31 +482,7 @@ const loreEntries = [
                 url: "aradesh.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2026-02-11"
-            },
-            {
-                name: "アーケード・ゲノン",
-                yomi: "アーケード・ゲノン",
-                url: "arcade-gannon.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
-                date: "2026-05-09"
-            },
-            {
-                name: "アーチェリー・セット",
-                yomi: "アーチェリー・セット",
-                url: "archery-set.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2025-12-17"
-            },
-            {
-                name: "アーチボルド・サックス",
-                yomi: "アーチボルド・サックス",
-                url: "archibald-sachs.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-02-11",
                 isDraft: true
             },
             {
@@ -703,15 +527,7 @@ const loreEntries = [
                 url: "aric-4.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-05-09"
-            },
-            {
-                name: "Aries",
-                yomi: "Aries",
-                url: "aries.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-05-09",
                 isDraft: true
             },
             {
@@ -720,39 +536,7 @@ const loreEntries = [
                 url: "arktos-pharma-biome-research-institute.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-01-02"
-            },
-            {
-                name: "アークトス・ファーマ (企業)",
-                yomi: "アークトス・ファーマ (企業)",
-                url: "arktos-pharma-corporate.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2026-01-04"
-            },
-            {
-                name: "アークトス・ファーマ",
-                yomi: "アークトス・ファーマ",
-                url: "arktos-pharma.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2026-01-01"
-            },
-            {
-                name: "アーマー・エース",
-                yomi: "アーマー・エース",
-                url: "armor-ace.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "Arnold",
-                yomi: "Arnold",
-                url: "arnold-galaxy-news-network.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-01-02",
                 isDraft: true
             },
             {
@@ -842,15 +626,7 @@ const loreEntries = [
                 url: "ash-rose.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-26"
-            },
-            {
-                name: "アシュモア",
-                yomi: "アシュモア",
-                url: "ashmore.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-26",
                 isDraft: true
             },
             {
@@ -868,23 +644,7 @@ const loreEntries = [
                 url: "assaultron.html",
                 category: "武器",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2025-11-30"
-            },
-            {
-                name: "Recovered Assaultron Head (回収されたアサルトロン頭部)",
-                yomi: "Recovered Assaultron Head (回収されたアサルトロン頭部)",
-                url: "assaultron_head.html",
-                category: "武器",
-                appearance: ["Fallout 4","Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "助監督",
-                yomi: "助監督",
-                url: "assistant-director.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-30",
                 isDraft: true
             },
             {
@@ -1037,31 +797,7 @@ const loreEntries = [
                 url: "b-o-b-cooking-station.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-12-08"
-            },
-            {
-                name: "B.O.S.アウトキャスト",
-                yomi: "B.O.S.アウトキャスト",
-                url: "b-o-s-outcast.html",
-                category: "勢力",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2026-02-09"
-            },
-            {
-                name: "バックパック",
-                yomi: "バックパック",
-                url: "backpack.html",
-                category: "アイテム",
-                appearance: ["Fallout 76"],
-                date: "2025-12-26"
-            },
-            {
-                name: "BADTFL地方局",
-                yomi: "BADTFL地方局",
-                url: "badtfl-regional-office.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-12-08",
                 isDraft: true
             },
             {
@@ -1088,15 +824,7 @@ const loreEntries = [
                 url: "banana-yucca-fruit.html",
                 category: "植物",
                 appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2026-01-11"
-            },
-            {
-                name: "Bar patron",
-                yomi: "Bar patron",
-                url: "bar-patron-tv-series.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-01-11",
                 isDraft: true
             },
             {
@@ -1240,15 +968,7 @@ const loreEntries = [
                 url: "beaver.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-01-09"
-            },
-            {
-                name: "ベッカー農場",
-                yomi: "ベッカー農場",
-                url: "becker-farm.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-09",
                 isDraft: true
             },
             {
@@ -1266,15 +986,7 @@ const loreEntries = [
                 url: "beckett.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-02-08"
-            },
-            {
-                name: "Beckley Mine Exhibit",
-                yomi: "Beckley Mine Exhibit",
-                url: "beckley-mine-exhibit.html",
-                category: "場所",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-02-08",
                 isDraft: true
             },
             {
@@ -1454,15 +1166,7 @@ const loreEntries = [
                 url: "big-al-s-tattoo-parlor.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2026-01-13"
-            },
-            {
-                name: "ビッグ・アルのタトゥーパーラー",
-                yomi: "ビッグ・アルのタトゥーパーラー",
-                url: "big-als-tattoo.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-13",
                 isDraft: true
             },
             {
@@ -1588,23 +1292,7 @@ const loreEntries = [
                 url: "billboard-junk-camp.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-02-06"
-            },
-            {
-                name: "ビリングス農家",
-                yomi: "ビリングス農家",
-                url: "billings-homestead.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "ビリー",
-                yomi: "ビリー",
-                url: "billy-harpers-ferry.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-06",
                 isDraft: true
             },
             {
@@ -1613,22 +1301,6 @@ const loreEntries = [
                 url: "biplane-crash-anchor-farm.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "バードハウス・リッジ",
-                yomi: "バードハウス・リッジ",
-                url: "birdhouse-ridge.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "バーディ",
-                yomi: "バーディ",
-                url: "birdie-tv.html",
-                category: "人物",
-                appearance: ["Fallout TVシリーズ"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -1647,14 +1319,6 @@ const loreEntries = [
                 url: "birdwatchers-platform.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "誕生会に呼ばれた客たち",
-                yomi: "誕生会に呼ばれた客たち",
-                url: "birthday-party-guest.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -1682,23 +1346,7 @@ const loreEntries = [
                 url: "black-eyed-susan.html",
                 category: "植物",
                 appearance: ["Fallout 76"],
-                date: "2025-11-13"
-            },
-            {
-                name: "Black Mountain Ordnance Works",
-                yomi: "Black Mountain Ordnance Works",
-                url: "black-mountain-ordnance-works.html",
-                category: "未分類",
-                appearance: [],
-                date: "2026-04-20"
-            },
-            {
-                name: "ブラックマウンテン兵器工場",
-                yomi: "ブラックマウンテン兵器工場",
-                url: "black-mountain-ordnance.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-13",
                 isDraft: true
             },
             {
@@ -1707,23 +1355,7 @@ const loreEntries = [
                 url: "black-powder-blunderbuss.html",
                 category: "武器",
                 appearance: ["Fallout 76"],
-                date: "2025-12-27"
-            },
-            {
-                name: "黒色火薬ピストル",
-                yomi: "黒色火薬ピストル",
-                url: "black-powder-pistol.html",
-                category: "武器",
-                appearance: ["Fallout 76"],
-                date: "2025-12-29"
-            },
-            {
-                name: "ブラックアイ",
-                yomi: "ブラックアイ",
-                url: "blackeye.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-27",
                 isDraft: true
             },
             {
@@ -1768,22 +1400,6 @@ const loreEntries = [
                 url: "blight.html",
                 category: "植物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "ブラッドバグ",
-                yomi: "ブラッドバグ",
-                url: "blood-bug.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-02-04"
-            },
-            {
-                name: "ブラッドイーグル・キャンプ",
-                yomi: "ブラッドイーグル・キャンプ",
-                url: "blood-eagle-camp.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -1793,15 +1409,7 @@ const loreEntries = [
                 url: "blood-eagle.html",
                 category: "勢力",
                 appearance: ["Fallout 76"],
-                date: "2026-02-10"
-            },
-            {
-                name: "Bloodhound",
-                yomi: "Bloodhound",
-                url: "bloodhound-gleaming-depths.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-10",
                 isDraft: true
             },
             {
@@ -1809,22 +1417,6 @@ const loreEntries = [
                 yomi: "Bloodleaf",
                 url: "bloodleaf.html",
                 category: "植物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "血濡れ不屈ビルド",
-                yomi: "血濡れ不屈ビルド",
-                url: "bloody-indomitable-build.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2026-01-01"
-            },
-            {
-                name: "ブルーリッジ・バンクハウス",
-                yomi: "ブルーリッジ・バンクハウス",
-                url: "blue-ridge-bunkhouse.html",
-                category: "場所",
                 appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
@@ -1844,15 +1436,7 @@ const loreEntries = [
                 url: "blue-ridge-lodge.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-01"
-            },
-            {
-                name: "ボブ・スペンサー",
-                yomi: "ボブ・スペンサー",
-                url: "bob-spencer.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-12-01",
                 isDraft: true
             },
             {
@@ -1978,23 +1562,7 @@ const loreEntries = [
                 url: "bottle-cap.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-04"
-            },
-            {
-                name: "ボトル",
-                yomi: "ボトル",
-                url: "bottle.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-01-08"
-            },
-            {
-                name: "ボイルストンクラブ",
-                yomi: "ボイルストンクラブ",
-                url: "boylston-club.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-11-04",
                 isDraft: true
             },
             {
@@ -2003,31 +1571,7 @@ const loreEntries = [
                 url: "brahmin.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2026-01-05"
-            },
-            {
-                name: "脳みそキノコ",
-                yomi: "脳みそキノコ",
-                url: "brain-mushroom.html",
-                category: "植物",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2026-01-28"
-            },
-            {
-                name: "ブラムコ・ブランド・マック＆チーズ",
-                yomi: "ブラムコ・ブランド・マック＆チーズ",
-                url: "bramco-brand-mac-and-cheese.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-12-28"
-            },
-            {
-                name: "ブラムウェル",
-                yomi: "ブラムウェル",
-                url: "bramwell.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-05",
                 isDraft: true
             },
             {
@@ -2144,15 +1688,7 @@ const loreEntries = [
                 url: "brotherhood-of-steel.html",
                 category: "勢力",
                 appearance: ["Fallout 全般"],
-                date: "2026-05-03"
-            },
-            {
-                name: "ブラザーフッドのオフィサー（将校）",
-                yomi: "ブラザーフッドのオフィサー（将校）",
-                url: "brotherhood-officer.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-05-03",
                 isDraft: true
             },
             {
@@ -2197,15 +1733,7 @@ const loreEntries = [
                 url: "bubble-gum.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2026-02-03"
-            },
-            {
-                name: "バブルス",
-                yomi: "バブルス",
-                url: "bubbles.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-03",
                 isDraft: true
             },
             {
@@ -2223,14 +1751,6 @@ const loreEntries = [
                 url: "buds_buds.html",
                 category: "未分類",
                 appearance: [],
-                date: "2026-04-20"
-            },
-            {
-                name: "ケン・ユアーズ",
-                yomi: "ケン・ユアーズ",
-                url: "buds_full.html",
-                category: "人物",
-                appearance: ["Fallout 3"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -2240,22 +1760,6 @@ const loreEntries = [
                 url: "buffalo-gourd-seed.html",
                 category: "植物",
                 appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20"
-            },
-            {
-                name: "バファウト",
-                yomi: "バファウト",
-                url: "buffout.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-12-10"
-            },
-            {
-                name: "バンカーヒル",
-                yomi: "バンカーヒル",
-                url: "bunker-hill.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -2301,15 +1805,7 @@ const loreEntries = [
                 url: "butch-deloria.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2025-10-22"
-            },
-            {
-                name: "バズソー",
-                yomi: "バズソー",
-                url: "buzzsaw.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-22",
                 isDraft: true
             },
             {
@@ -2318,23 +1814,7 @@ const loreEntries = [
                 url: "c-a-m-p-mobile-platform-for-construction-assembly.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2025-12-24"
-            },
-            {
-                name: "Cabbage",
-                yomi: "Cabbage",
-                url: "cabbage.html",
-                category: "植物",
-                appearance: ["Fallout 2"],
-                date: "2026-04-20"
-            },
-            {
-                name: "カボット邸（キャボット邸）",
-                yomi: "カボット邸（キャボット邸）",
-                url: "cabot-house.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-12-24",
                 isDraft: true
             },
             {
@@ -2532,23 +2012,7 @@ const loreEntries = [
                 url: "cappy.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-01-09"
-            },
-            {
-                name: "キャプテン・コスモス",
-                yomi: "キャプテン・コスモス",
-                url: "captain-cosmos.html",
-                category: "記録",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2026-01-15"
-            },
-            {
-                name: "カーヘンジ",
-                yomi: "カーヘンジ",
-                url: "carhenge-fo76.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-09",
                 isDraft: true
             },
             {
@@ -2600,17 +2064,6 @@ const loreEntries = [
                 name: "carrie-boyd",
                 yomi: "carrie-boyd",
                 url: "carrie-boyd.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「長い茎に繊細な白い花をつけた標本。食用と思われ、農場で栽培されている変異ニンジンとの関連が疑われる。性質が不明なため、摂取には十分注意されたし。」<br>
-                <span style="font-size: 0.85em; color: #888;">— シニア・スクライブ ネリア（プリドウェン植物学ターミナル）</span>",
-                yomi: "「長い茎に繊細な白い花をつけた標本。食用と思われ、農場で栽培されている変異ニンジンとの関連が疑われる。性質が不明なため、摂取には十分注意されたし。」<br>
-                <span style="font-size: 0.85em; color: #888;">— シニア・スクライブ ネリア（プリドウェン植物学ターミナル）</span>",
-                url: "carrot-flower.html",
                 category: "人物",
                 appearance: ["Fallout 4"],
                 date: "2026-04-20",
@@ -2685,14 +2138,6 @@ const loreEntries = [
                 url: "catarax.html",
                 category: "人物",
                 appearance: ["Fallout 4"],
-                date: "2026-04-20"
-            },
-            {
-                name: "キャシー",
-                yomi: "キャシー",
-                url: "cathy-tv-series.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -2711,15 +2156,7 @@ const loreEntries = [
                 url: "cave_cricket.html",
                 category: "クリーチャー",
                 appearance: [],
-                date: "2026-05-02"
-            },
-            {
-                name: "Cavit Klein",
-                yomi: "Cavit Klein",
-                url: "cavit-klein.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-05-02",
                 isDraft: true
             },
             {
@@ -2903,8 +2340,8 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "チェイス・"ディガー"・テリア",
-                yomi: "チェイス・"ディガー"・テリア",
+                name: "チェイス・",
+                yomi: "チェイス・",
                 url: "chase-terrier.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
@@ -3115,15 +2552,7 @@ const loreEntries = [
                 url: "chryslus-motors-corporation.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2026-01-11"
-            },
-            {
-                name: "シンディ・ホロウェイ",
-                yomi: "シンディ・ホロウェイ",
-                url: "cindy-holloway.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-11",
                 isDraft: true
             },
             {
@@ -3132,15 +2561,7 @@ const loreEntries = [
                 url: "circle-g.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2026-01-08"
-            },
-            {
-                name: "C.I.T.廃墟",
-                yomi: "C.I.T.廃墟",
-                url: "cit-ruins.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2026-01-08",
                 isDraft: true
             },
             {
@@ -3176,15 +2597,7 @@ const loreEntries = [
                 url: "clancy-mansion.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-16"
-            },
-            {
-                name: "Clara Song",
-                yomi: "Clara Song",
-                url: "clara-song.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-16",
                 isDraft: true
             },
             {
@@ -3346,15 +2759,7 @@ const loreEntries = [
                 url: "codsworth.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 4","Fallout"],
-                date: "2026-02-07"
-            },
-            {
-                name: "コール・カーバー",
-                yomi: "コール・カーバー",
-                url: "cole-carver.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-07",
                 isDraft: true
             },
             {
@@ -3453,15 +2858,7 @@ const loreEntries = [
                 url: "commie-kazi.html",
                 category: "アイテム",
                 appearance: ["Fallout 4","Fallout 76"],
-                date: "2026-05-01"
-            },
-            {
-                name: "コミッショナー・カオス",
-                yomi: "コミッショナー・カオス",
-                url: "commissioner-chaos.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-05-01",
                 isDraft: true
             },
             {
@@ -3488,15 +2885,7 @@ const loreEntries = [
                 url: "constantine-chase.html",
                 category: "人物",
                 appearance: ["Fallout 76","Fallout 3"],
-                date: "2025-11-22"
-            },
-            {
-                name: "改装弾薬工場",
-                yomi: "改装弾薬工場",
-                url: "converted-munitions-factory.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-22",
                 isDraft: true
             },
             {
@@ -3550,15 +2939,7 @@ const loreEntries = [
                 url: "cosmic-knife.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2025-12-05"
-            },
-            {
-                name: "カウンティー・クロッシング",
-                yomi: "カウンティー・クロッシング",
-                url: "county-crossing.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-12-05",
                 isDraft: true
             },
             {
@@ -3603,15 +2984,7 @@ const loreEntries = [
                 url: "cowspot-dairy.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-10-17"
-            },
-            {
-                name: "クレイグ・ブーン",
-                yomi: "クレイグ・ブーン",
-                url: "craig-boone.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20",
+                date: "2025-10-17",
                 isDraft: true
             },
             {
@@ -3665,15 +3038,7 @@ const loreEntries = [
                 url: "crane.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-11-24"
-            },
-            {
-                name: "墜落した複葉機（グラニンジャー農場）",
-                yomi: "墜落した複葉機（グラニンジャー農場）",
-                url: "crashed-biplane-graninger.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-24",
                 isDraft: true
             },
             {
@@ -3790,15 +3155,7 @@ const loreEntries = [
                 url: "crusader-pistol.html",
                 category: "武器",
                 appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2025-12-31"
-            },
-            {
-                name: "クラッチリー",
-                yomi: "クラッチリー",
-                url: "crutchley.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-31",
                 isDraft: true
             },
             {
@@ -3879,15 +3236,7 @@ const loreEntries = [
                 url: "d-b-technical-high-school.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2026-01-12"
-            },
-            {
-                name: "ダブニー農家",
-                yomi: "ダブニー農家",
-                url: "dabney-homestead.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-12",
                 isDraft: true
             },
             {
@@ -3923,15 +3272,7 @@ const loreEntries = [
                 url: "daily-ops.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2025-12-30"
-            },
-            {
-                name: "Dr. ダラ",
-                yomi: "Dr. ダラ",
-                url: "dala.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20",
+                date: "2025-12-30",
                 isDraft: true
             },
             {
@@ -4030,14 +3371,6 @@ const loreEntries = [
                 url: "daphne.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "ダリオン・ジョーンズ少佐",
-                yomi: "ダリオン・ジョーンズ少佐",
-                url: "darion-jones.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -4047,15 +3380,7 @@ const loreEntries = [
                 url: "darling-sister-s-institute.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-10-24"
-            },
-            {
-                name: "ダーリング姉妹の研究室",
-                yomi: "ダーリング姉妹の研究室",
-                url: "darling-sisters-lab.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-24",
                 isDraft: true
             },
             {
@@ -4226,15 +3551,7 @@ const loreEntries = [
                 url: "del-lawson.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-19"
-            },
-            {
-                name: "Del Walsh",
-                yomi: "Del Walsh",
-                url: "del-walsh.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-19",
                 isDraft: true
             },
             {
@@ -4252,15 +3569,7 @@ const loreEntries = [
                 url: "delbert-winters.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-12-19"
-            },
-            {
-                name: "デント＆サンズ建設",
-                yomi: "デント＆サンズ建設",
-                url: "dent-and-sons-construction.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-19",
                 isDraft: true
             },
             {
@@ -4440,23 +3749,7 @@ const loreEntries = [
                 url: "dog-food-cans.html",
                 category: "アイテム",
                 appearance: ["Fallout 76"],
-                date: "2025-12-26"
-            },
-            {
-                name: "犬",
-                yomi: "犬",
-                url: "dog.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-06"
-            },
-            {
-                name: "ドッグミート (FO3)",
-                yomi: "ドッグミート (FO3)",
-                url: "dogmeat-fo3.html",
-                category: "人物",
-                appearance: ["Fallout 3"],
-                date: "2026-04-20",
+                date: "2025-12-26",
                 isDraft: true
             },
             {
@@ -4510,15 +3803,7 @@ const loreEntries = [
                 url: "dom-pedro.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-12-04"
-            },
-            {
-                name: "ドン・ペドロの護衛",
-                yomi: "ドン・ペドロの護衛",
-                url: "dom-pedros-guard.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-12-04",
                 isDraft: true
             },
             {
@@ -4572,15 +3857,7 @@ const loreEntries = [
                 url: "dotty.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-23"
-            },
-            {
-                name: "ダウ湖流域",
-                yomi: "ダウ湖流域",
-                url: "dow-lake-watershed.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-23",
                 isDraft: true
             },
             {
@@ -4616,15 +3893,7 @@ const loreEntries = [
                 url: "dr-zorbo.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-17"
-            },
-            {
-                name: "ドライバー・ネフィ",
-                yomi: "ドライバー・ネフィ",
-                url: "driver-nephi.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20",
+                date: "2026-01-17",
                 isDraft: true
             },
             {
@@ -4687,23 +3956,7 @@ const loreEntries = [
                 url: "duchess.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2025-11-26"
-            },
-            {
-                name: "ダンカン＆ダンカン・ロボティクス",
-                yomi: "ダンカン＆ダンカン・ロボティクス",
-                url: "duncan-duncan-robotics.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2026-01-28"
-            },
-            {
-                name: "Duncan McKann",
-                yomi: "Duncan McKann",
-                url: "duncan-mckann.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-26",
                 isDraft: true
             },
             {
@@ -4856,15 +4109,7 @@ const loreEntries = [
                 url: "edwin.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-02-09"
-            },
-            {
-                name: "イーグレット・ツアー・マリーナ",
-                yomi: "イーグレット・ツアー・マリーナ",
-                url: "egret-tours-marina.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2026-02-09",
                 isDraft: true
             },
             {
@@ -4954,17 +4199,6 @@ const loreEntries = [
                 url: "elsie-taylor.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「彼女とのリンクは切れていないことを知っておくべきだ。ソフィア、君の目を見ると、あの人工知能がそこにいる。私たち全員を見ている。」<br>
-                <span style="font-size: 0.85em; color: #888;">— エマーソン・ヘイル（A.T.H.E.N.A.がソフィアの目を通して自分を見ていることを躊躇いながら告げる）</span>",
-                yomi: "「彼女とのリンクは切れていないことを知っておくべきだ。ソフィア、君の目を見ると、あの人工知能がそこにいる。私たち全員を見ている。」<br>
-                <span style="font-size: 0.85em; color: #888;">— エマーソン・ヘイル（A.T.H.E.N.A.がソフィアの目を通して自分を見ていることを躊躇いながら告げる）</span>",
-                url: "emerson-hale.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -5154,15 +4388,7 @@ const loreEntries = [
                 url: "eta-psi-house.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2026-01-20"
-            },
-            {
-                name: "ユージニー",
-                yomi: "ユージニー",
-                url: "eugenie.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-20",
                 isDraft: true
             },
             {
@@ -5288,14 +4514,6 @@ const loreEntries = [
                 url: "fallout-76-pets.html",
                 category: "システム",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "フォールアウト: ニューベガス",
-                yomi: "フォールアウト: ニューベガス",
-                url: "fallout-new-vegas.html",
-                category: "ゲーム",
-                appearance: ["Fallout: New Vegas"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -5377,15 +4595,7 @@ const loreEntries = [
                 url: "fasnacht-day.html",
                 category: "イベント・現象",
                 appearance: ["Fallout 76"],
-                date: "2025-11-14"
-            },
-            {
-                name: "フォークス",
-                yomi: "フォークス",
-                url: "fawkes.html",
-                category: "人物",
-                appearance: ["Fallout 3"],
-                date: "2026-04-20",
+                date: "2025-11-14",
                 isDraft: true
             },
             {
@@ -5628,15 +4838,7 @@ const loreEntries = [
                 url: "flare-gun.html",
                 category: "武器",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-01-10"
-            },
-            {
-                name: "フラットウッズ見張り台",
-                yomi: "フラットウッズ見張り台",
-                url: "flatwoods-lookout.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-10",
                 isDraft: true
             },
             {
@@ -5735,23 +4937,7 @@ const loreEntries = [
                 url: "foosball-game.html",
                 category: "アイテム",
                 appearance: ["Fallout 76"],
-                date: "2025-12-04"
-            },
-            {
-                name: "強制進化ウイルス（FEV）",
-                yomi: "強制進化ウイルス（FEV）",
-                url: "forced-evolution-virus-fev.html",
-                category: "記録",
-                appearance: ["Fallout 76","Fallout 3","Fallout: New Vegas"],
-                date: "2025-12-09"
-            },
-            {
-                name: "Ford",
-                yomi: "Ford",
-                url: "ford.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-04",
                 isDraft: true
             },
             {
@@ -5913,15 +5099,7 @@ const loreEntries = [
                 url: "frankie-beckett.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-02-11"
-            },
-            {
-                name: "フランクの娘",
-                yomi: "フランクの娘",
-                url: "franks-daughter.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-02-11",
                 isDraft: true
             },
             {
@@ -5939,15 +5117,7 @@ const loreEntries = [
                 url: "fraternity-row.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2026-01-17"
-            },
-            {
-                name: "Sergeant Fred Radcliff",
-                yomi: "Sergeant Fred Radcliff",
-                url: "fred-radcliff.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-17",
                 isDraft: true
             },
             {
@@ -6010,15 +5180,7 @@ const loreEntries = [
                 url: "free-radicals.html",
                 category: "勢力",
                 appearance: ["Fallout 76"],
-                date: "2025-10-31"
-            },
-            {
-                name: "Free States vendor",
-                yomi: "Free States vendor",
-                url: "free-states-vendor.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-31",
                 isDraft: true
             },
             {
@@ -6171,15 +5333,7 @@ const loreEntries = [
                 url: "front-line-tango.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-11-23"
-            },
-            {
-                name: "フジニヤ諜報基地",
-                yomi: "フジニヤ諜報基地",
-                url: "fujiniya-intelligence-base.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-23",
                 isDraft: true
             },
             {
@@ -6197,15 +5351,7 @@ const loreEntries = [
                 url: "g-o-a-t.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 3"],
-                date: "2025-11-03"
-            },
-            {
-                name: "G・ウォルトン",
-                yomi: "G・ウォルトン",
-                url: "g-walton.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-03",
                 isDraft: true
             },
             {
@@ -6259,15 +5405,7 @@ const loreEntries = [
                 url: "gamma-ray-gun.html",
                 category: "武器",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-01-27"
-            },
-            {
-                name: "庭師の小屋",
-                yomi: "庭師の小屋",
-                url: "gardeners-shack.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-27",
                 isDraft: true
             },
             {
@@ -6357,15 +5495,7 @@ const loreEntries = [
                 url: "gauss-pistol.html",
                 category: "武器",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2026-02-02"
-            },
-            {
-                name: "geck",
-                yomi: "geck",
-                url: "geck.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2026-02-02",
                 isDraft: true
             },
             {
@@ -6410,31 +5540,7 @@ const loreEntries = [
                 url: "ghoul.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-12-21"
-            },
-            {
-                name: "ジャイアントラット",
-                yomi: "ジャイアントラット",
-                url: "giant-rat.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-04"
-            },
-            {
-                name: "ジャイアントティーポット",
-                yomi: "ジャイアントティーポット",
-                url: "giant-teapot.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2025-12-31"
-            },
-            {
-                name: "ギース・ベリー・ボグ",
-                yomi: "ギース・ベリー・ボグ",
-                url: "giese-berry-bog.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-21",
                 isDraft: true
             },
             {
@@ -6776,15 +5882,7 @@ const loreEntries = [
                 url: "grahm-s-meat-cook-meat-week.html",
                 category: "イベント・現象",
                 appearance: ["Fallout 76"],
-                date: "2025-11-13"
-            },
-            {
-                name: "Grahm",
-                yomi: "Grahm",
-                url: "grahm.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-13",
                 isDraft: true
             },
             {
@@ -6793,15 +5891,7 @@ const loreEntries = [
                 url: "grams.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-11-14"
-            },
-            {
-                name: "グランドキャニオンのエルダー",
-                yomi: "グランドキャニオンのエルダー",
-                url: "grand-canyon-elder.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-14",
                 isDraft: true
             },
             {
@@ -6873,15 +5963,7 @@ const loreEntries = [
                 url: "green-country-lodge.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-11-21"
-            },
-            {
-                name: "グリーンテック・ジェネティクス",
-                yomi: "グリーンテック・ジェネティクス",
-                url: "greenetech-genetics.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-11-21",
                 isDraft: true
             },
             {
@@ -6944,15 +6026,7 @@ const loreEntries = [
                 url: "grelock.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2026-01-18"
-            },
-            {
-                name: "グリフィス天文台",
-                yomi: "グリフィス天文台",
-                url: "griffith-observatory.html",
-                category: "場所",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-01-18",
                 isDraft: true
             },
             {
@@ -6961,23 +6035,7 @@ const loreEntries = [
                 url: "grognac.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2026-01-16"
-            },
-            {
-                name: "グローブス家のキャビン",
-                yomi: "グローブス家のキャビン",
-                url: "groves-family-cabin.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2025-11-03"
-            },
-            {
-                name: "ガルパー",
-                yomi: "ガルパー",
-                url: "gulper-fo76.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-16",
                 isDraft: true
             },
             {
@@ -7040,15 +6098,7 @@ const loreEntries = [
                 url: "h-h-tools-company.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout: New Vegas"],
-                date: "2026-01-09"
-            },
-            {
-                name: "Hailey Takano",
-                yomi: "Hailey Takano",
-                url: "hailey-takano.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-09",
                 isDraft: true
             },
             {
@@ -7318,15 +6368,7 @@ const loreEntries = [
                 url: "helvetia.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-29"
-            },
-            {
-                name: "ヘムロック・ホールズ整備場",
-                yomi: "ヘムロック・ホールズ整備場",
-                url: "hemlock-holes-maintenance.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-29",
                 isDraft: true
             },
             {
@@ -7542,15 +6584,7 @@ const loreEntries = [
                 url: "holotape.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-08"
-            },
-            {
-                name: "ホルスタイン軍曹",
-                yomi: "ホルスタイン軍曹",
-                url: "holstein.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-08",
                 isDraft: true
             },
             {
@@ -7568,15 +6602,7 @@ const loreEntries = [
                 url: "homer-saperstein.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2025-11-16"
-            },
-            {
-                name: "ホンチョー",
-                yomi: "ホンチョー",
-                url: "honcho.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-16",
                 isDraft: true
             },
             {
@@ -7873,15 +6899,7 @@ const loreEntries = [
                 url: "hunter-ridge.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-11-05"
-            },
-            {
-                name: "ハンターズ・リッジ",
-                yomi: "ハンターズ・リッジ",
-                url: "hunters-ridge.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-05",
                 isDraft: true
             },
             {
@@ -7989,15 +7007,7 @@ const loreEntries = [
                 url: "invaders-from-beyond.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-11-15"
-            },
-            {
-                name: "調査官のキャビン",
-                yomi: "調査官のキャビン",
-                url: "investigators-cabin.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-15",
                 isDraft: true
             },
             {
@@ -8051,15 +7061,7 @@ const loreEntries = [
                 url: "isolated-cabin.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 3"],
-                date: "2026-01-30"
-            },
-            {
-                name: "J・シュラムの家",
-                yomi: "J・シュラムの家",
-                url: "j-schrams-house.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-30",
                 isDraft: true
             },
             {
@@ -8194,15 +7196,7 @@ const loreEntries = [
                 url: "james.html",
                 category: "人物",
                 appearance: ["Fallout 76","Fallout 3","Fallout: New Vegas"],
-                date: "2026-02-02"
-            },
-            {
-                name: "ジャミラ",
-                yomi: "ジャミラ",
-                url: "jamila.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-02-02",
                 isDraft: true
             },
             {
@@ -8274,15 +7268,7 @@ const loreEntries = [
                 url: "jeff-nakamura.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-31"
-            },
-            {
-                name: "ジェファーソン・グレイ",
-                yomi: "ジェファーソン・グレイ",
-                url: "jefferson-grey.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-31",
                 isDraft: true
             },
             {
@@ -8318,15 +7304,7 @@ const loreEntries = [
                 url: "jes-2r.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-11-17"
-            },
-            {
-                name: "Jess",
-                yomi: "Jess",
-                url: "jess-ghoul-within.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-17",
                 isDraft: true
             },
             {
@@ -8461,15 +7439,7 @@ const loreEntries = [
                 url: "john-hancock.html",
                 category: "人物",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2025-10-28"
-            },
-            {
-                name: "ジョン・ヘンリー・エデン大統領",
-                yomi: "ジョン・ヘンリー・エデン大統領",
-                url: "john-henry-eden.html",
-                category: "人物",
-                appearance: ["Fallout 3"],
-                date: "2026-04-20",
+                date: "2025-10-28",
                 isDraft: true
             },
             {
@@ -8658,23 +7628,7 @@ const loreEntries = [
                 url: "junko-grandma.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-20"
-            },
-            {
-                name: "K.D.インクウェル",
-                yomi: "K.D.インクウェル",
-                url: "k-d-inkwell.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2026-01-14"
-            },
-            {
-                name: "カナワ郡墓地",
-                yomi: "カナワ郡墓地",
-                url: "kanawha-county-cemetery.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-20",
                 isDraft: true
             },
             {
@@ -8854,14 +7808,6 @@ const loreEntries = [
                 url: "kimball.html",
                 category: "人物",
                 appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20"
-            },
-            {
-                name: "キングス・インパーソネーション・スクール",
-                yomi: "キングス・インパーソネーション・スクール",
-                url: "king-s-school-of-impersonation.html",
-                category: "場所",
-                appearance: ["Fallout TV"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -8934,14 +7880,6 @@ const loreEntries = [
                 url: "kogan.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "コラ",
-                yomi: "コラ",
-                url: "kora.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -8978,15 +7916,7 @@ const loreEntries = [
                 url: "ladgal.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-01-24"
-            },
-            {
-                name: "Lady G the Fortune Teller",
-                yomi: "Lady G the Fortune Teller",
-                url: "lady-g-the-fortune-teller.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-24",
                 isDraft: true
             },
             {
@@ -9076,15 +8006,7 @@ const loreEntries = [
                 url: "laser-gun.html",
                 category: "武器",
                 appearance: ["Fallout 76"],
-                date: "2025-11-11"
-            },
-            {
-                name: "アメリカ合衆国大統領",
-                yomi: "アメリカ合衆国大統領",
-                url: "last-president-of-the-united-states.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-11",
                 isDraft: true
             },
             {
@@ -9147,14 +8069,6 @@ const loreEntries = [
                 url: "lee_moldaver.html",
                 category: "人物",
                 appearance: ["Fallout TV"],
-                date: "2026-04-20"
-            },
-            {
-                name: "リージョン上級顧問",
-                yomi: "リージョン上級顧問",
-                url: "legion-senior-advisor.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -9182,17 +8096,6 @@ const loreEntries = [
                 url: "lennox.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
-                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」",
-                yomi: "「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>
-                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」",
-                url: "leo-petrov.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -9481,14 +8384,6 @@ const loreEntries = [
                 url: "lucy-maclean.html",
                 category: "人物",
                 appearance: ["Fallout TV"],
-                date: "2026-04-20"
-            },
-            {
-                name: "Luis Ramirez",
-                yomi: "Luis Ramirez",
-                url: "luis-ramirez.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -9507,15 +8402,7 @@ const loreEntries = [
                 url: "lunch-box.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-12-12"
-            },
-            {
-                name: "リン・ウッズ",
-                yomi: "リン・ウッズ",
-                url: "lynn-woods.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-12-12",
                 isDraft: true
             },
             {
@@ -9587,23 +8474,7 @@ const loreEntries = [
                 url: "madison-li.html",
                 category: "人物",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-10-18"
-            },
-            {
-                name: "雑誌",
-                yomi: "雑誌",
-                url: "magazine.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4","Fallout: New Vegas"],
-                date: "2025-11-29"
-            },
-            {
-                name: "Magellan",
-                yomi: "Magellan",
-                url: "magellan.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-18",
                 isDraft: true
             },
             {
@@ -9666,15 +8537,7 @@ const loreEntries = [
                 url: "mall-rat.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-01"
-            },
-            {
-                name: "ママ・ドルスの食品加工場",
-                yomi: "ママ・ドルスの食品加工場",
-                url: "mama-dolces-food-processing.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-01",
                 isDraft: true
             },
             {
@@ -9809,15 +8672,7 @@ const loreEntries = [
                 url: "marigold-pavilion.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-02"
-            },
-            {
-                name: "マリリン",
-                yomi: "マリリン",
-                url: "marilyn-fallout-76.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-02",
                 isDraft: true
             },
             {
@@ -9934,23 +8789,6 @@ const loreEntries = [
                 url: "master-sergeant-gutsy.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「うーん…マウル、そんなこと考えたことなかった。<br>
-                でも人間の言う通りだ。<br>
-                お前は強い。<br>
-                グログナックより強いかもしれない。<br>
-                人間が前に進めるなら、マウルにもできるかもしれない。」",
-                yomi: "「うーん…マウル、そんなこと考えたことなかった。<br>
-                でも人間の言う通りだ。<br>
-                お前は強い。<br>
-                グログナックより強いかもしれない。<br>
-                人間が前に進めるなら、マウルにもできるかもしれない。」",
-                url: "maul.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -10149,15 +8987,7 @@ const loreEntries = [
                 url: "mentas.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-26"
-            },
-            {
-                name: "メルセデス・スターン",
-                yomi: "メルセデス・スターン",
-                url: "mercedes-stern.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-26",
                 isDraft: true
             },
             {
@@ -10400,15 +9230,7 @@ const loreEntries = [
                 url: "mischief-night.html",
                 category: "イベント・現象",
                 appearance: ["Fallout 76"],
-                date: "2025-11-16"
-            },
-            {
-                name: "ミス・アニー",
-                yomi: "ミス・アニー",
-                url: "miss-annie.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-16",
                 isDraft: true
             },
             {
@@ -10669,15 +9491,7 @@ const loreEntries = [
                 url: "moon-monkey-jungles.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2026-01-16"
-            },
-            {
-                name: "Moonshiner Ned",
-                yomi: "Moonshiner Ned",
-                url: "moonshiner-ned.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-16",
                 isDraft: true
             },
             {
@@ -10722,15 +9536,7 @@ const loreEntries = [
                 url: "mordecai-mort-mccoy.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2025-11-27"
-            },
-            {
-                name: "モーガンタウン空港ターミナル",
-                yomi: "モーガンタウン空港ターミナル",
-                url: "morgantown-airport-terminal.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-27",
                 isDraft: true
             },
             {
@@ -10847,15 +9653,7 @@ const loreEntries = [
                 url: "mothman.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2025-12-02"
-            },
-            {
-                name: "モーターランナー",
-                yomi: "モーターランナー",
-                url: "motor-runner.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20",
+                date: "2025-12-02",
                 isDraft: true
             },
             {
@@ -10936,23 +9734,7 @@ const loreEntries = [
                 url: "mr-handy.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2025-11-30"
-            },
-            {
-                name: "Mr.スクイーズ",
-                yomi: "Mr.スクイーズ",
-                url: "mr-squeeze.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2025-10-21"
-            },
-            {
-                name: "マギー",
-                yomi: "マギー",
-                url: "muggy.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20",
+                date: "2025-11-30",
                 isDraft: true
             },
             {
@@ -11015,23 +9797,7 @@ const loreEntries = [
                 url: "mutation-public-event.html",
                 category: "イベント・現象",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2026-01-06"
-            },
-            {
-                name: "変異",
-                yomi: "変異",
-                url: "mutation.html",
-                category: "イベント・現象",
-                appearance: ["Fallout 76"],
-                date: "2025-12-06"
-            },
-            {
-                name: "ミステリアス・ガイドストーン",
-                yomi: "ミステリアス・ガイドストーン",
-                url: "mysterious-guidestones.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-06",
                 isDraft: true
             },
             {
@@ -11166,14 +9932,6 @@ const loreEntries = [
                 url: "ncr.html",
                 category: "勢力",
                 appearance: ["Fallout","Fallout 2","Fallout: New Vegas","Fallout TV"],
-                date: "2026-04-20"
-            },
-            {
-                name: "ニードルズ",
-                yomi: "ニードルズ",
-                url: "needles.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -11219,15 +9977,7 @@ const loreEntries = [
                 url: "new-river-gorge-bridge.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-27"
-            },
-            {
-                name: "ニューリバー峡谷リゾート",
-                yomi: "ニューリバー峡谷リゾート",
-                url: "new-river-gorge-resort.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-27",
                 isDraft: true
             },
             {
@@ -11380,15 +10130,7 @@ const loreEntries = [
                 url: "north-kanner-monitoring-point.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-10"
-            },
-            {
-                name: "ノース・マウンテン監視塔",
-                yomi: "ノース・マウンテン監視塔",
-                url: "north-mountain-lookout.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-10",
                 isDraft: true
             },
             {
@@ -11410,8 +10152,8 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "ドクター・"ノーズ"・エドモンドソン",
-                yomi: "ドクター・"ノーズ"・エドモンドソン",
+                name: "ドクター・",
+                yomi: "ドクター・",
                 url: "nose-edmundson.html",
                 category: "人物",
                 appearance: ["Fallout TV"],
@@ -11451,15 +10193,7 @@ const loreEntries = [
                 url: "nuka-cola.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout"],
-                date: "2026-01-07"
-            },
-            {
-                name: "ヌカ・ギャラクシー",
-                yomi: "ヌカ・ギャラクシー",
-                url: "nuka-galaxy.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2026-01-07",
                 isDraft: true
             },
             {
@@ -11486,15 +10220,7 @@ const loreEntries = [
                 url: "nuka-tapper.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2025-11-23"
-            },
-            {
-                name: "ヌカ・タウンU.S.A.",
-                yomi: "ヌカ・タウンU.S.A.",
-                url: "nuka-town-usa.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-11-23",
                 isDraft: true
             },
             {
@@ -11683,15 +10409,7 @@ const loreEntries = [
                 url: "organ-cave.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-01-25"
-            },
-            {
-                name: "オリオン・モレノ",
-                yomi: "オリオン・モレノ",
-                url: "orion-moreno.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
-                date: "2026-04-20",
+                date: "2026-01-25",
                 isDraft: true
             },
             {
@@ -11880,15 +10598,7 @@ const loreEntries = [
                 url: "party-hat.html",
                 category: "アイテム",
                 appearance: ["Fallout 76"],
-                date: "2025-12-11"
-            },
-            {
-                name: "パーティタイム・ダイナーズ",
-                yomi: "パーティタイム・ダイナーズ",
-                url: "party-time-diners.html",
-                category: "ロケーション",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-11",
                 isDraft: true
             },
             {
@@ -12050,15 +10760,7 @@ const loreEntries = [
                 url: "pie-house.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2026-01-19"
-            },
-            {
-                name: "ピアス",
-                yomi: "ピアス",
-                url: "pierce-steel-dawn.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-19",
                 isDraft: true
             },
             {
@@ -12103,63 +10805,7 @@ const loreEntries = [
                 url: "pip-boy.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-07"
-            },
-            {
-                name: "パイプボルトアクション",
-                yomi: "パイプボルトアクション",
-                url: "pipe-bolt-action.html",
-                category: "武器",
-                appearance: ["Fallout 76"],
-                date: "2025-11-18"
-            },
-            {
-                name: "パイプガン",
-                yomi: "パイプガン",
-                url: "pipe-gun.html",
-                category: "武器",
-                appearance: ["Fallout 76","Fallout 4"],
-                date: "2025-11-20"
-            },
-            {
-                name: "パイプ・リボルバー",
-                yomi: "パイプ・リボルバー",
-                url: "pipe-revolver.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2025-12-03"
-            },
-            {
-                name: "パイパー・ライト",
-                yomi: "パイパー・ライト",
-                url: "piper-light.html",
-                category: "人物",
-                appearance: ["Fallout 76","Fallout 4"],
-                date: "2026-01-27"
-            },
-            {
-                name: "海賊放送",
-                yomi: "海賊放送",
-                url: "pirate-broadcast.html",
-                category: "記録",
-                appearance: ["Fallout 76","Fallout"],
-                date: "2026-01-21"
-            },
-            {
-                name: "プラズマガン",
-                yomi: "プラズマガン",
-                url: "plasma-gun.html",
-                category: "武器",
-                appearance: ["Fallout 76"],
-                date: "2025-12-05"
-            },
-            {
-                name: "プレザント・ヒルズ墓地",
-                yomi: "プレザント・ヒルズ墓地",
-                url: "pleasant-hills-cemetery.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-07",
                 isDraft: true
             },
             {
@@ -12195,15 +10841,7 @@ const loreEntries = [
                 url: "point-pleasant.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-11"
-            },
-            {
-                name: "ポイント・リポーズ",
-                yomi: "ポイント・リポーズ",
-                url: "point-repose.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-11",
                 isDraft: true
             },
             {
@@ -12221,15 +10859,7 @@ const loreEntries = [
                 url: "polly.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2025-11-29"
-            },
-            {
-                name: "スカウトリーダー・ポンピー",
-                yomi: "スカウトリーダー・ポンピー",
-                url: "pompy.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-29",
                 isDraft: true
             },
             {
@@ -12382,15 +11012,7 @@ const loreEntries = [
                 url: "potomac-river.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 3"],
-                date: "2025-11-12"
-            },
-            {
-                name: "ナース・パウエル",
-                yomi: "ナース・パウエル",
-                url: "powell.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-12",
                 isDraft: true
             },
             {
@@ -12399,15 +11021,7 @@ const loreEntries = [
                 url: "power-armor.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4"],
-                date: "2025-11-24"
-            },
-            {
-                name: "パワーヌードル",
-                yomi: "パワーヌードル",
-                url: "power-noodles.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-11-24",
                 isDraft: true
             },
             {
@@ -12470,14 +11084,6 @@ const loreEntries = [
                 url: "prize_bot.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "プロフェッサーボット",
-                yomi: "プロフェッサーボット",
-                url: "professor-bot.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -12487,15 +11093,7 @@ const loreEntries = [
                 url: "project-paradise.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2026-01-03"
-            },
-            {
-                name: "プロスペクト・ヒル",
-                yomi: "プロスペクト・ヒル",
-                url: "prospect-hill.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-03",
                 isDraft: true
             },
             {
@@ -12504,15 +11102,7 @@ const loreEntries = [
                 url: "protectron.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-11-28"
-            },
-            {
-                name: "抗議活動のまとめ役",
-                yomi: "抗議活動のまとめ役",
-                url: "protest-foreperson.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-28",
                 isDraft: true
             },
             {
@@ -12521,47 +11111,7 @@ const loreEntries = [
                 url: "protest-placard.html",
                 category: "武器",
                 appearance: ["Fallout 76"],
-                date: "2025-11-27"
-            },
-            {
-                name: "プリドゥエン",
-                yomi: "プリドゥエン",
-                url: "pryduen.html",
-                category: "記録",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2026-02-05"
-            },
-            {
-                name: "サイコ",
-                yomi: "サイコ",
-                url: "psycho.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-12"
-            },
-            {
-                name: "PTSアップデート – 2026年1月16日",
-                yomi: "PTSアップデート – 2026年1月16日",
-                url: "pts-update-january-16-2026.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2026-01-16"
-            },
-            {
-                name: "パブリックパーティー",
-                yomi: "パブリックパーティー",
-                url: "public-party.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2025-12-25"
-            },
-            {
-                name: "パンプキンハウス",
-                yomi: "パンプキンハウス",
-                url: "pumpkin-house.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-27",
                 isDraft: true
             },
             {
@@ -12570,15 +11120,7 @@ const loreEntries = [
                 url: "pumpkin.html",
                 category: "植物",
                 appearance: ["Fallout 76"],
-                date: "2026-01-21"
-            },
-            {
-                name: "パイロン待ち伏せ地点",
-                yomi: "パイロン待ち伏せ地点",
-                url: "pylon-ambush-site.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-21",
                 isDraft: true
             },
             {
@@ -12686,23 +11228,7 @@ const loreEntries = [
                 url: "rad-x.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-10"
-            },
-            {
-                name: "RadAway",
-                yomi: "RadAway",
-                url: "radaway.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-09"
-            },
-            {
-                name: "ラッドホッグ",
-                yomi: "ラッドホッグ",
-                url: "radhog-fo76.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-10",
                 isDraft: true
             },
             {
@@ -12805,19 +11331,6 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "「人生の大半を、あちこちのギャングで育ったよ。<br>
-                ここやあそこで。よくある悲しい話さ、俺たちの大半がそうだ。<br>
-                でも主に北の方だな。」",
-                yomi: "「人生の大半を、あちこちのギャングで育ったよ。<br>
-                ここやあそこで。よくある悲しい話さ、俺たちの大半がそうだ。<br>
-                でも主に北の方だな。」",
-                url: "raider-punk.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
                 name: "Raiders vendor",
                 yomi: "Raiders vendor",
                 url: "raiders-vendor.html",
@@ -12832,14 +11345,6 @@ const loreEntries = [
                 url: "raiders_76.html",
                 category: "勢力",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20"
-            },
-            {
-                name: "レールロード本部",
-                yomi: "レールロード本部",
-                url: "railroad-hq.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -13128,15 +11633,7 @@ const loreEntries = [
                 url: "reflection.html",
                 category: "イベント・現象",
                 appearance: ["Fallout 76"],
-                date: "2025-12-23"
-            },
-            {
-                name: "レグ・マクフィー",
-                yomi: "レグ・マクフィー",
-                url: "reg-mcphee.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-12-23",
                 isDraft: true
             },
             {
@@ -13149,8 +11646,8 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "レジナルド・"レグズ"・ストーン",
-                yomi: "レジナルド・"レグズ"・ストーン",
+                name: "レジナルド・",
+                yomi: "レジナルド・",
                 url: "reginald-stone.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
@@ -13388,15 +11885,7 @@ const loreEntries = [
                 url: "ripto-card.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-12-19"
-            },
-            {
-                name: "リタ",
-                yomi: "リタ",
-                url: "rita-tv-series.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-12-19",
                 isDraft: true
             },
             {
@@ -13441,15 +11930,7 @@ const loreEntries = [
                 url: "robco-auto-cache-001.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-11-19"
-            },
-            {
-                name: "RobCo研究センター",
-                yomi: "RobCo研究センター",
-                url: "robco-research-center.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-19",
                 isDraft: true
             },
             {
@@ -13530,15 +12011,7 @@ const loreEntries = [
                 url: "robobrain.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-01-26"
-            },
-            {
-                name: "ロボット廃棄場",
-                yomi: "ロボット廃棄場",
-                url: "robotics-disposal-ground.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2026-01-26",
                 isDraft: true
             },
             {
@@ -13628,15 +12101,7 @@ const loreEntries = [
                 url: "ronnie.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-02-10"
-            },
-            {
-                name: "ロンニー",
-                yomi: "ロンニー",
-                url: "ronny-wastelanders.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-10",
                 isDraft: true
             },
             {
@@ -13807,15 +12272,7 @@ const loreEntries = [
                 url: "sacred-writings.html",
                 category: "武器",
                 appearance: ["Fallout 76"],
-                date: "2025-11-17"
-            },
-            {
-                name: "生贄の祭壇",
-                yomi: "生贄の祭壇",
-                url: "sacrifice-altar.html",
-                category: "ロケーション",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-17",
                 isDraft: true
             },
             {
@@ -13887,23 +12344,6 @@ const loreEntries = [
                 url: "sam-blackwells-bunker.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「お前が言ってたこと、考えてたんだ。<br>
-                俺が生きてるのは運がいいって話。<br>
-                間違ってはいない。<br>
-                でも、完全に正しくもない。<br>
-                俺だって努力してきたんだ。」",
-                yomi: "「お前が言ってたこと、考えてたんだ。<br>
-                俺が生きてるのは運がいいって話。<br>
-                間違ってはいない。<br>
-                でも、完全に正しくもない。<br>
-                俺だって努力してきたんだ。」",
-                url: "sam-nguyen.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -14066,15 +12506,7 @@ const loreEntries = [
                 url: "saturnite-fist.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout: New Vegas"],
-                date: "2025-12-09"
-            },
-            {
-                name: "サウガス製鉄所",
-                yomi: "サウガス製鉄所",
-                url: "saugus-ironworks.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-12-09",
                 isDraft: true
             },
             {
@@ -14119,15 +12551,7 @@ const loreEntries = [
                 url: "scorch.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-01-04"
-            },
-            {
-                name: "スコーチビースト",
-                yomi: "スコーチビースト",
-                url: "scorchbeast-fo76.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-04",
                 isDraft: true
             },
             {
@@ -14262,28 +12686,7 @@ const loreEntries = [
                 url: "sentry-bot.html",
                 category: "人物",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2026-01-02"
-            },
-            {
-                name: "入植者のコテージとバンカー",
-                yomi: "入植者のコテージとバンカー",
-                url: "settler-cottage-bunker.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「ビンゴ！ 当たりが出たぞ、みんな！<br>
-                見てくれよ。俺のことを知ってる奴がいた！<br>
-                いつかこうなると思ってたんだ。」",
-                yomi: "「ビンゴ！ 当たりが出たぞ、みんな！<br>
-                見てくれよ。俺のことを知ってる奴がいた！<br>
-                いつかこうなると思ってたんだ。」",
-                url: "settler-forager.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2026-01-02",
                 isDraft: true
             },
             {
@@ -14292,17 +12695,7 @@ const loreEntries = [
                 url: "settler-s-ridge.html",
                 category: "勢力",
                 appearance: ["Fallout 76"],
-                date: "2025-11-25"
-            },
-            {
-                name: "「ねえ、忘れがちだけど、私たちは恵まれてるのよ。<br>
-                たくさんの人が生き残れなかった。だから…小さなことに感謝しましょう。」",
-                yomi: "「ねえ、忘れがちだけど、私たちは恵まれてるのよ。<br>
-                たくさんの人が生き残れなかった。だから…小さなことに感謝しましょう。」",
-                url: "settler-wanderer.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-11-25",
                 isDraft: true
             },
             {
@@ -14401,15 +12794,7 @@ const loreEntries = [
                 url: "shady-sands.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2026-02-12"
-            },
-            {
-                name: "シャノン・リバーズ",
-                yomi: "シャノン・リバーズ",
-                url: "shannon-rivers.html",
-                category: "キャラクター",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-12",
                 isDraft: true
             },
             {
@@ -14463,15 +12848,7 @@ const loreEntries = [
                 url: "shelter-reception-center.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-11-10"
-            },
-            {
-                name: "シェナンドー国立公園",
-                yomi: "シェナンドー国立公園",
-                url: "shenandoah-national-park.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-10",
                 isDraft: true
             },
             {
@@ -14642,14 +13019,6 @@ const loreEntries = [
                 url: "single-action-revolver.html",
                 category: "武器",
                 appearance: ["Fallout 76","Fallout TV series"],
-                date: "2026-04-20"
-            },
-            {
-                name: "シンク中央知能ユニット",
-                yomi: "シンク中央知能ユニット",
-                url: "sink-central-intelligence-unit.html",
-                category: "人物",
-                appearance: ["Fallout: New Vegas"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -14758,15 +13127,7 @@ const loreEntries = [
                 url: "slander-bot.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-02-13"
-            },
-            {
-                name: "スリム",
-                yomi: "スリム",
-                url: "slim-tv-series.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-02-13",
                 isDraft: true
             },
             {
@@ -14784,23 +13145,7 @@ const loreEntries = [
                 url: "slocum-joe-corporate.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout"],
-                date: "2026-02-01"
-            },
-            {
-                name: "スローカム・ジョー",
-                yomi: "スローカム・ジョー",
-                url: "slocum-joe.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2026-02-01"
-            },
-            {
-                name: "スロッカムズ・ジョー（チャールストン店）",
-                yomi: "スロッカムズ・ジョー（チャールストン店）",
-                url: "slocums-joe-charleston.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-02-01",
                 isDraft: true
             },
             {
@@ -14890,23 +13235,7 @@ const loreEntries = [
                 url: "snallygaster-fo76.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-05-09"
-            },
-            {
-                name: "石鹸",
-                yomi: "石鹸",
-                url: "soap.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4","Fallout"],
-                date: "2025-12-07"
-            },
-            {
-                name: "石鹸まみれの骸骨",
-                yomi: "石鹸まみれの骸骨",
-                url: "soapy-skeleton.html",
-                category: "ロケーション",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-05-09",
                 isDraft: true
             },
             {
@@ -14915,21 +13244,6 @@ const loreEntries = [
                 url: "sodus.html",
                 category: "キャラクター",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「私は…たくさん聞きたいことがある。ただ…どうして？なぜ？<br>
-                みんなにお別れを言っていたのに…本当にみんないなくなったの。<br>
-                放送の断片から…ある程度は何が起きたか理解したつもり。たぶん…戦争だったのね。<br>
-                そしてどういうわけか…これが生き残った世界。今は言葉にすらできないわ。」",
-                yomi: "「私は…たくさん聞きたいことがある。ただ…どうして？なぜ？<br>
-                みんなにお別れを言っていたのに…本当にみんないなくなったの。<br>
-                放送の断片から…ある程度は何が起きたか理解したつもり。たぶん…戦争だったのね。<br>
-                そしてどういうわけか…これが生き残った世界。今は言葉にすらできないわ。」",
-                url: "sofia-daguerre.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -14957,17 +13271,7 @@ const loreEntries = [
                 url: "sol.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-11-28"
-            },
-            {
-                name: "「実を言うと、俺は長い長い医者の家系の出だ…でも育ってく中で、それが身につかなかった。学校に興味を失くして、成績も取れなかった。軍なら自分が何かを変えられる場所だと思って、高校を出てすぐに入隊したんだ。」<br>
-                <span style="font-size: 0.85em; color: #888;">— ソロモン・ハーディ</span>",
-                yomi: "「実を言うと、俺は長い長い医者の家系の出だ…でも育ってく中で、それが身につかなかった。学校に興味を失くして、成績も取れなかった。軍なら自分が何かを変えられる場所だと思って、高校を出てすぐに入隊したんだ。」<br>
-                <span style="font-size: 0.85em; color: #888;">— ソロモン・ハーディ</span>",
-                url: "solomon-hardy.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-11-28",
                 isDraft: true
             },
             {
@@ -15129,15 +13433,7 @@ const loreEntries = [
                 url: "special.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2025-12-20"
-            },
-            {
-                name: "スペクタクル・アイランド",
-                yomi: "スペクタクル・アイランド",
-                url: "spectacle-island.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-12-20",
                 isDraft: true
             },
             {
@@ -15308,15 +13604,7 @@ const loreEntries = [
                 url: "stealth-boy.html",
                 category: "アイテム",
                 appearance: ["Fallout シリーズ"],
-                date: "2026-05-04"
-            },
-            {
-                name: "ステルス技術",
-                yomi: "ステルス技術",
-                url: "stealth-technology.html",
-                category: "テクノロジー",
-                appearance: ["Fallout シリーズ"],
-                date: "2026-04-20",
+                date: "2026-05-04",
                 isDraft: true
             },
             {
@@ -15347,17 +13635,6 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "「あぁ、傲慢さの話か。俺たちには、太陽に近づきすぎて翼を焼いた蛾の物語がある。どうやらあいつも同じ結末を迎えたようだな、偽りの神と共に。」<br>
-                <span style="font-size: 0.85em; color: #888;">— スティーヴン・スカーベリー</span>",
-                yomi: "「あぁ、傲慢さの話か。俺たちには、太陽に近づきすぎて翼を焼いた蛾の物語がある。どうやらあいつも同じ結末を迎えたようだな、偽りの神と共に。」<br>
-                <span style="font-size: 0.85em; color: #888;">— スティーヴン・スカーベリー</span>",
-                url: "steven-scarberry.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
                 name: "スティッキー",
                 yomi: "スティッキー",
                 url: "sticky.html",
@@ -15372,15 +13649,7 @@ const loreEntries = [
                 url: "stim-pack.html",
                 category: "アイテム",
                 appearance: ["Fallout 76"],
-                date: "2025-11-21"
-            },
-            {
-                name: "スティングウィング",
-                yomi: "スティングウィング",
-                url: "stingwing-fo76.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-21",
                 isDraft: true
             },
             {
@@ -15479,15 +13748,7 @@ const loreEntries = [
                 url: "sugar-bomb.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-11-19"
-            },
-            {
-                name: "シュガー・グローブ",
-                yomi: "シュガー・グローブ",
-                url: "sugar-grove.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-19",
                 isDraft: true
             },
             {
@@ -15532,15 +13793,7 @@ const loreEntries = [
                 url: "summersville.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-01-29"
-            },
-            {
-                name: "サミット・オブ・ザ・ワールド",
-                yomi: "サミット・オブ・ザ・ワールド",
-                url: "summit-of-the-world.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-29",
                 isDraft: true
             },
             {
@@ -15639,15 +13892,7 @@ const loreEntries = [
                 url: "sunset-sarsaparilla.html",
                 category: "アイテム",
                 appearance: ["Fallout 76","Fallout 4","Fallout: New Vegas"],
-                date: "2026-01-10"
-            },
-            {
-                name: "サンシャイン・メドウズ工業農場",
-                yomi: "サンシャイン・メドウズ工業農場",
-                url: "sunshine-meadows-farm.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-10",
                 isDraft: true
             },
             {
@@ -15728,15 +13973,7 @@ const loreEntries = [
                 url: "super-mutant.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-12-08"
-            },
-            {
-                name: "スーペリア・サンセット農場",
-                yomi: "スーペリア・サンセット農場",
-                url: "superior-sunset-farm.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-08",
                 isDraft: true
             },
             {
@@ -15799,23 +14036,7 @@ const loreEntries = [
                 url: "survival-tent.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2025-12-22"
-            },
-            {
-                name: "スーザンの小屋",
-                yomi: "スーザンの小屋",
-                url: "susan-s-cabin.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2025-11-13"
-            },
-            {
-                name: "サットン駅",
-                yomi: "サットン駅",
-                url: "sutton-station.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-22",
                 isDraft: true
             },
             {
@@ -15824,15 +14045,7 @@ const loreEntries = [
                 url: "sutton.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-10-18"
-            },
-            {
-                name: "パラディン・スワフォード",
-                yomi: "パラディン・スワフォード",
-                url: "swafford-brotherhood.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-18",
                 isDraft: true
             },
             {
@@ -15850,23 +14063,7 @@ const loreEntries = [
                 url: "swarm-of-bees.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-01-25"
-            },
-            {
-                name: "スウィートウォータースペシャルブレンド",
-                yomi: "スウィートウォータースペシャルブレンド",
-                url: "sweetwater-special-blend.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2025-11-20"
-            },
-            {
-                name: "ソードハンターズ・キャンプ",
-                yomi: "ソードハンターズ・キャンプ",
-                url: "sword-hunters-camp.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-25",
                 isDraft: true
             },
             {
@@ -15947,14 +14144,6 @@ const loreEntries = [
                 url: "tandi.html",
                 category: "人物",
                 appearance: ["Fallout","Fallout 2"],
-                date: "2026-04-20"
-            },
-            {
-                name: "タンニン",
-                yomi: "タンニン",
-                url: "tannin.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -16013,8 +14202,8 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "ナイト・"テックス"・ロジャース",
-                yomi: "ナイト・"テックス"・ロジャース",
+                name: "ナイト・",
+                yomi: "ナイト・",
                 url: "tex-rogers.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
@@ -16063,15 +14252,7 @@ const loreEntries = [
                 url: "the-big-bloom.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2025-11-13"
-            },
-            {
-                name: "ブラッド",
-                yomi: "ブラッド",
-                url: "the-blood.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-13",
                 isDraft: true
             },
             {
@@ -16188,15 +14369,7 @@ const loreEntries = [
                 url: "the-crosshair.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-12-13"
-            },
-            {
-                name: "ザ・ディープ",
-                yomi: "ザ・ディープ",
-                url: "the-deep.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-13",
                 isDraft: true
             },
             {
@@ -16295,15 +14468,7 @@ const loreEntries = [
                 url: "the-ghoul.html",
                 category: "人物",
                 appearance: ["Fallout TV"],
-                date: "2026-05-09"
-            },
-            {
-                name: "巨大ティーポット",
-                yomi: "巨大ティーポット",
-                url: "the-giant-teapot.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-05-09",
                 isDraft: true
             },
             {
@@ -16411,15 +14576,7 @@ const loreEntries = [
                 url: "the-mothman-equinox.html",
                 category: "イベント・現象",
                 appearance: ["Fallout 76"],
-                date: "2025-11-17"
-            },
-            {
-                name: "ニュークリアス",
-                yomi: "ニュークリアス",
-                url: "the-nucleus.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2025-11-17",
                 isDraft: true
             },
             {
@@ -16572,23 +14729,7 @@ const loreEntries = [
                 url: "the-vault-dweller-s-official-cookbook.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2026-01-07"
-            },
-            {
-                name: "The WayWard",
-                yomi: "The WayWard",
-                url: "the-wayward.html",
-                category: "記録",
-                appearance: ["Fallout 76"],
-                date: "2025-10-17"
-            },
-            {
-                name: "ホワイトスプリング議会バンカー",
-                yomi: "ホワイトスプリング議会バンカー",
-                url: "the-whitespring-bunker.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-07",
                 isDraft: true
             },
             {
@@ -16831,15 +14972,7 @@ const loreEntries = [
                 url: "tobacco.html",
                 category: "植物",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas","Fallout"],
-                date: "2025-11-22"
-            },
-            {
-                name: "トム",
-                yomi: "トム",
-                url: "tom-tv-series.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-22",
                 isDraft: true
             },
             {
@@ -17055,15 +15188,7 @@ const loreEntries = [
                 url: "twin-pine-cabin.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-07"
-            },
-            {
-                name: "ツインパイン・キャビンズ",
-                yomi: "ツインパイン・キャビンズ",
-                url: "twin-pine-cabins.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-07",
                 isDraft: true
             },
             {
@@ -17090,15 +15215,7 @@ const loreEntries = [
                 url: "tygart-water-treatment-plant.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-01-29"
-            },
-            {
-                name: "タイガート浄水場",
-                yomi: "タイガート浄水場",
-                url: "tygart-water-treatment.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-29",
                 isDraft: true
             },
             {
@@ -17125,15 +15242,7 @@ const loreEntries = [
                 url: "tyler-county-mobile-amusement-park.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout"],
-                date: "2025-10-19"
-            },
-            {
-                name: "米連邦捜査官",
-                yomi: "米連邦捜査官",
-                url: "u-s-federal-agent.html",
-                category: "人物",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-10-19",
                 isDraft: true
             },
             {
@@ -17250,15 +15359,7 @@ const loreEntries = [
                 url: "unstoppable.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2026-01-22"
-            },
-            {
-                name: "ウラニウム・シティ強制収容所",
-                yomi: "ウラニウム・シティ強制収容所",
-                url: "uranium-city-internment-camp.html",
-                category: "場所",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-01-22",
                 isDraft: true
             },
             {
@@ -17321,15 +15422,7 @@ const loreEntries = [
                 url: "valley-junkyard.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-21"
-            },
-            {
-                name: "ヴァンロウ剥製店",
-                yomi: "ヴァンロウ剥製店",
-                url: "van-lowe-taxidermy.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-21",
                 isDraft: true
             },
             {
@@ -17338,23 +15431,7 @@ const loreEntries = [
                 url: "vault-101.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2026-02-03"
-            },
-            {
-                name: "Vault 108",
-                yomi: "Vault 108",
-                url: "vault-108.html",
-                category: "場所",
-                appearance: ["Fallout 76","Fallout 3"],
-                date: "2026-02-07"
-            },
-            {
-                name: "Vault 111",
-                yomi: "Vault 111",
-                url: "vault-111.html",
-                category: "拠点/ダンジョン",
-                appearance: ["Fallout 4"],
-                date: "2026-04-20",
+                date: "2026-02-03",
                 isDraft: true
             },
             {
@@ -17390,15 +15467,7 @@ const loreEntries = [
                 url: "vault-13.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout"],
-                date: "2026-02-04"
-            },
-            {
-                name: "Vault 24",
-                yomi: "Vault 24",
-                url: "vault-24.html",
-                category: "場所",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2026-02-04",
                 isDraft: true
             },
             {
@@ -17461,15 +15530,7 @@ const loreEntries = [
                 url: "vault-51.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-11-08"
-            },
-            {
-                name: "Vault 63 アトリウム",
-                yomi: "Vault 63 アトリウム",
-                url: "vault-63-atrium.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-11-08",
                 isDraft: true
             },
             {
@@ -17631,15 +15692,7 @@ const loreEntries = [
                 url: "vault-tec-bobblehead.html",
                 category: "場所",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-11-25"
-            },
-            {
-                name: "Vault-Tec コーポレーション本部 (TVシリーズ)",
-                yomi: "Vault-Tec コーポレーション本部 (TVシリーズ)",
-                url: "vault-tec-headquarters-tv-series.html",
-                category: "場所",
-                appearance: ["Fallout TV"],
-                date: "2026-04-20",
+                date: "2025-11-25",
                 isDraft: true
             },
             {
@@ -17666,38 +15719,6 @@ const loreEntries = [
                 url: "vault.html",
                 category: "ロケーション",
                 appearance: ["Fallout","Fallout 2","Fallout 3","Fallout 4","Fallout 76","Fallout: New Vegas","Fallout TV"],
-                date: "2026-04-20"
-            },
-            {
-                name: "Vault76",
-                yomi: "Vault76",
-                url: "vault76.html",
-                category: "場所",
-                appearance: ["Fallout 76","Fallout 3"],
-                date: "2025-10-17"
-            },
-            {
-                name: "Vault Dweller (Vaultの居住者)",
-                yomi: "Vault Dweller (Vaultの居住者)",
-                url: "vault_dweller_lore.html",
-                category: "人物",
-                appearance: ["Fallout"],
-                date: "2026-04-20"
-            },
-            {
-                name: "Vault-Tec Industries",
-                yomi: "Vault-Tec Industries",
-                url: "vault_tec.html",
-                category: "勢力",
-                appearance: ["Fallout","Fallout 2","Fallout 3","Fallout 4","Fallout 76","Fallout: New Vegas","Fallout TV"],
-                date: "2026-04-20"
-            },
-            {
-                name: "ヴェール・オブ・シークレッツ",
-                yomi: "ヴェール・オブ・シークレッツ",
-                url: "veil-of-secrets.html",
-                category: "アーマー・装備",
-                appearance: ["Fallout 76"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -17986,23 +16007,7 @@ const loreEntries = [
                 url: "wasted-on-nukashine.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2026-01-18"
-            },
-            {
-                name: "水",
-                yomi: "水",
-                url: "water.html",
-                category: "アイテム",
-                appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-12-03"
-            },
-            {
-                name: "ワトガの野外ステージ",
-                yomi: "ワトガの野外ステージ",
-                url: "watoga-bandstand.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-18",
                 isDraft: true
             },
             {
@@ -18155,15 +16160,7 @@ const loreEntries = [
                 url: "weather-control-station.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-12-01"
-            },
-            {
-                name: "ウェルチ駅",
-                yomi: "ウェルチ駅",
-                url: "welch-station.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-01",
                 isDraft: true
             },
             {
@@ -18199,15 +16196,7 @@ const loreEntries = [
                 url: "wendigo.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 3"],
-                date: "2026-01-03"
-            },
-            {
-                name: "ワーナー",
-                yomi: "ワーナー",
-                url: "wernher.html",
-                category: "人物",
-                appearance: ["Fallout 3 (The Pitt)"],
-                date: "2026-04-20",
+                date: "2026-01-03",
                 isDraft: true
             },
             {
@@ -18252,15 +16241,7 @@ const loreEntries = [
                 url: "west-tek.html",
                 category: "記録",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3"],
-                date: "2026-01-13"
-            },
-            {
-                name: "ウェストブルック牧場",
-                yomi: "ウェストブルック牧場",
-                url: "westbrook-horse-ranch.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2026-01-13",
                 isDraft: true
             },
             {
@@ -18494,15 +16475,7 @@ const loreEntries = [
                 url: "wilson-brothers-auto-repair-shop.html",
                 category: "記録",
                 appearance: ["Fallout 76"],
-                date: "2025-12-19"
-            },
-            {
-                name: "ウィルソン兄弟のオート修理工場",
-                yomi: "ウィルソン兄弟のオート修理工場",
-                url: "wilson-brothers-auto.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-19",
                 isDraft: true
             },
             {
@@ -18520,15 +16493,7 @@ const loreEntries = [
                 url: "wise-charles.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2025-12-12"
-            },
-            {
-                name: "ワイズ・モスマン",
-                yomi: "ワイズ・モスマン",
-                url: "wise-mothman-fo76.html",
-                category: "クリーチャー",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-12-12",
                 isDraft: true
             },
             {
@@ -18645,15 +16610,7 @@ const loreEntries = [
                 url: "wv-lumber-company.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2025-10-29"
-            },
-            {
-                name: "ザンダー・ブラウン",
-                yomi: "ザンダー・ブラウン",
-                url: "xander-brown.html",
-                category: "人物",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
+                date: "2025-10-29",
                 isDraft: true
             },
             {
@@ -18662,21 +16619,6 @@ const loreEntries = [
                 url: "xavier.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「それがお前の最初の過ちだ。考えるということがな。だが安心しろ、我々がお前たちの種族を侵略し支配下に置けば、もう考える必要はなくなる。<br>
-                実際、思考は死刑に値する犯罪になるだろう。そしてもちろんその後に、一連の教育ビデオを視聴させられることになる。<br>
-                ゼビュロンの死後の世界には1,757段階の地獄があるのだから、ビデオを観て自分の過ちを振り返る時間は十分にあるだろう。」<br>
-                <span style="font-size: 0.85em; color: #888;">— ゼルゾ</span>",
-                yomi: "「それがお前の最初の過ちだ。考えるということがな。だが安心しろ、我々がお前たちの種族を侵略し支配下に置けば、もう考える必要はなくなる。<br>
-                実際、思考は死刑に値する犯罪になるだろう。そしてもちろんその後に、一連の教育ビデオを視聴させられることになる。<br>
-                ゼビュロンの死後の世界には1,757段階の地獄があるのだから、ビデオを観て自分の過ちを振り返る時間は十分にあるだろう。」<br>
-                <span style="font-size: 0.85em; color: #888;">— ゼルゾ</span>",
-                url: "xerxo.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -18704,17 +16646,6 @@ const loreEntries = [
                 url: "yao-guai-fo76.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
-                name: "「はじめまして。私の名前はヤスミン。アパラチアを旅するシェフよ。」<br>
-                <span style="font-size: 0.85em; color: #888;">— ヤスミン・チョウドリー</span>",
-                yomi: "「はじめまして。私の名前はヤスミン。アパラチアを旅するシェフよ。」<br>
-                <span style="font-size: 0.85em; color: #888;">— ヤスミン・チョウドリー</span>",
-                url: "yasmin-chowdhury.html",
-                category: "人物",
-                appearance: ["Fallout 4"],
                 date: "2026-04-20",
                 isDraft: true
             },
@@ -18760,15 +16691,7 @@ const loreEntries = [
                 url: "zeta-alien.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76","Fallout 4","Fallout 3","Fallout: New Vegas"],
-                date: "2025-11-16"
-            },
-            {
-                name: "Dr. ジマー",
-                yomi: "Dr. ジマー",
-                url: "zimmer.html",
-                category: "人物",
-                appearance: ["Fallout 3"],
-                date: "2026-04-20",
+                date: "2025-11-16",
                 isDraft: true
             },
             {
@@ -19164,7 +17087,116 @@ const loreEntries = [
                 url: "_catarax_fandom.html",
                 category: "未分類",
                 appearance: [],
-                date: "2026-02-26"
+                date: "2026-02-26",
+                isDraft: true
+            },
+            {
+                name: "放棄された湿原の町",
+                yomi: "放棄された湿原の町",
+                url: "abandoned-bog-town.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「長い茎に繊細な白い花をつけた標本。食用と思われ、農場で栽培されている変異ニンジンとの関連が疑われる。性質が不明なため、摂取には十分注意されたし。」<br>\r\n                <span style=\",
+                yomi: "「長い茎に繊細な白い花をつけた標本。食用と思われ、農場で栽培されている変異ニンジンとの関連が疑われる。性質が不明なため、摂取には十分注意されたし。」<br>\r\n                <span style=\",
+                url: "carrot-flower.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「彼女とのリンクは切れていないことを知っておくべきだ。ソフィア、君の目を見ると、あの人工知能がそこにいる。私たち全員を見ている。」<br>\r\n                <span style=\",
+                yomi: "「彼女とのリンクは切れていないことを知っておくべきだ。ソフィア、君の目を見ると、あの人工知能がそこにいる。私たち全員を見ている。」<br>\r\n                <span style=\",
+                url: "emerson-hale.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>\r\n                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」",
+                yomi: "「爆弾が落ちる前ですら、家族との関係を修復できたかどうかはわからない。<br>\r\n                でも、あとどれだけ時間が残されていたか…それを知っていたかった。」",
+                url: "leo-petrov.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「うーん…マウル、そんなこと考えたことなかった。<br>\r\n                でも人間の言う通りだ。<br>\r\n                お前は強い。<br>\r\n                グログナックより強いかもしれない。<br>\r\n                人間が前に進めるなら、マウルにもできるかもしれない。」",
+                yomi: "「うーん…マウル、そんなこと考えたことなかった。<br>\r\n                でも人間の言う通りだ。<br>\r\n                お前は強い。<br>\r\n                グログナックより強いかもしれない。<br>\r\n                人間が前に進めるなら、マウルにもできるかもしれない。」",
+                url: "maul.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「人生の大半を、あちこちのギャングで育ったよ。<br>\r\n                ここやあそこで。よくある悲しい話さ、俺たちの大半がそうだ。<br>\r\n                でも主に北の方だな。」",
+                yomi: "「人生の大半を、あちこちのギャングで育ったよ。<br>\r\n                ここやあそこで。よくある悲しい話さ、俺たちの大半がそうだ。<br>\r\n                でも主に北の方だな。」",
+                url: "raider-punk.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「お前が言ってたこと、考えてたんだ。<br>\r\n                俺が生きてるのは運がいいって話。<br>\r\n                間違ってはいない。<br>\r\n                でも、完全に正しくもない。<br>\r\n                俺だって努力してきたんだ。」",
+                yomi: "「お前が言ってたこと、考えてたんだ。<br>\r\n                俺が生きてるのは運がいいって話。<br>\r\n                間違ってはいない。<br>\r\n                でも、完全に正しくもない。<br>\r\n                俺だって努力してきたんだ。」",
+                url: "sam-nguyen.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「ビンゴ！ 当たりが出たぞ、みんな！<br>\r\n                見てくれよ。俺のことを知ってる奴がいた！<br>\r\n                いつかこうなると思ってたんだ。」",
+                yomi: "「ビンゴ！ 当たりが出たぞ、みんな！<br>\r\n                見てくれよ。俺のことを知ってる奴がいた！<br>\r\n                いつかこうなると思ってたんだ。」",
+                url: "settler-forager.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「私は…たくさん聞きたいことがある。ただ…どうして？なぜ？<br>\r\n                みんなにお別れを言っていたのに…本当にみんないなくなったの。<br>\r\n                放送の断片から…ある程度は何が起きたか理解したつもり。たぶん…戦争だったのね。<br>\r\n                そしてどういうわけか…これが生き残った世界。今は言葉にすらできないわ。」",
+                yomi: "「私は…たくさん聞きたいことがある。ただ…どうして？なぜ？<br>\r\n                みんなにお別れを言っていたのに…本当にみんないなくなったの。<br>\r\n                放送の断片から…ある程度は何が起きたか理解したつもり。たぶん…戦争だったのね。<br>\r\n                そしてどういうわけか…これが生き残った世界。今は言葉にすらできないわ。」",
+                url: "sofia-daguerre.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「あぁ、傲慢さの話か。俺たちには、太陽に近づきすぎて翼を焼いた蛾の物語がある。どうやらあいつも同じ結末を迎えたようだな、偽りの神と共に。」<br>\r\n                <span style=\",
+                yomi: "「あぁ、傲慢さの話か。俺たちには、太陽に近づきすぎて翼を焼いた蛾の物語がある。どうやらあいつも同じ結末を迎えたようだな、偽りの神と共に。」<br>\r\n                <span style=\",
+                url: "steven-scarberry.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「それがお前の最初の過ちだ。考えるということがな。だが安心しろ、我々がお前たちの種族を侵略し支配下に置けば、もう考える必要はなくなる。<br>\r\n                実際、思考は死刑に値する犯罪になるだろう。そしてもちろんその後に、一連の教育ビデオを視聴させられることになる。<br>\r\n                ゼビュロンの死後の世界には1,757段階の地獄があるのだから、ビデオを観て自分の過ちを振り返る時間は十分にあるだろう。」<br>\r\n                <span style=\",
+                yomi: "「それがお前の最初の過ちだ。考えるということがな。だが安心しろ、我々がお前たちの種族を侵略し支配下に置けば、もう考える必要はなくなる。<br>\r\n                実際、思考は死刑に値する犯罪になるだろう。そしてもちろんその後に、一連の教育ビデオを視聴させられることになる。<br>\r\n                ゼビュロンの死後の世界には1,757段階の地獄があるのだから、ビデオを観て自分の過ちを振り返る時間は十分にあるだろう。」<br>\r\n                <span style=\",
+                url: "xerxo.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
+            },
+            {
+                name: "「はじめまして。私の名前はヤスミン。アパラチアを旅するシェフよ。」<br>\r\n                <span style=\",
+                yomi: "「はじめまして。私の名前はヤスミン。アパラチアを旅するシェフよ。」<br>\r\n                <span style=\",
+                url: "yasmin-chowdhury.html",
+                category: "人物",
+                appearance: ["Fallout 4"],
+                date: "2026-04-20",
+                isDraft: true
             },
             {
                 name: "_media_gallery",
@@ -19191,6 +17223,22 @@ const loreEntries = [
                 date: "2026-02-26"
             },
             {
+                name: "アーロン・キンバル",
+                yomi: "アーロン・キンバル",
+                url: "aaron-kimball.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-02-16"
+            },
+            {
+                name: "B.O.S.アウトキャスト",
+                yomi: "B.O.S.アウトキャスト",
+                url: "b-o-s-outcast.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3"],
+                date: "2026-02-09"
+            },
+            {
                 name: "ゲイリー",
                 yomi: "ゲイリー",
                 url: "gary-tv-series.html.html",
@@ -19199,11 +17247,379 @@ const loreEntries = [
                 date: "2026-02-08"
             },
             {
+                name: "Vault 108",
+                yomi: "Vault 108",
+                url: "vault-108.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2026-02-07"
+            },
+            {
+                name: "プリドゥエン",
+                yomi: "プリドゥエン",
+                url: "pryduen.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4","Fallout 3"],
+                date: "2026-02-05"
+            },
+            {
+                name: "ブラッドバグ",
+                yomi: "ブラッドバグ",
+                url: "blood-bug.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2026-02-04"
+            },
+            {
+                name: "スローカム・ジョー",
+                yomi: "スローカム・ジョー",
+                url: "slocum-joe.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-02-01"
+            },
+            {
+                name: "脳みそキノコ",
+                yomi: "脳みそキノコ",
+                url: "brain-mushroom.html",
+                category: "植物",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4"],
+                date: "2026-01-28"
+            },
+            {
+                name: "ダンカン＆ダンカン・ロボティクス",
+                yomi: "ダンカン＆ダンカン・ロボティクス",
+                url: "duncan-duncan-robotics.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-28"
+            },
+            {
+                name: "パイパー・ライト",
+                yomi: "パイパー・ライト",
+                url: "piper-light.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2026-01-27"
+            },
+            {
+                name: "アデレード",
+                yomi: "アデレード",
+                url: "adelaide.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-24"
+            },
+            {
+                name: "海賊放送",
+                yomi: "海賊放送",
+                url: "pirate-broadcast.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-21"
+            },
+            {
+                name: "PTSアップデート – 2026年1月16日",
+                yomi: "PTSアップデート – 2026年1月16日",
+                url: "pts-update-january-16-2026.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-16"
+            },
+            {
+                name: "キャプテン・コスモス",
+                yomi: "キャプテン・コスモス",
+                url: "captain-cosmos.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2026-01-15"
+            },
+            {
+                name: "K.D.インクウェル",
+                yomi: "K.D.インクウェル",
+                url: "k-d-inkwell.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-14"
+            },
+            {
+                name: "ボトル ",
+                yomi: "ボトル ",
+                url: "bottle.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-08"
+            },
+            {
+                name: "エイリアンの食用生物",
+                yomi: "エイリアンの食用生物",
+                url: "alien-edible-creatures.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-06"
+            },
+            {
+                name: "アークトス・ファーマ (企業) ",
+                yomi: "アークトス・ファーマ (企業) ",
+                url: "arktos-pharma-corporate.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-04"
+            },
+            {
+                name: "アークトス・ファーマ",
+                yomi: "アークトス・ファーマ",
+                url: "arktos-pharma.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-01"
+            },
+            {
+                name: "血濡れ不屈ビルド",
+                yomi: "血濡れ不屈ビルド",
+                url: "bloody-indomitable-build.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2026-01-01"
+            },
+            {
+                name: "ジャイアントティーポット",
+                yomi: "ジャイアントティーポット",
+                url: "giant-teapot.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-31"
+            },
+            {
+                name: "黒色火薬ピストル",
+                yomi: "黒色火薬ピストル",
+                url: "black-powder-pistol.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-12-29"
+            },
+            {
+                name: "ブラムコ・ブランド・マック＆チーズ",
+                yomi: "ブラムコ・ブランド・マック＆チーズ",
+                url: "bramco-brand-mac-and-cheese.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3","Fallout 2"],
+                date: "2025-12-28"
+            },
+            {
+                name: "バックパック",
+                yomi: "バックパック",
+                url: "backpack.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-26"
+            },
+            {
+                name: "パブリックパーティー",
+                yomi: "パブリックパーティー",
+                url: "public-party.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-25"
+            },
+            {
+                name: "エイリアンブラスター ",
+                yomi: "エイリアンブラスター ",
+                url: "alien-blaster.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-24"
+            },
+            {
+                name: ".44ピストル",
+                yomi: ".44ピストル",
+                url: "44-pistol.html",
+                category: "武器",
+                appearance: ["Fallout 76","Fallout 4"],
+                date: "2025-12-21"
+            },
+            {
+                name: "アーチェリー・セット",
+                yomi: "アーチェリー・セット",
+                url: "archery-set.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-17"
+            },
+            {
+                name: "バファウト",
+                yomi: "バファウト",
+                url: "buffout.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-12-10"
+            },
+            {
+                name: "強制進化ウイルス（FEV）",
+                yomi: "強制進化ウイルス（FEV）",
+                url: "forced-evolution-virus-fev.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout 3"],
+                date: "2025-12-09"
+            },
+            {
+                name: "石鹸",
+                yomi: "石鹸",
+                url: "soap.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout"],
+                date: "2025-12-07"
+            },
+            {
+                name: "変異",
+                yomi: "変異",
+                url: "mutation.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-06"
+            },
+            {
+                name: "プラズマガン",
+                yomi: "プラズマガン",
+                url: "plasma-gun.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-12-05"
+            },
+            {
+                name: "パイプ・リボルバー",
+                yomi: "パイプ・リボルバー",
+                url: "pipe-revolver.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-12-03"
+            },
+            {
+                name: "水",
+                yomi: "水",
+                url: "water.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 4","Fallout 3"],
+                date: "2025-12-03"
+            },
+            {
+                name: "雑誌",
+                yomi: "雑誌",
+                url: "magazine.html",
+                category: "",
+                appearance: ["Fallout 76","Fallout: New Vegas"],
+                date: "2025-11-29"
+            },
+            {
+                name: "パイプガン",
+                yomi: "パイプガン",
+                url: "pipe-gun.html",
+                category: "武器",
+                appearance: ["Fallout 76"],
+                date: "2025-11-20"
+            },
+            {
+                name: "スウィートウォータースペシャルブレンド",
+                yomi: "スウィートウォータースペシャルブレンド",
+                url: "sweetwater-special-blend.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-20"
+            },
+            {
+                name: "パイプボルトアクション",
+                yomi: "パイプボルトアクション",
+                url: "pipe-bolt-action.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-18"
+            },
+            {
+                name: "スーザンの小屋",
+                yomi: "スーザンの小屋",
+                url: "susan-s-cabin.html",
+                category: "植物",
+                appearance: ["Fallout 76"],
+                date: "2025-11-13"
+            },
+            {
+                name: "サイコ",
+                yomi: "サイコ",
+                url: "psycho.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-12"
+            },
+            {
+                name: "RadAway",
+                yomi: "RadAway",
+                url: "radaway.html",
+                category: "アイテム",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-09"
+            },
+            {
+                name: "犬",
+                yomi: "犬",
+                url: "dog.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-06"
+            },
+            {
+                name: "ジャイアントラット",
+                yomi: "ジャイアントラット",
+                url: "giant-rat.html",
+                category: "クリーチャー",
+                appearance: ["Fallout 76","Fallout: New Vegas","Fallout 2"],
+                date: "2025-11-04"
+            },
+            {
+                name: "グローブス家のキャビン",
+                yomi: "グローブス家のキャビン",
+                url: "groves-family-cabin.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-11-03"
+            },
+            {
                 name: "中継タワーEM-B1-27",
                 yomi: "中継タワーEM-B1-27",
                 url: "relay-tower-em-b1-27_2.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
                 date: "2025-10-30"
+            },
+            {
+                name: "アーロンホルト農場",
+                yomi: "アーロンホルト農場",
+                url: "aaron-holt-farm.html",
+                category: "場所",
+                appearance: ["Fallout 76"],
+                date: "2025-10-27"
+            },
+            {
+                name: "Mr.スクイーズ",
+                yomi: "Mr.スクイーズ",
+                url: "mr-squeeze.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-21"
+            },
+            {
+                name: "Vault76",
+                yomi: "Vault76",
+                url: "vault76.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-17"
+            },
+            {
+                name: "The WayWard",
+                yomi: "The WayWard",
+                url: "the-wayward.html",
+                category: "",
+                appearance: ["Fallout 76"],
+                date: "2025-10-17"
             }
         ];;
