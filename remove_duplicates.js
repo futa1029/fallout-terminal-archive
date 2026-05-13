@@ -3166,7 +3166,7 @@ const manualEntries = [
             "Fallout 76"
         ],
         date: "2026-04-20",
-        status: "draft"
+        status: "published"
     },
     {
         name: "キャンプ・ゴルフのテント",
