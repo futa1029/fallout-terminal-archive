@@ -46,17 +46,6 @@ const manualEntries = [
         status: "draft"
     },
     {
-        name: "アーロンホルト農場",
-        yomi: "アーロンホルト農場",
-        url: "aaron-holt-farm.html",
-        category: "場所",
-        appearance: [
-            "Fallout 76"
-        ],
-        date: "2026-04-20",
-        status: "published"
-    },
-    {
         name: "アーロン・キンバル",
         yomi: "アーロン・キンバル",
         url: "aaron-kimball.html",
@@ -69,15 +58,15 @@ const manualEntries = [
         status: "published"
     },
     {
-        name: "アーロンホルト農家",
-        yomi: "アーロンホルト農家",
-        url: "aaronholt-homestead.html",
+        name: "アーロンホルト農場",
+        yomi: "アーロンホルト農場",
+        url: "aaron-holt-farm.html",
         category: "場所",
         appearance: [
             "Fallout 76"
         ],
         date: "2026-04-20",
-        status: "draft"
+        status: "published"
     },
     {
         name: "放棄された湿原の町",
