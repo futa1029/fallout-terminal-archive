@@ -2478,8 +2478,7 @@ const loreEntries = [
                 url: "camp-adams.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
+                date: "2026-05-13"
             },
             {
                 name: "キャンプ・ゴルフのテント",

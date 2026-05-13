@@ -3165,7 +3165,7 @@ const manualEntries = [
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-04-20",
+        date: "2026-05-13",
         status: "published"
     },
     {
