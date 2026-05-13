@@ -40,15 +40,6 @@ const loreEntries = [
                 date: "2026-02-16"
             },
             {
-                name: "アーロンホルト農家",
-                yomi: "アーロンホルト農家",
-                url: "aaronholt-homestead.html",
-                category: "場所",
-                appearance: ["Fallout 76"],
-                date: "2026-04-20",
-                isDraft: true
-            },
-            {
                 name: "放棄された湿原の町",
                 yomi: "放棄された湿原の町",
                 url: "abandoned-bog-town.html",
