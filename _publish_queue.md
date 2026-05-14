@@ -312,7 +312,7 @@ node _publish.js --group <N>  # グループN番を一括公開
 | 4 | The Blood | `the-blood` | Bloody Frank's |
 | 5 | The Eye | `the-eye` | Crimson Prospect |
 
-### グループ16: B.O.S.（フォート・アトラス） (18件)
+### グループ16: B.O.S.（アトラス砦） (18件)
 
 | # | 記事名 | スラッグ | 場所 |
 |---|--------|---------|------|

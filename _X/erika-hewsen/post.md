@@ -3,7 +3,7 @@
 Erika Hewsen
 https://www.fallout-jp.com/erika-hewsen.html
 
-B.O.S.（フォート・アトラス）
+B.O.S.（アトラス砦）
 
 ---
 CC BY-SA

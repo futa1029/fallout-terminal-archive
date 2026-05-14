@@ -3,7 +3,7 @@
 Brotherhood Barnaby
 https://www.fallout-jp.com/brotherhood-barnaby.html
 
-B.O.S.（フォート・アトラス）
+B.O.S.（アトラス砦）
 
 ---
 CC BY-SA

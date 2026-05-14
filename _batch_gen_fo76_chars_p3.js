@@ -13,7 +13,7 @@ function genArticle(wn,sl,fc){const d=wikiData[wn];if(!d)return null;const ib=ex
 
 const batch=[
   ...['Maggie Williams','Earle Williams','Russell Dorsey','Villager','Vernon Dodge'].map(n=>({w:n,f:'Miscellaneous'})),
-  ...['Art Knapp','Daniel Shin','Edgar Blackburn','Leila Rahmani','Marcia Leone','Maximo Leone','Odessa Valdez','Shawn Hockman','Tally Lang','Erika Hewsen','Luis Ramirez','Norland','Brotherhood Barry','Brotherhood Barnaby','Brotherhood Buck','Carol Putnam','Colin Putnam','Dagger'].map(n=>({w:n,f:'B.O.S.（フォート・アトラス）'})),
+  ...['Art Knapp','Daniel Shin','Edgar Blackburn','Leila Rahmani','Marcia Leone','Maximo Leone','Odessa Valdez','Shawn Hockman','Tally Lang','Erika Hewsen','Luis Ramirez','Norland','Brotherhood Barry','Brotherhood Barnaby','Brotherhood Buck','Carol Putnam','Colin Putnam','Dagger'].map(n=>({w:n,f:'B.O.S.（アトラス砦）'})),
   ...['Felton Reed','Gloria Chance','Ian Orwell','Jennie Brown','Marty Putnam','Mike Tiller','Sheena','Sunny (Steel Dawn)','Tad Chance','Farha','Herschel Klein','Jain (Steel Reign)','Joanna Mayfield','Kit','Minerva','Nellie Wright','Tommy Ten-Toes','George Putnam'].map(n=>({w:n,f:'Steel Dawn / Steel Reign'})),
   ...['Ashmore','Cassie Halloway','Dillo','Eightball','Needles','Petersen (Steel Reign)','Wilkins (Steel Reign)','Woods'].map(n=>({w:n,f:'Vault 96'})),
   ...['Clarence (Fallout 76)','Errol','Johanna','Marlon','Charles (Cult of the Mothman)'].map(n=>({w:n,f:'モスマン教団'})),

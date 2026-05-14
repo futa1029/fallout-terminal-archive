@@ -1,209 +1,492 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8"><title>ATLAS Observatory | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/atlas-observatory.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="ATLAS Observatory | Overseer Mohi's Terminal"><meta property="og:description" content="ATLAS天文台。Fallout 76に登場。"><meta property="og:url" content="https://www.fallout-jp.com/atlas-observatory.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>ATLAS観測所 | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/atlas-observatory.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="ATLAS観測所 | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ATLAS観測所（ATLAS Observatory）の完全アーカイブ。大戦前の気象操作プロジェクトから、B.O.S.の拠点「アトラス砦」への変遷、内部に残されたすべての記録を網羅。">
+    <meta property="og:url" content="https://www.fallout-jp.com/atlas-observatory.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0f0f0f;
-            --text-color: #e0e0e0;
-            --accent-color: #00ff00;
-            --header-bg: #1a1a1a;
-            --panel-bg: #222;
-        }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Noto Sans JP', sans-serif;
-            margin: 0;
-            line-height: 1.8;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 30px;
-        }
-        h1, h2, h3 {
-            font-family: 'Share Tech Mono', 'Noto Sans JP', monospace;
-            color: var(--accent-color);
-            border-bottom: 1px solid var(--accent-color);
-            padding-bottom: 5px;
-        }
+        :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
+        body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 350px 1fr; gap: 30px; }
+        h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
         h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
-        .infobox {
-            background: var(--panel-bg);
-            border: 2px solid var(--accent-color);
-            padding: 15px;
-            height: fit-content;
-            position: sticky;
-            top: 20px;
-            align-self: start;
-        }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; object-fit: cover; aspect-ratio: 16/9; }
         .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; }
-        .content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 5px;
-            font-size: 1em;
-            line-height: 1.9;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-        }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 100px; }
+        .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
         .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
-        .quote-box {
-            border-left: 4px solid var(--accent-color);
-            margin: 40px 0 20px 0;
-            background: color-mix(in srgb, var(--accent-color) 10%, transparent);
-            padding: 15px 15px 15px 20px;
-            border-radius: 0 5px 5px 0;
-            line-height: 1.6;
-        }
+        .quote-box { border-left: 4px solid var(--accent-color); margin: 40px 0 20px 0; background: color-mix(in srgb, var(--accent-color) 10%, transparent); padding: 15px 15px 15px 20px; border-radius: 0 5px 5px 0; line-height: 1.6; }
         .quote-box b { color: var(--accent-color); font-size: 1.05em; }
         .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
         .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
         .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
         .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
         .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
-        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 8px; font-family: 'Share Tech Mono', monospace; border-radius: 4px; transition: all 0.2s; }
-        .like-button:hover { box-shadow: 0 0 10px var(--accent-color); }
+        .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
+        .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
         .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        ul { list-style-type: square; }
-        li::marker { color: var(--accent-color); }
         .gallery-section { margin-top: 50px; }
         .gallery-section h2 { margin-bottom: 20px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
-        .gallery-item { background: var(--panel-bg); border: 1px solid #444; border-radius: 4px; overflow: hidden; transition: all 0.3s; }
-        .gallery-item:hover { border-color: var(--accent-color); box-shadow: 0 0 10px rgba(0, 255, 0, 0.3); transform: translateY(-2px); }
-        .gallery-item img { width: 100%; height: 180px; object-fit: cover; display: block; cursor: zoom-in; }
-        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
-        @media (max-width: 768px) {
-            .container { grid-template-columns: 1fr; padding: 10px; gap: 20px; }
-            .infobox { grid-row: 1; width: 100%; box-sizing: border-box; position: static; }
-            .content { padding: 15px; }
-            h1 { font-size: 1.6em; }
-            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
-        }
-        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.92); z-index: 9999; cursor: zoom-out; justify-content: center; align-items: center; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; display: flex; flex-direction: column; }
+        .gallery-item img { width: 100%; height: 200px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 10px; font-size: 0.85em; color: #aaa; text-align: center; flex-grow: 1; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); }
+        .transcript-box { background: #111; border: 1px solid #444; padding: 20px; margin: 20px 0; border-radius: 4px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; position: relative; }
+        .transcript-label { position: absolute; top: -12px; left: 15px; background: var(--bg-color); padding: 0 10px; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; font-size: 0.8em; border: 1px solid var(--accent-color); }
+        .terminal-box { background: #000; border: 2px solid #333; padding: 20px; margin: 20px 0; font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 0.9em; line-height: 1.4; border-radius: 8px; box-shadow: inset 0 0 10px rgba(0,255,0,0.2); }
+        .terminal-header { border-bottom: 1px solid #333; margin-bottom: 15px; padding-bottom: 5px; opacity: 0.7; }
+        .terminal-entry { margin-bottom: 25px; }
+        .terminal-title { color: #fff; font-weight: bold; margin-bottom: 5px; display: block; border-left: 3px solid var(--accent-color); padding-left: 10px; }
+        .legacy-tag { display: inline-block; background: #555; color: #fff; font-size: 0.7em; padding: 2px 6px; border-radius: 3px; vertical-align: middle; margin-left: 10px; font-family: sans-serif; }
+        .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
         .lightbox-overlay.active { display: flex; }
-        .lightbox-overlay img { max-width: 95vw; max-height: 95vh; object-fit: contain; border: 2px solid var(--accent-color); box-shadow: 0 0 40px rgba(0, 255, 0, 0.3); border-radius: 4px; }
+        .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
         .comments-section { margin-top: 40px; border-top: 2px solid var(--accent-color); padding-top: 20px; }
-        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); margin-bottom: 15px; font-size: 1em; border: none; padding: 0; }
+        .comments-title { font-family: 'Share Tech Mono', monospace; color: var(--accent-color); font-size: 1.1em; }
         .comment-form { margin-bottom: 20px; }
-        .comment-textarea { width: 100%; box-sizing: border-box; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--accent-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; padding: 10px; border-radius: 4px; resize: vertical; min-height: 70px; outline: none; transition: box-shadow 0.2s; }
-        .comment-textarea:focus { box-shadow: 0 0 8px var(--accent-color); }
-        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
-        .char-count { font-size: 0.8em; color: #888; font-family: 'Share Tech Mono', monospace; }
-        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; font-size: 0.9em; cursor: pointer; border-radius: 4px; transition: all 0.2s; }
+        .comment-textarea { width: 100%; box-sizing: border-box; min-height: 60px; background: var(--panel-bg); border: 1px solid #444; color: var(--text-color); padding: 10px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.9em; resize: vertical; border-radius: 4px; }
+        .comment-textarea:focus { outline: none; border-color: var(--accent-color); }
+        .comment-form-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+        .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
+        .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
         .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
-        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
-        .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
-        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
-        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
-        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
-        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
     </style>
-    <meta name="article-status" content="draft">
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout 76">
     <div class="container">
-        <aside class="infobox"><h3 style="margin-top:0;text-align:center;">ATLAS Observatory</h3><img src="images/note_extracted/atlas-observatory/img_main.png" alt="atlas-observatory" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><img src="images/note_extracted/atlas-observatory/img_map_marker.png" alt="マップ" style="width:100%;margin-top:5px;" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div style="text-align:center;font-style:italic;color:#888;font-size:0.8em;margin-bottom:10px;">マップ上の位置</div><div class="infobox-row"><span class="infobox-label">種類</span><span>天文台/軍事施設</span></div><div class="infobox-row"><span class="infobox-label">地域</span><span>荒れた境域</span></div><div class="infobox-row"><span class="infobox-label">クエスト</span><span>Steel Dawn</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside>
+        <aside class="infobox">
+            <h3 style="margin-top:0;text-align:center;">ATLAS観測所</h3>
+            <img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_exterior.png" alt="ATLAS観測所 外観">
+            <div class="infobox-row"><span class="infobox-label">場所</span><span>荒れた境域</span></div>
+            <div class="infobox-row"><span class="infobox-label">現在の名称</span><span>アトラス砦</span></div>
+            <div class="infobox-row"><span class="infobox-label">種別</span><span>天文台</span></div>
+            <div class="infobox-row"><span class="infobox-label">リーダー</span><span>アイザック・ハモンド (大戦前)<br>パラディン・ラフマーニ (現在)</span></div>
+            <div class="infobox-row"><span class="infobox-label">勢力</span><span>アメリカ空軍 (大戦前)<br>B.O.S. (現在)</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
         <main class="content">
-            
-            <div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_atlas_observatory" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div>
-            <h1>ATLAS Observatory<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">ATLAS天文台</span></h1>
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_atlas_observatory_exhaustive_final_v3" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ATLAS観測所<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">ATLAS Observatory</span></h1>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    「ATLASは世界を変える可能性を秘めている。あるいは、世界を破壊する可能性も。」<br>
+                    <b>―― アイザック・ハモンド博士（研究ログ #104より）</b>
+                </p>
+            </div>
+
             <h2>概要</h2>
-<p>ATLAS天文台は、アパラチアの荒れた境域にあったロケーションです。<br>
-現在はアトラス砦として知られています。<br>
-かつて大戦前は軍事科学プロジェクトの拠点でした。</p>
+            <p>
+                <b>ATLAS観測所</b>（ATLAS Observatory）は、アパラチアの荒れた境域地域にあるロケーションであり、現在は<b>アトラス砦</b>として知られている。<br>
+                かつては最先端の軍事科学プロジェクトの拠点であったが、大戦後は数十年にわたり休眠状態にあり、敵対的なロボットたちが徘徊する場所となっていた。
+            </p>
 
-<h2>背景</h2>
-<p>ATLASは天文台に見せかけた気象操作の軍事プロジェクトでした。<br>
-ATLASプログラム（大気テラフォーミング・レーザー加速システム）は初期の数ヶ月では限定的な成果しか出せず、カーク・ベントリー少佐に代わりジェームズ・オーバーリン中佐が指揮を引き継ぎました。<br><br>
-オーバーリンの指導下でプロジェクトは急速に進展しました。<br>
-3月には局地的な降雨の発生に成功し、8月にはホワイトアウトに近い吹雪を8月に発生させるという驚異的な成果を達成しました。<br><br>
-2077年8月までにプロジェクトは軍事利用が正式に承認されました。<br>
-オーバーリンは、気象操作によって敵を妨害し核戦争の脅威を減少させられると考えていました。<br>
-しかし10月16日、成功にもかかわらずATLASの閉鎖命令が突然下り、10月22日にはデータの改ざんを命じられました。<br><br>
-施設閉鎖と大戦にもかかわらず、ハモンド博士はさらに5ヶ月間プロジェクトを続行しました。<br><br>
-2103年、ラッセル・ドーシーがブラザーフッド・オブ・スティール第一遠征軍の到着に備え、Vault 76の住人と協力してATLAS天文台を改修。ブラザーフッドはこの施設をアトラス砦と改名しました。</p>
+            <h2>背景と歴史</h2>
+            <p>
+                表面上は天文学の研究施設を装っていたが、ATLASは気象操作を目的とした極秘の軍事プロジェクトであった。「ATLASプログラム」、正式名称「Atmospheric Terraforming Laser Accelerator System（大気テラフォーミング・レーザー加速器システム）」は、その初期段階では限定的な成功しか収めていなかった。
+            </p>
+            <p>
+                1076年1月24日、プロジェクトの責任者であったカーク・ベントレー少佐が不適格とみなされ、ジェームズ・オーバーリン中佐に交代した。この際、同年4月までに拡張可能な成果を出せなければ資金提供を打ち切るという厳しい条件が突きつけられていた。
+            </p>
+            <p>
+                オーバーリンの監視下で、プロジェクトは急速に進展した。1976年3月12日には、試作機がかなりの局地的エリアに軽微な降雨を発生させることに成功。これを受け、主任研究員のアイザック・ハモンド博士がより高エネルギーの気象条件の研究に投資することを条件に、プロジェクトの資金提供が延長された。1976年8月20日までに、ハモンド博士はチームが収集したデータに基づき、多様な気象条件を作り出せるようになった。最新の試作機は、8月中旬としては異常な、視界を遮るほどの猛吹雪（ホワイトアウト）を発生させることさえ可能であった。
+            </p>
+            <p>
+                1077年8月までに、プロジェクトは軍事利用として完全に承認され、資金が投入された。オーバーリンは、このシステムが気象を密かに操り敵を妨害することで、核戦争の脅威を軽減できると考えていた。しかし、プロジェクトの成功と有用性にもかかわらず、1077年10月16日に突如としてATLASプログラムと施設の閉鎖が命じられた。さらに、1077年10月22日、オーバーリンは施設の全データを改ざんし、プロジェクトが失敗であったかのように見せかけるよう指示を受けた。
+            </p>
+            <p>
+                施設の閉鎖決定とそれに続く大戦にもかかわらず、ハモンド博士はその後5ヶ月間にわたり一人でプロジェクトを継続した。彼はメインレンズを交換し、粒子分析を完了させ、加速器を安定化させるとともに、警備ロボットを助手として使用しようと試みていた。
+            </p>
 
-<h2>レイアウト</h2>
-<p>天文台はモノンガ東のルート63沿いの丘の頂上にあります。<br>
-以前は各種ロボットと壁掛けタレットに守られており、3つの入り口から多層構造のビルに入れました。<br>
-中央には望遠鏡を収めたドーム状の部屋があり、プロテクトロン、Mr.ガッツィー、高レベルのアサルトロンが配置されていました。</p>
+            <h3>戦後の変遷</h3>
+            <p>
+                2103年、ラッキー·ルーが自殺を図る際（フェラル化を避けるため）、観測所からいくつかの自動タレットを回収している。
+            </p>
+            <p>
+                同年後半、ラッセル·ドーシーが施設のエントランス付近にキャンプを設営した。彼は所有するプロテクトロンたちの助けを借りて、建物の周囲に枠組みを構築し始めた。これには、様々な高架プラットフォーム、医療用テント、着陸パッドなどが含まれ、意図的に観測所の内部を封鎖する措置も取られた。
+            </p>
+            <p>
+                2103年、ラッセル·ドーシーはVault 76の居住者たちと協力し、到着予定のブラザーフッド第一遠征軍のための基地を建設した。遠征軍が到着すると、施設は正式に「アトラス砦」と改名され、現在の姿へと改装された。
+            </p>
 
-<h2>主なアイテム</h2>
-<p>• ATLAS研究記録 #104 — ホロテープ。科学ディレクターのオフィス内のコントロールコンソール上。<br>
-• ATLAS研究記録 #293 — ホロテープ。地下室中央の骸骨の近く。<br>
-• ATLASディレクターのパスワード — ホロテープ。地下室中央の骸骨の近く。<br>
-• ドーシーの日記 — メモ。ラッセル・ドーシーのテントのベッド下。</p>
+            <h2>レイアウト</h2>
+            <img src="images/atlas-observatory/Atlas_Observatory_map.png" alt="地図" class="article-image">
+            <p class="image-caption">ATLAS観測所の周辺地図（荒れた境域地域）</p>
 
-<h2>補足</h2>
-<p>ATLAS天文台は、スティール・ドーンアップデートでアトラス砦に改名されました。<br>
-Fallout TV シリーズのティーザーに先だって公開されたGalaxy Newsの速報では、ATLAS天文台とATLAS気象実験がニュースティッカーで言及されています。</p>
-            <h2>登場作品</h2>
-            <p>ATLAS天文台はFallout 76に登場します。</p>
+            <p>
+                観測所は、モノンガーの東、ルート63沿いの丘の頂上に位置している。建物の外装は、以前は様々なロボットや自動壁タレットによって守られていた。
+            </p>
+            <p>
+                建物の3つの入り口は多層構造へと続いており、望遠鏡を収容する円形のメインルームを囲むように部屋が配置されている。内部にはプロテクトロン、Mr.ガッツィー、そして高レベルのアサルトロンが配備されていた。建物内には戦利品やジャンクが溢れており、メインの望遠鏡室にはVault-Tecボブルヘッドが置かれていることもある。
+            </p>
+
+            <img src="images/atlas-observatory/Atlas_Observatory_telescope.png" alt="メイン望遠鏡" class="article-image">
+            <p class="image-caption">ドーム内に鎮座するATLASシステムの核となる巨大望遠鏡</p>
+
+            <h2>主な戦利品（詳細な位置情報）</h2>
             
+            <h3>屋外</h3>
+            <ul>
+                <li><b>ラッセル・ドーシーの日記</b> - ラッセル・ドーシーのテント内、ベッドの下にある。</li>
+                <li><b>自分へのメモ：名前について</b> - 赤い機械を通り過ぎ、階段を降りた先の白いテーブルの上。</li>
+                <li><b>自分へのメモ：パーツについて</b> - 金属製の階段の下、赤い機械の隣にある木箱の上。</li>
+                <li><b>自分へのメモ：手すりについて</b> - ドームへと続く木製の階段を上がり、そのまま北へ進む。2つの金属製階段の間にあるプラットフォームの手すりの上。</li>
+                <li><b>やることリスト：ネイルガン</b> - ラッセル・ドーシーの向かい側にある装甲兵員輸送車（APC）の中。</li>
+                <li><b>やることリスト：パワーアーマー</b> - パワーアーマーステーションの隣にあるバレル（樽）の上。</li>
+                <li><b>やることリスト：シンボル</b> - ドーム自体に取り付けられている。木製の階段を上がり、北東を向いた通路を進んだ先。</li>
+                <li><b>最後の詳細</b> - ドーシーのテント内、キャビネットの上。</li>
+            </ul>
+
+            <h3>屋内</h3>
+            <p>※「The Legendary Run」アップデートから「Steel Dawn」リリースまでの間、内部は封鎖されていた。</p>
+            <ul>
+                <li><b>ATLAS研究ログ #104</b> - ホロテープ。科学ディレクターのオフィス内、コントロールコンソールの上にある。</li>
+                <li><b>ATLAS研究ログ #293</b> - ホロテープ。地下中央の白骨死体の近く。</li>
+                <li><b>ATLASディレクターのパスワード</b> - ホロテープ。地下中央の白骨死体の近く。</li>
+                <li><b>ATLAS備品キー (2)</b>:
+                    <ul>
+                        <li>地下の崩落した屋根があるセクションのテーブルの上。</li>
+                        <li>地下へ続くドアの近く、下層階のテーブルの上。</li>
+                    </ul>
+                </li>
+                <li><b>Vault-Tecボブルヘッド</b> - 望遠鏡を囲むスロープの頂上。</li>
+                <li><b>雑誌</b> - 地下から上がった1階のコーヒーテーブルの上。</li>
+            </ul>
+
+            <h2>全文記録：ノート、ホロテープ、ターミナル</h2>
+
+            <h3>現在の記録</h3>
+            <div class="transcript-box">
+                <div class="transcript-label">ラッセル・ドーシーの日記 (Dorsey's diary)</div>
+                <p>
+                    <b>[本文]</b><br>
+                    ここで日誌を書き始めることにした。こんな場所に一人でいると、どうせ独り言を言うようになるから、書き留めておいたほうがいいだろう。これが全部終わったときに見返せるものがあればいいしな。
+                </p>
+                <p>
+                    スクラップを探していたら、ブラザーフッドの信号を拾った。最初はかすかなノイズだったが、やがて言葉が断片的に聞こえてきた。ブラザーフッド・オブ・スティールがウェストバージニアに戻ってくる！信じられないことだった。何が彼らを呼び戻したのか、なぜ西のロスト・ヒルズから送るのにこれほど時間がかかったのかは分からないが、事態を把握するとすぐに荷物をまとめてATLASに来た。彼らが来るのはここだ、だから僕もここにいなきゃならない。
+                </p>
+                <p>
+                    これをやっている間、父さんのことをよく思い出す。ここで何かをセットアップするたびに、父さんならどうしただろうかと自分に問いかける。爆弾が落ちた後に住んでいた家、父さんが直した修理箇所、浄水器を置くために付け足した増築部分、温室……今でも鮮明に思い出せる。<br>
+                    父さんも、僕がここで作っているものを認めてくれると思う。生きてこれを見てほしかった。もし父さんが生きていたら、ここには来なかったかもしれないけど。<br>
+                    今でも父さんが恋しい。
+                </p>
+                <p>
+                    バージニアの道中で出会ったグレッグ、どこにいるか分からないけど、改めてありがとう。<br>
+                    グレッグは爆弾が落ちる前、ロブコ・インダストリーズの技術者だった。プロテクトロン・ユニットの担当で、法人顧客のところへ行って現場メンテナンスをしたり、壊れたモチベーターを直したりしていたそうだ。<br>
+                    僕が出会ったとき、彼は一台のプロテクトロンを連れていた。「クランクス」と呼んでいて、頭にボロボロの古いシルクハットを接着していた旅の荷物を運ばせていたんだ。<br>
+                    ある夜キャンプをしていたとき、彼はクランクスに小さな「ダンス」をさせ、あの機械的な声でふざけた歌を唱えさせた。今まで聞いた中で最低の歌声だったけど、僕らを笑わせてくれた。<br>
+                    彼は古いショッピングセンターで、足のサーボが壊れたまま動いていたそのユニットを見つけ、修理した方法を教えてくれた。クランクスの中を開けて、マザーボードを直結し、メンテナンス回路を起動してコマンドシステムを上書きする方法を見せてくれたんだ。
+                </p>
+                <p>
+                    おかしいよね。そんなことが役に立つなんて思ってもみなかった。でもここに来て役に立った。プロテクトロンをおびき寄せて、サービスパネルをこじ開けて即席の修理をするのは簡単じゃないけど、良いニュースは、一台捕まえれば次を捕まえるのがずっと楽になるってことだ。
+                </p>
+                <p>
+                    僕がここに来たとき、この場所はひどい有様だった。壊れた車両とジャンク、そして狂ったロボットたちがパトロールしているだけ。最初に襲われたときは命からがら逃げ出したよ。<br>
+                    昔ここで何をしていたのか、なぜ天文台に警備ロボットがいるのかは分からない。でも、彼らがいてくれてよかった。たとえ最初は僕を撃とうとしたとしてもね。彼らがいないかったら、これだけのことは不可能だっただろう。重いものを運んだり、溶接したり、大変な建設作業をこなしてくれるロボットがいなければ、砂袋をいくつか並べるのが精一杯だったはずだ。<br>
+                    代わりに、僕らは瓦礫を片付け、壁を作り始め……そう、着陸パッドまで作っているんだ！ブラザーフッドが飛行機を持っているかは分からないけど、スペースがあったから作ってみた。
+                </p>
+                <p>
+                    ただ、建物の中に何があるのかはまだ分からない。中でロボットがガシャガシャ動いている音が聞こえるし、覗いてみたら中もひどい有様だった。中にあるものが何であれ、ブラザーフッドが到着するまで外に出ないように出口を塞いでおいた。僕がやるより彼らのほうが扱い方を知っているだろうし、外側だけでも手一杯だからね。
+                </p>
+                <p>
+                    <b>（後日追記）</b><br>
+                    書く時間がほとんどなかった。ブラザーフッドが戻ってきたんだ！僕とロボットだけで準備していたときも忙しいと思っていたが、今は本当にギアが上がった感じだ。<br>
+                    正直、たった3人だったのには驚いた。小隊か何かが来ると思っていたけど、実際はパラディン・ラフマーニ、ナイト・シン、スクライブ・バルデスの3人だけだった。他にも候補生たちがいたけど、本物のブラザーフッドはその3人だけだった。
+                </p>
+                <p>
+                    でも、彼らは僕が準備したすべてを見て、その場で僕を新兵（イニシエイト）に任命してくれた！夢かと思うこともあるけど、これは現実だ。僕は本当の一部になったんだ。父さんも、どこかで僕がしたことを見て、誇りに思ってくれているといいな。<br>
+                    よし、イニシエイトの僕、仕事に戻れ。
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">最後の詳細 (Last details)</div>
+                <p>
+                    関心のある方へ：<br><br>
+                    不在にしていて申し訳ない。ブラザーフッドが近づいているので、彼らが到着する前に片付けておかなければならないことがいくつかある。この場所はまだ閉鎖されている。彼らが到着するまで、誰もここで勝手なことをしてほしくないからだ。<br><br>
+                    もし建設のために寄付をしてくれたなら、自分が何を作るのを助けたか見てほしい！誇りに思うべきだ。僕は誇りに思っている。<br><br>
+                    ああ、それと、もしこれを読んでいるのがブラザーフッド本人で、僕がまだ戻っていなければ……戻り次第、すぐに任務に就くつもりだ。<br>
+                    すぐ戻る。<br>
+                    - ラッセル・ドーシー
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">ATLAS研究ログ #104 (ATLAS research log #104)</div>
+                <p>
+                    <b>アイザック・ハモンド</b>：「ATLASプロジェクト、研究ログ #104。マークス中尉と私はイオンビーム加速器の調整を開始した。300 MeVの閾値で停滞している。磁束の微小な変化がベータトロン誘導ループを乱しているようだ。中尉はコイルコントローラーのファームウェア・アップデートに取り組んでいる。月曜日までには「揺れ」を解消できると言っていた。」<br><br>
+                    「メイン装置の組み立ては予定通りだ。空軍は時間には正確だ。オーバーリン大佐は、年内に施設を完全に稼働させるよう迫っている。自分の研究が形になるのを見たい気持ちはあるが、慎重に進める必要がある。失敗すれば、壊滅的な結果を招きかねない。ATLASは世界を変える可能性を秘めている。あるいは、世界を破壊する可能性も。」
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">ATLAS研究ログ #293 (ATLAS research log #293)</div>
+                <p>
+                    <b>アイザック・ハモンド</b>：「研究ログ 292……93？ 93だ。あの日から5ヶ月。5ヶ月が経った。彼らは私を見捨てた。軍はATLASを信じていなかった。ただの兵器だったんだ。核が落ちた今、それが何だと言うんだ？ ATLAS、この研究……私の人生のすべてだった。我々にはATLASが必要だ。世界にはATLASが必要なんだ。今、これまで以上に。」<br><br>
+                    「完成させなければならない。必要なものはすべてここにある。ただ時間と……手が必要だ。すべてのロボットを起動した。彼らは警備用で、こんな作業のためにプログラムされてはいない。だが、これしかない。やり遂げてみせる。メインレンズを交換した。粒子分析を完了した。加速器はようやく安定したと思う。」<br><br>
+                    「とても疲れた。でも続けなければならない。もう少しだ。もうすぐ終わる。もうすぐ……」
+                </p>
+            </div>
+
+            <h3>以前の記録（レガシーコンテンツ）<span class="legacy-tag">REMOVED</span></h3>
+
+            <div class="transcript-box">
+                <div class="transcript-label">自分へのメモ：名前について (Note to self: Names)</div>
+                <p>
+                    自分へのメモ：<br>
+                    もうロボットに名前を付けるのはやめろ。これからは番号だけだ。<br><br>
+                    昨日、「グラッビー（Grabby）」と名付けたやつが遠くまで行きすぎて、森を通り抜けたラッドスタッグの群れに壊された。壊れたロボットを見て悲しくなることは普通はないが、グラッビーが「死んだ」ように感じてしまった。修理すべきプロテクトロンがもう一台増えた、という風には思えなかったんだ。<br><br>
+                    番号に固執しろ。そのほうが安全だ。
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">自分へのメモ：パーツについて (Note to self: Parts)</div>
+                <p>
+                    自分へのメモ：<br>
+                    これらのプロテクトロンを動かし続けるために、もっと細々した部品をかき集めろ。昨日、2番が物資を運んでいる最中にリベットを飛ばしやがった。腕を動かせるようにするだけで、丸一日潰れた。
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">自分へのメモ：手すりについて (Note to self: Railings)</div>
+                <p>
+                    自分へのメモ：<br>
+                    高い場所に手すりがあるのには理由があるんだぞ、ドーシー。雨上がりの濡れた場所で滑って落ちそうになった。<br><br>
+                    まあ、優先順位は最後だな。ここであまり作業する予定はないし、もっと重要なことが他にある。
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">やることリスト：ネイルガン (To-do: Nailgun)</div>
+                <p>
+                    やることリスト：<br>
+                    3番のネイルガンを修理しろ。昨日、あいつが同じ板を4回連続で打ち付けているのを見た。板を置いて釘を打つ動作を繰り返すだけで、板はすぐに落ちてしまう。たぶん何かが詰まっているんだろう。だが、1番のサーボのほうが先だ。
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">やることリスト：パワーアーマー (To-do: Power armor)</div>
+                <p>
+                    やることリスト：<br>
+                    あのパワーアーマーを手に入れられないか試してみろ。ここにワークステーションも用意してある。<br><br>
+                    それって、ブートキャンプに自作の制服を着ていくようなものか？ やめとこう。
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">やることリスト：シンボル (To-do: Symbol)</div>
+                <p>
+                    やることリスト：<br>
+                    ドームの正面に大きなシンボルを付けることを考えている。そこにスポットライトを置いて、夜でもみんなに見えるように照らすんだ。ブラザーフッドがここにいることを本当にみんなに知らせるためにね。<br><br>
+                    自分でやらなきゃならないだろうな。この通路の上ではロボットは信用できない。滑車システムか何かで持ち上げられるかな？
+                </p>
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">すぐに戻る (Back in a bit)</div>
+                <p>
+                    立ち寄った方へ：<br>
+                    ロボットの予備パーツを探しに少し出かけている。僕らがここで何をしているかに興味があるなら、すぐ戻るから待っていてくれ。ここが終われば、素晴らしい場所になるはずだ。協力してくれることを願っている。<br><br>
+                    この場所を封鎖したから、もし中に入って覗こうと思っているなら……残念だが諦めてくれ。それと、僕がいない間に僕の物に触らないでほしい。無理やり止めることはできないけど、わざわざ嫌な奴になる必要もないだろう。<br>
+                    - ラッセル・ドーシー
+                </p>
+            </div>
+
+            <h2>ターミナル・ログ：陸軍データ分析</h2>
+            <div class="terminal-box">
+                <div class="terminal-header">ROBCO INDUSTRIES (TM) TERMLINK - ATLAS ACCESS CONTROL</div>
+                
+                <div class="terminal-entry">
+                    <span class="terminal-title">レポート [1-24-76]</span>
+                    ジェームズ・オーバーリン中佐、ATLASプログラムの首席陸軍科学顧問として着任。不適格とみなされたカーク・ベントレー少佐の後任である。<br>
+                    ATLASプログラムの進捗は予想より遅い。テコ入れのために全力を尽くす。<br>
+                    ワシントンの裁定により、4月までに試作機が拡張可能な結果を出さなければ資金をカットする。技術的に互換性がないことが判明した場合、ATLAS加速器の建設に支払い続けるべきではない。
+                </div>
+
+                <div class="terminal-entry">
+                    <span class="terminal-title">レポート [3-12-76]</span>
+                    プロトタイプの結果は、中程度の成功を収めた。ハモンド博士は、かなりの局地的エリアに軽微な降雨を開始させることに成功した。<br>
+                    ハモンド博士がより高エネルギーの気象条件の研究にもっと投資することを条件に、ATLASプログラムの資金提供は継続される。ATLAS技術の基礎を改善し続ける一方で、加速器の建設を開始する許可をエンジニアに出した。しかし、尻に火をつけるために、これ以上の大幅な遅延が発生した場合は資金が枯渇することを明言しておいた。
+                </div>
+
+                <div class="terminal-entry">
+                    <span class="terminal-title">レポート [8-20-76]</span>
+                    ハモンド博士は、チームが研究室に持ち込んだデータに基づき、多種多様な気象条件を作り出すことができた。<br>
+                    最新のプロトタイプでは、8月中旬には珍しいホワイトアウト寸前の吹雪が発生した。地元メディアのいくつかがこれを取り上げているが、こちらに向けられたものはない。警備は厳重であり、職員も口を閉ざすと信じている。設置した自動警備システムは、不注意な発言を抑制する効果がある。明日、ワシントンの軍上層部と会合を持ち、この技術の軍事利用について検討する予定だ。局地的なプロトタイプは戦争ではあまり役に立たないが、小規模な小競り合いや特定の隠密作戦では有用であることが証明されるだろう。
+                </div>
+
+                <div class="terminal-entry">
+                    <span class="terminal-title">レポート [8-17-77]</span>
+                    ATLASプロジェクトは軍事利用のために完全に承認され、資金が投入された。<br>
+                    これは対中戦争における巨大な資産となるだろう。敵国を厚い黒雲で覆い尽くして作物を枯らし、台風で軍港を壊滅させ、雷雨で航空基地を無効化する。空こそが限界だ。ATLASシステムが完成すれば、全面核戦争の脅威は軽減されるだろう。異常気象が我々の制御下にあると信じる者はいないからだ。加速器の建設にはより多くの人間が投入され、制作を急いでいる。現在の予測では、来年の第1四半期に完了する予定だ。
+                </div>
+
+                <div class="terminal-entry">
+                    <span class="terminal-title">レポート [10-18-77]</span>
+                    2日前、ワシントンの上司から手紙を受け取った。全く青天の霹靂だが、彼らはATLASを閉鎖するというのだ。完全にショックだった。詳細を読むと、「コスト削減策」「リスク評価比率」「納税者の責任」といったいつものデタラメな文句で埋め尽くされていた。さらなる指示が続くとも書いてあった。<br>
+                    正直、全く筋が通らない。このニュースを聞けばハモンド博士が理性を失うのは確実なので、彼と話し合うのは待つことにした。
+                </div>
+
+                <div class="terminal-entry">
+                    <span class="terminal-title">レポート [10-22-77]</span>
+                    予想通り、指揮官から追跡の手紙を受け取った。ハモンド博士が収集したすべてのデータを見直し、ATLASが失敗であったかのように値と結果を調整せよという内容だった。<br>
+                    なぜ彼らは戦争の焦点を変える可能性のあるプロジェクトを葬ろうとしているのか？ なぜ彼らは突然、すべてを隠蔽しようとしているのか？ 疑問は尽きないが、ワシントンに電話して尋ねるほど愚かではない。命令は命令だ。たった今ハモンドにニュースを伝えたが、彼は即座に激昂した。MP（憲兵）を二人呼んで拘束しなければならなかった。本当に殺されるかと思った。幸い彼は落ち着き、一言も発せずに敷地から去っていった。彼が戻ってくるかは分からないが、私にはまだ仕事がある。
+                </div>
+            </div>
+
+            <h2>補足・トリビア</h2>
+            <ul>
+                <li>「Steel Dawn」アップデート（パッチ24）により、名称が「アトラス砦」へと正式に変更された。</li>
+                <li>ドラマ版『Fallout』のプレミア公開時に配信された特別ニュースレポートにおいて、ATLAS観測所と気象実験について言及されている。それによれば、ロサンゼルスで報告された「予期せぬ吹雪」の原因は、ATLASによる気象実験であると信じられている。</li>
+            </ul>
+
+            <div class="gallery-section">
+                <h2>ギャラリー</h2>
+                <h3>要塞化工事中のATLAS観測所</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_exterior.png" alt="外観"><div class="caption">「ザ・レジェンダリー・ラン」時点の外観</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(entrance_pre-Beta).png" alt="エントランス"><div class="caption">「Fortifying ATLAS」ベータフェーズ前のエントランス</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(entrance_sign).png" alt="看板"><div class="caption">B.O.S.の旗で覆われた看板</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(landing_pad_Beta).png" alt="着陸パッド"><div class="caption">プロジェクト・ベータ期間中の着陸パッド</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(dome_Beta).png" alt="ドーム"><div class="caption">プロジェクト・ベータ期間中のドームの様子</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(Brotherhood_banner_Beta).png" alt="バナー"><div class="caption">プロジェクト・ベータ期間中のB.O.S.バナー</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_note_-_Back_in_a_bit.png" alt="すぐに戻る"><div class="caption">「すぐに戻る」のノート（カットコンテンツ）</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(Dorsey's_diary).png" alt="日記"><div class="caption">ラッセル・ドーシーの日記</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76OW_ATLAS_Observatory_(Last_details).png" alt="最後の詳細"><div class="caption">「最後の詳細」のノート</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(Note_to_self_Names).png" alt="名前"><div class="caption">「自分へのメモ：名前について」</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(Note_to_self_Parts).png" alt="パーツ"><div class="caption">「自分へのメモ：パーツについて」</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(Note_to_self_Railings).png" alt="手すり"><div class="caption">「自分へのメモ：手すりについて」</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(To-do_Nailgun).png" alt="ネイルガン"><div class="caption">「やることリスト：ネイルガン」</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(To-do_Power_armor).png" alt="パワーアーマー"><div class="caption">「やることリスト：パワーアーマー」</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_(To-do_Symbol).png" alt="シンボル"><div class="caption">「やることリスト：シンボル」</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_upgrade_level_1.png" alt="レベル1"><div class="caption">アップグレード・レベル1</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_upgrade_level_4.png" alt="レベル4"><div class="caption">アップグレード・レベル4</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_upgrade_level_7.png" alt="レベル7"><div class="caption">アップグレード・レベル7</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76_Steel_Dawn_Art.jpg" alt="Steel Dawn"><div class="caption">「Steel Dawn」のアートワークにおけるATLAS観測所</div></div>
+                </div>
+
+                <h3>現在のATLAS観測所(アトラス砦)</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76LR_ATLAS_Observatory_entrance.png" alt="エントランス"><div class="caption">ATLAS観測所のエントランス</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/F76_ATLAS_Observatory_Entrance.png" alt="旧エントランス"><div class="caption">「ザ・レジェンダリー・ラン」以前のATLAS観測所</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/F76_ATLAS_Observatory_Gate.png" alt="ゲート"><div class="caption">正面ゲート</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76_ATLAS_Observatory.png" alt="夜景"><div class="caption">ATLAS観測所の夜景</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/ATLAS_01.png" alt="観測所01"><div class="caption">ATLAS観測所の全景</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/ATLAS_02.png" alt="外の骨"><div class="caption">施設の外に残された白骨死体</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/ATLAS_03.png" alt="中の骨"><div class="caption">施設内に残された白骨死体</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/Atlas_Observatory_basement.png" alt="地下施設"><div class="caption">ATLASスコープの基部</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/Atlas_Observatory_telescope.png" alt="望遠鏡"><div class="caption">ATLAS望遠鏡本体</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/F76_Atlas_Observatory_sign.png" alt="看板"><div class="caption">ATLAS看板のクローズアップ</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/F76_ATLAS_Observatory.png" alt="広告"><div class="caption">アトラス観測所の広告（ポスター）</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76_ATLAS_observatory_concept_art.jpg" alt="コンセプトアート"><div class="caption">Christopher Ortegaによるコンセプトアート</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/Atlas_Observatory_map.png" alt="地図"><div class="caption">ATLAS観測所の周辺地図</div></div>
+                    <div class="gallery-item"><img src="images/atlas-observatory/FO76_Sign_K_1_(15).png" alt="サイン"><div class="caption">施設内のサイン</div></div>
+                </div>
+            </div>
+
             <div class="quote-box">
                 <b>感想</b><br><br>
-                ATLAS天文台は、Fallout 76の中でも特に興味深いバックストーリーを持つロケーションです。<br>
-天文台に見せかけた気象操作兵器——8月にホワイトアウト級の吹雪を起こせるレベルの技術を持ちながら、大戦直前に突然閉鎖命令が出るという不可解な展開は、アメリカ軍の内部事情の闇深さを感じさせます。<br><br>
-この施設が後にブラザーフッド・オブ・スティールのアトラス砦に生まれ変わるという展開も素晴らしいですね。<br>
-Fortifying ATLASのコミュニティイベントで、プレイヤーたちが協力して施設を改修していった過程は、Fallout 76ならではの体験でした。
+                気象を兵器化するという、Falloutらしい狂気と野心に満ちた「ATLASプロジェクト」。<br>
+                大戦前の軍上層部がその成功を隠蔽しようとした背景には、さらなる恐ろしい計画があったのか、あるいは単なる政治的判断だったのか……想像が膨らみます。<br>
+                そして戦後、ラッセル・ドーシーという一人の青年の純粋な憧れが、この巨大な「兵器の残骸」を再び動かし、B.O.S.の新たな夜明けへと繋がったというストーリーは、アパラチアの物語の中でも特に希望を感じさせるものです。
             </div>
 
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-                <p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/ATLAS_Observatory" target="_blank" rel="noopener">ATLAS Observatory</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
-                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+                <p>This article was synthesized from <a href="https://fallout.fandom.com/wiki/ATLAS_Observatory" target="_blank" rel="noopener">ATLAS Observatory</a> and related pages on <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
             </div>
 
             <div class="comments-section" id="comments-section">
                 <h3 class="comments-title">&gt; COMMENTS</h3>
-                <div class="comment-form">
-                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力 (最大100文字)..." oninput="updateCharCount()"></textarea>
-                    <input type="text" id="hp_field" name="website" style="display:none;position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
-                    <div class="comment-form-footer">
-                        <span class="char-count"><span id="char-count">0</span> / 100</span>
-                        <button class="comment-submit-btn" onclick="submitComment()">SEND &#9654;</button>
-                    </div>
-                    <div id="comment-msg" class="comment-msg"></div>
-                </div>
-                <div id="comments-list" class="comments-list"><div class="comment-loading">LOADING...</div></div>
+                <div id="comments-list" class="comments-list"></div>
             </div>
         </main>
     </div>
 
-    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="拡大画像" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div>
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
 
     <script>
-        const supabaseUrl = 'https://qkdjufvdeisnunismgaw.supabase.co';
-        const supabaseKey = 'sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
-        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
-        async function toggleLike(btn) { const articleId = btn.getAttribute('data-article-id'); let isLiked = localStorage.getItem(articleId + '_liked') === 'true'; btn.disabled = true; if (isLiked) { isLiked = false; const { data, error } = await supabaseClient.rpc('decrement_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } else { isLiked = true; const { data, error } = await supabaseClient.rpc('increment_like', { article_id_param: articleId }); if (!error) { localStorage.setItem(articleId + '_liked', isLiked); updateLikeButton(btn, isLiked, data); } } btn.disabled = false; }
-        function updateLikeButton(btn, isLiked, count) { const heart = btn.querySelector('.heart'); const countSpan = btn.querySelector('.like-count'); if (isLiked) { btn.classList.add('liked'); heart.textContent = '♥'; } else { btn.classList.remove('liked'); heart.textContent = '♡'; } countSpan.textContent = count; }
-        document.addEventListener('DOMContentLoaded', async () => { const btn = document.querySelector('.like-button'); if (btn) { const articleId = btn.getAttribute('data-article-id'); const isLiked = localStorage.getItem(articleId + '_liked') === 'true'; const { data, error } = await supabaseClient.from('likes').select('like_count').eq('article_id', articleId).single(); let count = 0; if (!error && data) count = data.like_count; updateLikeButton(btn, isLiked, count); } const lightbox = document.getElementById('lightbox'); const lightboxImg = document.getElementById('lightbox-img'); document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img => { img.addEventListener('click', (e) => { e.stopPropagation(); lightboxImg.src = img.src; lightbox.classList.add('active'); }); }); });
-        const _commentArticleId = 'note_atlas_observatory'; const _commentArticleName = 'ATLAS Observatory'; const _commentArticleUrl = 'atlas-observatory.html'; const ADMIN_TOKEN_KEY = 'fallout_admin_token'; const ADMIN_PASSWORD = 'tq7jtq7j'; const RATE_LIMIT_KEY = 'comment_last_posted'; const RATE_LIMIT_SEC = 60; let _isAdminMode = false;
-        function updateCharCount() { const len = document.getElementById('comment-input').value.length; const el = document.getElementById('char-count'); if (el) { el.textContent = len; el.style.color = len > 90 ? '#ff6b6b' : 'var(--accent-color)'; } }
-        function relativeTime(s) { const d = (Date.now() - new Date(s).getTime()) / 1000; if (d < 60) return 'たった今'; if (d < 3600) return Math.floor(d/60)+'分前'; if (d < 86400) return Math.floor(d/3600)+'時間前'; if (d < 86400*7) return Math.floor(d/86400)+'日前'; return new Date(s).toLocaleDateString('ja-JP'); }
-        function escapeHtml(str) { return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
-        function renderComments(comments) { const list = document.getElementById('comments-list'); if (!list) return; if (!comments || comments.length === 0) { list.innerHTML = '<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>'; return; } list.innerHTML = comments.map(c => `<div class="comment-item" data-id="${c.id}"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span>${_isAdminMode ? `<button class="comment-delete-btn" onclick="deleteComment('${c.id}')">&#128465;</button>` : ''}</div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join(''); }
-        async function loadComments() { const list = document.getElementById('comments-list'); if (!list) return; const { data, error } = await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50); if (error) { list.innerHTML = '<div class="comment-empty">コメントを読み込めませんでした。</div>'; return; } renderComments(data || []); }
-        async function submitComment() { const input = document.getElementById('comment-input'); const hp = document.getElementById('hp_field'); if (hp && hp.value !== '') return; const content = input ? input.value.trim() : ''; if (!content) { showCommentMsg('コメントを入力してください。', false); return; } if (content.length > 100) { showCommentMsg('100文字以内で入力してください。', false); return; } const NG_WORDS = ['広告','http://','https://','LINE','DMして','死ね','クソ','アホ','ウザイ','discord.gg','t.me']; const lc = content.toLowerCase(); if (NG_WORDS.some(w => lc.includes(w.toLowerCase()))) { showCommentMsg('不適切な表現が含まれているため投稿できません。', false); return; } const lastPosted = parseInt(localStorage.getItem(RATE_LIMIT_KEY) || '0'); const now = Date.now(); if (now - lastPosted < RATE_LIMIT_SEC * 1000) { showCommentMsg('あと'+Math.ceil((RATE_LIMIT_SEC*1000-(now-lastPosted))/1000)+'秒後に投稿できます。', false); return; } const btn = document.querySelector('.comment-submit-btn'); if (btn) btn.disabled = true; const { error } = await supabaseClient.from('comments').insert({ article_id:_commentArticleId, article_name:_commentArticleName, article_url:_commentArticleUrl, content:content }); if (btn) btn.disabled = false; if (error) { showCommentMsg('投稿に失敗しました。', false); return; } localStorage.setItem(RATE_LIMIT_KEY, now.toString()); input.value = ''; updateCharCount(); showCommentMsg('コメントを投稿しました！', true); await loadComments(); }
-        function showCommentMsg(text, ok) { const el = document.getElementById('comment-msg'); if (!el) return; el.textContent = text; el.style.color = ok ? 'var(--accent-color)' : '#ff6b6b'; setTimeout(() => { el.textContent = ''; }, 3000); }
-        async function deleteComment(commentId) { if (!_isAdminMode) return; if (!confirm('このコメントを削除しますか？')) return; const { error } = await supabaseClient.rpc('delete_comment_admin', { comment_id: commentId, admin_token: localStorage.getItem(ADMIN_TOKEN_KEY)||'' }); if (error) { alert('削除失敗: ' + error.message); return; } await loadComments(); }
-        document.addEventListener('keydown', (e) => { if (e.ctrlKey && e.shiftKey && e.key === 'D') { e.preventDefault(); if (_isAdminMode) { _isAdminMode = false; localStorage.removeItem(ADMIN_TOKEN_KEY); loadComments(); alert('管理者モードを終了しました。'); return; } const pw = prompt('管理者パスワードを入力してください:'); if (!pw) return; if (pw === ADMIN_PASSWORD) { _isAdminMode = true; localStorage.setItem(ADMIN_TOKEN_KEY, pw); loadComments(); alert('管理者モードに入りました。'); } else { alert('パスワードが違います。'); } } });
-        document.addEventListener('DOMContentLoaded', () => { loadComments(); });
+        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
+        
+        async function toggleLike(btn){
+            const articleId=btn.getAttribute('data-article-id');
+            let isLiked=localStorage.getItem(articleId+'_liked')==='true';
+            btn.disabled=true;
+            if(isLiked){
+                isLiked=false;
+                const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});
+                if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeCount(btn,data);}
+            }else{
+                isLiked=true;
+                const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});
+                if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeCount(btn,data);}
+            }
+            btn.disabled=false;
+        }
+        
+        function updateLikeCount(btn,count){
+            const isLiked=localStorage.getItem(btn.getAttribute('data-article-id')+'_liked')==='true';
+            const heart=btn.querySelector('.heart');
+            const countSpan=btn.querySelector('.like-count');
+            if(isLiked){btn.classList.add('liked');heart.textContent='♥';}
+            else{btn.classList.remove('liked');heart.textContent='♡';}
+            countSpan.textContent=count;
+        }
+
+        document.addEventListener('DOMContentLoaded',async()=>{
+            const btn=document.querySelector('.like-button');
+            const articleId=btn.getAttribute('data-article-id');
+            const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();
+            updateLikeCount(btn,data?data.like_count:0);
+
+            document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{
+                img.onclick=()=>{
+                    document.getElementById('lightbox-img').src=img.src;
+                    document.getElementById('lightbox').classList.add('active');
+                }
+            });
+        });
+
+        const _commentArticleId='note_atlas_observatory_exhaustive_final_v4';
+        
+        async function loadComments(){
+            const{data,error}=await supabaseClient.from('comments').select('content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false});
+            if(!error)renderComments(data);
+        }
+        
+        function renderComments(comments){
+            const list=document.getElementById('comments-list');
+            if(!comments||comments.length===0){
+                list.innerHTML='<div style="color:#666;font-size:0.85em;padding:10px 0;">まだコメントがありません。</div>';
+                return;
+            }
+            list.innerHTML=comments.map(c=>`<div style="margin-bottom:10px;padding:10px;background:rgba(255,255,255,0.05);border-left:3px solid var(--accent-color);"><div style="font-size:0.8em;color:#666;margin-bottom:5px;">${new Date(c.created_at).toLocaleString()}</div><div style="font-size:0.92em;">${c.content}</div></div>`).join('');
+        }
+        loadComments();
     </script>
-    <script src="article-common.js" defer></script>
 </body>
 </html>

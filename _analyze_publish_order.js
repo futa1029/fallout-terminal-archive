@@ -148,7 +148,7 @@ const factionOrder = [
   'エンクレイヴ', 'Vault 76', 'ホワイトスプリング・リゾート',
   'レイダー（クレーター）', '入植者（ファウンデーション）', 'シークレットサービス',
   'ウェイワード', 'ブルーリッジ・キャラバン', 'フリー・ラジカルズ', 'アンカー農場',
-  'ブラッドイーグルズ', 'B.O.S.（フォート・アトラス）', 'Steel Dawn / Steel Reign',
+  'ブラッドイーグルズ', 'B.O.S.（アトラス砦）', 'Steel Dawn / Steel Reign',
   'Vault 96', 'モスマン教団', 'ファスナハト', 'ホワイトスプリング・レフュージ',
   'Expeditions: The Pitt', 'Nuka-World on Tour', 'Once in a Blue Moon',
   'Gleaming Depths', 'Ghoul Within', 'Gone Fission', 'Milepost Zero',

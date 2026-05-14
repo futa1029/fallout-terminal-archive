@@ -3,7 +3,7 @@
 Knight Shin
 https://www.fallout-jp.com/daniel-shin.html
 
-B.O.S.（フォート・アトラス）
+B.O.S.（アトラス砦）
 
 ---
 CC BY-SA

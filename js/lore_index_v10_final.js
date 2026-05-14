@@ -404,15 +404,14 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ATLAS天文台",
-        yomi: "ATLAS天文台",
+        name: "ATLAS観測所",
+        yomi: "ATLAS観測所",
         url: "atlas-observatory.html",
         category: "場所",
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-04-20",
-        isDraft: true
+        date: "2026-05-15"
     },
     {
         name: "Aubrie Willem",
