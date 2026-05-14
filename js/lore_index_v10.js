@@ -19936,7 +19936,7 @@ const loreEntries = [
         "isDraft": true
     },
     {
-        "name": "ヤオ・グアイ",
+        "name": "!!!ヤオ・グアイ!!!",
         "yomi": "ヤオ・グアイ",
         "url": "yao-guai.html",
         "category": "クリーチャー",
