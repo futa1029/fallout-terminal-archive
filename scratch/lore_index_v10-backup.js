@@ -451,9 +451,11 @@ var loreEntries = [
         "name": "B.O.B.クッキングステーション",
         "yomi": "B.O.B.クッキングステーション",
         "url": "b-o-b-cooking-station.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas",
             "Fallout"
         ],
@@ -474,12 +476,12 @@ var loreEntries = [
         "name": "B.O.S.アウトキャスト",
         "yomi": "B.O.S.アウトキャスト",
         "url": "b-o-s-outcast.html",
-        "category": "",
+        "category": "勢力",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
             "Fallout 4",
-            "Fallout 3"
+            "Fallout 3",
+            "Fallout: New Vegas"
         ],
         "date": "2026-02-09"
     },
@@ -1038,7 +1040,7 @@ var loreEntries = [
         "name": "D.B.テクニカルハイスクール",
         "yomi": "D.B.テクニカルハイスクール",
         "url": "d-b-technical-high-school.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -1474,7 +1476,7 @@ var loreEntries = [
         "name": "Fasnacht Day",
         "yomi": "Fasnacht Day",
         "url": "fasnacht-day.html",
-        "category": "",
+        "category": "イベント・現象",
         "appearance": [
             "Fallout 76"
         ],
@@ -1561,7 +1563,7 @@ var loreEntries = [
         "name": "G.O.A.T.",
         "yomi": "G.O.A.T.",
         "url": "g-o-a-t.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
             "Fallout 3"
@@ -1627,7 +1629,7 @@ var loreEntries = [
         "name": "Grahm's Meat-Cook(ミート ウィーク)",
         "yomi": "Grahm's Meat-Cook(ミート ウィーク)",
         "url": "grahm-s-meat-cook-meat-week.html",
-        "category": "",
+        "category": "イベント・現象",
         "appearance": [
             "Fallout 76"
         ],
@@ -1681,10 +1683,10 @@ var loreEntries = [
         "name": "H&H Tools Company",
         "yomi": "H&H Tools Company",
         "url": "h-h-tools-company.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout TV",
+            "Fallout 4",
             "Fallout: New Vegas"
         ],
         "date": "2026-01-09"
@@ -1858,7 +1860,7 @@ var loreEntries = [
         "name": "Invaders from Beyond",
         "yomi": "Invaders from Beyond",
         "url": "invaders-from-beyond.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -1923,7 +1925,7 @@ var loreEntries = [
         "name": "JES-2R",
         "yomi": "JES-2R",
         "url": "jes-2r.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -1999,7 +2001,7 @@ var loreEntries = [
         "name": "K.D.インクウェル",
         "yomi": "K.D.インクウェル",
         "url": "k-d-inkwell.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -2349,7 +2351,7 @@ var loreEntries = [
         "name": "Mischief Night",
         "yomi": "Mischief Night",
         "url": "mischief-night.html",
-        "category": "",
+        "category": "イベント・現象",
         "appearance": [
             "Fallout 76"
         ],
@@ -2468,7 +2470,7 @@ var loreEntries = [
         "name": "Mr.スクイーズ",
         "yomi": "Mr.スクイーズ",
         "url": "mr-squeeze.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -2766,11 +2768,13 @@ var loreEntries = [
         "name": "Pip-Boy",
         "yomi": "Pip-Boy",
         "url": "pip-boy.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas",
-            "Fallout 2"
+            "Fallout"
         ],
         "date": "2025-11-07"
     },
@@ -2811,7 +2815,7 @@ var loreEntries = [
         "name": "Project Paradise",
         "yomi": "Project Paradise",
         "url": "project-paradise.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -2821,7 +2825,7 @@ var loreEntries = [
         "name": "PTSアップデート – 2026年1月16日",
         "yomi": "PTSアップデート – 2026年1月16日",
         "url": "pts-update-january-16-2026.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -3083,7 +3087,7 @@ var loreEntries = [
         "name": "RobCo Auto-Cache #001",
         "yomi": "RobCo Auto-Cache #001",
         "url": "robco-auto-cache-001.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -3412,9 +3416,11 @@ var loreEntries = [
         "name": "SPECIAL",
         "yomi": "SPECIAL",
         "url": "special.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
         ],
         "date": "2025-12-20"
     },
@@ -3530,9 +3536,10 @@ var loreEntries = [
         "name": "The Big Bloom",
         "yomi": "The Big Bloom",
         "url": "the-big-bloom.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout"
         ],
         "date": "2025-11-13"
     },
@@ -3551,7 +3558,7 @@ var loreEntries = [
         "name": "The Mothman Equinox",
         "yomi": "The Mothman Equinox",
         "url": "the-mothman-equinox.html",
-        "category": "",
+        "category": "イベント・現象",
         "appearance": [
             "Fallout 76"
         ],
@@ -3594,7 +3601,7 @@ var loreEntries = [
         "name": "The Vault Dweller's Official Cookbook",
         "yomi": "The Vault Dweller's Official Cookbook",
         "url": "the-vault-dweller-s-official-cookbook.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
             "Fallout 4",
@@ -3606,7 +3613,7 @@ var loreEntries = [
         "name": "The WayWard",
         "yomi": "The WayWard",
         "url": "the-wayward.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -3808,9 +3815,10 @@ var loreEntries = [
         "name": "Vault 101",
         "yomi": "Vault 101",
         "url": "vault-101.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
             "Fallout 3"
         ],
         "date": "2026-02-03"
@@ -3819,7 +3827,7 @@ var loreEntries = [
         "name": "Vault 108",
         "yomi": "Vault 108",
         "url": "vault-108.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
             "Fallout 3"
@@ -3874,10 +3882,12 @@ var loreEntries = [
         "name": "Vault 13",
         "yomi": "Vault 13",
         "url": "vault-13.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
-            "Fallout 2"
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout"
         ],
         "date": "2026-02-04"
     },
@@ -3962,7 +3972,7 @@ var loreEntries = [
         "name": "Vault 51",
         "yomi": "Vault 51",
         "url": "vault-51.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -4152,11 +4162,12 @@ var loreEntries = [
         "name": "Vault-Tec ボブルヘッド",
         "yomi": "Vault-Tec ボブルヘッド",
         "url": "vault-tec-bobblehead.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
-            "Fallout 3"
+            "Fallout 4",
+            "Fallout 3",
+            "Fallout: New Vegas"
         ],
         "date": "2025-11-25"
     },
@@ -4208,9 +4219,10 @@ var loreEntries = [
         "name": "Vault76",
         "yomi": "Vault76",
         "url": "vault76.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 3"
         ],
         "date": "2025-10-17"
     },
@@ -4306,7 +4318,7 @@ var loreEntries = [
         "name": "Wasted on Nukashine",
         "yomi": "Wasted on Nukashine",
         "url": "wasted-on-nukashine.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -4469,17 +4481,17 @@ var loreEntries = [
         "name": "アークトス・ファーマ",
         "yomi": "アークトス・ファーマ",
         "url": "arktos-pharma.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
         "date": "2026-01-01"
     },
     {
-        "name": "アークトス・ファーマ (企業) ",
-        "yomi": "アークトス・ファーマ (企業) ",
+        "name": "アークトス・ファーマ (企業)",
+        "yomi": "アークトス・ファーマ (企業)",
         "url": "arktos-pharma-corporate.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -4542,7 +4554,7 @@ var loreEntries = [
         "name": "アーチェリー・セット",
         "yomi": "アーチェリー・セット",
         "url": "archery-set.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -4617,7 +4629,7 @@ var loreEntries = [
         "name": "アーロン・キンバル",
         "yomi": "アーロン・キンバル",
         "url": "aaron-kimball.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76",
             "Fallout: New Vegas"
@@ -4735,7 +4747,7 @@ var loreEntries = [
         "name": "アッシュ・ローズ",
         "yomi": "アッシュ・ローズ",
         "url": "ash-rose.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -4799,7 +4811,7 @@ var loreEntries = [
         "name": "アデレード",
         "yomi": "アデレード",
         "url": "adelaide.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76",
             "Fallout: New Vegas"
@@ -4875,9 +4887,10 @@ var loreEntries = [
         "name": "アパラチア・ラジオ",
         "yomi": "アパラチア・ラジオ",
         "url": "appalachian-radio.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout"
         ],
         "date": "2026-01-22"
     },
@@ -4996,7 +5009,7 @@ var loreEntries = [
         "name": "アラデシュ",
         "yomi": "アラデシュ",
         "url": "aradesh.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
             "Fallout"
@@ -5052,7 +5065,7 @@ var loreEntries = [
         "name": "アルパインリバー・キャビン",
         "yomi": "アルパインリバー・キャビン",
         "url": "alpine-river-cabin.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -5149,10 +5162,11 @@ var loreEntries = [
         "name": "アンストッパブル",
         "yomi": "アンストッパブル",
         "url": "unstoppable.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout TV"
+            "Fallout 4",
+            "Fallout 3"
         ],
         "date": "2026-01-22"
     },
@@ -5281,7 +5295,7 @@ var loreEntries = [
         "name": "イータ・プサイ・ハウス",
         "yomi": "イータ・プサイ・ハウス",
         "url": "eta-psi-house.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -5511,7 +5525,7 @@ var loreEntries = [
         "name": "ウィルソン・ブラザーズ自動車修理屋",
         "yomi": "ウィルソン・ブラザーズ自動車修理屋",
         "url": "wilson-brothers-auto-repair-shop.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -5620,10 +5634,11 @@ var loreEntries = [
         "name": "ウエスト・テック (West Tek)",
         "yomi": "ウエスト・テック (West Tek)",
         "url": "west-tek.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout 4"
+            "Fallout 4",
+            "Fallout 3"
         ],
         "date": "2026-01-13"
     },
@@ -5959,7 +5974,7 @@ var loreEntries = [
         "name": "エイミー・ケリー",
         "yomi": "エイミー・ケリー",
         "url": "amy-kelly.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -5980,17 +5995,18 @@ var loreEntries = [
         "name": "エイリアンの食用生物",
         "yomi": "エイリアンの食用生物",
         "url": "alien-edible-creatures.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 3"
         ],
         "date": "2026-01-06"
     },
     {
-        "name": "エイリアンブラスター ",
-        "yomi": "エイリアンブラスター ",
+        "name": "エイリアンブラスター",
+        "yomi": "エイリアンブラスター",
         "url": "alien-blaster.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76"
         ],
@@ -6121,7 +6137,7 @@ var loreEntries = [
         "name": "エドウィン",
         "yomi": "エドウィン",
         "url": "edwin.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -7148,10 +7164,10 @@ var loreEntries = [
         "name": "キャッピー",
         "yomi": "キャッピー",
         "url": "cappy.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout TV"
+            "Fallout 4"
         ],
         "date": "2026-01-09"
     },
@@ -7170,9 +7186,11 @@ var loreEntries = [
         "name": "キャプテン・コスモス",
         "yomi": "キャプテン・コスモス",
         "url": "captain-cosmos.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas"
         ],
         "date": "2026-01-15"
@@ -7499,9 +7517,11 @@ var loreEntries = [
         "name": "グール",
         "yomi": "グール",
         "url": "ghoul.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas"
         ],
         "date": "2025-12-21"
@@ -7597,11 +7617,13 @@ var loreEntries = [
         "name": "クライスラス・モータース・コーポレーション",
         "yomi": "クライスラス・モータース・コーポレーション",
         "url": "chryslus-motors-corporation.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas",
-            "Fallout 2"
+            "Fallout"
         ],
         "date": "2026-01-11"
     },
@@ -7796,7 +7818,7 @@ var loreEntries = [
         "name": "グラム",
         "yomi": "グラム",
         "url": "grams.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -8200,7 +8222,7 @@ var loreEntries = [
         "name": "クレーン",
         "yomi": "クレーン",
         "url": "crane.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -8265,9 +8287,11 @@ var loreEntries = [
         "name": "グレロック",
         "yomi": "グレロック",
         "url": "grelock.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout 3"
         ],
         "date": "2026-01-18"
     },
@@ -8308,7 +8332,7 @@ var loreEntries = [
         "name": "グローブス家のキャビン",
         "yomi": "グローブス家のキャビン",
         "url": "groves-family-cabin.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -8318,9 +8342,11 @@ var loreEntries = [
         "name": "グログナック",
         "yomi": "グログナック",
         "url": "grognac.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas"
         ],
         "date": "2026-01-16"
@@ -8680,7 +8706,7 @@ var loreEntries = [
         "name": "コズミック・ナイフ",
         "yomi": "コズミック・ナイフ",
         "url": "cosmic-knife.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
             "Fallout: New Vegas"
@@ -8691,10 +8717,11 @@ var loreEntries = [
         "name": "コズワース",
         "yomi": "コズワース",
         "url": "codsworth.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76",
-            "Fallout 4"
+            "Fallout 4",
+            "Fallout"
         ],
         "date": "2026-02-07"
     },
@@ -8886,12 +8913,13 @@ var loreEntries = [
         "isDraft": true
     },
     {
-        "name": "コンスタンティン・チェイス ",
-        "yomi": "コンスタンティン・チェイス ",
+        "name": "コンスタンティン・チェイス",
+        "yomi": "コンスタンティン・チェイス",
         "url": "constantine-chase.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 3"
         ],
         "date": "2025-11-22"
     },
@@ -8965,7 +8993,7 @@ var loreEntries = [
         "name": "ザ・クロスヘア",
         "yomi": "ザ・クロスヘア",
         "url": "the-crosshair.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -9118,9 +9146,11 @@ var loreEntries = [
         "name": "サークルG",
         "yomi": "サークルG",
         "url": "circle-g.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas"
         ],
         "date": "2026-01-08"
@@ -9284,7 +9314,7 @@ var loreEntries = [
         "name": "サターナイト・フィスト",
         "yomi": "サターナイト・フィスト",
         "url": "saturnite-fist.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
             "Fallout: New Vegas"
@@ -9295,7 +9325,7 @@ var loreEntries = [
         "name": "サットン",
         "yomi": "サットン",
         "url": "sutton.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -9393,7 +9423,7 @@ var loreEntries = [
         "name": "サバイバルテント",
         "yomi": "サバイバルテント",
         "url": "survival-tent.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
             "Fallout"
@@ -9459,7 +9489,7 @@ var loreEntries = [
         "name": "サマーズビル",
         "yomi": "サマーズビル",
         "url": "summersville.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -10019,13 +10049,13 @@ var loreEntries = [
         "name": "シェイディ・サンズ",
         "yomi": "シェイディ・サンズ",
         "url": "shady-sands.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout TV",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas",
-            "Fallout",
-            "Fallout 2"
+            "Fallout"
         ],
         "date": "2026-02-12"
     },
@@ -10121,11 +10151,11 @@ var loreEntries = [
         "name": "ジェームス",
         "yomi": "ジェームス",
         "url": "james.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
-            "Fallout 3"
+            "Fallout 3",
+            "Fallout: New Vegas"
         ],
         "date": "2026-02-02"
     },
@@ -10199,7 +10229,7 @@ var loreEntries = [
         "name": "ジェフ・ナカムラ",
         "yomi": "ジェフ・ナカムラ",
         "url": "jeff-nakamura.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -10264,7 +10294,7 @@ var loreEntries = [
         "name": "シェルター受付センター",
         "yomi": "シェルター受付センター",
         "url": "shelter-reception-center.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -10362,7 +10392,7 @@ var loreEntries = [
         "name": "ジャイアントティーポット",
         "yomi": "ジャイアントティーポット",
         "url": "giant-teapot.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -10681,7 +10711,7 @@ var loreEntries = [
         "name": "ジュンコおばあちゃん",
         "yomi": "ジュンコおばあちゃん",
         "url": "junko-grandma.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -10944,7 +10974,7 @@ var loreEntries = [
         "name": "ジョン・ハンコック",
         "yomi": "ジョン・ハンコック",
         "url": "john-hancock.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76",
             "Fallout 4"
@@ -11076,7 +11106,7 @@ var loreEntries = [
         "name": "スウィートウォータースペシャルブレンド",
         "yomi": "スウィートウォータースペシャルブレンド",
         "url": "sweetwater-special-blend.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -11162,13 +11192,13 @@ var loreEntries = [
         "name": "スーパーミュータント",
         "yomi": "スーパーミュータント",
         "url": "super-mutant.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
             "Fallout 4",
             "Fallout 3",
-            "Fallout 2"
+            "Fallout: New Vegas",
+            "Fallout"
         ],
         "date": "2025-12-08"
     },
@@ -11887,7 +11917,7 @@ var loreEntries = [
         "name": "スローカム・ジョー",
         "yomi": "スローカム・ジョー",
         "url": "slocum-joe.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -11897,9 +11927,11 @@ var loreEntries = [
         "name": "スローカム・ジョー [企業]",
         "yomi": "スローカム・ジョー [企業]",
         "url": "slocum-joe-corporate.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 4",
+            "Fallout"
         ],
         "date": "2026-02-01"
     },
@@ -12106,12 +12138,13 @@ var loreEntries = [
         "name": "セントリーボット",
         "yomi": "セントリーボット",
         "url": "sentry-bot.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
             "Fallout 4",
-            "Fallout 2"
+            "Fallout 3",
+            "Fallout: New Vegas",
+            "Fallout"
         ],
         "date": "2026-01-02"
     },
@@ -12174,7 +12207,7 @@ var loreEntries = [
         "name": "ソル",
         "yomi": "ソル",
         "url": "sol.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -12290,10 +12323,10 @@ var loreEntries = [
         "isDraft": true
     },
     {
-        "name": "タイガート水処理場 ",
-        "yomi": "タイガート水処理場 ",
+        "name": "タイガート水処理場",
+        "yomi": "タイガート水処理場",
         "url": "tygart-water-treatment-plant.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -12391,9 +12424,10 @@ var loreEntries = [
         "name": "タイラー郡移動遊園地",
         "yomi": "タイラー郡移動遊園地",
         "url": "tyler-county-mobile-amusement-park.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout"
         ],
         "date": "2025-10-19"
     },
@@ -12445,7 +12479,7 @@ var loreEntries = [
         "name": "ダッチェス",
         "yomi": "ダッチェス",
         "url": "duchess.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -12532,11 +12566,13 @@ var loreEntries = [
         "name": "タバコ",
         "yomi": "タバコ",
         "url": "tobacco.html",
-        "category": "",
+        "category": "植物",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas",
-            "Fallout 2"
+            "Fallout"
         ],
         "date": "2025-11-22"
     },
@@ -12621,7 +12657,7 @@ var loreEntries = [
         "name": "ダンカン＆ダンカン・ロボティクス",
         "yomi": "ダンカン＆ダンカン・ロボティクス",
         "url": "duncan-duncan-robotics.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -12922,7 +12958,7 @@ var loreEntries = [
         "name": "ツイン・パイン・キャビン",
         "yomi": "ツイン・パイン・キャビン",
         "url": "twin-pine-cabin.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -13108,7 +13144,7 @@ var loreEntries = [
         "name": "デイリー・オプス",
         "yomi": "デイリー・オプス",
         "url": "daily-ops.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -13261,7 +13297,7 @@ var loreEntries = [
         "name": "デル・ローソン",
         "yomi": "デル・ローソン",
         "url": "del-lawson.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -13271,7 +13307,7 @@ var loreEntries = [
         "name": "デルバート・ウィンターズ",
         "yomi": "デルバート・ウィンターズ",
         "url": "delbert-winters.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -13424,7 +13460,7 @@ var loreEntries = [
         "name": "ドクター・ゾルボ",
         "yomi": "ドクター・ゾルボ",
         "url": "dr-zorbo.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -13466,7 +13502,7 @@ var loreEntries = [
         "name": "ドッティ",
         "yomi": "ドッティ",
         "url": "dotty.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -13498,7 +13534,7 @@ var loreEntries = [
         "name": "ドム・ペドロ",
         "yomi": "ドム・ペドロ",
         "url": "dom-pedro.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -14080,9 +14116,10 @@ var loreEntries = [
         "name": "ヌカ・タッパー",
         "yomi": "ヌカ・タッパー",
         "url": "nuka-tapper.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout"
         ],
         "date": "2025-11-23"
     },
@@ -14376,7 +14413,7 @@ var loreEntries = [
         "name": "パーティーハット",
         "yomi": "パーティーハット",
         "url": "party-hat.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76"
         ],
@@ -14682,7 +14719,7 @@ var loreEntries = [
         "name": "パイパー・ライト",
         "yomi": "パイパー・ライト",
         "url": "piper-light.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76",
             "Fallout 4"
@@ -14702,7 +14739,7 @@ var loreEntries = [
         "name": "パイハウス",
         "yomi": "パイハウス",
         "url": "pie-house.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -14712,7 +14749,7 @@ var loreEntries = [
         "name": "パイプ・リボルバー",
         "yomi": "パイプ・リボルバー",
         "url": "pipe-revolver.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -14732,7 +14769,7 @@ var loreEntries = [
         "name": "パイプボルトアクション",
         "yomi": "パイプボルトアクション",
         "url": "pipe-bolt-action.html",
-        "category": "",
+        "category": "武器",
         "appearance": [
             "Fallout 76"
         ],
@@ -14852,7 +14889,7 @@ var loreEntries = [
         "name": "バックパック",
         "yomi": "バックパック",
         "url": "backpack.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76"
         ],
@@ -14979,11 +15016,13 @@ var loreEntries = [
         "name": "バファウト",
         "yomi": "バファウト",
         "url": "buffout.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas",
-            "Fallout 2"
+            "Fallout"
         ],
         "date": "2025-12-10"
     },
@@ -15013,7 +15052,7 @@ var loreEntries = [
         "name": "パブリックパーティー",
         "yomi": "パブリックパーティー",
         "url": "public-party.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -15023,9 +15062,11 @@ var loreEntries = [
         "name": "バブルガム",
         "yomi": "バブルガム",
         "url": "bubble-gum.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas"
         ],
         "date": "2026-02-03"
@@ -15078,7 +15119,7 @@ var loreEntries = [
         "name": "バラモン",
         "yomi": "バラモン",
         "url": "brahmin.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76",
             "Fallout"
@@ -15221,9 +15262,10 @@ var loreEntries = [
         "name": "パワーアーマー",
         "yomi": "パワーアーマー",
         "url": "power-armor.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 4"
         ],
         "date": "2025-11-24"
     },
@@ -15482,7 +15524,7 @@ var loreEntries = [
         "name": "ビッグ・アルのタトゥー・パーラー",
         "yomi": "ビッグ・アルのタトゥー・パーラー",
         "url": "big-al-s-tattoo-parlor.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -16018,7 +16060,7 @@ var loreEntries = [
         "name": "フーズボールゲーム",
         "yomi": "フーズボールゲーム",
         "url": "foosball-game.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76"
         ],
@@ -16248,10 +16290,11 @@ var loreEntries = [
         "name": "ブッチ・デロリア",
         "yomi": "ブッチ・デロリア",
         "url": "butch-deloria.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout 4"
+            "Fallout 4",
+            "Fallout 3"
         ],
         "date": "2025-10-22"
     },
@@ -16367,7 +16410,7 @@ var loreEntries = [
         "name": "フラタニティ・ロウ",
         "yomi": "フラタニティ・ロウ",
         "url": "fraternity-row.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -16450,10 +16493,10 @@ var loreEntries = [
         "isDraft": true
     },
     {
-        "name": "ブラッド・イーグル ",
-        "yomi": "ブラッド・イーグル ",
+        "name": "ブラッド・イーグル",
+        "yomi": "ブラッド・イーグル",
         "url": "blood-eagle.html",
-        "category": "",
+        "category": "勢力",
         "appearance": [
             "Fallout 76"
         ],
@@ -16518,7 +16561,7 @@ var loreEntries = [
         "name": "ブラッドバグ",
         "yomi": "ブラッドバグ",
         "url": "blood-bug.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76",
             "Fallout 4"
@@ -16540,13 +16583,13 @@ var loreEntries = [
         "name": "ブラムコ・ブランド・マック＆チーズ",
         "yomi": "ブラムコ・ブランド・マック＆チーズ",
         "url": "bramco-brand-mac-and-cheese.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
             "Fallout 4",
             "Fallout 3",
-            "Fallout 2"
+            "Fallout: New Vegas",
+            "Fallout"
         ],
         "date": "2025-12-28"
     },
@@ -16554,7 +16597,7 @@ var loreEntries = [
         "name": "フランキー・ベケット",
         "yomi": "フランキー・ベケット",
         "url": "frankie-beckett.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -16739,7 +16782,7 @@ var loreEntries = [
         "name": "プリドゥエン",
         "yomi": "プリドゥエン",
         "url": "pryduen.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
             "Fallout 4",
@@ -17177,10 +17220,10 @@ var loreEntries = [
         "isDraft": true
     },
     {
-        "name": "ベケット ",
-        "yomi": "ベケット ",
+        "name": "ベケット",
+        "yomi": "ベケット",
         "url": "beckett.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -17409,7 +17452,7 @@ var loreEntries = [
         "name": "ヘルヴェティア",
         "yomi": "ヘルヴェティア",
         "url": "helvetia.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -17566,7 +17609,7 @@ var loreEntries = [
         "name": "ポイント・プレザント",
         "yomi": "ポイント・プレザント",
         "url": "point-pleasant.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -17642,7 +17685,7 @@ var loreEntries = [
         "name": "ホーマー・サパースタイン",
         "yomi": "ホーマー・サパースタイン",
         "url": "homer-saperstein.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -18166,7 +18209,7 @@ var loreEntries = [
         "name": "ポトマック川",
         "yomi": "ポトマック川",
         "url": "potomac-river.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
             "Fallout 3"
@@ -18174,12 +18217,13 @@ var loreEntries = [
         "date": "2025-11-12"
     },
     {
-        "name": "ボトル ",
-        "yomi": "ボトル ",
+        "name": "ボトル",
+        "yomi": "ボトル",
         "url": "bottle.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout 4"
         ],
         "date": "2026-01-08"
     },
@@ -18187,12 +18231,13 @@ var loreEntries = [
         "name": "ボトルキャップ",
         "yomi": "ボトルキャップ",
         "url": "bottle-cap.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
+            "Fallout 4",
             "Fallout 3",
-            "Fallout 2"
+            "Fallout: New Vegas",
+            "Fallout"
         ],
         "date": "2025-11-04"
     },
@@ -18222,7 +18267,7 @@ var loreEntries = [
         "name": "ポリー",
         "yomi": "ポリー",
         "url": "polly.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -18307,11 +18352,13 @@ var loreEntries = [
         "name": "ホロテープ",
         "yomi": "ホロテープ",
         "url": "holotape.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas",
-            "Fallout 2"
+            "Fallout"
         ],
         "date": "2025-11-08"
     },
@@ -18968,12 +19015,12 @@ var loreEntries = [
         "name": "マジソン・リー",
         "yomi": "マジソン・リー",
         "url": "madison-li.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
             "Fallout 4",
-            "Fallout 3"
+            "Fallout 3",
+            "Fallout: New Vegas"
         ],
         "date": "2025-10-18"
     },
@@ -19354,9 +19401,11 @@ var loreEntries = [
         "name": "ムーンモンキーのジャングルズ",
         "yomi": "ムーンモンキーのジャングルズ",
         "url": "moon-monkey-jungles.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas"
         ],
         "date": "2026-01-16"
@@ -19882,10 +19931,10 @@ var loreEntries = [
         "isDraft": true
     },
     {
-        "name": "モルデカイ \"モート\" マッコイ",
-        "yomi": "モルデカイ \"モート\" マッコイ",
+        "name": "モルデカイ &quot;モート&quot; マッコイ",
+        "yomi": "モルデカイ &quot;モート&quot; マッコイ",
         "url": "mordecai-mort-mccoy.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -19947,8 +19996,7 @@ var loreEntries = [
             "Fallout 76",
             "TVシリーズ"
         ],
-        "date": "2026-05-14",
-        "isDraft": true
+        "date": "2026-05-14"
     },
     {
         "name": "ヤオ・グアイの洞窟 (TVシリーズ)",
@@ -20086,7 +20134,7 @@ var loreEntries = [
         "name": "ラッドガル",
         "yomi": "ラッドガル",
         "url": "ladgal.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76",
             "Fallout 4"
@@ -20218,9 +20266,11 @@ var loreEntries = [
         "name": "ランチボックス",
         "yomi": "ランチボックス",
         "url": "lunch-box.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
+            "Fallout 3",
             "Fallout: New Vegas"
         ],
         "date": "2025-12-12"
@@ -20471,7 +20521,7 @@ var loreEntries = [
         "name": "リプトカ－ド",
         "yomi": "リプトカ－ド",
         "url": "ripto-card.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -21260,7 +21310,7 @@ var loreEntries = [
         "name": "ロニー",
         "yomi": "ロニー",
         "url": "ronnie.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -21356,7 +21406,7 @@ var loreEntries = [
         "name": "ロボブレイン",
         "yomi": "ロボブレイン",
         "url": "robobrain.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76"
         ],
@@ -21707,9 +21757,10 @@ var loreEntries = [
         "name": "海賊放送",
         "yomi": "海賊放送",
         "url": "pirate-broadcast.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
-            "Fallout 76"
+            "Fallout 76",
+            "Fallout"
         ],
         "date": "2026-01-21"
     },
@@ -21871,10 +21922,11 @@ var loreEntries = [
         "name": "強制進化ウイルス（FEV）",
         "yomi": "強制進化ウイルス（FEV）",
         "url": "forced-evolution-virus-fev.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76",
-            "Fallout 3"
+            "Fallout 3",
+            "Fallout: New Vegas"
         ],
         "date": "2025-12-09"
     },
@@ -21958,7 +22010,7 @@ var loreEntries = [
         "name": "血濡れ不屈ビルド",
         "yomi": "血濡れ不屈ビルド",
         "url": "bloody-indomitable-build.html",
-        "category": "",
+        "category": "記録",
         "appearance": [
             "Fallout 76"
         ],
@@ -22002,7 +22054,7 @@ var loreEntries = [
         "name": "賢明なるチャールズ",
         "yomi": "賢明なるチャールズ",
         "url": "wise-charles.html",
-        "category": "",
+        "category": "人物",
         "appearance": [
             "Fallout 76"
         ],
@@ -22023,7 +22075,7 @@ var loreEntries = [
         "name": "孤立したキャビン",
         "yomi": "孤立したキャビン",
         "url": "isolated-cabin.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76",
             "Fallout 3"
@@ -22056,7 +22108,7 @@ var loreEntries = [
         "name": "抗議プラカード",
         "yomi": "抗議プラカード",
         "url": "protest-placard.html",
-        "category": "",
+        "category": "武器",
         "appearance": [
             "Fallout 76"
         ],
@@ -22207,9 +22259,10 @@ var loreEntries = [
         "name": "雑誌",
         "yomi": "雑誌",
         "url": "magazine.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
             "Fallout: New Vegas"
         ],
         "date": "2025-11-29"
@@ -22427,12 +22480,12 @@ var loreEntries = [
         "name": "水",
         "yomi": "水",
         "url": "water.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
-            "Fallout: New Vegas",
             "Fallout 4",
-            "Fallout 3"
+            "Fallout 3",
+            "Fallout: New Vegas"
         ],
         "date": "2025-12-03"
     },
@@ -22473,7 +22526,7 @@ var loreEntries = [
         "name": "聖なる書物",
         "yomi": "聖なる書物",
         "url": "sacred-writings.html",
-        "category": "",
+        "category": "武器",
         "appearance": [
             "Fallout 76"
         ],
@@ -22494,9 +22547,10 @@ var loreEntries = [
         "name": "石鹸",
         "yomi": "石鹸",
         "url": "soap.html",
-        "category": "",
+        "category": "アイテム",
         "appearance": [
             "Fallout 76",
+            "Fallout 4",
             "Fallout"
         ],
         "date": "2025-12-07"
@@ -22593,7 +22647,7 @@ var loreEntries = [
         "name": "前線基地タンゴ",
         "yomi": "前線基地タンゴ",
         "url": "front-line-tango.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -22746,7 +22800,7 @@ var loreEntries = [
         "name": "中傷ボット",
         "yomi": "中傷ボット",
         "url": "slander-bot.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76"
         ],
@@ -22877,7 +22931,7 @@ var loreEntries = [
         "name": "天候制御ステーション",
         "yomi": "天候制御ステーション",
         "url": "weather-control-station.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],
@@ -23107,7 +23161,7 @@ var loreEntries = [
         "name": "反射",
         "yomi": "反射",
         "url": "reflection.html",
-        "category": "",
+        "category": "イベント・現象",
         "appearance": [
             "Fallout 76"
         ],
@@ -23194,7 +23248,7 @@ var loreEntries = [
         "name": "変異",
         "yomi": "変異",
         "url": "mutation.html",
-        "category": "",
+        "category": "イベント・現象",
         "appearance": [
             "Fallout 76"
         ],
@@ -23204,7 +23258,7 @@ var loreEntries = [
         "name": "変異パブリックイベント",
         "yomi": "変異パブリックイベント",
         "url": "mutation-public-event.html",
-        "category": "",
+        "category": "イベント・現象",
         "appearance": [
             "Fallout 76",
             "Fallout"
@@ -23389,7 +23443,7 @@ var loreEntries = [
         "name": "蜂の群れ",
         "yomi": "蜂の群れ",
         "url": "swarm-of-bees.html",
-        "category": "",
+        "category": "クリーチャー",
         "appearance": [
             "Fallout 76"
         ],
@@ -23399,7 +23453,7 @@ var loreEntries = [
         "name": "北カナー監視地点",
         "yomi": "北カナー監視地点",
         "url": "north-kanner-monitoring-point.html",
-        "category": "",
+        "category": "場所",
         "appearance": [
             "Fallout 76"
         ],

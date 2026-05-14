@@ -18652,7 +18652,7 @@ const loreEntries = [
             {
                 name: "ヤオ・グアイ",
                 yomi: "ヤオ・グアイ",
-                url: "yao-guai-fo76.html",
+                url: "yao-guai.html",
                 category: "クリーチャー",
                 appearance: ["Fallout 76"],
                 date: "2026-04-20",
