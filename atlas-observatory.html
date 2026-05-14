@@ -62,6 +62,11 @@
         .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
         .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
         .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; margin-bottom: 10px; }
+        .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
+        .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
+        .comment-empty { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
     </style>
 </head>
 <body data-article-category="場所" data-article-appearance="Fallout 76">
@@ -412,13 +417,23 @@
             </div>
 
             <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
-                <p>This article was synthesized from <a href="https://fallout.fandom.com/wiki/ATLAS_Observatory" target="_blank" rel="noopener">ATLAS Observatory</a> and related pages on <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p>
+                <!-- 著作権表示 -->
+                <p name="copyright-default">This article was synthesized from <a href="https://fallout.fandom.com/wiki/ATLAS_Observatory" target="_blank" rel="noopener">ATLAS Observatory</a> and related pages on <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
                 <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
             </div>
 
-            <div class="comments-section" id="comments-section">
-                <h3 class="comments-title">&gt; COMMENTS</h3>
-                <div id="comments-list" class="comments-list"></div>
+            <div class="comments-section">
+                <h2 class="comments-title">&gt; COMMENTS_</h2>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span>/100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list"></div>
             </div>
         </main>
     </div>
@@ -471,22 +486,51 @@
             });
         });
 
-        const _commentArticleId='note_atlas_observatory_exhaustive_final_v4';
-        
-        async function loadComments(){
-            const{data,error}=await supabaseClient.from('comments').select('content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false});
-            if(!error)renderComments(data);
+        const _commentArticleId='note_atlas_observatory_exhaustive_final_v5';
+        const _commentArticleName='ATLAS観測所';
+        const _commentArticleUrl='atlas-observatory.html';
+
+        function updateCharCount(){
+            const len=document.getElementById('comment-input').value.length;
+            const el=document.getElementById('char-count');
+            if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)';}
         }
+        
+        function relativeTime(s){
+            const d=(Date.now()-new Date(s).getTime())/1000;
+            if(d<60)return'たった今';
+            if(d<3600)return Math.floor(d/60)+'分前';
+            if(d<86400)return Math.floor(d/3600)+'時間前';
+            if(d<86400*7)return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        
+        function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
         
         function renderComments(comments){
             const list=document.getElementById('comments-list');
+            if(!list)return;
             if(!comments||comments.length===0){
-                list.innerHTML='<div style="color:#666;font-size:0.85em;padding:10px 0;">まだコメントがありません。</div>';
+                list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
                 return;
             }
-            list.innerHTML=comments.map(c=>`<div style="margin-bottom:10px;padding:10px;background:rgba(255,255,255,0.05);border-left:3px solid var(--accent-color);"><div style="font-size:0.8em;color:#666;margin-bottom:5px;">${new Date(c.created_at).toLocaleString()}</div><div style="font-size:0.92em;">${c.content}</div></div>`).join('');
+            list.innerHTML=comments.map(c=>`<div class="comment-item"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span></div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
         }
-        loadComments();
+        
+        async function loadComments(){
+            const{data,error}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if(!error)renderComments(data);
+        }
+        
+        async function submitComment(){
+            const input=document.getElementById('comment-input');
+            const content=input.value.trim();
+            if(!content)return;
+            const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if(!error){input.value='';updateCharCount();loadComments();}
+        }
+        
+        document.addEventListener('DOMContentLoaded',loadComments);
     </script>
 </body>
 </html>
