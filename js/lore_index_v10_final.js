@@ -404,7 +404,7 @@ const loreEntries = [
         isDraft: true
     },
     {
-        name: "ATLAS観測所",
+        name: "ATLAS観測所 (アトラス)",
         yomi: "ATLAS観測所 アトラス",
         url: "atlas-observatory.html",
         category: "場所",
