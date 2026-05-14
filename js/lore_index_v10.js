@@ -1,4 +1,4 @@
-var loreEntries = [
+const loreEntries = [
     {
         "name": "_catarax_fandom",
         "yomi": "_catarax_fandom",
