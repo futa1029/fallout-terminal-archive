@@ -1,4 +1,4 @@
-#Falloutシリーズ
+#Fallout76
 
 ラッセル・ドーシー Russell Dorsey
 https://www.fallout-jp.com/russell-dorsey.html
