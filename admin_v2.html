@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN: 記事管理ダッシュボード | Overseer Mohi's Terminal</title>
     <meta name="robots" content="noindex, nofollow">
+    <script src="js/lore_index_v10.js"></script>
     <!-- フォント -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -740,6 +741,7 @@
     let currentLoreSha = '';      // GitHubのファイルSHA（更新時に必要）
     let pendingPublishUrls = [];  // 投稿待ちURL
     let supabaseClient = null;    // Supabaseクライアント
+    let isLocalLoad = false;      // ローカル(scriptタグ)から読み込まれたか
 
     // ===== トークン管理 =====
     function getToken() {
@@ -896,7 +898,23 @@
             
             const arrayContent = html.substring(startIdx + startStr.length, endIdx);
             const fn = new Function('return [' + arrayContent + '];');
-            allEntries = fn();
+            const parsedEntries = fn();
+
+            // パース結果が空でない場合はそれを使用
+            if (parsedEntries && parsedEntries.length > 0) {
+                allEntries = parsedEntries;
+                isLocalLoad = false;
+            } 
+            // 失敗した場合の最終手段（scriptタグ経由のグローバル変数）
+            else if (window.loreEntries && window.loreEntries.length > 0) {
+                console.log('Using window.loreEntries as fallback');
+                allEntries = window.loreEntries;
+                isLocalLoad = true;
+            }
+
+            if (allEntries.length === 0) {
+                throw new Error('記事データが空です。js/lore_index_v10.js を確認してください。');
+            }
 
             // ドラフトのみ抽出（古い順）
             draftEntries = allEntries
@@ -915,6 +933,10 @@
             // ステータスフィルタの適用
             updateDisplayEntries();
             applyFilter();
+
+            if (isLocalLoad) {
+                showToast('ローカルファイルからインデックスを読み込みました', 'info');
+            }
 
         } catch (err) {
             document.getElementById('article-list').innerHTML = `
@@ -992,7 +1014,8 @@
             container.innerHTML = `
                 <div class="preview-empty" style="padding:40px">
                     <div class="icon">🔍</div>
-                    <div>該当する下書き記事がありません</div>
+                    <div>該当する記事が見つかりません</div>
+                    <div style="font-size:0.8em;color:#666;margin-top:10px;">(全 ${allEntries.length} 件中)</div>
                 </div>`;
             return;
         }
