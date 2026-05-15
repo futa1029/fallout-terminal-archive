@@ -24685,7 +24685,7 @@ async function rebuildLoreHtml() {
     let loreContent = fs.readFileSync(LORE_HTML, 'utf8');
 
     // 既存のindexを読み込んで状態を保持 (admin.html等での更新を維持)
-    const INDEX_FILE = path.join(DIR, 'js', 'lore_index_v10.js');
+    const INDEX_FILE = path.join(DIR, 'js', 'lore_index_v11.js');
     let existingIndex = {};
     if (fs.existsSync(INDEX_FILE)) {
         try {
@@ -24702,7 +24702,7 @@ async function rebuildLoreHtml() {
                 });
             }
         } catch (e) {
-            console.warn('Failed to parse existing lore_index_v10.js. Proceeding without state preservation.');
+            console.warn('Failed to parse existing lore_index_v11.js. Proceeding without state preservation.');
         }
     }
 

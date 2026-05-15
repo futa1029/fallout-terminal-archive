@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN: 記事管理ダッシュボード | Overseer Mohi's Terminal</title>
     <meta name="robots" content="noindex, nofollow">
-    <script src="js/lore_index_v10.js"></script>
+    <script src="js/lore_index_v11.js"></script>
     <!-- フォント -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -726,7 +726,7 @@
     const GITHUB_OWNER = 'futa1029';
     const GITHUB_REPO = 'fallout-terminal-archive';
     const GITHUB_BRANCH = 'main';
-    const LORE_FILE_PATH = 'js/lore_index_v10.js';
+    const LORE_FILE_PATH = 'js/lore_index_v11.js';
 
     // ===== 状態管理 =====
     let allEntries = [];
@@ -875,7 +875,7 @@
             // まずローカルfetchを試し、失敗したらGitHub APIを使う
             let html;
             try {
-                const res = await fetch('js/lore_index_v10.js?v=' + Date.now());
+                const res = await fetch('js/lore_index_v11.js?v=' + Date.now());
                 if (!res.ok) throw new Error('Local fetch failed');
                 html = await res.text();
             } catch (e) {
