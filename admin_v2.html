@@ -898,20 +898,22 @@
             
             const arrayContent = html.substring(startIdx + startStr.length, endIdx);
             const fn = new Function('return [' + arrayContent + '];');
-            const parsedEntries = fn();
+            // データの優先順位：件数が多い方を採用する（GitHubが古い場合に対応）
+            let finalEntries = [];
+            let sourceInfo = 'GitHub/Local Fetch';
 
-            // パース結果が空でない場合はそれを使用
             if (parsedEntries && parsedEntries.length > 0) {
-                allEntries = parsedEntries;
-                isLocalLoad = false;
-            } 
-            // 失敗した場合の最終手段（scriptタグ経由のグローバル変数）
-            else if (window.loreEntries && window.loreEntries.length > 0) {
-                console.log('Using window.loreEntries as fallback');
-                allEntries = window.loreEntries;
-                isLocalLoad = true;
+                finalEntries = parsedEntries;
             }
 
+            if (window.loreEntries && window.loreEntries.length > finalEntries.length) {
+                console.log('Using window.loreEntries because it has more entries');
+                finalEntries = window.loreEntries;
+                isLocalLoad = true;
+                sourceInfo = 'Local (Script Tag)';
+            }
+
+            allEntries = finalEntries;
             if (allEntries.length === 0) {
                 throw new Error('記事データが空です。js/lore_index_v10.js を確認してください。');
             }
