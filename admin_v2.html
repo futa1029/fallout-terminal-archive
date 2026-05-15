@@ -898,6 +898,8 @@
             
             const arrayContent = html.substring(startIdx + startStr.length, endIdx);
             const fn = new Function('return [' + arrayContent + '];');
+            const parsedEntries = fn();
+
             // データの優先順位：件数が多い方を採用する（GitHubが古い場合に対応）
             let finalEntries = [];
             let sourceInfo = 'GitHub/Local Fetch';
