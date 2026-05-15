@@ -38,7 +38,8 @@ const loreEntries = [
                 url: "russell-dorsey.html",
                 category: "人物",
                 appearance: ["Fallout 76"],
-                date: "2026-05-15"
+                date: "2026-05-15",
+                isDraft: true
             },
             {
                 name: "アーロンホルト農場",
