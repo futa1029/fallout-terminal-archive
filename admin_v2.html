@@ -725,7 +725,7 @@
     const GITHUB_OWNER = 'futa1029';
     const GITHUB_REPO = 'fallout-terminal-archive';
     const GITHUB_BRANCH = 'main';
-    const LORE_FILE_PATH = 'js/lore_index_v10_final.js';
+    const LORE_FILE_PATH = 'js/lore_index_v10.js';
 
     // ===== 状態管理 =====
     let allEntries = [];
@@ -873,7 +873,7 @@
             // まずローカルfetchを試し、失敗したらGitHub APIを使う
             let html;
             try {
-                const res = await fetch('js/lore_index_v10_final.js?v=' + Date.now());
+                const res = await fetch('js/lore_index_v10.js?v=' + Date.now());
                 if (!res.ok) throw new Error('Local fetch failed');
                 html = await res.text();
             } catch (e) {

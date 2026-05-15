@@ -77,7 +77,7 @@ function generateXPost(articlePath) {
 
     let cleanIntro = clean(intro);
     let cleanMain = clean(mainContent);
-    let cleanQuote = clean(finalQuote).replace(/^感想\n+/i, '');
+    let cleanQuote = clean(finalQuote).replace(/^(Geminiアノテーション|Geminiの感想|感想)\n+/i, '');
 
     // 6. 組み立て
     // タグの修正: #FalloutOnPrime #FalloutTV

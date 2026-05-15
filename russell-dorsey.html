@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8"><title>Russell Dorsey | Overseer Mohi's Terminal</title><link rel="canonical" href="https://www.fallout-jp.com/russell-dorsey.html"><meta property="og:type" content="article"><meta property="og:site_name" content="Overseer Mohi's Terminal"><meta property="og:locale" content="ja_JP"><meta property="og:title" content="Russell Dorsey | Overseer Mohi's Terminal"><meta property="og:description" content="Russell Dorsey — Fallout 76"><meta property="og:url" content="https://www.fallout-jp.com/russell-dorsey.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@IwamotoFuta"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-<style>
+    <meta charset="UTF-8">
+    <title>ラッセル・ドーシー | Overseer Mohi's Terminal</title>
+    <link rel="canonical" href="https://www.fallout-jp.com/russell-dorsey.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Overseer Mohi's Terminal">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="og:title" content="ラッセル・ドーシー | Overseer Mohi's Terminal">
+    <meta property="og:description" content="ラッセル・ドーシー（Russell Dorsey）の完全アーカイブ。アトラス砦の建設に独力で着手した若きB.O.S.イニシエイトの軌跡。">
+    <meta property="og:url" content="https://www.fallout-jp.com/russell-dorsey.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@IwamotoFuta">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
         :root { --bg-color: #0f0f0f; --text-color: #e0e0e0; --accent-color: #00ff00; --header-bg: #1a1a1a; --panel-bg: #222; }
         body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Noto Sans JP', sans-serif; margin: 0; line-height: 1.8; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 300px 1fr; gap: 30px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 350px 1fr; gap: 30px; }
         h1, h2, h3 { font-family: 'Share Tech Mono', 'Noto Sans JP', monospace; color: var(--accent-color); border-bottom: 1px solid var(--accent-color); padding-bottom: 5px; }
         h1 { font-size: 2.2em; margin-top: 0; line-height: 1.4; }
         .infobox { background: var(--panel-bg); border: 2px solid var(--accent-color); padding: 15px; height: fit-content; position: sticky; top: 20px; align-self: start; }
-        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; }
+        .infobox img { width: 100%; border: 1px solid #555; margin-bottom: 15px; cursor: zoom-in; object-fit: cover; aspect-ratio: 16/9; }
         .infobox-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9em; border-bottom: 1px dashed #444; }
-        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 80px; }
+        .infobox-label { color: var(--accent-color); font-weight: bold; min-width: 100px; }
         .content { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 5px; font-size: 1em; line-height: 1.9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .article-image { max-width: 100%; height: auto; border: 1px solid #444; display: block; margin: 30px auto; cursor: zoom-in; }
         .image-caption { text-align: center; font-size: 0.9em; color: #888; margin-top: -20px; margin-bottom: 30px; font-style: italic; }
@@ -19,34 +31,23 @@
         .quote-box b { color: var(--accent-color); font-size: 1.05em; }
         .content a { color: var(--accent-color); text-decoration: none; border-bottom: 1px solid transparent; }
         .content a:hover { border-bottom: 1px solid var(--accent-color); }
-        .auto-link { color: var(--accent-color) !important; font-weight: bold; text-decoration: none; border-bottom: 1px dashed var(--accent-color) !important; transition: all 0.2s; padding: 0 2px; }
-        .auto-link:hover { background-color: color-mix(in srgb, var(--accent-color) 20%, transparent); border-bottom: 1px solid var(--accent-color) !important; }
         .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
         .back-link { display: inline-block; color: var(--accent-color); text-decoration: none; border: 1px solid var(--accent-color); padding: 8px 15px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
         .back-link:hover { background: var(--accent-color); color: var(--bg-color); }
         .like-button { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 8px 15px; font-size: 1.1em; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Share Tech Mono', monospace; transition: all 0.2s; }
         .like-button:hover { background: var(--accent-color); color: var(--bg-color); }
         .like-button.liked { background: var(--accent-color); color: var(--bg-color); }
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; }
-        .gallery-item img { width: 100%; height: 180px; object-fit: cover; cursor: zoom-in; }
-        .gallery-item .caption { padding: 8px; font-size: 0.8em; color: #aaa; text-align: center; }
-        .loot-list { list-style: none; padding: 0; }
-        .loot-list li { padding: 8px 0; border-bottom: 1px dashed #333; font-size: 0.95em; }
-        .loot-list li::before { content: '▸ '; color: var(--accent-color); font-weight: bold; }
-        .holotape-box { background: var(--panel-bg); border: 2px solid #ff9800; border-radius: 5px; padding: 20px; margin: 30px 0; }
-        .holotape-box h3 { color: #ff9800; border-bottom: 1px solid #ff9800; margin-top: 0; font-size: 1.1em; }
-        .holotape-box .holotape-icon::before { content: '🎙 '; }
-        .holotape-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; font-style: italic; }
-        .note-box { background: var(--panel-bg); border: 2px solid #8bc34a; border-radius: 5px; padding: 20px; margin: 30px 0; }
-        .note-box h3 { color: #8bc34a; border-bottom: 1px solid #8bc34a; margin-top: 0; font-size: 1.1em; }
-        .note-box .note-icon::before { content: '📝 '; }
-        .note-box .transcript { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 0.9em; line-height: 1.7; margin-top: 10px; }
-        .note-box .transcript .date-entry { color: var(--accent-color); font-weight: bold; margin-top: 12px; display: block; }
-        .variant-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.85em; }
-        .variant-table th { background: var(--header-bg); color: var(--accent-color); padding: 8px; text-align: left; border: 1px solid #444; font-family: 'Share Tech Mono', monospace; }
-        .variant-table td { padding: 8px; border: 1px solid #333; }
-        .variant-table tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+        .transcript-box { background: #111; border: 1px solid #444; padding: 20px; margin: 20px 0; border-radius: 4px; font-family: 'Noto Sans JP', sans-serif; font-size: 0.95em; position: relative; }
+        .transcript-label { position: absolute; top: -12px; left: 15px; background: var(--bg-color); padding: 0 10px; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; font-size: 0.8em; border: 1px solid var(--accent-color); }
+        .ai-annotation { background: rgba(0, 255, 0, 0.05); border-left: 3px solid var(--accent-color); padding: 15px; margin: 10px 0 30px 0; font-size: 0.9em; font-style: italic; color: #bbb; }
+        .ai-annotation b { color: var(--accent-color); }
+        .gallery-section { margin-top: 50px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; margin: 20px 0; }
+        .gallery-item { background: var(--panel-bg); border: 1px solid #333; overflow: hidden; display: flex; flex-direction: column; }
+        .gallery-item img { width: 100%; height: 200px; object-fit: cover; cursor: zoom-in; }
+        .gallery-item .caption { padding: 10px; font-size: 0.85em; color: #aaa; text-align: center; flex-grow: 1; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); }
+        .update-box { background: #2a2a2a; border: 1px solid #555; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .update-tag { background: var(--accent-color); color: #000; font-family: 'Share Tech Mono', monospace; font-size: 0.7em; padding: 2px 6px; border-radius: 3px; font-weight: bold; margin-right: 10px; }
         .lightbox-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; justify-content: center; align-items: center; cursor: pointer; }
         .lightbox-overlay.active { display: flex; }
         .lightbox-overlay img { max-width: 90%; max-height: 90%; object-fit: contain; }
@@ -59,37 +60,278 @@
         .char-count { font-size: 0.8em; color: var(--accent-color); font-family: 'Share Tech Mono', monospace; }
         .comment-submit-btn { background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 6px 16px; font-family: 'Share Tech Mono', monospace; cursor: pointer; transition: all 0.2s; }
         .comment-submit-btn:hover { background: var(--accent-color); color: var(--bg-color); }
-        .comment-submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .comment-msg { font-size: 0.85em; min-height: 1.2em; margin-top: 4px; font-family: 'Share Tech Mono', monospace; }
-        .comments-list { display: flex; flex-direction: column; gap: 10px; }
-        .comment-item { background: rgba(255,255,255,0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; }
+        .comment-item { background: rgba(255, 255, 255, 0.04); border-left: 3px solid var(--accent-color); padding: 10px 14px; border-radius: 0 4px 4px 0; margin-bottom: 10px; }
         .comment-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .comment-time { font-size: 0.78em; color: #666; font-family: 'Share Tech Mono', monospace; }
         .comment-body { font-size: 0.92em; line-height: 1.6; word-break: break-all; }
-        .comment-delete-btn { background: none; border: none; cursor: pointer; font-size: 1em; padding: 2px 6px; border-radius: 3px; opacity: 0.7; transition: opacity 0.2s; }
-        .comment-delete-btn:hover { opacity: 1; }
-        .comment-empty, .comment-loading { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
-        .script-notes { background: var(--panel-bg); border: 1px solid #555; border-radius: 5px; padding: 20px; margin: 20px 0; }
-        .script-notes summary { color: var(--accent-color); font-family: 'Share Tech Mono', monospace; cursor: pointer; font-size: 1em; }
-        .script-notes .note-category { color: var(--accent-color); font-weight: bold; margin-top: 15px; display: block; }
-        .script-notes ul { margin: 5px 0 10px 20px; }
-        .script-notes li { font-size: 0.9em; line-height: 1.6; font-style: italic; }
+        .comment-empty { color: #666; font-size: 0.85em; font-family: 'Share Tech Mono', monospace; padding: 10px 0; }
     </style>
-    <meta name="article-status" content="draft">
 </head>
 <body data-article-category="人物" data-article-appearance="Fallout 76">
-<div class="container"><aside class="infobox"><h3 style="margin-top:0;text-align:center;">Russell Dorsey</h3><img src="images/note_extracted/russell-dorsey/img_main.png" alt="Russell Dorsey" onerror="this.onerror=null; this.src='images/placeholder.jpg';"><div class="infobox-row"><span class="infobox-label">所属</span><span>Miscellaneous</span></div><div class="infobox-row"><span class="infobox-label">役職</span><span>Renovator</span></div><div class="infobox-row"><span class="infobox-label">場所</span><span>Fort Atlas</span></div><div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div></aside><main class="content"><div class="action-header"><a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a><button class="like-button" data-article-id="note_russell_dorsey" onclick="toggleLike(this)"><span class="heart">♡</span> <span class="like-count">0</span></button></div><h1>Russell Dorsey</h1><h2>概要</h2>
-<p><b>ラッセル・ドーシー（Initiate Russell Dorsey）</b>は、アパラチアのATLAS砦に駐屯するブラザーフッド・オブ・スティール第一遠征軍のイニシエイト（新兵）である。</p>
-<h2>背景</h2>
-<p>メリーランド州出身のドーシーは、2103年頃にアパラチアに到着し、他の「入植者」たちと共にファウンデーションに移り住んだ。<br>偵察任務中、彼はアパラチアのB.O.S.の痕跡に出会い、ディファイアンス砦で記録や日誌を発見したことで、ブラザーフッドへの執着を強めていった。<br>彼はファウンデーションでの生活を楽しんではいたものの、単に土地を再定住させる以上の何かを成し遂げたいと考えていた。<br>彼はまた、クレーターでレイダーたちとも出会い、彼らを「タフで、思っていたよりもいい奴らだが、自分たちの利益しか考えられない」と評価している。<br>彼の父親は海軍の所属であり、それが彼をB.O.S.の手助けをするために尽力させる決意のインスピレーションの源となった。<br>なぜなら、彼自身はすでに存在しないアメリカ軍に入隊することができなかったからだ。</p>
-<p>ブラザーフッド第一遠征軍からの通信を傍聴した後、ドーシーはATLAS観測所へと旅立ち、放棄された施設を制圧した。<br>彼らが到着した時のために、物資を整理し、防御設備を構築し、軍事施設として稼働できるように手配しようと試みたのだ。<br>彼は警備ロボットを閉じ込めるために観測所の入り口を封鎖し、かつてロブコ・インダストリーズで働いていたグレッグという人物から得たハッキング技術を使い、自分が監督官であると誤認させた建築用プロテクトロンを利用して、観測所の増築工事を始めた。<br>彼はATLAS（およびコミュニティイベントである『Fortifying ATLAS（ATLAS防衛戦）』）での自らの努力が、帰還するブラザーフッドに自分を貴重な人材であると認識させる材料になることを期待しており、その努力は最終的に実を結んだ。<br>彼はまた、通りすがりの人たちに対し、「自分の物に触って迷惑をかけないでくれ」と頼むメモを残していた。</p>
-<p>ブラザーフッドの分遣隊が到着すると、ドーシーはほぼ即座に正式なイニシエイトに任命された。現在、彼はATLAS砦の入り口付近で、ブラザーフッドの志願兵や他のイニシエイトたちに囲まれている姿を見つけることができる。彼に話しかけると、ブラザーフッドの素晴らしさや自身の役割について熱心に語ってくれる。</p>
-<div class="quote-box">
+    <div class="container">
+        <aside class="infobox">
+            <h3 style="margin-top:0;text-align:center;">ラッセル・ドーシー</h3>
+            <img src="images/russell-dorsey/FO76WL_BS00_Russell_Dorsey.jpg" alt="ラッセル・ドーシー">
+            <div class="infobox-row"><span class="infobox-label">所属</span><span>ブラザーフッド・オブ・スティール</span></div>
+            <div class="infobox-row"><span class="infobox-label">階級</span><span>イニシエイト</span></div>
+            <div class="infobox-row"><span class="infobox-label">場所</span><span>アトラス砦</span></div>
+            <div class="infobox-row"><span class="infobox-label">出身</span><span>メリーランド州</span></div>
+            <div class="infobox-row"><span class="infobox-label">家族</span><span>父親（故人）</span></div>
+            <div class="infobox-row"><span class="infobox-label">登場作品</span><span>Fallout 76</span></div>
+        </aside>
+
+        <main class="content">
+            <div class="action-header">
+                <a href="lore.html" class="back-link">&lt; BACK TO TERMINAL</a>
+                <button class="like-button" data-article-id="note_russell_dorsey_complete_archive" onclick="toggleLike(this)">
+                    <span class="heart">♡</span> <span class="like-count">0</span>
+                </button>
+            </div>
+
+            <h1>ラッセル・ドーシー<br><span style="font-size:0.6em;color:#888;font-family:'Noto Sans JP',sans-serif;font-weight:normal;">Russell Dorsey</span></h1>
+
+            <div class="quote-box">
+                <p class="quote-text">
+                    「人々はブラザーフッドのような組織の価値を理解していない。誰もがただ……その場しのぎで生きているだけなんだ。」<br>
+                    <b>―― ラッセル・ドーシー</b>
+                </p>
+            </div>
+
+            <h2>概要</h2>
+            <p>
+                <b>ラッセル・ドーシー（Initiate Russell Dorsey）</b>は、アパラチアの<b>アトラス砦</b>（旧ATLAS観測所）に駐屯するブラザーフッド・オブ・スティール第一遠征軍のイニシエイト（新兵）である。<br>
+                彼はブラザーフッドへの入隊を夢見て、まだ本隊がアパラチアに到着する前から独力で施設の復旧と要塞化を開始した、極めて熱心な志願者として知られている。
+            </p>
+
+            <h2>背景</h2>
+            <p>
+                メリーランド州出身のラッセルは、2103年頃にアパラチアに到着した。当初はファウンデーションの入植者たちと共に活動していたが、偵察任務中に旧アパラチア支部が残した記録やログを<b>ディファイアンス砦</b>で発見したことで、ブラザーフッドという組織に強く惹かれるようになる。
+            </p>
+            <p>
+                彼のインスピレーションの源は、大戦前に海軍に所属していた亡き父の語り聞かせた物語であった。核戦争によって旧来の軍隊が消滅した世界で、彼は単なる生存を超えた「目的」と「規律」を求めていた。西部のロスト・ヒルズから遠征軍が向かっているという無線を傍受すると、彼は即座にATLAS観測所へと向かい、彼らのための拠点を自力で築き始めた。
+            </p>
+
+            <div class="ai-annotation">
+                <b>感想</b>: 彼の行動は一見すると狂信的ですが、その根底には「失われた父権的な秩序」への渇望があります。入植者のように「ただ生きる」のではなく、大戦前の規律を継承するB.O.S.に自らを投影することで、彼は過酷なウェイストランドで自分のアイデンティティを確立しようとしたのでしょう。
+            </div>
+
+            <h2>現場調査：環境ストーリーテリング</h2>
+            <p>
+                アトラス砦の外壁を調査すると、ラッセルが独力で構築した初期の防衛設備の痕跡を確認できる。
+            </p>
+            <ul>
+                <li><b>独力の野営地</b>: 砦の外階段の下には、彼が初期に使用していたテントと簡素なベッドが残されている。彼の「日記」は、このベッドの下にひっそりと隠されていた。</li>
+                <li><b>ロボットの使役</b>: 彼はロブコ社の元技術者グレッグから教わったハッキング技術を使い、施設に残されていた建築用プロテクトロンを「自分が監督官である」と誤認させて使役していた。現在、砦周辺で見られる足場やプラットフォームの多くは、この手法によって建設されたものである。</li>
+                <li><b>封鎖された入り口</b>: 彼が最初に到着した際、施設内部に残っていた狂暴な警備ロボットを閉じ込めるために、彼は独力で内部への入り口を物理的に封鎖した。これは、後に到着するブラザーフッドが安全に施設を掌握できるようにするための配慮であった。</li>
+                <li><b>着陸パッド</b>: ブラザーフッドが航空機を所有しているかどうかも分からない段階で、彼は「スペースがあったから」という理由だけで、将来の飛来に備えた着陸パッドを建設していた。</li>
+            </ul>
+
+            <div class="ai-annotation">
+                <b>感想</b>: 着陸パッドの建設は、彼の「希望」が具体化した象徴と言えます。確証がない中で、いつか訪れるはずの「救世主」のために滑走路を用意する。その献身こそが、後にパラディン・ラフマーニを動かし、彼を特例でイニシエイトに任命させた要因と言えるでしょう。
+            </div>
+
+            <h2>アーカイブ・アップデート：歴史的変遷</h2>
+            <div class="update-box">
+                <p><span class="update-tag">Ver. 1.3.0 (The Legendary Run)</span> ラッセルが初めてアパラチアに登場。当時はアトラス観測所の外にポツンとテントを構えているだけの「ただのファン」のような存在であった。彼はサーバー全体の共同イベント「Fortifying ATLAS」の窓口となり、プレイヤーに膨大な資材の納品を求めた。</p>
+                <p><span class="update-tag">Ver. 1.5.0 (Steel Dawn)</span> ブラザーフッド第一遠征軍が正式に到着。アトラス観測所は「アトラス砦」へと劇的な変貌を遂げ、ラッセルも念願のB.O.S.制服（イニシエイト・アーマー）を着用。正式な組織の一員として、入り口での受付業務を担当するようになった。</p>
+            </div>
+
+            <h2>全文記録：ノートと日記</h2>
+
+            <div class="transcript-box">
+                <div class="transcript-label">ラッセル・ドーシーの日記 (Dorsey's diary)</div>
+                <p style="text-align: center;"><u>ラッセル・ドーシーの日記</u><br><i>機密</i></p>
+                <p>
+                    ここで日誌を書き始めることにした。こんな場所に一人でいると、どうせ独り言を言うようになるから、書き留めておいたほうがいいだろう。これが全部終わったときに見返せるものがあればいいしな。
+                </p>
+                <p>
+                    スクラップを探していたら、ブラザーフッドの信号を拾った。最初はかすかなノイズだったが、やがて言葉が断片的に聞こえてきた。ブラザーフッド・オブ・スティールがウェストバージニアに戻ってくる！信じられないことだった。何が彼らを呼び戻したのか、なぜ西のロスト・ヒルズから送るのにこれほど時間がかかったのかは分からないが、事態を把握するとすぐに荷物をまとめてアトラス（ATLAS）に来た。彼らが来るのはここだ、だから僕もここにいなきゃならない。
+                </p>
+                <p>
+                    これをやっている間、父さんのことをよく思い出す。ここで何かをセットアップするたびに、父さんならどうしただろうかと自分に問いかける。爆弾が落ちた後に住んでいた家、父さんが直した修理箇所、浄水器を置くために付け足した増築部分、温室……今でも鮮明に思い出せる。<br>
+                    父さんも、僕がここで作っているものを認めてくれると思う。生きてこれを見てほしかった。もし父さんが生きていたら、ここには来なかったかもしれないけど。<br>
+                    今でも父さんが恋しい。
+                </p>
+                <p>
+                    バージニアの道中で出会ったグレッグ、どこにいるか分からないけど、改めてありがとう。<br>
+                    グレッグは爆弾が落ちる前、ロブコ・インダストリーズの技術者だった。プロテクトロン・ユニットの担当で、法人顧客のところへ行って現場メンテナンスをしたり、壊れたモチベーターを直したりしていたそうだ。
+                </p>
+                <p>
+                    彼に会ったとき、彼は一台のプロテクトロンを連れていた。彼はそれを「クランクス」と呼び、その頭にボロボロの古いシルクハットを糊でくっつけていた。旅の荷物を運ばせていたんだ。<br>
+                    ある夜キャンプをしていたとき、彼はクランクスにちょっとした「ダンス」をさせ、あの機械的な声でふざけた歌を歌わせた。今まで聴いた中で最悪の歌声だったけど、僕らは大笑いしたよ。<br>
+                    彼は、古いショッピングセンターで壊れた脚部サーボのまま動いていたユニットを見つけ、修理した方法を説明してくれた。クランクスを開けて、マザーボードを直結し、メンテナンス回路を起動してコマンドシステムを上書きする方法を見せてくれたんだ。<br>
+                    おかしいよね。それがそんなに役に立つなんて思ってもみなかった。でもここに来て役に立ったんだ。プロテクトロンをおびき寄せて、サービスパネルをこじ開け、即席の修理を施すのは簡単じゃない。でも幸運なことに、一台手に入れれば、もっと多くを手に入れるのはずっと簡単になる。
+                </p>
+                <p>
+                    僕がここに来たとき、この場所はひどい有様だった。壊れた車両とジャンク、そして狂ったロボットたちがパトロールしているだけ。最初に襲われたときは命からがら逃げ出したよ。<br>
+                    昔ここで何をしていたのか、なぜ天文台に警備ロボットがいるのかは分からない。でも、彼らがいてくれてよかった。たとえ最初は僕を撃とうとしたとしてもね。彼らがいないかったら、これだけのことは不可能だっただろう。重いものを運んだり、溶接したり、大変な建設作業をこなしてくれるロボットがいなければ、砂袋をいくつか並べるのが精一杯だったはずだ。<br>
+                    代わりに、僕らは瓦礫を取り除き、壁を作り始めた……へへ、着陸パッドまで作りかけだ。ブラザーフッドが航空機を持っているかどうかも分からないけど、スペースがあったから、作っておいて損はないだろう？<br>
+                    ただ、建物の中に何があるのかはまだ分からない。中でさらにロボットがガシャンガシャン動いている音が聞こえるし、中を覗いたときはボロボロに見えた。ブラザーフッドが来るまで、中のものが外に出ないように出口を板で塞いでおいた。僕より彼らのほうがどうすべきかよく知っているだろうし、外側だけでも手一杯だからな。
+                </p>
+                <p>
+                    ここに書く時間がほとんどなかった。ブラザーフッドが戻ってきたんだ！僕とロボットたちだけで準備していたときも忙しいと思っていたけど、今は本当にギアが上がった感じだ。<br>
+                    正直なところ、たった三人だったときは驚いたよ。小隊とか部隊とか、そんな感じのが丸ごと来ると思っていたけど、実際はパラディン・ラフマーニ、ナイト・シン、スクライブ・バルデスの三人だけだった。<br>
+                    彼らは他にも大勢の「志願者」を連れていたけど、実際にブラザーフッドなのはその三人だけだったんだ。他のみんなは、途中で拾われたメンバー候補に過ぎなかった。僕と同じようにね。<br>
+                    でも、今は本物だ！ブラザーフッド・イニシエイト・ドーシーだ！彼らは僕がここで用意したすべてを見て、ほぼその場で入隊を認めてくれた。冗談かと思ったけど、ナイト・シンは冗談を言うようなタイプじゃないしな。<br>
+                    今でも朝起きると、全部夢だったんじゃないかと思うことがある。でも現実なんだ。僕は本当に、何かの、大きなものの一部になったんだ。どうにかして、父さんが僕の成し遂げたことを見て、誇りに思ってくれているといいな。<br>
+                    よし、イニシエイトとしての自分、仕事に戻れ。
+                </p>
+            </div>
+
+            <div class="ai-annotation">
+                <b>感想</b>: 日記の中で触れられている「グレッグ」という人物との出会いが、彼の運命を決定づけました。単なる情熱だけでなく、ロボットを制御する「技術」を持っていたことが、彼をただの志願者から「拠点の建設者」へと押し上げたのです。
+            </div>
+
+            <div class="transcript-box">
+                <div class="transcript-label">すぐに戻る (Back in a bit)</div>
+                <p>
+                    立ち寄った方へ：<br>
+                    ロボットの予備パーツを探しに少し出かけている。僕らがここで何をしているかに興味があるなら、すぐ戻るから待っていてくれ。ここが終われば、素晴らしい場所になるはずだ。協力してくれることを願っている。<br><br>
+                    この場所を封鎖したから、もし中に入って覗こうと思っているなら……残念だが諦めてくれ。それと、僕がいない間に僕の物に触らないでほしい。無理やり止めることはできないけど、わざわざ嫌な奴になる必要もないだろう。<br>
+                    - ラッセル・ドーシー
+                </p>
+            </div>
+
+            <h2>ギャラリー</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/russell-dorsey/FO76LR_Fortifying_ATLAS_Dorsey.jpg" alt="建設中のラッセル">
+                    <div class="caption">「Fortifying ATLAS」イベント時のラッセル</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/russell-dorsey/FO76SR_Russell_Dorsey_The_Catalyst.png" alt="イニシエイト・ドーシー">
+                    <div class="caption">「Steel Dawn」以降、B.O.S.の一員となった姿</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/russell-dorsey/FO76LR_ATLAS_Observatory_(Dorsey's_diary).png" alt="日記の場所">
+                    <div class="caption">ベッドの下に置かれたラッセルの日記</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/russell-dorsey/FO76LR_Note_Dorsey's_Diary.png" alt="日記のモデル">
+                    <div class="caption">ゲーム内での日記のビジュアル</div>
+                </div>
+            </div>
+
+            <div class="quote-box">
                 <b>感想</b><br><br>
-                B.O.S.の登場にあわせて実装されたキャラクター。元々は入植者の一人でしたが、B.O.S.へのあこがれが強すぎて単身でATLAS観測所の整備に着手したという経歴の持ち主。<br>
-<br>
-プレイヤー参加型の全サーバー共有イベント『Fortifying ATLAS（ATLAS防衛戦）』の主要NPCであり、彼に要求された資源を納品することでコミュニティ全体の進行度を進めることができました。<br>
-<br>
-努力の甲斐あって無事にB.O.S.の一員（イニシエイト）として入隊を認められ、現在もATLAS砦の入り口で入隊希望者などの窓口業務を行っています。<br>
-なお、I Am Become DeathでATLAS砦に核を落とすと、彼は防護スーツを着て入り口に立ち続けます（死にません）。
-            </div><div style="margin-top:30px;border-top:1px dashed var(--accent-color);padding-top:20px;font-size:0.85em;color:#888;"><p name="copyright-default">This article was created by translating and editing <a href="https://fallout.fandom.com/wiki/Russell%20Dorsey" target="_blank" rel="noopener">Russell Dorsey</a> from <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia</a>.<br>Licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">CC BY-SA 3.0</a>.</p><p style="margin-top:15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color:var(--accent-color);">寄付を受け付けております</a>。</p></div><div class="comments-section"><h2 class="comments-title">&gt; COMMENTS_</h2><div class="comment-form"><textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea><div class="comment-form-footer"><span class="char-count"><span id="char-count">0</span>/100</span><button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button></div><div id="comment-msg" class="comment-msg"></div></div><div id="comments-list"></div></div></main></div><div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')"><img id="lightbox-img" src="" alt="" onerror="this.onerror=null; this.src='images/placeholder.jpg';"></div><script>const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);async function toggleLike(b){const a=b.getAttribute('data-article-id');let l=localStorage.getItem(a+'_liked')==='true';b.disabled=true;if(l){const{data}=await supabaseClient.rpc('decrement_like',{article_id_param:a});localStorage.setItem(a+'_liked','false');uLB(b,false,data);}else{const{data}=await supabaseClient.rpc('increment_like',{article_id_param:a});localStorage.setItem(a+'_liked','true');uLB(b,true,data);}b.disabled=false;}function uLB(b,l,c){b.querySelector('.heart').textContent=l?'\u2665':'\u2661';l?b.classList.add('liked'):b.classList.remove('liked');b.querySelector('.like-count').textContent=c;}document.addEventListener('DOMContentLoaded',async()=>{const b=document.querySelector('.like-button');if(b){const a=b.getAttribute('data-article-id');const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',a).single();uLB(b,localStorage.getItem(a+'_liked')==='true',data?data.like_count:0);}document.querySelectorAll('.content img,.infobox img').forEach(i=>{i.onclick=e=>{e.stopPropagation();document.getElementById('lightbox-img').src=i.src;document.getElementById('lightbox').classList.add('active');};});const _a='note_russell_dorsey';const _n='Russell Dorsey';const _u='russell-dorsey.html';function uc(){document.getElementById('char-count').textContent=document.getElementById('comment-input').value.length;}async function lc(){const{data}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_a).order('created_at',{ascending:false}).limit(50);const l=document.getElementById('comments-list');if(!data||!data.length){l.innerHTML='<div class="comment-empty">まだコメントがありません。</div>';return;}l.innerHTML=data.map(c=>'<div class="comment-item"><div class="comment-meta"><span>'+new Date(c.created_at).toLocaleDateString('ja-JP')+'</span></div><div class="comment-body">'+c.content.replace(/</g,'&lt;')+'</div></div>').join('');}window.updateCharCount=uc;window.submitComment=async function(){const i=document.getElementById('comment-input');const v=i.value.trim();if(!v||v.length>100)return;await supabaseClient.from('comments').insert({article_id:_a,article_name:_n,article_url:_u,content:v});i.value='';uc();lc();};lc();});</script><script src="article-common.js" defer></script></body></html>
+                ラッセル・ドーシーというキャラクターは、Fallout 76の世界において「希望」と「執着」の絶妙なバランスを体現しています。単なるNPC以上の存在感を持っているのは、彼がプレイヤーと共に「拠点を造り上げた」という歴史を共有しているからでしょう。<br><br>
+                核を落としても防護服を着て平然と立っているその強靭なメンタリティ（あるいはメタ的な不死属性）も含めて、彼こそがアパラチアにおけるブラザーフッドの再興を支えた真の功労者と言えるかもしれません。彼の物語は、規律を重んじるB.O.S.がいかにして「地元の住民」を取り込み、新たなアパラチアの物語を構築していったかを示す、最も美しい例の一つです。
+            </div>
+
+            <div style="margin-top: 30px; border-top: 1px dashed var(--accent-color); padding-top: 20px; font-size: 0.85em; color: #888;">
+                <p name="copyright-default">This article was synthesized from <a href="https://fallout.fandom.com/wiki/Russell_Dorsey" target="_blank" rel="noopener">Russell Dorsey</a> and related pages on <a href="https://fallout.fandom.com/" target="_blank" rel="noopener">Nukapedia: The Fallout Wiki</a>.<br>Licensed under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noopener">Creative Commons Attribution-Share Alike License (CC BY-SA 3.0)</a>.</p>
+                <p>&copy; Overseer Mohi's Terminal — Fallout Lore Archive</p>
+                <p style="margin-top: 15px;">コミュニティ維持のため、<a href="https://mohi3.fanbox.cc/" target="_blank" rel="noopener" style="color: var(--accent-color);">寄付を受け付けております</a>。</p>
+            </div>
+
+            <div class="comments-section">
+                <h2 class="comments-title">&gt; COMMENTS_</h2>
+                <div class="comment-form">
+                    <textarea id="comment-input" class="comment-textarea" maxlength="100" placeholder="コメントを入力..." oninput="updateCharCount()"></textarea>
+                    <div class="comment-form-footer">
+                        <span class="char-count"><span id="char-count">0</span>/100</span>
+                        <button class="comment-submit-btn" onclick="submitComment()">SUBMIT &gt;</button>
+                    </div>
+                    <div id="comment-msg" class="comment-msg"></div>
+                </div>
+                <div id="comments-list"></div>
+            </div>
+        </main>
+    </div>
+
+    <div class="lightbox-overlay" id="lightbox" onclick="this.classList.remove('active')">
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        const supabaseUrl='https://qkdjufvdeisnunismgaw.supabase.co';
+        const supabaseKey='sb_publishable_6MtJQZESOx1XLLZ6cBeyJA_D_DyT2Zl';
+        const supabaseClient=window.supabase.createClient(supabaseUrl,supabaseKey);
+        
+        async function toggleLike(btn){
+            const articleId=btn.getAttribute('data-article-id');
+            let isLiked=localStorage.getItem(articleId+'_liked')==='true';
+            btn.disabled=true;
+            if(isLiked){
+                isLiked=false;
+                const{data,error}=await supabaseClient.rpc('decrement_like',{article_id_param:articleId});
+                if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeCount(btn,data);}
+            }else{
+                isLiked=true;
+                const{data,error}=await supabaseClient.rpc('increment_like',{article_id_param:articleId});
+                if(!error){localStorage.setItem(articleId+'_liked',isLiked);updateLikeCount(btn,data);}
+            }
+            btn.disabled=false;
+        }
+        
+        function updateLikeCount(btn,count){
+            const isLiked=localStorage.getItem(btn.getAttribute('data-article-id')+'_liked')==='true';
+            const heart=btn.querySelector('.heart');
+            const countSpan=btn.querySelector('.like-count');
+            if(isLiked){btn.classList.add('liked');heart.textContent='♥';}
+            else{btn.classList.remove('liked');heart.textContent='♡';}
+            countSpan.textContent=count;
+        }
+
+        document.addEventListener('DOMContentLoaded',async()=>{
+            const btn=document.querySelector('.like-button');
+            const articleId=btn.getAttribute('data-article-id');
+            const{data}=await supabaseClient.from('likes').select('like_count').eq('article_id',articleId).single();
+            updateLikeCount(btn,data?data.like_count:0);
+
+            document.querySelectorAll('.content img, .infobox img, .gallery-item img').forEach(img=>{
+                img.onclick=()=>{
+                    document.getElementById('lightbox-img').src=img.src;
+                    document.getElementById('lightbox').classList.add('active');
+                }
+            });
+        });
+
+        const _commentArticleId='note_russell_dorsey_complete_archive';
+        const _commentArticleName='ラッセル・ドーシー';
+        const _commentArticleUrl='russell-dorsey.html';
+
+        function updateCharCount(){
+            const len=document.getElementById('comment-input').value.length;
+            const el=document.getElementById('char-count');
+            if(el){el.textContent=len;el.style.color=len>90?'#ff6b6b':'var(--accent-color)';}
+        }
+        
+        function relativeTime(s){
+            const d=(Date.now()-new Date(s).getTime())/1000;
+            if(d<60)return'たった今';
+            if(d<3600)return Math.floor(d/60)+'分前';
+            if(d<86400)return Math.floor(d/3600)+'時間前';
+            if(d<86400*7)return Math.floor(d/86400)+'日前';
+            return new Date(s).toLocaleDateString('ja-JP');
+        }
+        
+        function escapeHtml(str){return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+        
+        function renderComments(comments){
+            const list=document.getElementById('comments-list');
+            if(!list)return;
+            if(!comments||comments.length===0){
+                list.innerHTML='<div class="comment-empty">まだコメントがありません。最初のコメントを投稿してみましょう！</div>';
+                return;
+            }
+            list.innerHTML=comments.map(c=>`<div class="comment-item"><div class="comment-meta"><span class="comment-time">${relativeTime(c.created_at)}</span></div><div class="comment-body">${escapeHtml(c.content)}</div></div>`).join('');
+        }
+        
+        async function loadComments(){
+            const{data,error}=await supabaseClient.from('comments').select('id,content,created_at').eq('article_id',_commentArticleId).order('created_at',{ascending:false}).limit(50);
+            if(!error)renderComments(data);
+        }
+        
+        async function submitComment(){
+            const input=document.getElementById('comment-input');
+            const content=input.value.trim();
+            if(!content)return;
+            const{error}=await supabaseClient.from('comments').insert({article_id:_commentArticleId,article_name:_commentArticleName,article_url:_commentArticleUrl,content:content});
+            if(!error){input.value='';updateCharCount();loadComments();}
+        }
+        
+        document.addEventListener('DOMContentLoaded',loadComments);
+    </script>
+</body>
+</html>

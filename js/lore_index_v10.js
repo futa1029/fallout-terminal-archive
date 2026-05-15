@@ -33,6 +33,14 @@ const loreEntries = [
                 date: "2026-05-06"
             },
             {
+                name: "ラッセル・ドーシー",
+                yomi: "ラッセル・ドーシー",
+                url: "russell-dorsey.html",
+                category: "人物",
+                appearance: ["Fallout 76"],
+                date: "2026-05-15"
+            },
+            {
                 name: "アーロンホルト農場",
                 yomi: "アーロンホルト農場",
                 url: "aaron-holt-farm.html",
@@ -926,8 +934,8 @@ const loreEntries = [
                 isDraft: true
             },
             {
-                name: "ATLAS観測所 (アトラス砦)",
-                yomi: "ATLAS観測所 アトラス",
+                name: "ATLAS天文台",
+                yomi: "ATLAS天文台",
                 url: "atlas-observatory.html",
                 category: "場所",
                 appearance: ["Fallout 76"],
