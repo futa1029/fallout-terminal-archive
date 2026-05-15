@@ -916,16 +916,21 @@
             let finalEntries = parsedEntries || [];
             let sourceInfo = html ? 'Fetch' : 'Fallback';
 
-            if (window.loreEntries && window.loreEntries.length > finalEntries.length) {
-                console.log('Using window.loreEntries as it is newer/larger');
-                finalEntries = window.loreEntries;
-                isLocalLoad = true;
-                sourceInfo = 'Local (Script Tag)';
+            // constで定義された変数は window.loreEntries では参照できないため、直接チェックする
+            try {
+                if (typeof loreEntries !== 'undefined' && loreEntries.length > finalEntries.length) {
+                    console.log('Using global loreEntries as it is newer/larger');
+                    finalEntries = loreEntries;
+                    isLocalLoad = true;
+                    sourceInfo = 'Local (Script Tag)';
+                }
+            } catch (e) {
+                console.warn('Global loreEntries not accessible:', e.message);
             }
 
             allEntries = finalEntries;
             if (allEntries.length === 0) {
-                throw new Error('記事データが空です。js/lore_index_v10.js を確認してください。');
+                throw new Error('記事データが空です。js/lore_index_v11.js を確認してください。');
             }
 
             // ドラフトのみ抽出（古い順）
