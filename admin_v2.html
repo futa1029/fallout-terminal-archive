@@ -872,44 +872,52 @@
     // ===== エントリのロード =====
     async function loadEntries() {
         try {
-            // まずローカルfetchを試し、失敗したらGitHub APIを使う
-            let html;
+            // データの取得を試みる
+            let html = '';
+            let parsedEntries = [];
+
             try {
                 const res = await fetch('js/lore_index_v11.js?v=' + Date.now());
-                if (!res.ok) throw new Error('Local fetch failed');
-                html = await res.text();
+                if (res.ok) {
+                    html = await res.text();
+                }
             } catch (e) {
-                // ローカルfetch失敗時はGitHub APIで取得
-                const token = getToken();
-                if (token) {
-                    html = await fetchLoreFromGitHub();
-                } else {
-                    throw new Error('js/lore_index.jsを読み込めません。GitHub PATを設定してください。');
+                console.warn('Local fetch failed, trying GitHub...');
+            }
+
+            if (!html) {
+                try {
+                    const token = getToken();
+                    if (token) {
+                        html = await fetchLoreFromGitHub();
+                    }
+                } catch (e) {
+                    console.warn('GitHub fetch failed:', e.message);
                 }
             }
 
-            // loreEntries配列を抽出（]; を探して正確に範囲を特定）
-            const startStr = 'const loreEntries = [';
-            const startIdx = html.indexOf(startStr);
-            if (startIdx === -1) throw new Error('loreEntries not found');
-            
-            const endIdx = html.indexOf('];', startIdx);
-            if (endIdx === -1) throw new Error('Closing ]; not found');
-            
-            const arrayContent = html.substring(startIdx + startStr.length, endIdx);
-            const fn = new Function('return [' + arrayContent + '];');
-            const parsedEntries = fn();
-
-            // データの優先順位：件数が多い方を採用する（GitHubが古い場合に対応）
-            let finalEntries = [];
-            let sourceInfo = 'GitHub/Local Fetch';
-
-            if (parsedEntries && parsedEntries.length > 0) {
-                finalEntries = parsedEntries;
+            // HTMLが取得できた場合はパースを試みる
+            if (html) {
+                const startStr = 'const loreEntries = [';
+                const startIdx = html.indexOf(startStr);
+                const endIdx = html.indexOf('];', startIdx);
+                if (startIdx !== -1 && endIdx !== -1) {
+                    const arrayContent = html.substring(startIdx + startStr.length, endIdx);
+                    try {
+                        const fn = new Function('return [' + arrayContent + '];');
+                        parsedEntries = fn();
+                    } catch (e) {
+                        console.error('Parse error:', e);
+                    }
+                }
             }
 
+            // データの優先順位：パース結果か、scriptタグのグローバル変数
+            let finalEntries = parsedEntries || [];
+            let sourceInfo = html ? 'Fetch' : 'Fallback';
+
             if (window.loreEntries && window.loreEntries.length > finalEntries.length) {
-                console.log('Using window.loreEntries because it has more entries');
+                console.log('Using window.loreEntries as it is newer/larger');
                 finalEntries = window.loreEntries;
                 isLocalLoad = true;
                 sourceInfo = 'Local (Script Tag)';
