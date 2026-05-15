@@ -69,11 +69,5 @@ Ver. 1.5.0 (Steel Dawn) ブラザーフッド第一遠征軍が正式に到着�
 
 ---
 
-## 🎨 X投稿用画像構成案
-
-投稿時には以下の4枚の画像を添付することを推奨します：
-
-1. **メインビジュアル**: `images/1.jpg` (ラッセル・ドーシーのポートレート)
-2. **ロケーション**: `images/2.jpg` (アトラス砦の遠景)
-3. **ゲーム内シーン**: `images/3.png` (日記の置かれた現場)
-4. **アイテム**: `images/4.png` (日記のクローズアップ)
+This article was synthesized from Russell Dorsey and related pages on Nukapedia: The Fallout Wiki.
+Licensed under the Creative Commons Attribution-Share Alike License (CC BY-SA 3.0).
