@@ -1,5 +1,17 @@
 const loreEntries = [
     {
+        name: "レイラ・ラフマーニ",
+        yomi: "レイラ・ラフマーニ",
+        url: "leila-rahmani.html",
+        category: "人物",
+        appearance: [
+            "Fallout 76"
+        ],
+        date: "2026-05-16",
+        isDraft: true
+    },
+
+    {
         name: "10mmピストル",
         yomi: "10mmピストル",
         url: "10mm-pistol.html",
