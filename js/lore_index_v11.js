@@ -7,10 +7,8 @@ const loreEntries = [
         appearance: [
             "Fallout 76"
         ],
-        date: "2026-05-16",
-        isDraft: true
+        date: "2026-05-16"
     },
-
     {
         name: "10mmピストル",
         yomi: "10mmピストル",
